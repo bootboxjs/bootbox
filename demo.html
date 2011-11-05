@@ -11,7 +11,13 @@
         <h1>Bootbox Demo Page</h1>
 
         <h2>Alerts</h2>
-        <a href="#" class="alert">alert</a>
+        <a href="#" class="alert" title="Simple Alert">alert</a>
+
+        <h2>Confirms</h2>
+        <a href="#" class="confirm">confirm</a>
+
+        <h2>Custom Dialogs</h2>
+        <a href="#" class="dialog">dialog</a>
     </div>
 
     <!-- JS dependencies -->
@@ -23,7 +29,46 @@
     <script>
         $(function() {
             $("a.alert").click(function(e) {
-                bootbox.alert("Hello");
+                e.preventDefault();
+                bootbox.alert("Hello", function() {
+                    console.log("Alert Callback");
+                });
+            });
+
+            $("a.confirm").click(function(e) {
+                e.preventDefault();
+                bootbox.confirm("Are you sure?", function(confirmed) {
+                    console.log("Confirmed: "+confirmed);
+                });
+            });
+
+            $("a.dialog").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("I am a custom dialog", [{
+                    "label" : "Success!",
+                    "class" : "success",
+                    "callback": function() {
+                        console.log("great success");
+                    }
+                }, {
+                    "label" : "Danger!",
+                    "class" : "danger",
+                    "callback": function() {
+                        console.log("uh oh, look out!");
+                    }
+                }, {
+                    "label" : "Click ME!",
+                    "class" : "primary",
+                    "callback": function() {
+                        console.log("Primary button");
+                    }
+                }, {
+                    "label" : "Just a button..."
+                }, {
+                    "Condensed format": function() {
+                        console.log("condensed");
+                    }
+                }]);
             });
         });
     </script>

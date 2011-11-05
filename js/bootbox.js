@@ -8,64 +8,12 @@ var bootbox = bootbox || (function() {
         if (typeof cb === 'undefined') {
             cb = null;
         }
-        that.dialog(
-            str,
-            [{
-                "label": okStr,
-                "callback": cb
-            }],
-            {
-                "escape": cb
-            }
-        );
-                /*
-                "Withdraw challenge": {
-                    "class"    : "danger", 
-                    "callback" : function() {
-                        hasOutstandingChallenge = false;
-                        socket.emit('lobby:challenge:cancel', to);
-                    }
-                }
-                */
-        /*
-        var div = $([
-            "<div class='modal hide fade'>",
-                "<div class='modal-body'>",
-                    str,
-                "</div>",
-                "<div class='modal-footer'>",
-                    "<a class='btn primary' href='#'>"+okStr+"</a>",
-                "</div>",
-            "</div>"
-        ].join("\n"));
-
-        $("body").append(div);
-
-        div.bind('hidden', function() {
-            div.remove();
+        that.dialog(str, {
+            "label": okStr,
+            "callback": cb
+        }, {
+            "onEscape": cb
         });
-
-        div.bind('shown', function() {
-            $("a.primary", div).focus();
-        });
-
-        div.bind('hide', function() {
-            if (typeof cb == 'function') {
-                cb();
-            }
-        });
-
-        $("a", div).click(function(e) {
-            e.preventDefault();
-            div.modal("hide");
-        });
-
-        div.modal({
-            "backdrop" : "static",
-            "keyboard" : true,
-            "show"     : true
-        });
-        */
 
     };
 
@@ -76,62 +24,53 @@ var bootbox = bootbox || (function() {
         if (cancelStr == null) {
             cancelStr = "Cancel";
         }
-        var _confirmed = false;
-        var div = $([
-            "<div class='modal hide fade'>",
-                "<div class='modal-body'>",
-                    str,
-                "</div>",
-                "<div class='modal-footer'>",
-                    "<a class='btn primary' href='#'>"+okStr+"</a>",
-                    "<a class='btn danger' href='#'>"+cancelStr+"</a>",
-                "</div>",
-            "</div>"
-        ].join("\n"));
-
-        $("body").append(div);
-
-        div.bind('hidden', function() {
-            div.remove();
-        });
-
-        div.bind('hide', function() {
-            /* we've disabled this for confirms so shouldn't be an issue
-            if (!_confirmed && typeof cb == 'function') {
-                //  assume then that we don't want to confirm
+        that.dialog(str, [{
+            "label": cancelStr,
+            "callback": function() {
                 cb(false);
             }
-            */
-        });
-
-        div.bind('shown', function() {
-            $("a.primary", div).focus();
-        });
-
-        $("a", div).click(function(e) {
-            _confirmed = true;
-            var _confirm = $(this).hasClass("primary");
-            e.preventDefault();
-            div.modal("hide");
-            if (typeof cb == 'function') {
-                cb(_confirm);
+        }, {
+            "label": okStr,
+            "callback": function() {
+                cb(true);
             }
-        });
-
-        div.modal({
-            "backdrop" : "static",
-            "show"     : true
-        });
+        }]);
     }
 
     that.dialog = function(str, handlers, options) {
+        var hideSource = null;
         var buttons = "";
         var callbacks = [];
+        var options = options || {};
 
-        for (var i = 0, j = handlers.length; i < j; i++) {
+        // check for single object and convert to array if necessary
+        if (typeof handlers.length == 'undefined') {
+            handlers = [handlers];
+        }
+
+        var i = handlers.length;
+        while (i--) {
             var label = null;
             var _class = null;
             var callback = null;
+
+            if (typeof handlers[i].label == 'undefined' &&
+                typeof handlers[i].class == 'undefined' &&
+                typeof handlers[i].callback == 'undefined') {
+                // if we've got nothing we expect, check for condensed format
+                var propCount = 0;      // condensed will only match if this == 1
+                var property = null;    // save the last property we found
+                for (var j in handlers[i]) {
+                    property = j;
+                    propCount ++;
+                }
+
+                if (propCount == 1 && typeof handlers[i][j] == 'function') {
+                    // matches condensed format of label -> function
+                    handlers[i].label = property;
+                    handlers[i].callback = handlers[i][j];
+                }
+            }
 
             if (typeof handlers[i].callback == 'function') {
                 callback = handlers[i].callback;
@@ -139,8 +78,10 @@ var bootbox = bootbox || (function() {
 
             if (handlers[i].class) {
                 _class = handlers[i].class;
-            } else if (i == 0) {
+            } else if (i == handlers.length -1 == handlers.length == 2) {
                 _class = 'primary';
+            } else if (i == 0 && handlers.length == 2) {
+                _class = 'danger';
             }
 
             if (handlers[i].label) {
@@ -148,8 +89,6 @@ var bootbox = bootbox || (function() {
             } else {
                 label = "Option "+(i+1);
             }
-
-            console.log(i, _class, callback, label);
 
             buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='#'>"+label+"</a>";
 
@@ -171,17 +110,28 @@ var bootbox = bootbox || (function() {
             div.remove();
         });
 
-        div.bind('hide', function(e) {
-            console.log(e);
+        div.bind('hide', function() {
+            if (hideSource == 'escape' &&
+                typeof options.onEscape == 'function') {
+                options.onEscape();
+            }
         });
 
-        // well, *if* we have a primary - give it focus
+        // hook into the modal's keyup trigger to check for the escape key
+        $(document).bind('keyup.modal', function ( e ) {
+            if (e.which == 27) {
+                hideSource = 'escape';
+            }
+        });
+
+        // well, *if* we have a primary - give the last dom element (first displayed) focus
         div.bind('shown', function() {
-            $("a.primary", div).focus();
+            $("a.primary:last", div).focus();
         });
 
         $("a", div).click(function(e) {
             e.preventDefault();
+            hideSource = 'button';
             div.modal("hide");
             var handler = $(this).data("handler");
             var cb = callbacks[handler];
@@ -190,10 +140,13 @@ var bootbox = bootbox || (function() {
             }
         });
 
+        if (options.keyboard == null) {
+            options.keyboard = (typeof options.onEscape == 'function');
+        }
         div.modal({
-            "backdrop" : "static",
-            "show"     : true,
-            "keyboard" : (typeof options.escape != 'undefined')
+            "backdrop" : options.backdrop || "static",
+            "show"     : options.show || true,
+            "keyboard" : options.keyboard
         });
 
         $("body").append(div);
