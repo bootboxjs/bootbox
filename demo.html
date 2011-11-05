@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootbox - twitter bootstrap dialog boxes</title>
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" href="css/deps/bootstrap-1.3.0.min.css" />
+</head>
+<body>
+    <div class="container">
+        <a href="#" class="alert">alert</a>
+    </div>
+
+    <!-- JS dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="js/deps/bootstrap-modal.1.3.0.js"></script>
+
+    <!-- bootbox code -->
+    <script src="js/bootbox.js"></script>
+    <script>
+        $(function() {
+            $("a.alert").click(function(e) {
+                bootbox.alert("Hello");
+            });
+        });
+    </script>
+</body>

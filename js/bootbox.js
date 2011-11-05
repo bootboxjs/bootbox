@@ -151,5 +151,3 @@ var bootbox = bootbox || (function() {
 
     return that;
 })();
-
-loadScript("/js/deps/bootstrap-modal.1.3.0.js");
