@@ -78,7 +78,7 @@ var bootbox = bootbox || (function() {
 
             if (handlers[i].class) {
                 _class = handlers[i].class;
-            } else if (i == handlers.length -1 == handlers.length == 2) {
+            } else if (i == handlers.length -1 && handlers.length == 2) {
                 _class = 'primary';
             } else if (i == 0 && handlers.length == 2) {
                 _class = 'danger';
