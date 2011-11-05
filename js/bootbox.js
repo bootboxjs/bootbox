@@ -171,7 +171,8 @@ var bootbox = bootbox || (function() {
             div.remove();
         });
 
-        div.bind('hide', function() {
+        div.bind('hide', function(e) {
+            console.log(e);
         });
 
         // well, *if* we have a primary - give it focus
