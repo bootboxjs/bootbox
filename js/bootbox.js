@@ -1,15 +1,35 @@
 var bootbox = bootbox || (function() {
     var that = {};
 
-    that.alert = function(str, cb, okStr) {
-        if (okStr == null) {
-            okStr = "OK";
+    that.alert = function(/*str, label, cb*/) {
+        var str = "";
+        var label = "OK";
+        var cb = null;
+
+        switch (arguments.length) {
+            case 1:
+                str = arguments[0];
+                break;
+            case 2:
+                str = arguments[0];
+                if (typeof arguments[1] == 'function') {
+                    cb = arguments[1];
+                } else {
+                    label = arguments[1];
+                }
+                break;
+            case 3:
+                str = arguments[0];
+                label = arguments[1];
+                cb = arguments[2];
+                break;
+            default:
+                throw new Error("Incorrect number of arguments: expected 1-3");
+                break;
         }
-        if (typeof cb === 'undefined') {
-            cb = null;
-        }
+
         that.dialog(str, {
-            "label": okStr,
+            "label": label,
             "callback": cb
         }, {
             "onEscape": cb
@@ -17,20 +37,51 @@ var bootbox = bootbox || (function() {
 
     };
 
-    that.confirm = function(str, cb, okStr, cancelStr) {
-        if (okStr == null) {
-            okStr = "OK";
+    that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
+        var str = "";
+        var labelCancel = "Cancel";
+        var labelOk = "OK";
+        var cb = null;
+
+        switch (arguments.length) {
+            case 1:
+                str = arguments[0];
+                break;
+            case 2:
+                str = arguments[0];
+                if (typeof arguments[1] == 'function') {
+                    cb = arguments[1];
+                } else {
+                    labelCancel = arguments[1];
+                }
+                break;
+            case 3:
+                str = arguments[0];
+                labelCancel = arguments[1];
+                if (typeof arguments[2] == 'function') {
+                    cb = arguments[2];
+                } else {
+                    labelOk = arguments[2];
+                }
+                break;
+            case 4:
+                str = arguments[0];
+                labelCancel = arguments[1];
+                labelOk = arguments[2];
+                cb = arguments[3];
+                break;
+            default:
+                throw new Error("Incorrect number of arguments: expected 1-4");
+                break;
         }
-        if (cancelStr == null) {
-            cancelStr = "Cancel";
-        }
+
         that.dialog(str, [{
-            "label": cancelStr,
+            "label": labelCancel,
             "callback": function() {
                 cb(false);
             }
         }, {
-            "label": okStr,
+            "label": labelOk,
             "callback": function() {
                 cb(true);
             }
@@ -78,7 +129,7 @@ var bootbox = bootbox || (function() {
 
             if (handlers[i].class) {
                 _class = handlers[i].class;
-            } else if (i == handlers.length -1 && handlers.length == 2) {
+            } else if (i == handlers.length -1 && handlers.length <= 2) {
                 _class = 'primary';
             } else if (i == 0 && handlers.length == 2) {
                 _class = 'danger';

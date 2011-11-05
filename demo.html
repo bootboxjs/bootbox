@@ -18,6 +18,9 @@
 
         <h2>Custom Dialogs</h2>
         <a href="#" class="dialog">dialog</a>
+
+        <h2>Multiple Dialogs</h2>
+        <a href="#" class="multiple">multiple</a>
     </div>
 
     <!-- JS dependencies -->
@@ -69,6 +72,24 @@
                         console.log("condensed");
                     }
                 }]);
+            });
+
+            $("a.multiple").click(function(e) {
+                e.preventDefault();
+
+                bootbox.alert("Prepare for multiboxes...", "Argh!");
+
+                setTimeout(function() {
+                    bootbox.confirm("Are you having fun?", "No :(", "Yeah!", function(result) {
+                        if (result) {
+                            bootbox.alert("Glad to hear it!");
+                        } else {
+                            bootbox.alert("Aww boo. Click the button below to get rid of all these popups", function() {
+                                $(".bootbox").modal("hide");
+                            });
+                        }
+                    });
+                }, 1000);
             });
         });
     </script>
