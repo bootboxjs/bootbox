@@ -5,6 +5,29 @@ var bootbox = bootbox || (function() {
         if (okStr == null) {
             okStr = "OK";
         }
+        if (typeof cb === 'undefined') {
+            cb = null;
+        }
+        that.dialog(
+            str,
+            [{
+                "label": okStr,
+                "callback": cb
+            }],
+            {
+                "escape": cb
+            }
+        );
+                /*
+                "Withdraw challenge": {
+                    "class"    : "danger", 
+                    "callback" : function() {
+                        hasOutstandingChallenge = false;
+                        socket.emit('lobby:challenge:cancel', to);
+                    }
+                }
+                */
+        /*
         var div = $([
             "<div class='modal hide fade'>",
                 "<div class='modal-body'>",
@@ -42,6 +65,7 @@ var bootbox = bootbox || (function() {
             "keyboard" : true,
             "show"     : true
         });
+        */
 
     };
 
@@ -102,13 +126,38 @@ var bootbox = bootbox || (function() {
 
     that.dialog = function(str, handlers, options) {
         var buttons = "";
-        for (var i in handlers) {
-            var handleOptions = handlers[i];
-            buttons += "<a data-handler='"+i+"' class='btn "+handleOptions.class+"' href='#'>"+i+"</a>";
+        var callbacks = [];
+
+        for (var i = 0, j = handlers.length; i < j; i++) {
+            var label = null;
+            var _class = null;
+            var callback = null;
+
+            if (typeof handlers[i].callback == 'function') {
+                callback = handlers[i].callback;
+            }
+
+            if (handlers[i].class) {
+                _class = handlers[i].class;
+            } else if (i == 0) {
+                _class = 'primary';
+            }
+
+            if (handlers[i].label) {
+                label = handlers[i].label;
+            } else {
+                label = "Option "+(i+1);
+            }
+
+            console.log(i, _class, callback, label);
+
+            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='#'>"+label+"</a>";
+
+            callbacks[i] = callback;
         }
 
         var div = $([
-            "<div class='modal hide fade'>",
+            "<div class='bootbox modal hide fade'>",
                 "<div class='modal-body'>",
                     str,
                 "</div>",
@@ -123,7 +172,6 @@ var bootbox = bootbox || (function() {
         });
 
         div.bind('hide', function() {
-            //
         });
 
         // well, *if* we have a primary - give it focus
@@ -135,7 +183,7 @@ var bootbox = bootbox || (function() {
             e.preventDefault();
             div.modal("hide");
             var handler = $(this).data("handler");
-            var cb = handlers[handler].callback;
+            var cb = callbacks[handler];
             if (typeof cb == 'function') {
                 cb();
             }
@@ -143,7 +191,8 @@ var bootbox = bootbox || (function() {
 
         div.modal({
             "backdrop" : "static",
-            "show"     : true
+            "show"     : true,
+            "keyboard" : (typeof options.escape != 'undefined')
         });
 
         $("body").append(div);
