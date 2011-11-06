@@ -21,6 +21,9 @@
 
         <h2>Multiple Dialogs</h2>
         <a href="#" class="multiple">multiple</a>
+
+        <h2>Programmatic Close</h2>
+        <a href="#" class="dialog-close">close</a>
     </div>
 
     <!-- JS dependencies -->
@@ -90,6 +93,14 @@
                         }
                     });
                 }, 1000);
+            });
+
+            $("a.dialog-close").click(function(e) {
+                e.preventDefault();
+                var box = bootbox.alert("This dialog will close in two seconds");
+                setTimeout(function() {
+                    box.modal('hide');
+                }, 2000);
             });
         });
     </script>

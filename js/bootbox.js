@@ -28,7 +28,7 @@ var bootbox = bootbox || (function() {
                 break;
         }
 
-        that.dialog(str, {
+        return that.dialog(str, {
             "label": label,
             "callback": cb
         }, {
@@ -75,7 +75,7 @@ var bootbox = bootbox || (function() {
                 break;
         }
 
-        that.dialog(str, [{
+        return that.dialog(str, [{
             "label": labelCancel,
             "callback": function() {
                 if (typeof cb == 'function') {
@@ -207,6 +207,12 @@ var bootbox = bootbox || (function() {
         });
 
         $("body").append(div);
+
+        return div;
+    }
+
+    that.hideAll = function() {
+        $(".bootbox").modal("hide");
     }
 
     return that;
