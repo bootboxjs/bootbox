@@ -78,12 +78,16 @@ var bootbox = bootbox || (function() {
         that.dialog(str, [{
             "label": labelCancel,
             "callback": function() {
-                cb(false);
+                if (typeof cb == 'function') {
+                    cb(false);
+                }
             }
         }, {
             "label": labelOk,
             "callback": function() {
-                cb(true);
+                if (typeof cb == 'function') {
+                    cb(true);
+                }
             }
         }]);
     }
@@ -95,7 +99,9 @@ var bootbox = bootbox || (function() {
         var options = options || {};
 
         // check for single object and convert to array if necessary
-        if (typeof handlers.length == 'undefined') {
+        if (handlers == null) {
+            handlers = [];
+        } else if (typeof handlers.length == 'undefined') {
             handlers = [handlers];
         }
 
