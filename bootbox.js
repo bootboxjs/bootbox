@@ -1,4 +1,4 @@
-var bootbox = bootbox || (function() {
+var bootbox = window.bootbox || (function() {
     var that = {};
 
     that.alert = function(/*str, label, cb*/) {
@@ -111,38 +111,42 @@ var bootbox = bootbox || (function() {
             var _class = null;
             var callback = null;
 
-            if (typeof handlers[i].label == 'undefined' &&
-                typeof handlers[i].class == 'undefined' &&
-                typeof handlers[i].callback == 'undefined') {
+            if (typeof handlers[i]['label']    == 'undefined' &&
+                typeof handlers[i]['class']    == 'undefined' &&
+                typeof handlers[i]['callback'] == 'undefined') {
                 // if we've got nothing we expect, check for condensed format
                 var propCount = 0;      // condensed will only match if this == 1
                 var property = null;    // save the last property we found
                 for (var j in handlers[i]) {
                     property = j;
                     propCount ++;
+                    if (propCount > 1) {
+                        // forget it, too many properties
+                        break;
+                    }
                 }
 
                 if (propCount == 1 && typeof handlers[i][j] == 'function') {
                     // matches condensed format of label -> function
-                    handlers[i].label = property;
-                    handlers[i].callback = handlers[i][j];
+                    handlers[i]['label']    = property;
+                    handlers[i]['callback'] = handlers[i][j];
                 }
             }
 
-            if (typeof handlers[i].callback == 'function') {
-                callback = handlers[i].callback;
+            if (typeof handlers[i]['callback']== 'function') {
+                callback = handlers[i]['callback'];
             }
 
-            if (handlers[i].class) {
-                _class = handlers[i].class;
+            if (handlers[i]['class']) {
+                _class = handlers[i]['class'];
             } else if (i == handlers.length -1 && handlers.length <= 2) {
                 _class = 'primary';
             } else if (i == 0 && handlers.length == 2) {
                 _class = 'danger';
             }
 
-            if (handlers[i].label) {
-                label = handlers[i].label;
+            if (handlers[i]['label']) {
+                label = handlers[i]['label'];
             } else {
                 label = "Option "+(i+1);
             }
