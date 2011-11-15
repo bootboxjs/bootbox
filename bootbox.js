@@ -1,9 +1,71 @@
 var bootbox = window.bootbox || (function() {
     var that = {};
 
+    var _locale = _defaultLocale = 'en';
+
+    /**
+     * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
+     * unlikely to be required. If this gets too large it can be split out into separate JS files.
+     */
+    var _locales = {
+        'en' : {
+            'OK'     : 'OK',
+            'CANCEL' : 'Cancel',
+            'ACCEPT' : 'OK'
+        },
+        'fr' : {
+            'OK'     : 'OK',
+            'CANCEL' : 'Annuler',
+            'ACCEPT' : 'D\'accord'
+        },
+        'de' : {
+            'OK'     : 'OK',
+            'CANCEL' : 'Kündigen',
+            'ACCEPT' : 'Akzeptieren'
+        }
+    };
+
+    function _translate(str, locale) {
+        // we assume if no target locale is probided then we should take it from current setting
+        if (locale == null) {
+            locale = _locale;
+        }
+        if (typeof _locales[locale][str] == 'string') {
+            return _locales[locale][str];
+        }
+
+        // if we couldn't find a lookup then try and fallback to a default translation
+
+        if (locale != _defaultLocale) {
+            return _translate(str, _defaultLocale);
+        }
+
+        // if we can't do anything then bail out with whatever string was passed in - last resort
+        return str;
+    }
+
+    that.setLocale = function(locale) {
+        for (var i in _locales) {
+            if (i == locale) {
+                _locale = locale;
+                return;
+            }
+        }
+        throw new Error('Invalid locale: '+locale);
+    }
+
+    that.addLocale = function(locale, translations) {
+        if (typeof _locales[locale] == 'undefined') {
+            _locales[locale] = {};
+        }
+        for (var str in translations) {
+            _locales[locale][str] = translations[str];
+        }
+    }
+
     that.alert = function(/*str, label, cb*/) {
         var str = "";
-        var label = "OK";
+        var label = _translate('OK');
         var cb = null;
 
         switch (arguments.length) {
@@ -39,8 +101,8 @@ var bootbox = window.bootbox || (function() {
 
     that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
         var str = "";
-        var labelCancel = "Cancel";
-        var labelOk = "OK";
+        var labelCancel = _translate('CANCEL');
+        var labelOk = _translate('ACCEPT');
         var cb = null;
 
         switch (arguments.length) {
