@@ -9,19 +9,19 @@ var bootbox = window.bootbox || (function() {
      */
     var _locales = {
         'en' : {
-            'OK'     : 'OK',
-            'CANCEL' : 'Cancel',
-            'ACCEPT' : 'OK'
+            OK      : 'OK',
+            CANCEL  : 'Cancel',
+            CONFIRM : 'OK'
         },
         'fr' : {
-            'OK'     : 'OK',
-            'CANCEL' : 'Annuler',
-            'ACCEPT' : 'D\'accord'
+            OK      : 'OK',
+            CANCEL  : 'Annuler',
+            CONFIRM : 'D\'accord'
         },
         'de' : {
-            'OK'     : 'OK',
-            'CANCEL' : 'Kündigen',
-            'ACCEPT' : 'Akzeptieren'
+            OK      : 'OK',
+            CANCEL  : 'Kündigen',
+            CONFIRM : 'Akzeptieren'
         }
     };
 
@@ -102,7 +102,7 @@ var bootbox = window.bootbox || (function() {
     that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
         var str = "";
         var labelCancel = _translate('CANCEL');
-        var labelOk = _translate('ACCEPT');
+        var labelOk = _translate('CONFIRM');
         var cb = null;
 
         switch (arguments.length) {
