@@ -96,8 +96,7 @@ var bootbox = window.bootbox || (function() {
         }, {
             "onEscape": cb
         });
-
-    };
+    }
 
     that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
         var str = "";
@@ -152,6 +151,45 @@ var bootbox = window.bootbox || (function() {
                 }
             }
         }]);
+    }
+
+    that.lightbox = function(/*str, label, cb*/) {
+        var str = "";
+        var label = '';
+        var cb = null;
+
+        switch (arguments.length) {
+            case 1:
+                str = arguments[0];
+                break;
+            case 2:
+                str = arguments[0];
+                if (typeof arguments[1] == 'function') {
+                    cb = arguments[1];
+                } else {
+                    label = arguments[1];
+                }
+                break;
+            case 3:
+                str = arguments[0];
+                label = arguments[1];
+                cb = arguments[2];
+                break;
+            default:
+                throw new Error("Incorrect number of arguments: expected 1-3");
+                break;
+        }
+
+        if (!label) {
+            label = _translate('Image')
+        }
+
+        return that.dialog(str, [], {
+            "onEscape": cb,
+            "header": label,
+            "keyboard": true,
+            "backdrop": true
+        });
     }
 
     that.dialog = function(str, handlers, options) {
@@ -218,17 +256,21 @@ var bootbox = window.bootbox || (function() {
             callbacks[i] = callback;
         }
 
-        var div = $([
-            "<div class='bootbox modal hide fade'>",
-                "<div class='modal-body'>",
-                    str,
-                "</div>",
-                "<div class='modal-footer'>",
-                    buttons,
-                "</div>",
-            "</div>"
-        ].join("\n"));
+        var parts = ["<div class='bootbox modal hide fade'>"];
 
+        if (options['header']) {
+            parts.push("<div class='modal-header'><a href='#' class='close'>&times;</a><h3>"+options['header']+"</h3></div>");
+        }
+
+        parts.push("<div class='modal-body'>"+str+"</div>");
+
+        if (buttons) {
+            parts.push("<div class='modal-footer'>"+buttons+"</div>")
+        }
+
+        parts.push("</div>");
+
+        var div = $(parts.join("\n"));
         div.bind('hidden', function() {
             div.remove();
         });
