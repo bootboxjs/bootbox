@@ -22,6 +22,11 @@ var bootbox = window.bootbox || (function() {
             OK      : 'OK',
             CANCEL  : 'Kündigen',
             CONFIRM : 'Akzeptieren'
+        },
+        'es' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancelar',
+            CONFIRM : 'Aceptar'
         }
     };
 
