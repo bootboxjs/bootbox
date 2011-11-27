@@ -153,7 +153,7 @@ var bootbox = window.bootbox || (function() {
         }]);
     }
 
-    that.lightbox = function(/*str, label, cb*/) {
+    that.modal = function(/*str, label, cb*/) {
         var str = "";
         var label = '';
         var cb = null;
