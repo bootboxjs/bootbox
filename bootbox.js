@@ -153,10 +153,16 @@ var bootbox = window.bootbox || (function() {
         }]);
     }
 
-    that.modal = function(/*str, label, cb*/) {
-        var str = "";
-        var label = '';
-        var cb = null;
+    that.modal = function(/*str, label, options*/) {
+        var str;
+        var label;
+        var options;
+
+        var defaultOptions = {
+            "onEscape": null,
+            "keyboard": true,
+            "backdrop": true
+        };
 
         switch (arguments.length) {
             case 1:
@@ -164,8 +170,8 @@ var bootbox = window.bootbox || (function() {
                 break;
             case 2:
                 str = arguments[0];
-                if (typeof arguments[1] == 'function') {
-                    cb = arguments[1];
+                if (typeof arguments[1] == 'object') {
+                    options = arguments[1];
                 } else {
                     label = arguments[1];
                 }
@@ -173,23 +179,22 @@ var bootbox = window.bootbox || (function() {
             case 3:
                 str = arguments[0];
                 label = arguments[1];
-                cb = arguments[2];
+                options = arguments[2];
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3");
                 break;
         }
 
-        if (!label) {
-            label = _translate('Image')
+        defaultOptions['header'] = label;
+
+        if (typeof options == 'object') {
+            options = $.extend(defaultOptions, options);
+        } else {
+            options = defaultOptions;
         }
 
-        return that.dialog(str, [], {
-            "onEscape": cb,
-            "header": label,
-            "keyboard": true,
-            "backdrop": true
-        });
+        return that.dialog(str, [], options);
     }
 
     that.dialog = function(str, handlers, options) {
@@ -259,7 +264,12 @@ var bootbox = window.bootbox || (function() {
         var parts = ["<div class='bootbox modal hide fade'>"];
 
         if (options['header']) {
-            parts.push("<div class='modal-header'><a href='#' class='close'>&times;</a><h3>"+options['header']+"</h3></div>");
+            var closeButton = '';
+            if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
+                closeButton = "<a href='#' class='close'>&times;</a>";
+            }
+
+            parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
         }
 
         parts.push("<div class='modal-body'>"+str+"</div>");
