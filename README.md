@@ -2,6 +2,10 @@
 
 Please see http://paynedigital.com/bootbox for full usage instructions.
 
+## Contact
+
+The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew).
+
 ## Demo
 
 The [gh-pages](https://github.com/makeusabrew/bootbox/tree/gh-pages) branch contains a
