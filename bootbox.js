@@ -101,8 +101,7 @@ var bootbox = window.bootbox || (function() {
         }, {
             "onEscape": cb
         });
-
-    };
+    }
 
     that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
         var str = "";
@@ -157,6 +156,50 @@ var bootbox = window.bootbox || (function() {
                 }
             }
         }]);
+    }
+
+    that.modal = function(/*str, label, options*/) {
+        var str;
+        var label;
+        var options;
+
+        var defaultOptions = {
+            "onEscape": null,
+            "keyboard": true,
+            "backdrop": true
+        };
+
+        switch (arguments.length) {
+            case 1:
+                str = arguments[0];
+                break;
+            case 2:
+                str = arguments[0];
+                if (typeof arguments[1] == 'object') {
+                    options = arguments[1];
+                } else {
+                    label = arguments[1];
+                }
+                break;
+            case 3:
+                str = arguments[0];
+                label = arguments[1];
+                options = arguments[2];
+                break;
+            default:
+                throw new Error("Incorrect number of arguments: expected 1-3");
+                break;
+        }
+
+        defaultOptions['header'] = label;
+
+        if (typeof options == 'object') {
+            options = $.extend(defaultOptions, options);
+        } else {
+            options = defaultOptions;
+        }
+
+        return that.dialog(str, [], options);
     }
 
     that.dialog = function(str, handlers, options) {
@@ -222,17 +265,26 @@ var bootbox = window.bootbox || (function() {
             callbacks[i] = callback;
         }
 
-        var div = $([
-            "<div class='bootbox modal hide fade'>",
-                "<div class='modal-body'>",
-                    str,
-                "</div>",
-                "<div class='modal-footer'>",
-                    buttons,
-                "</div>",
-            "</div>"
-        ].join("\n"));
+        var parts = ["<div class='bootbox modal hide fade'>"];
 
+        if (options['header']) {
+            var closeButton = '';
+            if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
+                closeButton = "<a href='#' class='close'>&times;</a>";
+            }
+
+            parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
+        }
+
+        parts.push("<div class='modal-body'>"+str+"</div>");
+
+        if (buttons) {
+            parts.push("<div class='modal-footer'>"+buttons+"</div>")
+        }
+
+        parts.push("</div>");
+
+        var div = $(parts.join("\n"));
         div.bind('hidden', function() {
             div.remove();
         });
