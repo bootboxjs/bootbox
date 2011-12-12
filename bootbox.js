@@ -209,7 +209,7 @@ var bootbox = window.bootbox || (function() {
             } else if (i == handlers.length -1 && handlers.length <= 2) {
                 _class = 'primary';
             } else if (i == 0 && handlers.length == 2) {
-                _class = 'danger';
+                _class = '';
             }
 
             if (handlers[i]['label']) {
