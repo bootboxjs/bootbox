@@ -207,9 +207,8 @@ var bootbox = window.bootbox || (function() {
             if (handlers[i]['class']) {
                 _class = handlers[i]['class'];
             } else if (i == handlers.length -1 && handlers.length <= 2) {
+                // always add a primary to the main option in a two-button dialog
                 _class = 'primary';
-            } else if (i == 0 && handlers.length == 2) {
-                _class = '';
             }
 
             if (handlers[i]['label']) {
