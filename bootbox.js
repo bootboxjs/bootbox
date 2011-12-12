@@ -276,7 +276,8 @@ var bootbox = window.bootbox || (function() {
             parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
         }
 
-        parts.push("<div class='modal-body'>"+str+"</div>");
+        // push an empty body into which we'll inject the proper content later
+        parts.push("<div class='modal-body'></div>");
 
         if (buttons) {
             parts.push("<div class='modal-footer'>"+buttons+"</div>")
@@ -285,6 +286,10 @@ var bootbox = window.bootbox || (function() {
         parts.push("</div>");
 
         var div = $(parts.join("\n"));
+
+        // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
+        $(".modal-body", div).html(str);
+
         div.bind('hidden', function() {
             div.remove();
         });
