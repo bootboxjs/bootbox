@@ -225,13 +225,13 @@ var bootbox = window.bootbox || (function() {
         var div = $([
             "<div class='bootbox modal hide fade'>",
                 "<div class='modal-body'>",
-                    str,
                 "</div>",
                 "<div class='modal-footer'>",
                     buttons,
                 "</div>",
             "</div>"
         ].join("\n"));
+        div.find('.modal-body').html(str)
 
         div.bind('hidden', function() {
             div.remove();
