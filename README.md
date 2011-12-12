@@ -10,3 +10,7 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew).
 
 The [gh-pages](https://github.com/makeusabrew/bootbox/tree/gh-pages) branch contains a
 very [crude demo](http://makeusabrew.github.com/bootbox/demo/) (feel free to fork and improve!).
+
+## Versioning
+
+[SemVer](http://semver.org/) has now been adopted as of 1.0.0
