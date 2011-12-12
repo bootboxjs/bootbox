@@ -12,20 +12,19 @@
 
         <p><strong>Please Note</strong> that these demos are extremely crude - please feel free to fork the project and improve them!</p>
 
-        <h2>Alerts</h2>
-        <a href="#" class="alert" title="Simple Alert">alert</a>
+        <h2><a href="#" class="alert" title="Simple Alert">Alert</a></h2>
 
-        <h2>Confirms</h2>
-        <a href="#" class="confirm">confirm</a>
+        <h2><a href="#" class="confirm">Confirm</a></h2>
 
-        <h2>Custom Dialogs</h2>
-        <a href="#" class="dialog">dialog</a>
+        <h2><a href="#" class="dialog">Custom Dialog</a></h2>
 
-        <h2>Multiple Dialogs</h2>
-        <a href="#" class="multiple">multiple</a>
+        <h2><a href="#" class="multiple">Multiple Dialogs</a></h2>
 
-        <h2>Programmatic Close</h2>
-        <a href="#" class="dialog-close">close</a>
+        <h2><a href="#" class="dialog-close">Programmatic Close</a></h2>
+
+        <h2><a href="#" class="generic-modal">Generic Modal</a></h2>
+
+        <h2><a href="#" class="dynamic">Dynamic Content</a></h2>
     </div>
 
     <!-- JS dependencies -->
@@ -42,7 +41,7 @@
     </script>
 
     <!-- bootbox code -->
-    <script src="https://raw.github.com/makeusabrew/bootbox/v1.0.0/bootbox.js"></script>
+    <script src="https://raw.github.com/makeusabrew/bootbox/v1.1.0/bootbox.js"></script>
     <script>
         $(function() {
             $("a.alert").click(function(e) {
@@ -99,7 +98,7 @@
                             bootbox.alert("Glad to hear it!");
                         } else {
                             bootbox.alert("Aww boo. Click the button below to get rid of all these popups", function() {
-                                $(".bootbox").modal("hide");
+                                bootbox.hideAll();
                             });
                         }
                     });
@@ -112,6 +111,20 @@
                 setTimeout(function() {
                     box.modal('hide');
                 }, 2000);
+            });
+
+            $("a.generic-modal").click(function(e) {
+                e.preventDefault();
+                bootbox.modal('<img src="http://dummyimage.com/600x400/000/fff" alt=""/>', 'Modal popup!');
+            });
+
+            $("a.dynamic").click(function(e) {
+                e.preventDefault();
+                var str = $("<p>This content is actually a jQuery object, which will change in 3 seconds...</p>");
+                bootbox.alert(str);
+                setTimeout(function() {
+                    str.html("See?");
+                }, 3000);
             });
         });
     </script>
