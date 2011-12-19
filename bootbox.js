@@ -20,7 +20,7 @@ var bootbox = window.bootbox || (function() {
         },
         'de' : {
             OK      : 'OK',
-            CANCEL  : 'Kündigen',
+            CANCEL  : 'Abbrechen',
             CONFIRM : 'Akzeptieren'
         },
         'es' : {
