@@ -265,7 +265,7 @@ var bootbox = window.bootbox || (function() {
             callbacks[i] = callback;
         }
 
-        var parts = ["<div class='bootbox modal fade'>"];
+        var parts = ["<div class='bootbox modal " + (options.nofade ? "" : "fade") +"'>"];
 
         if (options['header']) {
             var closeButton = '';
