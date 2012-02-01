@@ -1,7 +1,8 @@
 var bootbox = window.bootbox || (function() {
-    var that = {};
 
-    var _locale = _defaultLocale = 'en';
+    var _locale = _defaultLocale = 'en',
+        _animate = true,
+        that = {};
 
     /**
      * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
@@ -270,7 +271,7 @@ var bootbox = window.bootbox || (function() {
             callbacks[i] = callback;
         }
 
-        var parts = ["<div class='bootbox modal " + (options.nofade ? "" : "fade") +"'>"];
+        var parts = ["<div class='bootbox modal'>"];
 
         if (options['header']) {
             var closeButton = '';
@@ -291,6 +292,13 @@ var bootbox = window.bootbox || (function() {
         parts.push("</div>");
 
         var div = $(parts.join("\n"));
+
+        // check whether we should fade in/out
+        var shouldFade = (typeof options.animate === 'undefined') ? _animate : options.animate;
+
+        if (shouldFade) {
+            div.addClass("fade");
+        }
 
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         $(".modal-body", div).html(str);
@@ -344,6 +352,10 @@ var bootbox = window.bootbox || (function() {
 
     that.hideAll = function() {
         $(".bootbox").modal("hide");
+    }
+
+    that.animate = function(animate) {
+        _animate = animate;
     }
 
     return that;
