@@ -251,7 +251,7 @@ var bootbox = window.bootbox || (function() {
                 _class = handlers[i]['class'];
             } else if (i == handlers.length -1 && handlers.length <= 2) {
                 // always add a primary to the main option in a two-button dialog
-                _class = 'primary';
+                _class = 'btn-primary';
             }
 
             if (handlers[i]['label']) {
@@ -265,7 +265,7 @@ var bootbox = window.bootbox || (function() {
             callbacks[i] = callback;
         }
 
-        var parts = ["<div class='bootbox modal hide fade'>"];
+        var parts = ["<div class='bootbox modal fade'>"];
 
         if (options['header']) {
             var closeButton = '';
@@ -310,7 +310,7 @@ var bootbox = window.bootbox || (function() {
 
         // well, *if* we have a primary - give the last dom element (first displayed) focus
         div.bind('shown', function() {
-            $("a.primary:last", div).focus();
+            $("a.btn-primary:last", div).focus();
         });
 
         $("a", div).click(function(e) {
@@ -327,13 +327,12 @@ var bootbox = window.bootbox || (function() {
         if (options.keyboard == null) {
             options.keyboard = (typeof options.onEscape == 'function');
         }
+        $("body").append(div);
+
         div.modal({
-            "backdrop" : options.backdrop || "static",
-            "show"     : options.show || true,
+            "backdrop" : options.backdrop || true,
             "keyboard" : options.keyboard
         });
-
-        $("body").append(div);
 
         return div;
     }
