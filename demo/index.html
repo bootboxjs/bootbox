@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Bootbox - twitter bootstrap dialog boxes</title>
     <!-- CSS dependencies -->
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-2.0.0.css">
 </head>
 <body>
     <div class="container">
@@ -12,7 +12,7 @@
 
         <p><strong>Please Note</strong> that these demos are extremely crude - please feel free to fork the project and improve them!</p>
 
-        <h2><a href="#" class="alert" title="Simple Alert">Alert</a></h2>
+        <h2><a href="#" class="bs-alert" title="Simple Alert">Alert</a></h2>
 
         <h2><a href="#" class="confirm">Confirm</a></h2>
 
@@ -28,8 +28,8 @@
     </div>
 
     <!-- JS dependencies -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    <script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-modal.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap-modal-2.0.0.js"></script>
 
     <!-- IE still hasn't joined the modern world, so let's stub the console.log method -->
     <script>
@@ -41,10 +41,10 @@
     </script>
 
     <!-- bootbox code -->
-    <script src="https://raw.github.com/makeusabrew/bootbox/v1.1.0/bootbox.js"></script>
+    <script type="text/javascript" src="http://localhost/nick/bootbox/bootbox.js"></script>
     <script>
         $(function() {
-            $("a.alert").click(function(e) {
+            $("a.bs-alert").click(function(e) {
                 e.preventDefault();
                 bootbox.alert("Hello world!", function() {
                     console.log("Alert Callback");
@@ -62,19 +62,19 @@
                 e.preventDefault();
                 bootbox.dialog("I am a custom dialog", [{
                     "label" : "Success!",
-                    "class" : "success",
+                    "class" : "btn-success",
                     "callback": function() {
                         console.log("great success");
                     }
                 }, {
                     "label" : "Danger!",
-                    "class" : "danger",
+                    "class" : "btn-danger",
                     "callback": function() {
                         console.log("uh oh, look out!");
                     }
                 }, {
                     "label" : "Click ME!",
-                    "class" : "primary",
+                    "class" : "btn-primary",
                     "callback": function() {
                         console.log("Primary button");
                     }
