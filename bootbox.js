@@ -27,6 +27,11 @@ var bootbox = window.bootbox || (function() {
             OK      : 'OK',
             CANCEL  : 'Cancelar',
             CONFIRM : 'Aceptar'
+        },
+        'br' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancelar',
+            CONFIRM : 'Sim'
         }
     };
 
