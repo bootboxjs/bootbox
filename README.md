@@ -22,6 +22,7 @@ very [crude demo](http://makeusabrew.github.com/bootbox/demo/) (feel free to for
 * Added Brazilian locale
 * Added ```animate``` dialog option
 * Added ```bootbox.animate(bool)``` option to set default animation preference
+* Animated dialogs now rely on ```bootstrap-transitions.js``` as required by Bootstrap 2.0
 
 ### 1.1.2
 
