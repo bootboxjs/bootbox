@@ -15,7 +15,15 @@ very [crude demo](http://makeusabrew.github.com/bootbox/demo/) (feel free to for
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-### Latest Release: 1.1.2
+### Latest Release: 2.0.0
+
+* Updated Bootstrap dependency from 1.4 to 2.0
+* Class definitions now require ```btn-``` prefix as per Bootstrap 2.0
+* Added Brazilian locale
+* Added ```animate``` option
+* Added ```bootbox.animate(bool)``` option to set default animation preference
+
+### 1.1.2
 
 * Added licensing information to README
 
