@@ -20,7 +20,7 @@ very [crude demo](http://makeusabrew.github.com/bootbox/demo/) (feel free to for
 * Updated Bootstrap dependency from 1.4 to 2.0
 * Class definitions now require ```btn-``` prefix as per Bootstrap 2.0
 * Added Brazilian locale
-* Added ```animate``` option
+* Added ```animate``` dialog option
 * Added ```bootbox.animate(bool)``` option to set default animation preference
 
 ### 1.1.2
