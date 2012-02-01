@@ -35,6 +35,9 @@
                 <li><a href="#" class="dialog-close">Programmatic Close</a></li>
                 <li><a href="#" class="generic-modal">Generic Modal</a></li>
                 <li><a href="#" class="dynamic">Dynamic Content</a></li>
+                <li class="nav-header">Custom options</li>
+                <li><a href="#" class="onescape">options.onEscape &rarr; function</a></li>
+                <li><a href="#" class="nofade">options.animate &rarr; false</a></li>
             </ul>
         </div>
     </div>
@@ -138,6 +141,31 @@
                 setTimeout(function() {
                     str.html("See?");
                 }, 3000);
+            });
+
+            $("a.onescape").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("Dismiss this dialog with the escape key...", {
+                    "label" : "Press Escape!",
+                    "class" : "btn-danger",
+                    "callback": function() {
+                        console.log("Oi! Press escape!");
+                    }
+                }, {
+                    "onEscape": function() {
+                        bootbox.alert("This alert was triggered by the onEscape callback of the previous dialog", "Dismiss");
+                    }
+                });
+            });
+
+            $("a.nofade").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("This dialog does not fade in or out, and thus does not depend on <strong>bootstrap-transitions.js</strong>.",
+                {
+                    "OK": function() {}
+                }, {
+                    "animate": false
+                });
             });
         });
     </script>
