@@ -27,6 +27,9 @@
 
         <div class="well" style="padding:8px 0">
             <ul class="nav nav-list">
+                <li class="nav-header"><b>New</b> in 2.1.0</li>
+                <li><a href="#" class="icons-explicit">Iconified buttons (explicit)</a></li>
+                <li><a href="#" class="icons-override">Override alert and confirm icons (programmatic)</a></li>
                 <li class="nav-header">Basic usage</li>
                 <li><a href="#" class="bs-alert" title="Simple Alert">Alert</a></li>
                 <li><a href="#" class="confirm">Confirm</a></li>
@@ -63,7 +66,7 @@
     </script>
 
     <!-- bootbox code -->
-    <script type="text/javascript" src="https://raw.github.com/makeusabrew/bootbox/master/bootbox.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/makeusabrew/bootbox/master/bootbox.min.js"></script>
     <script>
         $(function() {
             $("a.bs-alert").click(function(e) {
@@ -171,6 +174,48 @@
                     "OK": function() {}
                 }, {
                     "animate": false
+                });
+            });
+
+            $("a.icons-explicit").click(function(e) {
+                e.preventDefault();
+                /*
+                bootbox.setIcons({
+                    OK     : "foo",
+                    CANCEL : "bar",
+                    CONFIRM: "baz"
+                });
+                */
+                bootbox.dialog("Custom dialog with icons being passed explicitly into <b>bootbox.dialog</b>.", [{
+                    "label" : "Success!",
+                    "class" : "btn-success",
+                    "icon"  : "icon-ok-sign icon-white"
+                }, {
+                    "label" : "Danger!",
+                    "class" : "btn-danger",
+                    "icon"  : "icon-warning-sign icon-white"
+                }, {
+                    "label" : "Click ME!",
+                    "class" : "btn-primary",
+                    "icon"  : "icon-ok icon-white"
+                }, {
+                    "label" : "Just a button...",
+                    "icon"  : "icon-picture"
+                }]);
+            });
+
+            $("a.icons-override").click(function(e) {
+                e.preventDefault();
+                bootbox.setIcons({
+                    "OK"      : "icon-ok icon-white",
+                    "CANCEL"  : "icon-ban-circle",
+                    "CONFIRM" : "icon-ok-sign icon-white"
+                });
+
+                bootbox.confirm("This dialog invokes <b>bootbox.setIcons()</b> to set icons for the standard three labels of OK, CANCEL and CONFIRM, before calling a normal <b>bootbox.confirm</b>", function(result) {
+                    bootbox.alert("This dialog is just a standard <b>bootbox.alert()</b>. <b>bootbox.setIcons()</b> only needs to be set once to affect all subsequent calls", function() {
+                        bootbox.setIcons(null);
+                    });
                 });
             });
         });
