@@ -11,9 +11,12 @@
  */
 var bootbox = window.bootbox || (function() {
 
-    var _locale = _defaultLocale = 'en',
-        _animate = true,
-        that = {};
+    var _locale        = 'en',
+        _defaultLocale = 'en',
+        _animate       = true,
+        _icons         = {},
+        /* last var should always be the public object we'll return */
+        that           = {};
 
     /**
      * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
@@ -85,6 +88,13 @@ var bootbox = window.bootbox || (function() {
         }
     }
 
+    that.setIcons = function(icons) {
+        _icons = icons;
+        if (typeof _icons !== 'object' || _icons == null) {
+            _icons = {};
+        }
+    }
+
     that.alert = function(/*str, label, cb*/) {
         var str   = "",
             label = _translate('OK'),
@@ -117,6 +127,7 @@ var bootbox = window.bootbox || (function() {
 
         return that.dialog(str, {
             "label": label,
+            "icon" : _icons.OK,
             "callback": cb
         }, {
             "onEscape": cb
@@ -163,6 +174,7 @@ var bootbox = window.bootbox || (function() {
 
         return that.dialog(str, [{
             "label": labelCancel,
+            "icon" : _icons.CANCEL,
             "callback": function() {
                 if (typeof cb == 'function') {
                     cb(false);
@@ -170,6 +182,7 @@ var bootbox = window.bootbox || (function() {
             }
         }, {
             "label": labelOk,
+            "icon" : _icons.CONFIRM,
             "callback": function() {
                 if (typeof cb == 'function') {
                     cb(true);
@@ -239,18 +252,21 @@ var bootbox = window.bootbox || (function() {
         while (i--) {
             var label    = null,
                 _class   = null,
+                icon     = '',
                 callback = null;
 
             if (typeof handlers[i]['label']    == 'undefined' &&
                 typeof handlers[i]['class']    == 'undefined' &&
                 typeof handlers[i]['callback'] == 'undefined') {
                 // if we've got nothing we expect, check for condensed format
-                var propCount = 0;      // condensed will only match if this == 1
-                var property = null;    // save the last property we found
+
+                var propCount = 0,      // condensed will only match if this == 1
+                    property  = null;   // save the last property we found
+
+                // be nicer to count the properties without this, but don't think it's possible...
                 for (var j in handlers[i]) {
                     property = j;
-                    propCount ++;
-                    if (propCount > 1) {
+                    if (++propCount > 1) {
                         // forget it, too many properties
                         break;
                     }
@@ -280,7 +296,11 @@ var bootbox = window.bootbox || (function() {
                 label = "Option "+(i+1);
             }
 
-            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='#'>"+label+"</a>";
+            if (handlers[i]['icon']) {
+                icon = "<i class='"+handlers[i]['icon']+"'></i> ";
+            }
+
+            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='#'>"+icon+""+label+"</a>";
 
             callbacks[i] = callback;
         }
