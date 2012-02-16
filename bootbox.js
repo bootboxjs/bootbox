@@ -75,15 +75,17 @@ var bootbox = window.bootbox || (function() {
     }
 
     that.alert = function(/*str, label, cb*/) {
-        var str = "";
-        var label = _translate('OK');
-        var cb = null;
+        var str   = "",
+            label = _translate('OK'),
+            cb    = null;
 
         switch (arguments.length) {
             case 1:
+                // no callback, default button label
                 str = arguments[0];
                 break;
             case 2:
+                // callback *or* custom button label dependent on type
                 str = arguments[0];
                 if (typeof arguments[1] == 'function') {
                     cb = arguments[1];
@@ -92,9 +94,10 @@ var bootbox = window.bootbox || (function() {
                 }
                 break;
             case 3:
-                str = arguments[0];
+                // callback and custom button label
+                str   = arguments[0];
                 label = arguments[1];
-                cb = arguments[2];
+                cb    = arguments[2];
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3");
@@ -110,10 +113,10 @@ var bootbox = window.bootbox || (function() {
     }
 
     that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
-        var str = "";
-        var labelCancel = _translate('CANCEL');
-        var labelOk = _translate('CONFIRM');
-        var cb = null;
+        var str         = "",
+            labelCancel = _translate('CANCEL'),
+            labelOk     = _translate('CONFIRM'),
+            cb          = null;
 
         switch (arguments.length) {
             case 1:
@@ -128,7 +131,7 @@ var bootbox = window.bootbox || (function() {
                 }
                 break;
             case 3:
-                str = arguments[0];
+                str         = arguments[0];
                 labelCancel = arguments[1];
                 if (typeof arguments[2] == 'function') {
                     cb = arguments[2];
@@ -137,10 +140,10 @@ var bootbox = window.bootbox || (function() {
                 }
                 break;
             case 4:
-                str = arguments[0];
+                str         = arguments[0];
                 labelCancel = arguments[1];
-                labelOk = arguments[2];
-                cb = arguments[3];
+                labelOk     = arguments[2];
+                cb          = arguments[3];
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-4");
@@ -188,8 +191,8 @@ var bootbox = window.bootbox || (function() {
                 }
                 break;
             case 3:
-                str = arguments[0];
-                label = arguments[1];
+                str     = arguments[0];
+                label   = arguments[1];
                 options = arguments[2];
                 break;
             default:
@@ -209,10 +212,10 @@ var bootbox = window.bootbox || (function() {
     }
 
     that.dialog = function(str, handlers, options) {
-        var hideSource = null;
-        var buttons = "";
-        var callbacks = [];
-        var options = options || {};
+        var hideSource = null,
+            buttons    = "",
+            callbacks  = [],
+            options    = options || {};
 
         // check for single object and convert to array if necessary
         if (handlers == null) {
@@ -223,9 +226,9 @@ var bootbox = window.bootbox || (function() {
 
         var i = handlers.length;
         while (i--) {
-            var label = null;
-            var _class = null;
-            var callback = null;
+            var label    = null,
+                _class   = null,
+                callback = null;
 
             if (typeof handlers[i]['label']    == 'undefined' &&
                 typeof handlers[i]['class']    == 'undefined' &&
