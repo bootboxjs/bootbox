@@ -360,7 +360,8 @@ var bootbox = window.bootbox || (function() {
             $("a.btn-primary:last", div).focus();
         });
 
-        $("a", div).click(function(e) {
+        // wire up button handlers
+        div.on('click', '.modal-footer a', function(e) {
             e.preventDefault();
             hideSource = 'button';
             div.modal("hide");
@@ -374,6 +375,7 @@ var bootbox = window.bootbox || (function() {
         if (options.keyboard == null) {
             options.keyboard = (typeof options.onEscape == 'function');
         }
+
         $("body").append(div);
 
         div.modal({
