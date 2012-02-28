@@ -2,9 +2,22 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Bootbox - twitter bootstrap dialog boxes</title>
+    <title>Bootbox.js - alert, confirm and flexible dialogs for Twitter's bootstrap framework</title>
     <!-- CSS dependencies -->
     <link rel="stylesheet" type="text/css" href="deps/css/bootstrap-2.0.0.css">
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-20517424-8']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
 </head>
 <body>
     <div class="container">
@@ -47,8 +60,20 @@
         <h2>What else?</h2>
         <ul>
             <li>Check out the <a href="https://github.com/makeusabrew/bootbox/blob/gh-pages/index.html">source for this page</a></li>
-            <li><a href="http://paynedigital.com/bootbox">Read the full tutorial</a></li>
+            <li>View the bootbox.js <a href="https://github.com/makeusabrew/bootbox">repository</a></li>
+            <li><a href="http://paynedigital.com/bootbox">Read the full tutorial</a>&hellip;</li>
+            <li>&hellip;and the <a href="http://paynedigital.com/2012/02/bootbox-two">updated one for v2.0.0</a></li>
         </ul>
+    </div>
+    <br />
+    <div class='well container'>
+        <div style='float:right'>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://paynedigital.com/2011/11/bootbox-js-alert-confirm-dialogs-for-twitter-bootstrap" data-via="makeusabrew" data-related="makeusabrew" data-size="large">Tweet</a>
+            <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        Made by <a href="http://twitter.com/makeusabrew">@makeusabrew</a>.
+        Licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.
     </div>
 
     <!-- JS dependencies -->
