@@ -361,7 +361,7 @@ var bootbox = window.bootbox || (function() {
         });
 
         // wire up button handlers
-        div.on('click', '.modal-footer a', function(e) {
+        div.on('click', '.modal-footer a, a.close', function(e) {
             e.preventDefault();
             hideSource = 'button';
             div.modal("hide");
