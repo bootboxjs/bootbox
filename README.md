@@ -15,7 +15,11 @@ very [crude demo](http://makeusabrew.github.com/bootbox/demo/) (feel free to for
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-### Latest Release: 2.1.0
+### Latest Release: 2.1.1
+
+* Fixed incorrect button click handler selector (thanks FGRibreau)
+
+### 2.1.0
 
 * Added support for Bootstrap's Glyphicons via the ```icon``` option
 * Added inline license information into bootbox.js and bootbox.min.js
