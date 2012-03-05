@@ -52,7 +52,7 @@ var bootbox = window.bootbox || (function() {
             OK      : 'OK',
             CANCEL  : 'Annuleren',
             CONFIRM : 'Accepteren'
-        },
+        }
     };
 
     function _translate(str, locale) {
