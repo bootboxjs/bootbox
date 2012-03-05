@@ -47,7 +47,12 @@ var bootbox = window.bootbox || (function() {
             OK      : 'OK',
             CANCEL  : 'Cancelar',
             CONFIRM : 'Sim'
-        }
+        },
+        'nl' : {
+            OK      : 'OK',
+            CANCEL  : 'Annuleren',
+            CONFIRM : 'Accepteren'
+        },
     };
 
     function _translate(str, locale) {
