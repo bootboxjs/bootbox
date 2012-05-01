@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<project name="Bootbox" default="minify">
+    <target name="minify">
+        <exec checkreturn="true" passthru="true" command='curl -s -d compilation_level=SIMPLE_OPTIMIZATIONS -d output_format=text -d output_info=compiled_code --data-urlencode "js_code@bootbox.js" http://closure-compiler.appspot.com/compile > bootbox.tmp.js' />
+        <exec checkreturn="true" passthru="true" command='cat license.txt bootbox.tmp.js > bootbox.min.js' />
+        <delete file="bootbox.tmp.js" />
+    </target>
+</project>
