@@ -51,7 +51,9 @@
 
         <div class="well" style="padding:8px 0">
             <ul class="nav nav-list">
-                <li class="nav-header"><b>New</b> in 2.1.0</li>
+                <li class="nav-header"><b>New</b> in 2.2.0</li>
+                <li><a href="#" class="no-close-button">Don&rsquo;t close if callback returns false</a></li>
+                <li class="nav-header">Changes in 2.1.0</li>
                 <li><a href="#" class="icons-explicit">Iconified buttons (explicit)</a></li>
                 <li><a href="#" class="icons-override">Override alert and confirm icons (programmatic)</a></li>
                 <li class="nav-header">Basic usage</li>
@@ -246,6 +248,21 @@
                         bootbox.setIcons(null);
                     });
                 });
+            });
+
+            $("a.no-close-button").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("If a button's handler now explicitly returns <b>false</b>, the dialog will not be closed. Note that if anything <b>!== false</b> - e.g. nothing, true, null etc - is returned, the dialog will close.", [{
+                    "I'll close on click": function() {
+                        console.log("close on click");
+                        return true;
+                    },
+                }, {
+                    "I won't!": function() {
+                        console.log("returning false...");
+                        return false;
+                    }
+                }]);
             });
         });
     </script>
