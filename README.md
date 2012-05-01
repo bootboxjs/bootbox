@@ -15,7 +15,12 @@ very [crude demo](http://bootboxjs.com/) (feel free to fork and improve!).
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-### Latest Release: 2.1.2
+### Latest Release: 2.2.0
+
+* Allowed button callbacks to explicitly return false to prevent dialog from closing (thanks @benoit-ponsero)
+* Added version number to header comments (#26)
+
+### 2.1.2
 
 * Added close button to re-scoped click handler (thanks @SeanMcGee and @kentbrew)
 
