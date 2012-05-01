@@ -1,5 +1,5 @@
 /**
- * bootbox.js v2.1.2
+ * bootbox.js v2.2.0
  *
  * The MIT License
  *
@@ -381,13 +381,14 @@ var bootbox = window.bootbox || (function() {
 
         // wire up button handlers
         div.on('click', '.modal-footer a, a.close', function(e) {
-            var hideModal = true;
-            var handler = $(this).data("handler");
-            var cb = callbacks[handler];
+            var handler   = $(this).data("handler"),
+                cb        = callbacks[handler],
+                hideModal = null;
+
             if (typeof cb == 'function') {
                 hideModal = cb();
             }
-            if (hideModal == true){
+            if (hideModal !== false){
                 e.preventDefault();
                 hideSource = 'button';
                 div.modal("hide");
