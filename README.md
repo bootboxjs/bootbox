@@ -1,6 +1,7 @@
 # Bootbox - Twitter Bootstrap powered alert, confirm and flexible dialog boxes
 
-Please see http://paynedigital.com/bootbox for full usage instructions.
+Please see http://paynedigital.com/bootbox for full usage instructions, or head over to http://bootboxjs.com for
+a demo page.
 
 ## Contact
 
