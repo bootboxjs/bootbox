@@ -249,9 +249,12 @@ var bootbox = window.bootbox || (function() {
         }
 
         var header = str;
-        var body = "<form><input type=text /></form>";
 
-        var div = that.dialog(body, [{
+        // let's keep a reference to the form object for later
+        var form = $("<form></form>");
+        form.append("<input type=text />");
+
+        var div = that.dialog(form, [{
             "label": labelCancel,
             "icon" : _icons.CANCEL,
             "callback": function() {
@@ -265,13 +268,22 @@ var bootbox = window.bootbox || (function() {
             "callback": function() {
                 if (typeof cb == 'function') {
                     cb(
-                        div.find("form > input[type=text]").val()
+                        form.find("input[type=text]").val()
                     );
                 }
             }
         }], {
             "header": header
         });
+
+        // ensure that submitting the form (e.g. with the enter key)
+        // replicates the behaviour of a normal prompt()
+        form.on("submit", function(e) {
+            e.preventDefault();
+            div.find(".btn-primary").click();
+        });
+
+        return div;
     }
 
     that.modal = function(/*str, label, options*/) {
