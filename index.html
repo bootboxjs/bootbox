@@ -51,7 +51,9 @@
 
         <div class="well" style="padding:8px 0">
             <ul class="nav nav-list">
-                <li class="nav-header"><b>New</b> in 2.2.0</li>
+                <li class="nav-header"><b>New</b> in 2.3.0</li>
+                <li><a href="#" class="bs-prompt">Prompt</a></li>
+                <li class="nav-header">Changes in 2.2.0</li>
                 <li><a href="#" class="no-close-button">Don&rsquo;t close if callback returns false</a></li>
                 <li class="nav-header">Changes in 2.1.0</li>
                 <li><a href="#" class="icons-explicit">Iconified buttons (explicit)</a></li>
@@ -59,6 +61,7 @@
                 <li class="nav-header">Basic usage</li>
                 <li><a href="#" class="bs-alert" title="Simple Alert">Alert</a></li>
                 <li><a href="#" class="confirm">Confirm</a></li>
+                <li><a href="#" class="bs-prompt">Prompt</a></li>
                 <li class="nav-header">Advanced usage</li>
                 <li><a href="#" class="dialog">Custom Dialog</a></li>
                 <li><a href="#" class="multiple">Multiple Dialogs</a></li>
@@ -77,6 +80,18 @@
             <li><a href="http://paynedigital.com/bootbox">Read the full tutorial</a>&hellip;</li>
             <li>&hellip;and the <a href="http://paynedigital.com/2012/02/bootbox-two">updated one for v2.0.0</a></li>
         </ul>
+        <h2>Download</h2>
+        <p>The latest stable version of bootbox is <b>2.3.0</b>. You can <a href="https://github.com/makeusabrew/bootbox/tags">see a list of available downloads</a>
+        or download the latest in <a href="https://github.com/makeusabrew/bootbox/zipball/v2.3.0">zip</a> or
+        <a href="https://github.com/makeusabrew/bootbox/tarball/v2.3.0">tarball</a> format.</p>
+        <h2>Usage</h2>
+        <p>In rough DOM order:</p>
+        <ol>
+            <li>Include bootstrap.css</li>
+            <li>Include jquery.js (&gt;= 1.7.1)</li>
+            <li>Include bootstrap.js</li>
+            <li>Include bootbox.min.js</li>
+        </ol>
     </div>
     <br />
     <div class='well container'>
@@ -118,6 +133,13 @@
                 e.preventDefault();
                 bootbox.confirm("Are you sure?", function(confirmed) {
                     console.log("Confirmed: "+confirmed);
+                });
+            });
+
+            $("a.bs-prompt").click(function(e) {
+                e.preventDefault();
+                bootbox.prompt("What is your name?", function(result) {
+                    console.log("Result: "+result);
                 });
             });
 
