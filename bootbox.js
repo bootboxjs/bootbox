@@ -66,6 +66,11 @@ var bootbox = window.bootbox || (function() {
             OK      : 'OK',
             CANCEL  : 'Annuleren',
             CONFIRM : 'Accepteren'
+        },
+        'ru' : {
+            OK      : 'OK',
+            CANCEL  : 'Отмена',
+            CONFIRM : 'Применить'
         }
     };
 
