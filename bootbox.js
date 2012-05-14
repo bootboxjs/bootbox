@@ -257,7 +257,7 @@ var bootbox = window.bootbox || (function() {
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input type=text />");
+        form.append("<input autocomplete=off type=text />");
 
         var div = that.dialog(form, [{
             "label": labelCancel,
@@ -281,11 +281,15 @@ var bootbox = window.bootbox || (function() {
             "header": header
         });
 
-        // ensure that submitting the form (e.g. with the enter key)
-        // replicates the behaviour of a normal prompt()
-        form.on("submit", function(e) {
-            e.preventDefault();
-            div.find(".btn-primary").click();
+        div.on("shown", function() {
+            form.find("input[type=text]").focus();
+
+            // ensure that submitting the form (e.g. with the enter key)
+            // replicates the behaviour of a normal prompt()
+            form.on("submit", function(e) {
+                e.preventDefault();
+                div.find(".btn-primary").click();
+            });
         });
 
         return div;
