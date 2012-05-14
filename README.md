@@ -16,7 +16,11 @@ very [crude demo](http://bootboxjs.com/) (feel free to fork and improve!).
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-### Latest Release: 2.3.0
+### Latest Release: 2.3.1
+
+* Ensure bootbox.prompt() gives focus to input, disable input autocomplete
+
+### 2.3.0
 
 * Added bootbox.prompt() to mimic native prompt() method
 * Added Russian locale (#27)
