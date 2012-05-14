@@ -1,5 +1,5 @@
 /**
- * bootbox.js v2.2.0
+ * bootbox.js v2.3.0
  *
  * The MIT License
  *

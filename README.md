@@ -16,7 +16,12 @@ very [crude demo](http://bootboxjs.com/) (feel free to fork and improve!).
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-### Latest Release: 2.2.0
+### Latest Release: 2.3.0
+
+* Added bootbox.prompt() to mimic native prompt() method
+* Added Russian locale (#27)
+
+### 2.2.0
 
 * Allowed button callbacks to explicitly return false to prevent dialog from closing (thanks @benoit-ponsero)
 * Added version number to header comments (#26)
