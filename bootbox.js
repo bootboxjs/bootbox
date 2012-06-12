@@ -488,7 +488,8 @@ var bootbox = window.bootbox || (function() {
 
         div.modal({
             "backdrop" : options.backdrop || true,
-            "keyboard" : options.keyboard
+            "keyboard" : options.keyboard,
+	   "show": options.show
         });
 
         return div;
@@ -501,6 +502,6 @@ var bootbox = window.bootbox || (function() {
     that.animate = function(animate) {
         _animate = animate;
     }
-
+	
     return that;
 })();
