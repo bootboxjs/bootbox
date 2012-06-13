@@ -69,8 +69,8 @@ var bootbox = window.bootbox || (function() {
         },
         'ru' : {
             OK      : 'OK',
-            CANCEL  : 'Отмена',
-            CONFIRM : 'Применить'
+            CANCEL  : '??????',
+            CONFIRM : '?????????'
         }
     };
 
@@ -441,9 +441,13 @@ var bootbox = window.bootbox || (function() {
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         $(".modal-body", div).html(str);
 
-        div.bind('hidden', function() {
-            div.remove();
-        });
+	// Remove the div from dom when not in use?
+	if (options['remove_when_hidden'])
+	{
+		div.bind('hidden', function() {
+			div.remove();
+		});
+	}
 
         div.bind('hide', function() {
             if (hideSource == 'escape' &&
@@ -471,7 +475,7 @@ var bootbox = window.bootbox || (function() {
                 hideModal = null;
 
             if (typeof cb == 'function') {
-                hideModal = cb();
+                hideModal = cb(e);
             }
             if (hideModal !== false){
                 e.preventDefault();
