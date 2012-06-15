@@ -409,7 +409,10 @@ var bootbox = window.bootbox || (function() {
             callbacks[i] = callback;
         }
 
-        var parts = ["<div class='bootbox modal'>"];
+	// Add class directly to modal
+	if (!options['modal_class']) options['modal_class'] = '';
+
+        var parts = ["<div class='bootbox modal "+options['modal_class']+"'>"];
 
         if (options['header']) {
             var closeButton = '';
@@ -440,10 +443,26 @@ var bootbox = window.bootbox || (function() {
 
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         $(".modal-body", div).html(str);
-
-        div.bind('hidden', function() {
-            div.remove();
-        });
+		
+	// If str is a deferred jquery promise object (which is returned by jquery ajax methods)
+	if ($.isPlainObject(str) && $.isFunction(str.promise)  && $.isFunction(str.done))
+	{
+		// Delay opening of dialog
+		options['show'] = false;
+		
+		// Open upon succesful deferred resolution
+		str.done(function(){
+			div.modal("show");
+		});
+	}
+		
+	// Remove the div from dom when not in use?
+	if (options['remove_when_hidden'])
+	{
+		div.bind('hidden', function() {
+			div.remove();
+		});
+	}
 
         div.bind('hide', function() {
             if (hideSource == 'escape' &&
@@ -471,7 +490,7 @@ var bootbox = window.bootbox || (function() {
                 hideModal = null;
 
             if (typeof cb == 'function') {
-                hideModal = cb();
+                hideModal = cb(e);
             }
             if (hideModal !== false){
                 e.preventDefault();
@@ -488,7 +507,8 @@ var bootbox = window.bootbox || (function() {
 
         div.modal({
             "backdrop" : options.backdrop || true,
-            "keyboard" : options.keyboard
+            "keyboard" : options.keyboard,
+	   "show": options.show
         });
 
         return div;
@@ -501,6 +521,6 @@ var bootbox = window.bootbox || (function() {
     that.animate = function(animate) {
         _animate = animate;
     }
-
+	
     return that;
 })();
