@@ -443,7 +443,19 @@ var bootbox = window.bootbox || (function() {
 
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         $(".modal-body", div).html(str);
-
+		
+	// If str is a deferred jquery promise object (which is returned by jquery ajax methods)
+	if ($.isPlainObject(str) && $.isFunction(str.promise)  && $.isFunction(str.done))
+	{
+		// Delay opening of dialog
+		options['show'] = false;
+		
+		// Open upon succesful deferred resolution
+		str.done(function(){
+			div.modal("show");
+		});
+	}
+		
 	// Remove the div from dom when not in use?
 	if (options['remove_when_hidden'])
 	{
