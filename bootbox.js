@@ -409,7 +409,10 @@ var bootbox = window.bootbox || (function() {
             callbacks[i] = callback;
         }
 
-        var parts = ["<div class='bootbox modal'>"];
+	// Add class directly to modal
+	if (!options['modal_class']) options['modal_class'] = '';
+
+        var parts = ["<div class='bootbox modal "+options['modal_class']+"'>"];
 
         if (options['header']) {
             var closeButton = '';
