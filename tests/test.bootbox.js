@@ -2,6 +2,8 @@ describe("Bootbox", function() {
     var box;
 
     before(function() {
+        // we need to stop transitions kicking in as they effectively mean all these tests need to be synchronous
+        // we'll deal with all that stuff later
         bootbox.animate(false);
     });
 
@@ -86,6 +88,41 @@ describe("Bootbox", function() {
                 it("throws an error", function() {
                     assert.throws(function() {
                         bootbox.alert(1, 2, 3, 4);
+                    });
+                });
+            });
+
+            describe("with a callback", function() {
+                describe("when dismissing the dialog by clicking OK", function() {
+                    var result;
+                    before(function() {
+                        box = bootbox.alert("Hi", function() {
+                            result = true;
+                        });
+                    });
+
+                    it("should invoke the callback", function() {
+                        box.find("a:first").trigger('click');
+                        assert.isTrue(result);
+                    });
+                });
+
+                describe("when dismissing the dialog by pressing escape", function() {
+                    var result;
+                    before(function() {
+                        box = bootbox.alert("Hi", function() {
+                            result = true;
+                        });
+                    });
+
+                    it("should invoke the callback", function() {
+                        // if we do this in the "before", it will dismiss
+                        // all the dialogs before their it() methods run. e.g.
+                        // _all_ before() run before all it()
+                        var e = jQuery.Event("keyup.modal", {which: 27});
+                        $(document).trigger(e);
+
+                        assert.isTrue(result);
                     });
                 });
             });
@@ -211,7 +248,53 @@ describe("Bootbox", function() {
             describe("with five arguments", function() {
                 it("throws an error", function() {
                     assert.throws(function() {
-                        bootbox.alert(1, 2, 3, 4, 5);
+                        bootbox.confirm(1, 2, 3, 4, 5);
+                    });
+                });
+            });
+            
+            describe("with a callback", function() {
+                describe("when dismissing the dialog by clicking OK", function() {
+                    var result;
+                    before(function() {
+                        box = bootbox.confirm("Sure?", function(cbResult) {
+                            result = cbResult;
+                        });
+                    });
+
+                    it("should invoke the callback with a value of true", function() {
+                        box.find("a:first").trigger('click');
+                        assert.isTrue(result);
+                    });
+                });
+
+                describe("when dismissing the dialog by clicking Cancel", function() {
+                    var result;
+                    before(function() {
+                        box = bootbox.confirm("Sure?", function(cbResult) {
+                            result = cbResult;
+                        });
+                    });
+
+                    it("should invoke the callback with a value of true", function() {
+                        box.find("a:last").trigger('click');
+                        assert.isFalse(result);
+                    });
+                });
+
+                describe("when pressing escape", function() {
+                    var called = false;
+                    before(function() {
+                        box = bootbox.confirm("Sure?", function(cbResult) {
+                            called = true;
+                        });
+                    });
+
+                    it("should not invoke the callback", function() {
+                        var e = jQuery.Event("keyup.modal", {which: 27});
+                        $(document).trigger(e);
+
+                        assert.isFalse(called);
                     });
                 });
             });
@@ -242,9 +325,8 @@ describe("Bootbox", function() {
                     assert.equal(box.find(".modal-footer a:last").text(), "Cancel");
                 });
 
-                it("has focus on the OK button", function() {
-                    assert.isTrue(box.find(".modal-footer a:first").is(":focus"));
-                });
+                // @todo implement
+                it("has focus on the text input");
             });
 
             describe("with two arguments", function() {
@@ -341,9 +423,80 @@ describe("Bootbox", function() {
             describe("with five arguments", function() {
                 it("throws an error", function() {
                     assert.throws(function() {
-                        bootbox.alert(1, 2, 3, 4, 5);
+                        bootbox.prompt(1, 2, 3, 4, 5);
                     });
                 });
+            });
+
+            describe("with a callback", function() {
+                describe("when dismissing the dialog by clicking OK", function() {
+                    var result;
+                    before(function() {
+                        box = bootbox.prompt("Sure?", function(cbResult) {
+                            result = cbResult;
+                        });
+                        box.find("input[type=text]").val("Foo Bar");
+                    });
+
+                    it("should invoke the callback with the value of the input", function() {
+                        box.find(".modal-footer a:first").trigger('click');
+                        assert.equal(result, "Foo Bar");
+                    });
+                });
+
+                describe("when dismissing the dialog by clicking Cancel", function() {
+                    var result = "not null";
+                    before(function() {
+                        box = bootbox.prompt("Sure?", function(cbResult) {
+                            result = cbResult;
+                        });
+                        box.find("input[type=text]").val("Foo Bar");
+                    });
+
+                    it("should invoke the callback with a value null", function() {
+                        box.find(".modal-footer a:last").trigger('click');
+                        assert.isNull(result);
+                    });
+                });
+
+                describe("when pressing escape", function() {
+                    var called = false;
+                    before(function() {
+                        box = bootbox.confirm("Sure?", function(cbResult) {
+                            called = true;
+                        });
+                    });
+
+                    it("should not invoke the callback", function() {
+                        var e = jQuery.Event("keyup.modal", {which: 27});
+                        $(document).trigger(e);
+
+                        assert.isFalse(called);
+                    });
+                });
+
+                /**
+                 * we can't test for this since "shown" is called synchronously when
+                 * bootbox.animate = false. Therefore, by the time .prompt() tries to
+                 * bind its own handler (currently line 284) it's too late; the element
+                 * is already shown so the handler won't ever fire
+                 */
+                /*
+                describe("when submitting the form", function() {
+                    var result;
+                    before(function(done) {
+                        box = bootbox.prompt("Sure?", function(cbResult) {
+                            result = cbResult;
+                        });
+                        box.find("input[type=text]").val("Foo Bar");
+                    });
+
+                    it("should invoke the callback with the value of the input", function() {
+                        box.find(".modal-body form").trigger('submit');
+                        assert.equal(result, "Foo Bar");
+                    });
+                });
+                */
             });
         });
     });
