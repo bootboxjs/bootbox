@@ -22,16 +22,6 @@ describe("Bootbox", function() {
         });
     });
 
-    describe("class methods", function() {
-        describe("#setLocale", function() {
-            it("should throw an error when setting an invalid locale", function() {
-                assert.throws(function() {
-                    bootbox.setLocale('xx')
-                });
-            });
-        });
-    });
-    
     describe("instance methods", function() {
         describe("#alert", function() {
             describe("with one argument", function() {
@@ -89,6 +79,14 @@ describe("Bootbox", function() {
 
                 it("shows the correct label text", function() {
                     assert.equal(box.find("a:first").text(), "Bar");
+                });
+            });
+
+            describe("with four arguments", function() {
+                it("throws an error", function() {
+                    assert.throws(function() {
+                        bootbox.alert(1, 2, 3, 4);
+                    });
                 });
             });
         });
@@ -209,12 +207,156 @@ describe("Bootbox", function() {
                     assert.equal(box.find("a:last").html(), "Foo");
                 });
             });
+
+            describe("with five arguments", function() {
+                it("throws an error", function() {
+                    assert.throws(function() {
+                        bootbox.alert(1, 2, 3, 4, 5);
+                    });
+                });
+            });
+        });
+
+        describe("#prompt", function() {
+            describe("with one argument", function() {
+                before(function() {
+                    box = bootbox.prompt("Hello world!");
+                });
+
+                it("shows the expected heading", function() {
+                    assert.equal(
+                        box.find(".modal-header h3").text(),
+                        "Hello world!"
+                    );
+                });
+
+                it("has a form with a text input in the body", function() {
+                    assert.ok(box.find(".modal-body form input[type=text]"));
+                });
+
+                it("shows an OK button", function() {
+                    assert.equal(box.find(".modal-footer a:first").text(), "OK");
+                });
+
+                it("shows a Cancel button", function() {
+                    assert.equal(box.find(".modal-footer a:last").text(), "Cancel");
+                });
+
+                it("has focus on the OK button", function() {
+                    assert.isTrue(box.find(".modal-footer a:first").is(":focus"));
+                });
+            });
+
+            describe("with two arguments", function() {
+                describe("where the second argument is a string", function() {
+                    before(function() {
+                        box = bootbox.prompt("Hello world!", "Foo");
+                    });
+
+                    it("shows the expected heading", function() {
+                        assert.equal(
+                            box.find(".modal-header h3").text(),
+                            "Hello world!"
+                        );
+                    });
+
+                    it("shows an OK button", function() {
+                        assert.equal(box.find(".modal-footer a:first").html(), "OK");
+                    });
+
+                    it("shows the custom Cancel label", function() {
+                        assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+                    });
+                });
+
+                describe("where the second argument is a function", function() {
+                    before(function() {
+                        box = bootbox.prompt("Hello world!", function() { });
+                    });
+
+                    it("shows an OK button", function() {
+                        assert.equal(box.find(".modal-footer a:first").html(), "OK");
+                    });
+
+                    it("shows a Cancel button", function() {
+                        assert.equal(box.find(".modal-footer a:last").html(), "Cancel");
+                    });
+                });
+            });
+
+            describe("with three arguments", function() {
+                describe("where the third argument is a string", function() {
+                    before(function() {
+                        box = bootbox.prompt("Hello world!", "Foo", "Bar");
+                    });
+
+                    it("shows the expected heading", function() {
+                        assert.equal(
+                            box.find(".modal-header h3").text(),
+                            "Hello world!"
+                        );
+                    });
+
+                    it("shows the custom OK label", function() {
+                        assert.equal(box.find(".modal-footer a:first").html(), "Bar");
+                    });
+
+                    it("shows the custom Cancel label", function() {
+                        assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+                    });
+                });
+
+                describe("where the third argument is a function", function() {
+                    before(function() {
+                        box = bootbox.prompt("Hello world!", "Foo", function() { });
+                    });
+
+                    it("shows the default OK label", function() {
+                        assert.equal(box.find(".modal-footer a:first").html(), "OK");
+                    });
+                });
+            });
+
+            describe("with four arguments", function() {
+                before(function() {
+                    box = bootbox.prompt("Hello world!", "Foo", "Bar", function() {});
+                });
+
+                it("shows the expected heading", function() {
+                    assert.equal(
+                        box.find(".modal-header h3").text(),
+                        "Hello world!"
+                    );
+                });
+
+                it("shows the custom OK label", function() {
+                    assert.equal(box.find(".modal-footer a:first").html(), "Bar");
+                });
+
+                it("shows the custom Cancel label", function() {
+                    assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+                });
+            });
+
+            describe("with five arguments", function() {
+                it("throws an error", function() {
+                    assert.throws(function() {
+                        bootbox.alert(1, 2, 3, 4, 5);
+                    });
+                });
+            });
         });
     });
 
     describe("locales", function() {
         var box1;
         var box2;
+
+        it("should throw an error when setting an invalid locale", function() {
+            assert.throws(function() {
+                bootbox.setLocale('xx')
+            });
+        });
 
         describe("en", function() {
             before(function() {
