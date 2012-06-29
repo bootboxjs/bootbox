@@ -1,16 +1,11 @@
 # Bootbox - Twitter Bootstrap powered alert, confirm and flexible dialog boxes
 
 Please see http://paynedigital.com/bootbox for full usage instructions, or head over to http://bootboxjs.com for
-a demo page.
+a demo page ([please feel free to improve it!](https://github.com/makeusabrew/bootbox/tree/gh-pages))
 
 ## Contact
 
 The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew) [@makeusabrew](http://twitter.com/makeusabrew)
-
-## Demo
-
-The [gh-pages](https://github.com/makeusabrew/bootbox/tree/gh-pages) branch contains a
-very [crude demo](http://bootboxjs.com/) (feel free to fork and improve!).
 
 ## Submitting Pull Requests
 
