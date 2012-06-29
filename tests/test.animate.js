@@ -2,7 +2,7 @@ describe("animate", function() {
     var box;
 
     before(function() {
-        bootbox.animate(true);
+        bootbox.animate(false);
     });
 
     after(function() {
@@ -11,24 +11,36 @@ describe("animate", function() {
         .remove();
     });
 
-    describe("when enabled", function() {
+    describe("when disabled", function() {
         before(function() {
             box = bootbox.dialog("foo");
         });
 
-        it("should apply the correct class to the modal", function() {
-            assert.isTrue(box.hasClass("fade"));
+        it("should not apply the fade class to the modal", function() {
+            assert.isFalse(box.hasClass("fade"));
         });
+
+        describe("but when passed as an option", function() {
+            before(function() {
+                box = bootbox.dialog("foo", [], {"animate": true});
+            });
+
+            it("should apply the fade class to the modal", function() {
+                assert.isTrue(box.hasClass("fade"));
+            });
+        });
+
     });
 
-    describe("when disabled but passed as an option", function() {
+    describe("when enabled", function() {
         before(function() {
-            bootbox.animate(false);
-            box = bootbox.dialog("foo", [], {"animate": true});
+            bootbox.animate(true);
+            box = bootbox.dialog("foo");
         });
 
-        it("should apply the correct class to the modal", function() {
+        it("should apply the fase class to the modal", function() {
             assert.isTrue(box.hasClass("fade"));
         });
     });
+
 });
