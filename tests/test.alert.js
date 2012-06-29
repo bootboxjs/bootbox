@@ -90,6 +90,10 @@ describe("#alert", function() {
                 box.find("a:first").trigger('click');
                 assert.isTrue(result);
             });
+
+            it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
+            });
         });
 
         describe("when dismissing the dialog by pressing escape", function() {
@@ -108,6 +112,10 @@ describe("#alert", function() {
                 $(document).trigger(e);
 
                 assert.isTrue(result);
+            });
+
+            it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
             });
         });
     });

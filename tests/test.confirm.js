@@ -148,6 +148,10 @@ describe("#confirm", function() {
                 box.find("a:first").trigger('click');
                 assert.isTrue(result);
             });
+
+            it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
+            });
         });
 
         describe("when dismissing the dialog by clicking Cancel", function() {
@@ -161,6 +165,10 @@ describe("#confirm", function() {
             it("should invoke the callback with a value of true", function() {
                 box.find("a:last").trigger('click');
                 assert.isFalse(result);
+            });
+
+            it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
             });
         });
 
@@ -177,6 +185,10 @@ describe("#confirm", function() {
                 $(document).trigger(e);
 
                 assert.isFalse(called);
+            });
+
+            it("should not close the dialog", function() {
+                assert.isFalse(box.is(":hidden"));
             });
         });
     });

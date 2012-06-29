@@ -35,6 +35,10 @@ describe("#prompt", function() {
             assert.equal(box.find(".modal-footer a:last").text(), "Cancel");
         });
 
+        it("shows a close button", function() {
+            assert.equal(box.find(".modal-header a.close").text(), "×");
+        });
+
         // @todo implement
         it("has focus on the text input");
     });
@@ -172,7 +176,7 @@ describe("#prompt", function() {
         describe("when pressing escape", function() {
             var called = false;
             before(function() {
-                box = bootbox.confirm("Sure?", function(cbResult) {
+                box = bootbox.prompt("Sure?", function(cbResult) {
                     called = true;
                 });
             });
@@ -182,6 +186,29 @@ describe("#prompt", function() {
                 $(document).trigger(e);
 
                 assert.isFalse(called);
+            });
+
+            it("should not close the dialog", function() {
+                assert.isFalse(box.is(":hidden"));
+            });
+        });
+
+        describe("when pressing close", function() {
+            var called = false;
+            before(function() {
+                box = bootbox.prompt("Sure?", function(cbResult) {
+                    called = true;
+                });
+
+                box.find(".modal-header a").click();
+            });
+
+            it("should not invoke the callback", function() {
+                assert.isFalse(called);
+            });
+
+            it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
             });
         });
 
