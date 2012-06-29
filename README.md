@@ -12,6 +12,12 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew) [@m
 The [gh-pages](https://github.com/makeusabrew/bootbox/tree/gh-pages) branch contains a
 very [crude demo](http://bootboxjs.com/) (feel free to fork and improve!).
 
+## Submitting Pull Requests
+
+* Please ensure that the test suite passes before submitting a PR
+* If you've added new functionality, **please** include tests which validate its behaviour
+* Tests live in tests/test.*.js and are run using [Mocha](http://visionmedia.github.com/mocha/) - to run simply open tests/index.html in your browser.
+
 ## Versioning
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
