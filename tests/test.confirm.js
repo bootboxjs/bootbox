@@ -31,8 +31,16 @@ describe("#confirm", function() {
             assert.equal(box.find("a:last").html(), "Cancel");
         });
 
+        it("does not apply the primary class to the cancel button", function() {
+            assert.isFalse(box.find("a:last").hasClass("btn-primary"));
+        });
+
         it("has focus on the OK button", function() {
             assert.isTrue(box.find("a:first").is(":focus"));
+        });
+
+        it("applies the primary class to the OK button", function() {
+            assert.isTrue(box.find("a:first").hasClass("btn-primary"));
         });
     });
 
@@ -88,6 +96,10 @@ describe("#confirm", function() {
 
             it("shows the custom OK label", function() {
                 assert.equal(box.find("a:first").html(), "Bar");
+            });
+
+            it("applies the primary class to the custom OK button", function() {
+                assert.isTrue(box.find("a:first").hasClass("btn-primary"));
             });
 
             it("shows the custom Cancel label", function() {

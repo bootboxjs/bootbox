@@ -27,6 +27,10 @@ describe("#alert", function() {
         it("has focus on the OK button", function() {
             assert.isTrue(box.find("a:first").is(":focus"));
         });
+
+        it("applies the primary class to the button", function() {
+            assert.isTrue(box.find("a:first").hasClass("btn-primary"));
+        });
     });
 
     describe("with two arguments", function() {

@@ -39,6 +39,14 @@ describe("#prompt", function() {
             assert.equal(box.find(".modal-header a.close").text(), "×");
         });
 
+        it("does not apply the primary class to the cancel button", function() {
+            assert.isFalse(box.find(".modal-footer a:last").hasClass("btn-primary"));
+        });
+
+        it("applies the primary class to the OK button", function() {
+            assert.isTrue(box.find(".modal-footer a:first").hasClass("btn-primary"));
+        });
+
         // @todo implement
         it("has focus on the text input");
     });
