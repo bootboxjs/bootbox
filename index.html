@@ -35,13 +35,34 @@
             </div>
         </div>
 
-        <h2>What is it?</h2>
-        <p>Bootbox.js is a small JavaScript library which allows you to create simple programmatic dialog boxes using
-        <a href="http://twitter.github.com/bootstrap/javascript.html#modals">Twitter's Bootstrap modals</a>. For
-        a lot more information, head over to <a href="http://paynedigital.com/bootbox">the tutorial</a> and
+        <p><b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes using
+        <a href="http://twitter.github.com/bootstrap/javascript.html#modals">Twitter's Bootstrap modals</a>, without
+        having to worry about creating, managing or removing any of the required DOM elements or JS event handlers. Here's the simplest possible
+        example:</p>
+
+        <script src="https://gist.github.com/1343123.js"> </script>
+
+        <p><a href="#" class="bs-alert btn"><i class="icon-play"></i> Run example</a></p>
+
+        <p>Compare that to the code you'd have to write without Bootbox:</p>
+
+        <script src="https://gist.github.com/1346060.js"> </script>
+
+        <p>The library exposes three methods designed to mimic their native JavaScript equivalents:
+        <ul>
+            <li><b>alert</b></li>
+            <li><b>confirm</b></li>
+            <li><b>prompt</b></li>
+        </ul>
+
+        <p>These methods all invoke a fourth method, <b>dialog</b>, which allows you to create your own modals with any
+        number of buttons and event handlers.</p>
+
+        <p>For a lot more information, head over to <a href="http://paynedigital.com/bootbox">the tutorial</a> and
         <a href="http://paynedigital.com/2012/02/bootbox-two">subsequent update</a> for Bootstrap 2.0 and above.</p>
 
-        <h2>What does it do?</h2>
+        <h2>Examples</h2>
+
         <p><strong>Please Note</strong> that these demos are extremely crude&mdash;please
         feel free to fork the project and improve them. You can
         <a href="https://github.com/makeusabrew/bootbox/blob/gh-pages/index.html">view the source for this demo page</a>
@@ -73,18 +94,24 @@
                 <li><a href="#" class="nofade">options.animate &rarr; false</a></li>
             </ul>
         </div>
+
         <h2>What else?</h2>
+
         <ul>
             <li>Check out the <a href="https://github.com/makeusabrew/bootbox/blob/gh-pages/index.html">source for this page</a></li>
             <li>View the bootbox.js <a href="https://github.com/makeusabrew/bootbox">repository</a></li>
             <li><a href="http://paynedigital.com/bootbox">Read the full tutorial</a>&hellip;</li>
             <li>&hellip;and the <a href="http://paynedigital.com/2012/02/bootbox-two">updated one for v2.0.0</a></li>
         </ul>
+
         <h2>Download</h2>
+
         <p>The latest stable version of bootbox is <b>2.3.1</b>. You can <a href="https://github.com/makeusabrew/bootbox/tags">see a list of available downloads</a>
         or download the latest in <a href="https://github.com/makeusabrew/bootbox/zipball/v2.3.1">zip</a> or
         <a href="https://github.com/makeusabrew/bootbox/tarball/v2.3.1">tarball</a> format.</p>
+
         <h2>Usage</h2>
+
         <p>In rough DOM order:</p>
         <ol>
             <li>Include bootstrap.css</li>
