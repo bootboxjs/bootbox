@@ -5,7 +5,7 @@ a demo page ([please feel free to improve it!](https://github.com/makeusabrew/bo
 
 ## Contact
 
-The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew) [@makeusabrew](http://twitter.com/makeusabrew)
+The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@makeusabrew](http://twitter.com/makeusabrew)
 
 ## Submitting Pull Requests
 
