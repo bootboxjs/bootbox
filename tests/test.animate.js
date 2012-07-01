@@ -38,7 +38,7 @@ describe("animate", function() {
             box = bootbox.dialog("foo");
         });
 
-        it("should apply the fase class to the modal", function() {
+        it("should apply the fade class to the modal", function() {
             assert.isTrue(box.hasClass("fade"));
         });
     });
