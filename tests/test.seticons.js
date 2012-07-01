@@ -29,7 +29,7 @@ describe("#setIcons", function() {
 
     describe("when invoking a confirm dialog", function() {
         before(function() {
-            box = bootbox.prompt("Hello world!");
+            box = bootbox.confirm("Hello world!");
         });
 
         it("should add an icon element to the CONFIRM button", function() {
@@ -43,15 +43,15 @@ describe("#setIcons", function() {
 
     describe("when invoking a prompt dialog", function() {
         before(function() {
-            box = bootbox.confirm("Hello world!");
+            box = bootbox.prompt("Hello world!");
         });
 
         it("should add an icon element to the CONFIRM button", function() {
-            assert.isTrue(box.find("a:first i").hasClass("confirm"));
+            assert.isTrue(box.find(".modal-footer a:first i").hasClass("confirm"));
         });
 
         it("should add an icon element to the CANCEL button", function() {
-            assert.isTrue(box.find("a:last i").hasClass("cancel"));
+            assert.isTrue(box.find(".modal-footer a:last i").hasClass("cancel"));
         });
     });
 });

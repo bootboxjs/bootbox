@@ -26,6 +26,10 @@ describe("#dialog", function() {
         it("displays no header", function() {
             assert.equal(box.find(".modal-header").length, 0);
         });
+
+        it("applies the bootbox class to the modal", function() {
+            assert.isTrue(box.hasClass("bootbox"));
+        });
     });
 
     describe("with two arguments", function() {
