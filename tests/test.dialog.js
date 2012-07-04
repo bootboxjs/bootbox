@@ -51,6 +51,10 @@ describe("#dialog", function() {
                 assert.equal(box.find("a:first").text(), "My Label");
             });
 
+            it("should apply the btn class to the button", function() {
+                assert.isTrue(box.find("a:first").hasClass("btn"));
+            });
+
             it("should apply the primary class to the button", function() {
                 assert.isTrue(box.find("a:first").hasClass("btn-primary"));
             });
@@ -84,6 +88,10 @@ describe("#dialog", function() {
                 it("should show the correct label text", function() {
                     // this is correct; the presence of the icon means we get a space
                     assert.equal(box.find("a:first").text(), " My Button");
+                });
+
+                it("should apply the btn class to the button", function() {
+                    assert.isTrue(box.find("a:first").hasClass("btn"));
                 });
 
                 it("should apply the correct class to the button", function() {
@@ -121,7 +129,6 @@ describe("#dialog", function() {
                 });
 
                 it("should show the default fallback label text", function() {
-                    // this is correct; the presence of the icon means we get a space
                     assert.equal(box.find("a:first").text(), "Option 1");
                 });
 
@@ -184,6 +191,10 @@ describe("#dialog", function() {
                         assert.equal(box.find("a:first").text(), "My Label");
                     });
 
+                    it("should apply the btn class to the button", function() {
+                        assert.isTrue(box.find("a:first").hasClass("btn"));
+                    });
+
                     it("should apply the primary class to the button", function() {
                         assert.isTrue(box.find("a:first").hasClass("btn-primary"));
                     });
@@ -197,6 +208,242 @@ describe("#dialog", function() {
                         it("should close the dialog", function() {
                             assert.isTrue(box.is(":hidden"));
                         });
+                    });
+                });
+            });
+
+            describe("where the array has two elements", function() {
+                describe("when only supplying label properties", function() {
+                    before(function() {
+                        box = bootbox.dialog("Foo", [{
+                            "label": "Button 1"
+                        }, {
+                            "label": "Button 2"
+                        }]);
+                    });
+
+                    /**
+                     * this is slightly confusing to read. We actually add the buttons
+                     * in reverse order because they have a float:right on them. This
+                     * means that their DOM order is effectively the reverse of what
+                     * we might expect
+                     */
+
+                    it("should show the correct first button", function() {
+                        assert.equal(box.find("a:last").text(), "Button 1");
+                    });
+
+                    it("should apply the btn class to the button", function() {
+                        assert.isTrue(box.find("a:last").hasClass("btn"));
+                    });
+
+                    it("should not apply the primary class to the first button", function() {
+                        assert.isFalse(box.find("a:last").hasClass("btn-primary"));
+                    });
+
+                    it("should show the correct second button", function() {
+                        assert.equal(box.find("a:first").text(), "Button 2");
+                    });
+
+                    it("should apply the btn class to the button", function() {
+                        assert.isTrue(box.find("a:first").hasClass("btn"));
+                    });
+
+                    it("should apply the primary class to the second button", function() {
+                        assert.isTrue(box.find("a:first").hasClass("btn-primary"));
+                    });
+                });
+
+                describe("when supplying a class property to the second button", function() {
+                    before(function() {
+                        box = bootbox.dialog("Foo", [{
+                            "label": "Button 1"
+                        }, {
+                            "label": "Button 2",
+                            "class": "foo"
+                        }]);
+                    });
+
+                    /**
+                     * this is slightly confusing to read. We actually add the buttons
+                     * in reverse order because they have a float:right on them. This
+                     * means that their DOM order is effectively the reverse of what
+                     * we might expect
+                     */
+
+                    it("should show the correct first button", function() {
+                        assert.equal(box.find("a:last").text(), "Button 1");
+                    });
+
+                    it("should not apply the primary class to the first button", function() {
+                        assert.isFalse(box.find("a:last").hasClass("btn-primary"));
+                    });
+
+                    it("should show the correct second button", function() {
+                        assert.equal(box.find("a:first").text(), "Button 2");
+                    });
+
+                    it("should apply the btn class to the button", function() {
+                        assert.isTrue(box.find("a:first").hasClass("btn"));
+                    });
+
+                    it("should apply the supplied to the second button", function() {
+                        assert.isTrue(box.find("a:first").hasClass("foo"));
+                    });
+                });
+            });
+
+            describe("when supplying a callback for both buttons", function() {
+                describe("when clicking the first button", function() {
+                    var callback1 = false;
+                    var callback2 = false;
+
+                    before(function() {
+                        box = bootbox.dialog("Foo", [{
+                            "label": "Button 1",
+                            "callback": function() {
+                                callback1 = true;
+                            }
+                        }, {
+                            "label": "Button 2",
+                            "callback": function() {
+                                callback2 = true;
+                            }
+                        }]);
+                    });
+
+                    it("should invoke the correct callback", function() {
+                        box.find("a:last").trigger('click');
+                        assert.isTrue(callback1);
+                        assert.isFalse(callback2);
+                    });
+
+                    it("should close the dialog", function() {
+                        assert.isTrue(box.is(":hidden"));
+                    });
+                });
+
+                describe("when clicking the second button", function() {
+                    var callback1 = false;
+                    var callback2 = false;
+
+                    before(function() {
+                        box = bootbox.dialog("Foo", [{
+                            "label": "Button 1",
+                            "callback": function() {
+                                callback1 = true;
+                            }
+                        }, {
+                            "label": "Button 2",
+                            "callback": function() {
+                                callback2 = true;
+                            }
+                        }]);
+                    });
+
+                    it("should invoke the correct callback", function() {
+                        box.find("a:first").trigger('click');
+                        assert.isTrue(callback2);
+                        assert.isFalse(callback1);
+                    });
+
+                    it("should close the dialog", function() {
+                        assert.isTrue(box.is(":hidden"));
+                    });
+                });
+            });
+
+            describe("where the array has more than two elements", function() {
+                describe("when only supplying label properties", function() {
+                    before(function() {
+                        box = bootbox.dialog("Foo", [{
+                            "label": "Button 1"
+                        }, {
+                            "label": "Button 2"
+                        }, {
+                            "label": "Button 3"
+                        }, {
+                            "label": "Button 4"
+                        }]);
+                    });
+
+                    it("should show the correct first button", function() {
+                        assert.equal(box.find("a:eq(3)").text(), "Button 1");
+                    });
+
+                    it("should apply the btn class to the button", function() {
+                        assert.isTrue(box.find("a:eq(3)").hasClass("btn"));
+                    });
+
+                    it("should show the correct second button", function() {
+                        assert.equal(box.find("a:eq(2)").text(), "Button 2");
+                    });
+
+                    it("should apply the btn class to the button", function() {
+                        assert.isTrue(box.find("a:eq(2)").hasClass("btn"));
+                    });
+
+                    it("should show the correct third button", function() {
+                        assert.equal(box.find("a:eq(1)").text(), "Button 3");
+                    });
+
+                    it("should apply the btn class to the third button", function() {
+                        assert.isTrue(box.find("a:eq(1)").hasClass("btn"));
+                    });
+
+                    it("should show the correct fourth button", function() {
+                        assert.equal(box.find("a:eq(0)").text(), "Button 4");
+                    });
+
+                    it("should apply the btn class to the fourth button", function() {
+                        assert.isTrue(box.find("a:eq(0)").hasClass("btn"));
+                    });
+
+                    it("should not apply the btn class to the fourth button", function() {
+                        assert.isFalse(box.find("a:eq(0)").hasClass("btn-primary"));
+                    });
+                });
+            });
+        });
+    });
+
+    describe("with three arguments", function() {
+        describe("where the third argument is an object", function() {
+            describe("when supplying a header string", function() {
+                describe("with no other options", function() {
+                    before(function() {
+                        box = bootbox.dialog("My Body", {
+                            "bar": function() {}
+                        }, {
+                            "header": "My Header"
+                        });
+                    });
+
+                    it("should show the correct body", function() {
+                        assert.equal(box.find(".modal-body").text(), "My Body");
+                    });
+
+                    it("should show the correct header", function() {
+                        assert.equal(box.find(".modal-header h3").text(), "My Header");
+                    });
+
+                    it("should show a close button", function() {
+                        assert.equal(box.find(".modal-header a.close").text(), "×");
+                    });
+                });
+
+                describe("with a headerCloseButton value of false", function() {
+                    before(function() {
+                        box = bootbox.dialog("My Body", {
+                            "bar": function() {}
+                        }, {
+                            "header": "My Header",
+                            "headerCloseButton": false
+                        });
+                    });
+
+                    it("should not show a close button", function() {
+                        assert.equal(box.find(".modal-header a.close").length, 0);
                     });
                 });
             });
