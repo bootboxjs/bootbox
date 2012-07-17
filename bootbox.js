@@ -71,6 +71,11 @@ var bootbox = window.bootbox || (function() {
             OK      : 'OK',
             CANCEL  : 'Отмена',
             CONFIRM : 'Применить'
+        },
+        'it' : {
+            OK      : 'OK',
+            CANCEL  : 'Annulla',
+            CONFIRM : 'Conferma'
         }
     };
 
