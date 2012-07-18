@@ -154,4 +154,25 @@ describe("setLocale", function() {
             assert.equal(box2.find("a:first").text(), "Применить");
         });
     });
+    
+    describe("Italian", function() {
+        before(function() {
+            bootbox.setLocale('it');
+
+            box1 = bootbox.alert("foo");
+            box2 = bootbox.confirm("bar");
+        });
+
+        it("shows the correct OK translation", function() {
+            assert.equal(box1.find("a:first").text(), "OK");
+        });
+
+        it("shows the correct CANCEL translation", function() {
+            assert.equal(box2.find("a:last").text(), "Annulla");
+        });
+
+        it("shows the correct CONFIRM translation", function() {
+            assert.equal(box2.find("a:first").text(), "Conferma");
+        });
+    });
 });
