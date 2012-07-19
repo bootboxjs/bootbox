@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE
  */
-var bootbox = window.bootbox || (function() {
+var bootbox = window.bootbox || (function($) {
 
     var _locale        = 'en',
         _defaultLocale = 'en',
@@ -508,4 +508,4 @@ var bootbox = window.bootbox || (function() {
     }
 
     return that;
-})();
+})( window.jQuery );
