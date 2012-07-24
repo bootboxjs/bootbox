@@ -409,7 +409,7 @@ var bootbox = window.bootbox || (function() {
                 icon = "<i class='"+handlers[i]['icon']+"'></i> ";
             }
 
-            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='#'>"+icon+""+label+"</a>";
+            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='javascript:;'>"+icon+""+label+"</a>";
 
             callbacks[i] = callback;
         }
@@ -419,7 +419,7 @@ var bootbox = window.bootbox || (function() {
         if (options['header']) {
             var closeButton = '';
             if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
-                closeButton = "<a href='#' class='close'>&times;</a>";
+                closeButton = "<a href='javascript:;' class='close'>&times;</a>";
             }
 
             parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
