@@ -17,7 +17,13 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-### Latest Release: 2.3.1
+### Latest Release: 2.3.2
+
+* Change button href attributes to ```javascript:;``` (@joshnesbitt)
+* Explicitly ```window.jQuery``` through to ```Bootbox``` object (@nuegon)
+
+
+### 2.3.1
 
 * Ensure bootbox.prompt() gives focus to input, disable input autocomplete
 
