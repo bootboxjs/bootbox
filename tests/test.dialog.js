@@ -30,6 +30,10 @@ describe("#dialog", function() {
         it("applies the bootbox class to the modal", function() {
             assert.isTrue(box.hasClass("bootbox"));
         });
+
+        it("applies an inline overflow: hidden style to the modal", function() {
+            assert.equal(box.get(0).style.overflow, "hidden");
+        });
     });
 
     describe("with two arguments", function() {
