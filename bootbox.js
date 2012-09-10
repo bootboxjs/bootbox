@@ -200,11 +200,12 @@ var bootbox = window.bootbox || (function($) {
         }]);
     }
 
-    that.prompt = function(/*str, labelCancel, labelOk, cb*/) {
+    that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
         var str         = "",
             labelCancel = _translate('CANCEL'),
             labelOk     = _translate('CONFIRM'),
-            cb          = null;
+            cb          = null,
+            defaultVal  = "";
 
         switch (arguments.length) {
             case 1:
@@ -233,8 +234,15 @@ var bootbox = window.bootbox || (function($) {
                 labelOk     = arguments[2];
                 cb          = arguments[3];
                 break;
+            case 5:
+                str         = arguments[0];
+                labelCancel = arguments[1];
+                labelOk     = arguments[2];
+                cb          = arguments[3];
+                defaultVal  = arguments[4];
+                break;
             default:
-                throw new Error("Incorrect number of arguments: expected 1-4");
+                throw new Error("Incorrect number of arguments: expected 1-5");
                 break;
         }
 
@@ -242,7 +250,7 @@ var bootbox = window.bootbox || (function($) {
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input autocomplete=off type=text />");
+        form.append("<input autocomplete=off type=text value='" + defaultVal + "' />");
 
         var div = that.dialog(form, [{
             "label": labelCancel,
