@@ -143,9 +143,34 @@ describe("#prompt", function() {
     });
 
     describe("with five arguments", function() {
+        before(function() {
+            box = bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, "default");
+        });
+
+        it("shows the expected heading", function() {
+            assert.equal(
+                box.find(".modal-header h3").text(),
+                "Hello world!"
+            );
+        });
+
+        it("shows the custom OK label", function() {
+            assert.equal(box.find(".modal-footer a:first").html(), "Bar");
+        });
+
+        it("shows the custom Cancel label", function() {
+            assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+        });
+
+        it("shows the input with correct default value", function() {
+            assert.equal(box.find(".modal-body input").val(), "default");
+        });
+    });
+
+    describe("with six arguments", function() {
         it("throws an error", function() {
             assert.throws(function() {
-                bootbox.prompt(1, 2, 3, 4, 5);
+                bootbox.prompt(1, 2, 3, 4, 5, 6);
             });
         });
     });
