@@ -17,22 +17,22 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-### Latest Release: 2.4.1
+## Latest Release: 2.4.1
 
 * fix ```backdrop``` when supplied as an argument to ```bootbox.dialog```
 * fix incorrect README version
 
-## 2.4.0
+### 2.4.0
 
 * add ```bootbox.backdrop(bool)``` method (@gucki)
 * add default parameter option to ```bootbox.prompt``` (@pzgz)
 
-## 2.3.3
+### 2.3.3
 
 * add inline ```overflow: hidden``` CSS property (GH-46)
 * move license info to separate hosted file to reduce file size
 
-## 2.3.2
+### 2.3.2
 
 * Change button href attributes to ```javascript:;``` (@joshnesbitt)
 * Explicitly ```window.jQuery``` through to ```Bootbox``` object (@nuegon)
