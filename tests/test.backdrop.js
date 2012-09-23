@@ -41,6 +41,16 @@ describe("backdrop", function() {
         it("should add the backdrop element", function() {
             assert.equal(box.next(".modal-backdrop").length, 1);
         });
+
+        describe("but when passed as false as an option", function() {
+            before(function() {
+                box = bootbox.dialog("foo", [], {"backdrop": false});
+            });
+
+            it("should add the backdrop element", function() {
+                assert.equal(box.next(".modal-backdrop").length, 0);
+            });
+        });
     });
 
 });

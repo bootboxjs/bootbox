@@ -1,5 +1,5 @@
 /**
- * bootbox.js v2.4.0
+ * bootbox.js v2.4.1
  *
  * http://bootboxjs.com/license.txt
  */
@@ -485,7 +485,7 @@ var bootbox = window.bootbox || (function($) {
         $("body").append(div);
 
         div.modal({
-            "backdrop" : options.backdrop || _backdrop,
+            "backdrop" : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
             "keyboard" : options.keyboard
         });
 

@@ -41,6 +41,16 @@ describe("animate", function() {
         it("should apply the fade class to the modal", function() {
             assert.isTrue(box.hasClass("fade"));
         });
+
+        describe("but when passed as false an option", function() {
+            before(function() {
+                box = bootbox.dialog("foo", [], {"animate": false});
+            });
+
+            it("should not apply the fade class to the modal", function() {
+                assert.isFalse(box.hasClass("fade"));
+            });
+        });
     });
 
 });

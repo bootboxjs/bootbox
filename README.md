@@ -17,7 +17,12 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-### Latest Release: 2.3.4
+### Latest Release: 2.4.1
+
+* fix ```backdrop``` when supplied as an argument to ```bootbox.dialog```
+* fix incorrect README version
+
+## 2.4.0
 
 * add ```bootbox.backdrop(bool)``` method (@gucki)
 * add default parameter option to ```bootbox.prompt``` (@pzgz)
