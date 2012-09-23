@@ -17,7 +17,12 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-### Latest Release: 2.3.3
+### Latest Release: 2.3.4
+
+* add ```bootbox.backdrop(bool)``` method (@gucki)
+* add default parameter option to ```bootbox.prompt``` (@pzgz)
+
+## 2.3.3
 
 * add inline ```overflow: hidden``` CSS property (GH-46)
 * move license info to separate hosted file to reduce file size
