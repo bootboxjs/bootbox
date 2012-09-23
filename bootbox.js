@@ -8,6 +8,7 @@ var bootbox = window.bootbox || (function($) {
     var _locale        = 'en',
         _defaultLocale = 'en',
         _animate       = true,
+        _backdrop      = true,
         _icons         = {},
         /* last var should always be the public object we'll return */
         that           = {};
@@ -296,7 +297,7 @@ var bootbox = window.bootbox || (function($) {
         var defaultOptions = {
             "onEscape": null,
             "keyboard": true,
-            "backdrop": true
+            "backdrop": _backdrop
         };
 
         switch (arguments.length) {
@@ -484,7 +485,7 @@ var bootbox = window.bootbox || (function($) {
         $("body").append(div);
 
         div.modal({
-            "backdrop" : options.backdrop || true,
+            "backdrop" : options.backdrop || _backdrop,
             "keyboard" : options.keyboard
         });
 
@@ -497,6 +498,10 @@ var bootbox = window.bootbox || (function($) {
 
     that.animate = function(animate) {
         _animate = animate;
+    }
+
+    that.backdrop = function(backdrop) {
+        _backdrop = backdrop;
     }
 
     return that;
