@@ -97,22 +97,24 @@
                 <li><a href="#" class="icons-explicit">Iconified buttons (explicit)</a></li>
                 <li><a href="#" class="icons-override">Override alert and confirm icons (programmatic)</a></li>
                 <li><a href="#" class="no-close-button">Don&rsquo;t close if callback returns false</a></li>
+                <li><a href="#" class="prompt-default">Prompt with default value</a></li>
                 <li class="nav-header">Custom options</li>
                 <li><a href="#" class="onescape">options.onEscape &rarr; function</a></li>
                 <li><a href="#" class="nofade">options.animate &rarr; false</a></li>
+                <li><a href="#" class="nobackdrop">options.backdrop &rarr; false</a></li>
             </ul>
         </div>
 
         <h2 id="download">Download</h2>
 
-        <p>The latest stable version of bootbox is <b>v2.3.3</b>. You can download the minified library <a href="https://raw.github.com/makeusabrew/bootbox/v2.3.3/bootbox.min.js">bootbox.min.js</a> for
-        use in production, or the uncompressed <a href="https://raw.github.com/makeusabrew/bootbox/v2.3.3/bootbox.js">bootbox.js</a> for use in development. I wouldn&rsquo;t recommend hotlinking to
+        <p>The latest stable version of bootbox is <b>v2.4.0</b>. You can download the minified library <a href="https://raw.github.com/makeusabrew/bootbox/v2.4.0/bootbox.min.js">bootbox.min.js</a> for
+        use in production, or the uncompressed <a href="https://raw.github.com/makeusabrew/bootbox/v2.4.0/bootbox.js">bootbox.js</a> for use in development. I wouldn&rsquo;t recommend hotlinking to
         either file as Github does not serve the correct mime type which may cause unexpected issues.</p>
 
         <p>If you wish you may also <a href="https://github.com/makeusabrew/bootbox/tags">see a full list of available downloads</a>
         or download the latest copy of the entire repository (including build files and tests)
-        in <a href="https://github.com/makeusabrew/bootbox/zipball/v2.3.3">zip</a> or
-        <a href="https://github.com/makeusabrew/bootbox/tarball/v2.3.3">tarball</a> format.</p>
+        in <a href="https://github.com/makeusabrew/bootbox/zipball/v2.4.0">zip</a> or
+        <a href="https://github.com/makeusabrew/bootbox/tarball/v2.4.0">tarball</a> format.</p>
 
         <h2 id=usage>Usage</h2>
 
@@ -160,7 +162,8 @@
     </script>
 
     <!-- bootbox code -->
-    <script type="text/javascript" src="https://raw.github.com/makeusabrew/bootbox/v2.3.3/bootbox.min.js"></script>
+    <!--<script type="text/javascript" src="https://raw.github.com/makeusabrew/bootbox/v2.4.0/bootbox.min.js"></script>-->
+    <script type="text/javascript" src="http://localhost/nick/bootbox/bootbox.js"></script>
     <script>
         $(function() {
             $("a.bs-alert").click(function(e) {
@@ -182,6 +185,13 @@
                 bootbox.prompt("What is your name?", function(result) {
                     console.log("Result: "+result);
                 });
+            });
+
+            $("a.prompt-default").click(function(e) {
+                e.preventDefault();
+                bootbox.prompt("What is your favourite JS library?", "Cancel", "OK", function(result) {
+                    console.log("Result: "+result);
+                }, "Bootbox.js");
             });
 
             $("a.dialog").click(function(e) {
@@ -275,6 +285,16 @@
                     "OK": function() {}
                 }, {
                     "animate": false
+                });
+            });
+
+            $("a.nobackdrop").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("This dialog does have a backdrop element",
+                {
+                    "OK": function() {}
+                }, {
+                    "backdrop": false
                 });
             });
 
