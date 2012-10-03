@@ -62,7 +62,8 @@ var bootbox = window.bootbox || (function($) {
 
     function _translate(str, locale) {
         // we assume if no target locale is probided then we should take it from current setting
-        if (locale == null) {
+        if (locale === null || locale === undefined) {
+
             locale = _locale;
         }
         if (typeof _locales[locale][str] == 'string') {
@@ -87,7 +88,7 @@ var bootbox = window.bootbox || (function($) {
             }
         }
         throw new Error('Invalid locale: '+locale);
-    }
+    };
 
     that.addLocale = function(locale, translations) {
         if (typeof _locales[locale] == 'undefined') {
@@ -96,14 +97,14 @@ var bootbox = window.bootbox || (function($) {
         for (var str in translations) {
             _locales[locale][str] = translations[str];
         }
-    }
+    };
 
     that.setIcons = function(icons) {
         _icons = icons;
-        if (typeof _icons !== 'object' || _icons == null) {
+        if (typeof _icons !== 'object' || _icons === null) {
             _icons = {};
         }
-    }
+    };
 
     that.alert = function(/*str, label, cb*/) {
         var str   = "",
@@ -132,7 +133,6 @@ var bootbox = window.bootbox || (function($) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3");
-                break;
         }
 
         return that.dialog(str, {
@@ -142,7 +142,7 @@ var bootbox = window.bootbox || (function($) {
         }, {
             "onEscape": cb
         });
-    }
+    };
 
     that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
         var str         = "",
@@ -179,7 +179,6 @@ var bootbox = window.bootbox || (function($) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-4");
-                break;
         }
 
         return that.dialog(str, [{
@@ -199,7 +198,7 @@ var bootbox = window.bootbox || (function($) {
                 }
             }
         }]);
-    }
+    };
 
     that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
         var str         = "",
@@ -244,7 +243,6 @@ var bootbox = window.bootbox || (function($) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-5");
-                break;
         }
 
         var header = str;
@@ -287,7 +285,7 @@ var bootbox = window.bootbox || (function($) {
         });
 
         return div;
-    }
+    };
 
     that.modal = function(/*str, label, options*/) {
         var str;
@@ -319,7 +317,6 @@ var bootbox = window.bootbox || (function($) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3");
-                break;
         }
 
         defaultOptions['header'] = label;
@@ -331,7 +328,7 @@ var bootbox = window.bootbox || (function($) {
         }
 
         return that.dialog(str, [], options);
-    }
+    };
 
     that.dialog = function(str, handlers, options) {
         var hideSource = null,
@@ -340,7 +337,7 @@ var bootbox = window.bootbox || (function($) {
             options    = options || {};
 
         // check for single object and convert to array if necessary
-        if (handlers == null) {
+        if (handlers === null || handlers === undefined) {
             handlers = [];
         } else if (typeof handlers.length == 'undefined') {
             handlers = [handlers];
@@ -422,7 +419,7 @@ var bootbox = window.bootbox || (function($) {
         parts.push("<div class='modal-body'></div>");
 
         if (buttons) {
-            parts.push("<div class='modal-footer'>"+buttons+"</div>")
+            parts.push("<div class='modal-footer'>"+buttons+"</div>");
         }
 
         parts.push("</div>");
@@ -478,7 +475,7 @@ var bootbox = window.bootbox || (function($) {
             }
         });
 
-        if (options.keyboard == null) {
+        if (options.keyboard === null || options.keyboard === undefined ) {
             options.keyboard = (typeof options.onEscape == 'function');
         }
 
@@ -490,19 +487,19 @@ var bootbox = window.bootbox || (function($) {
         });
 
         return div;
-    }
+    };
 
     that.hideAll = function() {
         $(".bootbox").modal("hide");
-    }
+    };
 
     that.animate = function(animate) {
         _animate = animate;
-    }
+    };
 
     that.backdrop = function(backdrop) {
         _backdrop = backdrop;
-    }
+    };
 
     return that;
 })( window.jQuery );
