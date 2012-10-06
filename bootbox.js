@@ -8,7 +8,7 @@ var bootbox = window.bootbox || (function($) {
     var _locale        = 'en',
         _defaultLocale = 'en',
         _animate       = true,
-        _backdrop      = true,
+        _backdrop      = 'static',
         _icons         = {},
         /* last var should always be the public object we'll return */
         that           = {};
