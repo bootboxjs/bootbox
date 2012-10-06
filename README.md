@@ -17,7 +17,11 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-## Latest Release: 2.4.1
+## Latest Release: 2.4.2
+
+* revert ```backdrop``` default value to 'static' instead of ```true``` to prevent background clicks dismissing dialogs (GH-55)
+
+### 2.4.1
 
 * fix ```backdrop``` when supplied as an argument to ```bootbox.dialog```
 * fix incorrect README version
