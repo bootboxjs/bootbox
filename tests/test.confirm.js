@@ -35,9 +35,11 @@ describe("#confirm", function() {
             assert.isFalse(box.find("a:last").hasClass("btn-primary"));
         });
 
-        it("has focus on the OK button", function() {
+        var focusFn = window.mochaPhantomJS !== undefined ? null : function() {
             assert.isTrue(box.find("a:first").is(":focus"));
-        });
+        };
+
+        it("has focus on the OK button", focusFn);
 
         it("applies the primary class to the OK button", function() {
             assert.isTrue(box.find("a:first").hasClass("btn-primary"));
