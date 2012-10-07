@@ -11,7 +11,14 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
 
 * Please ensure that the test suite passes before submitting a PR
 * If you've added new functionality, **please** include tests which validate its behaviour
+
+## Running Tests
+
 * Tests live in tests/test.*.js and are run using [Mocha](http://visionmedia.github.com/mocha/) - to run simply open tests/index.html in your browser.
+* Alternatively, tests can be run headlessly using [mocha-phantomjs](http://metaskills.net/mocha-phantomjs/):
+```
+    phantomjs tests/vendor/mocha-phantomjs/lib/mocha-phantomjs.coffee tests/index.html
+```
 
 ## Versioning
 
