@@ -9,6 +9,7 @@ var bootbox = window.bootbox || (function($) {
         _defaultLocale = 'en',
         _animate       = true,
         _backdrop      = 'static',
+        _classes       = '',
         _icons         = {},
         /* last var should always be the public object we'll return */
         that           = {};
@@ -436,6 +437,11 @@ var bootbox = window.bootbox || (function($) {
             div.addClass("fade");
         }
 
+        var optionalClasses = (typeof options.classes === 'undefined') ? _classes : options.classes;
+        if( optionalClasses )  {
+          div.addClass( optionalClasses );
+        }
+
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         $(".modal-body", div).html(str);
 
@@ -502,6 +508,10 @@ var bootbox = window.bootbox || (function($) {
 
     that.backdrop = function(backdrop) {
         _backdrop = backdrop;
+    }
+
+    that.classes = function(classes) {
+        _classes = classes;
     }
 
     return that;
