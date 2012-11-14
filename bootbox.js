@@ -399,7 +399,14 @@ var bootbox = window.bootbox || (function($) {
                 icon = "<i class='"+handlers[i]['icon']+"'></i> ";
             }
 
-            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='javascript:;'>"+icon+""+label+"</a>";
+            if (handlers[i]['href']) {
+                href = handlers[i]['href'];
+            }
+            else {
+                href = "javascript:;";
+            }
+
+            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>";
 
             callbacks[i] = callback;
         }
@@ -478,7 +485,9 @@ var bootbox = window.bootbox || (function($) {
                 hideModal = cb();
             }
             if (hideModal !== false){
-                e.preventDefault();
+                //custom hrefs don't cancel the click or else the href will not be navigated to
+                if (!(handler >= 0 && handlers && handler < handlers.length) || !handlers[handler].href)
+                    e.preventDefault();
                 hideSource = 'button';
                 div.modal("hide");
             }
