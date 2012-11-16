@@ -62,6 +62,9 @@ var bootbox = window.bootbox || (function($) {
         }
     };
 
+    /**
+     * private methods
+     */
     function _translate(str, locale) {
         // we assume if no target locale is probided then we should take it from current setting
         if (locale == null) {
@@ -81,6 +84,9 @@ var bootbox = window.bootbox || (function($) {
         return str;
     }
 
+    /**
+     * public API
+     */
     that.setLocale = function(locale) {
         for (var i in _locales) {
             if (i == locale) {
@@ -89,7 +95,7 @@ var bootbox = window.bootbox || (function($) {
             }
         }
         throw new Error('Invalid locale: '+locale);
-    }
+    };
 
     that.addLocale = function(locale, translations) {
         if (typeof _locales[locale] == 'undefined') {
@@ -98,14 +104,14 @@ var bootbox = window.bootbox || (function($) {
         for (var str in translations) {
             _locales[locale][str] = translations[str];
         }
-    }
+    };
 
     that.setIcons = function(icons) {
         _icons = icons;
         if (typeof _icons !== 'object' || _icons == null) {
             _icons = {};
         }
-    }
+    };
 
     that.alert = function(/*str, label, cb*/) {
         var str   = "",
@@ -144,7 +150,7 @@ var bootbox = window.bootbox || (function($) {
         }, {
             "onEscape": cb
         });
-    }
+    };
 
     that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
         var str         = "",
@@ -201,7 +207,7 @@ var bootbox = window.bootbox || (function($) {
                 }
             }
         }]);
-    }
+    };
 
     that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
         var str         = "",
@@ -289,7 +295,7 @@ var bootbox = window.bootbox || (function($) {
         });
 
         return div;
-    }
+    };
 
     that.modal = function(/*str, label, options*/) {
         var str;
@@ -333,7 +339,7 @@ var bootbox = window.bootbox || (function($) {
         }
 
         return that.dialog(str, [], options);
-    }
+    };
 
     that.dialog = function(str, handlers, options) {
         var hideSource = null,
@@ -432,7 +438,7 @@ var bootbox = window.bootbox || (function($) {
         parts.push("<div class='modal-body'></div>");
 
         if (buttons) {
-            parts.push("<div class='modal-footer'>"+buttons+"</div>")
+            parts.push("<div class='modal-footer'>"+buttons+"</div>");
         }
 
         parts.push("</div>");
@@ -519,23 +525,24 @@ var bootbox = window.bootbox || (function($) {
         });
 
         return div;
-    }
+    };
 
     that.hideAll = function() {
         $(".bootbox").modal("hide");
-    }
+    };
 
     that.animate = function(animate) {
         _animate = animate;
-    }
+    };
 
     that.backdrop = function(backdrop) {
         _backdrop = backdrop;
-    }
+    };
 
     that.classes = function(classes) {
         _classes = classes;
-    }
+    };
 
     return that;
+
 })( window.jQuery );
