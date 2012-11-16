@@ -24,7 +24,14 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
 
 [SemVer](http://semver.org/) has now been adopted as of 1.0.0
 
-## Latest Release: 2.4.2
+## Latest Release: 2.5.0
+
+**This will be the last version of the library which supports Bootstrap 2.0.x**
+
+* add option to specify proper href attributes for buttons instead of callbacks (@StevePotter)
+* add option to override per-modal classes (@ciaranj)
+
+### 2.4.2
 
 * revert ```backdrop``` default value to 'static' instead of ```true``` to prevent background clicks dismissing dialogs (GH-55)
 
