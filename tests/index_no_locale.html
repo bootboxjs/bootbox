@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Bootbox Tests</title>
+        <link rel="stylesheet" href="vendor/mocha/mocha.css" type="text/css">
+
+        <!--<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" type="text/css">-->
+
+        <style>
+            body .bootbox {
+                position:absolute;
+                top:-9999px;
+                left:-9999px;
+            }
+        </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="vendor/mocha/mocha.js"></script>
+        <script src="vendor/mocha/chai.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.js"></script>
+        <script src="../bootbox.js"></script>
+        <script>
+            mocha.setup({
+                "ui": "bdd"
+            });
+
+            assert = chai.assert;
+        </script>
+
+        <script src="test.initial-state.js"></script>
+        <script src="test.alert.js"></script>
+        <script src="test.confirm.js"></script>
+        <script src="test.prompt.js"></script>
+        <script src="test.dialog.js"></script>
+        <script src="test.seticons.js"></script>
+        <script src="test.animate.js"></script>
+        <script src="test.backdrop.js"></script>
+
+        <script>
+            $(function() {
+                mocha
+                .run();
+            });
+        </script>
+    </head>
+    <body>
+        <div id="mocha"></div>
+    </body>
+</html>

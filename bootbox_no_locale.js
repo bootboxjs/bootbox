@@ -1,105 +1,16 @@
 /**
- * bootbox.js
+ * bootbox.js v2.4.1
  *
  * http://bootboxjs.com/license.txt
  */
 var bootbox = window.bootbox || (function($) {
 
-    var _locale        = 'en',
-        _defaultLocale = 'en',
-        _animate       = true,
-        _backdrop      = 'static',
-        _defaultHref   = 'javascript:;',
-        _classes       = '',
+    var _animate       = true,
+        _backdrop      = true,
         _icons         = {},
         /* last var should always be the public object we'll return */
         that           = {};
 
-    /**
-     * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
-     * unlikely to be required. If this gets too large it can be split out into separate JS files.
-     */
-    var _locales = {
-        'en' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancel',
-            CONFIRM : 'OK'
-        },
-        'fr' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuler',
-            CONFIRM : 'D\'accord'
-        },
-        'de' : {
-            OK      : 'OK',
-            CANCEL  : 'Abbrechen',
-            CONFIRM : 'Akzeptieren'
-        },
-        'es' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Aceptar'
-        },
-        'br' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Sim'
-        },
-        'nl' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuleren',
-            CONFIRM : 'Accepteren'
-        },
-        'ru' : {
-            OK      : 'OK',
-            CANCEL  : 'Отмена',
-            CONFIRM : 'Применить'
-        },
-        'it' : {
-            OK      : 'OK',
-            CANCEL  : 'Annulla',
-            CONFIRM : 'Conferma'
-        }
-    };
-
-    function _translate(str, locale) {
-        // we assume if no target locale is probided then we should take it from current setting
-        if (locale === null || locale === undefined) {
-
-            locale = _locale;
-        }
-        if (typeof _locales[locale][str] == 'string') {
-            return _locales[locale][str];
-        }
-
-        // if we couldn't find a lookup then try and fallback to a default translation
-
-        if (locale != _defaultLocale) {
-            return _translate(str, _defaultLocale);
-        }
-
-        // if we can't do anything then bail out with whatever string was passed in - last resort
-        return str;
-    }
-
-    that.setLocale = function(locale) {
-        for (var i in _locales) {
-            if (i == locale) {
-                _locale = locale;
-                return;
-            }
-        }
-        throw new Error('Invalid locale: '+locale);
-    };
-
-    that.addLocale = function(locale, translations) {
-        if (typeof _locales[locale] == 'undefined') {
-            _locales[locale] = {};
-        }
-        for (var str in translations) {
-            _locales[locale][str] = translations[str];
-        }
-    };
 
     that.setIcons = function(icons) {
         _icons = icons;
@@ -110,7 +21,7 @@ var bootbox = window.bootbox || (function($) {
 
     that.alert = function(/*str, label, cb*/) {
         var str   = "",
-            label = _translate('OK'),
+            label = 'OK',
             cb    = null;
 
         switch (arguments.length) {
@@ -148,8 +59,8 @@ var bootbox = window.bootbox || (function($) {
 
     that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
         var str         = "",
-            labelCancel = _translate('CANCEL'),
-            labelOk     = _translate('CONFIRM'),
+            labelCancel = 'CANCEL',
+            labelOk     = 'CONFIRM',
             cb          = null;
 
         switch (arguments.length) {
@@ -204,8 +115,8 @@ var bootbox = window.bootbox || (function($) {
 
     that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
         var str         = "",
-            labelCancel = _translate('CANCEL'),
-            labelOk     = _translate('CONFIRM'),
+            labelCancel = 'CANCEL',
+            labelOk     = 'CONFIRM',
             cb          = null,
             defaultVal  = "";
 
@@ -348,7 +259,6 @@ var bootbox = window.bootbox || (function($) {
         var i = handlers.length;
         while (i--) {
             var label    = null,
-                href     = null,
                 _class   = null,
                 icon     = '',
                 callback = null;
@@ -398,14 +308,7 @@ var bootbox = window.bootbox || (function($) {
                 icon = "<i class='"+handlers[i]['icon']+"'></i> ";
             }
 
-            if (handlers[i]['href']) {
-                href = handlers[i]['href'];
-            }
-            else {
-                href = _defaultHref;
-            }
-
-            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>";
+            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='javascript:;'>"+icon+""+label+"</a>";
 
             callbacks[i] = callback;
         }
@@ -419,7 +322,7 @@ var bootbox = window.bootbox || (function($) {
         if (options['header']) {
             var closeButton = '';
             if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
-                closeButton = "<a href='"+_defaultHref+"' class='close'>&times;</a>";
+                closeButton = "<a href='javascript:;' class='close'>&times;</a>";
             }
 
             parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
@@ -441,11 +344,6 @@ var bootbox = window.bootbox || (function($) {
 
         if (shouldFade) {
             div.addClass("fade");
-        }
-
-        var optionalClasses = (typeof options.classes === 'undefined') ? _classes : options.classes;
-        if( optionalClasses )  {
-          div.addClass( optionalClasses );
         }
 
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
@@ -476,29 +374,15 @@ var bootbox = window.bootbox || (function($) {
 
         // wire up button handlers
         div.on('click', '.modal-footer a, a.close', function(e) {
-
             var handler   = $(this).data("handler"),
                 cb        = callbacks[handler],
                 hideModal = null;
 
-            // sort of @see https://github.com/makeusabrew/bootbox/pull/68 - heavily adapted
-            // if we've got a custom href attribute, all bets are off
-            if (typeof handler                   !== 'undefined' &&
-                typeof handlers[handler]['href'] !== 'undefined') {
-
-                return;
-            }
-
-            e.preventDefault();
-
             if (typeof cb == 'function') {
                 hideModal = cb();
             }
-
-            // the only way hideModal *will* be false is if a callback exists and
-            // returns it as a value. in those situations, don't hide the dialog
-            // @see https://github.com/makeusabrew/bootbox/pull/25
-            if (hideModal !== false) {
+            if (hideModal !== false){
+                e.preventDefault();
                 hideSource = 'button';
                 div.modal("hide");
             }
@@ -529,10 +413,6 @@ var bootbox = window.bootbox || (function($) {
     that.backdrop = function(backdrop) {
         _backdrop = backdrop;
     };
-
-    that.classes = function(classes) {
-        _classes = classes;
-    }
 
     return that;
 })( window.jQuery );
