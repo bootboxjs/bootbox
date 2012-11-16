@@ -20,9 +20,27 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
     phantomjs tests/vendor/mocha-phantomjs/lib/mocha-phantomjs.coffee tests/index.html
 ```
 
-## Versioning
+## A note on Bootstrap dependencies
 
-[SemVer](http://semver.org/) has now been adopted as of 1.0.0
+Keeping track of issues has become increasingly difficult without a **strict**
+dependency on specific minor versions of Bootstrap. The original intention was
+that the 2.x.x series of Bootbox would simply require Bootstrap >= 2.x.x - since
+both projects use Semantic Versioning this should have been possible. However,
+Bootstrap 2.2.x (and possibly 2.1.x) introduced breaking changes - or changes
+considered backward incompatible in the context of this project at least. Over
+time bugs started getting raised which eventually turned out to be due to subtle
+changes in Bootstrap's code. Therefore, **2.5.0** is the last release which will
+support Bootstrap 2.0.x and is *not guaranteed* to work with anything higher than
+Bootstrap 2.0.4.
+
+### Roadmap
+
+The next major release of Bootbox, 3.0.0, will address all the incompatible changes
+introduced by Bootstrap 2.2.x. As such, Bootstrap 2.1.x is a bit of a wildcard and
+will never be explicitly supported.
+
+You can get a quick overview of the roadmap in the form of the project milestones
+[as listed in the issue tracker](https://github.com/makeusabrew/bootbox/issues/milestones)
 
 ## Latest Release: 2.5.0
 
