@@ -55,6 +55,10 @@ describe("#dialog", function() {
                 assert.equal(box.find("a:first").text(), "My Label");
             });
 
+            it("should have the correct href attribute", function() {
+                assert.equal(box.find("a:first").attr("href"), "javascript:;");
+            });
+
             it("should apply the btn class to the button", function() {
                 assert.isTrue(box.find("a:first").hasClass("btn"));
             });
@@ -92,6 +96,10 @@ describe("#dialog", function() {
                 it("should show the correct label text", function() {
                     // this is correct; the presence of the icon means we get a space
                     assert.equal(box.find("a:first").text(), " My Button");
+                });
+
+                it("should have the correct href attribute", function() {
+                    assert.equal(box.find("a:first").attr("href"), "javascript:;");
                 });
 
                 it("should apply the btn class to the button", function() {
@@ -152,6 +160,34 @@ describe("#dialog", function() {
 
                     it("should close the dialog", function() {
                         assert.isTrue(box.is(":hidden"));
+                    });
+                });
+            });
+
+            describe("when the href property is overridden", function() {
+                var called = false;
+                before(function() {
+                    box = bootbox.dialog("Foo", {
+                        "label": "My Button",
+                        "href": "javascript: ;",
+                        "callback": function() {
+                            called = true;
+                        }
+                    });
+                });
+
+                it("should have the correct href attribute", function() {
+                    assert.equal(box.find("a:first").attr("href"), "javascript: ;");
+                });
+
+                describe("when clicking the button", function() {
+                    it("should not invoke the callback", function() {
+                        box.find("a:first").trigger('click');
+                        assert.isFalse(called);
+                    });
+
+                    it("should not close the dialog", function() {
+                        assert.isFalse(box.is(":hidden"));
                     });
                 });
             });

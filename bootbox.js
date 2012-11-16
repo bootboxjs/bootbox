@@ -1,5 +1,5 @@
 /**
- * bootbox.js v2.4.2
+ * bootbox.js
  *
  * http://bootboxjs.com/license.txt
  */
@@ -9,6 +9,7 @@ var bootbox = window.bootbox || (function($) {
         _defaultLocale = 'en',
         _animate       = true,
         _backdrop      = 'static',
+        _defaultHref   = 'javascript:;',
         _classes       = '',
         _icons         = {},
         /* last var should always be the public object we'll return */
@@ -350,6 +351,7 @@ var bootbox = window.bootbox || (function($) {
         var i = handlers.length;
         while (i--) {
             var label    = null,
+                href     = null,
                 _class   = null,
                 icon     = '',
                 callback = null;
@@ -403,7 +405,7 @@ var bootbox = window.bootbox || (function($) {
                 href = handlers[i]['href'];
             }
             else {
-                href = "javascript:;";
+                href = _defaultHref;
             }
 
             buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>";
@@ -420,7 +422,7 @@ var bootbox = window.bootbox || (function($) {
         if (options['header']) {
             var closeButton = '';
             if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
-                closeButton = "<a href='javascript:;' class='close'>&times;</a>";
+                closeButton = "<a href='"+_defaultHref+"' class='close'>&times;</a>";
             }
 
             parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
@@ -477,17 +479,29 @@ var bootbox = window.bootbox || (function($) {
 
         // wire up button handlers
         div.on('click', '.modal-footer a, a.close', function(e) {
+
             var handler   = $(this).data("handler"),
                 cb        = callbacks[handler],
                 hideModal = null;
 
+            // sort of @see https://github.com/makeusabrew/bootbox/pull/68 - heavily adapted
+            // if we've got a custom href attribute, all bets are off
+            if (typeof handler                   !== 'undefined' &&
+                typeof handlers[handler]['href'] !== 'undefined') {
+
+                return;
+            }
+
+            e.preventDefault();
+
             if (typeof cb == 'function') {
                 hideModal = cb();
             }
-            if (hideModal !== false){
-                //custom hrefs don't cancel the click or else the href will not be navigated to
-                if (!(handler >= 0 && handlers && handler < handlers.length) || !handlers[handler].href)
-                    e.preventDefault();
+
+            // the only way hideModal *will* be false is if a callback exists and
+            // returns it as a value. in those situations, don't hide the dialog
+            // @see https://github.com/makeusabrew/bootbox/pull/25
+            if (hideModal !== false) {
                 hideSource = 'button';
                 div.modal("hide");
             }
