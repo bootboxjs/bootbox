@@ -1,5 +1,5 @@
 /**
- * bootbox.js v2.5.0
+ * bootbox.js v2.5.1
  *
  * http://bootboxjs.com/license.txt
  */
@@ -341,11 +341,24 @@ var bootbox = window.bootbox || (function($) {
         return that.dialog(str, [], options);
     };
 
-    that.dialog = function(str, handlers, options) {
+    that.dialog = function(str, handlers, opts) {
         var hideSource = null,
             buttons    = "",
             callbacks  = [],
             options    = options || {};
+
+        var defaults = {
+            width: 500,
+            height: 400,
+            backdrop: _backdrop,
+            remote: false,
+            keyboard: true,
+            header: "Dialog"
+            //, classes: undefined
+            //, onEscape: function () { }
+        };
+
+        var options = $.extend({}, defaults, opts);
 
         // check for single object and convert to array if necessary
         if (handlers == null) {
@@ -428,7 +441,8 @@ var bootbox = window.bootbox || (function($) {
         if (options['header']) {
             var closeButton = '';
             if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
-                closeButton = "<a href='"+_defaultHref+"' class='close'>&times;</a>";
+                closeButton = "<a href='" + _defaultHref + "' class='close'>&times;</a>";
+                //closeButton = "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
             }
 
             parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
@@ -451,6 +465,9 @@ var bootbox = window.bootbox || (function($) {
         if (shouldFade) {
             div.addClass("fade");
         }
+
+        div.width(options.width);
+        div.find(".modal-body").height(options.height -140);
 
         var optionalClasses = (typeof options.classes === 'undefined') ? _classes : options.classes;
         if( optionalClasses )  {
@@ -519,10 +536,7 @@ var bootbox = window.bootbox || (function($) {
 
         $("body").append(div);
 
-        div.modal({
-            "backdrop" : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
-            "keyboard" : options.keyboard
-        });
+        div.modal(options);
 
         return div;
     };
