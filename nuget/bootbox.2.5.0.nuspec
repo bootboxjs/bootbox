@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>bootbox</id>
+        <version>2.5.0</version>
+        <title>bootbox</title>
+        <authors>Nick Payne</authors>
+        <owners />
+        <projectUrl>http://bootboxjs.com</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Bootbox.js is a small JavaScript library which allows you to create programmatic dialog boxes using Twitter's Bootstrap modals, without having to worry about creating, managing or removing any of the required DOM elements or JS event handlers.</description>
+        <summary>Bootbox.js—alert, confirm and flexible dialogs for Twitter's Bootstrap framework</summary>
+        <tags>jquery, bootstrap, dialog</tags>
+        <dependencies>
+            <dependency id="jQuery" version="1.8" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\..\..\Downloads\bootbox.js" target="content\Scripts\bootbox.js" />
+        <file src="..\..\..\Downloads\bootbox.min.js" target="content\Scripts\bootbox.min.js" />
+    </files>
+</package>
