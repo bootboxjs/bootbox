@@ -1,5 +1,5 @@
 /**
- * bootbox.js v2.5.0
+ * bootbox.js v2.6
  *
  * http://bootboxjs.com/license.txt
  */
@@ -23,42 +23,74 @@ var bootbox = window.bootbox || (function($) {
         'en' : {
             OK      : 'OK',
             CANCEL  : 'Cancel',
-            CONFIRM : 'OK'
+            CONFIRM: 'OK',
+            CONFIRM_TITLE: "Confirm",
+            ALERT_TITLE: "Alert",
+            DIALOG_TITLE: "Dialog"
         },
         'fr' : {
             OK      : 'OK',
             CANCEL  : 'Annuler',
-            CONFIRM : 'D\'accord'
+            CONFIRM: 'D\'accord',
+            CONFIRM_TITLE: "Confirm",
+            ALERT_TITLE: "Alert",
+            DIALOG_TITLE: "Dialog"
         },
         'de' : {
             OK      : 'OK',
             CANCEL  : 'Abbrechen',
-            CONFIRM : 'Akzeptieren'
+            CONFIRM: 'Akzeptieren',
+            CONFIRM_TITLE: "Confirm",
+            ALERT_TITLE: "Alert",
+            DIALOG_TITLE: "Dialog"
         },
         'es' : {
             OK      : 'OK',
             CANCEL  : 'Cancelar',
-            CONFIRM : 'Aceptar'
+            CONFIRM: 'Aceptar',
+            CONFIRM_TITLE: "Confirm",
+            ALERT_TITLE: "Alert",
+            DIALOG_TITLE: "Dialog"
         },
         'br' : {
             OK      : 'OK',
             CANCEL  : 'Cancelar',
-            CONFIRM : 'Sim'
+            CONFIRM: 'Sim',
+            CONFIRM_TITLE: "Confirm",
+            ALERT_TITLE: "Alert",
+            DIALOG_TITLE: "Dialog"
         },
         'nl' : {
             OK      : 'OK',
             CANCEL  : 'Annuleren',
-            CONFIRM : 'Accepteren'
+            CONFIRM: 'Accepteren',
+            CONFIRM_TITLE: "Confirm",
+            ALERT_TITLE: "Alert",
+            DIALOG_TITLE: "Dialog"
         },
         'ru' : {
             OK      : 'OK',
             CANCEL  : 'Отмена',
-            CONFIRM : 'Применить'
+            CONFIRM: 'Применить',
+            CONFIRM_TITLE: "Confirm",
+            ALERT_TITLE: "Alert",
+            DIALOG_TITLE: "Dialog"
         },
         'it' : {
             OK      : 'OK',
             CANCEL  : 'Annulla',
-            CONFIRM : 'Conferma'
+            CONFIRM: 'Conferma',
+            CONFIRM_TITLE: "Confirm",
+            ALERT_TITLE: "Alert",
+            DIALOG_TITLE: "Dialog"
+        },
+        'tr': {
+            OK: 'Tamam',
+            CANCEL: 'İptal',
+            CONFIRM: 'Evet',
+            CONFIRM_TITLE: "Onay",
+            ALERT_TITLE: "Uyarı",
+            DIALOG_TITLE: "İletişim Penceresi"
         }
     };
 
@@ -143,12 +175,14 @@ var bootbox = window.bootbox || (function($) {
                 break;
         }
 
-        return that.dialog(str, {
+        return that.dialog(str, [{
             "label": label,
             "icon" : _icons.OK,
             "callback": cb
-        }, {
-            "onEscape": cb
+        }], {
+            "onEscape": cb,
+            "header": _translate('ALERT_TITLE'),
+            "height": 200
         });
     };
 
@@ -205,8 +239,12 @@ var bootbox = window.bootbox || (function($) {
                 if (typeof cb == 'function') {
                     cb(true);
                 }
-            }
-        }]);
+            },
+            "class": "btn-primary"
+        }], {
+            "header": _translate('CONFIRM_TITLE'),
+            "height": 200
+        });
     };
 
     that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
@@ -259,7 +297,7 @@ var bootbox = window.bootbox || (function($) {
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input autocomplete=off type=text value='" + defaultVal + "' />");
+        form.append("<input autocomplete='off' style='width: 97%;' type=text value='" + defaultVal + "' />");
 
         var div = that.dialog(form, [{
             "label": labelCancel,
@@ -280,7 +318,8 @@ var bootbox = window.bootbox || (function($) {
                 }
             }
         }], {
-            "header": header
+            "header": header,
+            "height": 180
         });
 
         div.on("shown", function() {
@@ -341,34 +380,31 @@ var bootbox = window.bootbox || (function($) {
         return that.dialog(str, [], options);
     };
 
-    that.dialog = function(str, handlers, options) {
-        var hideSource = null,
-            buttons    = "",
-            callbacks  = [],
-            options    = options || {};
+    /**
+     * private methods for generating handlers html output and attach to modal footer
+     */
+    var _generateHandlers = function (handlers, modal) {
+        var buttons = [],
+            callbacks = []
+        ;
 
-        // check for single object and convert to array if necessary
-        if (handlers == null) {
-            handlers = [];
-        } else if (typeof handlers.length == 'undefined') {
-            handlers = [handlers];
-        }
+        modal.find(".modal-footer").empty();
 
         var i = handlers.length;
         while (i--) {
-            var label    = null,
-                href     = null,
-                _class   = null,
-                icon     = '',
+            var label = null,
+                href = null,
+                _class = null,
+                icon = '',
                 callback = null;
 
-            if (typeof handlers[i]['label']    == 'undefined' &&
-                typeof handlers[i]['class']    == 'undefined' &&
+            if (typeof handlers[i]['label'] == 'undefined' &&
+                typeof handlers[i]['class'] == 'undefined' &&
                 typeof handlers[i]['callback'] == 'undefined') {
                 // if we've got nothing we expect, check for condensed format
 
                 var propCount = 0,      // condensed will only match if this == 1
-                    property  = null;   // save the last property we found
+                    property = null;   // save the last property we found
 
                 // be nicer to count the properties without this, but don't think it's possible...
                 for (var j in handlers[i]) {
@@ -381,18 +417,19 @@ var bootbox = window.bootbox || (function($) {
 
                 if (propCount == 1 && typeof handlers[i][j] == 'function') {
                     // matches condensed format of label -> function
-                    handlers[i]['label']    = property;
+                    handlers[i]['label'] = property;
                     handlers[i]['callback'] = handlers[i][j];
                 }
             }
 
-            if (typeof handlers[i]['callback']== 'function') {
+            if (typeof handlers[i]['callback'] == 'function') {
                 callback = handlers[i]['callback'];
+                callbacks[i] = callback;
             }
 
             if (handlers[i]['class']) {
                 _class = handlers[i]['class'];
-            } else if (i == handlers.length -1 && handlers.length <= 2) {
+            } else if (i == handlers.length - 1 && handlers.length <= 2) {
                 // always add a primary to the main option in a two-button dialog
                 _class = 'btn-primary';
             }
@@ -400,11 +437,11 @@ var bootbox = window.bootbox || (function($) {
             if (handlers[i]['label']) {
                 label = handlers[i]['label'];
             } else {
-                label = "Option "+(i+1);
+                label = "Option " + (i + 1);
             }
 
             if (handlers[i]['icon']) {
-                icon = "<i class='"+handlers[i]['icon']+"'></i> ";
+                icon = "<i class='" + handlers[i]['icon'] + "'></i> ";
             }
 
             if (handlers[i]['href']) {
@@ -414,10 +451,71 @@ var bootbox = window.bootbox || (function($) {
                 href = _defaultHref;
             }
 
-            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>";
+            var $button = $("<a data-handler='" + i + "' class='btn " + _class + "' href='" + href + "'>" + icon + "" + label + "</a>");
+            modal.find(".modal-footer").append($button);
 
-            callbacks[i] = callback;
+            $button.on("click", function (e) {
+                $self = $(this);
+                var hideModal = null;
+                var handlerIndex = $self.data("handler");
+                // we can't use i in this scope beacuse this is an async event
+
+                // sort of @see https://github.com/makeusabrew/bootbox/pull/68 - heavily adapted
+                // if we've got a custom href attribute, all bets are off
+                if (href !== _defaultHref) {
+                    return;
+                }
+
+                e.preventDefault();
+
+                if (typeof callbacks[handlerIndex] == 'function') {
+                    hideModal = callbacks[handlerIndex](modal, e); //passing modal itself as a parameter to callback
+                }
+
+                // the only way hideModal *will* be false is if a callback exists and
+                // returns it as a value. in those situations, don't hide the dialog
+                // @see https://github.com/makeusabrew/bootbox/pull/25
+                if (hideModal !== false) {
+                    hideSource = 'button';
+                    modal.modal("hide");
+                }
+            });
+
+            //buttons.push($button);
         }
+
+        //modal.data("callbacks", callbacks);
+
+        return buttons;
+    };
+
+    that.dialog = function(str, handlers, opts) {
+        var hideSource = null,
+            buttons    = "",
+            callbacks  = [],
+            options    = options || {};
+
+        var defaults = {
+            width: 500,
+            height: 400,
+            backdrop: _backdrop,
+            remote: false,
+            keyboard: true,
+            header: "Dialog"
+            //, classes: undefined
+            //, onEscape: function () { }
+        };
+
+        var options = $.extend({}, defaults, opts);
+
+        // check for single object and convert to array if necessary
+        if (handlers == null) {
+            handlers = [];
+        } else if (typeof handlers.length == 'undefined') {
+            handlers = [handlers];
+        }
+
+
 
         // @see https://github.com/makeusabrew/bootbox/issues/46#issuecomment-8235302
         // and https://github.com/twitter/bootstrap/issues/4474
@@ -428,7 +526,8 @@ var bootbox = window.bootbox || (function($) {
         if (options['header']) {
             var closeButton = '';
             if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
-                closeButton = "<a href='"+_defaultHref+"' class='close'>&times;</a>";
+                closeButton = "<a href='" + _defaultHref + "' class='close'>&times;</a>";
+                //closeButton = "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
             }
 
             parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
@@ -437,8 +536,8 @@ var bootbox = window.bootbox || (function($) {
         // push an empty body into which we'll inject the proper content later
         parts.push("<div class='modal-body'></div>");
 
-        if (buttons) {
-            parts.push("<div class='modal-footer'>"+buttons+"</div>");
+        if (handlers.length > 0) {
+            parts.push("<div class='modal-footer'></div>");
         }
 
         parts.push("</div>");
@@ -452,6 +551,9 @@ var bootbox = window.bootbox || (function($) {
             div.addClass("fade");
         }
 
+        div.width(options.width);
+        div.find(".modal-body").height(options.height -140);
+
         var optionalClasses = (typeof options.classes === 'undefined') ? _classes : options.classes;
         if( optionalClasses )  {
           div.addClass( optionalClasses );
@@ -459,6 +561,13 @@ var bootbox = window.bootbox || (function($) {
 
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         $(".modal-body", div).html(str);
+
+        div.on("click", '.close', function (e) {
+            e.preventDefault();
+            div.modal("hide");
+
+        });
+
 
         div.bind('hidden', function() {
             div.remove();
@@ -486,31 +595,7 @@ var bootbox = window.bootbox || (function($) {
         // wire up button handlers
         div.on('click', '.modal-footer a, a.close', function(e) {
 
-            var handler   = $(this).data("handler"),
-                cb        = callbacks[handler],
-                hideModal = null;
 
-            // sort of @see https://github.com/makeusabrew/bootbox/pull/68 - heavily adapted
-            // if we've got a custom href attribute, all bets are off
-            if (typeof handler                   !== 'undefined' &&
-                typeof handlers[handler]['href'] !== 'undefined') {
-
-                return;
-            }
-
-            e.preventDefault();
-
-            if (typeof cb == 'function') {
-                hideModal = cb();
-            }
-
-            // the only way hideModal *will* be false is if a callback exists and
-            // returns it as a value. in those situations, don't hide the dialog
-            // @see https://github.com/makeusabrew/bootbox/pull/25
-            if (hideModal !== false) {
-                hideSource = 'button';
-                div.modal("hide");
-            }
         });
 
         if (options.keyboard == null) {
@@ -519,10 +604,10 @@ var bootbox = window.bootbox || (function($) {
 
         $("body").append(div);
 
-        div.modal({
-            "backdrop" : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
-            "keyboard" : options.keyboard
-        });
+        div.modal(options);
+        div.data("bootboxoptions", options);
+        _generateHandlers(handlers, div);
+
 
         return div;
     };
@@ -543,6 +628,164 @@ var bootbox = window.bootbox || (function($) {
         _classes = classes;
     };
 
+    that.setOptions = function (modal, handlers, options) {
+        if (typeof modal != "object") {
+            return;
+        }
+        if (typeof options == "object") {
+            var exists = modal.data("bootboxoptions");
+            exists = $.extend(exists, options);
+            if (typeof options.header) {
+                modal.find(".modal-header h3").text(options.header);
+            }
+            if (typeof options.width) {
+                modal.width(options.width);
+            }
+            if (typeof options.height) {
+                modal.find(".modal-body").height(options.height);
+            }
+        }
+        if (typeof handlers == "object") {
+            _generateHandlers(handlers, modal);
+        }
+
+    };
+
     return that;
 
-})( window.jQuery );
+})(window.jQuery);
+
+(function ($) {
+
+    $.fn.bootbox = function () {
+        var 
+            $e = $(this),
+            act = null,
+            labelCancel = "Cancel",
+            labelOk = "OK",
+            handlers = [],
+            callback = function () { };
+            options = {
+                callback: function () { },
+                header: "Dialog"
+            };
+
+        if ($e.length == 0) {
+            return;
+        }
+
+        if (arguments.length == 0) {
+            return bootbox.modal($e.html(), _translate('DIALOG_TITLE'));
+        }
+        if (arguments.length > 0) {
+            if (typeof arguments[0] == "string") {
+                switch (arguments[0]) {
+                    case "alert":
+                        /*str, label, cb*/
+                        var label = "Ok";
+                        if (arguments.length > 2) {
+                            callback = arguments[2];
+                        }
+                        if (arguments.length > 1) {
+                            label = arguments[1];
+                        }
+                        return bootbox.alert($e.html(), label, callback);
+                        break;
+                    case "confirm":
+                        /*str, labelCancel, labelOk, cb*/
+                        if (arguments.length > 3) {
+                            callback = arguments[3];
+                        }
+                        if (arguments.length > 2) {
+                            labelOk = arguments[2];
+                        }
+                        if (arguments.length > 1) {
+                            labelCancel = arguments[1];
+                        }
+                        return bootbox.confirm($e.html(), labelCancel, labelOk, callback);
+                        break;
+                    case "prompt":
+                        /*str, labelCancel, labelOk, cb, defaultVal*/
+                        var defaultVal = "";
+                        if (arguments.length > 3 && typeof arguments[3] == "function") {
+                            callback = arguments[3];
+                        }
+                        if (arguments.length > 4) {
+                            defaultVal = arguments[4];
+                        }
+                        if (arguments.length > 2) {
+                            labelOk = arguments[2];
+                        }
+                        if (arguments.length > 1) {
+                            labelCancel = arguments[1];
+                        }
+                        return bootbox.prompt($e.html(), labelCancel, labelOk, callback, defaultVal);
+                        break;
+                    case "modal":
+                        /*str, options*/
+                        if (arguments.length > 1) {
+                            options = $.extend(options, arguments[2]);
+                        }
+                        return bootbox.modal($e.html(), options);
+                        break;
+                    case "dialog":
+                        /*str, handlers, options*/
+                        if (arguments.length > 2) {
+                            options = $.extend(options, arguments[2]);
+                        }
+                        if (arguments.length > 1) {
+                            handlers = arguments[1];
+                        }
+                        return bootbox.dialog($e.html(), handlers, options);
+                        break;
+                    case "hideAll":
+                        return bootbox.hideAll();
+                        break;
+                    case "animate":
+                        /*animate*/
+                        return bootbox.animate(arguments[1]);
+                        break;
+                    case "backdrop":
+                        /*backdrop*/
+                        return bootbox.backdrop(arguments[1]);
+                        break;
+                    case "classes":
+                        /*classes*/
+                        return bootbox.classes(arguments[1]);
+                        break;
+                    case "setOptions":
+                        /*modal, handlers, options*/
+                        handlers = null;
+                        options = {};
+                        if (arguments.length > 2) {
+                            handlers = arguments[2];
+                        }
+                        if (arguments.length > 1) {
+                            options = arguments[1];
+                        }
+                        return bootbox.setOptions($e, handlers, options);
+                        break;
+                    default:
+                        return bootbox.modal($e.html(), _translate('DIALOG_TITLE'));
+                        break;
+                }
+            }
+            else if (typeof arguments[0] == "object") {
+                options = $.extend(options, arguments[0]);
+                return bootbox.dialog($e.html(), [], options);
+            }
+            else if (typeof arguments[0] == "array") {
+                handlers = $.extend(options, arguments[0]);
+                return bootbox.dialog($e.html(), handlers);
+            }
+            else if (arguments.length = 2 && typeof arguments[0] == "array" && typeof arguments[1] == "object") {
+                options = $.extend(options, arguments[1]);
+                handlers = arguments[0];
+                return bootbox.dialog($e.html(), handlers, options);
+            }
+            //for default behavior
+            return bootbox.modal($e.html(), _translate('DIALOG_TITLE'));
+        }
+    };
+
+})(jQuery);
