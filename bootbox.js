@@ -1,8 +1,3 @@
-/**
- * bootbox.js v2.5.1
- *
- * http://bootboxjs.com/license.txt
- */
 var bootbox = window.bootbox || (function($) {
 
     var _locale        = 'en',
@@ -15,74 +10,6 @@ var bootbox = window.bootbox || (function($) {
         /* last var should always be the public object we'll return */
         that           = {};
 
-    /**
-     * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
-     * unlikely to be required. If this gets too large it can be split out into separate JS files.
-     */
-    var _locales = {
-        'en' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancel',
-            CONFIRM : 'OK'
-        },
-        'fr' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuler',
-            CONFIRM : 'D\'accord'
-        },
-        'de' : {
-            OK      : 'OK',
-            CANCEL  : 'Abbrechen',
-            CONFIRM : 'Akzeptieren'
-        },
-        'es' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Aceptar'
-        },
-        'br' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Sim'
-        },
-        'nl' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuleren',
-            CONFIRM : 'Accepteren'
-        },
-        'ru' : {
-            OK      : 'OK',
-            CANCEL  : 'Отмена',
-            CONFIRM : 'Применить'
-        },
-        'it' : {
-            OK      : 'OK',
-            CANCEL  : 'Annulla',
-            CONFIRM : 'Conferma'
-        }
-    };
-
-    /**
-     * private methods
-     */
-    function _translate(str, locale) {
-        // we assume if no target locale is probided then we should take it from current setting
-        if (locale == null) {
-            locale = _locale;
-        }
-        if (typeof _locales[locale][str] == 'string') {
-            return _locales[locale][str];
-        }
-
-        // if we couldn't find a lookup then try and fallback to a default translation
-
-        if (locale != _defaultLocale) {
-            return _translate(str, _defaultLocale);
-        }
-
-        // if we can't do anything then bail out with whatever string was passed in - last resort
-        return str;
-    }
 
     /**
      * public API
@@ -542,6 +469,76 @@ var bootbox = window.bootbox || (function($) {
     that.classes = function(classes) {
         _classes = classes;
     };
+
+    /**
+     * private API
+     */
+
+    /**
+     * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
+     * unlikely to be required. If this gets too large it can be split out into separate JS files.
+     */
+    var _locales = {
+        'en' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancel',
+            CONFIRM : 'OK'
+        },
+        'fr' : {
+            OK      : 'OK',
+            CANCEL  : 'Annuler',
+            CONFIRM : 'D\'accord'
+        },
+        'de' : {
+            OK      : 'OK',
+            CANCEL  : 'Abbrechen',
+            CONFIRM : 'Akzeptieren'
+        },
+        'es' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancelar',
+            CONFIRM : 'Aceptar'
+        },
+        'br' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancelar',
+            CONFIRM : 'Sim'
+        },
+        'nl' : {
+            OK      : 'OK',
+            CANCEL  : 'Annuleren',
+            CONFIRM : 'Accepteren'
+        },
+        'ru' : {
+            OK      : 'OK',
+            CANCEL  : 'Отмена',
+            CONFIRM : 'Применить'
+        },
+        'it' : {
+            OK      : 'OK',
+            CANCEL  : 'Annulla',
+            CONFIRM : 'Conferma'
+        }
+    };
+
+    function _translate(str, locale) {
+        // we assume if no target locale is probided then we should take it from current setting
+        if (locale == null) {
+            locale = _locale;
+        }
+        if (typeof _locales[locale][str] == 'string') {
+            return _locales[locale][str];
+        }
+
+        // if we couldn't find a lookup then try and fallback to a default translation
+
+        if (locale != _defaultLocale) {
+            return _translate(str, _defaultLocale);
+        }
+
+        // if we can't do anything then bail out with whatever string was passed in - last resort
+        return str;
+    }
 
     return that;
 
