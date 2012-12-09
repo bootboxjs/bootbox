@@ -546,3 +546,6 @@ var bootbox = window.bootbox || (function($) {
     return that;
 
 })( window.jQuery );
+
+// @see https://github.com/makeusabrew/bootbox/issues/71
+window.bootbox = bootbox;
