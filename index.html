@@ -30,16 +30,18 @@
             <a class=brand href="https://github.com/makeusabrew/bootbox">Bootbox.js</a>
             <ul class=nav>
                 <li class=active><a href="#about">About</a></li>
+                <li><a href="#api">API</a></li>
                 <li><a href="#examples">Examples</a></li>
+                <li><a href="#download">Download</a></li>
             </ul>
         </div>
     </div>
 
     <div class=container>
 
-        <h1 style='font-size:24px;' id=about>Bootbox.js&mdash;alert, confirm and flexible dialogs for Twitter's Bootstrap framework</h1>
+        <h1 style='display:none; font-size:24px;' id=about>Bootbox.js&mdash;alert, confirm and flexible dialogs for Twitter's Bootstrap framework</h1>
 
-        <p><b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes using
+        <p class=lead><b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes using
         <a href="http://twitter.github.com/bootstrap/javascript.html#modals">Twitter's Bootstrap modals</a>, without
         having to worry about creating, managing or removing any of the required DOM elements or JS event handlers. Here's the simplest possible
         example:</p>
@@ -49,8 +51,60 @@
                 <script src="https://gist.github.com/1343123.js"> </script>
             </div>
             <div class=span2>
-                <p><a href="#" class="bs-alert btn"><i class="icon-play"></i> Run example</a></p>
+                <p><a href="#" class="bs-alert btn btn-large">Run example</a></p>
             </div>
+        </div>
+
+        <p><b>Compare that to the code you'd have to write without Bootbox:</b></p>
+
+        <script src="https://gist.github.com/3031607.js"></script>
+
+        <div class=page-header>
+            <h2>API Methods <small>(<a href="docs/">Read the full API docs</a>)</small></h2>
+        </div>
+
+        <p>The library exposes three methods designed to mimic their native JavaScript equivalents. Their
+        exact method signatures are flexible but if all arguments are supplied they are assumed to be:</p>
+        <ul>
+            <li>bootbox.alert(message, button, callback)</li>
+            <li>bootbox.confirm(message, cancelButton, confirmButton, callback)</li>
+            <li>bootbox.prompt(message, cancelButton, confirmButton, callback, defaultValue)</li>
+        </ul>
+
+        <p>Internally, each of these three methods calls a fourth method&mdash;also publicly available
+        to create custom dialogs:</p>
+
+        <ul>
+            <li>bootbox.dialog(message, buttons, options)</li>
+        </ul>
+
+        <p>In all cases the only required argument is <b>message</b>. Sensible
+        defaults will be used in place of any missing arguments, although you're
+        unlikely to want to ever call <code>confirm</code> or <code>prompt</code>
+        without a <b>callback</b> argument otherwise you'll have no way of
+        determining what the user's response was. Because <b>callback</b> is
+        arguably the most useful parameter, the three main methods can also be
+        invoked like so:</p>
+
+        <ul>
+            <li>bootbox.alert(message, callback)</li>
+            <li>bootbox.confirm(message, callback)</li>
+            <li>bootbox.prompt(message, callback)</li>
+        </ul>
+
+        <p class="alert alert-success"><strong>If the last argument to any method is a function, it is
+        assumed to be the callback invoked when the dialog is dismissed.</strong></p>
+
+        <p><a href="docs/">More API documentation &raquo;</a></p>
+
+        <div class=page-header>
+            <h2>Basic Examples <small>(<a href="examples/">See more examples</a>)</small></h2>
+        </div>
+
+        <p><a href=# class="bs-example bs-alert">bootbox.alert("Hello world!")</a></p>
+
+        <div class=page-header>
+            <h2>Download <small>v3.0.0</small></h2>
         </div>
     </div>
 
