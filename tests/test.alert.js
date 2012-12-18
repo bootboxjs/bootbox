@@ -5,8 +5,7 @@ describe("#alert", function() {
         bootbox.animate(false);
     });
 
-    afterEach(function() {
-        console.log("after!");
+    after(function() {
         $(".bootbox")
         .modal('hide')
         .remove();
