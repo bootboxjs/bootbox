@@ -272,8 +272,7 @@ var bootbox = window.bootbox || (function($) {
     };
 
     that.dialog = function(str, handlers, options) {
-        var hideSource = null,
-            buttons    = "",
+        var buttons    = "",
             callbacks  = [],
             options    = options || {};
 
@@ -352,8 +351,10 @@ var bootbox = window.bootbox || (function($) {
         // @see https://github.com/makeusabrew/bootbox/issues/46#issuecomment-8235302
         // and https://github.com/twitter/bootstrap/issues/4474
         // for an explanation of the inline overflow: hidden
+        // @see https://github.com/twitter/bootstrap/issues/4854
+        // for an explanation of tabIndex=-1
 
-        var parts = ["<div class='bootbox modal' style='overflow:hidden;'>"];
+        var parts = ["<div class='bootbox modal' tabindex='-1' style='overflow:hidden;'>"];
 
         if (options['header']) {
             var closeButton = '';
@@ -394,17 +395,14 @@ var bootbox = window.bootbox || (function($) {
             div.remove();
         });
 
-        div.bind('hide', function() {
-            if (hideSource == 'escape' &&
-                typeof options.onEscape == 'function') {
-                options.onEscape();
-            }
-        });
-
         // hook into the modal's keyup trigger to check for the escape key
-        $(document).bind('keyup.modal', function ( e ) {
-            if (e.which == 27) {
-                hideSource = 'escape';
+        div.on('keyup.dismiss.modal', function(e) {
+            if (e.which == 27 && options.onEscape) {
+                if (typeof options.onEscape === 'function') {
+                    options.onEscape();
+                }
+
+                div.modal('hide');
             }
         });
 
@@ -438,31 +436,25 @@ var bootbox = window.bootbox || (function($) {
             // returns it as a value. in those situations, don't hide the dialog
             // @see https://github.com/makeusabrew/bootbox/pull/25
             if (hideModal !== false) {
-                hideSource = 'button';
                 div.modal("hide");
             }
         });
 
-        if (options.keyboard == null) {
-            options.keyboard = (typeof options.onEscape == 'function');
-        }
-
         $("body").append(div);
 
         div.modal({
-            "backdrop" : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
-            "keyboard" : options.keyboard,
+            backdrop : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
+            keyboard : false,
             // @ see https://github.com/makeusabrew/bootbox/issues/69
             // we *never* want the modal to be shown before we can bind stuff to it
-
             // this method can also take a 'show' option, but we'll only use that
             // later if we need to
-            "show"     : false
+            show     : false
         });
 
         // @see https://github.com/makeusabrew/bootbox/issues/64
         // @see https://github.com/makeusabrew/bootbox/issues/60
-        // caused by...
+        // ...caused by...
         // @see https://github.com/twitter/bootstrap/issues/4781
         div.on("show", function(e) {
             $(document).off("focusin.modal");
