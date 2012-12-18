@@ -262,35 +262,28 @@ describe("#dialog", function() {
                         }]);
                     });
 
-                    /**
-                     * this is slightly confusing to read. We actually add the buttons
-                     * in reverse order because they have a float:right on them. This
-                     * means that their DOM order is effectively the reverse of what
-                     * we might expect
-                     */
-
                     it("should show the correct first button", function() {
-                        assert.equal(box.find("a:last").text(), "Button 1");
-                    });
-
-                    it("should apply the btn class to the button", function() {
-                        assert.isTrue(box.find("a:last").hasClass("btn"));
-                    });
-
-                    it("should not apply the primary class to the first button", function() {
-                        assert.isFalse(box.find("a:last").hasClass("btn-primary"));
-                    });
-
-                    it("should show the correct second button", function() {
-                        assert.equal(box.find("a:first").text(), "Button 2");
+                        assert.equal(box.find("a:first").text(), "Button 1");
                     });
 
                     it("should apply the btn class to the button", function() {
                         assert.isTrue(box.find("a:first").hasClass("btn"));
                     });
 
+                    it("should not apply the primary class to the first button", function() {
+                        assert.isFalse(box.find("a:first").hasClass("btn-primary"));
+                    });
+
+                    it("should show the correct second button", function() {
+                        assert.equal(box.find("a:last").text(), "Button 2");
+                    });
+
+                    it("should apply the btn class to the button", function() {
+                        assert.isTrue(box.find("a:last").hasClass("btn"));
+                    });
+
                     it("should apply the primary class to the second button", function() {
-                        assert.isTrue(box.find("a:first").hasClass("btn-primary"));
+                        assert.isTrue(box.find("a:last").hasClass("btn-primary"));
                     });
                 });
 
@@ -304,31 +297,24 @@ describe("#dialog", function() {
                         }]);
                     });
 
-                    /**
-                     * this is slightly confusing to read. We actually add the buttons
-                     * in reverse order because they have a float:right on them. This
-                     * means that their DOM order is effectively the reverse of what
-                     * we might expect
-                     */
-
                     it("should show the correct first button", function() {
-                        assert.equal(box.find("a:last").text(), "Button 1");
+                        assert.equal(box.find("a:first").text(), "Button 1");
                     });
 
                     it("should not apply the primary class to the first button", function() {
-                        assert.isFalse(box.find("a:last").hasClass("btn-primary"));
+                        assert.isFalse(box.find("a:first").hasClass("btn-primary"));
                     });
 
                     it("should show the correct second button", function() {
-                        assert.equal(box.find("a:first").text(), "Button 2");
+                        assert.equal(box.find("a:last").text(), "Button 2");
                     });
 
                     it("should apply the btn class to the button", function() {
-                        assert.isTrue(box.find("a:first").hasClass("btn"));
+                        assert.isTrue(box.find("a:last").hasClass("btn"));
                     });
 
                     it("should apply the supplied to the second button", function() {
-                        assert.isTrue(box.find("a:first").hasClass("foo"));
+                        assert.isTrue(box.find("a:last").hasClass("foo"));
                     });
                 });
             });
@@ -353,7 +339,7 @@ describe("#dialog", function() {
                     });
 
                     it("should invoke the correct callback", function() {
-                        box.find("a:last").trigger('click');
+                        box.find("a:first").trigger('click');
                         assert.isTrue(callback1);
                         assert.isFalse(callback2);
                     });
@@ -382,7 +368,7 @@ describe("#dialog", function() {
                     });
 
                     it("should invoke the correct callback", function() {
-                        box.find("a:first").trigger('click');
+                        box.find("a:last").trigger('click');
                         assert.isTrue(callback2);
                         assert.isFalse(callback1);
                     });
@@ -408,39 +394,39 @@ describe("#dialog", function() {
                     });
 
                     it("should show the correct first button", function() {
-                        assert.equal(box.find("a:eq(3)").text(), "Button 1");
+                        assert.equal(box.find("a:eq(0)").text(), "Button 1");
                     });
 
                     it("should apply the btn class to the button", function() {
-                        assert.isTrue(box.find("a:eq(3)").hasClass("btn"));
-                    });
-
-                    it("should show the correct second button", function() {
-                        assert.equal(box.find("a:eq(2)").text(), "Button 2");
-                    });
-
-                    it("should apply the btn class to the button", function() {
-                        assert.isTrue(box.find("a:eq(2)").hasClass("btn"));
-                    });
-
-                    it("should show the correct third button", function() {
-                        assert.equal(box.find("a:eq(1)").text(), "Button 3");
-                    });
-
-                    it("should apply the btn class to the third button", function() {
-                        assert.isTrue(box.find("a:eq(1)").hasClass("btn"));
-                    });
-
-                    it("should show the correct fourth button", function() {
-                        assert.equal(box.find("a:eq(0)").text(), "Button 4");
-                    });
-
-                    it("should apply the btn class to the fourth button", function() {
                         assert.isTrue(box.find("a:eq(0)").hasClass("btn"));
                     });
 
+                    it("should show the correct second button", function() {
+                        assert.equal(box.find("a:eq(1)").text(), "Button 2");
+                    });
+
+                    it("should apply the btn class to the button", function() {
+                        assert.isTrue(box.find("a:eq(1)").hasClass("btn"));
+                    });
+
+                    it("should show the correct third button", function() {
+                        assert.equal(box.find("a:eq(2)").text(), "Button 3");
+                    });
+
+                    it("should apply the btn class to the third button", function() {
+                        assert.isTrue(box.find("a:eq(2)").hasClass("btn"));
+                    });
+
+                    it("should show the correct fourth button", function() {
+                        assert.equal(box.find("a:eq(3)").text(), "Button 4");
+                    });
+
+                    it("should apply the btn class to the fourth button", function() {
+                        assert.isTrue(box.find("a:eq(3)").hasClass("btn"));
+                    });
+
                     it("should not apply the btn class to the fourth button", function() {
-                        assert.isFalse(box.find("a:eq(0)").hasClass("btn-primary"));
+                        assert.isFalse(box.find("a:eq(3)").hasClass("btn-primary"));
                     });
                 });
             });
