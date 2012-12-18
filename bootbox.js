@@ -25,7 +25,7 @@ var bootbox = window.bootbox || (function($) {
     };
 
     that.addLocale = function(locale, translations) {
-        if (typeof _locales[locale] == 'undefined') {
+        if (typeof _locales[locale] === 'undefined') {
             _locales[locale] = {};
         }
         for (var str in translations) {
@@ -71,10 +71,13 @@ var bootbox = window.bootbox || (function($) {
         }
 
         return that.dialog(str, {
-            "label": label,
-            "icon" : _icons.OK,
+            // only button (ok)
+            "label"   : label,
+            "icon"    : _icons.OK,
             "callback": cb
         }, {
+            // ensure that the escape key works; either invoking the user's
+            // callback or true to just close the dialog
             "onEscape": cb || true
         });
     };
@@ -363,12 +366,12 @@ var bootbox = window.bootbox || (function($) {
         }
 
         var optionalClasses = (typeof options.classes === 'undefined') ? _classes : options.classes;
-        if( optionalClasses )  {
-          div.addClass( optionalClasses );
+        if (optionalClasses) {
+            div.addClass(optionalClasses);
         }
 
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
-        $(".modal-body", div).html(str);
+        div.find(".modal-body").html(str);
 
         div.on('hidden', function() {
             div.remove();
@@ -376,8 +379,10 @@ var bootbox = window.bootbox || (function($) {
 
         // hook into the modal's keyup trigger to check for the escape key
         div.on('keyup.dismiss.modal', function(e) {
+            // any truthy value passed to onEscape will dismiss the dialog...
             if (e.which == 27 && options.onEscape) {
                 if (typeof options.onEscape === 'function') {
+                    // ... but only a function will be invoked (obviously)
                     options.onEscape();
                 }
 
@@ -385,7 +390,7 @@ var bootbox = window.bootbox || (function($) {
             }
         });
 
-        // well, *if* we have a primary - give the first dom element
+        // well, *if* we have a primary - give the first dom element focus
         div.on('shown', function() {
             div.find("a.btn-primary:first").focus();
         });
@@ -419,10 +424,13 @@ var bootbox = window.bootbox || (function($) {
             }
         });
 
+        // stick the modal right at the bottom of the main body out of the way
         $("body").append(div);
 
         div.modal({
+            // unless explicitly overridden take whatever our default backdrop value is
             backdrop : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
+            // ignore bootstrap's keyboard options; we'll handle this ourselves (more fine-grained control)
             keyboard : false,
             // @ see https://github.com/makeusabrew/bootbox/issues/69
             // we *never* want the modal to be shown before we can bind stuff to it
@@ -568,7 +576,7 @@ var bootbox = window.bootbox || (function($) {
         if (locale == null) {
             locale = _locale;
         }
-        if (typeof _locales[locale][str] == 'string') {
+        if (typeof _locales[locale][str] === 'string') {
             return _locales[locale][str];
         }
 
