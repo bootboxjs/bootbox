@@ -28,9 +28,10 @@
 
     <div class="navbar navbar-static-top navbar-inverse">
         <div class=navbar-inner>
-            <a class=brand href="https://github.com/makeusabrew/bootbox">Bootbox.js</a>
+            <a id=top class=brand href="https://github.com/makeusabrew/bootbox">Bootbox.js</a>
             <ul class=nav>
-                <li><a href="#api">API</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#api">Basic Methods</a></li>
                 <li><a href="#examples">Examples</a></li>
                 <li><a href="#download">Download</a></li>
                 <li><a href="#dependencies">Dependencies</a></li>
@@ -58,6 +59,18 @@
         <p><b>Compare that to the code you'd have to write without Bootbox:</b></p>
 
         <script src="https://gist.github.com/3031607.js"></script>
+
+        <div class=page-header>
+            <h2 id=about>About</h2>
+        </div>
+
+        <p>Bootbox was <a href="http://paynedigital.com/bootbox">originally created in 2011</a>
+        with the sole purpose of wrapping JavaScript's low level dialog methods with Bootstrap's
+        high level modal functionality. As such it is a small library focussed on
+        providing basic programattic dialogs with minimal fuss and overhead.</p>
+
+        <p>It is authored and maintained by <a href="http://paynedigital.com/about">Nick Payne</a>
+        (<a href="http://twitter.com/makeusabrew">@makeusabrew</a>).</p>
 
         <div class=page-header>
             <h2>API Methods <small>(<a href="docs/">Read the full API docs</a>)</small></h2>
@@ -88,7 +101,7 @@
         <p class="alert alert-success"><strong>If the last argument to any method is a function, it is
         assumed to be the callback invoked when the dialog is dismissed.</strong></p>
 
-        <p>Irrespective of arguments, each of these three methods calls a fourth method&mdash;also publicly available
+        <p>Irrespective of arguments, each of these three methods calls a fourth method, also publicly available
         to create custom dialogs:</p>
 
         <ul>
@@ -123,8 +136,7 @@
         <div class=page-header>
             <h2 id=dependencies>Dependencies</h2>
 
-            <p>All versions of Bootbox rely on Twitter&rsquo;s
-            <a href="http://getbootstrap.com">Bootstrap</a> framework and
+            <p>All versions of Bootbox rely on <a href="http://getbootstrap.com">Twitter&rsquo;s Bootstrap framework</a> and
             <a href="http://jquery.com">jQuery</a>. The
             exact version of Bootstrap depends on the version of Bootbox
             you&rsquo;re using. This has become slightly more complex than
@@ -141,8 +153,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class=success>
-                        <td>3.x.x</td>
+                    <tr>
+                        <td>3.x.x <span class="label label-success">Latest</span></td>
                         <td>2.2.2</td>
                         <td>-</td>
                         <td>Anything &gt; Bootstrap 2.2.2 is untested</td>
