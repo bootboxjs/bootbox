@@ -408,10 +408,9 @@ var bootbox = window.bootbox || (function($) {
             }
         });
 
-        // well, *if* we have a primary - give the last dom element (first displayed) focus
+        // well, *if* we have a primary - give the first dom element
         div.on('shown', function() {
-            $("a.btn-primary:last", div).focus();
-            console.log("shown");
+            div.find("a.btn-primary:first").focus();
         });
 
         // wire up button handlers
