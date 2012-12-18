@@ -6,6 +6,7 @@
 
     <!-- CSS dependencies -->
     <link rel="stylesheet" type="text/css" href="deps/bootstrap-2.2.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -29,17 +30,16 @@
         <div class=navbar-inner>
             <a class=brand href="https://github.com/makeusabrew/bootbox">Bootbox.js</a>
             <ul class=nav>
-                <li class=active><a href="#about">About</a></li>
                 <li><a href="#api">API</a></li>
                 <li><a href="#examples">Examples</a></li>
                 <li><a href="#download">Download</a></li>
+                <li><a href="#dependencies">Dependencies</a></li>
+                <li><a href="#usage">Usage</a></li>
             </ul>
         </div>
     </div>
 
     <div class=container>
-
-        <h1 style='display:none; font-size:24px;' id=about>Bootbox.js&mdash;alert, confirm and flexible dialogs for Twitter's Bootstrap framework</h1>
 
         <p class=lead><b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes using
         <a href="http://twitter.github.com/bootstrap/javascript.html#modals">Twitter's Bootstrap modals</a>, without
@@ -51,7 +51,7 @@
                 <script src="https://gist.github.com/1343123.js"> </script>
             </div>
             <div class=span2>
-                <p><a href="#" class="bs-alert btn btn-large">Run example</a></p>
+                <p><a href="#" data-bb="alert" class="bb-trigger btn btn-large">Run example</a></p>
             </div>
         </div>
 
@@ -66,16 +66,9 @@
         <p>The library exposes three methods designed to mimic their native JavaScript equivalents. Their
         exact method signatures are flexible but if all arguments are supplied they are assumed to be:</p>
         <ul>
-            <li>bootbox.alert(message, button, callback)</li>
-            <li>bootbox.confirm(message, cancelButton, confirmButton, callback)</li>
-            <li>bootbox.prompt(message, cancelButton, confirmButton, callback, defaultValue)</li>
-        </ul>
-
-        <p>Internally, each of these three methods calls a fourth method&mdash;also publicly available
-        to create custom dialogs:</p>
-
-        <ul>
-            <li>bootbox.dialog(message, buttons, options)</li>
+            <li class=bb-code>bootbox.alert(message, button, callback)</li>
+            <li class=bb-code>bootbox.confirm(message, cancelButton, confirmButton, callback)</li>
+            <li class=bb-code>bootbox.prompt(message, cancelButton, confirmButton, callback, defaultValue)</li>
         </ul>
 
         <p>In all cases the only required argument is <b>message</b>. Sensible
@@ -87,13 +80,21 @@
         invoked like so:</p>
 
         <ul>
-            <li>bootbox.alert(message, callback)</li>
-            <li>bootbox.confirm(message, callback)</li>
-            <li>bootbox.prompt(message, callback)</li>
+            <li class=bb-code>bootbox.alert(message, callback)</li>
+            <li class=bb-code>bootbox.confirm(message, callback)</li>
+            <li class=bb-code>bootbox.prompt(message, callback)</li>
         </ul>
 
         <p class="alert alert-success"><strong>If the last argument to any method is a function, it is
         assumed to be the callback invoked when the dialog is dismissed.</strong></p>
+
+        <p>Irrespective of arguments, each of these three methods calls a fourth method&mdash;also publicly available
+        to create custom dialogs:</p>
+
+        <ul>
+            <li class=bb-code>bootbox.dialog(message, buttons, options)</li>
+        </ul>
+
 
         <p><a href="docs/">More API documentation &raquo;</a></p>
 
@@ -101,11 +102,78 @@
             <h2>Basic Examples <small>(<a href="examples/">See more examples</a>)</small></h2>
         </div>
 
-        <p><a href=# class="bs-example bs-alert">bootbox.alert("Hello world!")</a></p>
+        <p><a href=# data-bb="alert" class="bb-code bb-trigger">bootbox.alert("Hello world!")</a></p>
 
         <div class=page-header>
-            <h2>Download <small>v3.0.0</small></h2>
+            <h2>Download <small>Version 3.0.0</small></h2>
         </div>
+
+        <p>The latest stable version of bootbox is <b>3.0.0</b>. You can download the minified library <a href="https://raw.github.com/makeusabrew/bootbox/v3.0.0/bootbox.min.js">bootbox.min.js</a> for
+        use in production, or the uncompressed <a href="https://raw.github.com/makeusabrew/bootbox/v3.0.0/bootbox.js">bootbox.js</a> for use in development. I wouldn&rsquo;t recommend hotlinking to
+        either file as Github does not serve the correct mime type which may cause security warnings to be triggered based on your browser&rsquo;s settings.</p>
+
+        <p>If you wish you may also <a href="https://github.com/makeusabrew/bootbox/tags">see a full list of available downloads</a>
+        or download the latest copy of the entire repository (including build files and tests)
+        in <a href="https://github.com/makeusabrew/bootbox/zipball/v3.0.0">zip</a> or
+        <a href="https://github.com/makeusabrew/bootbox/tarball/v3.0.0">tarball</a> format.
+        Realistically the only reason you should be using anything other than the 3.x.x series is if you
+        are restricted by the version of Bootstrap you&rsquo;re using&mdash;see the following
+        section for full details.</p>
+
+        <div class=page-header>
+            <h2 id=dependencies>Dependencies</h2>
+
+            <p>All versions of Bootbox rely on Twitter&rsquo;s
+            <a href="http://getbootstrap.com">Bootstrap</a> framework and
+            <a href="http://jquery.com">jQuery</a>. The
+            exact version of Bootstrap depends on the version of Bootbox
+            you&rsquo;re using. This has become slightly more complex than
+            I&rsquo;d like but hopefully this handy table will clear things
+            up (if it doesn&rsquo;t then please <a href="http://twitter.com/makeusabrew">tell me!</a>):</p>
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Bootbox series</th>
+                        <th>Min. Bootstrap version</th>
+                        <th>Max. Bootstrap version</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class=success>
+                        <td>3.x.x</td>
+                        <td>2.2.2</td>
+                        <td>-</td>
+                        <td>Anything &gt; Bootstrap 2.2.2 is untested</td>
+                    </tr>
+                    <tr>
+                        <td>2.x.x</td>
+                        <td>2.0.0</td>
+                        <td>2.0.4</td>
+                        <td>As you can see, Bootstrap 2.1.x was never officially supported</td>
+                    </tr>
+                    <tr>
+                        <td>1.x.x</td>
+                        <td>1.3.0</td>
+                        <td>1.4.0</td>
+                        <td>Don&rsquo;t download this version of Bootbox&mdash;it&rsquo;s old</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>All versions of the library require at least jQuery <b>1.7.1</b>, though
+            <b>1.8.3</b> or above is recommended for the 3.x.x releases.</p>
+        </div>
+
+        <div class=page-header>
+            <h2 id=usage>Usage Instructions</h2>
+
+            <p>Once you&rsquo;ve got your <a href=#dependencies>dependencies</a> sorted, usage
+            is fairly straightforward and much like any other JavaScript library you&rsquo;ve
+            ever used. The library creates a single global instance of a <b>bootbox</b> object:</p>
+        </div>
+        <script src="https://gist.github.com/4332514.js"></script>
     </div>
 
     <!-- JS dependencies -->
@@ -123,5 +191,26 @@
 
     <!-- bootbox code -->
     <script src="http://localhost/nick/bootbox/bootbox.js"></script>
+
+    <script>
+        $(function() {
+            var demos = {};
+
+            $(document).on("click", ".bb-trigger", function(e) {
+                e.preventDefault();
+                var type = $(this).data("bb");
+
+                if (typeof demos[type] === 'function') {
+                    demos[type]();
+                }
+            });
+
+            // let's namespace the demo methods; it makes them easier
+            // to invoke
+            demos.alert = function() {
+                bootbox.alert("Hello world!");
+            };
+        });
+    </script>
 </body>
 </html>
