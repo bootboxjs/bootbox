@@ -130,14 +130,17 @@ var bootbox = window.bootbox || (function($) {
         };
 
         return that.dialog(str, [{
-            "label": labelCancel,
-            "icon" : _icons.CANCEL,
+            // first button (cancel)
+            "label"   : labelCancel,
+            "icon"    : _icons.CANCEL,
             "callback": cancelCallback
         }, {
-            "label": labelOk,
-            "icon" : _icons.CONFIRM,
+            // second button (confirm)
+            "label"   : labelOk,
+            "icon"    : _icons.CONFIRM,
             "callback": confirmCallback
         }], {
+            // escape key bindings
             "onEscape": cancelCallback
         });
     };
@@ -194,28 +197,42 @@ var bootbox = window.bootbox || (function($) {
         var form = $("<form></form>");
         form.append("<input autocomplete=off type=text value='" + defaultVal + "' />");
 
+        var cancelCallback = function() {
+            if (typeof cb === 'function') {
+                // yep, native prompts dismiss with null, whereas native
+                // confirms dismiss with false...
+                cb(null);
+            }
+        };
+
+        var confirmCallback = function() {
+            if (typeof cb === 'function') {
+                cb(form.find("input[type=text]").val());
+            }
+        };
+
         var div = that.dialog(form, [{
-            "label": labelCancel,
-            "icon" : _icons.CANCEL,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(null);
-                }
-            }
+            // first button (cancel)
+            "label"   : labelCancel,
+            "icon"    : _icons.CANCEL,
+            "callback":  cancelCallback
         }, {
-            "label": labelOk,
-            "icon" : _icons.CONFIRM,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(
-                        form.find("input[type=text]").val()
-                    );
-                }
-            }
+            // second button (confirm)
+            "label"   : labelOk,
+            "icon"    : _icons.CONFIRM,
+            "callback": confirmCallback
         }], {
-            "header": header,
-            "show": false
+            // prompts need a few extra options
+            "header"  : header,
+            // explicitly tell dialog NOT to show the dialog...
+            "show"    : false,
+            "onEscape": cancelCallback
         });
+
+        // ... the reason the prompt needs to be hidden is because we need
+        // to bind our own "shown" handler, after creating the modal but
+        // before any show(n) events are triggered
+        // @see https://github.com/makeusabrew/bootbox/issues/69
 
         div.on("shown", function() {
             form.find("input[type=text]").focus();
