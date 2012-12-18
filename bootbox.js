@@ -250,50 +250,6 @@ var bootbox = window.bootbox || (function($) {
         return div;
     };
 
-    that.modal = function(/*str, label, options*/) {
-        var str;
-        var label;
-        var options;
-
-        var defaultOptions = {
-            "onEscape": null,
-            "keyboard": true,
-            "backdrop": _backdrop
-        };
-
-        switch (arguments.length) {
-            case 1:
-                str = arguments[0];
-                break;
-            case 2:
-                str = arguments[0];
-                if (typeof arguments[1] == 'object') {
-                    options = arguments[1];
-                } else {
-                    label = arguments[1];
-                }
-                break;
-            case 3:
-                str     = arguments[0];
-                label   = arguments[1];
-                options = arguments[2];
-                break;
-            default:
-                throw new Error("Incorrect number of arguments: expected 1-3");
-                break;
-        }
-
-        defaultOptions['header'] = label;
-
-        if (typeof options == 'object') {
-            options = $.extend(defaultOptions, options);
-        } else {
-            options = defaultOptions;
-        }
-
-        return that.dialog(str, [], options);
-    };
-
     that.dialog = function(str, handlers, options) {
         var buttons    = "",
             callbacks  = [],
@@ -489,6 +445,56 @@ var bootbox = window.bootbox || (function($) {
 
         return div;
     };
+
+    /**
+     * #modal is deprecated in v3; it can still be used but no guarantees are
+     * made - have never been truly convinced of its merit but perhaps just
+     * needs a tidyup and some TLC
+     */
+    that.modal = function(/*str, label, options*/) {
+        var str;
+        var label;
+        var options;
+
+        var defaultOptions = {
+            "onEscape": null,
+            "keyboard": true,
+            "backdrop": _backdrop
+        };
+
+        switch (arguments.length) {
+            case 1:
+                str = arguments[0];
+                break;
+            case 2:
+                str = arguments[0];
+                if (typeof arguments[1] == 'object') {
+                    options = arguments[1];
+                } else {
+                    label = arguments[1];
+                }
+                break;
+            case 3:
+                str     = arguments[0];
+                label   = arguments[1];
+                options = arguments[2];
+                break;
+            default:
+                throw new Error("Incorrect number of arguments: expected 1-3");
+                break;
+        }
+
+        defaultOptions['header'] = label;
+
+        if (typeof options == 'object') {
+            options = $.extend(defaultOptions, options);
+        } else {
+            options = defaultOptions;
+        }
+
+        return that.dialog(str, [], options);
+    };
+
 
     that.hideAll = function() {
         $(".bootbox").modal("hide");
