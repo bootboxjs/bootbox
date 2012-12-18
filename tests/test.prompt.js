@@ -47,8 +47,11 @@ describe("#prompt", function() {
             assert.isTrue(box.find(".modal-footer a:last").hasClass("btn-primary"));
         });
 
-        // @todo implement
-        it("has focus on the text input");
+        var focusFn = window.mochaPhantomJS !== undefined ? null : function() {
+            assert.isTrue(box.find(":input:first").is(":focus"));
+        };
+
+        it("has focus on the text input", focusFn);
     });
 
     describe("with two arguments", function() {
@@ -250,16 +253,9 @@ describe("#prompt", function() {
         });
         */
 
-        /**
-         * we can't test for this since "shown" is called synchronously when
-         * bootbox.animate = false. Therefore, by the time .prompt() tries to
-         * bind its own handler (currently line 284) it's too late; the element
-         * is already shown so the handler won't ever fire
-         */
-        /*
         describe("when submitting the form", function() {
             var result;
-            before(function(done) {
+            before(function() {
                 box = bootbox.prompt("Sure?", function(cbResult) {
                     result = cbResult;
                 });
@@ -271,7 +267,6 @@ describe("#prompt", function() {
                 assert.equal(result, "Foo Bar");
             });
         });
-        */
     });
 
     describe("without a callback", function() {
