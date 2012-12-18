@@ -207,7 +207,8 @@ var bootbox = window.bootbox || (function($) {
                 }
             }
         }], {
-            "header": header
+            "header": header,
+            "show": false
         });
 
         div.on("shown", function() {
@@ -220,6 +221,8 @@ var bootbox = window.bootbox || (function($) {
                 div.find(".btn-primary").click();
             });
         });
+
+        div.modal("show");
 
         return div;
     };
@@ -406,7 +409,7 @@ var bootbox = window.bootbox || (function($) {
         });
 
         // well, *if* we have a primary - give the last dom element (first displayed) focus
-        div.bind('shown', function() {
+        div.on('shown', function() {
             $("a.btn-primary:last", div).focus();
             console.log("shown");
         });
@@ -449,8 +452,18 @@ var bootbox = window.bootbox || (function($) {
 
         div.modal({
             "backdrop" : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
-            "keyboard" : options.keyboard
+            "keyboard" : options.keyboard,
+            // @ see https://github.com/makeusabrew/bootbox/issues/69
+            // we *never* want the modal to be shown before we can bind stuff to it
+
+            // this method can also take a 'show' option, but we'll only use that
+            // later if we need to
+            "show"     : false
         });
+
+        if (typeof options.show === 'undefined' || options.show === true) {
+            div.modal("show");
+        }
 
         return div;
     };
