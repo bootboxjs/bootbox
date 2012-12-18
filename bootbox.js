@@ -117,23 +117,29 @@ var bootbox = window.bootbox || (function($) {
                 break;
         }
 
+        var cancelCallback = function() {
+            if (typeof cb === 'function') {
+                cb(false);
+            }
+        };
+
+        var confirmCallback = function() {
+            if (typeof cb === 'function') {
+                cb(true);
+            }
+        };
+
         return that.dialog(str, [{
             "label": labelCancel,
             "icon" : _icons.CANCEL,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(false);
-                }
-            }
+            "callback": cancelCallback
         }, {
             "label": labelOk,
             "icon" : _icons.CONFIRM,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(true);
-                }
-            }
-        }]);
+            "callback": confirmCallback
+        }], {
+            "onEscape": cancelCallback
+        });
     };
 
     that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
