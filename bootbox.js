@@ -461,6 +461,14 @@ var bootbox = window.bootbox || (function($) {
             "show"     : false
         });
 
+        // @see https://github.com/makeusabrew/bootbox/issues/64
+        // @see https://github.com/makeusabrew/bootbox/issues/60
+        // caused by...
+        // @see https://github.com/twitter/bootstrap/issues/4781
+        div.on("show", function(e) {
+            $(document).off("focusin.modal");
+        });
+
         if (typeof options.show === 'undefined' || options.show === true) {
             div.modal("show");
         }
