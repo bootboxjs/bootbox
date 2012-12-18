@@ -75,7 +75,7 @@ var bootbox = window.bootbox || (function($) {
             "icon" : _icons.OK,
             "callback": cb
         }, {
-            "onEscape": cb
+            "onEscape": cb || true
         });
     };
 

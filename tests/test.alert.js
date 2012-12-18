@@ -114,13 +114,29 @@ describe("#alert", function() {
                 // if we do this in the "before", it will dismiss
                 // all the dialogs before their it() methods run. e.g.
                 // _all_ before() run before all it()
-                var e = jQuery.Event("keyup.modal", {which: 27});
-                $(document).trigger(e);
+                var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                $(box).trigger(e);
 
                 assert.isTrue(result);
             });
 
             it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
+            });
+        });
+    });
+
+    describe("without a callback", function() {
+        describe("when dismissing the dialog by pressing escape", function() {
+            var result;
+            before(function() {
+                box = bootbox.alert("Hi");
+            });
+
+            it("should close the dialog", function() {
+                var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                $(box).trigger(e);
+
                 assert.isTrue(box.is(":hidden"));
             });
         });
