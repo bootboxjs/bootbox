@@ -69,15 +69,39 @@
         high level modal functionality. As such it is a small library focussed on
         providing basic programattic dialogs with minimal fuss and overhead.</p>
 
-        <p>It is authored and maintained by <a href="http://paynedigital.com/about">Nick Payne</a>
+        <p>Bootbox is authored and maintained by <a href="http://paynedigital.com/about">Nick Payne</a>
         (<a href="http://twitter.com/makeusabrew">@makeusabrew</a>).</p>
 
         <div class=page-header>
-            <h2>API Methods <small>(<a href="docs/">Read the full API docs</a>)</small></h2>
+            <h2 id=api>Basic Methods <small>(<a href="docs/">Read the full API docs</a>)</small></h2>
         </div>
 
         <p>The library exposes three methods designed to mimic their native JavaScript equivalents. Their
-        exact method signatures are flexible but if all arguments are supplied they are assumed to be:</p>
+        exact method signatures are flexible as each can take various parameters to customise labels and specify defaults,
+        but they are most commonly called like so:</p>
+
+        <ul>
+            <li class=bb-code>bootbox.alert(message, callback)</li>
+            <li class=bb-code>bootbox.confirm(message, callback)</li>
+            <li class=bb-code>bootbox.prompt(message, callback)</li>
+        </ul>
+
+        <p>The only required argument is <b>message</b>, although you're
+        unlikely to want to ever call <span class=bb-code>confirm</span> or <span class=bb-code>prompt</span>
+        without a <b>callback</b> argument otherwise you'll have no way of
+        determining what the user's response was. Even when calling
+        <span class=bb-code>alert</span> a callback is useful to determine when the user
+        dismissed the dialog (since our wrapper methods can't &amp; don't block
+        like their native counterparts).</p>
+
+        <p>Each of these three methods calls a fourth public method which you too can use to create your
+        own custom dialogs:</p>
+
+        <ul>
+            <li class=bb-code>bootbox.dialog(message, buttons, options)</li>
+        </ul>
+
+        <!--
         <ul>
             <li class=bb-code>bootbox.alert(message, button, callback)</li>
             <li class=bb-code>bootbox.confirm(message, cancelButton, confirmButton, callback)</li>
@@ -92,12 +116,6 @@
         arguably the most useful parameter, the three main methods can also be
         invoked like so:</p>
 
-        <ul>
-            <li class=bb-code>bootbox.alert(message, callback)</li>
-            <li class=bb-code>bootbox.confirm(message, callback)</li>
-            <li class=bb-code>bootbox.prompt(message, callback)</li>
-        </ul>
-
         <p class="alert alert-success"><strong>If the last argument to any method is a function, it is
         assumed to be the callback invoked when the dialog is dismissed.</strong></p>
 
@@ -107,7 +125,7 @@
         <ul>
             <li class=bb-code>bootbox.dialog(message, buttons, options)</li>
         </ul>
-
+        -->
 
         <p><a href="docs/">More API documentation &raquo;</a></p>
 
