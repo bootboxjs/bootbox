@@ -273,4 +273,19 @@ describe("#prompt", function() {
         });
         */
     });
+
+    describe("without a callback", function() {
+        describe("when pressing escape", function() {
+            before(function() {
+                box = bootbox.prompt("Hello");
+            });
+
+            it("should close the dialog", function() {
+                var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                $(box).trigger(e);
+
+                assert.isTrue(box.is(":hidden"));
+            });
+        });
+    });
 });
