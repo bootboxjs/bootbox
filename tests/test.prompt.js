@@ -28,11 +28,11 @@ describe("#prompt", function() {
         });
 
         it("shows an OK button", function() {
-            assert.equal(box.find(".modal-footer a:first").text(), "OK");
+            assert.equal(box.find(".modal-footer a:last").text(), "OK");
         });
 
         it("shows a Cancel button", function() {
-            assert.equal(box.find(".modal-footer a:last").text(), "Cancel");
+            assert.equal(box.find(".modal-footer a:first").text(), "Cancel");
         });
 
         it("shows a close button", function() {
@@ -40,11 +40,11 @@ describe("#prompt", function() {
         });
 
         it("does not apply the primary class to the cancel button", function() {
-            assert.isFalse(box.find(".modal-footer a:last").hasClass("btn-primary"));
+            assert.isFalse(box.find(".modal-footer a:first").hasClass("btn-primary"));
         });
 
         it("applies the primary class to the OK button", function() {
-            assert.isTrue(box.find(".modal-footer a:first").hasClass("btn-primary"));
+            assert.isTrue(box.find(".modal-footer a:last").hasClass("btn-primary"));
         });
 
         // @todo implement
@@ -65,11 +65,11 @@ describe("#prompt", function() {
             });
 
             it("shows an OK button", function() {
-                assert.equal(box.find(".modal-footer a:first").html(), "OK");
+                assert.equal(box.find(".modal-footer a:last").html(), "OK");
             });
 
             it("shows the custom Cancel label", function() {
-                assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+                assert.equal(box.find(".modal-footer a:first").html(), "Foo");
             });
         });
 
@@ -79,11 +79,11 @@ describe("#prompt", function() {
             });
 
             it("shows an OK button", function() {
-                assert.equal(box.find(".modal-footer a:first").html(), "OK");
+                assert.equal(box.find(".modal-footer a:last").html(), "OK");
             });
 
             it("shows a Cancel button", function() {
-                assert.equal(box.find(".modal-footer a:last").html(), "Cancel");
+                assert.equal(box.find(".modal-footer a:first").html(), "Cancel");
             });
         });
     });
@@ -102,11 +102,11 @@ describe("#prompt", function() {
             });
 
             it("shows the custom OK label", function() {
-                assert.equal(box.find(".modal-footer a:first").html(), "Bar");
+                assert.equal(box.find(".modal-footer a:last").html(), "Bar");
             });
 
             it("shows the custom Cancel label", function() {
-                assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+                assert.equal(box.find(".modal-footer a:first").html(), "Foo");
             });
         });
 
@@ -116,7 +116,7 @@ describe("#prompt", function() {
             });
 
             it("shows the default OK label", function() {
-                assert.equal(box.find(".modal-footer a:first").html(), "OK");
+                assert.equal(box.find(".modal-footer a:last").html(), "OK");
             });
         });
     });
@@ -134,11 +134,11 @@ describe("#prompt", function() {
         });
 
         it("shows the custom OK label", function() {
-            assert.equal(box.find(".modal-footer a:first").html(), "Bar");
+            assert.equal(box.find(".modal-footer a:last").html(), "Bar");
         });
 
         it("shows the custom Cancel label", function() {
-            assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+            assert.equal(box.find(".modal-footer a:first").html(), "Foo");
         });
     });
 
@@ -155,11 +155,11 @@ describe("#prompt", function() {
         });
 
         it("shows the custom OK label", function() {
-            assert.equal(box.find(".modal-footer a:first").html(), "Bar");
+            assert.equal(box.find(".modal-footer a:last").html(), "Bar");
         });
 
         it("shows the custom Cancel label", function() {
-            assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+            assert.equal(box.find(".modal-footer a:first").html(), "Foo");
         });
 
         it("shows the input with correct default value", function() {
@@ -186,7 +186,7 @@ describe("#prompt", function() {
             });
 
             it("should invoke the callback with the value of the input", function() {
-                box.find(".modal-footer a:first").trigger('click');
+                box.find(".modal-footer a:last").trigger('click');
                 assert.equal(result, "Foo Bar");
             });
         });
@@ -201,7 +201,7 @@ describe("#prompt", function() {
             });
 
             it("should invoke the callback with a value null", function() {
-                box.find(".modal-footer a:last").trigger('click');
+                box.find(".modal-footer a:first").trigger('click');
                 assert.isNull(result);
             });
         });
