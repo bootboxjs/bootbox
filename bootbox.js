@@ -1,4 +1,4 @@
-var bootbox = window.bootbox || (function($) {
+var bootbox = window.bootbox || (function(document, $) {
 
     var _locale        = 'en',
         _defaultLocale = 'en',
@@ -592,7 +592,7 @@ var bootbox = window.bootbox || (function($) {
 
     return that;
 
-})( window.jQuery );
+}(document, window.jQuery));
 
 // @see https://github.com/makeusabrew/bootbox/issues/71
 window.bootbox = bootbox;
