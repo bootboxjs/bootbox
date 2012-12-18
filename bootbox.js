@@ -414,7 +414,7 @@ var bootbox = window.bootbox || (function($) {
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         $(".modal-body", div).html(str);
 
-        div.bind('hidden', function() {
+        div.on('hidden', function() {
             div.remove();
         });
 
