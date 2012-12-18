@@ -23,7 +23,7 @@ describe("#setIcons", function() {
         });
 
         it("should add an icon element to the OK button", function() {
-            assert.isTrue(box.find("a:first i").hasClass("ok"));
+            assert.isTrue(box.find("a:last i").hasClass("ok"));
         });
     });
 
@@ -33,11 +33,11 @@ describe("#setIcons", function() {
         });
 
         it("should add an icon element to the CONFIRM button", function() {
-            assert.isTrue(box.find("a:first i").hasClass("confirm"));
+            assert.isTrue(box.find("a:last i").hasClass("confirm"));
         });
 
         it("should add an icon element to the CANCEL button", function() {
-            assert.isTrue(box.find("a:last i").hasClass("cancel"));
+            assert.isTrue(box.find("a:first i").hasClass("cancel"));
         });
     });
 
@@ -47,11 +47,11 @@ describe("#setIcons", function() {
         });
 
         it("should add an icon element to the CONFIRM button", function() {
-            assert.isTrue(box.find(".modal-footer a:first i").hasClass("confirm"));
+            assert.isTrue(box.find(".modal-footer a:last i").hasClass("confirm"));
         });
 
         it("should add an icon element to the CANCEL button", function() {
-            assert.isTrue(box.find(".modal-footer a:last i").hasClass("cancel"));
+            assert.isTrue(box.find(".modal-footer a:first i").hasClass("cancel"));
         });
     });
 });
