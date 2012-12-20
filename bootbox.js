@@ -1,9 +1,4 @@
-/**
- * bootbox.js v2.5.1
- *
- * http://bootboxjs.com/license.txt
- */
-var bootbox = window.bootbox || (function($) {
+var bootbox = window.bootbox || (function(document, $) {
 
     var _locale        = 'en',
         _defaultLocale = 'en',
@@ -15,74 +10,6 @@ var bootbox = window.bootbox || (function($) {
         /* last var should always be the public object we'll return */
         that           = {};
 
-    /**
-     * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
-     * unlikely to be required. If this gets too large it can be split out into separate JS files.
-     */
-    var _locales = {
-        'en' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancel',
-            CONFIRM : 'OK'
-        },
-        'fr' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuler',
-            CONFIRM : 'D\'accord'
-        },
-        'de' : {
-            OK      : 'OK',
-            CANCEL  : 'Abbrechen',
-            CONFIRM : 'Akzeptieren'
-        },
-        'es' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Aceptar'
-        },
-        'br' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Sim'
-        },
-        'nl' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuleren',
-            CONFIRM : 'Accepteren'
-        },
-        'ru' : {
-            OK      : 'OK',
-            CANCEL  : 'Отмена',
-            CONFIRM : 'Применить'
-        },
-        'it' : {
-            OK      : 'OK',
-            CANCEL  : 'Annulla',
-            CONFIRM : 'Conferma'
-        }
-    };
-
-    /**
-     * private methods
-     */
-    function _translate(str, locale) {
-        // we assume if no target locale is probided then we should take it from current setting
-        if (locale == null) {
-            locale = _locale;
-        }
-        if (typeof _locales[locale][str] == 'string') {
-            return _locales[locale][str];
-        }
-
-        // if we couldn't find a lookup then try and fallback to a default translation
-
-        if (locale != _defaultLocale) {
-            return _translate(str, _defaultLocale);
-        }
-
-        // if we can't do anything then bail out with whatever string was passed in - last resort
-        return str;
-    }
 
     /**
      * public API
@@ -98,7 +25,7 @@ var bootbox = window.bootbox || (function($) {
     };
 
     that.addLocale = function(locale, translations) {
-        if (typeof _locales[locale] == 'undefined') {
+        if (typeof _locales[locale] === 'undefined') {
             _locales[locale] = {};
         }
         for (var str in translations) {
@@ -144,11 +71,14 @@ var bootbox = window.bootbox || (function($) {
         }
 
         return that.dialog(str, {
-            "label": label,
-            "icon" : _icons.OK,
+            // only button (ok)
+            "label"   : label,
+            "icon"    : _icons.OK,
             "callback": cb
         }, {
-            "onEscape": cb
+            // ensure that the escape key works; either invoking the user's
+            // callback or true to just close the dialog
+            "onEscape": cb || true
         });
     };
 
@@ -190,23 +120,32 @@ var bootbox = window.bootbox || (function($) {
                 break;
         }
 
+        var cancelCallback = function() {
+            if (typeof cb === 'function') {
+                cb(false);
+            }
+        };
+
+        var confirmCallback = function() {
+            if (typeof cb === 'function') {
+                cb(true);
+            }
+        };
+
         return that.dialog(str, [{
-            "label": labelCancel,
-            "icon" : _icons.CANCEL,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(false);
-                }
-            }
+            // first button (cancel)
+            "label"   : labelCancel,
+            "icon"    : _icons.CANCEL,
+            "callback": cancelCallback
         }, {
-            "label": labelOk,
-            "icon" : _icons.CONFIRM,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(true);
-                }
-            }
-        }]);
+            // second button (confirm)
+            "label"   : labelOk,
+            "icon"    : _icons.CONFIRM,
+            "callback": confirmCallback
+        }], {
+            // escape key bindings
+            "onEscape": cancelCallback
+        });
     };
 
     that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
@@ -261,27 +200,42 @@ var bootbox = window.bootbox || (function($) {
         var form = $("<form></form>");
         form.append("<input autocomplete=off type=text value='" + defaultVal + "' />");
 
+        var cancelCallback = function() {
+            if (typeof cb === 'function') {
+                // yep, native prompts dismiss with null, whereas native
+                // confirms dismiss with false...
+                cb(null);
+            }
+        };
+
+        var confirmCallback = function() {
+            if (typeof cb === 'function') {
+                cb(form.find("input[type=text]").val());
+            }
+        };
+
         var div = that.dialog(form, [{
-            "label": labelCancel,
-            "icon" : _icons.CANCEL,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(null);
-                }
-            }
+            // first button (cancel)
+            "label"   : labelCancel,
+            "icon"    : _icons.CANCEL,
+            "callback":  cancelCallback
         }, {
-            "label": labelOk,
-            "icon" : _icons.CONFIRM,
-            "callback": function() {
-                if (typeof cb == 'function') {
-                    cb(
-                        form.find("input[type=text]").val()
-                    );
-                }
-            }
+            // second button (confirm)
+            "label"   : labelOk,
+            "icon"    : _icons.CONFIRM,
+            "callback": confirmCallback
         }], {
-            "header": header
+            // prompts need a few extra options
+            "header"  : header,
+            // explicitly tell dialog NOT to show the dialog...
+            "show"    : false,
+            "onEscape": cancelCallback
         });
+
+        // ... the reason the prompt needs to be hidden is because we need
+        // to bind our own "shown" handler, after creating the modal but
+        // before any show(n) events are triggered
+        // @see https://github.com/makeusabrew/bootbox/issues/69
 
         div.on("shown", function() {
             form.find("input[type=text]").focus();
@@ -294,56 +248,13 @@ var bootbox = window.bootbox || (function($) {
             });
         });
 
+        div.modal("show");
+
         return div;
     };
 
-    that.modal = function(/*str, label, options*/) {
-        var str;
-        var label;
-        var options;
-
-        var defaultOptions = {
-            "onEscape": null,
-            "keyboard": true,
-            "backdrop": _backdrop
-        };
-
-        switch (arguments.length) {
-            case 1:
-                str = arguments[0];
-                break;
-            case 2:
-                str = arguments[0];
-                if (typeof arguments[1] == 'object') {
-                    options = arguments[1];
-                } else {
-                    label = arguments[1];
-                }
-                break;
-            case 3:
-                str     = arguments[0];
-                label   = arguments[1];
-                options = arguments[2];
-                break;
-            default:
-                throw new Error("Incorrect number of arguments: expected 1-3");
-                break;
-        }
-
-        defaultOptions['header'] = label;
-
-        if (typeof options == 'object') {
-            options = $.extend(defaultOptions, options);
-        } else {
-            options = defaultOptions;
-        }
-
-        return that.dialog(str, [], options);
-    };
-
     that.dialog = function(str, handlers, options) {
-        var hideSource = null,
-            buttons    = "",
+        var buttons    = "",
             callbacks  = [],
             options    = options || {};
 
@@ -414,7 +325,7 @@ var bootbox = window.bootbox || (function($) {
                 href = _defaultHref;
             }
 
-            buttons += "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>";
+            buttons = "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>" + buttons;
 
             callbacks[i] = callback;
         }
@@ -422,8 +333,10 @@ var bootbox = window.bootbox || (function($) {
         // @see https://github.com/makeusabrew/bootbox/issues/46#issuecomment-8235302
         // and https://github.com/twitter/bootstrap/issues/4474
         // for an explanation of the inline overflow: hidden
+        // @see https://github.com/twitter/bootstrap/issues/4854
+        // for an explanation of tabIndex=-1
 
-        var parts = ["<div class='bootbox modal' style='overflow:hidden;'>"];
+        var parts = ["<div class='bootbox modal' tabindex='-1' style='overflow:hidden;'>"];
 
         if (options['header']) {
             var closeButton = '';
@@ -453,34 +366,33 @@ var bootbox = window.bootbox || (function($) {
         }
 
         var optionalClasses = (typeof options.classes === 'undefined') ? _classes : options.classes;
-        if( optionalClasses )  {
-          div.addClass( optionalClasses );
+        if (optionalClasses) {
+            div.addClass(optionalClasses);
         }
 
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
-        $(".modal-body", div).html(str);
+        div.find(".modal-body").html(str);
 
-        div.bind('hidden', function() {
+        div.on('hidden', function() {
             div.remove();
         });
 
-        div.bind('hide', function() {
-            if (hideSource == 'escape' &&
-                typeof options.onEscape == 'function') {
-                options.onEscape();
-            }
-        });
-
         // hook into the modal's keyup trigger to check for the escape key
-        $(document).bind('keyup.modal', function ( e ) {
-            if (e.which == 27) {
-                hideSource = 'escape';
+        div.on('keyup.dismiss.modal', function(e) {
+            // any truthy value passed to onEscape will dismiss the dialog...
+            if (e.which == 27 && options.onEscape) {
+                if (typeof options.onEscape === 'function') {
+                    // ... but only a function will be invoked (obviously)
+                    options.onEscape();
+                }
+
+                div.modal('hide');
             }
         });
 
-        // well, *if* we have a primary - give the last dom element (first displayed) focus
-        div.bind('shown', function() {
-            $("a.btn-primary:last", div).focus();
+        // well, *if* we have a primary - give the first dom element focus
+        div.on('shown', function() {
+            div.find("a.btn-primary:first").focus();
         });
 
         // wire up button handlers
@@ -508,24 +420,89 @@ var bootbox = window.bootbox || (function($) {
             // returns it as a value. in those situations, don't hide the dialog
             // @see https://github.com/makeusabrew/bootbox/pull/25
             if (hideModal !== false) {
-                hideSource = 'button';
                 div.modal("hide");
             }
         });
 
-        if (options.keyboard == null) {
-            options.keyboard = (typeof options.onEscape == 'function');
-        }
-
+        // stick the modal right at the bottom of the main body out of the way
         $("body").append(div);
 
         div.modal({
-            "backdrop" : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
-            "keyboard" : options.keyboard
+            // unless explicitly overridden take whatever our default backdrop value is
+            backdrop : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
+            // ignore bootstrap's keyboard options; we'll handle this ourselves (more fine-grained control)
+            keyboard : false,
+            // @ see https://github.com/makeusabrew/bootbox/issues/69
+            // we *never* want the modal to be shown before we can bind stuff to it
+            // this method can also take a 'show' option, but we'll only use that
+            // later if we need to
+            show     : false
         });
+
+        // @see https://github.com/makeusabrew/bootbox/issues/64
+        // @see https://github.com/makeusabrew/bootbox/issues/60
+        // ...caused by...
+        // @see https://github.com/twitter/bootstrap/issues/4781
+        div.on("show", function(e) {
+            $(document).off("focusin.modal");
+        });
+
+        if (typeof options.show === 'undefined' || options.show === true) {
+            div.modal("show");
+        }
 
         return div;
     };
+
+    /**
+     * #modal is deprecated in v3; it can still be used but no guarantees are
+     * made - have never been truly convinced of its merit but perhaps just
+     * needs a tidyup and some TLC
+     */
+    that.modal = function(/*str, label, options*/) {
+        var str;
+        var label;
+        var options;
+
+        var defaultOptions = {
+            "onEscape": null,
+            "keyboard": true,
+            "backdrop": _backdrop
+        };
+
+        switch (arguments.length) {
+            case 1:
+                str = arguments[0];
+                break;
+            case 2:
+                str = arguments[0];
+                if (typeof arguments[1] == 'object') {
+                    options = arguments[1];
+                } else {
+                    label = arguments[1];
+                }
+                break;
+            case 3:
+                str     = arguments[0];
+                label   = arguments[1];
+                options = arguments[2];
+                break;
+            default:
+                throw new Error("Incorrect number of arguments: expected 1-3");
+                break;
+        }
+
+        defaultOptions['header'] = label;
+
+        if (typeof options == 'object') {
+            options = $.extend(defaultOptions, options);
+        } else {
+            options = defaultOptions;
+        }
+
+        return that.dialog(str, [], options);
+    };
+
 
     that.hideAll = function() {
         $(".bootbox").modal("hide");
@@ -543,9 +520,79 @@ var bootbox = window.bootbox || (function($) {
         _classes = classes;
     };
 
+    /**
+     * private API
+     */
+
+    /**
+     * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
+     * unlikely to be required. If this gets too large it can be split out into separate JS files.
+     */
+    var _locales = {
+        'en' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancel',
+            CONFIRM : 'OK'
+        },
+        'fr' : {
+            OK      : 'OK',
+            CANCEL  : 'Annuler',
+            CONFIRM : 'D\'accord'
+        },
+        'de' : {
+            OK      : 'OK',
+            CANCEL  : 'Abbrechen',
+            CONFIRM : 'Akzeptieren'
+        },
+        'es' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancelar',
+            CONFIRM : 'Aceptar'
+        },
+        'br' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancelar',
+            CONFIRM : 'Sim'
+        },
+        'nl' : {
+            OK      : 'OK',
+            CANCEL  : 'Annuleren',
+            CONFIRM : 'Accepteren'
+        },
+        'ru' : {
+            OK      : 'OK',
+            CANCEL  : 'Отмена',
+            CONFIRM : 'Применить'
+        },
+        'it' : {
+            OK      : 'OK',
+            CANCEL  : 'Annulla',
+            CONFIRM : 'Conferma'
+        }
+    };
+
+    function _translate(str, locale) {
+        // we assume if no target locale is probided then we should take it from current setting
+        if (locale == null) {
+            locale = _locale;
+        }
+        if (typeof _locales[locale][str] === 'string') {
+            return _locales[locale][str];
+        }
+
+        // if we couldn't find a lookup then try and fallback to a default translation
+
+        if (locale != _defaultLocale) {
+            return _translate(str, _defaultLocale);
+        }
+
+        // if we can't do anything then bail out with whatever string was passed in - last resort
+        return str;
+    }
+
     return that;
 
-})( window.jQuery );
+}(document, window.jQuery));
 
 // @see https://github.com/makeusabrew/bootbox/issues/71
 window.bootbox = bootbox;

@@ -17,15 +17,15 @@ describe("setLocale", function() {
         });
 
         it("shows the correct OK translation", function() {
-            assert.equal(box1.find("a:first").text(), "OK");
+            assert.equal(box1.find("a:last").text(), "OK");
         });
 
         it("shows the correct CANCEL translation", function() {
-            assert.equal(box2.find("a:last").text(), "Cancel");
+            assert.equal(box2.find("a:first").text(), "Cancel");
         });
 
         it("shows the correct CONFIRM translation", function() {
-            assert.equal(box2.find("a:first").text(), "OK");
+            assert.equal(box2.find("a:last").text(), "OK");
         });
     });
 
@@ -38,15 +38,15 @@ describe("setLocale", function() {
         });
 
         it("shows the correct OK translation", function() {
-            assert.equal(box1.find("a:first").text(), "OK");
+            assert.equal(box1.find("a:last").text(), "OK");
         });
 
         it("shows the correct CANCEL translation", function() {
-            assert.equal(box2.find("a:last").text(), "Annuler");
+            assert.equal(box2.find("a:first").text(), "Annuler");
         });
 
         it("shows the correct CONFIRM translation", function() {
-            assert.equal(box2.find("a:first").text(), "D'accord");
+            assert.equal(box2.find("a:last").text(), "D'accord");
         });
     });
 
@@ -59,15 +59,15 @@ describe("setLocale", function() {
         });
 
         it("shows the correct OK translation", function() {
-            assert.equal(box1.find("a:first").text(), "OK");
+            assert.equal(box1.find("a:last").text(), "OK");
         });
 
         it("shows the correct CANCEL translation", function() {
-            assert.equal(box2.find("a:last").text(), "Abbrechen");
+            assert.equal(box2.find("a:first").text(), "Abbrechen");
         });
 
         it("shows the correct CONFIRM translation", function() {
-            assert.equal(box2.find("a:first").text(), "Akzeptieren");
+            assert.equal(box2.find("a:last").text(), "Akzeptieren");
         });
     });
 
@@ -80,15 +80,15 @@ describe("setLocale", function() {
         });
 
         it("shows the correct OK translation", function() {
-            assert.equal(box1.find("a:first").text(), "OK");
+            assert.equal(box1.find("a:last").text(), "OK");
         });
 
         it("shows the correct CANCEL translation", function() {
-            assert.equal(box2.find("a:last").text(), "Cancelar");
+            assert.equal(box2.find("a:first").text(), "Cancelar");
         });
 
         it("shows the correct CONFIRM translation", function() {
-            assert.equal(box2.find("a:first").text(), "Aceptar");
+            assert.equal(box2.find("a:last").text(), "Aceptar");
         });
     });
 
@@ -101,15 +101,15 @@ describe("setLocale", function() {
         });
 
         it("shows the correct OK translation", function() {
-            assert.equal(box1.find("a:first").text(), "OK");
+            assert.equal(box1.find("a:last").text(), "OK");
         });
 
         it("shows the correct CANCEL translation", function() {
-            assert.equal(box2.find("a:last").text(), "Cancelar");
+            assert.equal(box2.find("a:first").text(), "Cancelar");
         });
 
         it("shows the correct CONFIRM translation", function() {
-            assert.equal(box2.find("a:first").text(), "Sim");
+            assert.equal(box2.find("a:last").text(), "Sim");
         });
     });
 
@@ -122,15 +122,15 @@ describe("setLocale", function() {
         });
 
         it("shows the correct OK translation", function() {
-            assert.equal(box1.find("a:first").text(), "OK");
+            assert.equal(box1.find("a:last").text(), "OK");
         });
 
         it("shows the correct CANCEL translation", function() {
-            assert.equal(box2.find("a:last").text(), "Annuleren");
+            assert.equal(box2.find("a:first").text(), "Annuleren");
         });
 
         it("shows the correct CONFIRM translation", function() {
-            assert.equal(box2.find("a:first").text(), "Accepteren");
+            assert.equal(box2.find("a:last").text(), "Accepteren");
         });
     });
 
@@ -143,15 +143,15 @@ describe("setLocale", function() {
         });
 
         it("shows the correct OK translation", function() {
-            assert.equal(box1.find("a:first").text(), "OK");
+            assert.equal(box1.find("a:last").text(), "OK");
         });
 
         it("shows the correct CANCEL translation", function() {
-            assert.equal(box2.find("a:last").text(), "Отмена");
+            assert.equal(box2.find("a:first").text(), "Отмена");
         });
 
         it("shows the correct CONFIRM translation", function() {
-            assert.equal(box2.find("a:first").text(), "Применить");
+            assert.equal(box2.find("a:last").text(), "Применить");
         });
     });
     
@@ -164,15 +164,15 @@ describe("setLocale", function() {
         });
 
         it("shows the correct OK translation", function() {
-            assert.equal(box1.find("a:first").text(), "OK");
+            assert.equal(box1.find("a:last").text(), "OK");
         });
 
         it("shows the correct CANCEL translation", function() {
-            assert.equal(box2.find("a:last").text(), "Annulla");
+            assert.equal(box2.find("a:first").text(), "Annulla");
         });
 
         it("shows the correct CONFIRM translation", function() {
-            assert.equal(box2.find("a:first").text(), "Conferma");
+            assert.equal(box2.find("a:last").text(), "Conferma");
         });
     });
 });

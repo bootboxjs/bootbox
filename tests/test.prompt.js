@@ -28,11 +28,11 @@ describe("#prompt", function() {
         });
 
         it("shows an OK button", function() {
-            assert.equal(box.find(".modal-footer a:first").text(), "OK");
+            assert.equal(box.find(".modal-footer a:last").text(), "OK");
         });
 
         it("shows a Cancel button", function() {
-            assert.equal(box.find(".modal-footer a:last").text(), "Cancel");
+            assert.equal(box.find(".modal-footer a:first").text(), "Cancel");
         });
 
         it("shows a close button", function() {
@@ -40,15 +40,18 @@ describe("#prompt", function() {
         });
 
         it("does not apply the primary class to the cancel button", function() {
-            assert.isFalse(box.find(".modal-footer a:last").hasClass("btn-primary"));
+            assert.isFalse(box.find(".modal-footer a:first").hasClass("btn-primary"));
         });
 
         it("applies the primary class to the OK button", function() {
-            assert.isTrue(box.find(".modal-footer a:first").hasClass("btn-primary"));
+            assert.isTrue(box.find(".modal-footer a:last").hasClass("btn-primary"));
         });
 
-        // @todo implement
-        it("has focus on the text input");
+        var focusFn = window.mochaPhantomJS !== undefined ? null : function() {
+            assert.isTrue(box.find(":input:first").is(":focus"));
+        };
+
+        it("has focus on the text input", focusFn);
     });
 
     describe("with two arguments", function() {
@@ -65,11 +68,11 @@ describe("#prompt", function() {
             });
 
             it("shows an OK button", function() {
-                assert.equal(box.find(".modal-footer a:first").html(), "OK");
+                assert.equal(box.find(".modal-footer a:last").html(), "OK");
             });
 
             it("shows the custom Cancel label", function() {
-                assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+                assert.equal(box.find(".modal-footer a:first").html(), "Foo");
             });
         });
 
@@ -79,11 +82,11 @@ describe("#prompt", function() {
             });
 
             it("shows an OK button", function() {
-                assert.equal(box.find(".modal-footer a:first").html(), "OK");
+                assert.equal(box.find(".modal-footer a:last").html(), "OK");
             });
 
             it("shows a Cancel button", function() {
-                assert.equal(box.find(".modal-footer a:last").html(), "Cancel");
+                assert.equal(box.find(".modal-footer a:first").html(), "Cancel");
             });
         });
     });
@@ -102,11 +105,11 @@ describe("#prompt", function() {
             });
 
             it("shows the custom OK label", function() {
-                assert.equal(box.find(".modal-footer a:first").html(), "Bar");
+                assert.equal(box.find(".modal-footer a:last").html(), "Bar");
             });
 
             it("shows the custom Cancel label", function() {
-                assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+                assert.equal(box.find(".modal-footer a:first").html(), "Foo");
             });
         });
 
@@ -116,7 +119,7 @@ describe("#prompt", function() {
             });
 
             it("shows the default OK label", function() {
-                assert.equal(box.find(".modal-footer a:first").html(), "OK");
+                assert.equal(box.find(".modal-footer a:last").html(), "OK");
             });
         });
     });
@@ -134,11 +137,11 @@ describe("#prompt", function() {
         });
 
         it("shows the custom OK label", function() {
-            assert.equal(box.find(".modal-footer a:first").html(), "Bar");
+            assert.equal(box.find(".modal-footer a:last").html(), "Bar");
         });
 
         it("shows the custom Cancel label", function() {
-            assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+            assert.equal(box.find(".modal-footer a:first").html(), "Foo");
         });
     });
 
@@ -155,11 +158,11 @@ describe("#prompt", function() {
         });
 
         it("shows the custom OK label", function() {
-            assert.equal(box.find(".modal-footer a:first").html(), "Bar");
+            assert.equal(box.find(".modal-footer a:last").html(), "Bar");
         });
 
         it("shows the custom Cancel label", function() {
-            assert.equal(box.find(".modal-footer a:last").html(), "Foo");
+            assert.equal(box.find(".modal-footer a:first").html(), "Foo");
         });
 
         it("shows the input with correct default value", function() {
@@ -186,7 +189,7 @@ describe("#prompt", function() {
             });
 
             it("should invoke the callback with the value of the input", function() {
-                box.find(".modal-footer a:first").trigger('click');
+                box.find(".modal-footer a:last").trigger('click');
                 assert.equal(result, "Foo Bar");
             });
         });
@@ -201,43 +204,24 @@ describe("#prompt", function() {
             });
 
             it("should invoke the callback with a value null", function() {
-                box.find(".modal-footer a:last").trigger('click');
+                box.find(".modal-footer a:first").trigger('click');
                 assert.isNull(result);
             });
         });
 
         describe("when pressing escape", function() {
-            var called = false;
+            var result = true;
             before(function() {
                 box = bootbox.prompt("Sure?", function(cbResult) {
-                    called = true;
+                    result = cbResult;
                 });
             });
 
-            it("should not invoke the callback", function() {
-                var e = jQuery.Event("keyup.modal", {which: 27});
-                $(document).trigger(e);
+            it("should invoke the callback with a value of null", function() {
+                var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                $(box).trigger(e);
 
-                assert.isFalse(called);
-            });
-
-            it("should not close the dialog", function() {
-                assert.isFalse(box.is(":hidden"));
-            });
-        });
-
-        describe("when pressing close", function() {
-            var called = false;
-            before(function() {
-                box = bootbox.prompt("Sure?", function(cbResult) {
-                    called = true;
-                });
-
-                box.find(".modal-header a").click();
-            });
-
-            it("should not invoke the callback", function() {
-                assert.isFalse(called);
+                assert.isNull(result);
             });
 
             it("should close the dialog", function() {
@@ -246,15 +230,32 @@ describe("#prompt", function() {
         });
 
         /**
-         * we can't test for this since "shown" is called synchronously when
-         * bootbox.animate = false. Therefore, by the time .prompt() tries to
-         * bind its own handler (currently line 284) it's too late; the element
-         * is already shown so the handler won't ever fire
+         * needs re-implementing when close buttons have a proper handler..
          */
-        /*
+         /*
+        describe("when pressing close", function() {
+            var result = true;
+            before(function() {
+                box = bootbox.prompt("Sure?", function(cbResult) {
+                    result = cbResult;
+                });
+
+                box.find(".modal-header a").click();
+            });
+
+            it("should invoke the callback with a value of null", function() {
+                assert.isNull(result);
+            });
+
+            it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
+            });
+        });
+        */
+
         describe("when submitting the form", function() {
             var result;
-            before(function(done) {
+            before(function() {
                 box = bootbox.prompt("Sure?", function(cbResult) {
                     result = cbResult;
                 });
@@ -266,6 +267,20 @@ describe("#prompt", function() {
                 assert.equal(result, "Foo Bar");
             });
         });
-        */
+    });
+
+    describe("without a callback", function() {
+        describe("when pressing escape", function() {
+            before(function() {
+                box = bootbox.prompt("Hello");
+            });
+
+            it("should close the dialog", function() {
+                var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                $(box).trigger(e);
+
+                assert.isTrue(box.is(":hidden"));
+            });
+        });
     });
 });

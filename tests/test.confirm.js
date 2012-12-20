@@ -24,25 +24,25 @@ describe("#confirm", function() {
         });
 
         it("shows an OK button", function() {
-            assert.equal(box.find("a:first").html(), "OK");
+            assert.equal(box.find("a:last").html(), "OK");
         });
 
         it("shows a Cancel button", function() {
-            assert.equal(box.find("a:last").html(), "Cancel");
+            assert.equal(box.find("a:first").html(), "Cancel");
         });
 
         it("does not apply the primary class to the cancel button", function() {
-            assert.isFalse(box.find("a:last").hasClass("btn-primary"));
+            assert.isFalse(box.find("a:first").hasClass("btn-primary"));
         });
 
         var focusFn = window.mochaPhantomJS !== undefined ? null : function() {
-            assert.isTrue(box.find("a:first").is(":focus"));
+            assert.isTrue(box.find("a:last").is(":focus"));
         };
 
         it("has focus on the OK button", focusFn);
 
         it("applies the primary class to the OK button", function() {
-            assert.isTrue(box.find("a:first").hasClass("btn-primary"));
+            assert.isTrue(box.find("a:last").hasClass("btn-primary"));
         });
     });
 
@@ -60,11 +60,11 @@ describe("#confirm", function() {
             });
 
             it("shows an OK button", function() {
-                assert.equal(box.find("a:first").html(), "OK");
+                assert.equal(box.find("a:last").html(), "OK");
             });
 
             it("shows the custom Cancel label", function() {
-                assert.equal(box.find("a:last").html(), "Foo");
+                assert.equal(box.find("a:first").html(), "Foo");
             });
         });
 
@@ -74,11 +74,11 @@ describe("#confirm", function() {
             });
 
             it("shows an OK button", function() {
-                assert.equal(box.find("a:first").html(), "OK");
+                assert.equal(box.find("a:last").html(), "OK");
             });
 
             it("shows a Cancel button", function() {
-                assert.equal(box.find("a:last").html(), "Cancel");
+                assert.equal(box.find("a:first").html(), "Cancel");
             });
         });
     });
@@ -97,15 +97,15 @@ describe("#confirm", function() {
             });
 
             it("shows the custom OK label", function() {
-                assert.equal(box.find("a:first").html(), "Bar");
+                assert.equal(box.find("a:last").html(), "Bar");
             });
 
             it("applies the primary class to the custom OK button", function() {
-                assert.isTrue(box.find("a:first").hasClass("btn-primary"));
+                assert.isTrue(box.find("a:last").hasClass("btn-primary"));
             });
 
             it("shows the custom Cancel label", function() {
-                assert.equal(box.find("a:last").html(), "Foo");
+                assert.equal(box.find("a:first").html(), "Foo");
             });
         });
 
@@ -115,7 +115,7 @@ describe("#confirm", function() {
             });
 
             it("shows the default OK label", function() {
-                assert.equal(box.find("a:first").html(), "OK");
+                assert.equal(box.find("a:last").html(), "OK");
             });
         });
     });
@@ -133,11 +133,11 @@ describe("#confirm", function() {
         });
 
         it("shows the custom OK label", function() {
-            assert.equal(box.find("a:first").html(), "Bar");
+            assert.equal(box.find("a:last").html(), "Bar");
         });
 
         it("shows the custom Cancel label", function() {
-            assert.equal(box.find("a:last").html(), "Foo");
+            assert.equal(box.find("a:first").html(), "Foo");
         });
     });
 
@@ -159,7 +159,7 @@ describe("#confirm", function() {
             });
 
             it("should invoke the callback with a value of true", function() {
-                box.find("a:first").trigger('click');
+                box.find("a:last").trigger('click');
                 assert.isTrue(result);
             });
 
@@ -177,7 +177,7 @@ describe("#confirm", function() {
             });
 
             it("should invoke the callback with a value of true", function() {
-                box.find("a:last").trigger('click');
+                box.find("a:first").trigger('click');
                 assert.isFalse(result);
             });
 
@@ -187,22 +187,37 @@ describe("#confirm", function() {
         });
 
         describe("when pressing escape", function() {
-            var called = false;
+            var result = true;
             before(function() {
                 box = bootbox.confirm("Sure?", function(cbResult) {
-                    called = true;
+                    result = cbResult;
                 });
             });
 
-            it("should not invoke the callback", function() {
-                var e = jQuery.Event("keyup.modal", {which: 27});
-                $(document).trigger(e);
+            it("should invoke the callback with a value of false", function() {
+                var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                $(box).trigger(e);
 
-                assert.isFalse(called);
+                assert.isFalse(result);
             });
 
-            it("should not close the dialog", function() {
-                assert.isFalse(box.is(":hidden"));
+            it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
+            });
+        });
+    });
+
+    describe("without a callback", function() {
+        describe("when pressing escape", function() {
+            before(function() {
+                box = bootbox.confirm("Sure?");
+            });
+
+            it("should close the dialog", function() {
+                var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                $(box).trigger(e);
+
+                assert.isTrue(box.is(":hidden"));
             });
         });
     });
