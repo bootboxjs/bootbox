@@ -11,6 +11,10 @@
     font-size:1.2em;
 }
 
+.bb-code-small {
+    font-size:0.9em;
+}
+
 .bb-alert {
     position:fixed;
     bottom:25%;

@@ -56,6 +56,9 @@
         </div>
 
         <h3>bootbox.alert(&hellip;)</h3>
+
+        <p>A simple alert dialog with a single button. Pressing escape dismisses the dialog.</p>
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -65,39 +68,172 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class=bb-code>bootbox.alert(str <b>message</b>)</td>
+                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>)</td>
                     <td>Dialog with default 'OK' button</td>
                 </tr>
                 <tr>
-                    <td class=bb-code>bootbox.alert(str <b>message</b>, str <b>label</b>)</td>
-                    <td>Custom button text</td>
-                </tr>
-                <tr>
-                    <td class=bb-code>bootbox.alert(str <b>message</b>, fn <b>callback</b>)</td>
+                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>, fn <b>callback</b>)</td>
                     <td>Default button text, callback invoked on dismissal</td>
                 </tr>
                 <tr>
-                    <td class=bb-code>bootbox.alert(str <b>message</b>, str <b>label</b>, fn <b>callback</b>)</td>
+                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>, str <b>label</b>)</td>
+                    <td>Custom button text</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>, str <b>label</b>, fn <b>callback</b>)</td>
                     <td>Custom button text, callback invoked on dismissal</td>
                 </tr>
             </tbody>
         </table>
-        <h3>bootbox.confirm(message, &hellip;)</h3>
-        <h3>bootbox.prompt(message, &hellip;)</h3>
-        <h3>bootbox.dialog(message, &hellip;)</h3>
+
+        <h3>bootbox.confirm(&hellip;)</h3>
+
+        <p>A confirm dialog with a cancel and a confirm button. Pressing escape dismisses
+        the dialog and invokes the callback as if the user had clicked the cancel button.</p>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Usage</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>)</td>
+                    <td>Dialog with default 'Cancel' and 'OK' buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, fn <b>callback</b>)</td>
+                    <td>Default buttons, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>)</td>
+                    <td>Custom cancel button text, standard confirm button</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>, fn <b>callback</b>)</td>
+                    <td>Custom cancel button text, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>)</td>
+                    <td>Custom cancel and confirm buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>, fn <b>callback</b>)</td>
+                    <td>Custom cancel and confirm buttons, callback invoked on dismissal</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>bootbox.prompt(&hellip;)</h3>
+
+        <p>A prompt with a cancel and a confirm button. Pressing escape dismisses
+        the dialog and invokes the callback as if the user had clicked the cancel button.</p>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Usage</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>)</td>
+                    <td>Prompt with default 'Cancel' and 'OK' buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, fn <b>callback</b>)</td>
+                    <td>Default buttons, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>)</td>
+                    <td>Custom cancel button text, standard confirm button</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, fn <b>callback</b>)</td>
+                    <td>Custom cancel button text, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>)</td>
+                    <td>Custom cancel and confirm buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>, fn <b>callback</b>)</td>
+                    <td>Custom cancel and confirm buttons, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>, fn <b>callback</b>, str <b>defaultValue</b>)</td>
+                    <td>Custom cancel and confirm buttons, default prompt value, callback invoked on dismissal</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>bootbox.dialog(&hellip;)</h3>
+
+        <p>A completely customisable dialog method. As many buttons and callbacks as you like.</p>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Usage</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>)</td>
+                    <td>Dialog with no buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>, object <b>handler</b>)</td>
+                    <td>Needs docs</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>, array <b>handlers</b>)</td>
+                    <td>Needs docs</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>, array <b>handlers</b>, object <b>options</b>)</td>
+                    <td>Needs docs</td>
+                </tr>
+            </tbody>
+        </table>
+
         <h3>bootbox.hideAll()</h3>
+
+        <p>Hide all currently active bootbox dialogs. Individual dialogs can be closed as per
+        normal Bootstrap dialogs: <span class=bb-code>dialog.modal('hide')</span>.</p>
 
         <div class=page-header>
             <h2>Helper methods</h2>
         </div>
 
         <h3>bootbox.animate(boolean)</h3>
+
+        <p>Indicate whether dialogs should animate in and out.</p>
+
         <h3>bootbox.backdrop(string)</h3>
+
+        <p>Set the dialog backdrop value&mdash;values as per
+        <a href="http://twitter.github.com/bootstrap/javascript.html#modals">Bootstrap's modals</a>.</p>
+
         <h3>bootbox.classes(string)</h3>
 
+        <p>Any custom classes to add to the dialog.</p>
+
         <h3>bootbox.setIcons(&hellip;)</h3>
+
+        <p>Establish which icons to show for default OK, Cancel and Confirm buttons.</p>
+
         <h3>bootbox.setLocale(&hellip;)</h3>
+
+        <p>Set the language for the default OK, Cancel and Confirm buttons. Values: en, fr, de, es, br, nl, ru, it.</p>
+
         <h3>bootbox.addLocale(&hellip;)</h3>
+
+        <p>Add a custom locale.</p>
 
     </div>
     <div class='well container'>
