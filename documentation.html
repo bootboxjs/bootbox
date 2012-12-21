@@ -2,7 +2,7 @@
 <html lang=en>
 <head>
     <meta charset=utf-8>
-    <title>Examples | Bootbox.js&mdash;alert, confirm and flexible dialogs for Twitter's Bootstrap framework</title>
+    <title>Documentation | Bootbox.js&mdash;alert, confirm and flexible dialogs for Twitter's Bootstrap framework</title>
 
     <!-- CSS dependencies -->
     <link rel="stylesheet" type="text/css" href="deps/bootstrap-2.2.2/css/bootstrap.min.css" />
@@ -48,49 +48,57 @@
 
     <div class="container lead-top">
         <div class=page-header>
-            <h1>Examples</h1>
+            <h1>API Documentation</h1>
         </div>
-        <p><b>Please note:</b> the &lsquo;Example&rsquo; object used in the following examples
-        simply displays a notification to help illustrate when each callback is invoked. It is nothing
-        to do with Bootbox itself, but you may <a href="js/example.js">view its source</a> if you&rsquo;re
-        interested in how it works.</p>
 
-        <div class=row>
-            <div class=span12>
-                <p class=lead>
-                    Alert
-                    <a href="#" data-bb="alert_callback" class="btn"><i class=icon-play></i></a>
-                </p>
-                <script src="https://gist.github.com/10a21523641a211529da.js"></script>
-            </div>
+        <div class=page-header>
+            <h2>Dialog methods</h2>
         </div>
-        <div class=row>
-            <div class=span12>
-                <p class=lead>
-                    Confirm
-                    <a href="#" data-bb="confirm" class="btn"><i class=icon-play></i></a>
-                </p>
-                <script src="https://gist.github.com/f06984e4c5b37f121b85.js"></script>
-            </div>
+
+        <h3>bootbox.alert(&hellip;)</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Usage</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class=bb-code>bootbox.alert(str <b>message</b>)</td>
+                    <td>Dialog with default 'OK' button</td>
+                </tr>
+                <tr>
+                    <td class=bb-code>bootbox.alert(str <b>message</b>, str <b>label</b>)</td>
+                    <td>Custom button text</td>
+                </tr>
+                <tr>
+                    <td class=bb-code>bootbox.alert(str <b>message</b>, fn <b>callback</b>)</td>
+                    <td>Default button text, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class=bb-code>bootbox.alert(str <b>message</b>, str <b>label</b>, fn <b>callback</b>)</td>
+                    <td>Custom button text, callback invoked on dismissal</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>bootbox.confirm(message, &hellip;)</h3>
+        <h3>bootbox.prompt(message, &hellip;)</h3>
+        <h3>bootbox.dialog(message, &hellip;)</h3>
+        <h3>bootbox.hideAll()</h3>
+
+        <div class=page-header>
+            <h2>Helper methods</h2>
         </div>
-        <div class=row>
-            <div class=span12>
-                <p class=lead>
-                    Prompt
-                    <a href="#" data-bb="prompt" class="btn"><i class=icon-play></i></a>
-                </p>
-                <script src="https://gist.github.com/bb3fd1f1a2c5899ef17e.js"></script>
-            </div>
-        </div>
-        <div class=row>
-            <div class=span12>
-                <p class=lead>
-                    Custom Dialog
-                    <a href="#" data-bb="dialog" class="btn"><i class=icon-play></i></a>
-                </p>
-                <script src="https://gist.github.com/9c8e730237b903511fc8.js"></script>
-            </div>
-        </div>
+
+        <h3>bootbox.animate(boolean)</h3>
+        <h3>bootbox.backdrop(string)</h3>
+        <h3>bootbox.classes(string)</h3>
+
+        <h3>bootbox.setIcons(&hellip;)</h3>
+        <h3>bootbox.setLocale(&hellip;)</h3>
+        <h3>bootbox.addLocale(&hellip;)</h3>
+
     </div>
     <div class='well container'>
         <div style='float:right'>
