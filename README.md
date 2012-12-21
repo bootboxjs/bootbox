@@ -1,7 +1,7 @@
 # Bootbox - Twitter Bootstrap powered alert, confirm and flexible dialog boxes
 
-Please see http://paynedigital.com/bootbox for full usage instructions, or head over to http://bootboxjs.com for
-a demo page ([please feel free to improve it!](https://github.com/makeusabrew/bootbox/tree/gh-pages))
+Please see http://bootboxjs.com for full usage instructions, or head over to http://paynedigital.com/bootbox for
+the original writeup about the project.
 
 ## Contact
 
@@ -14,7 +14,7 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
 
 ## Running Tests
 
-* Tests live in tests/test.*.js and are run using [Mocha](http://visionmedia.github.com/mocha/) - to run simply open tests/index.html in your browser.
+* Tests live in tests/test.\*.js and are run using [Mocha](http://visionmedia.github.com/mocha/) - to run simply open tests/index.html in your browser.
 * Alternatively, tests can be run headlessly using [mocha-phantomjs](http://metaskills.net/mocha-phantomjs/):
 ```
     phantomjs tests/vendor/mocha-phantomjs/lib/mocha-phantomjs.coffee tests/index.html
@@ -29,22 +29,35 @@ both projects use Semantic Versioning this should have been possible. However,
 Bootstrap 2.2.x (and possibly 2.1.x) introduced breaking changes - or at least
 changes considered backward incompatible in the context of this project. Over
 time bugs started getting raised which eventually turned out to be due to subtle
-changes in Bootstrap's code. Therefore, **2.5.1** is the last release which will
+changes in Bootstrap's code. Therefore, **2.5.1** was the last release which will
 support Bootstrap 2.0.x and is **not guaranteed** to work with anything higher than
 Bootstrap 2.0.4.
 
+Bootbox *3.0.0* is the first release to support Bootstrap 2.2.x. More about this [on the Bootbox website](http://bootboxjs.com/#dependencies).
+
 ### Roadmap
 
-The next major release of Bootbox - 3.0.0 - will address all the incompatible changes
-introduced by Bootstrap 2.2.x. As such, Bootstrap 2.1.x compatibility is a bit of a
-wildcard and will never be explicitly supported.
+The next major release of Bootbox - 4.0.0 - will involve a complete rewrite of the
+internal code and introduce an entirely new public API. It will most likely require
+Bootstrap 3.0.0 (assuming that sees the light of day first).
 
 You can get a quick overview of the roadmap in the form of the project milestones
 [as listed in the issue tracker](https://github.com/makeusabrew/bootbox/issues/milestones?direction=asc&sort=due_date).
 
-## Latest Release: 2.5.1
+## Latest Release: 3.0.0
 
-**This will be the last version of the library which supports Bootstrap 2.0.x**
+* bump Bootstrap dependency to 2.2.2
+* bump jQuery dependency to 1.8.3
+* ensure callbacks are always invoked even if dialogs are dismissed with escape key (GH-49)
+* fix button positions with Bootstrap 2.2.2 (GH-58)
+* stop multiple dialogs crashing browsers (GH-60, GH-64)
+* ensure ```shown``` event is fired properly even when animation is disabled (GH-69)
+* use ```.on``` instead of ```.bind```
+* commentify code a bit more
+
+### 2.5.1
+
+**This was the last version of the library which supports Bootstrap 2.0.x**
 
 * ensure bootbox object is explicitly added to window object for minfier visibility
 

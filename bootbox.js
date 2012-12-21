@@ -1,3 +1,8 @@
+/**
+ * bootbox.js v3.0.0
+ *
+ * http://bootboxjs.com/license.txt
+ */
 var bootbox = window.bootbox || (function(document, $) {
 
     var _locale        = 'en',
