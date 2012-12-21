@@ -30,7 +30,7 @@
 
     <div class="navbar navbar-static-top navbar-inverse">
         <div class=navbar-inner>
-            <a id=top class="brand brand-active" href="https://github.com/makeusabrew/bootbox">Bootbox.js</a>
+            <a id=top class="brand brand-active" href="http://bootboxjs.com">Bootbox.js</a>
             <ul class=nav>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#api">Core Methods</a></li>
@@ -51,13 +51,19 @@
             <h1>API Documentation</h1>
         </div>
 
+        <p class="alert alert-info">This documentation is rather dry, not particularly well organised
+        and incomplete. If you want to help out then
+        <a href="https://github.com/makeusabrew/bootbox/blob/gh-pages/documentation.html">please fork &amp; edit this page</a>!
+        </p>
+
         <div class=page-header>
             <h2>Dialog methods</h2>
         </div>
 
         <h3>bootbox.alert(&hellip;)</h3>
 
-        <p>A simple alert dialog with a single button. Pressing escape dismisses the dialog.</p>
+        <p>A simple alert dialog with a single button. Pressing escape dismisses the dialog. If a
+        callback is provided it is not passed any value when executed.</p>
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -89,7 +95,9 @@
         <h3>bootbox.confirm(&hellip;)</h3>
 
         <p>A confirm dialog with a cancel and a confirm button. Pressing escape dismisses
-        the dialog and invokes the callback as if the user had clicked the cancel button.</p>
+        the dialog and invokes the callback as if the user had clicked the cancel button.
+        If a callback is provided it is passed a value of <b>true</b> or <b>false</b>
+        depending on which button the user pressed.</p>
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -128,8 +136,10 @@
 
         <h3>bootbox.prompt(&hellip;)</h3>
 
-        <p>A prompt with a cancel and a confirm button. Pressing escape dismisses
-        the dialog and invokes the callback as if the user had clicked the cancel button.</p>
+        <p>A dialog which prompts for user input. Pressing escape dismisses
+        the dialog and invokes the callback as if the user had clicked the cancel button.
+        If a callback is provided it is passed a value of <b>null</b> if the user cancels
+        or dismissed the dialog, otherwise it is passed the value of the text input.</p>
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -223,17 +233,22 @@
 
         <p>Any custom classes to add to the dialog.</p>
 
-        <h3>bootbox.setIcons(&hellip;)</h3>
+        <h3>bootbox.setIcons(object)</h3>
 
         <p>Establish which icons to show for default OK, Cancel and Confirm buttons.</p>
 
-        <h3>bootbox.setLocale(&hellip;)</h3>
+        <h3>bootbox.setLocale(string)</h3>
 
         <p>Set the language for the default OK, Cancel and Confirm buttons. Values: en, fr, de, es, br, nl, ru, it.</p>
 
-        <h3>bootbox.addLocale(&hellip;)</h3>
+        <h3>bootbox.addLocale(object)</h3>
 
         <p>Add a custom locale.</p>
+
+        <p class="alert alert-info">This documentation is rather dry, not particularly well organised
+        and incomplete. If you want to help out then
+        <a href="https://github.com/makeusabrew/bootbox/blob/gh-pages/documentation.html">please fork &amp; edit this page</a>!
+        </p>
 
     </div>
     <div class='well container'>
