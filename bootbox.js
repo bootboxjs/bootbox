@@ -11,6 +11,7 @@ var bootbox = window.bootbox || (function(document, $) {
         _backdrop      = 'static',
         _defaultHref   = 'javascript:;',
         _classes       = '',
+        _btnClasses    = {},
         _icons         = {},
         /* last var should always be the public object we'll return */
         that           = {};
@@ -42,6 +43,13 @@ var bootbox = window.bootbox || (function(document, $) {
         _icons = icons;
         if (typeof _icons !== 'object' || _icons == null) {
             _icons = {};
+        }
+    };
+
+    that.setBtnClasses = function(btnClasses) {
+        _btnClasses = btnClasses;
+        if (typeof _btnClasses !== 'object' || _btnClasses == null) {
+            _btnClasses = {};
         }
     };
 
@@ -79,6 +87,7 @@ var bootbox = window.bootbox || (function(document, $) {
             // only button (ok)
             "label"   : label,
             "icon"    : _icons.OK,
+            "class"   : _btnClasses.OK,
             "callback": cb
         }, {
             // ensure that the escape key works; either invoking the user's
@@ -141,11 +150,13 @@ var bootbox = window.bootbox || (function(document, $) {
             // first button (cancel)
             "label"   : labelCancel,
             "icon"    : _icons.CANCEL,
+            "class"   : _btnClasses.CANCEL,
             "callback": cancelCallback
         }, {
             // second button (confirm)
             "label"   : labelOk,
             "icon"    : _icons.CONFIRM,
+            "class"   : _btnClasses.CONFIRM,
             "callback": confirmCallback
         }], {
             // escape key bindings
@@ -223,11 +234,13 @@ var bootbox = window.bootbox || (function(document, $) {
             // first button (cancel)
             "label"   : labelCancel,
             "icon"    : _icons.CANCEL,
+            "class"   : _btnClasses.CANCEL,
             "callback":  cancelCallback
         }, {
             // second button (confirm)
             "label"   : labelOk,
             "icon"    : _icons.CONFIRM,
+            "class"   : _btnClasses.CONFIRM,
             "callback": confirmCallback
         }], {
             // prompts need a few extra options
