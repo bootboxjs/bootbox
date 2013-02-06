@@ -12,6 +12,7 @@ var bootbox = window.bootbox || (function(document, $) {
         _defaultHref   = 'javascript:;',
         _classes       = '',
         _icons         = {},
+        _options       = {},
         /* last var should always be the public object we'll return */
         that           = {};
 
@@ -261,7 +262,7 @@ var bootbox = window.bootbox || (function(document, $) {
     that.dialog = function(str, handlers, options) {
         var buttons    = "",
             callbacks  = [],
-            options    = options || {};
+            options    = $.extend({},_options,(options || {}));
 
         // check for single object and convert to array if necessary
         if (handlers == null) {
@@ -523,6 +524,10 @@ var bootbox = window.bootbox || (function(document, $) {
 
     that.classes = function(classes) {
         _classes = classes;
+    };
+
+    that.setOptions = function(options) {
+        _options = options;
     };
 
     /**
