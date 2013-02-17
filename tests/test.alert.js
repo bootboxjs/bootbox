@@ -100,6 +100,25 @@ describe("#alert", function() {
             it("should close the dialog", function() {
                 assert.isTrue(box.is(":hidden"));
             });
+
+            describe("when the callback returns false", function() {
+                var result;
+                before(function() {
+                    box = bootbox.alert("Hi", function() {
+                        result = true;
+                        return false;
+                    });
+                });
+
+                it("should invoke the callback", function() {
+                    box.find("a:first").trigger('click');
+                    assert.isTrue(result);
+                });
+
+                it("should not close the dialog", function() {
+                    assert.isFalse(box.is(":hidden"));
+                });
+            });
         });
 
         describe("when dismissing the dialog by pressing escape", function() {

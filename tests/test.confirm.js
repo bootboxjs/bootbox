@@ -166,6 +166,25 @@ describe("#confirm", function() {
             it("should close the dialog", function() {
                 assert.isTrue(box.is(":hidden"));
             });
+
+            describe("when the callback returns false", function() {
+                var result;
+                before(function() {
+                    box = bootbox.confirm("Sure?", function(cbResult) {
+                        result = cbResult;
+                        return false;
+                    });
+                });
+
+                it("should invoke the callback with a value of true", function() {
+                    box.find("a:last").trigger('click');
+                    assert.isTrue(result);
+                });
+
+                it("should not close the dialog", function() {
+                    assert.isFalse(box.is(":hidden"));
+                });
+            });
         });
 
         describe("when dismissing the dialog by clicking Cancel", function() {
@@ -176,13 +195,32 @@ describe("#confirm", function() {
                 });
             });
 
-            it("should invoke the callback with a value of true", function() {
+            it("should invoke the callback with a value of false", function() {
                 box.find("a:first").trigger('click');
                 assert.isFalse(result);
             });
 
             it("should close the dialog", function() {
                 assert.isTrue(box.is(":hidden"));
+            });
+
+            describe("when the callback returns false", function() {
+                var result;
+                before(function() {
+                    box = bootbox.confirm("Sure?", function(cbResult) {
+                        result = cbResult;
+                        return false;
+                    });
+                });
+
+                it("should invoke the callback with a value of true", function() {
+                    box.find("a:first").trigger('click');
+                    assert.isFalse(result);
+                });
+
+                it("should not close the dialog", function() {
+                    assert.isFalse(box.is(":hidden"));
+                });
             });
         });
 

@@ -127,13 +127,13 @@ var bootbox = window.bootbox || (function(document, $) {
 
         var cancelCallback = function() {
             if (typeof cb === 'function') {
-                cb(false);
+                return cb(false);
             }
         };
 
         var confirmCallback = function() {
             if (typeof cb === 'function') {
-                cb(true);
+                return cb(true);
             }
         };
 
@@ -209,13 +209,13 @@ var bootbox = window.bootbox || (function(document, $) {
             if (typeof cb === 'function') {
                 // yep, native prompts dismiss with null, whereas native
                 // confirms dismiss with false...
-                cb(null);
+                return cb(null);
             }
         };
 
         var confirmCallback = function() {
             if (typeof cb === 'function') {
-                cb(form.find("input[type=text]").val());
+                return cb(form.find("input[type=text]").val());
             }
         };
 

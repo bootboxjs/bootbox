@@ -192,6 +192,30 @@ describe("#prompt", function() {
                 box.find(".modal-footer a:last").trigger('click');
                 assert.equal(result, "Foo Bar");
             });
+
+            it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
+            });
+
+            describe("when the callback returns false", function() {
+                var result;
+                before(function() {
+                    box = bootbox.prompt("Sure?", function(cbResult) {
+                        result = cbResult;
+                        return false;
+                    });
+                    box.find("input[type=text]").val("Foo Bar");
+                });
+
+                it("should invoke the callback with the value of the input", function() {
+                    box.find(".modal-footer a:last").trigger('click');
+                    assert.equal(result, "Foo Bar");
+                });
+
+                it("should not close the dialog", function() {
+                    assert.isFalse(box.is(":hidden"));
+                });
+            });
         });
 
         describe("when dismissing the dialog by clicking Cancel", function() {
@@ -203,9 +227,33 @@ describe("#prompt", function() {
                 box.find("input[type=text]").val("Foo Bar");
             });
 
-            it("should invoke the callback with a value null", function() {
+            it("should invoke the callback with a value of null", function() {
                 box.find(".modal-footer a:first").trigger('click');
                 assert.isNull(result);
+            });
+
+            it("should close the dialog", function() {
+                assert.isTrue(box.is(":hidden"));
+            });
+
+            describe("when the callback returns false", function() {
+                var result;
+                before(function() {
+                    box = bootbox.prompt("Sure?", function(cbResult) {
+                        result = cbResult;
+                        return false;
+                    });
+                    box.find("input[type=text]").val("Foo Bar");
+                });
+
+                it("should invoke the callback with a value of null", function() {
+                    box.find(".modal-footer a:first").trigger('click');
+                    assert.isNull(result);
+                });
+
+                it("should not close the dialog", function() {
+                    assert.isFalse(box.is(":hidden"));
+                });
             });
         });
 
