@@ -49,7 +49,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
     that.setBtnClasses = function(btnClasses) {
         _btnClasses = btnClasses;
-        if (typeof _btnClasses !== 'object' || _btnClasses == null) {
+        if (typeof _btnClasses !== 'object' || _btnClasses === null) {
             _btnClasses = {};
         }
     };
