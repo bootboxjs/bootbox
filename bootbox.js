@@ -40,7 +40,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
     that.setIcons = function(icons) {
         _icons = icons;
-        if (typeof _icons !== 'object' || _icons == null) {
+        if (typeof _icons !== 'object' || _icons === null) {
             _icons = {};
         }
     };
@@ -72,7 +72,6 @@ var bootbox = window.bootbox || (function(document, $) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3");
-                break;
         }
 
         return that.dialog(str, {
@@ -122,7 +121,6 @@ var bootbox = window.bootbox || (function(document, $) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-4");
-                break;
         }
 
         var cancelCallback = function() {
@@ -196,7 +194,6 @@ var bootbox = window.bootbox || (function(document, $) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-5");
-                break;
         }
 
         var header = str;
@@ -260,11 +257,14 @@ var bootbox = window.bootbox || (function(document, $) {
 
     that.dialog = function(str, handlers, options) {
         var buttons    = "",
-            callbacks  = [],
-            options    = options || {};
+            callbacks  = [];
+
+        if (!options) {
+            options = {};
+        }
 
         // check for single object and convert to array if necessary
-        if (handlers == null) {
+        if (typeof handlers === 'undefined') {
             handlers = [];
         } else if (typeof handlers.length == 'undefined') {
             handlers = [handlers];
@@ -494,7 +494,6 @@ var bootbox = window.bootbox || (function(document, $) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3");
-                break;
         }
 
         defaultOptions['header'] = label;
@@ -578,7 +577,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
     function _translate(str, locale) {
         // we assume if no target locale is probided then we should take it from current setting
-        if (locale == null) {
+        if (typeof locale === 'undefined') {
             locale = _locale;
         }
         if (typeof _locales[locale][str] === 'string') {
