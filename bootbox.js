@@ -4,6 +4,7 @@
  * http://bootboxjs.com/license.txt
  */
 var bootbox = window.bootbox || (function(document, $) {
+    /*jshint scripturl:true sub:true */
 
     var _locale        = 'en',
         _defaultLocale = 'en',
