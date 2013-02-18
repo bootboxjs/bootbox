@@ -44,7 +44,13 @@ Bootstrap 3.0.0 (assuming that sees the light of day first).
 You can get a quick overview of the roadmap in the form of the project milestones
 [as listed in the issue tracker](https://github.com/makeusabrew/bootbox/issues/milestones?direction=asc&sort=due_date).
 
-## Latest Release: 3.0.0
+## Latest Release: 3.1.0
+
+* ensure ```confirm``` and ```prompt``` methods return callback values properly (GH-90)
+* address various jshint warnings (GH-79)
+* add ```setBtnClasses``` method for custom standard button classes (GH-87)
+
+### 3.0.0
 
 * bump Bootstrap dependency to 2.2.2
 * bump jQuery dependency to 1.8.3
