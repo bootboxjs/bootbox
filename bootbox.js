@@ -1,9 +1,10 @@
 /**
- * bootbox.js v3.0.0
+ * bootbox.js v3.2.0
  *
  * http://bootboxjs.com/license.txt
  */
 var bootbox = window.bootbox || (function(document, $) {
+    /*jshint scripturl:true sub:true */
 
     var _locale        = 'en',
         _defaultLocale = 'en',
@@ -11,6 +12,7 @@ var bootbox = window.bootbox || (function(document, $) {
         _backdrop      = 'static',
         _defaultHref   = 'javascript:;',
         _classes       = '',
+        _btnClasses    = {},
         _icons         = {},
         /* last var should always be the public object we'll return */
         that           = {};
@@ -40,8 +42,15 @@ var bootbox = window.bootbox || (function(document, $) {
 
     that.setIcons = function(icons) {
         _icons = icons;
-        if (typeof _icons !== 'object' || _icons == null) {
+        if (typeof _icons !== 'object' || _icons === null) {
             _icons = {};
+        }
+    };
+
+    that.setBtnClasses = function(btnClasses) {
+        _btnClasses = btnClasses;
+        if (typeof _btnClasses !== 'object' || _btnClasses === null) {
+            _btnClasses = {};
         }
     };
 
@@ -72,13 +81,13 @@ var bootbox = window.bootbox || (function(document, $) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3");
-                break;
         }
 
         return that.dialog(str, {
             // only button (ok)
             "label"   : label,
             "icon"    : _icons.OK,
+            "class"   : _btnClasses.OK,
             "callback": cb
         }, {
             // ensure that the escape key works; either invoking the user's
@@ -122,18 +131,17 @@ var bootbox = window.bootbox || (function(document, $) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-4");
-                break;
         }
 
         var cancelCallback = function() {
             if (typeof cb === 'function') {
-                cb(false);
+                return cb(false);
             }
         };
 
         var confirmCallback = function() {
             if (typeof cb === 'function') {
-                cb(true);
+                return cb(true);
             }
         };
 
@@ -141,11 +149,13 @@ var bootbox = window.bootbox || (function(document, $) {
             // first button (cancel)
             "label"   : labelCancel,
             "icon"    : _icons.CANCEL,
+            "class"   : _btnClasses.CANCEL,
             "callback": cancelCallback
         }, {
             // second button (confirm)
             "label"   : labelOk,
             "icon"    : _icons.CONFIRM,
+            "class"   : _btnClasses.CONFIRM,
             "callback": confirmCallback
         }], {
             // escape key bindings
@@ -196,7 +206,6 @@ var bootbox = window.bootbox || (function(document, $) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-5");
-                break;
         }
 
         var header = str;
@@ -209,13 +218,13 @@ var bootbox = window.bootbox || (function(document, $) {
             if (typeof cb === 'function') {
                 // yep, native prompts dismiss with null, whereas native
                 // confirms dismiss with false...
-                cb(null);
+                return cb(null);
             }
         };
 
         var confirmCallback = function() {
             if (typeof cb === 'function') {
-                cb(form.find("input[type=text]").val());
+                return cb(form.find("input[type=text]").val());
             }
         };
 
@@ -223,11 +232,13 @@ var bootbox = window.bootbox || (function(document, $) {
             // first button (cancel)
             "label"   : labelCancel,
             "icon"    : _icons.CANCEL,
+            "class"   : _btnClasses.CANCEL,
             "callback":  cancelCallback
         }, {
             // second button (confirm)
             "label"   : labelOk,
             "icon"    : _icons.CONFIRM,
+            "class"   : _btnClasses.CONFIRM,
             "callback": confirmCallback
         }], {
             // prompts need a few extra options
@@ -260,11 +271,14 @@ var bootbox = window.bootbox || (function(document, $) {
 
     that.dialog = function(str, handlers, options) {
         var buttons    = "",
-            callbacks  = [],
-            options    = options || {};
+            callbacks  = [];
+
+        if (!options) {
+            options = {};
+        }
 
         // check for single object and convert to array if necessary
-        if (handlers == null) {
+        if (typeof handlers === 'undefined') {
             handlers = [];
         } else if (typeof handlers.length == 'undefined') {
             handlers = [handlers];
@@ -378,21 +392,32 @@ var bootbox = window.bootbox || (function(document, $) {
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         div.find(".modal-body").html(str);
 
-        div.on('hidden', function() {
-            div.remove();
-        });
+        function onCancel(source) {
+            // for now source is unused, but it will be in future
+            var hideModal = null;
+            if (typeof options.onEscape === 'function') {
+                // @see https://github.com/makeusabrew/bootbox/issues/91
+                hideModal = options.onEscape();
+            }
+
+            if (hideModal !== false) {
+                div.modal('hide');
+            }
+        }
 
         // hook into the modal's keyup trigger to check for the escape key
         div.on('keyup.dismiss.modal', function(e) {
-            // any truthy value passed to onEscape will dismiss the dialog...
-            if (e.which == 27 && options.onEscape) {
-                if (typeof options.onEscape === 'function') {
-                    // ... but only a function will be invoked (obviously)
-                    options.onEscape();
-                }
-
-                div.modal('hide');
+            // any truthy value passed to onEscape will dismiss the dialog
+            // as long as the onEscape function (if defined) doesn't prevent it
+            if (e.which === 27 && options.onEscape) {
+                onCancel('escape');
             }
+        });
+
+        // handle close buttons too
+        div.on('click', 'a.close', function(e) {
+            e.preventDefault();
+            onCancel('close');
         });
 
         // well, *if* we have a primary - give the first dom element focus
@@ -400,8 +425,12 @@ var bootbox = window.bootbox || (function(document, $) {
             div.find("a.btn-primary:first").focus();
         });
 
+        div.on('hidden', function() {
+            div.remove();
+        });
+
         // wire up button handlers
-        div.on('click', '.modal-footer a, a.close', function(e) {
+        div.on('click', '.modal-footer a', function(e) {
 
             var handler   = $(this).data("handler"),
                 cb        = callbacks[handler],
@@ -417,7 +446,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
             e.preventDefault();
 
-            if (typeof cb == 'function') {
+            if (typeof cb === 'function') {
                 hideModal = cb();
             }
 
@@ -494,7 +523,6 @@ var bootbox = window.bootbox || (function(document, $) {
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3");
-                break;
         }
 
         defaultOptions['header'] = label;
@@ -578,7 +606,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
     function _translate(str, locale) {
         // we assume if no target locale is probided then we should take it from current setting
-        if (locale == null) {
+        if (typeof locale === 'undefined') {
             locale = _locale;
         }
         if (typeof _locales[locale][str] === 'string') {
