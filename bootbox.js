@@ -159,7 +159,7 @@ var bootbox = window.bootbox || (function(document, $) {
             "callback": confirmCallback
         }], {
             // escape key bindings
-            "onEscape": cancelCallback,
+            "onEscape": cancelCallback
         });
     };
 
