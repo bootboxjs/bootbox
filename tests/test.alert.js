@@ -142,6 +142,27 @@ describe("#alert", function() {
             it("should close the dialog", function() {
                 assert.isTrue(box.is(":hidden"));
             });
+
+            describe("when the callback returns false", function() {
+                var result;
+                before(function() {
+                    box = bootbox.alert("Hi", function() {
+                        result = true;
+                        return false;
+                    });
+                });
+
+                it("should invoke the callback", function() {
+                    var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                    $(box).trigger(e);
+
+                    assert.isTrue(result);
+                });
+
+                it("should not close the dialog", function() {
+                    assert.isFalse(box.is(":hidden"));
+                });
+            });
         });
     });
 

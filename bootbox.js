@@ -398,14 +398,19 @@ var bootbox = window.bootbox || (function(document, $) {
 
         // hook into the modal's keyup trigger to check for the escape key
         div.on('keyup.dismiss.modal', function(e) {
-            // any truthy value passed to onEscape will dismiss the dialog...
+            // any truthy value passed to onEscape will dismiss the dialog
+            // as long as the onEscape function (if defined) doesn't prevent it
+            var hideModal = null;
+
             if (e.which == 27 && options.onEscape) {
                 if (typeof options.onEscape === 'function') {
-                    // ... but only a function will be invoked (obviously)
-                    options.onEscape();
+                    // @see https://github.com/makeusabrew/bootbox/issues/91
+                    hideModal = options.onEscape();
                 }
 
-                div.modal('hide');
+                if (hideModal !== false) {
+                    div.modal('hide');
+                }
             }
         });
 
@@ -431,7 +436,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
             e.preventDefault();
 
-            if (typeof cb == 'function') {
+            if (typeof cb === 'function') {
                 hideModal = cb();
             }
 

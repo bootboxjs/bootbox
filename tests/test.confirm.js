@@ -242,6 +242,27 @@ describe("#confirm", function() {
             it("should close the dialog", function() {
                 assert.isTrue(box.is(":hidden"));
             });
+
+            describe("when the callback returns false", function() {
+                var result = true;
+                before(function() {
+                    box = bootbox.confirm("Sure?", function(cbResult) {
+                        result = cbResult;
+                        return false;
+                    });
+                });
+
+                it("should invoke the callback with a value of false", function() {
+                    var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                    $(box).trigger(e);
+
+                    assert.isFalse(result);
+                });
+
+                it("should not close the dialog", function() {
+                    assert.isFalse(box.is(":hidden"));
+                });
+            });
         });
     });
 

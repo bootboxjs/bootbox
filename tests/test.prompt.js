@@ -275,6 +275,27 @@ describe("#prompt", function() {
             it("should close the dialog", function() {
                 assert.isTrue(box.is(":hidden"));
             });
+
+            describe("when the callback returns false", function() {
+                var result = true;
+                before(function() {
+                    box = bootbox.prompt("Sure?", function(cbResult) {
+                        result = cbResult;
+                        return false;
+                    });
+                });
+
+                it("should invoke the callback with a value of null", function() {
+                    var e = jQuery.Event("keyup.dismiss.modal", {which: 27});
+                    $(box).trigger(e);
+
+                    assert.isNull(result);
+                });
+
+                it("should not close the dialog", function() {
+                    assert.isFalse(box.is(":hidden"));
+                });
+            });
         });
 
         /**
