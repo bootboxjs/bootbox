@@ -298,10 +298,6 @@ describe("#prompt", function() {
             });
         });
 
-        /**
-         * needs re-implementing when close buttons have a proper handler..
-         */
-         /*
         describe("when pressing close", function() {
             var result = true;
             before(function() {
@@ -309,7 +305,7 @@ describe("#prompt", function() {
                     result = cbResult;
                 });
 
-                box.find(".modal-header a").click();
+                box.find(".modal-header .close").click();
             });
 
             it("should invoke the callback with a value of null", function() {
@@ -320,7 +316,6 @@ describe("#prompt", function() {
                 assert.isTrue(box.is(":hidden"));
             });
         });
-        */
 
         describe("when submitting the form", function() {
             var result;

@@ -159,7 +159,7 @@ var bootbox = window.bootbox || (function(document, $) {
             "callback": confirmCallback
         }], {
             // escape key bindings
-            "onEscape": cancelCallback
+            "onEscape": cancelCallback,
         });
     };
 
@@ -392,26 +392,32 @@ var bootbox = window.bootbox || (function(document, $) {
         // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
         div.find(".modal-body").html(str);
 
-        div.on('hidden', function() {
-            div.remove();
-        });
+        function onCancel(source) {
+            // for now source is unused, but it will be in future
+            var hideModal = null;
+            if (typeof options.onEscape === 'function') {
+                // @see https://github.com/makeusabrew/bootbox/issues/91
+                hideModal = options.onEscape();
+            }
+
+            if (hideModal !== false) {
+                div.modal('hide');
+            }
+        }
 
         // hook into the modal's keyup trigger to check for the escape key
         div.on('keyup.dismiss.modal', function(e) {
             // any truthy value passed to onEscape will dismiss the dialog
             // as long as the onEscape function (if defined) doesn't prevent it
-            var hideModal = null;
-
-            if (e.which == 27 && options.onEscape) {
-                if (typeof options.onEscape === 'function') {
-                    // @see https://github.com/makeusabrew/bootbox/issues/91
-                    hideModal = options.onEscape();
-                }
-
-                if (hideModal !== false) {
-                    div.modal('hide');
-                }
+            if (e.which === 27 && options.onEscape) {
+                onCancel('escape');
             }
+        });
+
+        // handle close buttons too
+        div.on('click', 'a.close', function(e) {
+            e.preventDefault();
+            onCancel('close');
         });
 
         // well, *if* we have a primary - give the first dom element focus
@@ -419,8 +425,12 @@ var bootbox = window.bootbox || (function(document, $) {
             div.find("a.btn-primary:first").focus();
         });
 
+        div.on('hidden', function() {
+            div.remove();
+        });
+
         // wire up button handlers
-        div.on('click', '.modal-footer a, a.close', function(e) {
+        div.on('click', '.modal-footer a', function(e) {
 
             var handler   = $(this).data("handler"),
                 cb        = callbacks[handler],
