@@ -44,7 +44,12 @@ Bootstrap 3.0.0 (assuming that sees the light of day first).
 You can get a quick overview of the roadmap in the form of the project milestones
 [as listed in the issue tracker](https://github.com/makeusabrew/bootbox/issues/milestones?direction=asc&sort=due_date).
 
-## Latest Release: 3.1.0
+## Latest Release: 3.2.0
+
+* ensure ```onEscape``` handlers return callback values properly (GH-91)
+* ensure clicking close button invokes onEscape handler if present
+
+### 3.1.0
 
 * ensure ```confirm``` and ```prompt``` methods return callback values properly (GH-90)
 * address various jshint warnings (GH-79)
