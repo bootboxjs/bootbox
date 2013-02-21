@@ -601,6 +601,11 @@ var bootbox = window.bootbox || (function(document, $) {
             OK      : 'OK',
             CANCEL  : 'Annulla',
             CONFIRM : 'Conferma'
+        },
+        'pl' : {
+            OK      : 'OK',
+            CANCEL  : 'Anuluj',
+            CONFIRM : 'Potwierdź'
         }
     };
 
