@@ -606,6 +606,16 @@ var bootbox = window.bootbox || (function(document, $) {
             OK      : 'OK',
             CANCEL  : 'Anuluj',
             CONFIRM : 'Potwierdź'
+        },
+        'chs': {
+            OK      : '知道了',
+            CANCEL  : '取消',
+            CONFIRM : '确定'
+        }，
+        'cht': {
+            OK      : '知道了',
+            CANCEL  : '取消',
+            CONFIRM : '確定'
         }
     };
 
