@@ -193,7 +193,29 @@ describe("setLocale", function() {
         });
 
         it("shows the correct CONFIRM translation", function() {
-            assert.equal(box2.find("a:last").text(), "Potwierdź);
+            assert.equal(box2.find("a:last").text(), "Potwierdź");
         });
     });
+
+    describe("Danish", function() {
+        before(function() {
+            bootbox.setLocale('da');
+
+            box1 = bootbox.alert("foo");
+            box2 = bootbox.confirm("bar");
+        });
+
+        it("shows the correct OK translation", function() {
+            assert.equal(box1.find("a:last").text(), "OK");
+        });
+
+        it("shows the correct CANCEL translation", function() {
+            assert.equal(box2.find("a:first").text(), "Annuller");
+        });
+
+        it("shows the correct CONFIRM translation", function() {
+            assert.equal(box2.find("a:last").text(), "Accepter");
+        });
+    });
+
 });
