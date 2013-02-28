@@ -562,51 +562,56 @@ var bootbox = window.bootbox || (function(document, $) {
      * unlikely to be required. If this gets too large it can be split out into separate JS files.
      */
     var _locales = {
-        'en' : {
+        'br' : {
             OK      : 'OK',
-            CANCEL  : 'Cancel',
-            CONFIRM : 'OK'
+            CANCEL  : 'Cancelar',
+            CONFIRM : 'Sim'
         },
-        'fr' : {
+        'da' : {
             OK      : 'OK',
-            CANCEL  : 'Annuler',
-            CONFIRM : 'D\'accord'
+            CANCEL  : 'Annuller',
+            CONFIRM : 'Accepter'
         },
         'de' : {
             OK      : 'OK',
             CANCEL  : 'Abbrechen',
             CONFIRM : 'Akzeptieren'
         },
+        'en' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancel',
+            CONFIRM : 'OK'
+        },
         'es' : {
             OK      : 'OK',
             CANCEL  : 'Cancelar',
             CONFIRM : 'Aceptar'
         },
-        'br' : {
+        'fr' : {
             OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Sim'
-        },
-        'nl' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuleren',
-            CONFIRM : 'Accepteren'
-        },
-        'ru' : {
-            OK      : 'OK',
-            CANCEL  : 'Отмена',
-            CONFIRM : 'Применить'
+            CANCEL  : 'Annuler',
+            CONFIRM : 'D\'accord'
         },
         'it' : {
             OK      : 'OK',
             CANCEL  : 'Annulla',
             CONFIRM : 'Conferma'
         },
+        'nl' : {
+            OK      : 'OK',
+            CANCEL  : 'Annuleren',
+            CONFIRM : 'Accepteren'
+        },
         'pl' : {
             OK      : 'OK',
             CANCEL  : 'Anuluj',
             CONFIRM : 'Potwierdź'
-        }
+        },
+        'ru' : {
+            OK      : 'OK',
+            CANCEL  : 'Отмена',
+            CONFIRM : 'Применить'
+        },
     };
 
     function _translate(str, locale) {
