@@ -7,10 +7,9 @@ the original writeup about the project.
 
 The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@makeusabrew](http://twitter.com/makeusabrew)
 
-## Submitting Pull Requests
+## Contributing
 
-* Please ensure that the test suite passes before submitting a PR
-* If you've added new functionality, **please** include tests which validate its behaviour
+Please see the [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for guidelines.
 
 ## Running Tests
 
