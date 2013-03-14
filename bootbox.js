@@ -612,6 +612,11 @@ var bootbox = window.bootbox || (function(document, $) {
             CANCEL  : 'Отмена',
             CONFIRM : 'Применить'
         },
+        'pl' : {
+            OK      : 'OK',
+            CANCEL  : 'Anuluj',
+            CONFIRM : 'Zatwierdź'
+        },
     };
 
     function _translate(str, locale) {
