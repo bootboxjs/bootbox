@@ -612,6 +612,16 @@ var bootbox = window.bootbox || (function(document, $) {
             CANCEL  : 'Отмена',
             CONFIRM : 'Применить'
         },
+        'zh_CN' : {
+            OK      : 'OK'，
+            CANCEL  : '取消',
+            CONFIRM : '确认'
+        },
+        'zh_TW' : {
+            OK      : 'OK',
+            CANCEL  : '取消'，
+            CONFIRM : '確認'
+        }
     };
 
     function _translate(str, locale) {
