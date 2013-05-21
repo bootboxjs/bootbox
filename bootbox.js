@@ -212,7 +212,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input autocomplete=off type=text value='" + defaultVal + "' />");
+        form.append("<input autocomplete=off class=text value='" + defaultVal + "' />");
 
         var cancelCallback = function() {
             if (typeof cb === 'function') {
@@ -224,7 +224,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
         var confirmCallback = function() {
             if (typeof cb === 'function') {
-                return cb(form.find("input[type=text]").val());
+                return cb(form.find("input.text").val());
             }
         };
 
@@ -254,7 +254,7 @@ var bootbox = window.bootbox || (function(document, $) {
         // @see https://github.com/makeusabrew/bootbox/issues/69
 
         div.on("shown", function() {
-            form.find("input[type=text]").focus();
+            form.find("input.text").focus();
 
             // ensure that submitting the form (e.g. with the enter key)
             // replicates the behaviour of a normal prompt()
