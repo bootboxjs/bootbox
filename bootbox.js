@@ -447,7 +447,7 @@ var bootbox = window.bootbox || (function(document, $) {
             e.preventDefault();
 
             if (typeof cb === 'function') {
-                hideModal = cb();
+                hideModal = cb(e);
             }
 
             // the only way hideModal *will* be false is if a callback exists and
