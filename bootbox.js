@@ -613,13 +613,13 @@ var bootbox = window.bootbox || (function(document, $) {
             CONFIRM : 'Применить'
         },
         'zh_CN' : {
-            OK      : 'OK'，
+            OK      : 'OK',
             CANCEL  : '取消',
             CONFIRM : '确认'
         },
         'zh_TW' : {
             OK      : 'OK',
-            CANCEL  : '取消'，
+            CANCEL  : '取消',
             CONFIRM : '確認'
         }
     };

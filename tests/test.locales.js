@@ -4,7 +4,7 @@ describe("setLocale", function() {
 
     it("should throw an error when setting an invalid locale", function() {
         assert.throws(function() {
-            bootbox.setLocale('xx')
+            bootbox.setLocale('xx');
         });
     });
 
@@ -215,6 +215,50 @@ describe("setLocale", function() {
 
         it("shows the correct CONFIRM translation", function() {
             assert.equal(box2.find("a:last").text(), "Accepter");
+        });
+    });
+
+    describe("Chinese", function() {
+        describe("Taiwan", function() {
+            before(function() {
+                bootbox.setLocale('zh_TW');
+
+                box1 = bootbox.alert("foo");
+                box2 = bootbox.confirm("bar");
+            });
+
+            it("shows the correct OK translation", function() {
+                assert.equal(box1.find("a:last").text(), "OK");
+            });
+
+            it("shows the correct CANCEL translation", function() {
+                assert.equal(box2.find("a:first").text(), "取消");
+            });
+
+            it("shows the correct CONFIRM translation", function() {
+                assert.equal(box2.find("a:last").text(), "確認");
+            });
+        });
+
+        describe("China", function() {
+            before(function() {
+                bootbox.setLocale('zh_CN');
+
+                box1 = bootbox.alert("foo");
+                box2 = bootbox.confirm("bar");
+            });
+
+            it("shows the correct OK translation", function() {
+                assert.equal(box1.find("a:last").text(), "OK");
+            });
+
+            it("shows the correct CANCEL translation", function() {
+                assert.equal(box2.find("a:first").text(), "取消");
+            });
+
+            it("shows the correct CONFIRM translation", function() {
+                assert.equal(box2.find("a:last").text(), "确认");
+            });
         });
     });
 
