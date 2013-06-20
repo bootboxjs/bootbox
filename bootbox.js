@@ -212,7 +212,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input autocomplete=off type=text value='" + defaultVal + "' />");
+        form.append("<input class='input-block-level' autocomplete=off type=text value='" + defaultVal + "' />");
 
         var cancelCallback = function() {
             if (typeof cb === 'function') {
