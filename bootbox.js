@@ -327,6 +327,10 @@ var bootbox = window.bootbox || (function(document, $) {
                 _class = 'btn-primary';
             }
 
+            if (handlers[i]['link'] !== true) {
+                _class = 'btn ' + _class;
+            }
+
             if (handlers[i]['label']) {
                 label = handlers[i]['label'];
             } else {
@@ -344,7 +348,7 @@ var bootbox = window.bootbox || (function(document, $) {
                 href = _defaultHref;
             }
 
-            buttons = "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>" + buttons;
+            buttons = "<a data-handler='"+i+"' class='"+_class+"' href='" + href + "'>"+icon+""+label+"</a>" + buttons;
 
             callbacks[i] = callback;
         }
