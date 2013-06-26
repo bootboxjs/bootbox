@@ -317,6 +317,33 @@ describe("#dialog", function() {
                         assert.isTrue(box.find("a:last").hasClass("foo"));
                     });
                 });
+
+                describe("when setting link property to true on the second button", function() {
+                    before(function() {
+                        box = bootbox.dialog("Foo", [{
+                            "label": "Button 1"
+                        }, {
+                            "label": "Link 1",
+                            "link": true
+                        }]);
+                    });
+
+                    it("should show the correct first button", function() {
+                        assert.equal(box.find("a:first").text(), "Button 1");
+                    });
+
+                    it("should not apply the primary class to the first button", function() {
+                        assert.isFalse(box.find("a:first").hasClass("btn-primary"));
+                    });
+
+                    it("should show the correct second button", function() {
+                        assert.equal(box.find("a:last").text(), "Link 1");
+                    });
+
+                    it("should not apply the btn class to the button", function() {
+                        assert.isFalse(box.find("a:last").hasClass("btn"));
+                    });
+                });
             });
 
             describe("when supplying a callback for both buttons", function() {
