@@ -429,8 +429,13 @@ var bootbox = window.bootbox || (function(document, $) {
             div.find("a.btn-primary:first").focus();
         });
 
-        div.on('hidden', function() {
-            div.remove();
+        div.on('hidden', function(e) {
+            // @see https://github.com/makeusabrew/bootbox/issues/115
+            // allow for the fact hidden events can propagate up from
+            // child elements like tooltips
+            if (e.target === this) {
+                div.remove();
+            }
         });
 
         // wire up button handlers

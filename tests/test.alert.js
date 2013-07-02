@@ -101,6 +101,10 @@ describe("#alert", function() {
                 assert.isTrue(box.is(":hidden"));
             });
 
+            it("should remove the dialog from the DOM", function() {
+                assert.equal($("body").find(box).length, 0);
+            });
+
             describe("when the callback returns false", function() {
                 var result;
                 before(function() {
