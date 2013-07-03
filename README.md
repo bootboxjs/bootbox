@@ -43,7 +43,19 @@ Bootstrap 3.0.0 (assuming that sees the light of day first).
 You can get a quick overview of the roadmap in the form of the project milestones
 [as listed in the issue tracker](https://github.com/makeusabrew/bootbox/issues/milestones?direction=asc&sort=due_date).
 
-## Latest Release: 3.2.0
+## Latest Release: 3.3.0
+
+* Add Polish translation (GH-93)
+* Add Danish translation (GH-96)
+* Pass event object to custom callbacks (GH-103)
+* Add Chinese (Taiwan / China) translations (GH-106)
+* Make prompt input block-level (GH-111)
+* Add link: true option to prevent btn class from being applied (GH-114)
+* Prevent child elements triggering hidden callback (GH-115)
+* Replace Phing with Grunt
+* Replace Closure compiler with UglifyJS
+
+### 3.2.0
 
 * ensure ```onEscape``` handlers return callback values properly (GH-91)
 * ensure clicking close button invokes onEscape handler if present
