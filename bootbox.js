@@ -1,5 +1,5 @@
 /**
- * bootbox.js v3.2.0
+ * bootbox.js v3.3.0
  *
  * http://bootboxjs.com/license.txt
  */
@@ -212,7 +212,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input autocomplete=off type=text value='" + defaultVal + "' />");
+        form.append("<input class='input-block-level' autocomplete=off type=text value='" + defaultVal + "' />");
 
         var cancelCallback = function() {
             if (typeof cb === 'function') {
@@ -327,6 +327,10 @@ var bootbox = window.bootbox || (function(document, $) {
                 _class = 'btn-primary';
             }
 
+            if (handlers[i]['link'] !== true) {
+                _class = 'btn ' + _class;
+            }
+
             if (handlers[i]['label']) {
                 label = handlers[i]['label'];
             } else {
@@ -344,7 +348,7 @@ var bootbox = window.bootbox || (function(document, $) {
                 href = _defaultHref;
             }
 
-            buttons = "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>" + buttons;
+            buttons = "<a data-handler='"+i+"' class='"+_class+"' href='" + href + "'>"+icon+""+label+"</a>" + buttons;
 
             callbacks[i] = callback;
         }
@@ -425,8 +429,13 @@ var bootbox = window.bootbox || (function(document, $) {
             div.find("a.btn-primary:first").focus();
         });
 
-        div.on('hidden', function() {
-            div.remove();
+        div.on('hidden', function(e) {
+            // @see https://github.com/makeusabrew/bootbox/issues/115
+            // allow for the fact hidden events can propagate up from
+            // child elements like tooltips
+            if (e.target === this) {
+                div.remove();
+            }
         });
 
         // wire up button handlers
@@ -447,7 +456,7 @@ var bootbox = window.bootbox || (function(document, $) {
             e.preventDefault();
 
             if (typeof cb === 'function') {
-                hideModal = cb();
+                hideModal = cb(e);
             }
 
             // the only way hideModal *will* be false is if a callback exists and
@@ -562,45 +571,65 @@ var bootbox = window.bootbox || (function(document, $) {
      * unlikely to be required. If this gets too large it can be split out into separate JS files.
      */
     var _locales = {
-        'en' : {
+        'br' : {
             OK      : 'OK',
-            CANCEL  : 'Cancel',
-            CONFIRM : 'OK'
+            CANCEL  : 'Cancelar',
+            CONFIRM : 'Sim'
         },
-        'fr' : {
+        'da' : {
             OK      : 'OK',
-            CANCEL  : 'Annuler',
-            CONFIRM : 'D\'accord'
+            CANCEL  : 'Annuller',
+            CONFIRM : 'Accepter'
         },
         'de' : {
             OK      : 'OK',
             CANCEL  : 'Abbrechen',
             CONFIRM : 'Akzeptieren'
         },
+        'en' : {
+            OK      : 'OK',
+            CANCEL  : 'Cancel',
+            CONFIRM : 'OK'
+        },
         'es' : {
             OK      : 'OK',
             CANCEL  : 'Cancelar',
             CONFIRM : 'Aceptar'
         },
-        'br' : {
+        'fr' : {
             OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Sim'
+            CANCEL  : 'Annuler',
+            CONFIRM : 'D\'accord'
+        },
+        'it' : {
+            OK      : 'OK',
+            CANCEL  : 'Annulla',
+            CONFIRM : 'Conferma'
         },
         'nl' : {
             OK      : 'OK',
             CANCEL  : 'Annuleren',
             CONFIRM : 'Accepteren'
         },
+        'pl' : {
+            OK      : 'OK',
+            CANCEL  : 'Anuluj',
+            CONFIRM : 'Potwierdź'
+        },
         'ru' : {
             OK      : 'OK',
             CANCEL  : 'Отмена',
             CONFIRM : 'Применить'
         },
-        'it' : {
+        'zh_CN' : {
             OK      : 'OK',
-            CANCEL  : 'Annulla',
-            CONFIRM : 'Conferma'
+            CANCEL  : '取消',
+            CONFIRM : '确认'
+        },
+        'zh_TW' : {
+            OK      : 'OK',
+            CANCEL  : '取消',
+            CONFIRM : '確認'
         }
     };
 
