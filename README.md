@@ -13,14 +13,14 @@ Please see the [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master
 
 ## Running Tests [![Build Status](https://api.travis-ci.org/makeusabrew/bootbox.png)](http://travis-ci.org/makeusabrew/bootbox)
 
-Tests are now run using [Karma](http://karma-runner.github.io/0.8/index.html) using the Mocha test adapter.
+Tests are run using [Karma](http://karma-runner.github.io/0.8/index.html) using the Mocha test adapter.
 To run the tests yourself, simply run ```npm install``` within the project followed by ```npm test```.
 Please note that this will require [PhantomJS](http://phantomjs.org/) being installed and in your path - if
 it is not, you may run the tests and capture browsers manually by running ```karma start``` from the root
 of the project.
 
-The project is now also hosted on [Travis CI](https://travis-ci.org/makeusabrew/bootbox) - when submitting
-pull requests **please** ensure your tests pass - failing PRs will be rejected. See the
+The project is also hosted on [Travis CI](https://travis-ci.org/makeusabrew/bootbox) - when submitting
+pull requests **please** ensure your tests pass as failing requests will be rejected. See the
 [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for more information.
 
 ## A note on Bootstrap dependencies
