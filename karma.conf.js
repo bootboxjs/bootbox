@@ -10,7 +10,7 @@ basePath = '';
 files = [
   MOCHA,
   MOCHA_ADAPTER,
-  'tests/vendor/mocha/chai.js',
+  'tests/vendor/chai.js',
   'tests/bootstrap.js',
   'tests/vendor/jquery-1.8.3.min.js',
   'tests/vendor/bootstrap-2.2.2.js',
