@@ -13,7 +13,7 @@ Please see the [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master
 
 ## Running Tests
 
-[![Build Status](https://api.travis-ci.org/makeusabrew/bootbox.png)](http://travis-ci.org/makeusabrew/jaoss)
+[![Build Status](https://api.travis-ci.org/makeusabrew/bootbox.png)](http://travis-ci.org/makeusabrew/bootbox)
 
 * Tests live in tests/test.\*.js and are run using [Mocha](http://visionmedia.github.com/mocha/) - to run simply open tests/index.html in your browser.
 * Alternatively, tests can be run headlessly using [mocha-phantomjs](http://metaskills.net/mocha-phantomjs/):
