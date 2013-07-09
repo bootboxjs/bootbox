@@ -24,11 +24,13 @@ describe("#alert", function() {
             assert.equal(box.find("a:first").text(), "OK");
         });
 
+        /* @TODO: reimplement under karma if possible
         var focusFn = window.mochaPhantomJS !== undefined ? null : function() {
             assert.isTrue(box.find("a:first").is(":focus"));
         };
 
         it("has focus on the OK button", focusFn);
+        */
 
         it("applies the primary class to the button", function() {
             assert.isTrue(box.find("a:first").hasClass("btn-primary"));

@@ -2,6 +2,10 @@ describe("setLocale", function() {
     var box1;
     var box2;
 
+    after(function() {
+        bootbox.setLocale('en');
+    });
+
     it("should throw an error when setting an invalid locale", function() {
         assert.throws(function() {
             bootbox.setLocale('xx');

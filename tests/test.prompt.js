@@ -47,11 +47,13 @@ describe("#prompt", function() {
             assert.isTrue(box.find(".modal-footer a:last").hasClass("btn-primary"));
         });
 
+        /* @TODO: reimplement under karma if possible
         var focusFn = window.mochaPhantomJS !== undefined ? null : function() {
             assert.isTrue(box.find(":input:first").is(":focus"));
         };
 
         it("has focus on the text input", focusFn);
+        */
     });
 
     describe("with two arguments", function() {
