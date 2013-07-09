@@ -11,9 +11,7 @@ The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@
 
 Please see the [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for guidelines.
 
-## Running Tests
-
-[![Build Status](https://api.travis-ci.org/makeusabrew/bootbox.png)](http://travis-ci.org/makeusabrew/bootbox)
+## Running Tests [![Build Status](https://api.travis-ci.org/makeusabrew/bootbox.png)](http://travis-ci.org/makeusabrew/bootbox)
 
 Tests are now run using [Karma](http://karma-runner.github.io/0.8/index.html) using the Mocha test adapter.
 To run the tests yourself, simply run ```npm install``` within the project followed by ```npm test```.
