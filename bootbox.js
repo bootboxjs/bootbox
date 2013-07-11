@@ -163,12 +163,20 @@ var bootbox = window.bootbox || (function(document, $) {
         });
     };
 
-    that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
+    that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal, additionalOptions */) {
         var str         = "",
             labelCancel = _translate('CANCEL'),
             labelOk     = _translate('CONFIRM'),
             cb          = null,
             defaultVal  = "";
+
+        var defaultOptions = {
+                helpBlock: null,
+                inputClass: 'input-block-level',
+                inputTag: 'input'
+        };
+
+        var compiledOptions = defaultOptions;
 
         switch (arguments.length) {
             case 1:
@@ -204,15 +212,32 @@ var bootbox = window.bootbox || (function(document, $) {
                 cb          = arguments[3];
                 defaultVal  = arguments[4];
                 break;
+            case 6:
+                str         = arguments[0];
+                labelCancel = arguments[1];
+                labelOk     = arguments[2];
+                cb          = arguments[3];
+                defaultVal  = arguments[4];
+                compiledOptions = $.extend({}, defaultOptions, arguments[5]);
+                break;
             default:
-                throw new Error("Incorrect number of arguments: expected 1-5");
+                throw new Error("Incorrect number of arguments: expected 1-6");
         }
 
         var header = str;
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input class='input-block-level' autocomplete=off type=text value='" + defaultVal + "' />");
+
+        if (compiledOptions.inputTag === 'textarea') {
+            form.append("<textarea class='" + compiledOptions.inputClass + "' type='text' >" + defaultVal + "</textarea>");
+        } else {
+            form.append("<" + compiledOptions.inputTag + " class='" + compiledOptions.inputClass + "' autocomplete=off type='text' value='" + defaultVal + "' />");
+        }
+
+        if (compiledOptions.helpBlock !== null) {
+            form.append("<span class='help-block'>" + compiledOptions.helpBlock + "</span>");
+        }
 
         var cancelCallback = function() {
             if (typeof cb === 'function') {
@@ -222,9 +247,11 @@ var bootbox = window.bootbox || (function(document, $) {
             }
         };
 
+        var fieldSelector = compiledOptions.inputTag + "[type=text]";
+
         var confirmCallback = function() {
             if (typeof cb === 'function') {
-                return cb(form.find("input[type=text]").val());
+                return cb(form.find(fieldSelector).val());
             }
         };
 
@@ -254,7 +281,7 @@ var bootbox = window.bootbox || (function(document, $) {
         // @see https://github.com/makeusabrew/bootbox/issues/69
 
         div.on("shown", function() {
-            form.find("input[type=text]").focus();
+            form.find(fieldSelector).focus();
 
             // ensure that submitting the form (e.g. with the enter key)
             // replicates the behaviour of a normal prompt()
