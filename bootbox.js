@@ -360,6 +360,8 @@ var bootbox = window.bootbox || (function(document, $) {
         // for an explanation of tabIndex=-1
 
         var parts = ["<div class='bootbox modal' tabindex='-1' style='overflow:hidden;'>"];
+        parts.push("<div class='modal-dialog'>");
+        parts.push("<div class='modal-content'>");
 
         if (options['header']) {
             var closeButton = '';
@@ -377,6 +379,8 @@ var bootbox = window.bootbox || (function(document, $) {
             parts.push("<div class='modal-footer'>"+buttons+"</div>");
         }
 
+        parts.push("</div>");
+        parts.push("</div>");
         parts.push("</div>");
 
         var div = $(parts.join("\n"));
