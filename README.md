@@ -23,6 +23,13 @@ The project is also hosted on [Travis CI](https://travis-ci.org/makeusabrew/boot
 pull requests **please** ensure your tests pass as failing requests will be rejected. See the
 [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for more information.
 
+## Building a minified release
+
+The repository no longer contains a minified bootbox.min.js file - this is now only generated
+[for releases](https://github.com/makeusabrew/bootbox/releases). To build your own minified copy
+for use in development simply run ```npm install``` if you haven't already, followed by ```grunt uglify```.
+This will generate a bootbox.min.js file in your working directory.
+
 ## A note on Bootstrap dependencies
 
 Keeping track of issues has become increasingly difficult without a **strict**
