@@ -259,6 +259,8 @@ var bootbox = window.bootbox || (function(document, $) {
                 input.find("option").filter(function() {
                     return $(this).val() == defaultVal;
                 }).prop('selected', true);
+
+                selector = "select";
                 break;
             case "text":
             default:
