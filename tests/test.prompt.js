@@ -172,77 +172,206 @@ describe("#prompt", function() {
         });
     });
 
-    describe("with five arguments, last object. Type not given.", function() {
-        it("throws an error", function() {
-            assert.throws(function() {
-                bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {});
+    describe("with five arguments, last is object", function() {
+        describe("type not given.", function() {
+            it("throws an error", function() {
+                assert.throws(function() {
+                    bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {});
+                });
             });
         });
-    });
 
-    describe("with five arguments, last object. Invalid type.", function() {
-        it("throws an error", function() {
-            assert.throws(function() {
-                bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'foo'});
+        describe("invalid prompt type.", function() {
+            it("throws an error", function() {
+                assert.throws(function() {
+                    bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'foo'});
+                });
             });
         });
-    });
 
-    describe("with five arguments, last object. Type 'text' and value 'default' given", function() {
-        before(function() {
-            box = bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'text', value: 'default'});
+        describe("type 'text' and value 'default' given", function() {
+            before(function() {
+                box = bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'text', value: 'default'});
+            });
+
+            it("shows the expected heading", function() {
+                assert.equal(
+                    box.find(".modal-header h3").text(),
+                    "Hello world!"
+                );
+            });
+
+            it("shows the custom OK label", function() {
+                assert.equal(box.find(".modal-footer a:last").html(), "Bar");
+            });
+
+            it("shows the custom Cancel label", function() {
+                assert.equal(box.find(".modal-footer a:first").html(), "Foo");
+            });
+
+            it("has a form with a text input in the body", function() {
+                assert.ok(box.find(".modal-body form input[type=text]"));
+            });
+
+            it("shows the input with correct default value", function() {
+                assert.equal(box.find(".modal-body input").val(), "default");
+            });
         });
 
-        it("shows the expected heading", function() {
-            assert.equal(
-                box.find(".modal-header h3").text(),
-                "Hello world!"
-            );
+        describe("type 'text' and default value not given", function() {
+            before(function() {
+                box = bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'text'});
+            });
+
+            it("shows the expected heading", function() {
+                assert.equal(
+                    box.find(".modal-header h3").text(),
+                    "Hello world!"
+                );
+            });
+
+            it("shows the custom OK label", function() {
+                assert.equal(box.find(".modal-footer a:last").html(), "Bar");
+            });
+
+            it("shows the custom Cancel label", function() {
+                assert.equal(box.find(".modal-footer a:first").html(), "Foo");
+            });
+
+            it("has a form with a text input in the body", function() {
+                assert.ok(box.find(".modal-body form input[type=text]"));
+            });
+
+            it("shows the input with correct default value", function() {
+                assert.equal(box.find(".modal-body input").val(), "");
+            });
         });
 
-        it("shows the custom OK label", function() {
-            assert.equal(box.find(".modal-footer a:last").html(), "Bar");
+        describe("type 'select' and 'options' not given.", function() {
+            it("throws an error", function() {
+                assert.throws(function() {
+                    bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'select'});
+                });
+            });
         });
 
-        it("shows the custom Cancel label", function() {
-            assert.equal(box.find(".modal-footer a:first").html(), "Foo");
+        describe("type 'select' and 'options' not array.", function() {
+            it("throws an error", function() {
+                assert.throws(function() {
+                    bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'select', options: 'foo'});
+                });
+            });
         });
 
-        it("has a form with a text input in the body", function() {
-            assert.ok(box.find(".modal-body form input[type=text]"));
+        describe("type 'select' and empty 'options'", function() {
+            it("throws an error", function() {
+                assert.throws(function() {
+                    bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'select', options: []});
+                });
+            });
         });
 
-        it("shows the input with correct default value", function() {
-            assert.equal(box.find(".modal-body input").val(), "default");
-        });
-    });
-
-    describe("with five arguments, last object. Type 'text' and default value not given", function() {
-        before(function() {
-            box = bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'text'});
-        });
-
-        it("shows the expected heading", function() {
-            assert.equal(
-                box.find(".modal-header h3").text(),
-                "Hello world!"
-            );
-        });
-
-        it("shows the custom OK label", function() {
-            assert.equal(box.find(".modal-footer a:last").html(), "Bar");
+        describe("type 'select' and invalid 'options' values", function() {
+            it("throws an error", function() {
+                assert.throws(function() {
+                    bootbox.prompt(
+                        "Hello world!",
+                        "Foo",
+                        "Bar",
+                        function() {},
+                        {
+                            type: 'select',
+                            options: [
+                                {foo: 'bar'}
+                            ]
+                        }
+                    );
+                });
+            });
         });
 
-        it("shows the custom Cancel label", function() {
-            assert.equal(box.find(".modal-footer a:first").html(), "Foo");
+        describe("type 'select' and it has correct values in select list.", function() {
+            var options = [
+                {value: '1', text: 'foo'},
+                {value: '2', text: 'bar'}
+            ];
+
+            before(function() {
+                box = bootbox.prompt(
+                    "Hello world!",
+                    "Foo",
+                    "Bar",
+                    function() {},
+                    {
+                        type: 'select',
+                        options: options
+                    }
+                );
+            });
+
+            it("shows the expected heading", function() {
+                assert.equal(
+                    box.find(".modal-header h3").text(),
+                    "Hello world!"
+                );
+            });
+
+            it("shows the custom OK label", function() {
+                assert.equal(box.find(".modal-footer a:last").html(), "Bar");
+            });
+
+            it("shows the custom Cancel label", function() {
+                assert.equal(box.find(".modal-footer a:first").html(), "Foo");
+            });
+
+            it("has a form with a select in the body", function() {
+                assert.ok(box.find(".modal-body form select"));
+            });
+
+            it("has correct number of options", function() {
+                assert.equal(box.find(".modal-body form select option").length, 2);
+            });
+
+            it("has correct options in select list", function() {
+                var items = box.find(".modal-body form select > option").map(function() {
+                    var opt = {};
+
+                    opt["value"] = $(this).val();
+                    opt["text"] = $(this).text();
+
+                    return opt;
+                }).get();
+
+                assert.deepEqual(items, options);
+            });
         });
 
-        it("has a form with a text input in the body", function() {
-            assert.ok(box.find(".modal-body form input[type=text]"));
-        });
+        describe("type 'select' and it has default value selected.", function() {
+            var options = [
+                {value: '1', text: 'foo'},
+                {value: '2', text: 'bar'},
+                {value: '3', text: 'barfoo'}
+            ];
 
-        it("shows the input with correct default value", function() {
-            assert.equal(box.find(".modal-body input").val(), "");
+            var selectedValue = 2;
+
+            before(function() {
+                box = bootbox.prompt(
+                    "Hello world!",
+                    "Foo",
+                    "Bar",
+                    function() {},
+                    {
+                        type: 'select',
+                        options: options,
+                        value: selectedValue
+                    }
+                );
+            });
+
+            it("has specified value selected", function() {
+                assert.equal(box.find("option:selected").val(), selectedValue);
+            });
         });
     });
 
@@ -405,133 +534,6 @@ describe("#prompt", function() {
             it("should invoke the callback with the value of the input", function() {
                 box.find(".modal-body form").trigger('submit');
                 assert.equal(result, "Foo Bar");
-            });
-        });
-
-        describe("with select and 'options' not given.", function() {
-            it("throws an error", function() {
-                assert.throws(function() {
-                    bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'select'});
-                });
-            });
-        });
-
-        describe("with select and 'options' not array.", function() {
-            it("throws an error", function() {
-                assert.throws(function() {
-                    bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'select', options: 'foo'});
-                });
-            });
-        });
-
-        describe("with select and empty 'options'", function() {
-            it("throws an error", function() {
-                assert.throws(function() {
-                    bootbox.prompt("Hello world!", "Foo", "Bar", function() {}, {type: 'select', options: []});
-                });
-            });
-        });
-
-        describe("with select and invalid 'options' values", function() {
-            it("throws an error", function() {
-                assert.throws(function() {
-                    bootbox.prompt(
-                        "Hello world!",
-                        "Foo",
-                        "Bar",
-                        function() {},
-                        {
-                            type: 'select',
-                            options: [
-                                {foo: 'bar'}
-                            ]
-                        }
-                    );
-                });
-            });
-        });
-
-        describe("prompt with select has correct values in select.", function() {
-            var options = [
-                {value: '1', text: 'foo'},
-                {value: '2', text: 'bar'}
-            ];
-
-            before(function() {
-                box = bootbox.prompt(
-                    "Hello world!",
-                    "Foo",
-                    "Bar",
-                    function() {},
-                    {
-                        type: 'select',
-                        options: options
-                    }
-                );
-            });
-
-            it("shows the expected heading", function() {
-                assert.equal(
-                    box.find(".modal-header h3").text(),
-                    "Hello world!"
-                );
-            });
-
-            it("shows the custom OK label", function() {
-                assert.equal(box.find(".modal-footer a:last").html(), "Bar");
-            });
-
-            it("shows the custom Cancel label", function() {
-                assert.equal(box.find(".modal-footer a:first").html(), "Foo");
-            });
-
-            it("has a form with a select in the body", function() {
-                assert.ok(box.find(".modal-body form select"));
-            });
-
-            it("has correct number of options", function() {
-                assert.equal(box.find(".modal-body form select option").length, 2);
-            });
-
-            it("has correct options in select list", function() {
-                var items = box.find(".modal-body form select > option").map(function() {
-                    var opt = {};
-
-                    opt["value"] = $(this).val();
-                    opt["text"] = $(this).text();
-
-                    return opt;
-                }).get();
-
-                assert.deepEqual(items, options);
-            });
-        });
-
-        describe("prompt with select has default value selected.", function() {
-            var options = [
-                {value: '1', text: 'foo'},
-                {value: '2', text: 'bar'},
-                {value: '3', text: 'barfoo'}
-            ];
-
-            var selectedValue = 2;
-
-            before(function() {
-                box = bootbox.prompt(
-                    "Hello world!",
-                    "Foo",
-                    "Bar",
-                    function() {},
-                    {
-                        type: 'select',
-                        options: options,
-                        value: selectedValue
-                    }
-                );
-            });
-
-            it("has specified value selected", function() {
-                assert.equal(box.find("option:selected").val(), selectedValue);
             });
         });
     });
