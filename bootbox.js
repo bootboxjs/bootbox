@@ -168,7 +168,11 @@ var bootbox = window.bootbox || (function(document, $) {
             labelCancel = _translate('CANCEL'),
             labelOk     = _translate('CONFIRM'),
             cb          = null,
-            defaultVal  = "";
+            defaultVal  = "",
+            type        = "text",
+            types       = ['text', 'select'],
+            options     = [],
+            selector    = "";
 
         switch (arguments.length) {
             case 1:
@@ -202,7 +206,33 @@ var bootbox = window.bootbox || (function(document, $) {
                 labelCancel = arguments[1];
                 labelOk     = arguments[2];
                 cb          = arguments[3];
-                defaultVal  = arguments[4];
+
+                if (typeof arguments[4] == "object") {
+                    if (typeof arguments[4].type === "undefined" || types.indexOf(arguments[4].type) === -1) {
+                        throw new Error("Prompt input type not given or it is invalid. Expected type: "
+                            + types.join(", "));
+                    }
+
+                    type = arguments[4].type;
+
+                    if (type == "select") {
+                        if (typeof arguments[4].options !== 'object' || arguments[4].options.length === 0) {
+                            throw new Error("No options defined for select. Specify options as an array of objects.");
+                        } else if (typeof arguments[4].options[0].value === "undefined"
+                            || typeof arguments[4].options[0].text === "undefined")
+                        {
+                            throw new Error("Select options in wrong format. [{value: 1, text: 'foo'}]");
+                        }
+
+                        options = arguments[4].options;
+                    }
+
+                    if (typeof arguments[4].value !== 'undefined') {
+                        defaultVal = arguments[4].value;
+                    }
+                } else {
+                    defaultVal  = arguments[4];
+                }
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-5");
@@ -212,7 +242,32 @@ var bootbox = window.bootbox || (function(document, $) {
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input class='input-block-level' autocomplete=off type=text value='" + defaultVal + "' />");
+        var input = '';
+
+        switch (type) {
+            case "select":
+                input = $("<select class='form-control'/>");
+
+                // Create options for select
+                for (var i = 0; i < arguments[4].options.length; i++) {
+                    var option = arguments[4].options[i];
+
+                    input.append(new Option(option.text, option.value));
+                }
+
+                // Set selected option
+                input.find("option").filter(function() {
+                    return $(this).val() == defaultVal;
+                }).prop('selected', true);
+                break;
+            case "text":
+            default:
+                input = "<input class='form-control' autocomplete=off type=text value='" + defaultVal + "' />";
+                selector = "input[type=text]";
+                break;
+        }
+
+        form.append(input);
 
         var cancelCallback = function() {
             if (typeof cb === 'function') {
@@ -224,7 +279,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
         var confirmCallback = function() {
             if (typeof cb === 'function') {
-                return cb(form.find("input[type=text]").val());
+                return cb(form.find(selector).val());
             }
         };
 
@@ -254,7 +309,7 @@ var bootbox = window.bootbox || (function(document, $) {
         // @see https://github.com/makeusabrew/bootbox/issues/69
 
         div.on("shown", function() {
-            form.find("input[type=text]").focus();
+            form.find(selector).focus();
 
             // ensure that submitting the form (e.g. with the enter key)
             // replicates the behaviour of a normal prompt()
