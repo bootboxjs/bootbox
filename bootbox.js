@@ -422,11 +422,12 @@ var bootbox = window.bootbox || (function(document, $) {
 
         if (options['header']) {
             var closeButton = '';
+
             if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
                 closeButton = "<a href='"+_defaultHref+"' class='close'>&times;</a>";
             }
 
-            parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
+            parts.push("<div class='modal-header'>"+closeButton+"<h4 class='modal-title'>"+options['header']+"</h4></div>");
         }
 
         // push an empty body into which we'll inject the proper content later

@@ -18,7 +18,7 @@ describe("#prompt", function() {
 
         it("shows the expected heading", function() {
             assert.equal(
-                box.find(".modal-header h3").text(),
+                box.find(".modal-header h4").text(),
                 "Hello world!"
             );
         });
@@ -64,7 +64,7 @@ describe("#prompt", function() {
 
             it("shows the expected heading", function() {
                 assert.equal(
-                    box.find(".modal-header h3").text(),
+                    box.find(".modal-header h4").text(),
                     "Hello world!"
                 );
             });
@@ -101,7 +101,7 @@ describe("#prompt", function() {
 
             it("shows the expected heading", function() {
                 assert.equal(
-                    box.find(".modal-header h3").text(),
+                    box.find(".modal-header h4").text(),
                     "Hello world!"
                 );
             });
@@ -133,7 +133,7 @@ describe("#prompt", function() {
 
         it("shows the expected heading", function() {
             assert.equal(
-                box.find(".modal-header h3").text(),
+                box.find(".modal-header h4").text(),
                 "Hello world!"
             );
         });
@@ -154,7 +154,7 @@ describe("#prompt", function() {
 
         it("shows the expected heading", function() {
             assert.equal(
-                box.find(".modal-header h3").text(),
+                box.find(".modal-header h4").text(),
                 "Hello world!"
             );
         });
@@ -197,7 +197,7 @@ describe("#prompt", function() {
 
                 it("shows the expected heading", function() {
                     assert.equal(
-                        box.find(".modal-header h3").text(),
+                        box.find(".modal-header h4").text(),
                         "Hello world!"
                     );
                 });
