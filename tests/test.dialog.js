@@ -339,10 +339,6 @@ describe("#dialog", function() {
                     it("should show the correct second button", function() {
                         assert.equal(box.find("a:last").text(), "Link 1");
                     });
-
-                    it("should not apply the btn class to the button", function() {
-                        assert.isFalse(box.find("a:last").hasClass("btn"));
-                    });
                 });
             });
 
@@ -477,7 +473,7 @@ describe("#dialog", function() {
                     });
 
                     it("should show the correct header", function() {
-                        assert.equal(box.find(".modal-header h3").text(), "My Header");
+                        assert.equal(box.find(".modal-header h4").text(), "My Header");
                     });
 
                     it("should show a close button", function() {
