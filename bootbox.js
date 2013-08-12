@@ -4,7 +4,6 @@
  * http://bootboxjs.com/license.txt
  */
 var bootbox = window.bootbox || (function(document, $) {
-    /*jshint scripturl:true sub:true */
 
     var _locale        = 'en',
         _defaultLocale = 'en',
@@ -209,8 +208,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
                 if (typeof arguments[4] == "object") {
                     if (typeof arguments[4].type === "undefined" || types.indexOf(arguments[4].type) === -1) {
-                        throw new Error("Prompt input type not given or it is invalid. Expected type: "
-                            + types.join(", "));
+                        throw new Error("Prompt input type not given or it is invalid. Expected type: " + types.join(", "));
                     }
 
                     type = arguments[4].type;
@@ -218,9 +216,7 @@ var bootbox = window.bootbox || (function(document, $) {
                     if (type == "select") {
                         if (typeof arguments[4].options !== 'object' || arguments[4].options.length === 0) {
                             throw new Error("No options defined for select. Specify options as an array of objects.");
-                        } else if (typeof arguments[4].options[0].value === "undefined"
-                            || typeof arguments[4].options[0].text === "undefined")
-                        {
+                        } else if (typeof arguments[4].options[0].value === "undefined" || typeof arguments[4].options[0].text === "undefined") {
                             throw new Error("Select options in wrong format. [{value: 1, text: 'foo'}]");
                         }
 
@@ -244,29 +240,25 @@ var bootbox = window.bootbox || (function(document, $) {
         var form = $("<form></form>");
         var input = '';
 
-        switch (type) {
-            case "select":
-                input = $("<select class='form-control'/>");
+        if (type === "select") {
+            input = $("<select class='form-control'/>");
 
-                // Create options for select
-                for (var i = 0; i < arguments[4].options.length; i++) {
-                    var option = arguments[4].options[i];
+            // Create options for select
+            for (var i = 0; i < arguments[4].options.length; i++) {
+                var option = arguments[4].options[i];
 
-                    input.append(new Option(option.text, option.value));
-                }
+                input.append(new Option(option.text, option.value));
+            }
 
-                // Set selected option
-                input.find("option").filter(function() {
-                    return $(this).val() == defaultVal;
-                }).prop('selected', true);
+            // Set selected option
+            input.find("option").filter(function() {
+                return $(this).val() == defaultVal;
+            }).prop('selected', true);
 
-                selector = "select";
-                break;
-            case "text":
-            default:
-                input = "<input class='form-control' autocomplete=off type=text value='" + defaultVal + "' />";
-                selector = "input[type=text]";
-                break;
+            selector = "select";
+        } else {
+            input = "<input class='form-control' autocomplete=off type=text value='" + defaultVal + "' />";
+            selector = "input[type=text]";
         }
 
         form.append(input);

@@ -18,6 +18,7 @@
   "devDependencies": {
     "grunt-contrib-uglify": "~0.2.2",
     "grunt": "~0.4.1",
-    "karma": "~0.8.6"
+    "karma": "~0.8.6",
+    "grunt-contrib-jshint": "~0.6.2"
   }
 }
