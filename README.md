@@ -3,9 +3,23 @@
 Please see http://bootboxjs.com for full usage instructions, or head over to http://paynedigital.com/bootbox for
 the original writeup about the project.
 
+## Bootstrap 3 support
+
+[Bootstrap 3 RC1](http://getbootstrap.com/) is now available meaning that as per the
+[roadmap](https://github.com/makeusabrew/bootbox/blob/v3.x/README.md#roadmap)
+the next major release of Bootbox will be 4.0.0. This will entail a complete rewrite and new
+public API and will be out as close to the full Bootstrap 3.0 release as possible. If you wish
+to contribute to its development, please ensure you're working on the
+[master](https://github.com/makeusabrew/bootbox/tree/master) branch. If you want to
+contribute bugfixes to the Bootbox 3.x series (which depend on Bootstrap 2.x) please work on the
+[v3.x]([master](https://github.com/makeusabrew/bootbox/tree/v3.x) branch.
+
+If you just want to download a version of the library compatible with the Bootstrap 2.x series, please
+see the [list of available releases](https://github.com/makeusabrew/bootbox/releases).
+
 ## Contact
 
-The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@makeusabrew](http://twitter.com/makeusabrew)
+The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/makeusabrew)
 
 ## Contributing
 
