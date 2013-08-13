@@ -4,7 +4,7 @@
 * Please ensure that the test suite passes before submitting a PR:
  * ```npm test```
 * If you've added new functionality, **please** include tests which validate its behaviour
-* Please ensure that bootbox.js is still free:
+* Please ensure that bootbox.js is lint free:
  * ```grunt jshint```
 
 ## Submitting bug reports
