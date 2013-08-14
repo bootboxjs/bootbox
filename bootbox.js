@@ -68,13 +68,21 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       options.show = true;
     }
 
-    var i = options.buttons.length;
-    
+    var buttons = options.buttons;
+    var total = buttons.length;
+    var i = total;
+    var button;
+
     while (i--) {
-      var button = options.buttons[i];
+      button = buttons[i];
 
       if (!button.label) {
         throw new Error("Button at index " + i + " requires a label");
+      }
+
+      if (!button.className && total <= 2 && i === total-1) {
+        // always add a primary to the main option in a two-button dialog
+        button.className = "btn-primary";
       }
     }
 
@@ -106,9 +114,14 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     elem.find(".modal-body").html(options.message);
     elem.find(".modal-footer").html(buttonStr);
 
+    /**
+     * Bootstrap event listeners; used to detect user interaction
+     * and handle extra setup & teardown required after the
+     * underlying modal has performed certain actions
+     */
 
-    // bootstrap event listeners
-
+    // @TODO why hook into the bootstrap event? Why not just keyup?
+    // if so then move this
     elem.on("keyup.dismiss.bs.modal", function(e) {
       // @TODO make conditional
       if (e.which === 27) {
@@ -122,6 +135,24 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       }
     });
 
+    elem.on("shown.bs.modal", function(e) {
+      elem.find(".btn-primary:first").focus();
+    });
+
+    /**
+     * Bootbox event listeners; experimental and may not last
+     * just an attempt to decouple some behaviours from their
+     * respective triggers
+     */
+    elem.on("escape.close.bb", function(e) {
+      processCallback(e, elem, options.onEscape);
+    });
+
+    /**
+     * Standard jQuery event listeners; used to handle user
+     * interaction with our dialog
+     */
+
     elem.on("click", ".modal-footer button", function(e) {
       e.preventDefault();
 
@@ -130,11 +161,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
       processCallback(e, elem, callback);
 
-    });
-
-    // bootbox event listeners
-    elem.on("escape.close.bb", function(e) {
-      processCallback(e, elem, options.onEscape);
     });
 
     appendTo.append(elem);
