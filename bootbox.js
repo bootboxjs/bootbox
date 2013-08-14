@@ -102,7 +102,9 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     var i = buttons.length;
     var button;
     var buttonStr = "";
-    var callbacks = {};
+    var callbacks = {
+      "escape": options.onEscape
+    };
 
     while (i--) {
       button = buttons[i];
@@ -137,7 +139,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
      */
 
     elem.on("escape.close.bb", function(e) {
-      processCallback(e, elem, options.onEscape);
+      processCallback(e, elem, callbacks.escape);
     });
 
     /**
@@ -149,10 +151,14 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       e.preventDefault();
 
       var callbackIndex = $(this).data("bb-handler");
-      var callback = callbacks[callbackIndex];
 
-      processCallback(e, elem, callback);
+      processCallback(e, elem, callbacks[callbackIndex]);
 
+    });
+
+    elem.on("click", ".modal-header .close", function(e) {
+      e.preventDefault();
+      processCallback(e, elem, callbacks.escape);
     });
 
     elem.on("keyup", function(e) {
