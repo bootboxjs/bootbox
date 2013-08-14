@@ -1,0 +1,24 @@
+{
+  "name": "bootbox.js",
+  "version": "3.3.0",
+  "description": "Wrappers for JavaScript alert(), confirm() and other flexible dialogs using Twitter's bootstrap framework",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS --reporters dots"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/makeusabrew/bootbox.git"
+  },
+  "author": "Nick Payne <nick@kurai.co.uk>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt": "~0.4.1",
+    "karma": "~0.8.6",
+    "grunt-contrib-jshint": "~0.6.2"
+  }
+}

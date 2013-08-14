@@ -3,7 +3,7 @@ describe("Initial state", function() {
         assert.ok(bootbox);
     });
 
-    it("starts with no visible dialogs", function() {
+    it("starts with no dialogs in the DOM", function() {
         assert.equal($(".bootbox").length, 0);
     });
 });

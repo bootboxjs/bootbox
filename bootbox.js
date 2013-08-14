@@ -1,10 +1,9 @@
 /**
- * bootbox.js v3.2.0
+ * bootbox.js [master branch]
  *
  * http://bootboxjs.com/license.txt
  */
 var bootbox = window.bootbox || (function(document, $) {
-    /*jshint scripturl:true sub:true */
 
     var _locale        = 'en',
         _defaultLocale = 'en',
@@ -168,7 +167,11 @@ var bootbox = window.bootbox || (function(document, $) {
             labelCancel = _translate('CANCEL'),
             labelOk     = _translate('CONFIRM'),
             cb          = null,
-            defaultVal  = "";
+            defaultVal  = "",
+            type        = "text",
+            types       = ['text', 'select'],
+            options     = [],
+            selector    = "";
 
         switch (arguments.length) {
             case 1:
@@ -202,7 +205,30 @@ var bootbox = window.bootbox || (function(document, $) {
                 labelCancel = arguments[1];
                 labelOk     = arguments[2];
                 cb          = arguments[3];
-                defaultVal  = arguments[4];
+
+                if (typeof arguments[4] == "object") {
+                    if (typeof arguments[4].type === "undefined" || types.indexOf(arguments[4].type) === -1) {
+                        throw new Error("Prompt input type not given or it is invalid. Expected type: " + types.join(", "));
+                    }
+
+                    type = arguments[4].type;
+
+                    if (type == "select") {
+                        if (typeof arguments[4].options !== 'object' || arguments[4].options.length === 0) {
+                            throw new Error("No options defined for select. Specify options as an array of objects.");
+                        } else if (typeof arguments[4].options[0].value === "undefined" || typeof arguments[4].options[0].text === "undefined") {
+                            throw new Error("Select options in wrong format. [{value: 1, text: 'foo'}]");
+                        }
+
+                        options = arguments[4].options;
+                    }
+
+                    if (typeof arguments[4].value !== 'undefined') {
+                        defaultVal = arguments[4].value;
+                    }
+                } else {
+                    defaultVal  = arguments[4];
+                }
                 break;
             default:
                 throw new Error("Incorrect number of arguments: expected 1-5");
@@ -212,7 +238,30 @@ var bootbox = window.bootbox || (function(document, $) {
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input autocomplete=off class=text type=text value='" + defaultVal + "' />");
+        var input = '';
+
+        if (type === "select") {
+            input = $("<select class='form-control'/>");
+
+            // Create options for select
+            for (var i = 0; i < arguments[4].options.length; i++) {
+                var option = arguments[4].options[i];
+
+                input.append(new Option(option.text, option.value));
+            }
+
+            // Set selected option
+            input.find("option").filter(function() {
+                return $(this).val() == defaultVal;
+            }).prop('selected', true);
+
+            selector = "select";
+        } else {
+            input = "<input class='form-control' autocomplete=off type=text class=text value='" + defaultVal + "' />";
+            selector = "input.text";
+        }
+
+        form.append(input);
 
         var cancelCallback = function() {
             if (typeof cb === 'function') {
@@ -224,7 +273,7 @@ var bootbox = window.bootbox || (function(document, $) {
 
         var confirmCallback = function() {
             if (typeof cb === 'function') {
-                return cb(form.find("input.text").val());
+                return cb(form.find(selector).val());
             }
         };
 
@@ -253,8 +302,8 @@ var bootbox = window.bootbox || (function(document, $) {
         // before any show(n) events are triggered
         // @see https://github.com/makeusabrew/bootbox/issues/69
 
-        div.on("shown", function() {
-            form.find("input.text").focus();
+        div.on("shown.bs.modal", function() {
+            form.find(selector).focus();
 
             // ensure that submitting the form (e.g. with the enter key)
             // replicates the behaviour of a normal prompt()
@@ -324,7 +373,11 @@ var bootbox = window.bootbox || (function(document, $) {
                 _class = handlers[i]['class'];
             } else if (i == handlers.length -1 && handlers.length <= 2) {
                 // always add a primary to the main option in a two-button dialog
-                _class = 'btn-primary';
+                _class = 'btn btn-primary';
+            }
+
+            if (handlers[i]['link'] !== true) {
+                _class = 'btn btn-default ' + _class;
             }
 
             if (handlers[i]['label']) {
@@ -344,7 +397,7 @@ var bootbox = window.bootbox || (function(document, $) {
                 href = _defaultHref;
             }
 
-            buttons = "<a data-handler='"+i+"' class='btn "+_class+"' href='" + href + "'>"+icon+""+label+"</a>" + buttons;
+            buttons = "<a data-handler='"+i+"' class='"+_class+"' href='" + href + "'>"+icon+""+label+"</a>" + buttons;
 
             callbacks[i] = callback;
         }
@@ -356,14 +409,17 @@ var bootbox = window.bootbox || (function(document, $) {
         // for an explanation of tabIndex=-1
 
         var parts = ["<div class='bootbox modal' tabindex='-1' style='overflow:hidden;'>"];
+        parts.push("<div class='modal-dialog'>");
+        parts.push("<div class='modal-content'>");
 
         if (options['header']) {
             var closeButton = '';
+
             if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
                 closeButton = "<a href='"+_defaultHref+"' class='close'>&times;</a>";
             }
 
-            parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
+            parts.push("<div class='modal-header'>"+closeButton+"<h4 class='modal-title'>"+options['header']+"</h4></div>");
         }
 
         // push an empty body into which we'll inject the proper content later
@@ -373,6 +429,8 @@ var bootbox = window.bootbox || (function(document, $) {
             parts.push("<div class='modal-footer'>"+buttons+"</div>");
         }
 
+        parts.push("</div>");
+        parts.push("</div>");
         parts.push("</div>");
 
         var div = $(parts.join("\n"));
@@ -406,7 +464,7 @@ var bootbox = window.bootbox || (function(document, $) {
         }
 
         // hook into the modal's keyup trigger to check for the escape key
-        div.on('keyup.dismiss.modal', function(e) {
+        div.on('keyup.dismiss.bs.modal', function(e) {
             // any truthy value passed to onEscape will dismiss the dialog
             // as long as the onEscape function (if defined) doesn't prevent it
             if (e.which === 27 && options.onEscape) {
@@ -421,12 +479,17 @@ var bootbox = window.bootbox || (function(document, $) {
         });
 
         // well, *if* we have a primary - give the first dom element focus
-        div.on('shown', function() {
+        div.on('shown.bs.modal', function() {
             div.find("a.btn-primary:first").focus();
         });
 
-        div.on('hidden', function() {
-            div.remove();
+        div.on('hidden.bs.modal', function(e) {
+            // @see https://github.com/makeusabrew/bootbox/issues/115
+            // allow for the fact hidden events can propagate up from
+            // child elements like tooltips
+            if (e.target === this) {
+                div.remove();
+            }
         });
 
         // wire up button handlers
@@ -447,7 +510,7 @@ var bootbox = window.bootbox || (function(document, $) {
             e.preventDefault();
 
             if (typeof cb === 'function') {
-                hideModal = cb();
+                hideModal = cb(e);
             }
 
             // the only way hideModal *will* be false is if a callback exists and
@@ -477,7 +540,7 @@ var bootbox = window.bootbox || (function(document, $) {
         // @see https://github.com/makeusabrew/bootbox/issues/60
         // ...caused by...
         // @see https://github.com/twitter/bootstrap/issues/4781
-        div.on("show", function(e) {
+        div.on("show.bs.modal", function(e) {
             $(document).off("focusin.modal");
         });
 
@@ -612,6 +675,16 @@ var bootbox = window.bootbox || (function(document, $) {
             CANCEL  : 'Отмена',
             CONFIRM : 'Применить'
         },
+        'zh_CN' : {
+            OK      : 'OK',
+            CANCEL  : '取消',
+            CONFIRM : '确认'
+        },
+        'zh_TW' : {
+            OK      : 'OK',
+            CANCEL  : '取消',
+            CONFIRM : '確認'
+        }
     };
 
     function _translate(str, locale) {

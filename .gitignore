@@ -1,2 +1,6 @@
 *.swo
 *.swp
+node_modules
+npm-debug.log
+bootbox.min.js
+.idea
