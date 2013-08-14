@@ -16,7 +16,101 @@ $(function() {
     // let's namespace the demo methods; it makes them easier
     // to invoke
     demos.alert = function() {
-        bootbox.alert("Hello world!");
+      bootbox.alert("Hello 1", function() {
+        console.log("cb1");
+        bootbox.alert({
+          message: "Hello 2",
+          callback: function() {
+            console.log("cb2");
+            bootbox.alert("Hello 3");
+          }
+        });
+      });
+
+
+      bootbox.alert({
+        message: "Hey",
+        label: "Okay?!"
+      });
+
+      bootbox.alert({
+        message: "Hey",
+        buttons: {
+          ok: {
+            label: "Okay?!",
+            icon: ""
+          }
+        }
+      });
+
+      bootbox.alert({
+        message: "Hey",
+        // known top-level button keys; risk of clashes
+        // although we'll only ever have:
+        // ok (alert)
+        // cancel (confirm, prompt)
+        // confirm (confirm, prompt)
+        // forcing these under a buttons: {} object would
+        // mean the API is consistent; but do they need to be?
+        ok: {
+          label: "Okay?!",
+          icon: ""
+        }
+      });
+
+      bootbox.dialog({
+        title: "Are you sure?",
+        message: "foo bar",
+        show: false,
+        buttons: {
+          key_who_cares: {
+            label: "mother trucker",
+            className: "some class",
+            callback: function() {
+              //
+            }
+          },
+          "short form": function() {
+            console.log("now I care about the key!");
+          }
+        },
+        onEscape: function() {
+          // escape me, eh?
+        }
+      });
+
+
+      /*
+      bootbox.dialog({
+        message: "hi there",
+        buttons: {
+          "hello": function() {
+            //
+          },
+          "test": {
+            callback: function() {
+              //
+            },
+            className: "foo"
+          }
+        },
+        buttons2: [{
+          label: "hello",
+          className: "foo",
+          callback: function() {
+            //
+          }
+        }],
+        buttons3: [{
+          "hello": function() {
+            //
+          }
+        }, {
+          "test": function() {
+          }
+        }]
+      });
+      */
     };
 
     demos.alert_callback = function() {
@@ -26,9 +120,49 @@ $(function() {
     };
 
     demos.confirm = function() {
+      //bootbox.confirm("Are you sure?"); // nil point
+      /*
+      bootbox.confirm("Are you sure?", function(result) {
+        bootbox.confirm({
+          message: "Are you REALLY sure?",
+          callback: function(result) {
+            console.log("confirm 2");
+
+            bootbox.confirm({
+              message: "Sure 3?",
+              cancel: {
+                label: "CAAANCEL",
+                icon: "foo"
+              },
+              confirm: {
+                label: "Carry on"
+              }
+            });
+
+            bootbox.confirm({
+              message: "Sure 3?",
+              buttons: {
+                cancel: {
+                  label: "CAAANCEL",
+                  icon: "foo"
+                },
+                confirm: {
+                  label: "Carry on"
+                }
+              }
+            });
+              
+          }
+        });
+      });
+      /*
         bootbox.confirm("Are you sure?", function(result) {
             Example.show("Confirm result: "+result);
         });
+        */
+      bootbox.confirm("Are you sure?", function(result) {
+        console.log("Confirm 1", result);
+      });
     };
 
     demos.alert_button = function() {
