@@ -115,19 +115,10 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     elem.find(".modal-footer").html(buttonStr);
 
     /**
-     * Bootstrap event listeners; used to detect user interaction
-     * and handle extra setup & teardown required after the
-     * underlying modal has performed certain actions
+     * Bootstrap event listeners; used handle extra
+     * setup & teardown required after the underlying
+     * modal has performed certain actions
      */
-
-    // @TODO why hook into the bootstrap event? Why not just keyup?
-    // if so then move this
-    elem.on("keyup.dismiss.bs.modal", function(e) {
-      // @TODO make conditional
-      if (e.which === 27) {
-        elem.trigger("escape.close.bb");
-      }
-    });
 
     elem.on("hidden.bs.modal", function(e) {
       if (e.target === this) {
@@ -144,6 +135,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
      * just an attempt to decouple some behaviours from their
      * respective triggers
      */
+
     elem.on("escape.close.bb", function(e) {
       processCallback(e, elem, options.onEscape);
     });
@@ -162,6 +154,18 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       processCallback(e, elem, callback);
 
     });
+
+    elem.on("keyup", function(e) {
+      // @TODO make conditional
+      if (e.which === 27) {
+        elem.trigger("escape.close.bb");
+      }
+    });
+
+    // the remainder of this method simply deals with adding our
+    // element to the DOM, augmenting it with Bootstrap's modal
+    // functionality and then giving the resulting object back
+    // to our caller
 
     appendTo.append(elem);
 
