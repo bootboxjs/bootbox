@@ -158,15 +158,15 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   // if args.length === 2 then assume str, callback
   // if args.length === 1 then inspect for str Vs object
   exports.alert = function() {
-    var options;
-    var argv = arguments, argn = argv.length;
+    var options, argv = arguments, argn = argv.length;
 
     if (argn < 1 || argn > 2) {
       throw new Error("Invalid argument length");
     }
 
     // @TODO all this arg handling has always been messy;
-    // has to be a neater way
+    // has to be a neater way. Revisit after implementing #confirm
+    // and/or #prompt
 
     if (argn === 1) {
       if (typeof argv[0] === "string") {
@@ -188,6 +188,8 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
           }],
           onEscape: argv[0].callback
         };
+      } else {
+        throw new Error("Invalid argument type");
       }
     } else if (argn === 2) {
       options = {
@@ -199,6 +201,83 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
         onEscape: argv[1]
       };
     }
+
+    return dialog(options);
+  };
+
+  exports.confirm = function() {
+    var options, argv = arguments, argn = argv.length;
+
+    var defaults = {
+      cancel: {
+        retVal: false,
+        label: "Cancel"
+      },
+      confirm: {
+        retVal: true,
+        label: "Confirm"
+      }
+    };
+
+    var message;
+    var cbCancel;
+    var cbConfirm;
+    var callback;
+    var buttons = [];
+
+    if (argn < 1 || argn > 2) {
+      throw new Error("Invalid argument length");
+    }
+
+    if (argn === 1) {
+      // @TODO
+      /*
+      if ($.isPlainObject(argv[0])) {
+        options = {
+          message: argv[0].message,
+          buttons: [{
+            label: argv[0].label || "OK",
+            callback: argv[0].callback
+          }],
+          onEscape: argv[0].callback
+        };
+      } else {
+        throw new Error("Invalid argument type");
+      }
+      */
+    } else if (argn === 2) {
+      message = argv[0];
+
+      callback = argv[1];
+
+      // we'll care about the key when checking whether
+      // to replace user supplied options or not, but not yet
+      $.each(defaults, function(key, value) {
+        buttons.push({
+          label: value.label,
+          callback: function() {
+            return callback(value.retVal);
+          }
+        });
+      });
+
+    }
+
+    // #confirm specific validation
+    if (!$.isFunction(callback)) {
+      throw new Error("Confirm method requires callback");
+    }
+
+    options = {
+      message: message,
+      buttons: buttons,
+      onEscape: function() { return callback(false); }
+    };
+
+    // @NOTE I guess validation is a two-step process; first we get the options
+    // ship-shape regardless of how they were passed (object Vs multiple args)
+    // before applying any method-specific validation (e.g. confirm requires
+    // a callback to be passed)
 
     return dialog(options);
   };
