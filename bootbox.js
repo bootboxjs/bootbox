@@ -663,6 +663,12 @@ var bootbox = window.bootbox || (function(document, $) {
             CONFIRM : 'Aceptar',
             PROMPT  : 'Aceptar'
         },
+        'fi' : {
+            OK      : 'OK',
+            CANCEL  : 'Peruuta',
+            CONFIRM : 'OK',
+            PROMPT  : 'OK'
+        },
         'fr' : {
             OK      : 'OK',
             CANCEL  : 'Annuler',
