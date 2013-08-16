@@ -7,6 +7,7 @@ describe("#setBtnIcons", function() {
         bootbox.setBtnClasses({
             CONFIRM: 'btn-danger',
             CANCEL: 'btn-primary',
+            PROMPT: 'btn-info',
             OK: 'btn-inverse'
         });
     });
@@ -47,7 +48,7 @@ describe("#setBtnIcons", function() {
         });
 
         it("should change the default button class for the CONFIRM button", function() {
-            assert.isTrue(box.find(".modal-footer a:last").hasClass("btn-danger"));
+            assert.isTrue(box.find(".modal-footer a:last").hasClass("btn-info"));
         });
 
         it("should change the default button class for the CANCEL button", function() {

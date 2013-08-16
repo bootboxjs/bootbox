@@ -7,6 +7,7 @@ describe("#setIcons", function() {
         bootbox.setIcons({
             CANCEL: "cancel",
             CONFIRM: "confirm",
+            PROMPT: "info",
             OK: "ok"
         });
     });
@@ -47,7 +48,7 @@ describe("#setIcons", function() {
         });
 
         it("should add an icon element to the CONFIRM button", function() {
-            assert.isTrue(box.find(".modal-footer a:last i").hasClass("confirm"));
+            assert.isTrue(box.find(".modal-footer a:last i").hasClass("info"));
         });
 
         it("should add an icon element to the CANCEL button", function() {

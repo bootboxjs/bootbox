@@ -166,7 +166,7 @@ var bootbox = window.bootbox || (function(document, $) {
     that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
         var str         = "",
             labelCancel = _translate('CANCEL'),
-            labelOk     = _translate('CONFIRM'),
+            labelOk     = _translate('PROMPT'),
             cb          = null,
             defaultVal  = "",
             type        = "text",
@@ -294,8 +294,8 @@ var bootbox = window.bootbox || (function(document, $) {
         }, {
             // second button (confirm)
             "label"   : labelOk,
-            "icon"    : _icons.CONFIRM,
-            "class"   : _btnClasses.CONFIRM,
+            "icon"    : _icons.PROMPT,
+            "class"   : _btnClasses.PROMPT,
             "callback": confirmCallback
         }], {
             // prompts need a few extra options
@@ -636,62 +636,74 @@ var bootbox = window.bootbox || (function(document, $) {
         'br' : {
             OK      : 'OK',
             CANCEL  : 'Cancelar',
-            CONFIRM : 'Sim'
+            CONFIRM : 'Sim',
+            PROMPT  : 'Sim'
         },
         'da' : {
             OK      : 'OK',
             CANCEL  : 'Annuller',
-            CONFIRM : 'Accepter'
+            CONFIRM : 'Accepter',
+            PROMPT  : 'Accepter'
         },
         'de' : {
             OK      : 'OK',
             CANCEL  : 'Abbrechen',
-            CONFIRM : 'Akzeptieren'
+            CONFIRM : 'Akzeptieren',
+            PROMPT  : 'Akzeptieren'
         },
         'en' : {
             OK      : 'OK',
             CANCEL  : 'Cancel',
-            CONFIRM : 'OK'
+            CONFIRM : 'OK',
+            PROMPT  : 'OK'
         },
         'es' : {
             OK      : 'OK',
             CANCEL  : 'Cancelar',
-            CONFIRM : 'Aceptar'
+            CONFIRM : 'Aceptar',
+            PROMPT  : 'Aceptar'
         },
         'fr' : {
             OK      : 'OK',
             CANCEL  : 'Annuler',
-            CONFIRM : 'D\'accord'
+            CONFIRM : 'D\'accord',
+            PROMPT  : 'D\'accord'
         },
         'it' : {
             OK      : 'OK',
             CANCEL  : 'Annulla',
-            CONFIRM : 'Conferma'
+            CONFIRM : 'Conferma',
+            PROMPT  : 'Conferma'
         },
         'nl' : {
             OK      : 'OK',
             CANCEL  : 'Annuleren',
-            CONFIRM : 'Accepteren'
+            CONFIRM : 'Accepteren',
+            PROMPT  : 'Accepteren'
         },
         'pl' : {
             OK      : 'OK',
             CANCEL  : 'Anuluj',
-            CONFIRM : 'Potwierdź'
+            CONFIRM : 'Potwierdź',
+            PROMPT  : 'Potwierdź'
         },
         'ru' : {
             OK      : 'OK',
             CANCEL  : 'Отмена',
-            CONFIRM : 'Применить'
+            CONFIRM : 'Применить',
+            PROMPT  : 'Применить'
         },
         'zh_CN' : {
             OK      : 'OK',
             CANCEL  : '取消',
-            CONFIRM : '确认'
+            CONFIRM : '确认',
+            PROMPT  : '确认'
         },
         'zh_TW' : {
             OK      : 'OK',
             CANCEL  : '取消',
-            CONFIRM : '確認'
+            CONFIRM : '確認',
+            PROMPT  : '確認'
         }
     };
 
