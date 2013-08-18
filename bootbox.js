@@ -328,8 +328,15 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return dialog(options);
   };
 
-  exports.setDefaults = function(_defaults) {
-    defaults = _defaults;
+  exports.setDefaults = function(values) {
+    var value;
+    $.each(["locale", "backdrop", "animate"], function(_, key) {
+      value = values[key];
+
+      if (value !== undefined) {
+        defaults[key] = value;
+      }
+    });
   };
 
   exports.dialog = dialog;
