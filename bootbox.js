@@ -29,8 +29,21 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   // cache a reference to the jQueryfied body element
   var appendTo = $("body");
 
+  var defaults = {
+    locale: "en",
+    backdrop: "static",
+    animate: true
+  };
+
   // our public object; augmented after our private API
   var exports = {};
+
+  /**
+   * @private
+   */
+  function _t(key) {
+    return locales[defaults.locale][key] || locales.en[key];
+  }
 
   function processCallback(e, elem, callback) {
     // by default we assume a callback will get rid of the dialog,
@@ -89,9 +102,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return options;
   }
 
-  /**
-   * @private
-   */
   function dialog(options) {
     options = sanitize(options);
 
@@ -209,7 +219,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
         options = {
           message: argv[0],
           buttons: [{
-            label: "OK"
+            label: _t("OK")
           }]
         };
       } else if ($.isPlainObject(argv[0])) {
@@ -219,7 +229,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
         options = {
           message: argv[0].message,
           buttons: [{
-            label: argv[0].label || "OK",
+            label: argv[0].label || _t("OK"),
             callback: argv[0].callback
           }],
           onEscape: argv[0].callback
@@ -231,7 +241,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       options = {
         message: argv[0],
         buttons: [{
-          label: "OK",
+          label: _t("OK"),
           callback: argv[1]
         }],
         onEscape: argv[1]
@@ -247,11 +257,11 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     var defaults = {
       cancel: {
         retVal: false,
-        label: "Cancel"
+        label: _t("CANCEL")
       },
       confirm: {
         retVal: true,
-        label: "Confirm"
+        label: _t("CONFIRM")
       }
     };
 
@@ -318,7 +328,83 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return dialog(options);
   };
 
+  exports.setDefaults = function(_defaults) {
+    defaults = _defaults;
+  };
+
   exports.dialog = dialog;
+
+  /**
+   * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
+   * unlikely to be required. If this gets too large it can be split out into separate JS files.
+   */
+  var locales = {
+    br : {
+      OK      : "OK",
+      CANCEL  : "Cancelar",
+      CONFIRM : "Sim"
+    },
+    da : {
+      OK      : "OK",
+      CANCEL  : "Annuller",
+      CONFIRM : "Accepter"
+    },
+    de : {
+      OK      : "OK",
+      CANCEL  : "Abbrechen",
+      CONFIRM : "Akzeptieren"
+    },
+    en : {
+      OK      : "OK",
+      CANCEL  : "Cancel",
+      CONFIRM : "OK"
+    },
+    es : {
+      OK      : "OK",
+      CANCEL  : "Cancelar",
+      CONFIRM : "Aceptar"
+    },
+    fi : {
+      OK      : "OK",
+      CANCEL  : "Peruuta",
+      CONFIRM : "OK"
+    },
+    fr : {
+      OK      : "OK",
+      CANCEL  : "Annuler",
+      CONFIRM : "D'accord"
+    },
+    it : {
+      OK      : "OK",
+      CANCEL  : "Annulla",
+      CONFIRM : "Conferma"
+    },
+    nl : {
+      OK      : "OK",
+      CANCEL  : "Annuleren",
+      CONFIRM : "Accepteren"
+    },
+    pl : {
+      OK      : "OK",
+      CANCEL  : "Anuluj",
+      CONFIRM : "Potwierdź"
+    },
+    ru : {
+      OK      : "OK",
+      CANCEL  : "Отмена",
+      CONFIRM : "Применить"
+    },
+    zh_CN : {
+      OK      : "OK",
+      CANCEL  : "取消",
+      CONFIRM : "确认"
+    },
+    zh_TW : {
+      OK      : "OK",
+      CANCEL  : "取消",
+      CONFIRM : "確認"
+    }
+  };
 
   return exports;
 
