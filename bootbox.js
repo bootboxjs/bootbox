@@ -102,103 +102,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return options;
   }
 
-  function dialog(options) {
-    options = sanitize(options);
-
-    var elem = $(template);
-
-    // buttons
-    var buttons = options.buttons;
-    var i = buttons.length;
-    var button;
-    var buttonStr = "";
-    var callbacks = {
-      "escape": options.onEscape
-    };
-
-    while (i--) {
-      button = buttons[i];
-
-      buttonStr = '<button data-bb-handler="' + i + '" type="button" class="btn ' + button.className + '">' + button.label + '</button>' + buttonStr;
-      callbacks[i] = button.callback;
-    }
-
-    elem.find(".modal-body").html(options.message);
-    elem.find(".modal-footer").html(buttonStr);
-
-    /**
-     * Bootstrap event listeners; used handle extra
-     * setup & teardown required after the underlying
-     * modal has performed certain actions
-     */
-
-    elem.on("hidden.bs.modal", function(e) {
-      if (e.target === this) {
-        elem.remove();
-      }
-    });
-
-    elem.on("shown.bs.modal", function(e) {
-      elem.find(".btn-primary:first").focus();
-    });
-
-    /**
-     * Bootbox event listeners; experimental and may not last
-     * just an attempt to decouple some behaviours from their
-     * respective triggers
-     */
-
-    elem.on("escape.close.bb", function(e) {
-      processCallback(e, elem, callbacks.escape);
-    });
-
-    /**
-     * Standard jQuery event listeners; used to handle user
-     * interaction with our dialog
-     */
-
-    elem.on("click", ".modal-footer button", function(e) {
-      e.preventDefault();
-
-      var callbackIndex = $(this).data("bb-handler");
-
-      processCallback(e, elem, callbacks[callbackIndex]);
-
-    });
-
-    elem.on("click", ".modal-header .close", function(e) {
-      e.preventDefault();
-      processCallback(e, elem, callbacks.escape);
-    });
-
-    elem.on("keyup", function(e) {
-      // @TODO make conditional
-      if (e.which === 27) {
-        elem.trigger("escape.close.bb");
-      }
-    });
-
-    // the remainder of this method simply deals with adding our
-    // element to the DOM, augmenting it with Bootstrap's modal
-    // functionality and then giving the resulting object back
-    // to our caller
-
-    appendTo.append(elem);
-
-    elem.modal({
-      backdrop: "static", // @TODO config
-      keyboard: false,
-      show: false
-    });
-
-    if (options.show) {
-      elem.modal("show");
-    }
-
-    return elem;
-
-  }
-
   // @NOTE all high level methods will now only
   // accept 1 or 2 args
   // if args.length === 2 then assume str, callback
@@ -248,7 +151,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       };
     }
 
-    return dialog(options);
+    return exports.dialog(options);
   };
 
   exports.confirm = function() {
@@ -325,7 +228,127 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     // before applying any method-specific validation (e.g. confirm requires
     // a callback to be passed)
 
-    return dialog(options);
+    return exports.dialog(options);
+  };
+
+  exports.dialog = function(options) {
+    options = sanitize(options);
+
+    var elem = $(template);
+
+    // buttons
+    var buttons = options.buttons;
+    var i = buttons.length;
+    var button;
+    var buttonStr = "";
+    var callbacks = {
+      "escape": options.onEscape
+    };
+
+    while (i--) {
+      button = buttons[i];
+
+      // @TODO I don't like this string prepending to itself; bit dirty. Needs reworking
+      buttonStr = '<button data-bb-handler="' + i + '" type="button" class="btn ' + button.className + '">' + button.label + '</button>' + buttonStr;
+      callbacks[i] = button.callback;
+    }
+
+    elem.find(".modal-body").html(options.message);
+    elem.find(".modal-footer").html(buttonStr);
+
+    /**
+     * Bootstrap event listeners; used handle extra
+     * setup & teardown required after the underlying
+     * modal has performed certain actions
+     */
+
+    elem.on("hidden.bs.modal", function(e) {
+      // ensure we don't accidentally intercept hidden events triggered
+      // by children of the current dialog (e.g. tooltips)
+      if (e.target === this) {
+        elem.remove();
+      }
+    });
+
+    elem.on("shown.bs.modal", function(e) {
+      elem.find(".btn-primary:first").focus();
+    });
+
+    /**
+     * Bootbox event listeners; experimental and may not last
+     * just an attempt to decouple some behaviours from their
+     * respective triggers
+     */
+
+    elem.on("escape.close.bb", function(e) {
+      processCallback(e, elem, callbacks.escape);
+    });
+
+    /**
+     * Standard jQuery event listeners; used to handle user
+     * interaction with our dialog
+     */
+
+    elem.on("click", ".modal-footer button", function(e) {
+      e.preventDefault();
+
+      var callbackIndex = $(this).data("bb-handler");
+
+      processCallback(e, elem, callbacks[callbackIndex]);
+
+    });
+
+    elem.on("click", ".modal-header .close", function(e) {
+      e.preventDefault();
+      processCallback(e, elem, callbacks.escape);
+    });
+
+    elem.on("keyup", function(e) {
+      // @TODO make conditional
+      if (e.which === 27) {
+        elem.trigger("escape.close.bb");
+      }
+    });
+
+    // the remainder of this method simply deals with adding our
+    // element to the DOM, augmenting it with Bootstrap's modal
+    // functionality and then giving the resulting object back
+    // to our caller
+
+    appendTo.append(elem);
+
+    elem.modal({
+      backdrop: "static", // @TODO config
+      keyboard: false,
+      show: false
+    });
+
+    if (options.show) {
+      elem.modal("show");
+    }
+
+    // @TODO should we return the raw element here or should
+    // we wrap it in an object on which we can expose some neater
+    // methods, e.g. var d = bootbox.alert(); d.hide(); instead
+    // of d.modal("hide");
+
+   /*
+    function BBDialog(elem) {
+      this.elem = elem;
+    }
+
+    BBDialog.prototype = {
+      hide: function() {
+        return this.elem.modal("hide");
+      },
+      show: function() {
+        return this.elem.modal("show");
+      }
+    };
+    */
+
+    return elem;
+
   };
 
   exports.setDefaults = function(values) {
@@ -339,7 +362,10 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     });
   };
 
-  exports.dialog = dialog;
+  exports.hideAll = function() {
+    $(".bootbox").modal("hide");
+  };
+
 
   /**
    * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
