@@ -2,8 +2,16 @@ module.exports = function(config) {
 
   return config.set({
     basePath: '',
-    frameworks: ['mocha'],
-    files: ['node_modules/chai/chai.js', 'public/vendor/angular.js/build/angular.js', 'public/vendor/angular.js/build/angular-mocks.js', 'lib/client/modules.coffee', 'lib/client/**/*.coffee', 'test/bootstrap.coffee', 'test/**/*.test.coffee'],
+    frameworks: ["mocha"],
+    files: [
+      "node_modules/chai/chai.js",
+      "tests/vendor/jquery-1.8.3.min.js",
+      "tests/vendor/bootstrap-3.0.0-wip.js",
+      // awkward name; we mean the bootstrap process, not the library!
+      "tests/bootstrap.js",
+      "bootbox.js",
+      "tests/**/*.test.js"
+    ],
     exclude: [],
     reporters: ['progress'],
     port: 9876,
