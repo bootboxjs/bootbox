@@ -12,6 +12,8 @@ contribute bugfixes to the Bootbox 3.x series (which depend on Bootstrap 2.x) pl
 
 ## Submitting Pull Requests
 
+* **Please do not submit any significant PRs to the v3.x branch for now - only critical bug fixes
+  will be accepted**.
 * Please ensure that the test suite passes before submitting a PR
 * If you've added new functionality, **please** include tests which validate its behaviour
 
