@@ -63,6 +63,10 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   }
 
   function sanitize(options) {
+    if (typeof options !== "object") {
+      throw new Error("Please supply an object of options");
+    }
+
     if (!options.message) {
       throw new Error("Please specify a message");
     }

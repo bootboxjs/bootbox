@@ -1,8 +1,5 @@
 describe("bootbox.alert", function() {
 
-  beforeEach(function() {
-  });
-
   describe("with one argument", function() {
 
     describe("where the argument is a string", function() {
