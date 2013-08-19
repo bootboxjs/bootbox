@@ -9,7 +9,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
   // the base DOM structure needed to create a modal
   var template = [
-    '<div class="modal fade" tabindex="-1">',
+    '<div class="bootbox modal" tabindex="-1">',
       '<div class="modal-dialog">',
         '<div class="modal-content">',
           '<div class="modal-header">',
@@ -99,7 +99,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       }
     }
 
-    return options;
+    return $.extend({}, options, defaults);
   }
 
   // @NOTE all high level methods will now only
@@ -251,6 +251,10 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       // @TODO I don't like this string prepending to itself; bit dirty. Needs reworking
       buttonStr = '<button data-bb-handler="' + i + '" type="button" class="btn ' + button.className + '">' + button.label + '</button>' + buttonStr;
       callbacks[i] = button.callback;
+    }
+
+    if (options.animate === true) {
+      elem.addClass("fade");
     }
 
     elem.find(".modal-body").html(options.message);
