@@ -16,11 +16,8 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
             '<button type="button" class="close">&times;</button>',
             '<h4 class="modal-title">&nbsp;</h4>',
           '</div>',
-          '<div class="modal-body">',
-          '</div>',
-          '<div class="modal-footer">',
-            '<button type="button" class="btn">A Button</button>',
-          '</div>',
+          '<div class="modal-body"></div>',
+          '<div class="modal-footer"></div>',
         '</div>',
       '</div>',
     '</div>'
