@@ -12,7 +12,8 @@ public API and will be out as close to the full Bootstrap 3.0 release as possibl
 to contribute to its development, please ensure you're working on the
 [master](https://github.com/makeusabrew/bootbox/tree/master) branch. If you want to
 contribute bugfixes to the Bootbox 3.x series (which depend on Bootstrap 2.x) please work on the
-[v3.x]([master](https://github.com/makeusabrew/bootbox/tree/v3.x) branch.
+[v3.x]([master](https://github.com/makeusabrew/bootbox/tree/v3.x) branch. **Please do not submit
+any PRs which add functionality to the v3.x branch for now - only critical bug fixes will be accepted**.
 
 If you just want to download a version of the library compatible with the Bootstrap 2.x series, please
 see the [list of available releases](https://github.com/makeusabrew/bootbox/releases).
