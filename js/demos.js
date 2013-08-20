@@ -16,16 +16,6 @@ $(function() {
     // let's namespace the demo methods; it makes them easier
     // to invoke
     demos.alert = function() {
-      bootbox.alert("Hello 1", function() {
-        console.log("cb1");
-        bootbox.alert({
-          message: "Hello 2",
-          callback: function() {
-            console.log("cb2");
-            bootbox.alert("Hello 3");
-          }
-        });
-      });
 
 
       bootbox.alert({
@@ -34,10 +24,10 @@ $(function() {
       });
 
       bootbox.alert({
-        message: "Hey",
+        message: "Hey 2",
         buttons: {
           ok: {
-            label: "Okay?!",
+            label: "Okay!!!?!",
             icon: ""
           }
         }
@@ -114,9 +104,43 @@ $(function() {
     };
 
     demos.alert_callback = function() {
+      /*
         bootbox.alert("Hello world!", function() {
             Example.show("Hello world callback");
         });
+        */
+       bootbox.dialog({
+         title: "Title",
+         message: "body here",
+         buttons: {
+           ok: {
+             label: "OK COOL",
+             className: "btn-danger"
+           },
+           not_ok: {
+             label: "NOT COOL AT ALL"
+           },
+           "please?": function() {
+           }
+         }
+       });
+
+       /*
+       bootbox.dialog({
+         title: "Title",
+         message: "body here",
+         buttons: [{
+           label: "OK COOL",
+           className: "btn-danger"
+         }, {
+           label: "NOT COOL AT ALL"
+         }, {
+           "please": function() {
+           }
+         }]
+       });
+       */
+
     };
 
     demos.confirm = function() {
