@@ -27,10 +27,20 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   var appendTo = $("body");
 
   var defaults = {
+    // default language
     locale: "en",
-    backdrop: "static",
+    // show backdrop or not
+    backdrop: true,
+    // animate the modal in/out
     animate: true,
-    className: null
+    // additional class string applied to the top level dialog
+    className: null,
+    // show the modal header or not
+    header: true,
+    // whether or not to include a close button, if a header is present
+    closeButton: true,
+    // show the dialog immediately by default
+    show: true
   };
 
   // our public object; augmented after our private API
@@ -43,7 +53,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return locales[defaults.locale][key] || locales.en[key];
   }
 
-  function processCallback(e, elem, callback) {
+  function processCallback(e, dialog, callback) {
     // by default we assume a callback will get rid of the dialog,
     // although they are given the opportunity to override this
     var preserveDialog = false;
@@ -56,11 +66,19 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     // ... otherwise we'll bin it
     if (!preserveDialog) {
-      elem.modal("hide");
+      dialog.modal("hide");
     }
   }
 
   function sanitize(options) {
+    var buttons = options.buttons;
+    var total = buttons.length;
+    var i = total;
+    var button;
+
+    // make sure any supplied options take precedence over defaults
+    options = $.extend({}, defaults, options);
+
     if (typeof options !== "object") {
       throw new Error("Please supply an object of options");
     }
@@ -78,15 +96,10 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       options.title = "&nbsp;";
     }
 
-    if (options.show === undefined) {
-      // auto show dialogs by default
-      options.show = true;
-    }
-
-    var buttons = options.buttons;
-    var total = buttons.length;
-    var i = total;
-    var button;
+    // we only support Bootstrap's "static" and 'false' backdrop args
+    // supporting true would mean you could dismiss the dialog without
+    // explicitly interacting with it
+    options.backdrop = options.backdrop ? "static" : false;
 
     while (i--) {
       button = buttons[i];
@@ -101,7 +114,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       }
     }
 
-    return $.extend({}, defaults, options);
+    return options;
   }
 
   // @NOTE all high level methods will now only
@@ -309,8 +322,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     options = sanitize(options);
 
     var dialog = $(template);
-
-    // buttons
     var buttons = options.buttons;
     var i = buttons.length;
     var button;
@@ -404,7 +415,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     appendTo.append(dialog);
 
     dialog.modal({
-      backdrop: "static", // @TODO config
+      backdrop: options.backdrop,
       keyboard: false,
       show: false
     });
@@ -438,14 +449,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   };
 
   exports.setDefaults = function(values) {
-    var value;
-    $.each(["locale", "backdrop", "animate", "className"], function(_, key) {
-      value = values[key];
-
-      if (value !== undefined) {
-        defaults[key] = value;
-      }
-    });
+    $.extend(defaults, values);
   };
 
   exports.hideAll = function() {
