@@ -105,7 +105,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       options.title = "&nbsp;";
     }
 
-    // we only support Bootstrap's "static" and 'false' backdrop args
+    // we only support Bootstrap's "static" and false backdrop args
     // supporting true would mean you could dismiss the dialog without
     // explicitly interacting with it
     options.backdrop = options.backdrop ? "static" : false;
@@ -245,7 +245,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     options = {
       message: message,
       buttons: buttons,
-      onEscape: function() { return callback(false); }
+      onEscape: buttons.cancel.callback
     };
 
     // @NOTE I guess validation is a two-step process; first we get the options
