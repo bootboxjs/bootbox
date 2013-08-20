@@ -308,7 +308,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   exports.dialog = function(options) {
     options = sanitize(options);
 
-    var elem = $(template);
+    var dialog = $(template);
 
     // buttons
     var buttons = options.buttons;
@@ -328,18 +328,18 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     }
 
     if (options.animate === true) {
-      elem.addClass("fade");
+      dialog.addClass("fade");
     }
 
     if (options.className) {
-      elem.addClass(options.className);
+      dialog.addClass(options.className);
     }
 
     if (options.title) {
-      elem.find(".modal-title").html(options.title);
+      dialog.find(".modal-title").html(options.title);
     }
-    elem.find(".modal-body").html(options.message);
-    elem.find(".modal-footer").html(buttonStr);
+    dialog.find(".modal-body").html(options.message);
+    dialog.find(".modal-footer").html(buttonStr);
 
     /**
      * Bootstrap event listeners; used handle extra
@@ -347,16 +347,17 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
      * modal has performed certain actions
      */
 
-    elem.on("hidden.bs.modal", function(e) {
+    dialog.on("hidden.bs.modal", function(e) {
       // ensure we don't accidentally intercept hidden events triggered
-      // by children of the current dialog (e.g. tooltips)
+      // by children of the current dialog. We shouldn't anymore now BS
+      // namespaces its events; but still worth doing
       if (e.target === this) {
-        elem.remove();
+        dialog.remove();
       }
     });
 
-    elem.on("shown.bs.modal", function() {
-      elem.find(".btn-primary:first").focus();
+    dialog.on("shown.bs.modal", function() {
+      dialog.find(".btn-primary:first").focus();
     });
 
     /**
@@ -365,8 +366,8 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
      * respective triggers
      */
 
-    elem.on("escape.close.bb", function(e) {
-      processCallback(e, elem, callbacks.escape);
+    dialog.on("escape.close.bb", function(e) {
+      processCallback(e, dialog, callbacks.escape);
     });
 
     /**
@@ -374,42 +375,42 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
      * interaction with our dialog
      */
 
-    elem.on("click", ".modal-footer button", function(e) {
+    dialog.on("click", ".modal-footer button", function(e) {
       e.preventDefault();
 
       var callbackIndex = $(this).data("bb-handler");
 
-      processCallback(e, elem, callbacks[callbackIndex]);
+      processCallback(e, dialog, callbacks[callbackIndex]);
 
     });
 
-    elem.on("click", ".modal-header .close", function(e) {
+    dialog.on("click", ".modal-header .close", function(e) {
       e.preventDefault();
-      processCallback(e, elem, callbacks.escape);
+      processCallback(e, dialog, callbacks.escape);
     });
 
-    elem.on("keyup", function(e) {
+    dialog.on("keyup", function(e) {
       // @TODO make conditional
       if (e.which === 27) {
-        elem.trigger("escape.close.bb");
+        dialog.trigger("escape.close.bb");
       }
     });
 
     // the remainder of this method simply deals with adding our
-    // element to the DOM, augmenting it with Bootstrap's modal
+    // dialogent to the DOM, augmenting it with Bootstrap's modal
     // functionality and then giving the resulting object back
     // to our caller
 
-    appendTo.append(elem);
+    appendTo.append(dialog);
 
-    elem.modal({
+    dialog.modal({
       backdrop: "static", // @TODO config
       keyboard: false,
       show: false
     });
 
     if (options.show) {
-      elem.modal("show");
+      dialog.modal("show");
     }
 
     // @TODO should we return the raw element here or should
@@ -432,7 +433,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     };
     */
 
-    return elem;
+    return dialog;
 
   };
 
