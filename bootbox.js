@@ -391,6 +391,13 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
      */
 
     dialog.on("escape.close.bb", function(e) {
+      // @NOTE
+      // if we declared processCallback locally we could take
+      // advantage of our scope to just make the following...
+      // processCallback(e, "escape");
+      // and the one a bit further:
+      // processCallback(e, $(this).data("bb-handler")
+      // worth considering...
       processCallback(e, dialog, callbacks.escape);
     });
 
