@@ -72,12 +72,18 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
   function sanitize(options) {
     var buttons = options.buttons;
-    var total = buttons.length;
-    var i = total;
+    var total;
+    var key;
+    var keyIndex;
     var button;
 
-    // make sure any supplied options take precedence over defaults
-    options = $.extend({}, defaults, options);
+    total = (function getKeyLength(obj) {
+      var k, t = 0;
+      for (k in obj) {
+        t ++;
+      }
+      return t;
+    }(buttons));
 
     if (typeof options !== "object") {
       throw new Error("Please supply an object of options");
@@ -87,8 +93,11 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       throw new Error("Please specify a message");
     }
 
+    // make sure any supplied options take precedence over defaults
+    options = $.extend({}, defaults, options);
+
     if (!options.buttons) {
-      options.buttons = [];
+      options.buttons = {};
     }
 
     if (!options.title) {
@@ -101,15 +110,19 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     // explicitly interacting with it
     options.backdrop = options.backdrop ? "static" : false;
 
-    while (i--) {
-      button = buttons[i];
+    keyIndex = 0;
+
+    for (key in buttons) {
+      keyIndex ++;
+
+      button = buttons[key];
 
       if (!button.label) {
-        throw new Error("Button at index " + i + " requires a label");
+        throw new Error("Button with key " + key + " requires a label");
       }
 
       if (!button.className) {
-        if (total <= 2 && i === total-1) {
+        if (total <= 2 && keyIndex === total) {
           // always add a primary to the main option in a two-button dialog
           button.className = "btn-primary";
         } else {
@@ -140,9 +153,11 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       if (typeof argv[0] === "string") {
         options = {
           message: argv[0],
-          buttons: [{
-            label: _t("OK")
-          }]
+          buttons: {
+            ok: {
+              label: _t("OK")
+            }
+          }
         };
       } else if ($.isPlainObject(argv[0])) {
         // @TODO actually want we want to do is pluck a couple of
@@ -150,10 +165,12 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
         // them as buttons: [] args; the rest should be mapped as-is
         options = {
           message: argv[0].message,
-          buttons: [{
-            label: argv[0].label || _t("OK"),
-            callback: argv[0].callback
-          }],
+          buttons: {
+            ok: {
+              label: argv[0].label || _t("OK"),
+              callback: argv[0].callback
+            }
+          },
           onEscape: argv[0].callback
         };
       } else {
@@ -162,10 +179,12 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     } else if (argn === 2) {
       options = {
         message: argv[0],
-        buttons: [{
-          label: _t("OK"),
-          callback: argv[1]
-        }],
+        buttons: {
+          ok: {
+            label: _t("OK"),
+            callback: argv[1]
+          }
+        },
         onEscape: argv[1]
       };
     }
@@ -175,21 +194,23 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
   exports.confirm = function() {
     var options, argv = arguments, argn = argv.length;
-
-    var defaults = {
+    var message;
+    var callback;
+    var buttons = {
       cancel: {
-        retVal: false,
-        label: _t("CANCEL")
+        label: _t("CANCEL"),
+        callback: function() {
+          return callback(false);
+        }
       },
       confirm: {
-        retVal: true,
-        label: _t("CONFIRM")
+        label: _t("CONFIRM"),
+        callback: function() {
+          return callback(true);
+        }
       }
     };
 
-    var message;
-    var callback;
-    var buttons = [];
 
     if (argn < 1 || argn > 2) {
       throw new Error("Invalid argument length");
@@ -213,20 +234,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       */
     } else if (argn === 2) {
       message = argv[0];
-
       callback = argv[1];
-
-      // we'll care about the key when checking whether
-      // to replace user supplied options or not, but not yet
-      $.each(defaults, function(key, value) {
-        buttons.push({
-          label: value.label,
-          callback: function() {
-            return callback(value.retVal);
-          }
-        });
-      });
-
     }
 
     // #confirm specific validation
@@ -256,19 +264,22 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     var form;
     var input;
     var value = "";
-    var buttons = [{
-      label: _t("CANCEL"),
-      callback: function() {
-        // native prompts dismiss with null
-        // Vs confirms which dissmiss with false...
-        return callback(null);
+    var buttons = {
+      cancel: {
+        label: _t("CANCEL"),
+        callback: function() {
+          // native prompts dismiss with null
+          // vs confirms which dissmiss with false...
+          return callback(null);
+        }
+      },
+      confirm: {
+        label: _t("CONFIRM"),
+        callback: function() {
+          callback(input.val());
+        }
       }
-    }, {
-      label: _t("CONFIRM"),
-      callback: function() {
-        callback(input.val());
-      }
-    }];
+    };
 
     if (argn < 1 || argn > 2) {
       throw new Error("Invalid argument length");
@@ -278,9 +289,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       // @TODO
     } else if (argn === 2) {
       title = argv[0];
-
       callback = argv[1];
-
     }
 
     form = $("<form class='bootbox-form'></form>");
@@ -296,7 +305,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       title: title,
       message: form,
       buttons: buttons,
-      onEscape: buttons[0].callback,
+      onEscape: buttons.cancel.callback,
       // deliberately don't show the dialog yet, we want to
       // bind some listeners to it first...
       show: false
@@ -327,19 +336,19 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     var dialog = $(template);
     var buttons = options.buttons;
-    var i = buttons.length;
     var button;
+    var key;
     var buttonStr = "";
     var callbacks = {
       "escape": options.onEscape
     };
 
-    while (i--) {
-      button = buttons[i];
+    for (key in buttons) {
+      button = buttons[key];
 
-      // @TODO I don't like this string prepending to itself; bit dirty. Needs reworking
-      buttonStr = "<button data-bb-handler='" + i + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>" + buttonStr;
-      callbacks[i] = button.callback;
+      // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
+      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
+      callbacks[key] = button.callback;
     }
 
     if (options.animate === true) {
@@ -393,9 +402,9 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     dialog.on("click", ".modal-footer button", function(e) {
       e.preventDefault();
 
-      var callbackIndex = $(this).data("bb-handler");
+      var callbackKey = $(this).data("bb-handler");
 
-      processCallback(e, dialog, callbacks[callbackIndex]);
+      processCallback(e, dialog, callbacks[callbackKey]);
 
     });
 
