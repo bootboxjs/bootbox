@@ -108,9 +108,13 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
         throw new Error("Button at index " + i + " requires a label");
       }
 
-      if (!button.className && total <= 2 && i === total-1) {
-        // always add a primary to the main option in a two-button dialog
-        button.className = "btn-primary";
+      if (!button.className) {
+        if (total <= 2 && i === total-1) {
+          // always add a primary to the main option in a two-button dialog
+          button.className = "btn-primary";
+        } else {
+          button.className = "btn-default";
+        }
       }
     }
 
