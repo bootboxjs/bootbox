@@ -9,18 +9,18 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
   // the base DOM structure needed to create a modal
   var template = [
-    '<div class="bootbox modal" tabindex="-1">',
-      '<div class="modal-dialog">',
-        '<div class="modal-content">',
-          '<div class="modal-header">',
-            '<button type="button" class="close">&times;</button>',
-            '<h4 class="modal-title">&nbsp;</h4>',
-          '</div>',
-          '<div class="modal-body"></div>',
-          '<div class="modal-footer"></div>',
-        '</div>',
-      '</div>',
-    '</div>'
+    "<div class='bootbox modal' tabindex='-1'>",
+      "<div class='modal-dialog'>",
+        "<div class='modal-content'>",
+          "<div class='modal-header'>",
+            "<button type='button' class='close'>&times;</button>",
+            "<h4 class='modal-title'></h4>",
+          "</div>",
+          "<div class='modal-body'></div>",
+          "<div class='modal-footer'></div>",
+        "</div>",
+      "</div>",
+    "</div>"
   ].join("\n");
 
   // cache a reference to the jQueryfied body element
@@ -171,8 +171,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     };
 
     var message;
-    var cbCancel;
-    var cbConfirm;
     var callback;
     var buttons = [];
 
@@ -233,6 +231,80 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return exports.dialog(options);
   };
 
+  exports.prompt = function() {
+    var options, argv = arguments, argn = argv.length;
+    var dialog;
+    var title;
+    var callback;
+    var form;
+    var input;
+    var value = "";
+    var buttons = [{
+      label: _t("CANCEL"),
+      callback: function() {
+        // native prompts dismiss with null
+        // Vs confirms which dissmiss with false...
+        return callback(null);
+      }
+    }, {
+      label: _t("CONFIRM"),
+      callback: function() {
+        callback(input.val());
+      }
+    }];
+
+    if (argn < 1 || argn > 2) {
+      throw new Error("Invalid argument length");
+    }
+
+    if (argn === 1) {
+      // @TODO
+    } else if (argn === 2) {
+      title = argv[0];
+
+      callback = argv[1];
+
+    }
+
+    form = $("<form class='bootbox-form'></form>");
+    input = $("<input class='bootbox-input input-block-level' autocomplete=off type=text value='" + value + "' />");
+    form.append(input);
+
+    // #prompt specific validation
+    if (!$.isFunction(callback)) {
+      throw new Error("Confirm method requires callback");
+    }
+
+    options = {
+      title: title,
+      message: form,
+      buttons: buttons,
+      onEscape: buttons[0].callback,
+      // deliberately don't show the dialog yet, we want to
+      // bind some listeners to it first...
+      show: false
+    };
+
+    form.on("submit", function(e) {
+      e.preventDefault();
+      dialog.find(".btn-primary").click();
+    });
+
+    dialog = exports.dialog(options);
+
+    // clear the existing handler focusing the submit button...
+    dialog.off("shown.bs.modal");
+
+    // ...and replace it with one focusing our input, if possible
+    dialog.on("shown.bs.modal", function() {
+      input.focus();
+    });
+
+    dialog.modal("show");
+
+    return dialog;
+  };
+
   exports.dialog = function(options) {
     options = sanitize(options);
 
@@ -251,7 +323,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       button = buttons[i];
 
       // @TODO I don't like this string prepending to itself; bit dirty. Needs reworking
-      buttonStr = '<button data-bb-handler="' + i + '" type="button" class="btn ' + button.className + '">' + button.label + '</button>' + buttonStr;
+      buttonStr = "<button data-bb-handler='" + i + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>" + buttonStr;
       callbacks[i] = button.callback;
     }
 
@@ -263,6 +335,9 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       elem.addClass(options.className);
     }
 
+    if (options.title) {
+      elem.find(".modal-title").html(options.title);
+    }
     elem.find(".modal-body").html(options.message);
     elem.find(".modal-footer").html(buttonStr);
 
@@ -280,7 +355,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       }
     });
 
-    elem.on("shown.bs.modal", function(e) {
+    elem.on("shown.bs.modal", function() {
       elem.find(".btn-primary:first").focus();
     });
 
