@@ -29,6 +29,10 @@ describe("Bootbox", function() {
       expect(this.dialog.hasClass("bootbox")).to.be.true;
     });
 
+    it("adds the bootstrap modal class to the dialog", function() {
+      expect(this.dialog.hasClass("modal")).to.be.true;
+    });
+
     it("adds the fade class to the dialog", function() {
       expect(this.dialog.hasClass("fade")).to.be.true;
     });

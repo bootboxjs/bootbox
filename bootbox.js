@@ -29,7 +29,8 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   var defaults = {
     locale: "en",
     backdrop: "static",
-    animate: true
+    animate: true,
+    className: null
   };
 
   // our public object; augmented after our private API
@@ -100,7 +101,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       }
     }
 
-    return $.extend({}, options, defaults);
+    return $.extend({}, defaults, options);
   }
 
   // @NOTE all high level methods will now only
@@ -258,6 +259,10 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       elem.addClass("fade");
     }
 
+    if (options.className) {
+      elem.addClass(options.className);
+    }
+
     elem.find(".modal-body").html(options.message);
     elem.find(".modal-footer").html(buttonStr);
 
@@ -358,7 +363,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
   exports.setDefaults = function(values) {
     var value;
-    $.each(["locale", "backdrop", "animate"], function(_, key) {
+    $.each(["locale", "backdrop", "animate", "className"], function(_, key) {
       value = values[key];
 
       if (value !== undefined) {
