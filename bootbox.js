@@ -228,7 +228,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     // confirm specific validation
     if (!$.isFunction(options.callback)) {
-      throw new Error("Confirm method requires callback");
+      throw new Error("confirm requires a callback");
     }
 
     return exports.dialog(options);
@@ -269,11 +269,11 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     // prompt specific validation
     if (!options.title) {
-      throw new Error("This method requires a title");
+      throw new Error("prompt requires a title");
     }
 
     if (!$.isFunction(options.callback)) {
-      throw new Error("This method requires a callback");
+      throw new Error("prompt requires a callback");
     }
 
     // create the input
