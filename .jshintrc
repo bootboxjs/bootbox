@@ -7,5 +7,12 @@
     "strict": true,
     "trailing": true,
     "quotmark": "double",
-    "browser": true
+    "browser": true,
+
+    "globals": {
+      "beforeEach": true,
+      "describe": true,
+      "it": true,
+      "expect": true
+    }
 }

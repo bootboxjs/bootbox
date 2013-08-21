@@ -192,6 +192,10 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     options = mergeArguments(defaults, arguments, ["message", "callback"]);
 
+    if (options.callback && !$.isFunction(options.callback)) {
+      throw new Error("alert requires callback property to be a function when provided");
+    }
+
     /**
      * overrides
      */
