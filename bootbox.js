@@ -166,16 +166,28 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return $.extend(true, {}, defaults, mapArguments(args, properties));
   }
 
+  function buttonLabels() {
+    var buttons = {};
+
+    for (var i = 0, j = arguments.length; i < j; i++) {
+      var argument = arguments[i];
+      var key = argument.toLowerCase();
+      var value = argument.toUpperCase();
+
+      buttons[key] = {
+        label: _t(value)
+      };
+    }
+
+    return buttons;
+  }
+
   exports.alert = function() {
     var options;
     var defaults;
 
     defaults = {
-      buttons: {
-        ok: {
-          label: _t("OK")
-        }
-      }
+      buttons: buttonLabels("ok")
     };
 
     options = mergeArguments(defaults, arguments, ["message", "callback"]);
@@ -198,14 +210,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     var defaults;
 
     defaults = {
-      buttons: {
-        cancel: {
-          label: _t("CANCEL")
-        },
-        confirm: {
-          label: _t("CONFIRM")
-        }
-      }
+      buttons: buttonLabels("cancel", "confirm")
     };
 
     options = mergeArguments(defaults, arguments, ["message", "callback"]);
@@ -243,14 +248,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     form = $(templates.form);
 
     defaults = {
-      buttons: {
-        cancel: {
-          label: _t("CANCEL")
-        },
-        confirm: {
-          label: _t("CONFIRM")
-        }
-      },
+      buttons: buttonLabels("cancel", "confirm"),
       value: ""
     };
 
