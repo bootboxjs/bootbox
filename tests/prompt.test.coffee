@@ -140,6 +140,17 @@ describe "bootbox.prompt", ->
         expect(@button.text()).to.equal "Custom prompt"
         expect(@button.hasClass("btn-warning")).to.be.true
 
+    # @FIXME even if false, our tests always report dialog.is(":visible") true
+    # even though a browser does not (as you'd expect)
+    xdescribe "setting show to false", ->
+      beforeEach ->
+        @options.show = false
+
+        @create()
+
+      it "does not show the dialog", ->
+        expect(@dialog.is(":visible")).to.be.false
+
   describe "callback tests", ->
     describe "with a simple callback", ->
       beforeEach ->

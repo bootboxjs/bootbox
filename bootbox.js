@@ -240,6 +240,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     var dialog;
     var form;
     var input;
+    var shouldShow;
 
     // we have to create our form first otherwise
     // its value is undefined when gearing up our options
@@ -254,6 +255,11 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     options = mergeArguments(defaults, arguments, ["title", "callback"]);
 
+    // capture the user's show value; we always set this to false before
+    // spawning the dialog to give us a chance to attach some handlers to
+    // it, but we need to make sure we respect a preference not to show it
+    shouldShow = (options.show === undefined) ? true : options.show;
+
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
@@ -266,6 +272,8 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     options.buttons.confirm.callback = function() {
       return options.callback(input.val());
     };
+
+    options.show = false;
 
     // prompt specific validation
     if (!options.title) {
@@ -300,9 +308,9 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       input.focus();
     });
 
-    // @TODO this needs to respect whether the user asked for the dialog
-    // to be shown or not, not just assumed...
-    dialog.modal("show");
+    if (shouldShow === true) {
+      dialog.modal("show");
+    }
 
     return dialog;
   };
