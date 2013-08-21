@@ -8,20 +8,28 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   "use strict";
 
   // the base DOM structure needed to create a modal
-  var template = [
-    "<div class='bootbox modal' tabindex='-1'>",
-      "<div class='modal-dialog'>",
-        "<div class='modal-content'>",
-          "<div class='modal-header'>",
-            "<button type='button' class='close'>&times;</button>",
-            "<h4 class='modal-title'></h4>",
-          "</div>",
-          "<div class='modal-body'></div>",
-          "<div class='modal-footer'></div>",
-        "</div>",
+  var templates = {
+    dialog:
+      "<div class='bootbox modal' tabindex='-1'>" +
+        "<div class='modal-dialog'>" +
+          "<div class='modal-content'>" +
+            "<div class='modal-header'>" +
+              "<h4 class='modal-title'></h4>" +
+            "</div>" +
+            "<div class='modal-body'></div>" +
+            "<div class='modal-footer'></div>" +
+          "</div>" +
+        "</div>" +
       "</div>",
-    "</div>"
-  ].join("\n");
+    closeButton:
+      "<button type='button' class='bootbox-close-button close'>&times;</button>",
+    form:
+      "<form class='bootbox-form'></form>",
+    inputs: {
+      text:
+        "<input class='bootbox-input input-block-level' autocomplete=off type=text />"
+    }
+  };
 
   // cache a reference to the jQueryfied body element
   var appendTo = $("body");
@@ -53,6 +61,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return locales[defaults.locale][key] || locales.en[key];
   }
 
+  // @TODO inline within exports.dialog? closing over dialog & callbacks is neater...
   function processCallback(e, dialog, callback) {
     // by default we assume a callback will get rid of the dialog,
     // although they are given the opportunity to override this
@@ -78,6 +87,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     var button;
 
     total = (function getKeyLength(obj) {
+      // @TODO defer to Object.keys(x).length if available?
       var k, t = 0;
       for (k in obj) {
         t ++;
@@ -134,185 +144,148 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return options;
   }
 
-  // @NOTE all high level methods will now only
-  // accept 1 or 2 args
-  // if args.length === 2 then assume str, callback
-  // if args.length === 1 then inspect for str Vs object
-  exports.alert = function() {
-    var options, argv = arguments, argn = argv.length;
+  function mapArguments(args, properties) {
+    var argn = args.length;
+    var options = {};
 
     if (argn < 1 || argn > 2) {
       throw new Error("Invalid argument length");
     }
 
-    // @TODO all this arg handling has always been messy;
-    // has to be a neater way. Revisit after implementing #confirm
-    // and/or #prompt
-
-    if (argn === 1) {
-      if (typeof argv[0] === "string") {
-        options = {
-          message: argv[0],
-          buttons: {
-            ok: {
-              label: _t("OK")
-            }
-          }
-        };
-      } else if ($.isPlainObject(argv[0])) {
-        // @TODO actually want we want to do is pluck a couple of
-        // specific options off the provided object and namespace
-        // them as buttons: [] args; the rest should be mapped as-is
-        options = {
-          message: argv[0].message,
-          buttons: {
-            ok: {
-              label: argv[0].label || _t("OK"),
-              callback: argv[0].callback
-            }
-          },
-          onEscape: argv[0].callback
-        };
-      } else {
-        throw new Error("Invalid argument type");
-      }
-    } else if (argn === 2) {
-      options = {
-        message: argv[0],
-        buttons: {
-          ok: {
-            label: _t("OK"),
-            callback: argv[1]
-          }
-        },
-        onEscape: argv[1]
-      };
+    if (argn === 2 || typeof args[0] === "string") {
+      options[properties[0]] = args[0];
+      options[properties[1]] = args[1];
+    } else {
+      options = args[0];
     }
+
+    return options;
+  }
+
+
+  exports.alert = function() {
+    var options;
+    var defaults;
+
+    defaults = {
+      buttons: {
+        ok: {
+          label: _t("OK")
+        }
+      }
+    };
+
+    options = $.extend(true, defaults, mapArguments(arguments, ["message", "callback"]));
+
+    /**
+     * overrides
+     */
+    options.buttons.ok.callback = options.onEscape = function() {
+      if ($.isFunction(options.callback)) {
+        return options.callback();
+      }
+      return true;
+    };
 
     return exports.dialog(options);
   };
 
   exports.confirm = function() {
-    var options, argv = arguments, argn = argv.length;
-    var message;
-    var callback;
-    var buttons = {
-      cancel: {
-        label: _t("CANCEL"),
-        callback: function() {
-          return callback(false);
-        }
-      },
-      confirm: {
-        label: _t("CONFIRM"),
-        callback: function() {
-          return callback(true);
+    var options;
+    var defaults;
+
+    defaults = {
+      buttons: {
+        cancel: {
+          label: _t("CANCEL")
+        },
+        confirm: {
+          label: _t("CONFIRM")
         }
       }
     };
 
+    options = $.extend(true, defaults, mapArguments(arguments, ["message", "callback"]));
 
-    if (argn < 1 || argn > 2) {
-      throw new Error("Invalid argument length");
-    }
+    /**
+     * overrides; undo anything the user tried to set they shouldn't have
+     */
+    options.buttons.cancel.callback = options.onEscape = function() {
+      return options.callback(false);
+    };
 
-    if (argn === 1) {
-      // @TODO
-      /*
-      if ($.isPlainObject(argv[0])) {
-        options = {
-          message: argv[0].message,
-          buttons: [{
-            label: argv[0].label || "OK",
-            callback: argv[0].callback
-          }],
-          onEscape: argv[0].callback
-        };
-      } else {
-        throw new Error("Invalid argument type");
-      }
-      */
-    } else if (argn === 2) {
-      message = argv[0];
-      callback = argv[1];
-    }
+    options.buttons.confirm.callback = function() {
+      return options.callback(true);
+    };
 
-    // #confirm specific validation
-    if (!$.isFunction(callback)) {
+    // confirm specific validation
+    if (!$.isFunction(options.callback)) {
       throw new Error("Confirm method requires callback");
     }
-
-    options = {
-      message: message,
-      buttons: buttons,
-      onEscape: buttons.cancel.callback
-    };
-
-    // @NOTE I guess validation is a two-step process; first we get the options
-    // ship-shape regardless of how they were passed (object Vs multiple args)
-    // before applying any method-specific validation (e.g. confirm requires
-    // a callback to be passed)
 
     return exports.dialog(options);
   };
 
   exports.prompt = function() {
-    var options, argv = arguments, argn = argv.length;
+    var options;
+    var defaults;
     var dialog;
-    var title;
-    var callback;
     var form;
     var input;
-    var value = "";
-    var buttons = {
-      cancel: {
-        label: _t("CANCEL"),
-        callback: function() {
-          // native prompts dismiss with null
-          // vs confirms which dissmiss with false...
-          return callback(null);
+
+    // we have to create our form first otherwise
+    // its value is undefined when gearing up our options
+    // @TODO this could be solved by allowing message to
+    // be a function instead...
+    form = $(templates.form);
+
+    defaults = {
+      buttons: {
+        cancel: {
+          label: _t("CANCEL")
+        },
+        confirm: {
+          label: _t("CONFIRM")
         }
       },
-      confirm: {
-        label: _t("CONFIRM"),
-        callback: function() {
-          callback(input.val());
-        }
-      }
+      value: ""
     };
 
-    if (argn < 1 || argn > 2) {
-      throw new Error("Invalid argument length");
+    options = $.extend(true, defaults, mapArguments(arguments, ["title", "callback"]));
+
+    /**
+     * overrides; undo anything the user tried to set they shouldn't have
+     */
+    options.message = form;
+
+    options.buttons.cancel.callback = options.onEscape = function() {
+      return options.callback(null);
+    };
+
+    options.buttons.confirm.callback = function() {
+      return options.callback(input.val());
+    };
+
+    // prompt specific validation
+    if (!options.title) {
+      throw new Error("This method requires a title");
     }
 
-    if (argn === 1) {
-      // @TODO
-    } else if (argn === 2) {
-      title = argv[0];
-      callback = argv[1];
+    if (!$.isFunction(options.callback)) {
+      throw new Error("This method requires a callback");
     }
 
-    form = $("<form class='bootbox-form'></form>");
-    input = $("<input class='bootbox-input input-block-level' autocomplete=off type=text value='" + value + "' />");
+    // create the input
+    input = $(templates.inputs.text);
+    input.val(options.value);
+
+    // now place it in our form
     form.append(input);
-
-    // #prompt specific validation
-    if (!$.isFunction(callback)) {
-      throw new Error("Confirm method requires callback");
-    }
-
-    options = {
-      title: title,
-      message: form,
-      buttons: buttons,
-      onEscape: buttons.cancel.callback,
-      // deliberately don't show the dialog yet, we want to
-      // bind some listeners to it first...
-      show: false
-    };
 
     form.on("submit", function(e) {
       e.preventDefault();
+      // @TODO can we actually click *the* button object instead?
+      // e.g. buttons.confirm.click() or similar
       dialog.find(".btn-primary").click();
     });
 
@@ -326,6 +299,8 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       input.focus();
     });
 
+    // @TODO this needs to respect whether the user asked for the dialog
+    // to be shown or not, not just assumed...
     dialog.modal("show");
 
     return dialog;
@@ -334,19 +309,25 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   exports.dialog = function(options) {
     options = sanitize(options);
 
-    var dialog = $(template);
+    var dialog = $(templates.dialog);
     var buttons = options.buttons;
     var button;
     var key;
     var buttonStr = "";
     var callbacks = {
+      // always assume an onEscape for now
+      // @TODO make this optional
+      // @TODO namespace this in case a user passes a button called 'escape'
       "escape": options.onEscape
     };
 
+    // @TODO hasOwnProperty
     for (key in buttons) {
       button = buttons[key];
 
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
+      // can we just build up button elements instead? slower but neater. Then button
+      // can just become a template too
       buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
       callbacks[key] = button.callback;
     }
@@ -359,9 +340,15 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       dialog.addClass(options.className);
     }
 
+    if (options.closeButton) {
+      dialog.find(".modal-header").prepend(templates.closeButton);
+    }
+
     if (options.title) {
       dialog.find(".modal-title").html(options.title);
     }
+
+    // required bits last
     dialog.find(".modal-body").html(options.message);
     dialog.find(".modal-footer").html(buttonStr);
 
