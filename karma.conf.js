@@ -1,7 +1,7 @@
 module.exports = function(config) {
 
   return config.set({
-    basePath: '',
+    basePath: "",
     frameworks: ["mocha"],
     files: [
       "node_modules/chai/chai.js",
@@ -14,14 +14,27 @@ module.exports = function(config) {
       "tests/**/*.test.js"
     ],
     exclude: [],
-    reporters: ['progress'],
+    preprocessors: {
+      "**/*.coffee": ["coffee"],
+      "bootbox.js": ["coverage"]
+    },
+    reporters: ["dots", "coverage", "junit"],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ["PhantomJS"],
     captureTimeout: 60000,
-    singleRun: false
+    singleRun: false,
+
+    coverageReporter: {
+      type: "cobertura",
+      dir: "tests/coverage"
+    },
+
+    junitReporter: {
+      outputFile: "tests/reports/results.xml"
+    }
   });
 
 };
