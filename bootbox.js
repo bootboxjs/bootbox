@@ -162,6 +162,9 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return options;
   }
 
+  function mergeArguments(defaults, args, properties) {
+    return $.extend(true, {}, defaults, mapArguments(args, properties));
+  }
 
   exports.alert = function() {
     var options;
@@ -175,7 +178,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       }
     };
 
-    options = $.extend(true, defaults, mapArguments(arguments, ["message", "callback"]));
+    options = mergeArguments(defaults, arguments, ["message", "callback"]);
 
     /**
      * overrides
@@ -205,7 +208,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       }
     };
 
-    options = $.extend(true, defaults, mapArguments(arguments, ["message", "callback"]));
+    options = mergeArguments(defaults, arguments, ["message", "callback"]);
 
     /**
      * overrides; undo anything the user tried to set they shouldn't have
@@ -251,7 +254,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       value: ""
     };
 
-    options = $.extend(true, defaults, mapArguments(arguments, ["title", "callback"]));
+    options = mergeArguments(defaults, arguments, ["title", "callback"]);
 
     /**
      * overrides; undo anything the user tried to set they shouldn't have
