@@ -1,5 +1,5 @@
 describe "bootbox.confirm", ->
-  describe "basic tests", ->
+  describe "basic usage tests", ->
     describe "with one argument", ->
       describe "where the argument is not an object", ->
         beforeEach ->
@@ -83,4 +83,47 @@ describe "bootbox.confirm", ->
           expect(@dialog.find(".btn:first").hasClass("btn-default")).to.be.true
           expect(@dialog.find(".btn:last").hasClass("btn-primary")).to.be.true
 
+        it "shows the dialog", ->
+          expect(@dialog.is(":visible")).to.be.true
+
   describe "configuration options tests", ->
+    beforeEach ->
+      @options =
+        message: "Are you sure?"
+        callback: -> true
+
+      @create = =>
+        @dialog = bootbox.confirm @options
+
+    describe "with a custom cancel button", ->
+      beforeEach ->
+        @options.buttons =
+          cancel:
+            label: "Custom cancel"
+            className: "btn-danger"
+
+        @create()
+
+        @button = @dialog.find(".btn:first")
+
+      it "adds the correct cancel button", ->
+        expect(@button.text()).to.equal "Custom cancel"
+        expect(@button.hasClass("btn-danger")).to.be.true
+
+    describe "with a custom confirm button", ->
+      beforeEach ->
+        @options.buttons =
+          confirm:
+            label: "Custom confirm"
+            className: "btn-warning"
+
+        @create()
+
+        @button = @dialog.find(".btn:last")
+
+      it "adds the correct confirm button", ->
+        expect(@button.text()).to.equal "Custom confirm"
+        expect(@button.hasClass("btn-warning")).to.be.true
+
+  describe "callback tests", ->
+    beforeEach ->
