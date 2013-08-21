@@ -4,6 +4,10 @@ module.exports = function(config) {
     basePath: "",
     frameworks: ["mocha", "chai"],
     files: [
+      "node_modules/sinon/lib/sinon.js",
+      "node_modules/sinon/lib/sinon/spy.js",
+      "node_modules/sinon/lib/sinon/stub.js",
+      "node_modules/sinon-chai/lib/sinon-chai.js",
       "tests/vendor/jquery-1.8.3.min.js",
       "tests/vendor/bootstrap-3.0.0-wip.js",
       "bootbox.js",

@@ -126,4 +126,75 @@ describe "bootbox.confirm", ->
         expect(@button.hasClass("btn-warning")).to.be.true
 
   describe "callback tests", ->
-    beforeEach ->
+    describe "with a simple callback", ->
+      beforeEach ->
+        @callback = sinon.spy()
+
+        @dialog = bootbox.confirm
+          message: "Are you sure?"
+          callback: @callback
+
+        @hidden = sinon.spy @dialog, "modal"
+
+      describe "when dismissing the dialog by clicking OK", ->
+        beforeEach ->
+          @dialog.find(".btn-primary").trigger "click"
+
+        it "should invoke the callback", ->
+          expect(@callback).to.have.been.called
+
+        it "with the correct value", ->
+          expect(@callback).to.have.been.calledWithExactly true
+
+        it "should hide the modal", ->
+          expect(@hidden).to.have.been.calledWithExactly "hide"
+
+      describe "when dismissing the dialog by clicking Cancel", ->
+        beforeEach ->
+          @dialog.find(".btn-default").trigger "click"
+
+        it "should invoke the callback", ->
+          expect(@callback).to.have.been.called
+
+        it "with the correct value", ->
+          expect(@callback).to.have.been.calledWithExactly false
+
+        it "should hide the modal", ->
+          expect(@hidden).to.have.been.calledWithExactly "hide"
+
+    describe "with a callback which returns false", ->
+      beforeEach ->
+        @callback = sinon.stub()
+        @callback.returns false
+
+        @dialog = bootbox.confirm
+          message: "Are you sure?"
+          callback: @callback
+
+        @hidden = sinon.spy @dialog, "modal"
+
+      describe "when dismissing the dialog by clicking OK", ->
+        beforeEach ->
+          @dialog.find(".btn-primary").trigger "click"
+
+        it "should invoke the callback", ->
+          expect(@callback).to.have.been.called
+
+        it "with the correct value", ->
+          expect(@callback).to.have.been.calledWithExactly true
+
+        it "should not hide the modal", ->
+          expect(@hidden).not.to.have.been.called
+
+      describe "when dismissing the dialog by clicking Cancel", ->
+        beforeEach ->
+          @dialog.find(".btn-default").trigger "click"
+
+        it "should invoke the callback", ->
+          expect(@callback).to.have.been.called
+
+        it "with the correct value", ->
+          expect(@callback).to.have.been.calledWithExactly false
+
+        it "should not hide the modal", ->
+          expect(@hidden).not.to.have.been.called
