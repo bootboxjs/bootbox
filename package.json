@@ -23,6 +23,7 @@
     "karma-mocha": "~0.1.0",
     "chai": "~1.7.2",
     "karma-phantomjs-launcher": "~0.1.0",
-    "mocha": "~1.12.0"
+    "mocha": "~1.12.0",
+    "karma-coffee-preprocessor": "~0.1.0"
   }
 }

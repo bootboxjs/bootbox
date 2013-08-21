@@ -10,6 +10,7 @@ module.exports = function(config) {
       // awkward name; we mean the bootstrap process, not the library!
       "tests/bootstrap.js",
       "bootbox.js",
+      "tests/**/*.test.coffee",
       "tests/**/*.test.js"
     ],
     exclude: [],
