@@ -162,6 +162,21 @@ describe "bootbox.confirm", ->
         it "should hide the modal", ->
           expect(@hidden).to.have.been.calledWithExactly "hide"
 
+      describe "when triggering the escape event", ->
+        beforeEach ->
+          #@TODO I'm fine with this as long as we assert that pressing
+          # keyup with code == 27 triggers this in another test
+          @dialog.trigger "escape.close.bb"
+
+        it "should invoke the callback", ->
+          expect(@callback).to.have.been.called
+
+        it "with the correct value", ->
+          expect(@callback).to.have.been.calledWithExactly false
+
+        it "should hide the modal", ->
+          expect(@hidden).to.have.been.calledWithExactly "hide"
+
     describe "with a callback which returns false", ->
       beforeEach ->
         @callback = sinon.stub()
@@ -189,6 +204,19 @@ describe "bootbox.confirm", ->
       describe "when dismissing the dialog by clicking Cancel", ->
         beforeEach ->
           @dialog.find(".btn-default").trigger "click"
+
+        it "should invoke the callback", ->
+          expect(@callback).to.have.been.called
+
+        it "with the correct value", ->
+          expect(@callback).to.have.been.calledWithExactly false
+
+        it "should not hide the modal", ->
+          expect(@hidden).not.to.have.been.called
+
+      describe "when triggering the escape event", ->
+        beforeEach ->
+          @dialog.trigger "escape.close.bb"
 
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
