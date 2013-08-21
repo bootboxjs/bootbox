@@ -47,6 +47,14 @@ describe "bootbox.confirm", ->
           it "creates a dialog object", ->
             expect(@dialog).to.be.an "object"
 
+          it "adds the correct button labels", ->
+            expect(@dialog.find(".btn:first").text()).to.equal "Cancel"
+            expect(@dialog.find(".btn:last").text()).to.equal "OK"
+
+          it "adds the correct button classes", ->
+            expect(@dialog.find(".btn:first").hasClass("btn-default")).to.be.true
+            expect(@dialog.find(".btn:last").hasClass("btn-primary")).to.be.true
+
     describe "with two arguments", ->
       describe "where the second argument is not a function", ->
         beforeEach ->
@@ -66,5 +74,13 @@ describe "bootbox.confirm", ->
 
         it "creates a dialog object", ->
           expect(@dialog).to.be.an "object"
+
+        it "adds the correct button labels", ->
+          expect(@dialog.find(".btn:first").text()).to.equal "Cancel"
+          expect(@dialog.find(".btn:last").text()).to.equal "OK"
+
+        it "adds the correct button classes", ->
+          expect(@dialog.find(".btn:first").hasClass("btn-default")).to.be.true
+          expect(@dialog.find(".btn:last").hasClass("btn-primary")).to.be.true
 
   describe "configuration options tests", ->
