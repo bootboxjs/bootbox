@@ -88,10 +88,16 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return t;
   }
 
+  function each(collection, iterator) {
+    var index = 0;
+    $.each(collection, function(key, value) {
+      iterator(key, value, index++);
+    });
+  }
+
   function sanitize(options) {
     var buttons;
     var total;
-    var keyIndex;
 
 
     if (typeof options !== "object") {
@@ -118,19 +124,14 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     total = getKeyLength(buttons);
 
-    keyIndex = 0;
-
-    $.each(buttons, function(key, button) {
-      keyIndex ++;
-
-      button = buttons[key];
+    each(buttons, function(key, button, index) {
 
       if (!button.label) {
         throw new Error("button with key " + key + " requires a label");
       }
 
       if (!button.className) {
-        if (total <= 2 && keyIndex === total) {
+        if (total <= 2 && index === total-1) {
           // always add a primary to the main option in a two-button dialog
           button.className = "btn-primary";
         } else {
@@ -334,14 +335,14 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       onEscape: options.onEscape
     };
 
-    $.each(buttons, function(key, button) {
+    each(buttons, function(key, button) {
 
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
       // can we just build up button elements instead? slower but neater. Then button
       // can just become a template too
       buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
       callbacks[key] = button.callback;
-    })
+    });
 
     body.find(".bootbox-body").html(options.message);
 
