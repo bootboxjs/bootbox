@@ -124,6 +124,47 @@ describe("bootbox.alert", function() {
   });
 
   describe("callback tests", function() {
+
+    describe("with no callback", function() {
+      beforeEach(function() {
+        this.dialog = bootbox.alert({
+          message:"Hello!"
+        });
+
+        this.hidden = sinon.spy(this.dialog, "modal");
+      });
+
+      describe("when dismissing the dialog by clicking OK", function() {
+        beforeEach(function() {
+          this.dialog.find(".btn-primary").trigger("click");
+        });
+
+        it("should hide the modal", function() {
+          expect(this.hidden).to.have.been.calledWithExactly("hide");
+        });
+      });
+
+      describe("when clicking the close button", function() {
+        beforeEach(function() {
+          this.dialog.find(".close").trigger("click");
+        });
+
+        it("should hide the modal", function() {
+          expect(this.hidden).to.have.been.calledWithExactly("hide");
+        });
+      });
+
+      describe("when triggering the escape event", function() {
+        beforeEach(function() {
+          this.dialog.trigger("escape.close.bb");
+        });
+
+        it("should hide the modal", function() {
+          expect(this.hidden).to.have.been.calledWithExactly("hide");
+        });
+      });
+    });
+
     describe("with a simple callback", function() {
       beforeEach(function() {
         this.callback = sinon.spy();
@@ -164,7 +205,7 @@ describe("bootbox.alert", function() {
         });
       });
 
-      describe("when clicking the close button", function() {
+      describe("when triggering the escape event", function() {
         beforeEach(function() {
           this.dialog.trigger("escape.close.bb");
         });
@@ -220,7 +261,7 @@ describe("bootbox.alert", function() {
         });
       });
 
-      describe("when clicking the close button", function() {
+      describe("when triggering the escape event", function() {
         beforeEach(function() {
           this.dialog.trigger("escape.close.bb");
         });
