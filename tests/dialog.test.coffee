@@ -94,6 +94,8 @@ describe "bootbox.dialog", ->
         @create
           label: "My Label"
 
+        @hidden = sinon.spy @dialog, "modal"
+
       it "shows a footer", ->
         expect(@exists(".modal-footer")).to.be.ok
 
@@ -105,6 +107,20 @@ describe "bootbox.dialog", ->
 
       it "applies the correct button class", ->
         expect(@class(".btn", "btn-primary")).to.be.true
+
+      describe "when triggering the escape event", ->
+        beforeEach ->
+          @dialog.trigger "escape.close.bb"
+
+        it "should not hide the modal", ->
+          expect(@hidden).not.to.have.been.called
+
+      describe "when clicking the close button", ->
+        beforeEach ->
+          @dialog.find(".close").trigger "click"
+
+        it "should hide the modal", ->
+          expect(@hidden).to.have.been.calledWithExactly "hide"
 
     describe "when the button has a label and callback", ->
       beforeEach ->
@@ -131,3 +147,23 @@ describe "bootbox.dialog", ->
 
         it "should hide the modal", ->
           expect(@hidden).to.have.been.calledWithExactly "hide"
+
+      describe "when triggering the escape event", ->
+        beforeEach ->
+          @dialog.trigger "escape.close.bb"
+
+        it "should not invoke the callback", ->
+          expect(@callback).not.to.have.been.called
+
+        it "should not hide the modal", ->
+          expect(@hidden).not.to.have.been.called
+
+      describe "when clicking the close button", ->
+        beforeEach ->
+          @dialog.find(".close").trigger "click"
+
+        it "should not invoke the callback", ->
+          expect(@callback).not.to.have.been.called
+
+        it "should hide the modal", ->
+          expect(@hidden).to.have.been.called
