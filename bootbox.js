@@ -78,21 +78,22 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     }
   }
 
+  function getKeyLength(obj) {
+    // @TODO defer to Object.keys(x).length if available?
+    var k, t = 0;
+    for (k in obj) {
+      t ++;
+    }
+    return t;
+  }
+
   function sanitize(options) {
-    var buttons = options.buttons;
+    var buttons;
     var total;
     var key;
     var keyIndex;
     var button;
 
-    total = (function getKeyLength(obj) {
-      // @TODO defer to Object.keys(x).length if available?
-      var k, t = 0;
-      for (k in obj) {
-        t ++;
-      }
-      return t;
-    }(buttons));
 
     if (typeof options !== "object") {
       throw new Error("Please supply an object of options");
@@ -119,6 +120,10 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     // explicitly interacting with it
     options.backdrop = options.backdrop ? "static" : false;
 
+    buttons = options.buttons;
+
+    total = getKeyLength(buttons);
+
     keyIndex = 0;
 
     for (key in buttons) {
@@ -127,7 +132,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       button = buttons[key];
 
       if (!button.label) {
-        throw new Error("Button with key " + key + " requires a label");
+        throw new Error("button with key " + key + " requires a label");
       }
 
       if (!button.className) {

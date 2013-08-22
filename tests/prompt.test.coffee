@@ -3,7 +3,9 @@ describe "bootbox.prompt", ->
     @text = (selector) -> @dialog.find(selector).text()
 
   describe "basic usage tests", ->
+
     describe "with one argument", ->
+
       describe "where the argument is not an object", ->
         beforeEach ->
           @create = -> bootbox.prompt "What is your name?"

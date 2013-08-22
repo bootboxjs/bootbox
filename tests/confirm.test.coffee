@@ -1,6 +1,9 @@
 describe "bootbox.confirm", ->
+
   describe "basic usage tests", ->
+
     describe "with one argument", ->
+
       describe "where the argument is not an object", ->
         beforeEach ->
           @create = -> bootbox.confirm "Are you sure?"
