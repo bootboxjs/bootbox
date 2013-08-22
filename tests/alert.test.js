@@ -149,6 +149,90 @@ describe("bootbox.alert", function() {
           expect(this.hidden).to.have.been.calledWithExactly("hide");
         });
       });
+
+      describe("when clicking the close button", function() {
+        beforeEach(function() {
+          this.dialog.find(".close").trigger("click");
+        });
+
+        it("should invoke the callback", function() {
+          expect(this.callback).to.have.been.called;
+        });
+
+        it("should hide the modal", function() {
+          expect(this.hidden).to.have.been.calledWithExactly("hide");
+        });
+      });
+
+      describe("when clicking the close button", function() {
+        beforeEach(function() {
+          this.dialog.trigger("escape.close.bb");
+        });
+
+        it("should invoke the callback", function() {
+          expect(this.callback).to.have.been.called;
+        });
+
+        it("should hide the modal", function() {
+          expect(this.hidden).to.have.been.calledWithExactly("hide");
+        });
+      });
+    });
+
+    describe("with a callback which returns false", function() {
+      beforeEach(function() {
+        this.callback = sinon.stub();
+        this.callback.returns(false);
+
+        this.dialog = bootbox.alert({
+          message:"Hello!",
+          callback: this.callback
+        });
+
+        this.hidden = sinon.spy(this.dialog, "modal");
+      });
+
+      describe("when dismissing the dialog by clicking OK", function() {
+        beforeEach(function() {
+          this.dialog.find(".btn-primary").trigger("click");
+        });
+
+        it("should invoke the callback", function() {
+          expect(this.callback).to.have.been.called;
+        });
+
+        it("should not hide the modal", function() {
+          expect(this.hidden).not.to.have.been.called;
+        });
+      });
+
+      describe("when clicking the close button", function() {
+        beforeEach(function() {
+          this.dialog.find(".close").trigger("click");
+        });
+
+        it("should invoke the callback", function() {
+          expect(this.callback).to.have.been.called;
+        });
+
+        it("should not hide the modal", function() {
+          expect(this.hidden).not.to.have.been.called;
+        });
+      });
+
+      describe("when clicking the close button", function() {
+        beforeEach(function() {
+          this.dialog.trigger("escape.close.bb");
+        });
+
+        it("should invoke the callback", function() {
+          expect(this.callback).to.have.been.called;
+        });
+
+        it("should not hide the modal", function() {
+          expect(this.hidden).not.to.have.been.called;
+        });
+      });
     });
   });
 });
