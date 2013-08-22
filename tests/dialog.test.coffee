@@ -46,13 +46,10 @@ describe "bootbox.dialog", ->
         it "throws an error", ->
           expect(@create).to.throw /button with key ok requires a label/
 
-  describe "when creating a simple dialog", ->
+  describe "when creating a minimal dialog", ->
     beforeEach ->
       @dialog = bootbox.dialog
         message: "test"
-        buttons:
-          one:
-            label: "My Button"
         
     it "adds the bootbox class to the dialog", ->
       expect(@dialog.hasClass("bootbox")).to.be.true
@@ -72,5 +69,8 @@ describe "bootbox.dialog", ->
     it "has a close button inside the body", ->
       expect(@exists(".modal-body .close")).to.be.ok
 
-    it "has a footer", ->
-      expect(@exists(".modal-footer")).to.be.ok
+    it "does not have a footer", ->
+      expect(@exists(".modal-footer")).not.to.be.ok
+
+    it "has a backdrop", ->
+      expect(@dialog.next(".modal-backdrop")).to.be.ok
