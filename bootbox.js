@@ -13,14 +13,16 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       "<div class='bootbox modal' tabindex='-1'>" +
         "<div class='modal-dialog'>" +
           "<div class='modal-content'>" +
-            "<div class='modal-header'>" +
-              "<h4 class='modal-title'></h4>" +
-            "</div>" +
             "<div class='modal-body'></div>" +
-            "<div class='modal-footer'></div>" +
           "</div>" +
         "</div>" +
       "</div>",
+    header:
+      "<div class='modal-header'>" +
+        "<h4 class='modal-title'></h4>" +
+      "</div>",
+    footer:
+      "<div class='modal-footer'></div>",
     closeButton:
       "<button type='button' class='bootbox-close-button close'>&times;</button>",
     form:
@@ -323,6 +325,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     options = sanitize(options);
 
     var dialog = $(templates.dialog);
+    var body = dialog.find(".modal-body");
     var buttons = options.buttons;
     var button;
     var key;
@@ -352,17 +355,27 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       dialog.addClass(options.className);
     }
 
+    if (options.header) {
+      body.before(templates.header);
+    }
+
+    // @TODO what if no header? where does this go?
     if (options.closeButton) {
       dialog.find(".modal-header").prepend(templates.closeButton);
     }
 
+    // @TODO what if no header? where does this go?
     if (options.title) {
       dialog.find(".modal-title").html(options.title);
     }
 
+    if (buttonStr.length) {
+      body.after(templates.footer);
+      dialog.find(".modal-footer").html(buttonStr);
+    }
+
     // required bits last
-    dialog.find(".modal-body").html(options.message);
-    dialog.find(".modal-footer").html(buttonStr);
+    body.html(options.message);
 
     /**
      * Bootstrap event listeners; used handle extra

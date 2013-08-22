@@ -1,6 +1,10 @@
 describe "bootbox.dialog", ->
   beforeEach ->
-    @text = (selector) -> @dialog.find(selector).text()
+    invoke = (s, method) => @dialog.find(s)[method]()
+
+    @text   = (s) -> invoke s, "text"
+    @html   = (s) -> invoke s, "html"
+    @exists = (s) -> @dialog.find(s).length
 
   describe "invalid usage tests", ->
 
@@ -46,6 +50,9 @@ describe "bootbox.dialog", ->
     beforeEach ->
       @dialog = bootbox.dialog
         message: "test"
+        buttons:
+          one:
+            label: "My Button"
         
     it "adds the bootbox class to the dialog", ->
       expect(@dialog.hasClass("bootbox")).to.be.true
@@ -55,3 +62,18 @@ describe "bootbox.dialog", ->
 
     it "adds the fade class to the dialog", ->
       expect(@dialog.hasClass("fade")).to.be.true
+
+    it "show the expected message", ->
+      expect(@text(".modal-body")).to.equal "test"
+
+    it "has a header", ->
+      expect(@exists(".modal-header")).to.be.ok
+
+    it "shows an empty title", ->
+      expect(@html(".modal-title")).to.equal "&nbsp;"
+
+    it "has a close button ", ->
+      expect(@exists(".modal-header .close")).to.be.ok
+
+    it "has a footer", ->
+      expect(@exists(".modal-footer")).to.be.ok
