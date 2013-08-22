@@ -64,6 +64,8 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   }
 
   function processCallback(e, dialog, callback) {
+    e.preventDefault();
+
     // by default we assume a callback will get rid of the dialog,
     // although they are given the opportunity to override this
     var preserveDialog = false;
@@ -336,9 +338,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     var key;
     var buttonStr = "";
     var callbacks = {
-      // always assume an onEscape for now
-      // @TODO make this optional
-      "onEscape": options.onEscape
+      onEscape: options.onEscape
     };
 
     // @TODO hasOwnProperty
@@ -351,7 +351,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
       callbacks[key] = button.callback;
     }
-
 
     body.find(".bootbox-body").html(options.message);
 
@@ -413,7 +412,9 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
      */
 
     dialog.on("escape.close.bb", function(e) {
-      processCallback(e, dialog, callbacks.onEscape);
+      if (callbacks.onEscape) {
+        processCallback(e, dialog, callbacks.onEscape);
+      }
     });
 
     /**
@@ -422,8 +423,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
      */
 
     dialog.on("click", ".modal-footer button", function(e) {
-      e.preventDefault();
-
       var callbackKey = $(this).data("bb-handler");
 
       processCallback(e, dialog, callbacks[callbackKey]);
@@ -431,12 +430,13 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     });
 
     dialog.on("click", ".bootbox-close-button", function(e) {
-      e.preventDefault();
+      // onEscape might be falsy but that's fine; the fact is
+      // if the user has managed to click the close button we
+      // have to close the dialog, callback or not
       processCallback(e, dialog, callbacks.onEscape);
     });
 
     dialog.on("keyup", function(e) {
-      // @TODO make conditional
       if (e.which === 27) {
         dialog.trigger("escape.close.bb");
       }
