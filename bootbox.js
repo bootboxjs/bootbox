@@ -166,7 +166,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return $.extend(true, {}, defaults, mapArguments(args, properties));
   }
 
-  function buttonLabels() {
+  function createLabels() {
     var buttons = {};
 
     for (var i = 0, j = arguments.length; i < j; i++) {
@@ -182,15 +182,16 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return buttons;
   }
 
+  function createButtons() {
+    return {
+      buttons: createLabels.apply(null, arguments)
+    };
+  }
+
   exports.alert = function() {
     var options;
-    var defaults;
 
-    defaults = {
-      buttons: buttonLabels("ok")
-    };
-
-    options = mergeArguments(defaults, arguments, ["message", "callback"]);
+    options = mergeArguments(createButtons("ok"), arguments, ["message", "callback"]);
 
     if (options.callback && !$.isFunction(options.callback)) {
       throw new Error("alert requires callback property to be a function when provided");
@@ -211,13 +212,8 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
   exports.confirm = function() {
     var options;
-    var defaults;
 
-    defaults = {
-      buttons: buttonLabels("cancel", "confirm")
-    };
-
-    options = mergeArguments(defaults, arguments, ["message", "callback"]);
+    options = mergeArguments(createButtons("cancel", "confirm"), arguments, ["message", "callback"]);
 
     /**
      * overrides; undo anything the user tried to set they shouldn't have
@@ -253,7 +249,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     form = $(templates.form);
 
     defaults = {
-      buttons: buttonLabels("cancel", "confirm"),
+      buttons: createLabels("cancel", "confirm"),
       value: ""
     };
 
