@@ -91,9 +91,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   function sanitize(options) {
     var buttons;
     var total;
-    var key;
     var keyIndex;
-    var button;
 
 
     if (typeof options !== "object") {
@@ -122,7 +120,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     keyIndex = 0;
 
-    for (key in buttons) {
+    $.each(buttons, function(key, button) {
       keyIndex ++;
 
       button = buttons[key];
@@ -139,7 +137,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
           button.className = "btn-default";
         }
       }
-    }
+    });
 
     return options;
   }
@@ -331,23 +329,19 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     var dialog = $(templates.dialog);
     var body = dialog.find(".modal-body");
     var buttons = options.buttons;
-    var button;
-    var key;
     var buttonStr = "";
     var callbacks = {
       onEscape: options.onEscape
     };
 
-    // @TODO hasOwnProperty
-    for (key in buttons) {
-      button = buttons[key];
+    $.each(buttons, function(key, button) {
 
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
       // can we just build up button elements instead? slower but neater. Then button
       // can just become a template too
       buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
       callbacks[key] = button.callback;
-    }
+    })
 
     body.find(".bootbox-body").html(options.message);
 
