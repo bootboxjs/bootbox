@@ -67,14 +67,11 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     e.preventDefault();
 
     // by default we assume a callback will get rid of the dialog,
-    // although they are given the opportunity to override this
-    var preserveDialog = false;
+    // although it is given the opportunity to override this
 
     // so, if the callback can be invoked and it *explicitly returns false*
     // then we'll set a flag to keep the dialog active...
-    if ($.isFunction(callback)) {
-      preserveDialog = (callback(e) === false);
-    }
+    var preserveDialog = $.isFunction(callback) && callback(e) === false;
 
     // ... otherwise we'll bin it
     if (!preserveDialog) {
