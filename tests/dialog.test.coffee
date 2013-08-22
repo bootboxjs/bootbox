@@ -4,7 +4,7 @@ describe "bootbox.dialog", ->
 
     @text   = (s) -> invoke s, "text"
     @html   = (s) -> invoke s, "html"
-    @exists = (s) -> @dialog.find(s).length
+    @exists = (s) -> @dialog.find(s).length isnt 0
 
   describe "invalid usage tests", ->
 
@@ -64,16 +64,13 @@ describe "bootbox.dialog", ->
       expect(@dialog.hasClass("fade")).to.be.true
 
     it "show the expected message", ->
-      expect(@text(".modal-body")).to.equal "test"
+      expect(@text(".bootbox-body")).to.equal "test"
 
-    it "has a header", ->
-      expect(@exists(".modal-header")).to.be.ok
+    it "does not have a header", ->
+      expect(@exists(".modal-header")).not.to.be.ok
 
-    it "shows an empty title", ->
-      expect(@html(".modal-title")).to.equal "&nbsp;"
-
-    it "has a close button ", ->
-      expect(@exists(".modal-header .close")).to.be.ok
+    it "has a close button inside the body", ->
+      expect(@exists(".modal-body .close")).to.be.ok
 
     it "has a footer", ->
       expect(@exists(".modal-footer")).to.be.ok

@@ -10,10 +10,10 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
   // the base DOM structure needed to create a modal
   var templates = {
     dialog:
-      "<div class='bootbox modal' tabindex='-1'>" +
+      "<div class='bootbox modal' tabindex='-1' role='dialog'>" +
         "<div class='modal-dialog'>" +
           "<div class='modal-content'>" +
-            "<div class='modal-body'></div>" +
+            "<div class='modal-body'><div class='bootbox-body'></div></div>" +
           "</div>" +
         "</div>" +
       "</div>",
@@ -46,7 +46,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     // additional class string applied to the top level dialog
     className: null,
     // show the modal header or not
-    header: true,
+    header: false,
     // whether or not to include a close button, if a header is present
     closeButton: true,
     // show the dialog immediately by default
@@ -112,11 +112,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       options.buttons = {};
     }
 
-    if (!options.title) {
-      // @FIXME gah; we need to pad the header a bit...
-      options.title = "&nbsp;";
-    }
-
     // we only support Bootstrap's "static" and false backdrop args
     // supporting true would mean you could dismiss the dialog without
     // explicitly interacting with it
@@ -168,8 +163,18 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return options;
   }
 
+  function processOptions(options) {
+    // any post-processing of standard options here. for now this
+    // is limited to simply choosing whether to show a header or
+    // not based on whether the user supplied a title
+    options.header = !!options.title;
+    return options;
+  }
+
   function mergeArguments(defaults, args, properties) {
-    return $.extend(true, {}, defaults, mapArguments(args, properties));
+    return processOptions(
+      $.extend(true, {}, defaults, mapArguments(args, properties))
+    );
   }
 
   function createLabels() {
@@ -347,6 +352,9 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       callbacks[key] = button.callback;
     }
 
+
+    body.find(".bootbox-body").html(options.message);
+
     if (options.animate === true) {
       dialog.addClass("fade");
     }
@@ -359,13 +367,17 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       body.before(templates.header);
     }
 
-    // @TODO what if no header? where does this go?
     if (options.closeButton) {
-      dialog.find(".modal-header").prepend(templates.closeButton);
+      var closeButton = $(templates.closeButton);
+
+      if (options.header) {
+        dialog.find(".modal-header").prepend(closeButton);
+      } else {
+        closeButton.css("margin-top", "-10px").prependTo(body);
+      }
     }
 
-    // @TODO what if no header? where does this go?
-    if (options.title) {
+    if (options.header && options.title) {
       dialog.find(".modal-title").html(options.title);
     }
 
@@ -374,8 +386,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       dialog.find(".modal-footer").html(buttonStr);
     }
 
-    // required bits last
-    body.html(options.message);
 
     /**
      * Bootstrap event listeners; used handle extra
@@ -420,7 +430,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     });
 
-    dialog.on("click", ".modal-header .close", function(e) {
+    dialog.on("click", ".bootbox-close-button", function(e) {
       e.preventDefault();
       processCallback(e, dialog, callbacks.onEscape);
     });
