@@ -104,11 +104,15 @@ $(function() {
     };
 
     demos.alert_callback = function() {
-      /*
         bootbox.alert("Hello world!", function() {
             Example.show("Hello world callback");
+
+            bootbox.alert({
+              title: "A title, too!",
+              message: "A message"
+            });
         });
-        */
+       /*
        bootbox.dialog({
          title: "Title",
          message: "body here",
@@ -119,11 +123,10 @@ $(function() {
            },
            not_ok: {
              label: "NOT COOL AT ALL"
-           },
-           "please?": function() {
            }
          }
        });
+       */
 
        /*
        bootbox.dialog({
@@ -184,8 +187,38 @@ $(function() {
             Example.show("Confirm result: "+result);
         });
         */
+       /*
       bootbox.confirm("Are you sure?", function(result) {
         console.log("Confirm 1", result);
+      });
+      */
+     /*
+      bootbox.prompt({
+        title: "Are you sure?",
+        value: "pretty much...",
+        callback: function(r) {
+          console.log(r);
+
+          bootbox.prompt("But... really?", function(r) {
+            console.log("really", r);
+          });
+        }
+      });
+      */
+      bootbox.confirm("Sure?", function(r) {
+        console.log(r);
+        bootbox.confirm({
+          message: "Really?",
+          callback: function(r) {
+            console.log("really", r);
+          },
+          buttons: {
+            confirm: {
+              label: "sure as anything",
+              className: "btn-danger"
+            }
+          }
+        });
       });
     };
 
