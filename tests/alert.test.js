@@ -18,6 +18,18 @@ describe("bootbox.alert", function() {
 
   describe("basic usage tests", function() {
 
+    describe("with no arguments", function() {
+      beforeEach(function() {
+        this.create = function() {
+          bootbox.alert();
+        };
+      });
+
+      it("throws an error regarding argument length", function() {
+        expect(this.create).to.throw(/argument length/);
+      });
+    });
+
     describe("with one argument", function() {
 
       describe("where the argument is a string", function() {
@@ -77,6 +89,19 @@ describe("bootbox.alert", function() {
         });
       });
     });
+
+    describe("with three arguments", function() {
+      beforeEach(function() {
+        this.create = function() {
+          bootbox.alert(1, 2, 3);
+        };
+      });
+
+      it("throws an error regarding argument length", function() {
+        expect(this.create).to.throw(/argument length/);
+      });
+    });
+
   });
 
   describe("configuration options tests", function() {
