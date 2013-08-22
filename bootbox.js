@@ -61,7 +61,6 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     return locales[defaults.locale][key] || locales.en[key];
   }
 
-  // @TODO inline within exports.dialog? closing over dialog & callbacks is neater...
   function processCallback(e, dialog, callback) {
     // by default we assume a callback will get rid of the dialog,
     // although they are given the opportunity to override this
@@ -326,8 +325,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
     var callbacks = {
       // always assume an onEscape for now
       // @TODO make this optional
-      // @TODO namespace this in case a user passes a button called 'escape'
-      "escape": options.onEscape
+      "onEscape": options.onEscape
     };
 
     // @TODO hasOwnProperty
@@ -387,14 +385,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
      */
 
     dialog.on("escape.close.bb", function(e) {
-      // @NOTE
-      // if we declared processCallback locally we could take
-      // advantage of our scope to just make the following...
-      // processCallback(e, "escape");
-      // and the one a bit further:
-      // processCallback(e, $(this).data("bb-handler")
-      // worth considering...
-      processCallback(e, dialog, callbacks.escape);
+      processCallback(e, dialog, callbacks.onEscape);
     });
 
     /**
@@ -413,7 +404,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
 
     dialog.on("click", ".modal-header .close", function(e) {
       e.preventDefault();
-      processCallback(e, dialog, callbacks.escape);
+      processCallback(e, dialog, callbacks.onEscape);
     });
 
     dialog.on("keyup", function(e) {
