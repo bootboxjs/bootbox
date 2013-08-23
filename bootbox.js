@@ -29,7 +29,7 @@ window.bootbox = window.bootbox || (function(document, $, undefined) {
       "<form class='bootbox-form'></form>",
     inputs: {
       text:
-        "<input class='bootbox-input input-block-level' autocomplete=off type=text />"
+        "<input class='bootbox-input form-control' autocomplete=off type=text />"
     }
   };
 
