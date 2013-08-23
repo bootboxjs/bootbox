@@ -1,5 +1,10 @@
 describe "bootbox.dialog", ->
   beforeEach ->
+    bootbox.init()
+
+    # need to take care with these helpers; don't want too much
+    # cleverness in the tests which runs the risk of making them
+    # harder to read. Could we look at custom expectations instead?
     @find   = (s)    -> @dialog.find s
     @exists = (s)    -> @find(s).length isnt 0
     @class  = (s, c) -> @find(s).hasClass(c)
@@ -51,7 +56,7 @@ describe "bootbox.dialog", ->
     beforeEach ->
       @dialog = bootbox.dialog
         message: "test"
-        
+
     it "adds the bootbox class to the dialog", ->
       expect(@dialog.hasClass("bootbox")).to.be.true
 

@@ -1,5 +1,7 @@
 describe "bootbox locales", ->
   beforeEach ->
+    bootbox.init()
+
     @setLocale = (locale) ->
       bootbox.setDefaults locale: locale
 
@@ -10,11 +12,6 @@ describe "bootbox locales", ->
         ok: d1.find(".btn:first").text()
         cancel: d2.find(".btn:first").text()
         confirm: d2.find(".btn:last").text()
-
-  # this is a smell; because bootbox is only instantiated once these tests all share
-  # the same state meaning these locales bleed out elsewhere. One to look at properly
-  afterEach ->
-    bootbox.setDefaults locale: "en"
 
   describe "English", ->
     beforeEach ->

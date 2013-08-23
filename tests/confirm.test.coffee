@@ -1,4 +1,6 @@
 describe "bootbox.confirm", ->
+  beforeEach ->
+    bootbox.init()
 
   describe "basic usage tests", ->
 

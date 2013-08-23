@@ -1,5 +1,6 @@
 describe "bootbox.prompt", ->
   beforeEach ->
+    bootbox.init()
     @text = (selector) -> @dialog.find(selector).text()
 
   describe "basic usage tests", ->
