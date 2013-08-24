@@ -18,7 +18,16 @@
   "devDependencies": {
     "grunt-contrib-uglify": "~0.2.2",
     "grunt": "~0.4.1",
-    "karma": "~0.8.6",
-    "grunt-contrib-jshint": "~0.6.2"
+    "karma": "~0.10.1",
+    "grunt-contrib-jshint": "~0.6.2",
+    "karma-mocha": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "mocha": "~1.12.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-coverage": "~0.1.0",
+    "karma-junit-reporter": "~0.1.0",
+    "karma-chai": "git+https://github.com/xdissent/karma-chai.git",
+    "sinon": "~1.7.3",
+    "sinon-chai": "~2.4.0"
   }
 }

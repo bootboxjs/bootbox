@@ -1,714 +1,564 @@
 /**
- * bootbox.js [master branch]
+ * bootbox.js [v4.x/master branch]
  *
  * http://bootboxjs.com/license.txt
  */
-var bootbox = window.bootbox || (function(document, $) {
-
-    var _locale        = 'en',
-        _defaultLocale = 'en',
-        _animate       = true,
-        _backdrop      = 'static',
-        _defaultHref   = 'javascript:;',
-        _classes       = '',
-        _btnClasses    = {},
-        _icons         = {},
-        /* last var should always be the public object we'll return */
-        that           = {};
-
-
-    /**
-     * public API
-     */
-    that.setLocale = function(locale) {
-        for (var i in _locales) {
-            if (i == locale) {
-                _locale = locale;
-                return;
-            }
-        }
-        throw new Error('Invalid locale: '+locale);
-    };
-
-    that.addLocale = function(locale, translations) {
-        if (typeof _locales[locale] === 'undefined') {
-            _locales[locale] = {};
-        }
-        for (var str in translations) {
-            _locales[locale][str] = translations[str];
-        }
-    };
-
-    that.setIcons = function(icons) {
-        _icons = icons;
-        if (typeof _icons !== 'object' || _icons === null) {
-            _icons = {};
-        }
-    };
-
-    that.setBtnClasses = function(btnClasses) {
-        _btnClasses = btnClasses;
-        if (typeof _btnClasses !== 'object' || _btnClasses === null) {
-            _btnClasses = {};
-        }
-    };
-
-    that.alert = function(/*str, label, cb*/) {
-        var str   = "",
-            label = _translate('OK'),
-            cb    = null;
-
-        switch (arguments.length) {
-            case 1:
-                // no callback, default button label
-                str = arguments[0];
-                break;
-            case 2:
-                // callback *or* custom button label dependent on type
-                str = arguments[0];
-                if (typeof arguments[1] == 'function') {
-                    cb = arguments[1];
-                } else {
-                    label = arguments[1];
-                }
-                break;
-            case 3:
-                // callback and custom button label
-                str   = arguments[0];
-                label = arguments[1];
-                cb    = arguments[2];
-                break;
-            default:
-                throw new Error("Incorrect number of arguments: expected 1-3");
-        }
-
-        return that.dialog(str, {
-            // only button (ok)
-            "label"   : label,
-            "icon"    : _icons.OK,
-            "class"   : _btnClasses.OK,
-            "callback": cb
-        }, {
-            // ensure that the escape key works; either invoking the user's
-            // callback or true to just close the dialog
-            "onEscape": cb || true
-        });
-    };
-
-    that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
-        var str         = "",
-            labelCancel = _translate('CANCEL'),
-            labelOk     = _translate('CONFIRM'),
-            cb          = null;
-
-        switch (arguments.length) {
-            case 1:
-                str = arguments[0];
-                break;
-            case 2:
-                str = arguments[0];
-                if (typeof arguments[1] == 'function') {
-                    cb = arguments[1];
-                } else {
-                    labelCancel = arguments[1];
-                }
-                break;
-            case 3:
-                str         = arguments[0];
-                labelCancel = arguments[1];
-                if (typeof arguments[2] == 'function') {
-                    cb = arguments[2];
-                } else {
-                    labelOk = arguments[2];
-                }
-                break;
-            case 4:
-                str         = arguments[0];
-                labelCancel = arguments[1];
-                labelOk     = arguments[2];
-                cb          = arguments[3];
-                break;
-            default:
-                throw new Error("Incorrect number of arguments: expected 1-4");
-        }
-
-        var cancelCallback = function() {
-            if (typeof cb === 'function') {
-                return cb(false);
-            }
-        };
-
-        var confirmCallback = function() {
-            if (typeof cb === 'function') {
-                return cb(true);
-            }
-        };
-
-        return that.dialog(str, [{
-            // first button (cancel)
-            "label"   : labelCancel,
-            "icon"    : _icons.CANCEL,
-            "class"   : _btnClasses.CANCEL,
-            "callback": cancelCallback
-        }, {
-            // second button (confirm)
-            "label"   : labelOk,
-            "icon"    : _icons.CONFIRM,
-            "class"   : _btnClasses.CONFIRM,
-            "callback": confirmCallback
-        }], {
-            // escape key bindings
-            "onEscape": cancelCallback
-        });
-    };
-
-    that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
-        var str         = "",
-            labelCancel = _translate('CANCEL'),
-            labelOk     = _translate('CONFIRM'),
-            cb          = null,
-            defaultVal  = "",
-            type        = "text",
-            types       = ['text', 'select'],
-            options     = [],
-            selector    = "";
-
-        switch (arguments.length) {
-            case 1:
-                str = arguments[0];
-                break;
-            case 2:
-                str = arguments[0];
-                if (typeof arguments[1] == 'function') {
-                    cb = arguments[1];
-                } else {
-                    labelCancel = arguments[1];
-                }
-                break;
-            case 3:
-                str         = arguments[0];
-                labelCancel = arguments[1];
-                if (typeof arguments[2] == 'function') {
-                    cb = arguments[2];
-                } else {
-                    labelOk = arguments[2];
-                }
-                break;
-            case 4:
-                str         = arguments[0];
-                labelCancel = arguments[1];
-                labelOk     = arguments[2];
-                cb          = arguments[3];
-                break;
-            case 5:
-                str         = arguments[0];
-                labelCancel = arguments[1];
-                labelOk     = arguments[2];
-                cb          = arguments[3];
-
-                if (typeof arguments[4] == "object") {
-                    if (typeof arguments[4].type === "undefined" || types.indexOf(arguments[4].type) === -1) {
-                        throw new Error("Prompt input type not given or it is invalid. Expected type: " + types.join(", "));
-                    }
-
-                    type = arguments[4].type;
-
-                    if (type == "select") {
-                        if (typeof arguments[4].options !== 'object' || arguments[4].options.length === 0) {
-                            throw new Error("No options defined for select. Specify options as an array of objects.");
-                        } else if (typeof arguments[4].options[0].value === "undefined" || typeof arguments[4].options[0].text === "undefined") {
-                            throw new Error("Select options in wrong format. [{value: 1, text: 'foo'}]");
-                        }
-
-                        options = arguments[4].options;
-                    }
-
-                    if (typeof arguments[4].value !== 'undefined') {
-                        defaultVal = arguments[4].value;
-                    }
-                } else {
-                    defaultVal  = arguments[4];
-                }
-                break;
-            default:
-                throw new Error("Incorrect number of arguments: expected 1-5");
-        }
-
-        var header = str;
-
-        // let's keep a reference to the form object for later
-        var form = $("<form></form>");
-        var input = '';
-
-        if (type === "select") {
-            input = $("<select class='form-control'/>");
-
-            // Create options for select
-            for (var i = 0; i < arguments[4].options.length; i++) {
-                var option = arguments[4].options[i];
-
-                input.append(new Option(option.text, option.value));
-            }
-
-            // Set selected option
-            input.find("option").filter(function() {
-                return $(this).val() == defaultVal;
-            }).prop('selected', true);
-
-            selector = "select";
-        } else {
-            input = "<input class='form-control' autocomplete=off type=text class=text value='" + defaultVal + "' />";
-            selector = "input.text";
-        }
-
-        form.append(input);
-
-        var cancelCallback = function() {
-            if (typeof cb === 'function') {
-                // yep, native prompts dismiss with null, whereas native
-                // confirms dismiss with false...
-                return cb(null);
-            }
-        };
-
-        var confirmCallback = function() {
-            if (typeof cb === 'function') {
-                return cb(form.find(selector).val());
-            }
-        };
-
-        var div = that.dialog(form, [{
-            // first button (cancel)
-            "label"   : labelCancel,
-            "icon"    : _icons.CANCEL,
-            "class"   : _btnClasses.CANCEL,
-            "callback":  cancelCallback
-        }, {
-            // second button (confirm)
-            "label"   : labelOk,
-            "icon"    : _icons.CONFIRM,
-            "class"   : _btnClasses.CONFIRM,
-            "callback": confirmCallback
-        }], {
-            // prompts need a few extra options
-            "header"  : header,
-            // explicitly tell dialog NOT to show the dialog...
-            "show"    : false,
-            "onEscape": cancelCallback
-        });
-
-        // ... the reason the prompt needs to be hidden is because we need
-        // to bind our own "shown" handler, after creating the modal but
-        // before any show(n) events are triggered
-        // @see https://github.com/makeusabrew/bootbox/issues/69
-
-        div.on("shown.bs.modal", function() {
-            form.find(selector).focus();
-
-            // ensure that submitting the form (e.g. with the enter key)
-            // replicates the behaviour of a normal prompt()
-            form.on("submit", function(e) {
-                e.preventDefault();
-                div.find(".btn-primary").click();
-            });
-        });
-
-        div.modal("show");
-
-        return div;
-    };
-
-    that.dialog = function(str, handlers, options) {
-        var buttons    = "",
-            callbacks  = [];
-
-        if (!options) {
-            options = {};
-        }
-
-        // check for single object and convert to array if necessary
-        if (typeof handlers === 'undefined') {
-            handlers = [];
-        } else if (typeof handlers.length == 'undefined') {
-            handlers = [handlers];
-        }
-
-        var i = handlers.length;
-        while (i--) {
-            var label    = null,
-                href     = null,
-                _class   = null,
-                icon     = '',
-                callback = null;
-
-            if (typeof handlers[i]['label']    == 'undefined' &&
-                typeof handlers[i]['class']    == 'undefined' &&
-                typeof handlers[i]['callback'] == 'undefined') {
-                // if we've got nothing we expect, check for condensed format
-
-                var propCount = 0,      // condensed will only match if this == 1
-                    property  = null;   // save the last property we found
-
-                // be nicer to count the properties without this, but don't think it's possible...
-                for (var j in handlers[i]) {
-                    property = j;
-                    if (++propCount > 1) {
-                        // forget it, too many properties
-                        break;
-                    }
-                }
-
-                if (propCount == 1 && typeof handlers[i][j] == 'function') {
-                    // matches condensed format of label -> function
-                    handlers[i]['label']    = property;
-                    handlers[i]['callback'] = handlers[i][j];
-                }
-            }
-
-            if (typeof handlers[i]['callback']== 'function') {
-                callback = handlers[i]['callback'];
-            }
-
-            if (handlers[i]['class']) {
-                _class = handlers[i]['class'];
-            } else if (i == handlers.length -1 && handlers.length <= 2) {
-                // always add a primary to the main option in a two-button dialog
-                _class = 'btn btn-primary';
-            }
-
-            if (handlers[i]['link'] !== true) {
-                _class = 'btn btn-default ' + _class;
-            }
-
-            if (handlers[i]['label']) {
-                label = handlers[i]['label'];
-            } else {
-                label = "Option "+(i+1);
-            }
-
-            if (handlers[i]['icon']) {
-                icon = "<i class='"+handlers[i]['icon']+"'></i> ";
-            }
-
-            if (handlers[i]['href']) {
-                href = handlers[i]['href'];
-            }
-            else {
-                href = _defaultHref;
-            }
-
-            buttons = "<a data-handler='"+i+"' class='"+_class+"' href='" + href + "'>"+icon+""+label+"</a>" + buttons;
-
-            callbacks[i] = callback;
-        }
-
-        // @see https://github.com/makeusabrew/bootbox/issues/46#issuecomment-8235302
-        // and https://github.com/twitter/bootstrap/issues/4474
-        // for an explanation of the inline overflow: hidden
-        // @see https://github.com/twitter/bootstrap/issues/4854
-        // for an explanation of tabIndex=-1
-
-        var parts = ["<div class='bootbox modal' tabindex='-1' style='overflow:hidden;'>"];
-        parts.push("<div class='modal-dialog'>");
-        parts.push("<div class='modal-content'>");
-
-        if (options['header']) {
-            var closeButton = '';
-
-            if (typeof options['headerCloseButton'] == 'undefined' || options['headerCloseButton']) {
-                closeButton = "<a href='"+_defaultHref+"' class='close'>&times;</a>";
-            }
-
-            parts.push("<div class='modal-header'>"+closeButton+"<h4 class='modal-title'>"+options['header']+"</h4></div>");
-        }
-
-        // push an empty body into which we'll inject the proper content later
-        parts.push("<div class='modal-body'></div>");
-
-        if (buttons) {
-            parts.push("<div class='modal-footer'>"+buttons+"</div>");
-        }
-
-        parts.push("</div>");
-        parts.push("</div>");
-        parts.push("</div>");
-
-        var div = $(parts.join("\n"));
-
-        // check whether we should fade in/out
-        var shouldFade = (typeof options.animate === 'undefined') ? _animate : options.animate;
-
-        if (shouldFade) {
-            div.addClass("fade");
-        }
-
-        var optionalClasses = (typeof options.classes === 'undefined') ? _classes : options.classes;
-        if (optionalClasses) {
-            div.addClass(optionalClasses);
-        }
-
-        // now we've built up the div properly we can inject the content whether it was a string or a jQuery object
-        div.find(".modal-body").html(str);
-
-        function onCancel(source) {
-            // for now source is unused, but it will be in future
-            var hideModal = null;
-            if (typeof options.onEscape === 'function') {
-                // @see https://github.com/makeusabrew/bootbox/issues/91
-                hideModal = options.onEscape();
-            }
-
-            if (hideModal !== false) {
-                div.modal('hide');
-            }
-        }
-
-        // hook into the modal's keyup trigger to check for the escape key
-        div.on('keyup.dismiss.bs.modal', function(e) {
-            // any truthy value passed to onEscape will dismiss the dialog
-            // as long as the onEscape function (if defined) doesn't prevent it
-            if (e.which === 27 && options.onEscape) {
-                onCancel('escape');
-            }
-        });
-
-        // handle close buttons too
-        div.on('click', 'a.close', function(e) {
-            e.preventDefault();
-            onCancel('close');
-        });
-
-        // well, *if* we have a primary - give the first dom element focus
-        div.on('shown.bs.modal', function() {
-            div.find("a.btn-primary:first").focus();
-        });
-
-        div.on('hidden.bs.modal', function(e) {
-            // @see https://github.com/makeusabrew/bootbox/issues/115
-            // allow for the fact hidden events can propagate up from
-            // child elements like tooltips
-            if (e.target === this) {
-                div.remove();
-            }
-        });
-
-        // wire up button handlers
-        div.on('click', '.modal-footer a', function(e) {
-
-            var handler   = $(this).data("handler"),
-                cb        = callbacks[handler],
-                hideModal = null;
-
-            // sort of @see https://github.com/makeusabrew/bootbox/pull/68 - heavily adapted
-            // if we've got a custom href attribute, all bets are off
-            if (typeof handler                   !== 'undefined' &&
-                typeof handlers[handler]['href'] !== 'undefined') {
-
-                return;
-            }
-
-            e.preventDefault();
-
-            if (typeof cb === 'function') {
-                hideModal = cb(e);
-            }
-
-            // the only way hideModal *will* be false is if a callback exists and
-            // returns it as a value. in those situations, don't hide the dialog
-            // @see https://github.com/makeusabrew/bootbox/pull/25
-            if (hideModal !== false) {
-                div.modal("hide");
-            }
-        });
-
-        // stick the modal right at the bottom of the main body out of the way
-        $("body").append(div);
-
-        div.modal({
-            // unless explicitly overridden take whatever our default backdrop value is
-            backdrop : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
-            // ignore bootstrap's keyboard options; we'll handle this ourselves (more fine-grained control)
-            keyboard : false,
-            // @ see https://github.com/makeusabrew/bootbox/issues/69
-            // we *never* want the modal to be shown before we can bind stuff to it
-            // this method can also take a 'show' option, but we'll only use that
-            // later if we need to
-            show     : false
-        });
-
-        // @see https://github.com/makeusabrew/bootbox/issues/64
-        // @see https://github.com/makeusabrew/bootbox/issues/60
-        // ...caused by...
-        // @see https://github.com/twitter/bootstrap/issues/4781
-        div.on("show.bs.modal", function(e) {
-            $(document).off("focusin.modal");
-        });
-
-        if (typeof options.show === 'undefined' || options.show === true) {
-            div.modal("show");
-        }
-
-        return div;
-    };
-
-    /**
-     * #modal is deprecated in v3; it can still be used but no guarantees are
-     * made - have never been truly convinced of its merit but perhaps just
-     * needs a tidyup and some TLC
-     */
-    that.modal = function(/*str, label, options*/) {
-        var str;
-        var label;
-        var options;
-
-        var defaultOptions = {
-            "onEscape": null,
-            "keyboard": true,
-            "backdrop": _backdrop
-        };
-
-        switch (arguments.length) {
-            case 1:
-                str = arguments[0];
-                break;
-            case 2:
-                str = arguments[0];
-                if (typeof arguments[1] == 'object') {
-                    options = arguments[1];
-                } else {
-                    label = arguments[1];
-                }
-                break;
-            case 3:
-                str     = arguments[0];
-                label   = arguments[1];
-                options = arguments[2];
-                break;
-            default:
-                throw new Error("Incorrect number of arguments: expected 1-3");
-        }
-
-        defaultOptions['header'] = label;
-
-        if (typeof options == 'object') {
-            options = $.extend(defaultOptions, options);
-        } else {
-            options = defaultOptions;
-        }
-
-        return that.dialog(str, [], options);
-    };
-
-
-    that.hideAll = function() {
-        $(".bootbox").modal("hide");
-    };
-
-    that.animate = function(animate) {
-        _animate = animate;
-    };
-
-    that.backdrop = function(backdrop) {
-        _backdrop = backdrop;
-    };
-
-    that.classes = function(classes) {
-        _classes = classes;
-    };
-
-    /**
-     * private API
-     */
-
-    /**
-     * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
-     * unlikely to be required. If this gets too large it can be split out into separate JS files.
-     */
-    var _locales = {
-        'br' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Sim'
-        },
-        'da' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuller',
-            CONFIRM : 'Accepter'
-        },
-        'de' : {
-            OK      : 'OK',
-            CANCEL  : 'Abbrechen',
-            CONFIRM : 'Akzeptieren'
-        },
-        'en' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancel',
-            CONFIRM : 'OK'
-        },
-        'es' : {
-            OK      : 'OK',
-            CANCEL  : 'Cancelar',
-            CONFIRM : 'Aceptar'
-        },
-        'fr' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuler',
-            CONFIRM : 'D\'accord'
-        },
-        'it' : {
-            OK      : 'OK',
-            CANCEL  : 'Annulla',
-            CONFIRM : 'Conferma'
-        },
-        'nl' : {
-            OK      : 'OK',
-            CANCEL  : 'Annuleren',
-            CONFIRM : 'Accepteren'
-        },
-        'pl' : {
-            OK      : 'OK',
-            CANCEL  : 'Anuluj',
-            CONFIRM : 'Potwierdź'
-        },
-        'ru' : {
-            OK      : 'OK',
-            CANCEL  : 'Отмена',
-            CONFIRM : 'Применить'
-        },
-        'zh_CN' : {
-            OK      : 'OK',
-            CANCEL  : '取消',
-            CONFIRM : '确认'
-        },
-        'zh_TW' : {
-            OK      : 'OK',
-            CANCEL  : '取消',
-            CONFIRM : '確認'
-        }
-    };
-
-    function _translate(str, locale) {
-        // we assume if no target locale is probided then we should take it from current setting
-        if (typeof locale === 'undefined') {
-            locale = _locale;
-        }
-        if (typeof _locales[locale][str] === 'string') {
-            return _locales[locale][str];
-        }
-
-        // if we couldn't find a lookup then try and fallback to a default translation
-
-        if (locale != _defaultLocale) {
-            return _translate(str, _defaultLocale);
-        }
-
-        // if we can't do anything then bail out with whatever string was passed in - last resort
-        return str;
+// @see https://github.com/makeusabrew/bootbox/issues/71
+window.bootbox = window.bootbox || (function init($, undefined) {
+  "use strict";
+
+  // the base DOM structure needed to create a modal
+  var templates = {
+    dialog:
+      "<div class='bootbox modal' tabindex='-1' role='dialog'>" +
+        "<div class='modal-dialog'>" +
+          "<div class='modal-content'>" +
+            "<div class='modal-body'><div class='bootbox-body'></div></div>" +
+          "</div>" +
+        "</div>" +
+      "</div>",
+    header:
+      "<div class='modal-header'>" +
+        "<h4 class='modal-title'></h4>" +
+      "</div>",
+    footer:
+      "<div class='modal-footer'></div>",
+    closeButton:
+      "<button type='button' class='bootbox-close-button close'>&times;</button>",
+    form:
+      "<form class='bootbox-form'></form>",
+    inputs: {
+      text:
+        "<input class='bootbox-input form-control' autocomplete=off type=text />"
+    }
+  };
+
+  // cache a reference to the jQueryfied body element
+  var appendTo = $("body");
+
+  var defaults = {
+    // default language
+    locale: "en",
+    // show backdrop or not
+    backdrop: true,
+    // animate the modal in/out
+    animate: true,
+    // additional class string applied to the top level dialog
+    className: null,
+    // whether or not to include a close button
+    closeButton: true,
+    // show the dialog immediately by default
+    show: true
+  };
+
+  // our public object; augmented after our private API
+  var exports = {};
+
+  /**
+   * @private
+   */
+  function _t(key) {
+    return locales[defaults.locale][key] || locales.en[key];
+  }
+
+  function processCallback(e, dialog, callback) {
+    e.preventDefault();
+
+    // by default we assume a callback will get rid of the dialog,
+    // although it is given the opportunity to override this
+
+    // so, if the callback can be invoked and it *explicitly returns false*
+    // then we'll set a flag to keep the dialog active...
+    var preserveDialog = $.isFunction(callback) && callback(e) === false;
+
+    // ... otherwise we'll bin it
+    if (!preserveDialog) {
+      dialog.modal("hide");
+    }
+  }
+
+  function getKeyLength(obj) {
+    // @TODO defer to Object.keys(x).length if available?
+    var k, t = 0;
+    for (k in obj) {
+      t ++;
+    }
+    return t;
+  }
+
+  function each(collection, iterator) {
+    var index = 0;
+    $.each(collection, function(key, value) {
+      iterator(key, value, index++);
+    });
+  }
+
+  function sanitize(options) {
+    var buttons;
+    var total;
+
+
+    if (typeof options !== "object") {
+      throw new Error("Please supply an object of options");
     }
 
-    return that;
+    if (!options.message) {
+      throw new Error("Please specify a message");
+    }
 
-}(document, window.jQuery));
+    // make sure any supplied options take precedence over defaults
+    options = $.extend({}, defaults, options);
 
-// @see https://github.com/makeusabrew/bootbox/issues/71
-window.bootbox = bootbox;
+    if (!options.buttons) {
+      options.buttons = {};
+    }
+
+    // we only support Bootstrap's "static" and false backdrop args
+    // supporting true would mean you could dismiss the dialog without
+    // explicitly interacting with it
+    options.backdrop = options.backdrop ? "static" : false;
+
+    buttons = options.buttons;
+
+    total = getKeyLength(buttons);
+
+    each(buttons, function(key, button, index) {
+
+      if (!button.label) {
+        throw new Error("button with key " + key + " requires a label");
+      }
+
+      if (!button.className) {
+        if (total <= 2 && index === total-1) {
+          // always add a primary to the main option in a two-button dialog
+          button.className = "btn-primary";
+        } else {
+          button.className = "btn-default";
+        }
+      }
+    });
+
+    return options;
+  }
+
+  function mapArguments(args, properties) {
+    var argn = args.length;
+    var options = {};
+
+    if (argn < 1 || argn > 2) {
+      throw new Error("Invalid argument length");
+    }
+
+    if (argn === 2 || typeof args[0] === "string") {
+      options[properties[0]] = args[0];
+      options[properties[1]] = args[1];
+    } else {
+      options = args[0];
+    }
+
+    return options;
+  }
+
+  function mergeArguments(defaults, args, properties) {
+    return $.extend(true, {}, defaults, mapArguments(args, properties));
+  }
+
+  function createLabels() {
+    var buttons = {};
+
+    for (var i = 0, j = arguments.length; i < j; i++) {
+      var argument = arguments[i];
+      var key = argument.toLowerCase();
+      var value = argument.toUpperCase();
+
+      buttons[key] = {
+        label: _t(value)
+      };
+    }
+
+    return buttons;
+  }
+
+  function createButtons() {
+    return {
+      buttons: createLabels.apply(null, arguments)
+    };
+  }
+
+  exports.alert = function() {
+    var options;
+
+    options = mergeArguments(createButtons("ok"), arguments, ["message", "callback"]);
+
+    if (options.callback && !$.isFunction(options.callback)) {
+      throw new Error("alert requires callback property to be a function when provided");
+    }
+
+    /**
+     * overrides
+     */
+    options.buttons.ok.callback = options.onEscape = function() {
+      if ($.isFunction(options.callback)) {
+        return options.callback();
+      }
+      return true;
+    };
+
+    return exports.dialog(options);
+  };
+
+  exports.confirm = function() {
+    var options;
+
+    options = mergeArguments(createButtons("cancel", "confirm"), arguments, ["message", "callback"]);
+
+    /**
+     * overrides; undo anything the user tried to set they shouldn't have
+     */
+    options.buttons.cancel.callback = options.onEscape = function() {
+      return options.callback(false);
+    };
+
+    options.buttons.confirm.callback = function() {
+      return options.callback(true);
+    };
+
+    // confirm specific validation
+    if (!$.isFunction(options.callback)) {
+      throw new Error("confirm requires a callback");
+    }
+
+    return exports.dialog(options);
+  };
+
+  exports.prompt = function() {
+    var options;
+    var defaults;
+    var dialog;
+    var form;
+    var input;
+    var shouldShow;
+
+    // we have to create our form first otherwise
+    // its value is undefined when gearing up our options
+    // @TODO this could be solved by allowing message to
+    // be a function instead...
+    form = $(templates.form);
+
+    defaults = {
+      buttons: createLabels("cancel", "confirm"),
+      value: ""
+    };
+
+    options = mergeArguments(defaults, arguments, ["title", "callback"]);
+
+    // capture the user's show value; we always set this to false before
+    // spawning the dialog to give us a chance to attach some handlers to
+    // it, but we need to make sure we respect a preference not to show it
+    shouldShow = (options.show === undefined) ? true : options.show;
+
+    /**
+     * overrides; undo anything the user tried to set they shouldn't have
+     */
+    options.message = form;
+
+    options.buttons.cancel.callback = options.onEscape = function() {
+      return options.callback(null);
+    };
+
+    options.buttons.confirm.callback = function() {
+      return options.callback(input.val());
+    };
+
+    options.show = false;
+
+    // prompt specific validation
+    if (!options.title) {
+      throw new Error("prompt requires a title");
+    }
+
+    if (!$.isFunction(options.callback)) {
+      throw new Error("prompt requires a callback");
+    }
+
+    // create the input
+    input = $(templates.inputs.text);
+    input.val(options.value);
+
+    // now place it in our form
+    form.append(input);
+
+    form.on("submit", function(e) {
+      e.preventDefault();
+      // @TODO can we actually click *the* button object instead?
+      // e.g. buttons.confirm.click() or similar
+      dialog.find(".btn-primary").click();
+    });
+
+    dialog = exports.dialog(options);
+
+    // clear the existing handler focusing the submit button...
+    dialog.off("shown.bs.modal");
+
+    // ...and replace it with one focusing our input, if possible
+    dialog.on("shown.bs.modal", function() {
+      input.focus();
+    });
+
+    if (shouldShow === true) {
+      dialog.modal("show");
+    }
+
+    return dialog;
+  };
+
+  exports.dialog = function(options) {
+    options = sanitize(options);
+
+    var dialog = $(templates.dialog);
+    var body = dialog.find(".modal-body");
+    var buttons = options.buttons;
+    var buttonStr = "";
+    var callbacks = {
+      onEscape: options.onEscape
+    };
+
+    each(buttons, function(key, button) {
+
+      // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
+      // can we just build up button elements instead? slower but neater. Then button
+      // can just become a template too
+      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
+      callbacks[key] = button.callback;
+    });
+
+    body.find(".bootbox-body").html(options.message);
+
+    if (options.animate === true) {
+      dialog.addClass("fade");
+    }
+
+    if (options.className) {
+      dialog.addClass(options.className);
+    }
+
+    if (options.title) {
+      body.before(templates.header);
+    }
+
+    if (options.closeButton) {
+      var closeButton = $(templates.closeButton);
+
+      if (options.title) {
+        dialog.find(".modal-header").prepend(closeButton);
+      } else {
+        closeButton.css("margin-top", "-10px").prependTo(body);
+      }
+    }
+
+    if (options.title) {
+      dialog.find(".modal-title").html(options.title);
+    }
+
+    if (buttonStr.length) {
+      body.after(templates.footer);
+      dialog.find(".modal-footer").html(buttonStr);
+    }
+
+
+    /**
+     * Bootstrap event listeners; used handle extra
+     * setup & teardown required after the underlying
+     * modal has performed certain actions
+     */
+
+    dialog.on("hidden.bs.modal", function(e) {
+      // ensure we don't accidentally intercept hidden events triggered
+      // by children of the current dialog. We shouldn't anymore now BS
+      // namespaces its events; but still worth doing
+      if (e.target === this) {
+        dialog.remove();
+      }
+    });
+
+    /*
+    dialog.on("show.bs.modal", function() {
+      // sadly this doesn't work; show is called *just* before
+      // the backdrop is added so we'd need a setTimeout hack or
+      // otherwise... leaving in as would be nice
+      if (options.backdrop) {
+        dialog.next(".modal-backdrop").addClass("bootbox-backdrop");
+      }
+    });
+    */
+
+    dialog.on("shown.bs.modal", function() {
+      dialog.find(".btn-primary:first").focus();
+    });
+
+    /**
+     * Bootbox event listeners; experimental and may not last
+     * just an attempt to decouple some behaviours from their
+     * respective triggers
+     */
+
+    dialog.on("escape.close.bb", function(e) {
+      if (callbacks.onEscape) {
+        processCallback(e, dialog, callbacks.onEscape);
+      }
+    });
+
+    /**
+     * Standard jQuery event listeners; used to handle user
+     * interaction with our dialog
+     */
+
+    dialog.on("click", ".modal-footer button", function(e) {
+      var callbackKey = $(this).data("bb-handler");
+
+      processCallback(e, dialog, callbacks[callbackKey]);
+
+    });
+
+    dialog.on("click", ".bootbox-close-button", function(e) {
+      // onEscape might be falsy but that's fine; the fact is
+      // if the user has managed to click the close button we
+      // have to close the dialog, callback or not
+      processCallback(e, dialog, callbacks.onEscape);
+    });
+
+    dialog.on("keyup", function(e) {
+      if (e.which === 27) {
+        dialog.trigger("escape.close.bb");
+      }
+    });
+
+    // the remainder of this method simply deals with adding our
+    // dialogent to the DOM, augmenting it with Bootstrap's modal
+    // functionality and then giving the resulting object back
+    // to our caller
+
+    appendTo.append(dialog);
+
+    dialog.modal({
+      backdrop: options.backdrop,
+      keyboard: false,
+      show: false
+    });
+
+    if (options.show) {
+      dialog.modal("show");
+    }
+
+    // @TODO should we return the raw element here or should
+    // we wrap it in an object on which we can expose some neater
+    // methods, e.g. var d = bootbox.alert(); d.hide(); instead
+    // of d.modal("hide");
+
+   /*
+    function BBDialog(elem) {
+      this.elem = elem;
+    }
+
+    BBDialog.prototype = {
+      hide: function() {
+        return this.elem.modal("hide");
+      },
+      show: function() {
+        return this.elem.modal("show");
+      }
+    };
+    */
+
+    return dialog;
+
+  };
+
+  exports.setDefaults = function(values) {
+    $.extend(defaults, values);
+  };
+
+  exports.hideAll = function() {
+    $(".bootbox").modal("hide");
+  };
+
+
+  /**
+   * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are
+   * unlikely to be required. If this gets too large it can be split out into separate JS files.
+   */
+  var locales = {
+    br : {
+      OK      : "OK",
+      CANCEL  : "Cancelar",
+      CONFIRM : "Sim"
+    },
+    da : {
+      OK      : "OK",
+      CANCEL  : "Annuller",
+      CONFIRM : "Accepter"
+    },
+    de : {
+      OK      : "OK",
+      CANCEL  : "Abbrechen",
+      CONFIRM : "Akzeptieren"
+    },
+    en : {
+      OK      : "OK",
+      CANCEL  : "Cancel",
+      CONFIRM : "OK"
+    },
+    es : {
+      OK      : "OK",
+      CANCEL  : "Cancelar",
+      CONFIRM : "Aceptar"
+    },
+    fi : {
+      OK      : "OK",
+      CANCEL  : "Peruuta",
+      CONFIRM : "OK"
+    },
+    fr : {
+      OK      : "OK",
+      CANCEL  : "Annuler",
+      CONFIRM : "D'accord"
+    },
+    it : {
+      OK      : "OK",
+      CANCEL  : "Annulla",
+      CONFIRM : "Conferma"
+    },
+    nl : {
+      OK      : "OK",
+      CANCEL  : "Annuleren",
+      CONFIRM : "Accepteren"
+    },
+    pl : {
+      OK      : "OK",
+      CANCEL  : "Anuluj",
+      CONFIRM : "Potwierdź"
+    },
+    ru : {
+      OK      : "OK",
+      CANCEL  : "Отмена",
+      CONFIRM : "Применить"
+    },
+    zh_CN : {
+      OK      : "OK",
+      CANCEL  : "取消",
+      CONFIRM : "确认"
+    },
+    zh_TW : {
+      OK      : "OK",
+      CANCEL  : "取消",
+      CONFIRM : "確認"
+    }
+  };
+
+  exports.init = function(_$) {
+    window.bootbox = init(_$ || $);
+  };
+
+  return exports;
+
+}(window.jQuery));

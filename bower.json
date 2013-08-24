@@ -1,0 +1,11 @@
+{
+  "name": "bootbox.js",
+  "version": "x.x.x",
+  "main": "./bootbox.js",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "bootstrap": ">= 3.0.0"
+  }
+}
