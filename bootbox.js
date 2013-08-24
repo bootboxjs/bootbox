@@ -45,9 +45,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     animate: true,
     // additional class string applied to the top level dialog
     className: null,
-    // show the modal header or not
-    header: false,
-    // whether or not to include a close button, if a header is present
+    // whether or not to include a close button
     closeButton: true,
     // show the dialog immediately by default
     show: true
@@ -161,18 +159,8 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     return options;
   }
 
-  function processOptions(options) {
-    // any post-processing of standard options here. for now this
-    // is limited to simply choosing whether to show a header or
-    // not based on whether the user supplied a title
-    options.header = !!options.title;
-    return options;
-  }
-
   function mergeArguments(defaults, args, properties) {
-    return processOptions(
-      $.extend(true, {}, defaults, mapArguments(args, properties))
-    );
+    return $.extend(true, {}, defaults, mapArguments(args, properties));
   }
 
   function createLabels() {
@@ -354,21 +342,21 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       dialog.addClass(options.className);
     }
 
-    if (options.header) {
+    if (options.title) {
       body.before(templates.header);
     }
 
     if (options.closeButton) {
       var closeButton = $(templates.closeButton);
 
-      if (options.header) {
+      if (options.title) {
         dialog.find(".modal-header").prepend(closeButton);
       } else {
         closeButton.css("margin-top", "-10px").prependTo(body);
       }
     }
 
-    if (options.header && options.title) {
+    if (options.title) {
       dialog.find(".modal-title").html(options.title);
     }
 
