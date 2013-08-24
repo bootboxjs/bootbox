@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS dependencies -->
-    <link rel="stylesheet" type="text/css" href="deps/bootstrap-3.0.0-wip/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="deps/bootstrap-3.0.0-wip/dist/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <!--
     <script type="text/javascript">
@@ -30,41 +30,52 @@
         <span>The examples populate this alert with dummy content</span>
     </div>
 
-    <div class="navbar navbar-inverse">
-      <a id=top class="navbar-brand" href="http://bootboxjs.com">Bootbox.js</a>
-      <ul class="nav navbar-nav">
-        <li><a href="#about">About</a></li>
-        <li><a href="#api">Core Methods</a></li>
-        <li><a href="#examples">Examples</a></li>
-        <li><a href="#download">Download</a></li>
-        <li><a href="#dependencies">Dependencies</a></li>
-        <li><a href="#usage">Usage</a></li>
-        <li class=divider-vertical></li>
-        <li><a href="https://github.com/makeusabrew/bootbox">GitHub Repository</a></li>
-        <li><a href="http://paynedigital.com/bootbox">Read the writeup</a></li>
-        <li><a href="http://twitter.com/makeusabrew">Twitter</a></li>
-      </ul>
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class=container>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-goggle="collapse" data-target=".navbar-bb-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a id=top class="navbar-brand navbar-brand-active" href="http://bootboxjs.com">Bootbox.js</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-bb-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#about">About</a></li>
+            <li><a href="#api">Methods</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#dependencies">Dependencies</a></li>
+            <li><a href="#usage">Usage</a></li>
+            <li><a href="http://paynedigital.com/bootbox">Writeup</a></li>
+            <li><a href="https://github.com/makeusabrew/bootbox">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <div class="container lead-top">
+    <div class="container">
+        <div class=jumbotron>
+          <p class=lead><b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes using
+          <a href="http://getbootstrap.com/javascript/#modals">Twitter&rsquo;s Bootstrap modals</a>, without
+          having to worry about creating, managing or removing any of the required DOM elements or JS event handlers. Here&rsquo;s the simplest possible
+          example:</p>
 
-        <p class=lead><b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes using
-        <a href="http://twitter.github.com/bootstrap/javascript.html#modals">Twitter&rsquo;s Bootstrap modals</a>, without
-        having to worry about creating, managing or removing any of the required DOM elements or JS event handlers. Here&rsquo;s the simplest possible
-        example:</p>
-
-        <div class=row>
-            <div class=span10>
-                <script src="https://gist.github.com/1343123.js"> </script>
-            </div>
-            <div class=span2>
-                <p><a href="#" data-bb="alert" class="bb-trigger btn btn-large">Run example</a></p>
-            </div>
+          <div class=row>
+              <div class=col-md-7>
+                <div class="bb-code code-leader">bootbox.alert(<span class=bb-code-string>"Hello&nbsp;world!"</span>);</div>
+              </div>
+              <div class=col-md-2>
+                  <p><a href="#" data-bb="alert" class="bb-trigger btn btn-primary btn-lg btn-block">Run example</a></p>
+              </div>
+          </div>
         </div>
 
         <p><b>Compare that to the code you&rsquo;d have to write without Bootbox:</b></p>
 
-        <script src="https://gist.github.com/3031607.js"></script>
+        <script src="https://gist.github.com/makeusabrew/6327194.js"></script>
 
         <div class=page-header>
             <h2 id=about>About</h2>
@@ -93,10 +104,9 @@
             <li class=bb-code>bootbox.confirm(message, callback)</li>
         </ul>
 
-        <p>The only required argument is <b>message</b>, although you&rsquo;re
-        unlikely to want to ever call <span class=bb-code>confirm</span> or <span class=bb-code>prompt</span>
-        without a <b>callback</b> argument otherwise you&rsquo;ll have no way of
-        determining what the user&rsquo;s response was. Even when calling
+        <p>The only required argument is for <span class=bb-code>alert</span> calls is <b>message</b>;
+        <b>callback</b> is required for <span class=bb-code>confirm</span> and <span class=bb-code>prompt</span>
+        calls in order to determine what the user&rsquo;s response was. Even when calling
         <span class=bb-code>alert</span> a callback is useful to determine when the user
         dismissed the dialog since our wrapper methods can&rsquo;t &amp; don&rsquo;t block
         like their native counterparts: they are asynchronous rather than synchronous.</p>
@@ -105,7 +115,7 @@
         own custom dialogs:</p>
 
         <ul>
-            <li class=bb-code>bootbox.dialog(message, buttons, options)</li>
+            <li class=bb-code>bootbox.dialog(options)</li>
         </ul>
 
         <p><a href="documentation.html">More API documentation &raquo;</a></p>
@@ -120,56 +130,56 @@
         interested in how it works.</p>
 
         <div class=row>
-            <div class=span12>
+            <div class=col-md-12>
                 <p class=lead>
                     Alert
-                    <a href="#" data-bb="alert_callback" class="btn"><i class=icon-play></i></a>
+                    <a href="#" data-bb="alert_callback" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
                 <script src="https://gist.github.com/10a21523641a211529da.js"></script>
             </div>
         </div>
         <div class=row>
-            <div class=span12>
+            <div class=col-md-12>
                 <p class=lead>
                     Confirm
-                    <a href="#" data-bb="confirm" class="btn"><i class=icon-play></i></a>
+                    <a href="#" data-bb="confirm" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
                 <script src="https://gist.github.com/f06984e4c5b37f121b85.js"></script>
             </div>
         </div>
         <div class=row>
-            <div class=span12>
+            <div class=col-md-12>
                 <p class=lead>
                     Prompt
-                    <a href="#" data-bb="prompt" class="btn"><i class=icon-play></i></a>
+                    <a href="#" data-bb="prompt" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
                 <script src="https://gist.github.com/bb3fd1f1a2c5899ef17e.js"></script>
             </div>
         </div>
         <div class=row>
-            <div class=span12>
+            <div class=col-md-12>
                 <p class=lead>
                     Custom Dialog
-                    <a href="#" data-bb="dialog" class="btn"><i class=icon-play></i></a>
+                    <a href="#" data-bb="dialog" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
-                <script src="https://gist.github.com/9c8e730237b903511fc8.js"></script>
+                <script src="https://gist.github.com/makeusabrew/6327301.js"></script>
             </div>
         </div>
 
         <p><a href="examples.html">More examples &raquo;</a></p>
 
         <div class=page-header>
-            <h2 id=download>Download <small>Version 3.3.0</small></h2>
+            <h2 id=download>Download <small>Version 4.0.0</small></h2>
         </div>
 
-        <p>The latest stable version of Bootbox is <b>3.3.0</b>. You can download the minified library <a href="https://github.com/makeusabrew/bootbox/releases/v3.3.0/1141/bootbox.min.js">bootbox.min.js</a> for
+        <p>The latest stable version of Bootbox is <b>4.0.0</b>. You can download the minified library <a href="https://github.com/makeusabrew/bootbox/releases/v3.3.0/1141/bootbox.min.js">bootbox.min.js</a> for
         use in production, or the uncompressed <a href="https://github.com/makeusabrew/bootbox/releases/v3.3.0/1140/bootbox.js">bootbox.js</a> for use in development. I wouldn&rsquo;t recommend hotlinking to
         either file as Github does not serve the correct mime type which may cause security warnings to be triggered based on your browser&rsquo;s settings.</p>
 
         <p>If you wish you may also <a href="https://github.com/makeusabrew/bootbox/releases">see a full list of releases</a>
         or download the latest copy of the entire repository (including build files and tests)
-        in <a href="https://github.com/makeusabrew/bootbox/zipball/v3.3.0">zip</a> or
-        <a href="https://github.com/makeusabrew/bootbox/tarball/v3.3.0">tarball</a> format.
+        in <a href="https://github.com/makeusabrew/bootbox/zipball/v4.0.0">zip</a> or
+        <a href="https://github.com/makeusabrew/bootbox/tarball/v4.0.0">tarball</a> format.
         Realistically the only reason you should be using anything other than the 3.x.x series is if you
         are restricted by the version of Bootstrap you&rsquo;re using&mdash;see the following
         section for full details.</p>
@@ -196,17 +206,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>4.x.x</td>
-                    <td>3.0.0 <small>(probably)</small></td>
-                    <td>-</td>
-                    <td>Neither of these versions exist, but this is the rough plan&hellip;</td>
-                </tr>
                 <tr class=success>
-                    <td>3.x.x <span class="label label-success">Latest</span></td>
+                    <td>4.x.x <span class="label label-success">Latest</span></td>
+                    <td>3.0.0</td>
+                    <td>3.0.0</td>
+                    <td>Current release. Entirely rewritten to support Bootstrap 3.0.0</td>
+                </tr>
+                <tr>
+                    <td>3.x.x</td>
                     <td>2.2.2</td>
                     <td>2.3.2</td>
-                    <td>Current release. Anything &gt; Bootstrap 2.3.2 is untested</td>
+                    <td>Last version to support Bootstrap 2</td>
                 </tr>
                 <tr>
                     <td>2.x.x</td>

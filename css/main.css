@@ -2,13 +2,25 @@
     margin-top:1em;
 }
 
-.brand.brand-active {
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-inverse .navbar-brand-active {
     color:#fff;
 }
 
 .bb-code {
     font-family:"Courier";
     font-size:1.2em;
+}
+
+.bb-code-string {
+    color: #3276b1;
+}
+
+.code-leader {
+    font-weight:bold;
 }
 
 .bb-code-small {
@@ -22,4 +34,9 @@
     margin-bottom:0;
     font-size:1.2em;
     padding:1em 1.3em;
+}
+
+#gist6327194 {
+    height:300px;
+    overflow:auto;
 }
