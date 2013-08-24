@@ -4,7 +4,7 @@
  * http://bootboxjs.com/license.txt
  */
 // @see https://github.com/makeusabrew/bootbox/issues/71
-window.bootbox = window.bootbox || (function init(document, $, undefined) {
+window.bootbox = window.bootbox || (function init($, undefined) {
   "use strict";
 
   // the base DOM structure needed to create a modal
@@ -567,10 +567,10 @@ window.bootbox = window.bootbox || (function init(document, $, undefined) {
     }
   };
 
-  exports.init = function(/* could DI stuff here? */) {
-    window.bootbox = init(document, $);
+  exports.init = function(_$) {
+    window.bootbox = init(_$ || $);
   };
 
   return exports;
 
-}(document, window.jQuery));
+}(window.jQuery));
