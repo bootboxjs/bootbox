@@ -143,16 +143,21 @@ describe "bootbox.prompt", ->
         expect(@button.text()).to.equal "Custom prompt"
         expect(@button.hasClass("btn-warning")).to.be.true
 
-    # @FIXME even if false, our tests always report dialog.is(":visible") true
-    # even though a browser does not (as you'd expect)
-    xdescribe "setting show to false", ->
+    describe "setting show to false", ->
       beforeEach ->
-        @options.show = false
+        @options.show = true
+
+        @shown = sinon.spy()
+
+        sinon.stub bootbox, "dialog", =>
+          on: ->
+          off: ->
+          modal: @shown
 
         @create()
 
       it "does not show the dialog", ->
-        expect(@dialog.is(":visible")).to.be.false
+        expect(@shown).not.to.have.been.called
 
   describe "callback tests", ->
     describe "with a simple callback", ->

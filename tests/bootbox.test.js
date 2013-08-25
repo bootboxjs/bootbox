@@ -16,12 +16,6 @@ describe("Bootbox", function() {
     expect(bootbox.hideAll).to.be.a("function");
   });
 
-  // @TODO reimplement
-  xit("starts with no dialogs in the DOM", function() {
-    expect($(".bootbox").length).to.equal(0);
-  });
-
-  // @TODO reimplement
   describe("hideAll", function() {
     beforeEach(function() {
       this.hidden = sinon.spy($.fn, "modal");
