@@ -79,9 +79,9 @@ describe "bootbox.dialog", ->
       expect(@exists(".modal-footer")).not.to.be.ok
 
     it "has a backdrop", ->
-      expect(@dialog.next(".modal-backdrop")).to.be.ok
+      expect(@dialog.next(".modal-backdrop").length).to.equal 1
 
-  describe "when creating dialog with a button", ->
+  describe "when creating a dialog with a button", ->
     beforeEach ->
       @create = (button = {}) =>
         @dialog = bootbox.dialog
@@ -172,3 +172,106 @@ describe "bootbox.dialog", ->
 
         it "should hide the modal", ->
           expect(@hidden).to.have.been.called
+
+    describe "when the button has a custom class", ->
+      beforeEach ->
+        @create
+          label: "Test Label"
+          className: "btn-custom"
+
+      it "shows the correct button text", ->
+        expect(@text(".btn")).to.equal "Test Label"
+
+      it "adds the custom class to the button", ->
+        expect(@class(".btn", "btn-custom")).to.be.true
+
+  describe "when creating a dialog with a title", ->
+    beforeEach ->
+      @dialog = bootbox.dialog
+        title: "My Title"
+        message: "test"
+
+    it "has a header", ->
+      expect(@exists(".modal-header")).to.be.ok
+
+    it "shows the correct title text", ->
+      expect(@text(".modal-title")).to.equal "My Title"
+
+    it "has a close button inside the header", ->
+      expect(@exists(".modal-header .close")).to.be.ok
+
+  describe "when creating a dialog with no backdrop", ->
+    beforeEach ->
+      @dialog = bootbox.dialog
+        message: "No backdrop in sight"
+        backdrop: false
+
+    it "does not have a backdrop", ->
+      expect(@dialog.next(".modal-backdrop").length).to.equal 0
+
+  describe "when creating a dialog with no close button", ->
+    beforeEach ->
+      @dialog = bootbox.dialog
+        message: "No backdrop in sight"
+        closeButton: false
+
+    it "does not have a close button inside the body", ->
+      expect(@exists(".modal-body .close")).not.to.be.ok
+
+  describe "when creating a dialog with an onEscape handler", ->
+    beforeEach ->
+      @e = (keyCode) ->
+        $(@dialog).trigger($.Event "keyup", which: keyCode)
+
+    describe "with a simple callback", ->
+      beforeEach ->
+        @callback = sinon.spy()
+
+        @dialog = bootbox.dialog
+          message: "Are you sure?"
+          onEscape: @callback
+
+        @hidden = sinon.spy @dialog, "modal"
+        @trigger = sinon.spy(@dialog, "trigger").withArgs "escape.close.bb"
+
+      describe "when triggering the keyup event", ->
+
+        describe "when the key is not the escape key", ->
+          beforeEach -> @e 15
+
+          it "does not trigger the escape event", ->
+            expect(@trigger).not.to.have.been.called
+
+          it "should not hide the modal", ->
+            expect(@hidden).not.to.have.been.called
+
+        describe "when the key is the escape key", ->
+          beforeEach -> @e 27
+
+          it "triggers the escape event", ->
+            expect(@trigger).to.have.been.calledWithExactly "escape.close.bb"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "should hide the modal", ->
+            expect(@hidden).to.have.been.calledWithExactly "hide"
+
+    describe "with a callback which returns false", ->
+      beforeEach ->
+        @callback = sinon.stub().returns false
+
+        @dialog = bootbox.dialog
+          message: "Are you sure?"
+          onEscape: @callback
+
+        @hidden = sinon.spy @dialog, "modal"
+
+      describe "when triggering the escape keyup event", ->
+        beforeEach -> @e 27
+
+        it "should invoke the callback", ->
+          expect(@callback).to.have.been.called
+
+        it "should not hide the modal", ->
+          expect(@hidden).not.to.have.been.called

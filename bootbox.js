@@ -58,7 +58,8 @@ window.bootbox = window.bootbox || (function init($, undefined) {
    * @private
    */
   function _t(key) {
-    return locales[defaults.locale][key] || locales.en[key];
+    var locale = locales[defaults.locale];
+    return locale ? locale[key] : locales.en[key];
   }
 
   function processCallback(e, dialog, callback) {

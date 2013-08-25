@@ -21,4 +21,15 @@ describe("Bootbox", function() {
     expect($(".bootbox").length).to.equal(0);
   });
 
+  // @TODO reimplement
+  xdescribe("hideAll", function() {
+    beforeEach(function() {
+      this.hidden = sinon.spy($(".bootbox"), "modal");
+      bootbox.hideAll();
+    });
+
+    it("should hide all .bootbox modals", function() {
+      expect(this.hidden).to.have.been.calledWithExactly("hide");
+    });
+  });
 });

@@ -169,8 +169,6 @@ describe "bootbox.confirm", ->
 
       describe "when triggering the escape event", ->
         beforeEach ->
-          #@TODO I'm fine with this as long as we assert that pressing
-          # keyup with code == 27 triggers this in another test
           @dialog.trigger "escape.close.bb"
 
         it "should invoke the callback", ->

@@ -13,6 +13,19 @@ describe "bootbox locales", ->
         cancel: d2.find(".btn:first").text()
         confirm: d2.find(".btn:last").text()
 
+  describe "Invalid locale", ->
+    beforeEach ->
+      @setLocale "xx"
+
+    it "shows the default OK translation", ->
+      expect(@labels.ok).to.equal "OK"
+
+    it "shows the default CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Cancel"
+
+    it "shows the default CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "OK"
+
   describe "English", ->
     beforeEach ->
       @setLocale "en"
