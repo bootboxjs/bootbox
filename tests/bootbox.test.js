@@ -22,9 +22,9 @@ describe("Bootbox", function() {
   });
 
   // @TODO reimplement
-  xdescribe("hideAll", function() {
+  describe("hideAll", function() {
     beforeEach(function() {
-      this.hidden = sinon.spy($(".bootbox"), "modal");
+      this.hidden = sinon.spy($.fn, "modal");
       bootbox.hideAll();
     });
 
