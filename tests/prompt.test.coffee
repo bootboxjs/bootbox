@@ -145,7 +145,7 @@ describe "bootbox.prompt", ->
 
     describe "setting show to false", ->
       beforeEach ->
-        @options.show = true
+        @options.show = false
 
         @shown = sinon.spy()
 
