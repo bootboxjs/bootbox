@@ -56,33 +56,26 @@ $(function() {
     };
 
     demos.dialog = function() {
-      bootbox.dialog({
-        message: "I am a custom dialog",
-        title: "Custom title",
-        buttons: {
-          success: {
-            label: "Success!",
-            className: "btn-success",
-            callback: function() {
-              Example.show("great success");
+        bootbox.dialog("I am a custom dialog", [{
+            "label" : "Success!",
+            "class" : "btn-success",
+            "callback": function() {
+                Example.show("great success");
             }
-          },
-          danger: {
-            label: "Danger!",
-            className: "btn-danger",
-            callback: function() {
-              Example.show("uh oh, look out!");
+        }, {
+            "label" : "Danger!",
+            "class" : "btn-danger",
+            "callback": function() {
+                Example.show("uh oh, look out!");
             }
-          },
-          main: {
-            label: "Click ME!",
-            className: "btn-primary",
-            callback: function() {
-              Example.show("Primary button");
+        }, {
+            "label" : "Click ME!",
+            "class" : "btn-primary",
+            "callback": function() {
+                Example.show("Primary button");
             }
-          }
-        }
-      });
+        }, {
+            "label" : "Just a button..."
+        }]);
     };
-   
 });

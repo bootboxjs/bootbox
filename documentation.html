@@ -4,9 +4,12 @@
     <meta charset=utf-8>
     <title>Documentation | Bootbox.js&mdash;alert, confirm and flexible dialogs for Twitter's Bootstrap framework</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- CSS dependencies -->
-    <link rel="stylesheet" type="text/css" href="deps/bootstrap-2.2.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="deps/bootstrap-3.0.0-wip/dist/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!--
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -20,34 +23,41 @@
       })();
 
     </script>
+    -->
 </head>
 <body>
     <div class="bb-alert alert alert-info" style="display:none;">
         <span>The examples populate this alert with dummy content</span>
     </div>
 
-    <div class="navbar navbar-static-top navbar-inverse">
-        <div class=navbar-inner>
-            <a id=top class="brand brand-active" href="http://bootboxjs.com">Bootbox.js</a>
-            <ul class=nav>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#api">Core Methods</a></li>
-                <li><a href="index.html#examples">Examples</a></li>
-                <li><a href="index.html#download">Download</a></li>
-                <li><a href="index.html#dependencies">Dependencies</a></li>
-                <li><a href="index.html#usage">Usage</a></li>
-                <li class=divider-vertical></li>
-                <li><a href="https://github.com/makeusabrew/bootbox">GitHub Repository</a></li>
-                <li><a href="http://paynedigital.com/bootbox">Read the writeup</a></li>
-                <li><a href="http://twitter.com/makeusabrew">Twitter</a></li>
-            </ul>
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class=container>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-bb-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a id=top class="navbar-brand navbar-brand-active" href="http://bootboxjs.com">Bootbox.js</a>
         </div>
+        <div class="collapse navbar-collapse navbar-bb-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#api">Methods</a></li>
+            <li><a href="index.html#examples">Examples</a></li>
+            <li><a href="index.html#download">Download</a></li>
+            <li><a href="index.html#dependencies">Dependencies</a></li>
+            <li><a href="index.html#usage">Usage</a></li>
+            <li><a href="http://paynedigital.com/bootbox">Writeup</a></li>
+            <li><a href="https://github.com/makeusabrew/bootbox">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <div class="container lead-top">
-        <div class=page-header>
-            <h1>API Documentation</h1>
-        </div>
+    <div class="container">
+        <h1>API Documentation</h1>
 
         <p class="alert alert-info">This documentation is rather dry, not particularly well organised
         and incomplete. If you want to help out then
@@ -58,10 +68,16 @@
             <h2>Dialog methods</h2>
         </div>
 
+        <p>Please note that the usage shown for the three main wrapper methods alert, confirm
+        and prompt is the most basic available; each method can also take a single options
+        object in which case many of the options shown in the bootbox.dialog example can
+        also be supplied.</p>
+
         <h3>bootbox.alert(&hellip;)</h3>
 
-        <p>A simple alert dialog with a single button. Pressing escape dismisses the dialog. If a
-        callback is provided it is not passed any value when executed.</p>
+        <p>A simple alert dialog with a single button. Pressing escape or clicking the close
+        button dismisses the dialog. If a callback is provided it is not passed any value
+        when executed.</p>
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -80,22 +96,18 @@
                     <td>Default button text, callback invoked on dismissal</td>
                 </tr>
                 <tr>
-                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>, str <b>label</b>)</td>
-                    <td>Custom button text</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>, str <b>label</b>, fn <b>callback</b>)</td>
-                    <td>Custom button text, callback invoked on dismissal</td>
+                    <td class="bb-code bb-code-small">bootbox.alert(object <b>options</b>)</td>
+                    <td>Object property names as above</td>
                 </tr>
             </tbody>
         </table>
 
         <h3>bootbox.confirm(&hellip;)</h3>
 
-        <p>A confirm dialog with a cancel and a confirm button. Pressing escape dismisses
-        the dialog and invokes the callback as if the user had clicked the cancel button.
-        If a callback is provided it is passed a value of <b>true</b> or <b>false</b>
-        depending on which button the user pressed.</p>
+        <p>A confirm dialog with a cancel and a confirm button. Pressing escape or clicking
+        close dismisses the dialog and invokes the callback as if the user had clicked the
+        cancel button.  If a callback is provided it is passed a value of <b>true</b> or
+        <b>false</b> depending on which button the user pressed.</p>
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -106,35 +118,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>)</td>
-                    <td>Dialog with default 'Cancel' and 'OK' buttons</td>
-                </tr>
-                <tr>
                     <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, fn <b>callback</b>)</td>
-                    <td>Default buttons, callback invoked on dismissal</td>
+                    <td>Default 'Cancel' and 'OK' buttons, callback invoked on dismissal</td>
                 </tr>
                 <tr>
-                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>)</td>
-                    <td>Custom cancel button text, standard confirm button</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>, fn <b>callback</b>)</td>
-                    <td>Custom cancel button text, callback invoked on dismissal</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>)</td>
-                    <td>Custom cancel and confirm buttons</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>, fn <b>callback</b>)</td>
-                    <td>Custom cancel and confirm buttons, callback invoked on dismissal</td>
+                    <td class="bb-code bb-code-small">bootbox.confirm(object <b>options</b>)</td>
+                    <td>Object property names as above</td>
                 </tr>
             </tbody>
         </table>
 
         <h3>bootbox.prompt(&hellip;)</h3>
 
-        <p>A dialog which prompts for user input. Pressing escape dismisses
+        <p>A dialog which prompts for user input. Pressing escape or clicking close dismisses
         the dialog and invokes the callback as if the user had clicked the cancel button.
         If a callback is provided it is passed a value of <b>null</b> if the user cancels
         or dismissed the dialog, otherwise it is passed the value of the text input.</p>
@@ -148,100 +144,42 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>)</td>
-                    <td>Prompt with default 'Cancel' and 'OK' buttons</td>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>title</b>, fn <b>callback</b>)</td>
+                    <td>Default 'Cancel' and 'OK' buttons, callback invoked on dismissal</td>
                 </tr>
                 <tr>
-                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, fn <b>callback</b>)</td>
-                    <td>Default buttons, callback invoked on dismissal</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>)</td>
-                    <td>Custom cancel button text, standard confirm button</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, fn <b>callback</b>)</td>
-                    <td>Custom cancel button text, callback invoked on dismissal</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>)</td>
-                    <td>Custom cancel and confirm buttons</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>, fn <b>callback</b>)</td>
-                    <td>Custom cancel and confirm buttons, callback invoked on dismissal</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>, fn <b>callback</b>, str <b>defaultValue</b>)</td>
-                    <td>Custom cancel and confirm buttons, default prompt value, callback invoked on dismissal</td>
+                    <td class="bb-code bb-code-small">bootbox.prompt(object <b>options</b>)</td>
+                    <td>Object property names as above</td>
                 </tr>
             </tbody>
         </table>
 
         <h3>bootbox.dialog(&hellip;)</h3>
 
-        <p>A completely customisable dialog method. As many buttons and callbacks as you like.</p>
+        <p>A completely customisable dialog method which takes a single argument; an options object. The following snippet
+        attempts to demonstrate these options as best as possible, though more formal documentation would be welcome:</p>
 
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Usage</th>
-                    <th>Result</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>)</td>
-                    <td>Dialog with no buttons</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>, object <b>handler</b>)</td>
-                    <td>Needs docs</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>, array <b>handlers</b>)</td>
-                    <td>Needs docs</td>
-                </tr>
-                <tr>
-                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>, array <b>handlers</b>, object <b>options</b>)</td>
-                    <td>Needs docs</td>
-                </tr>
-            </tbody>
-        </table>
+        <script src="https://gist.github.com/makeusabrew/6339780.js"></script>
+
+
+        <div class=page-header>
+            <h2>Helper methods</h2>
+        </div>
+
+        <h3>bootbox.setDefaults(object <b>options</b>)</h3>
+
+        <p>This method allows the user to set many of the default options shown
+        in the previous dialog example. Many of these options are also applied to
+        the basic wrapper methods and can be overridden whenever the wrapper methods
+        are invoked with a single options argument:</p>
+
+        <script src="https://gist.github.com/makeusabrew/6339916.js"></script>
 
         <h3>bootbox.hideAll()</h3>
 
         <p>Hide all currently active bootbox dialogs. Individual dialogs can be closed as per
         normal Bootstrap dialogs: <span class=bb-code>dialog.modal('hide')</span>.</p>
 
-        <div class=page-header>
-            <h2>Helper methods</h2>
-        </div>
-
-        <h3>bootbox.animate(boolean)</h3>
-
-        <p>Indicate whether dialogs should animate in and out.</p>
-
-        <h3>bootbox.backdrop(string)</h3>
-
-        <p>Set the dialog backdrop value&mdash;values as per
-        <a href="http://twitter.github.com/bootstrap/javascript.html#modals">Bootstrap's modals</a>.</p>
-
-        <h3>bootbox.classes(string)</h3>
-
-        <p>Any custom classes to add to the dialog.</p>
-
-        <h3>bootbox.setIcons(object)</h3>
-
-        <p>Establish which icons to show for default OK, Cancel and Confirm buttons.</p>
-
-        <h3>bootbox.setLocale(string)</h3>
-
-        <p>Set the language for the default OK, Cancel and Confirm buttons. Values: en, fr, de, es, br, nl, ru, it.</p>
-
-        <h3>bootbox.addLocale(object)</h3>
-
-        <p>Add a custom locale.</p>
 
         <p class="alert alert-info">This documentation is rather dry, not particularly well organised
         and incomplete. If you want to help out then
@@ -255,14 +193,14 @@
             <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
-        &copy; 2011-2012 <a href="http://twitter.com/makeusabrew">Nick Payne</a>.
+        &copy; 2011-2013 <a href="http://twitter.com/makeusabrew">Nick Payne</a>.
         I run <a href="http://paynedigital.com">a small company</a>&mdash;why not see if you want to
         <a href="http://paynedigital.com/contact">work with us</a>?
     </div>
 
     <!-- JS dependencies -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="deps/bootstrap-2.2.2/js/bootstrap.min.js"></script>
+    <script src="deps/bootstrap-3.0.0-wip/dist/js/bootstrap.js"></script>
     <script src="js/example.js"></script>
     <script>
         $(function() {
@@ -273,7 +211,7 @@
     </script>
 
     <!-- bootbox code -->
-    <script src="bootbox.js"></script>
+    <script src="../bootbox/bootbox.js"></script>
 
     <!-- put all demo code in one place -->
     <script src="js/demos.js"></script>

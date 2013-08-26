@@ -17,7 +17,15 @@ var Example = (function() {
         clearTimeout(hideHandler);
 
         elem.find("span").html(text);
-        elem.delay(200).fadeIn().delay(4000).fadeOut();
+        elem.fadeIn();
+
+        hideHandler = setTimeout(function() {
+            that.hide();
+        }, 4000);
+    };
+
+    that.hide = function() {
+        elem.fadeOut();
     };
 
     return that;
