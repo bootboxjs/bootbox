@@ -33,7 +33,7 @@
     <div class="navbar navbar-inverse" role="navigation">
       <div class=container>
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-goggle="collapse" data-target=".navbar-bb-collapse">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-bb-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -76,19 +76,6 @@
         <p><b>Compare that to the code you&rsquo;d have to write without Bootbox:</b></p>
 
         <script src="https://gist.github.com/makeusabrew/6327194.js"></script>
-
-        <div class=page-header>
-            <h2 id=about>About</h2>
-        </div>
-
-        <p>Bootbox was <a href="http://paynedigital.com/bootbox">originally created in 2011</a>
-        with the sole purpose of wrapping JavaScript&rsquo;s low level dialog methods with Bootstrap&rsquo;s
-        high level modal functionality. As such it is a small library focussed on
-        providing basic programmatic dialogs with minimal fuss and overhead.</p>
-
-        <p>Bootbox is authored and maintained by <a href="http://paynedigital.com/about">Nick Payne</a>
-        (<a href="http://twitter.com/makeusabrew">@makeusabrew</a>). Thanks are also due to
-        <a href="https://github.com/makeusabrew/bootbox/graphs/contributors">the contributors</a>!</p>
 
         <div class=page-header>
             <h2 id=api>Core Methods <small>(<a href="documentation.html">Read the full API docs</a>)</small></h2>
@@ -201,40 +188,42 @@
                 <tr>
                     <th>Bootbox version</th>
                     <th>Min. Bootstrap version</th>
-                    <th>Max. Bootstrap version</th>
-                    <th>Notes</th>
+                    <th>Max. Bootstrap</th>
+                    <th>Min. jQuery</th>
+                    <th class=hidden-xs>Notes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class=success>
-                    <td>4.x.x <span class="label label-success">Latest</span></td>
+                    <td>4.x.x <span class="hidden-xs label label-success">Latest</span></td>
                     <td>3.0.0</td>
                     <td>3.0.0</td>
-                    <td>Current release. Entirely rewritten to support Bootstrap 3.0.0</td>
+                    <td>1.8.3</td>
+                    <td class=hidden-xs>Current release. Entirely rewritten to support Bootstrap 3.0.0</td>
                 </tr>
                 <tr>
                     <td>3.x.x</td>
                     <td>2.2.2</td>
                     <td>2.3.2</td>
-                    <td>Last version to support Bootstrap 2</td>
+                    <td>1.8.3</td>
+                    <td class=hidden-xs>Last version to support Bootstrap 2</td>
                 </tr>
                 <tr>
                     <td>2.x.x</td>
                     <td>2.0.0</td>
                     <td>2.0.4</td>
-                    <td>As you can see, Bootstrap 2.1.x was never officially supported</td>
+                    <td>1.7.1</td>
+                    <td class=hidden-xs>As you can see, Bootstrap 2.1.x was never officially supported</td>
                 </tr>
                 <tr>
                     <td>1.x.x</td>
                     <td>1.3.0</td>
                     <td>1.4.0</td>
-                    <td>Don&rsquo;t download this version of Bootbox&mdash;it&rsquo;s old</td>
+                    <td>1.7.1</td>
+                    <td class=hidden-xs>Don&rsquo;t download this version of Bootbox&mdash;it&rsquo;s old</td>
                 </tr>
             </tbody>
         </table>
-
-        <p>All versions of the library require at least jQuery <b>1.7.1</b>, though
-        <b>1.8.3</b> or above is recommended for the 3.x.x releases.</p>
 
         <div class=page-header>
             <h2 id=usage>Usage Instructions</h2>
@@ -245,6 +234,19 @@
         ever used. The library creates a single global instance of a <b>bootbox</b> object:</p>
 
         <script src="https://gist.github.com/4332514.js"></script>
+
+        <div class=page-header>
+            <h2 id=about>About</h2>
+        </div>
+
+        <p>Bootbox was <a href="http://paynedigital.com/bootbox">originally created in 2011</a>
+        with the sole purpose of wrapping JavaScript&rsquo;s low level dialog methods with Bootstrap&rsquo;s
+        high level modal functionality. As such it is a small library focussed on
+        providing basic programmatic dialogs with minimal fuss and overhead.</p>
+
+        <p>Bootbox is authored and maintained by <a href="http://paynedigital.com/about">Nick Payne</a>
+        (<a href="http://twitter.com/makeusabrew">@makeusabrew</a>). Thanks are also due to
+        <a href="https://github.com/makeusabrew/bootbox/graphs/contributors">the contributors</a>!</p>
 
         <p>When you&rsquo;re up and running check out some <a href="examples.html">examples</a>
         or the <a href="documentation.html">documentation</a>.</p>

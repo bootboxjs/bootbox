@@ -36,7 +36,9 @@
     padding:1em 1.3em;
 }
 
-#gist6327194 {
+#gist6327194,
+#gist6339780,
+#gist6339916 {
     height:300px;
     overflow:auto;
 }
