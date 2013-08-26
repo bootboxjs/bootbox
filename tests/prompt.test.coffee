@@ -128,20 +128,30 @@ describe "bootbox.prompt", ->
         expect(@button.text()).to.equal "Custom cancel"
         expect(@button.hasClass("btn-danger")).to.be.true
 
-    describe "with a custom prompt button", ->
+    describe "with a custom confirm button", ->
       beforeEach ->
         @options.buttons =
-          prompt:
-            label: "Custom prompt"
+          confirm:
+            label: "Custom confirm"
             className: "btn-warning"
 
         @create()
 
         @button = @dialog.find(".btn:last")
 
-      it "adds the correct prompt button", ->
-        expect(@button.text()).to.equal "Custom prompt"
+      it "adds the correct confirm button", ->
+        expect(@button.text()).to.equal "Custom confirm"
         expect(@button.hasClass("btn-warning")).to.be.true
+
+    describe "with an unrecognised button key", ->
+      beforeEach ->
+        @options.buttons =
+          prompt:
+            label: "Custom confirm"
+            className: "btn-warning"
+
+      it "throws an error", ->
+        expect(@create).to.throw /key prompt is not allowed/
 
     describe "setting show to false", ->
       beforeEach ->

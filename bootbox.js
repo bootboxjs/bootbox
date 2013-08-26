@@ -125,11 +125,22 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
     each(buttons, function(key, button, index) {
 
-      // @TODO it wold be so easy here to use key as the button label if
-      // not supplied, and also check if button was a function to support
-      // a nice condensed label -> callback style
+      if ($.isFunction(button)) {
+        // short form, assume value is our callback. Since button
+        // isn't an object it isn't a reference either so re-assign it
+        button = buttons[key] = {
+          callback: button
+        };
+      }
+
+      // before any further checks make sure by now button is the correct type
+      if ($.type(button) !== "object") {
+        throw new Error("button with key " + key + " must be an object");
+      }
+
       if (!button.label) {
-        throw new Error("button with key " + key + " requires a label");
+        // the lack of an explicit label means we'll assume the key is good enough
+        button.label = key;
       }
 
       if (!button.className) {
@@ -167,6 +178,13 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     return $.extend(true, {}, defaults, mapArguments(args, properties));
   }
 
+  function mergeButtons(labels, args, properties) {
+    return validateButtons(
+      mergeArguments(createButtons.apply(null, labels), args, properties),
+      labels
+    );
+  }
+
   function createLabels() {
     var buttons = {};
 
@@ -189,10 +207,25 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     };
   }
 
+  function validateButtons(options, buttons) {
+    var allowedButtons = {};
+    each(buttons, function(key, value) {
+      allowedButtons[value] = true;
+    });
+
+    each(options.buttons, function(key) {
+      if (allowedButtons[key] === undefined) {
+        throw new Error("button key " + key + " is not allowed (options are " + buttons.join("\n") + ")");
+      }
+    });
+
+    return options;
+  }
+
   exports.alert = function() {
     var options;
 
-    options = mergeArguments(createButtons("ok"), arguments, ["message", "callback"]);
+    options = mergeButtons(["ok"], arguments, ["message", "callback"]);
 
     if (options.callback && !$.isFunction(options.callback)) {
       throw new Error("alert requires callback property to be a function when provided");
@@ -214,7 +247,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
   exports.confirm = function() {
     var options;
 
-    options = mergeArguments(createButtons("cancel", "confirm"), arguments, ["message", "callback"]);
+    options = mergeButtons(["cancel", "confirm"], arguments, ["message", "callback"]);
 
     /**
      * overrides; undo anything the user tried to set they shouldn't have
@@ -254,7 +287,10 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       value: ""
     };
 
-    options = mergeArguments(defaults, arguments, ["title", "callback"]);
+    options = validateButtons(
+      mergeArguments(defaults, arguments, ["title", "callback"]),
+      ["cancel", "confirm"]
+    );
 
     // capture the user's show value; we always set this to false before
     // spawning the dialog to give us a chance to attach some handlers to

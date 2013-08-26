@@ -40,17 +40,16 @@ describe "bootbox.dialog", ->
         it "throws an error", ->
           expect(@create).to.throw /specify a message/
 
-      describe "where the argument has a button with no label", ->
+      describe "where the argument has a button with an invalid value", ->
         beforeEach ->
           @create = ->
             bootbox.dialog
               message: "test"
               buttons:
-                ok:
-                  callback: -> true
+                ok: "foo"
 
         it "throws an error", ->
-          expect(@create).to.throw /button with key ok requires a label/
+          expect(@create).to.throw /button with key ok must be an object/
 
   describe "when creating a minimal dialog", ->
     beforeEach ->
@@ -88,11 +87,6 @@ describe "bootbox.dialog", ->
           message: "test"
           buttons:
             one: button
-
-    describe "when the button has no label", ->
-
-      it "throws an error", ->
-        expect(@create).to.throw /button with key one requires a label/
 
     describe "when the button has no callback", ->
       beforeEach ->
@@ -184,6 +178,51 @@ describe "bootbox.dialog", ->
 
       it "adds the custom class to the button", ->
         expect(@class(".btn", "btn-custom")).to.be.true
+
+    describe "when the button has no explicit label", ->
+      beforeEach ->
+        @create = (buttons) ->
+          @dialog = bootbox.dialog
+            message: "test"
+            buttons: buttons
+
+      describe "when its value is an object", ->
+        beforeEach ->
+          @create
+            "Short form":
+              className: "btn-custom"
+              callback: -> true
+
+        it "uses the key name as the button text", ->
+          expect(@text(".btn")).to.equal "Short form"
+
+        it "adds the custom class to the button", ->
+          expect(@class(".btn", "btn-custom")).to.be.true
+
+      describe "when its value is a function", ->
+        beforeEach ->
+          @callback = sinon.spy()
+          @create
+            my_label: @callback
+
+        it "uses the key name as the button text", ->
+          expect(@text(".btn")).to.equal "my_label"
+
+        describe "when dismissing the dialog by clicking the button", ->
+          beforeEach ->
+            @dialog.find(".btn-primary").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+      describe "when its value is not an object or function", ->
+        beforeEach ->
+          @badCreate = =>
+            @create
+              "Short form": "hello world"
+
+        it "throws an error", ->
+          expect(@badCreate).to.throw /button with key Short form must be an object/
 
   describe "when creating a dialog with a title", ->
     beforeEach ->

@@ -130,6 +130,16 @@ describe "bootbox.confirm", ->
         expect(@button.text()).to.equal "Custom confirm"
         expect(@button.hasClass("btn-warning")).to.be.true
 
+    describe "with an unrecognised button key", ->
+      beforeEach ->
+        @options.buttons =
+          "Bad key":
+            label: "Custom confirm"
+            className: "btn-warning"
+
+      it "throws an error", ->
+        expect(@create).to.throw /key is not allowed/
+
   describe "callback tests", ->
     describe "with a simple callback", ->
       beforeEach ->

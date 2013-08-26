@@ -134,6 +134,21 @@ describe("bootbox.alert", function() {
       });
     });
 
+    describe("with an unrecognised button key", function() {
+      beforeEach(function() {
+        this.options.buttons = {
+          "Another key": {
+            label: "Custom OK",
+            className: "btn-danger"
+          }
+        };
+      });
+
+      it("throws an error", function() {
+        expect(this.create).to.throw("button key Another key is not allowed (options are ok)");
+      });
+    });
+
     describe("with a custom title", function() {
       beforeEach(function() {
         this.options.title = "Hello?";
