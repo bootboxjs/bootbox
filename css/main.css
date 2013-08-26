@@ -38,8 +38,12 @@
 }
 
 #gist6327194,
-#gist6339780,
 #gist6339916 {
     height:300px;
+    overflow:auto;
+}
+
+#gist6339780 {
+    height:600px;
     overflow:auto;
 }
