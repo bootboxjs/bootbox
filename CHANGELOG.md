@@ -1,4 +1,15 @@
-## Latest Release: 3.3.0
+## Latest Release: 4.0.0
+
+* Bootstrap 3.0.0 compatibility
+* Complete rewrite (and new public API)
+* Use strict mode
+* Add close buttons to wrapper methods (GH-92)
+* Allow dialog titles to be specified (GH-51, GH-112)
+* Allow optional extra class on dialog wrapper (GH-116)
+* Fix ```backdrop: true``` not firing close handler (GH-77)
+* Replace various configuration methods with one ```setDefaults```
+
+### 3.3.0
 
 * Add Polish translation (GH-93)
 * Add Danish translation (GH-96)

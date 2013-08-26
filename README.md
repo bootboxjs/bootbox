@@ -47,17 +47,16 @@ coming weeks in the form of new minor releases.
 
 There is no new major (e.g. 5.x) release on the roadmap at present.
 
-## Latest Release: 3.3.0
+## Latest Release: 4.0.0
 
-* Add Polish translation (GH-93)
-* Add Danish translation (GH-96)
-* Pass event object to custom callbacks (GH-103)
-* Add Chinese (Taiwan / China) translations (GH-106)
-* Make prompt input block-level (GH-111)
-* Add link: true option to prevent btn class from being applied (GH-114)
-* Prevent child elements triggering hidden callback (GH-115)
-* Replace Phing with Grunt
-* Replace Closure compiler with UglifyJS
+* Bootstrap 3.0.0 compatibility
+* Complete rewrite (and new public API)
+* Use strict mode
+* Add close buttons to wrapper methods (GH-92)
+* Allow dialog titles to be specified (GH-51, GH-112)
+* Allow optional extra class on dialog wrapper (GH-116)
+* Fix ```backdrop: true``` not firing close handler (GH-77)
+* Replace various configuration methods with one ```setDefaults```
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 
