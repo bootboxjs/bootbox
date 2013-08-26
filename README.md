@@ -5,7 +5,7 @@ the original writeup about the project.
 
 ## Contact
 
-The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/makeusabrew)
+The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/makeusabrew).
 
 ## Contributing
 
@@ -40,12 +40,12 @@ Much more dependency information can be found [on the Bootbox website](http://bo
 
 ### Roadmap
 
-The next major release of Bootbox - 4.0.0 - will involve a complete rewrite of the
-internal code and introduce an entirely new public API. It will most likely require
-Bootstrap 3.0.0 (assuming that sees the light of day first).
+The latest major release of Bootbox - 4.0.0 - involved a total rewrite of the
+internal code and introduced an entirely new public API. It has not re-implemented
+some functionality from the 3.x series as of yet; this will be addressed in the
+coming weeks in the form of new minor releases.
 
-You can get a quick overview of the roadmap in the form of the project milestones
-[as listed in the issue tracker](https://github.com/makeusabrew/bootbox/issues/milestones?direction=asc&sort=due_date).
+There is no new major (e.g. 5.x) release on the roadmap at present.
 
 ## Latest Release: 3.3.0
 
