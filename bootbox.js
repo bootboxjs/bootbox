@@ -125,6 +125,9 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
     each(buttons, function(key, button, index) {
 
+      // @TODO it wold be so easy here to use key as the button label if
+      // not supplied, and also check if button was a function to support
+      // a nice condensed label -> callback style
       if (!button.label) {
         throw new Error("button with key " + key + " requires a label");
       }
