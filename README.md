@@ -3,20 +3,6 @@
 Please see http://bootboxjs.com for full usage instructions, or head over to http://paynedigital.com/bootbox for
 the original writeup about the project.
 
-## Bootstrap 3 support
-
-[Bootstrap 3 RC1](http://getbootstrap.com/) is now available meaning that as per the
-[roadmap](https://github.com/makeusabrew/bootbox/blob/v3.x/README.md#roadmap)
-the next major release of Bootbox will be 4.0.0. This will entail a complete rewrite and new
-public API and will be out as close to the full Bootstrap 3.0 release as possible. If you wish
-to contribute to its development, please ensure you're working on the
-[master](https://github.com/makeusabrew/bootbox/tree/master) branch. If you want to
-contribute bugfixes to the Bootbox 3.x series (which depend on Bootstrap 2.x) please work on the
-[v3.x]([master](https://github.com/makeusabrew/bootbox/tree/v3.x) branch.
-
-If you just want to download a version of the library compatible with the Bootstrap 2.x series, please
-see the [list of available releases](https://github.com/makeusabrew/bootbox/releases).
-
 ## Contact
 
 The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/makeusabrew)
@@ -46,18 +32,11 @@ This will generate a bootbox.min.js file in your working directory.
 
 ## A note on Bootstrap dependencies
 
-Keeping track of issues has become increasingly difficult without a **strict**
-dependency on specific minor versions of Bootstrap. The original intention was
-that the 2.x.x series of Bootbox would simply require Bootstrap >= 2.x.x - since
-both projects use Semantic Versioning this should have been possible. However,
-Bootstrap 2.2.x (and possibly 2.1.x) introduced breaking changes - or at least
-changes considered backward incompatible in the context of this project. Over
-time bugs started getting raised which eventually turned out to be due to subtle
-changes in Bootstrap's code. Therefore, **2.5.1** was the last release which will
-support Bootstrap 2.0.x and is **not guaranteed** to work with anything higher than
-Bootstrap 2.0.4.
+Bootbox **4.0.0** is the first release to support Bootstrap 3.0.0.
 
-Bootbox *3.0.0* is the first release to support Bootstrap 2.2.x. More about this [on the Bootbox website](http://bootboxjs.com/#dependencies).
+Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
+
+Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/#dependencies).
 
 ### Roadmap
 
