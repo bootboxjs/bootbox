@@ -43,7 +43,9 @@ Much more dependency information can be found [on the Bootbox website](http://bo
 The latest major release of Bootbox - 4.0.0 - involved a total rewrite of the
 internal code and introduced an entirely new public API. It has not re-implemented
 some functionality from the 3.x series as of yet; this will be addressed in the
-coming weeks in the form of new minor releases.
+coming weeks in the form of new minor releases;
+[a task list for 4.1.0 is available](https://github.com/makeusabrew/bootbox/issues/142) -
+please feel free to add feedback and requests.
 
 There is no new major (e.g. 5.x) release on the roadmap at present.
 
