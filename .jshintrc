@@ -1,0 +1,18 @@
+{
+    "undef": true,
+    "unused": true,
+    "eqeqeq": true,
+    "curly": true,
+    "newcap": true,
+    "strict": true,
+    "trailing": true,
+    "quotmark": "double",
+    "browser": true,
+
+    "globals": {
+      "beforeEach": true,
+      "describe": true,
+      "it": true,
+      "expect": true
+    }
+}

@@ -5,7 +5,7 @@ the original writeup about the project.
 
 ## Contact
 
-The easiest thing is to [find me on twitter](http://twitter.com/makeusabrew): [@makeusabrew](http://twitter.com/makeusabrew)
+The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/makeusabrew).
 
 ## Contributing
 
@@ -32,39 +32,33 @@ This will generate a bootbox.min.js file in your working directory.
 
 ## A note on Bootstrap dependencies
 
-Keeping track of issues has become increasingly difficult without a **strict**
-dependency on specific minor versions of Bootstrap. The original intention was
-that the 2.x.x series of Bootbox would simply require Bootstrap >= 2.x.x - since
-both projects use Semantic Versioning this should have been possible. However,
-Bootstrap 2.2.x (and possibly 2.1.x) introduced breaking changes - or at least
-changes considered backward incompatible in the context of this project. Over
-time bugs started getting raised which eventually turned out to be due to subtle
-changes in Bootstrap's code. Therefore, **2.5.1** was the last release which will
-support Bootstrap 2.0.x and is **not guaranteed** to work with anything higher than
-Bootstrap 2.0.4.
+Bootbox **4.0.0** is the first release to support Bootstrap 3.0.0.
 
-Bootbox *3.0.0* is the first release to support Bootstrap 2.2.x. More about this [on the Bootbox website](http://bootboxjs.com/#dependencies).
+Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
+
+Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/#dependencies).
 
 ### Roadmap
 
-The next major release of Bootbox - 4.0.0 - will involve a complete rewrite of the
-internal code and introduce an entirely new public API. It will most likely require
-Bootstrap 3.0.0 (assuming that sees the light of day first).
+The latest major release of Bootbox - 4.0.0 - involved a total rewrite of the
+internal code and introduced an entirely new public API. It has not re-implemented
+some functionality from the 3.x series as of yet; this will be addressed in the
+coming weeks in the form of new minor releases;
+[a task list for 4.1.0 is available](https://github.com/makeusabrew/bootbox/issues/142) -
+please feel free to add feedback and requests.
 
-You can get a quick overview of the roadmap in the form of the project milestones
-[as listed in the issue tracker](https://github.com/makeusabrew/bootbox/issues/milestones?direction=asc&sort=due_date).
+There is no new major (e.g. 5.x) release on the roadmap at present.
 
-## Latest Release: 3.3.0
+## Latest Release: 4.0.0
 
-* Add Polish translation (GH-93)
-* Add Danish translation (GH-96)
-* Pass event object to custom callbacks (GH-103)
-* Add Chinese (Taiwan / China) translations (GH-106)
-* Make prompt input block-level (GH-111)
-* Add link: true option to prevent btn class from being applied (GH-114)
-* Prevent child elements triggering hidden callback (GH-115)
-* Replace Phing with Grunt
-* Replace Closure compiler with UglifyJS
+* Bootstrap 3.0.0 compatibility
+* Complete rewrite (and new public API)
+* Use strict mode
+* Add close buttons to wrapper methods (GH-92)
+* Allow dialog titles to be specified (GH-51, GH-112)
+* Allow optional extra class on dialog wrapper (GH-116)
+* Fix ```backdrop: true``` not firing close handler (GH-77)
+* Replace various configuration methods with one ```setDefaults```
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 
