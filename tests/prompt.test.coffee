@@ -1,7 +1,10 @@
 describe "bootbox.prompt", ->
   beforeEach ->
     bootbox.init()
-    @text = (selector) -> @dialog.find(selector).text()
+
+    @find   = (selector) -> @dialog.find selector
+    @text   = (selector) -> @find(selector).text()
+    @exists = (selector) -> @find(selector).length isnt 0
 
   describe "basic usage tests", ->
 
@@ -168,6 +171,118 @@ describe "bootbox.prompt", ->
 
       it "does not show the dialog", ->
         expect(@shown).not.to.have.been.called
+
+    describe "invalid prompt type", ->
+      beforeEach ->
+        @options.inputType = 'foobar'
+
+      it "throws an error", ->
+        expect(@create).to.throw /invalid prompt type/
+
+    describe "setting inputType text", ->
+      beforeEach ->
+        @options.inputType = "text"
+
+      describe "without default value", ->
+        beforeEach ->
+          @create()
+
+        it "shows text input ", ->
+          expect(@exists("input[type='text']")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("input[type='text']").hasClass("bootbox-input")).to.be.ok
+
+      describe "with default value", ->
+        beforeEach ->
+          @options.value = "John Smith"
+          @create()
+
+        it "has correct default value", ->
+          expect(@find("input[type='text']").val()).to.equal "John Smith"
+
+      describe "with placeholder", ->
+        beforeEach ->
+          @options.placeholder = "enter your name"
+          @create()
+
+        it "has correct placeholder value", ->
+          expect(@find("input[type='text']").prop("placeholder")).to.equal "enter your name"
+
+    describe "setting inputType email", ->
+      beforeEach ->
+        @options.inputType = "email"
+
+      describe "without default value", ->
+        beforeEach ->
+          @create()
+
+        it "shows email input ", ->
+          expect(@exists("input[type='email']")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("input[type='email']").hasClass("bootbox-input-email")).to.be.ok
+
+      describe "with default value", ->
+        beforeEach ->
+          @options.value = "john@smith.com"
+          @create()
+
+        it "has correct default value", ->
+          expect(@find("input[type='email']").val()).to.equal "john@smith.com"
+
+      describe "with placeholder", ->
+        beforeEach ->
+          @options.placeholder = "enter your email"
+          @create()
+
+        it "has correct placeholder value", ->
+          expect(@find("input[type='email']").prop("placeholder")).to.equal "enter your email"
+
+    describe "setting inputType select", ->
+      describe "without options", ->
+        beforeEach ->
+          @options.inputType = 'select'
+
+        it "throws an error", ->
+          expect(@create).to.throw /prompt with select requires options/
+
+      describe "with invalid options", ->
+        beforeEach ->
+          @options.inputType = 'select'
+          @options.options = 'foo'
+
+        it "throws an error", ->
+          expect(@create).to.throw /prompt with select requires options/
+
+      describe "with empty options", ->
+        beforeEach ->
+          @options.inputType = 'select'
+          @options.options = []
+
+        it "throws an error", ->
+          expect(@create).to.throw /prompt with select requires options/
+
+      describe "with options in wrong format", ->
+        beforeEach ->
+          @options.inputType = 'select'
+          @options.options = [{foo: 'bar'}]
+
+        it "throws an error", ->
+          expect(@create).to.throw /given options in wrong format/
+
+      describe "with valid options", ->
+        beforeEach ->
+          @options.inputType = 'select'
+          @options.options = [{value: 1, text: 'foo'},{value: 2, text: 'bar'},{value: 3, text: 'foobar'}]
+
+          @create()
+
+        it "shows select input", ->
+          expect(@exists(".bootbox-select")).to.be.ok
+
+        it "with three options", ->
+          expect(@find("option").length).to.equal 3
 
   describe "callback tests", ->
     describe "with a simple callback", ->
@@ -412,3 +527,216 @@ describe "bootbox.prompt", ->
 
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly null
+
+    describe "with inputType select", ->
+      describe "without a default value", ->
+        beforeEach ->
+          @callback = sinon.spy()
+
+          @dialog = bootbox.prompt
+            title: "What is your IDE?"
+            callback: @callback
+            inputType: "select"
+            options: [
+              {value: '#', text: 'Choose one'},
+              {value: 1, text: 'Vim'},
+              {value: 2, text: 'Sublime Text'},
+              {value: 3, text: 'WebStorm/PhpStorm'},
+              {value: 4, text: 'Komodo IDE'},
+            ]
+
+          @hidden = sinon.spy @dialog, "modal"
+
+        it "has correct number values in list", ->
+          expect(@find(".bootbox-select option").length).to.equal 5
+
+        describe "when dismissing the dialog by clicking OK", ->
+          beforeEach ->
+            @dialog.find(".btn-primary").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly "#"
+
+        describe "when dismissing the dialog by clicking Cancel", ->
+          beforeEach ->
+            @dialog.find(".btn-default").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly null
+
+      describe "with a default value", ->
+        beforeEach ->
+          @callback = sinon.spy()
+
+          @dialog = bootbox.prompt
+            title: "What is your IDE?"
+            callback: @callback
+            inputType: "select"
+            value: 1
+            options: [
+              {value: '#', text: 'Choose one'},
+              {value: 1, text: 'Vim'},
+              {value: 2, text: 'Sublime Text'},
+              {value: 3, text: 'WebStorm/PhpStorm'},
+              {value: 4, text: 'Komodo IDE'},
+            ]
+
+          @hidden = sinon.spy @dialog, "modal"
+
+        it "specified option is selected", ->
+          expect(@dialog.find(".bootbox-select").val()).to.equal "1"
+
+        describe "when dismissing the dialog by clicking OK", ->
+          beforeEach ->
+            @dialog.find(".btn-primary").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly "1"
+
+        describe "when dismissing the dialog by clicking Cancel", ->
+          beforeEach ->
+            @dialog.find(".btn-default").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly null
+
+        describe "when changing the selected option and dismissing the dialog by clicking OK", ->
+          beforeEach ->
+            @dialog.find(".bootbox-select").val(3)
+            @dialog.find(".btn-primary").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly "3"
+
+    describe "with inputType email", ->
+      describe "without a default value", ->
+        beforeEach ->
+          @callback = sinon.spy()
+
+          @dialog = bootbox.prompt
+            title: "What is your email?"
+            inputType: "email"
+            callback: @callback
+
+          @hidden = sinon.spy @dialog, "modal"
+
+        describe "when dismissing the dialog by clicking OK", ->
+          beforeEach ->
+            @dialog.find(".btn-primary").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly ""
+
+          it "should hide the modal", ->
+            expect(@hidden).to.have.been.calledWithExactly "hide"
+
+        describe "when submitting the form", ->
+          beforeEach ->
+            @dialog.find(".bootbox-form").trigger "submit"
+
+          it "invokes the callback with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly ""
+
+          it "should hide the modal", ->
+            expect(@hidden).to.have.been.calledWithExactly "hide"
+
+        describe "when entering a value in the email input", ->
+          beforeEach ->
+            @dialog.find(".bootbox-input-email").val "john@smith.com"
+
+          describe "when dismissing the dialog by clicking OK", ->
+            beforeEach ->
+              @dialog.find(".btn-primary").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly "john@smith.com"
+
+          describe "when dismissing the dialog by clicking Cancel", ->
+            beforeEach ->
+              @dialog.find(".btn-default").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly null
+
+      describe "with a default value", ->
+        beforeEach ->
+          @callback = sinon.spy()
+
+          @dialog = bootbox.prompt
+            title: "What is your email?"
+            inputType: "email"
+            value: "john@smith.com"
+            callback: @callback
+
+          @hidden = sinon.spy @dialog, "modal"
+
+        describe "when dismissing the dialog by clicking OK", ->
+          beforeEach ->
+            @dialog.find(".btn-primary").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly "john@smith.com"
+
+          it "should hide the modal", ->
+            expect(@hidden).to.have.been.calledWithExactly "hide"
+
+        describe "when submitting the form", ->
+          beforeEach ->
+            @dialog.find(".bootbox-form").trigger "submit"
+
+          it "invokes the callback with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly "john@smith.com"
+
+          it "should hide the modal", ->
+            expect(@hidden).to.have.been.calledWithExactly "hide"
+
+        describe "when changing a value in the email input", ->
+          beforeEach ->
+            @dialog.find(".bootbox-input-email").val "smith@john.com"
+
+          describe "when dismissing the dialog by clicking OK", ->
+            beforeEach ->
+              @dialog.find(".btn-primary").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly "smith@john.com"
+
+          describe "when dismissing the dialog by clicking Cancel", ->
+            beforeEach ->
+              @dialog.find(".btn-default").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly null
