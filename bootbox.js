@@ -325,6 +325,10 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     input = $(templates.inputs.text);
     input.val(options.value);
 
+    if (options.placeholder) {
+      input.attr("placeholder", options.placeholder);
+    }
+
     // now place it in our form
     form.append(input);
 

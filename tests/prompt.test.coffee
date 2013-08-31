@@ -412,3 +412,15 @@ describe "bootbox.prompt", ->
 
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly null
+
+    describe "with a placeholder", ->
+      beforeEach ->
+        @callback = sinon.spy()
+
+        @dialog = bootbox.prompt
+          title: "What is your name?"
+          placeholder: "e.g. Bob Smith"
+          callback: -> true
+
+      it "populates the input with the placeholder attribute", ->
+        expect(@dialog.find(".bootbox-input").attr("placeholder")).to.equal "e.g. Bob Smith"
