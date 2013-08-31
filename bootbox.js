@@ -303,9 +303,6 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     // it, but we need to make sure we respect a preference not to show it
     shouldShow = (options.show === undefined) ? true : options.show;
 
-    // capture the user's input type value; if not given fallback to text
-    //type = (options.type === undefined) ? 'text' : options.type;
-
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
