@@ -29,7 +29,11 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       "<form class='bootbox-form'></form>",
     inputs: {
       text:
-        "<input class='bootbox-input form-control' autocomplete=off type=text />"
+        "<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type=text />",
+      email:
+        "<input class='bootbox-input bootbox-input-email form-control' autocomplete='off' type='email' />",
+      select:
+        "<select class='bootbox-input bootbox-input-select form-control'></select>"
     }
   };
 
@@ -284,7 +288,8 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
     defaults = {
       buttons: createLabels("cancel", "confirm"),
-      value: ""
+      value: "",
+      inputType: "text"
     };
 
     options = validateButtons(
@@ -321,9 +326,42 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       throw new Error("prompt requires a callback");
     }
 
+    if (!templates.inputs[options.inputType]) {
+      throw new Error("invalid prompt type");
+    }
+
     // create the input
-    input = $(templates.inputs.text);
-    input.val(options.value);
+    input = $(templates.inputs[options.inputType]);
+
+    switch (options.inputType) {
+      case 'text':
+      case 'email':
+        input.val(options.value);
+        break;
+      case 'select':
+        if (typeof options.inputOptions !== 'object' || options.inputOptions.length === 0) {
+          throw new Error("prompt with select requires options");
+        }
+
+        if (typeof options.inputOptions[0].value === "undefined"
+            || typeof options.inputOptions[0].text === "undefined"
+        ) {
+          throw new Error("given options in wrong format");
+        }
+
+        // Create options for select
+        for (var i = 0; i < options.inputOptions.length; i++) {
+          var option = options.inputOptions[i];
+
+          input.append(new Option(option.text, option.value));
+        }
+
+        // Set selected option
+        input.find("option").filter(function() {
+          return $(this).val() == options.value;
+        }).prop('selected', true);
+        break;
+    }
 
     if (options.placeholder) {
       input.attr("placeholder", options.placeholder);
