@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS --reporters dots"
+    "test": "./node_modules/.bin/karma start"
   },
   "repository": {
     "type": "git",
