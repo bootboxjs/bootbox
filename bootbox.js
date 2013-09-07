@@ -577,6 +577,11 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       CANCEL  : "Annuleren",
       CONFIRM : "Accepteren"
     },
+    no : {
+      OK      : "OK",
+      CANCEL  : "Avbryt",
+      CONFIRM : "OK"
+    },
     pl : {
       OK      : "OK",
       CANCEL  : "Anuluj",
