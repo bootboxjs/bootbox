@@ -26,8 +26,8 @@
     "karma-coffee-preprocessor": "~0.1.0",
     "karma-coverage": "~0.1.0",
     "karma-junit-reporter": "~0.1.0",
-    "karma-chai": "git+https://github.com/xdissent/karma-chai.git",
     "sinon": "~1.7.3",
-    "sinon-chai": "~2.4.0"
+    "sinon-chai": "~2.4.0",
+    "karma-chai": "0.0.1"
   }
 }
