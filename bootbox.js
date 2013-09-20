@@ -35,7 +35,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       select:
         "<select class='bootbox-input bootbox-input-select form-control'></select>",
       checkbox:
-        "<div><label><input class='bootbox-input bootbox-input-checkbox form-control' type='checkbox' /></label></div>"
+        "<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' /></label></div>"
     }
   };
 
