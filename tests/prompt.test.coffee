@@ -290,6 +290,31 @@ describe "bootbox.prompt", ->
         it "with three options", ->
           expect(@find("option").length).to.equal 3
 
+    describe "setting inputType checkbox", ->
+      describe "without options", ->
+        beforeEach ->
+          @options.inputType = 'checkbox'
+
+        it "throws an error", ->
+            expect(@create).to.throw /prompt with checkbox requires options/
+
+      describe "with options", ->
+        beforeEach ->
+          @options.inputType = 'checkbox'
+          @options.inputOptions = [{value: 1, text: 'foo'},{value: 2, text: 'bar'},{value: 3, text: 'foobar'}]
+
+          @create()
+
+        it "shows checkbox input", ->
+          expect(@exists("input[type='checkbox']")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("input[type='checkbox']").hasClass("bootbox-input")).to.be.ok
+          expect(@find("input[type='checkbox']").hasClass("bootbox-input-checkbox")).to.be.ok
+
+        it "with three checkboxes", ->
+          expect(@find("input[type='checkbox']").length).to.equal 3
+
   describe "callback tests", ->
     describe "with a simple callback", ->
       beforeEach ->
@@ -546,7 +571,6 @@ describe "bootbox.prompt", ->
       it "populates the input with the placeholder attribute", ->
         expect(@dialog.find(".bootbox-input").attr("placeholder")).to.equal "e.g. Bob Smith"
 
-
     describe "with inputType select", ->
       describe "without a default value", ->
         beforeEach ->
@@ -759,3 +783,183 @@ describe "bootbox.prompt", ->
 
             it "with the correct value", ->
               expect(@callback).to.have.been.calledWithExactly null
+
+    describe "with input type checkbox", ->
+      describe "without a default value", ->
+        beforeEach ->
+          @callback = sinon.spy()
+
+          @dialog = bootbox.prompt
+            title: "What is your IDE?"
+            inputType: 'checkbox'
+            inputOptions: [
+              {value: 1, text: 'Vim'},
+              {value: 2, text: 'Sublime Text'},
+              {value: 3, text: 'WebStorm/PhpStorm'},
+              {value: 4, text: 'Komodo IDE'},
+            ]
+            callback: @callback
+
+          @hidden = sinon.spy @dialog, "modal"
+
+        describe "when dismissing the dialog by clicking OK", ->
+          beforeEach ->
+            @dialog.find(".btn-primary").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly false
+
+          it "should hide the modal", ->
+            expect(@hidden).to.have.been.calledWithExactly "hide"
+
+        describe "when dismissing the dialog by clicking Cancel", ->
+          beforeEach ->
+            @dialog.find(".btn-default").trigger "click"
+
+          it "should invoke the callback", ->
+            expect(@callback).to.have.been.called
+
+          it "with the correct value", ->
+            expect(@callback).to.have.been.calledWithExactly null
+
+      describe "with default value", ->
+        describe "one value checked", ->
+          beforeEach ->
+            @callback = sinon.spy()
+
+            @dialog = bootbox.prompt
+              title: "What is your IDE?"
+              callback: @callback
+              value: 2
+              inputType: "checkbox"
+              inputOptions: [
+                {value: 1, text: 'Vim'},
+                {value: 2, text: 'Sublime Text'},
+                {value: 3, text: 'WebStorm/PhpStorm'},
+                {value: 4, text: 'Komodo IDE'},
+              ]
+
+            @hidden = sinon.spy @dialog, "modal"
+
+          it "specified checkbox is checked", ->
+            expect(@dialog.find("input:checkbox:checked").val()).to.equal "2"
+
+          describe "when dismissing the dialog by clicking OK", ->
+            beforeEach ->
+              @dialog.find(".btn-primary").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly "2"
+
+          describe "when dismissing the dialog by clicking Cancel", ->
+            beforeEach ->
+              @dialog.find(".btn-default").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly null
+
+          describe "when changing the checked option and dismissing the dialog by clicking Cancel", ->
+            beforeEach ->
+              @dialog.find("input:checkbox:checked").prop('checked', false);
+              @dialog.find("input:checkbox[value=3]").prop('checked', true);
+              @dialog.find(".btn-default").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly null
+
+          describe "when changing the selected option and dismissing the dialog by clicking OK", ->
+            beforeEach ->
+              @dialog.find("input:checkbox:checked").prop('checked', false);
+              @dialog.find("input:checkbox[value=3]").prop('checked', true);
+              @dialog.find(".btn-primary").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly "3"
+
+        describe "multiple value checked", ->
+          beforeEach ->
+            @callback = sinon.spy()
+
+            @dialog = bootbox.prompt
+              title: "What is your IDE?"
+              callback: @callback
+              value: ['2', '3']
+              inputType: "checkbox"
+              inputOptions: [
+                {value: 1, text: 'Vim'},
+                {value: 2, text: 'Sublime Text'},
+                {value: 3, text: 'WebStorm/PhpStorm'},
+                {value: 4, text: 'Komodo IDE'},
+              ]
+
+            @hidden = sinon.spy @dialog, "modal"
+
+          it "specified checkboxes are checked", ->
+            checked = []
+
+            @dialog.find("input:checkbox:checked").each (foo, bar) =>
+              checked.push $(bar).val()
+
+            expect(checked).to.deep.equal ['2', '3']
+
+          describe "when dismissing the dialog by clicking OK", ->
+            beforeEach ->
+              @dialog.find(".btn-primary").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly ['2', '3']
+
+          describe "when dismissing the dialog by clicking Cancel", ->
+            beforeEach ->
+              @dialog.find(".btn-default").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly null
+
+          describe "when changing the checked options and dismissing the dialog by clicking Cancel", ->
+            beforeEach ->
+              @dialog.find("input:checkbox:checked").prop('checked', false);
+              @dialog.find("input:checkbox[value=1]").prop('checked', true);
+              @dialog.find("input:checkbox[value=4]").prop('checked', true);
+              @dialog.find(".btn-default").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly null
+
+          describe "when changing the checked options and dismissing the dialog by clicking OK", ->
+            beforeEach ->
+              @dialog.find("input:checkbox:checked").prop('checked', false);
+              @dialog.find("input:checkbox[value=1]").prop('checked', true);
+              @dialog.find("input:checkbox[value=4]").prop('checked', true);
+              @dialog.find(".btn-primary").trigger "click"
+
+            it "should invoke the callback", ->
+              expect(@callback).to.have.been.called
+
+            it "with the correct value", ->
+              expect(@callback).to.have.been.calledWithExactly ['1', '4']
+

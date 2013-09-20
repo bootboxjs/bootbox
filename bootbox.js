@@ -33,7 +33,9 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       email:
         "<input class='bootbox-input bootbox-input-email form-control' autocomplete='off' type='email' />",
       select:
-        "<select class='bootbox-input bootbox-input-select form-control'></select>"
+        "<select class='bootbox-input bootbox-input-select form-control'></select>",
+      checkbox:
+        "<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox form-control' type='checkbox' /></label></div>"
     }
   };
 
@@ -312,7 +314,31 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     };
 
     options.buttons.confirm.callback = function() {
-      return options.callback(input.val());
+      var value = false;
+
+      switch (options.inputType) {
+          case 'text':
+          case 'email':
+          case 'select':
+            value = input.val();
+            break;
+          case 'checkbox':
+            var checkedLength = $('input:checkbox:checked', input).length;
+
+              // Only one checked
+            if (checkedLength === 1) {
+              value = $('input:checkbox:checked', input).val();
+            } else if (checkedLength > 1) { // Multiple values selected
+              value = [];
+
+              $('input:checkbox:checked', input).each(function() {
+                  value.push(jQuery(this).val());
+              });
+            }
+            break;
+      }
+
+        return options.callback(value);
     };
 
     options.show = false;
@@ -361,6 +387,42 @@ window.bootbox = window.bootbox || (function init($, undefined) {
           return $(this).val() == options.value;
         }).prop('selected', true);
         break;
+      case 'checkbox':
+        if (typeof options.inputOptions !== 'object' || options.inputOptions.length === 0) {
+            throw new Error("prompt with checkbox requires options");
+        }
+
+        if (typeof options.inputOptions[0].value === "undefined"
+            || typeof options.inputOptions[0].text === "undefined"
+        ) {
+            throw new Error("given options in wrong format");
+        }
+
+        input = $('<div/>');
+
+        var checkbox = $(templates.inputs[options.inputType]);
+
+        // Create checkbox
+        for (var i = 0; i < options.inputOptions.length; i++) {
+            var option = options.inputOptions[i];
+            var o = checkbox.clone();
+
+            o.find('input').attr('value', option.value);
+            o.find('label').append(option.text);
+
+            if (typeof options.value === 'object') {
+              for (var x = 0; x < options.value.length; x++) {
+                if (options.value[x] == option.value) {
+                    o.find('input').prop('checked', true);
+                }
+              }
+            } else if (options.value == option.value) {
+                o.find('input').prop('checked', true);
+            }
+
+            input.append(o);
+        }
+        break;
     }
 
     if (options.placeholder) {
@@ -384,7 +446,9 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
     // ...and replace it with one focusing our input, if possible
     dialog.on("shown.bs.modal", function() {
-      input.focus();
+      if (options.inputType !== 'checkbox') {
+        input.focus();
+      }
     });
 
     if (shouldShow === true) {
