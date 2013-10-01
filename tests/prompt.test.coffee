@@ -301,7 +301,11 @@ describe "bootbox.prompt", ->
       describe "with options", ->
         beforeEach ->
           @options.inputType = 'checkbox'
-          @options.inputOptions = [{value: 1, text: 'foo'},{value: 2, text: 'bar'},{value: 3, text: 'foobar'}]
+          @options.inputOptions = [
+            {value: 1, text: 'foo'}
+            {value: 2, text: 'bar'}
+            {value: 3, text: 'foobar'}
+          ]
 
           @create()
 
@@ -898,13 +902,13 @@ describe "bootbox.prompt", ->
             @dialog = bootbox.prompt
               title: "What is your IDE?"
               callback: @callback
-              value: ['2', '3']
+              value: [2, 3]
               inputType: "checkbox"
               inputOptions: [
-                {value: 1, text: 'Vim'},
-                {value: 2, text: 'Sublime Text'},
-                {value: 3, text: 'WebStorm/PhpStorm'},
-                {value: 4, text: 'Komodo IDE'},
+                {value: 1, text: 'Vim'}
+                {value: 2, text: 'Sublime Text'}
+                {value: 3, text: 'WebStorm/PhpStorm'}
+                {value: 4, text: 'Komodo IDE'}
               ]
 
             @hidden = sinon.spy @dialog, "modal"
@@ -915,7 +919,7 @@ describe "bootbox.prompt", ->
             @dialog.find("input:checkbox:checked").each (foo, bar) =>
               checked.push $(bar).val()
 
-            expect(checked).to.deep.equal ['2', '3']
+            expect(checked).to.deep.equal ["2", "3"]
 
           describe "when dismissing the dialog by clicking OK", ->
             beforeEach ->
@@ -925,7 +929,7 @@ describe "bootbox.prompt", ->
               expect(@callback).to.have.been.called
 
             it "with the correct value", ->
-              expect(@callback).to.have.been.calledWithExactly ['2', '3']
+              expect(@callback).to.have.been.calledWithExactly ["2", "3"]
 
           describe "when dismissing the dialog by clicking Cancel", ->
             beforeEach ->
@@ -939,9 +943,9 @@ describe "bootbox.prompt", ->
 
           describe "when changing the checked options and dismissing the dialog by clicking Cancel", ->
             beforeEach ->
-              @dialog.find("input:checkbox:checked").prop('checked', false);
-              @dialog.find("input:checkbox[value=1]").prop('checked', true);
-              @dialog.find("input:checkbox[value=4]").prop('checked', true);
+              @dialog.find("input:checkbox:checked").prop('checked', false)
+              @dialog.find("input:checkbox[value=1]").prop('checked', true)
+              @dialog.find("input:checkbox[value=4]").prop('checked', true)
               @dialog.find(".btn-default").trigger "click"
 
             it "should invoke the callback", ->
@@ -952,14 +956,14 @@ describe "bootbox.prompt", ->
 
           describe "when changing the checked options and dismissing the dialog by clicking OK", ->
             beforeEach ->
-              @dialog.find("input:checkbox:checked").prop('checked', false);
-              @dialog.find("input:checkbox[value=1]").prop('checked', true);
-              @dialog.find("input:checkbox[value=4]").prop('checked', true);
+              @dialog.find("input:checkbox:checked").prop('checked', false)
+              @dialog.find("input:checkbox[value=1]").prop('checked', true)
+              @dialog.find("input:checkbox[value=4]").prop('checked', true)
               @dialog.find(".btn-primary").trigger "click"
 
             it "should invoke the callback", ->
               expect(@callback).to.have.been.called
 
             it "with the correct value", ->
-              expect(@callback).to.have.been.calledWithExactly ['1', '4']
+              expect(@callback).to.have.been.calledWithExactly ["1", "4"]
 

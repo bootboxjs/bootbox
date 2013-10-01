@@ -412,8 +412,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
           if (typeof options.value === "object") {
             for (var x = 0; x < options.value.length; x++) {
-              // @FIXME this needs to become a strict equal but tests are failing
-              if (options.value[x] == option.value) {
+              if (options.value[x] === option.value) {
                   checkbox.find("input").prop("checked", true);
               }
             }
