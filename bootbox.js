@@ -326,19 +326,14 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
         case "checkbox":
           var checkedItems = input.find("input:checked");
-          var checkedLength = checkedItems.length;
 
-          // a single checked item assigns the value directly, while
-          // multiple selections are pushed into an array
-          if (checkedLength === 1) {
-            value = checkedItems.val();
-          } else if (checkedLength > 1) { // Multiple values selected
-            value = [];
+          // we assume that checkboxes are always multiple,
+          // hence we default to an empty array
+          value = [];
 
-            each(checkedItems, function(_, item) {
-              value.push($(item).val());
-            });
-          }
+          each(checkedItems, function(_, item) {
+            value.push($(item).val());
+          });
           break;
       }
 
@@ -389,6 +384,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
         break;
 
       case "checkbox":
+        var values   = $.isArray(options.value) ? options.value : [options.value];
         inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
@@ -406,7 +402,6 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
         each(inputOptions, function(_, option) {
           var checkbox = $(templates.inputs[options.inputType]);
-          var values   = $.isArray(options.value) ? options.value : [options.value];
 
           checkbox.find("input").attr("value", option.value);
           checkbox.find("label").append(option.text);

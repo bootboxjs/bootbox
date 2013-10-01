@@ -814,7 +814,7 @@ describe "bootbox.prompt", ->
             expect(@callback).to.have.been.called
 
           it "with an undefined value", ->
-            expect(@callback).to.have.been.calledWithExactly undefined
+            expect(@callback).to.have.been.calledWithExactly []
 
           it "should hide the modal", ->
             expect(@hidden).to.have.been.calledWithExactly "hide"
@@ -859,7 +859,7 @@ describe "bootbox.prompt", ->
               expect(@callback).to.have.been.called
 
             it "with the correct value", ->
-              expect(@callback).to.have.been.calledWithExactly "2"
+              expect(@callback).to.have.been.calledWithExactly ["2"]
 
           describe "when dismissing the dialog by clicking Cancel", ->
             beforeEach ->
@@ -893,7 +893,7 @@ describe "bootbox.prompt", ->
               expect(@callback).to.have.been.called
 
             it "with the correct value", ->
-              expect(@callback).to.have.been.calledWithExactly "3"
+              expect(@callback).to.have.been.calledWithExactly ["3"]
 
         describe "multiple value checked", ->
           beforeEach ->
