@@ -444,9 +444,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
     // ...and replace it with one focusing our input, if possible
     dialog.on("shown.bs.modal", function() {
-      if (options.inputType !== 'checkbox') {
-        input.focus();
-      }
+      input.focus();
     });
 
     if (shouldShow === true) {
