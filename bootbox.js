@@ -314,31 +314,34 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     };
 
     options.buttons.confirm.callback = function() {
-      var value = false;
+      var value = false;  // default return type if nothing else matches
 
       switch (options.inputType) {
-          case 'text':
-          case 'email':
-          case 'select':
-            value = input.val();
-            break;
-          case 'checkbox':
-            var checkedLength = $('input:checkbox:checked', input).length;
+        case "text":
+        case "email":
+        case "select":
+          value = input.val();
+          break;
 
-              // Only one checked
-            if (checkedLength === 1) {
-              value = $('input:checkbox:checked', input).val();
-            } else if (checkedLength > 1) { // Multiple values selected
-              value = [];
+        case "checkbox":
+          var checkedItems = input.find("input:checked");
+          var checkedLength = checkedItems.length;
 
-              $('input:checkbox:checked', input).each(function() {
-                  value.push(jQuery(this).val());
-              });
-            }
-            break;
+          // a single checked item assigns the value directly, while
+          // multiple selections are pushed into an array
+          if (checkedLength === 1) {
+            value = checkedItems.val();
+          } else if (checkedLength > 1) { // Multiple values selected
+            value = [];
+
+            each(checkedItems, function(_, item) {
+              value.push($(item).val());
+            });
+          }
+          break;
       }
 
-        return options.callback(value);
+      return options.callback(value);
     };
 
     options.show = false;
