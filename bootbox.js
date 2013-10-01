@@ -281,6 +281,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     var form;
     var input;
     var shouldShow;
+    var inputOptions;
 
     // we have to create our form first otherwise
     // its value is undefined when gearing up our options
@@ -359,7 +360,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       throw new Error("invalid prompt type");
     }
 
-    // create the input
+    // create the input based on the supplied type
     input = $(templates.inputs[options.inputType]);
 
     switch (options.inputType) {
@@ -369,7 +370,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
         break;
 
       case "select":
-        var inputOptions = options.inputOptions || [];
+        inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
           throw new Error("prompt with select requires options");
@@ -383,44 +384,44 @@ window.bootbox = window.bootbox || (function init($, undefined) {
           input.append("<option value='" + option.value + "'>" + option.text + "</option>");
         });
 
+        // safe to set a select's value as per a normal input
         input.val(options.value);
         break;
 
-      case 'checkbox':
-        if (typeof options.inputOptions !== 'object' || options.inputOptions.length === 0) {
-            throw new Error("prompt with checkbox requires options");
+      case "checkbox":
+        inputOptions = options.inputOptions || [];
+        if (!inputOptions.length) {
+          throw new Error("prompt with checkbox requires options");
         }
 
-        if (typeof options.inputOptions[0].value === "undefined"
-            || typeof options.inputOptions[0].text === "undefined"
-        ) {
-            throw new Error("given options in wrong format");
+        if (!inputOptions[0].value || !inputOptions[0].text) {
+          throw new Error("given options in wrong format");
         }
 
-        input = $('<div/>');
-
-        var checkbox = $(templates.inputs[options.inputType]);
+        // checkboxes have to nest within a containing element, so
+        // they break the rules a bit and we end up re-assigning
+        // our 'input' element
+        input = $("<div/>");
 
         // Create checkbox
-        for (var i = 0; i < options.inputOptions.length; i++) {
-            var option = options.inputOptions[i];
-            var o = checkbox.clone();
+        each(inputOptions, function(_, option) {
+          var checkbox = $(templates.inputs[options.inputType]);
 
-            o.find('input').attr('value', option.value);
-            o.find('label').append(option.text);
+          checkbox.find('input').attr('value', option.value);
+          checkbox.find('label').append(option.text);
 
-            if (typeof options.value === 'object') {
-              for (var x = 0; x < options.value.length; x++) {
-                if (options.value[x] == option.value) {
-                    o.find('input').prop('checked', true);
-                }
+          if (typeof options.value === 'object') {
+            for (var x = 0; x < options.value.length; x++) {
+              if (options.value[x] == option.value) {
+                  checkbox.find('input').prop('checked', true);
               }
-            } else if (options.value == option.value) {
-                o.find('input').prop('checked', true);
             }
+          } else if (options.value == option.value) {
+              checkbox.find('input').prop('checked', true);
+          }
 
-            input.append(o);
-        }
+          input.append(checkbox);
+        });
         break;
     }
 
