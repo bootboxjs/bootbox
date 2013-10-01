@@ -379,12 +379,9 @@ window.bootbox = window.bootbox || (function init($, undefined) {
           throw new Error("given options in wrong format");
         }
 
-        // Create options for select
-        for (var i = 0; i < options.inputOptions.length; i++) {
-          var option = options.inputOptions[i];
-
-          input.append(new Option(option.text, option.value));
-        }
+        each(inputOptions, function(_, option) {
+          input.append("<option value='" + option.value + "'>" + option.text + "</option>");
+        });
 
         input.val(options.value);
         break;
