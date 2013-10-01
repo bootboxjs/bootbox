@@ -407,17 +407,18 @@ window.bootbox = window.bootbox || (function init($, undefined) {
         each(inputOptions, function(_, option) {
           var checkbox = $(templates.inputs[options.inputType]);
 
-          checkbox.find('input').attr('value', option.value);
-          checkbox.find('label').append(option.text);
+          checkbox.find("input").attr("value", option.value);
+          checkbox.find("label").append(option.text);
 
-          if (typeof options.value === 'object') {
+          if (typeof options.value === "object") {
             for (var x = 0; x < options.value.length; x++) {
+              // @FIXME this needs to become a strict equal but tests are failing
               if (options.value[x] == option.value) {
-                  checkbox.find('input').prop('checked', true);
+                  checkbox.find("input").prop("checked", true);
               }
             }
-          } else if (options.value == option.value) {
-              checkbox.find('input').prop('checked', true);
+          } else if (options.value === option.value) {
+              checkbox.find("input").prop("checked", true);
           }
 
           input.append(checkbox);
