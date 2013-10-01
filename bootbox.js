@@ -363,18 +363,19 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     input = $(templates.inputs[options.inputType]);
 
     switch (options.inputType) {
-      case 'text':
-      case 'email':
+      case "text":
+      case "email":
         input.val(options.value);
         break;
-      case 'select':
-        if (typeof options.inputOptions !== 'object' || options.inputOptions.length === 0) {
+
+      case "select":
+        var inputOptions = options.inputOptions || [];
+
+        if (!inputOptions.length) {
           throw new Error("prompt with select requires options");
         }
 
-        if (typeof options.inputOptions[0].value === "undefined"
-            || typeof options.inputOptions[0].text === "undefined"
-        ) {
+        if (!inputOptions[0].value || !inputOptions[0].text) {
           throw new Error("given options in wrong format");
         }
 
@@ -390,6 +391,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
           return $(this).val() == options.value;
         }).prop('selected', true);
         break;
+
       case 'checkbox':
         if (typeof options.inputOptions !== 'object' || options.inputOptions.length === 0) {
             throw new Error("prompt with checkbox requires options");

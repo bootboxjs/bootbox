@@ -255,7 +255,7 @@ describe "bootbox.prompt", ->
           @options.inputOptions = 'foo'
 
         it "throws an error", ->
-          expect(@create).to.throw /prompt with select requires options/
+          expect(@create).to.throw /given options in wrong format/
 
       describe "with empty options", ->
         beforeEach ->
