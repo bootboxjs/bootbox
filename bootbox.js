@@ -386,10 +386,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
           input.append(new Option(option.text, option.value));
         }
 
-        // Set selected option
-        input.find("option").filter(function() {
-          return $(this).val() == options.value;
-        }).prop('selected', true);
+        input.val(options.value);
         break;
 
       case 'checkbox':
