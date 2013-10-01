@@ -611,7 +611,17 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
   };
 
-  exports.setDefaults = function(values) {
+  exports.setDefaults = function() {
+    var values = {};
+
+    if (arguments.length === 2) {
+      // allow passing of single key/value...
+      values[arguments[0]] = arguments[1];
+    } else if (arguments.length === 1) {
+      // ... and as an object too
+      values = arguments[0];
+    }
+
     $.extend(defaults, values);
   };
 

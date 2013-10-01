@@ -76,4 +76,18 @@ describe("bootbox.setDefaults", function() {
       });
     });
   });
+
+  describe("when passed two arguments", function() {
+    beforeEach(function() {
+      bootbox.setDefaults("className", "my-class");
+      this.dialog = bootbox.dialog({
+        message: "test"
+      });
+    });
+
+    it("applies the arguments as a key/value pair", function() {
+      expect(this.dialog.hasClass("bootbox")).to.be.true;
+      expect(this.dialog.hasClass("my-class")).to.be.true;
+    });
+  });
 });
