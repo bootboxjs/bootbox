@@ -813,8 +813,8 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
-          it "with the correct value", ->
-            expect(@callback).to.have.been.calledWithExactly false
+          it "with an undefined value", ->
+            expect(@callback).to.have.been.calledWithExactly undefined
 
           it "should hide the modal", ->
             expect(@hidden).to.have.been.calledWithExactly "hide"
@@ -873,8 +873,8 @@ describe "bootbox.prompt", ->
 
           describe "when changing the checked option and dismissing the dialog by clicking Cancel", ->
             beforeEach ->
-              @dialog.find("input:checkbox:checked").prop('checked', false);
-              @dialog.find("input:checkbox[value=3]").prop('checked', true);
+              @dialog.find("input:checkbox:checked").prop('checked', false)
+              @dialog.find("input:checkbox[value=3]").prop('checked', true)
               @dialog.find(".btn-default").trigger "click"
 
             it "should invoke the callback", ->
@@ -885,8 +885,8 @@ describe "bootbox.prompt", ->
 
           describe "when changing the selected option and dismissing the dialog by clicking OK", ->
             beforeEach ->
-              @dialog.find("input:checkbox:checked").prop('checked', false);
-              @dialog.find("input:checkbox[value=3]").prop('checked', true);
+              @dialog.find("input:checkbox:checked").prop('checked', false)
+              @dialog.find("input:checkbox[value=3]").prop('checked', true)
               @dialog.find(".btn-primary").trigger "click"
 
             it "should invoke the callback", ->

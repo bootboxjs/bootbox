@@ -315,7 +315,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     };
 
     options.buttons.confirm.callback = function() {
-      var value = false;  // default return type if nothing else matches
+      var value;
 
       switch (options.inputType) {
         case "text":
