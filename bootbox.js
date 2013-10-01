@@ -29,7 +29,13 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       "<form class='bootbox-form'></form>",
     inputs: {
       text:
-        "<input class='bootbox-input form-control' autocomplete=off type=text />"
+        "<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type=text />",
+      email:
+        "<input class='bootbox-input bootbox-input-email form-control' autocomplete='off' type='email' />",
+      select:
+        "<select class='bootbox-input bootbox-input-select form-control'></select>",
+      checkbox:
+        "<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' /></label></div>"
     }
   };
 
@@ -275,6 +281,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     var form;
     var input;
     var shouldShow;
+    var inputOptions;
 
     // we have to create our form first otherwise
     // its value is undefined when gearing up our options
@@ -284,7 +291,8 @@ window.bootbox = window.bootbox || (function init($, undefined) {
 
     defaults = {
       buttons: createLabels("cancel", "confirm"),
-      value: ""
+      value: "",
+      inputType: "text"
     };
 
     options = validateButtons(
@@ -307,7 +315,29 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     };
 
     options.buttons.confirm.callback = function() {
-      return options.callback(input.val());
+      var value;
+
+      switch (options.inputType) {
+        case "text":
+        case "email":
+        case "select":
+          value = input.val();
+          break;
+
+        case "checkbox":
+          var checkedItems = input.find("input:checked");
+
+          // we assume that checkboxes are always multiple,
+          // hence we default to an empty array
+          value = [];
+
+          each(checkedItems, function(_, item) {
+            value.push($(item).val());
+          });
+          break;
+      }
+
+      return options.callback(value);
     };
 
     options.show = false;
@@ -321,9 +351,72 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       throw new Error("prompt requires a callback");
     }
 
-    // create the input
-    input = $(templates.inputs.text);
-    input.val(options.value);
+    if (!templates.inputs[options.inputType]) {
+      throw new Error("invalid prompt type");
+    }
+
+    // create the input based on the supplied type
+    input = $(templates.inputs[options.inputType]);
+
+    switch (options.inputType) {
+      case "text":
+      case "email":
+        input.val(options.value);
+        break;
+
+      case "select":
+        inputOptions = options.inputOptions || [];
+
+        if (!inputOptions.length) {
+          throw new Error("prompt with select requires options");
+        }
+
+        if (!inputOptions[0].value || !inputOptions[0].text) {
+          throw new Error("given options in wrong format");
+        }
+
+        each(inputOptions, function(_, option) {
+          input.append("<option value='" + option.value + "'>" + option.text + "</option>");
+        });
+
+        // safe to set a select's value as per a normal input
+        input.val(options.value);
+        break;
+
+      case "checkbox":
+        var values   = $.isArray(options.value) ? options.value : [options.value];
+        inputOptions = options.inputOptions || [];
+
+        if (!inputOptions.length) {
+          throw new Error("prompt with checkbox requires options");
+        }
+
+        if (!inputOptions[0].value || !inputOptions[0].text) {
+          throw new Error("given options in wrong format");
+        }
+
+        // checkboxes have to nest within a containing element, so
+        // they break the rules a bit and we end up re-assigning
+        // our 'input' element to this container instead
+        input = $("<div/>");
+
+        each(inputOptions, function(_, option) {
+          var checkbox = $(templates.inputs[options.inputType]);
+
+          checkbox.find("input").attr("value", option.value);
+          checkbox.find("label").append(option.text);
+
+          // we've ensured values is an array so we can always iterate over it
+          each(values, function(_, value) {
+            if (value === option.value) {
+              checkbox.find("input").prop("checked", true);
+            }
+          });
+
+          input.append(checkbox);
+        });
+        break;
+    }
 
     if (options.placeholder) {
       input.attr("placeholder", options.placeholder);
