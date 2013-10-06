@@ -290,6 +290,31 @@ describe "bootbox.prompt", ->
         it "with three options", ->
           expect(@find("option").length).to.equal 3
 
+      describe "with option groups", ->
+        beforeEach ->
+          @options.inputType = 'select'
+          @options.inputOptions = [
+            {value: 1, group: 'foo', text: 'foo'},
+            {value: 2, group: 'bar', text: 'bar'},
+            {value: 3, group: 'foo', text: 'foobar'}
+            {value: 4, group: 'bar', text: 'barfoo'},
+          ]
+
+          @create()
+
+        it "shows select input", ->
+          expect(@exists("select")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("select").hasClass("bootbox-input")).to.be.ok
+          expect(@find("select").hasClass("bootbox-input-select")).to.be.ok
+
+        it "with two option group", ->
+          expect(@find("optgroup").length).to.equal 2
+
+        it "with four options", ->
+          expect(@find("option").length).to.equal 4
+
     describe "setting inputType checkbox", ->
       describe "without options", ->
         beforeEach ->
