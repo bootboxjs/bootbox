@@ -371,13 +371,32 @@ window.bootbox = window.bootbox || (function init($, undefined) {
           throw new Error("prompt with select requires options");
         }
 
-        if (!inputOptions[0].value || !inputOptions[0].text) {
+        if (typeof inputOptions[0].value === "undefined" || typeof inputOptions[0].text === "undefined") {
           throw new Error("given options in wrong format");
         }
 
+        // Initialize groups
+        var groups = {};
+
         each(inputOptions, function(_, option) {
-          input.append("<option value='" + option.value + "'>" + option.text + "</option>");
+          // We have groups defined
+          if (option.group) {
+            // Group has not yet been initialized
+            if (typeof groups[option.group] === "undefined") {
+                groups[option.group] = jQuery('<optgroup/>').attr("label", option.group);
+            }
+
+            // Add option to specified group
+            groups[option.group].append("<option value='" + option.value + "'>" + option.text + "</option>");
+          } else {
+            input.append("<option value='" + option.value + "'>" + option.text + "</option>");
+          }
         });
+
+        // Iterate groups, and add contents to select
+        for (var group in groups) {
+            input.append(groups[group]);
+        }
 
         // safe to set a select's value as per a normal input
         input.val(options.value);
