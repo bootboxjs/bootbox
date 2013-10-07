@@ -378,7 +378,10 @@ window.bootbox = window.bootbox || (function init($, undefined) {
         }
 
         each(inputOptions, function(_, option) {
-          var elem;
+          // assume the element to attach to is the input...
+          var elem = input;
+
+          // ... but override that element if this option sits in a group
 
           if (option.group) {
             // initialise group if necessary
@@ -387,8 +390,6 @@ window.bootbox = window.bootbox || (function init($, undefined) {
             }
 
             elem = groups[option.group];
-          } else {
-            elem = input;
           }
 
           elem.append("<option value='" + option.value + "'>" + option.text + "</option>");
