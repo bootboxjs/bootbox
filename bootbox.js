@@ -372,14 +372,15 @@ window.bootbox = window.bootbox || (function init($, undefined) {
           throw new Error("prompt with select requires options");
         }
 
-        // @TODO improve this check; we only check the first element
-        if (inputOptions[0].value === undefined || inputOptions[0].text === undefined) {
-          throw new Error("given options in wrong format");
-        }
-
         each(inputOptions, function(_, option) {
+
           // assume the element to attach to is the input...
           var elem = input;
+
+          if (option.value === undefined || option.text === undefined) {
+            throw new Error("given options in wrong format");
+          }
+
 
           // ... but override that element if this option sits in a group
 

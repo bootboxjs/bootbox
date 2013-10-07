@@ -273,6 +273,26 @@ describe "bootbox.prompt", ->
         it "throws an error", ->
           expect(@create).to.throw /given options in wrong format/
 
+      describe "with a value but no text", ->
+        beforeEach ->
+          @options.inputType = 'select'
+          @options.inputOptions = [{value: 'bar'}]
+
+        it "throws an error", ->
+          expect(@create).to.throw /given options in wrong format/
+
+      describe "with an invalid second options", ->
+        beforeEach ->
+          @options.inputType = 'select'
+          @options.inputOptions = [
+            {value: "bar", text: "bar"}
+            {text: "foo"}
+          ]
+
+        it "throws an error", ->
+          expect(@create).to.throw /given options in wrong format/
+
+
       describe "with valid options", ->
         beforeEach ->
           @options.inputType = "select"
