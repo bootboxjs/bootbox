@@ -378,16 +378,20 @@ window.bootbox = window.bootbox || (function init($, undefined) {
         }
 
         each(inputOptions, function(_, option) {
+          var elem;
+
           if (option.group) {
             // initialise group if necessary
-            if (groups[option.group] === undefined) {
-                groups[option.group] = $("<optgroup/>").attr("label", option.group);
+            if (!groups[option.group]) {
+              groups[option.group] = $("<optgroup/>").attr("label", option.group);
             }
 
-            groups[option.group].append("<option value='" + option.value + "'>" + option.text + "</option>");
+            elem = groups[option.group];
           } else {
-            input.append("<option value='" + option.value + "'>" + option.text + "</option>");
+            elem = input;
           }
+
+          elem.append("<option value='" + option.value + "'>" + option.text + "</option>");
         });
 
         // Iterate groups, and add contents to select
