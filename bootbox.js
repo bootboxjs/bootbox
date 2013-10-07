@@ -395,10 +395,9 @@ window.bootbox = window.bootbox || (function init($, undefined) {
           elem.append("<option value='" + option.value + "'>" + option.text + "</option>");
         });
 
-        // Iterate groups, and add contents to select
-        for (var group in groups) {
-            input.append(groups[group]);
-        }
+        each(groups, function(_, group) {
+          input.append(group);
+        });
 
         // safe to set a select's value as per a normal input
         input.val(options.value);
