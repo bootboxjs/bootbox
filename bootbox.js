@@ -365,18 +365,38 @@ window.bootbox = window.bootbox || (function init($, undefined) {
         break;
 
       case "select":
+        var groups = {};
         inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
           throw new Error("prompt with select requires options");
         }
 
-        if (!inputOptions[0].value || !inputOptions[0].text) {
+        // @TODO improve this check; we only check the first element
+        if (inputOptions[0].value === undefined || inputOptions[0].text === undefined) {
           throw new Error("given options in wrong format");
         }
 
         each(inputOptions, function(_, option) {
-          input.append("<option value='" + option.value + "'>" + option.text + "</option>");
+          // assume the element to attach to is the input...
+          var elem = input;
+
+          // ... but override that element if this option sits in a group
+
+          if (option.group) {
+            // initialise group if necessary
+            if (!groups[option.group]) {
+              groups[option.group] = $("<optgroup/>").attr("label", option.group);
+            }
+
+            elem = groups[option.group];
+          }
+
+          elem.append("<option value='" + option.value + "'>" + option.text + "</option>");
+        });
+
+        each(groups, function(_, group) {
+          input.append(group);
         });
 
         // safe to set a select's value as per a normal input
