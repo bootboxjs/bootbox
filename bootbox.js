@@ -365,6 +365,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
         break;
 
       case "select":
+        var groups = {};
         inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
@@ -376,18 +377,13 @@ window.bootbox = window.bootbox || (function init($, undefined) {
           throw new Error("given options in wrong format");
         }
 
-        // Initialize groups
-        var groups = {};
-
         each(inputOptions, function(_, option) {
-          // We have groups defined
           if (option.group) {
-            // Group has not yet been initialized
-            if (typeof groups[option.group] === "undefined") {
-                groups[option.group] = jQuery('<optgroup/>').attr("label", option.group);
+            // initialise group if necessary
+            if (groups[option.group] === undefined) {
+                groups[option.group] = $("<optgroup/>").attr("label", option.group);
             }
 
-            // Add option to specified group
             groups[option.group].append("<option value='" + option.value + "'>" + option.text + "</option>");
           } else {
             input.append("<option value='" + option.value + "'>" + option.text + "</option>");
