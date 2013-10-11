@@ -194,10 +194,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       // 2. merge the generated buttons with user supplied arguments
       mergeArguments(
         // 1. create a buttons object out of the supplied label strings
-        createButtons.apply(
-          null,
-          labels
-        ),
+        createButtons(labels),
         args,
         properties
       ),
@@ -230,9 +227,9 @@ window.bootbox = window.bootbox || (function init($, undefined) {
    * proxy arguments to createLabels and simply return them as a
    * wrapped object with a buttons property
    */
-  function createButtons() {
+  function createButtons(labels) {
     return {
-      buttons: createLabels.apply(null, arguments)
+      buttons: createLabels.apply(null, labels)
     };
   }
 
