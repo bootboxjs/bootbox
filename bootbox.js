@@ -212,7 +212,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
    * this entry-level method makes heavy use of composition to take a simple
    * range of inputs and return valid options suitable for passing to bootbox.dialog
    */
-  function mergeButtons(labels, args, properties) {
+  function mergeDialogOptions(className, labels, properties, args) {
     // 3. ensure the buttons properties generated, *after* merging
     // with user vals (2) are still valid against the supplied labels
     return validateButtons(
@@ -280,7 +280,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
   exports.alert = function() {
     var options;
 
-    options = mergeButtons(["ok"], arguments, ["message", "callback"]);
+    options = mergeDialogOptions("alert", ["ok"], ["message", "callback"], arguments);
 
     if (options.callback && !$.isFunction(options.callback)) {
       throw new Error("alert requires callback property to be a function when provided");
@@ -302,7 +302,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
   exports.confirm = function() {
     var options;
 
-    options = mergeButtons(["cancel", "confirm"], arguments, ["message", "callback"]);
+    options = mergeDialogOptions("confirm", ["cancel", "confirm"], ["message", "callback"], arguments);
 
     /**
      * overrides; undo anything the user tried to set they shouldn't have
