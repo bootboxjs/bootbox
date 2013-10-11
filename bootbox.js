@@ -331,7 +331,10 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     form = $(templates.form);
 
     // prompt defaults are more complex than others in that
-    // users can override more properties
+    // users can override more defaults
+    // @TODO I don't like that prompt has to do a lot of heavy
+    // lifting which mergeDialogOptions can *almost* support already
+    // just because of 'value' and 'inputType' - can we refactor?
     defaults = {
       className: "bootbox-prompt",
       buttons: createLabels("cancel", "confirm"),
