@@ -685,7 +685,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     if (arguments.length === 2) {
       // allow passing of single key/value...
       values[arguments[0]] = arguments[1];
-    } else if (arguments.length === 1) {
+    } else {
       // ... and as an object too
       values = arguments[0];
     }
