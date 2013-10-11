@@ -338,6 +338,8 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     // be a function instead...
     form = $(templates.form);
 
+    // prompt defaults are more complex than others in that
+    // users can override more properties
     defaults = {
       buttons: createLabels("cancel", "confirm"),
       value: "",
