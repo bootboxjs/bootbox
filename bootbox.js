@@ -333,6 +333,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     // prompt defaults are more complex than others in that
     // users can override more properties
     defaults = {
+      className: "bootbox-prompt",
       buttons: createLabels("cancel", "confirm"),
       value: "",
       inputType: "text"
