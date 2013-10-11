@@ -213,16 +213,20 @@ window.bootbox = window.bootbox || (function init($, undefined) {
    * range of inputs and return valid options suitable for passing to bootbox.dialog
    */
   function mergeDialogOptions(className, labels, properties, args) {
-    // 3. ensure the buttons properties generated, *after* merging
-    // with user vals (2) are still valid against the supplied labels
+    //  build up a base set of dialog properties
+    var baseOptions = {
+      className: "bootbox-" + className,
+      buttons: createLabels.apply(null, labels)
+    };
+
+    // ensure the buttons properties generated, *after* merging
+    // with user args are still valid against the supplied labels
     return validateButtons(
-      // 2. merge the generated buttons with user supplied arguments
+      // merge the generated base properties with user supplied arguments
       mergeArguments(
-        // 1. create an object with a buttons property from the given label strings
-        createButtons(labels),
-        // we assume are user supplied, either an object or multiple arguments
+        baseOptions,
         args,
-        // properties are how the args, if not an object, should be mapped *into* an obj
+        // if args.length > 1, properties specify how each arg maps to an object key
         properties
       ),
       labels
@@ -248,18 +252,6 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     }
 
     return buttons;
-  }
-
-  /**
-   * proxy arguments to createLabels and simply return them as a
-   * wrapped object with a buttons property
-   */
-  function createButtons(labels) {
-    return {
-      // createLabels takes a varying number of args rather than an
-      // array, so we have to make sure to invoke it properly
-      buttons: createLabels.apply(null, labels)
-    };
   }
 
   function validateButtons(options, buttons) {
