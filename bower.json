@@ -1,6 +1,6 @@
 {
   "name": "bootbox.js",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "main": "./bootbox.js",
   "ignore": [
     "**/.js",

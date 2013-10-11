@@ -44,21 +44,19 @@ The latest major release of Bootbox - 4.0.0 - involved a total rewrite of the
 internal code and introduced an entirely new public API. It has not re-implemented
 some functionality from the 3.x series as of yet; this will be addressed in the
 coming weeks in the form of new minor releases;
-[a task list for 4.1.0 is available](https://github.com/makeusabrew/bootbox/issues/142) -
+[a task list for 4.2.0 is available](https://github.com/makeusabrew/bootbox/issues/162) -
 please feel free to add feedback and requests.
 
 There is no new major (e.g. 5.x) release on the roadmap at present.
 
-## Latest Release: 4.0.0
+## Latest Release: 4.1.0
 
-* Bootstrap 3.0.0 compatibility
-* Complete rewrite (and new public API)
-* Use strict mode
-* Add close buttons to wrapper methods (GH-92)
-* Allow dialog titles to be specified (GH-51, GH-112)
-* Allow optional extra class on dialog wrapper (GH-116)
-* Fix ```backdrop: true``` not firing close handler (GH-77)
-* Replace various configuration methods with one ```setDefaults```
+* Add support for placeholder attribute in prompts
+* Add select, email and checkbox types for prompts (thanks [@tarlepp](https://github.com/tarlepp))
+* Add Norwegian locale
+* Allow setDefaults to take two key/val arguments
+* Add unique classes for main dialog methods
+* Create bower package
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 
@@ -66,7 +64,7 @@ For a full list of releases and changes please see [the changelog](https://githu
 
 (The MIT License)
 
-Copyright (C) 2011-2013 by Nick Payne <nick@kurai.co.uk> 
+Copyright (C) 2011-2013 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
