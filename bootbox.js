@@ -104,7 +104,6 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     var buttons;
     var total;
 
-
     if (typeof options !== "object") {
       throw new Error("Please supply an object of options");
     }
@@ -184,13 +183,33 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     return $.extend(true, {}, defaults, mapArguments(args, properties));
   }
 
+  /**
+   * this entry-level method makes heavy use of composition to take a simple
+   * range of inputs and return valid options suitable for passing to bootbox.dialog
+   */
   function mergeButtons(labels, args, properties) {
+    // 3. ensure the buttons properties generated, *after* merging
+    // with user vals (2) are still valid against the supplied labels
     return validateButtons(
-      mergeArguments(createButtons.apply(null, labels), args, properties),
+      // 2. merge the generated buttons with user supplied arguments
+      mergeArguments(
+        // 1. create a buttons object out of the supplied label strings
+        createButtons.apply(
+          null,
+          labels
+        ),
+        args,
+        properties
+      ),
       labels
     );
   }
 
+  /**
+   * from a given list of arguments return a suitable object of button labels
+   * all this does is normalise the given labels and translate them where possible
+   * e.g. "ok", "confirm" -> { ok: "OK, cancel: "Annuleren" }
+   */
   function createLabels() {
     var buttons = {};
 
@@ -207,6 +226,10 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     return buttons;
   }
 
+  /**
+   * proxy arguments to createLabels and simply return them as a
+   * wrapped object with a buttons property
+   */
   function createButtons() {
     return {
       buttons: createLabels.apply(null, arguments)
