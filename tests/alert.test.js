@@ -39,6 +39,10 @@ describe("bootbox.alert", function() {
           this.dialog = bootbox.alert("Hello world!");
         });
 
+        it("applies the bootbox-alert class to the dialog", function() {
+          expect(this.dialog.hasClass("bootbox-alert")).to.be.true;
+        });
+
         it("shows the expected body copy", function() {
           expect(this.text(".bootbox-body")).to.equal("Hello world!");
         });
