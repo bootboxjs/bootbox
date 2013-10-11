@@ -3,7 +3,10 @@
   "version": "4.0.0",
   "main": "./bootbox.js",
   "ignore": [
-    "**/.*"
+    "**/.js",
+    "**/.txt",
+    "build",
+    "tests"
   ],
   "dependencies": {
     "bootstrap": ">= 3.0.0"
