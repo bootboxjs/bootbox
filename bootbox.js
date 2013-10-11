@@ -161,6 +161,15 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     return options;
   }
 
+  /**
+   * map a flexible set of arguments into a single returned object
+   * if args.length is already one just return it, otherwise
+   * use the properties argument to map the unnamed args to
+   * object properties
+   * so in the latter case:
+   * mapArguments(["foo", $.noop], ["message", "callback"])
+   * -> { message: "foo", callback: $.noop }
+   */
   function mapArguments(args, properties) {
     var argn = args.length;
     var options = {};
@@ -179,8 +188,24 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     return options;
   }
 
+  /**
+   * merge a set of default dialog options with user supplied arguments
+   */
   function mergeArguments(defaults, args, properties) {
-    return $.extend(true, {}, defaults, mapArguments(args, properties));
+    return $.extend(
+      // deep merge
+      true,
+      // ensure the target is an empty, unreferenced object
+      {},
+      // the base options object for this type of dialog (often just buttons)
+      defaults,
+      // args could be an object or array; if it's an array properties will
+      // map it to a proper options object
+      mapArguments(
+        args,
+        properties
+      )
+    );
   }
 
   /**
@@ -193,9 +218,11 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     return validateButtons(
       // 2. merge the generated buttons with user supplied arguments
       mergeArguments(
-        // 1. create a buttons object out of the supplied label strings
+        // 1. create an object with a buttons property from the given label strings
         createButtons(labels),
+        // we assume are user supplied, either an object or multiple arguments
         args,
+        // properties are how the args, if not an object, should be mapped *into* an obj
         properties
       ),
       labels
@@ -229,6 +256,8 @@ window.bootbox = window.bootbox || (function init($, undefined) {
    */
   function createButtons(labels) {
     return {
+      // createLabels takes a varying number of args rather than an
+      // array, so we have to make sure to invoke it properly
       buttons: createLabels.apply(null, labels)
     };
   }
