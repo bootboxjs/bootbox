@@ -763,6 +763,11 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       CANCEL  : "Отмена",
       CONFIRM : "Применить"
     },
+    sv : {
+      OK      : "OK",
+      CANCEL  : "Avbryt",
+      CONFIRM : "OK"
+    },
     zh_CN : {
       OK      : "OK",
       CANCEL  : "取消",
