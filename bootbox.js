@@ -35,7 +35,9 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       select:
         "<select class='bootbox-input bootbox-input-select form-control'></select>",
       checkbox:
-        "<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' /></label></div>"
+        "<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' /></label></div>",
+      password:
+        "<input class='bootbox-input bootbox-input-password form-control' autocomplete='off' type='password' />"
     }
   };
 
@@ -368,6 +370,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
         case "text":
         case "email":
         case "select":
+        case "password":
           value = input.val();
           break;
 
@@ -408,6 +411,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     switch (options.inputType) {
       case "text":
       case "email":
+      case "password":
         input.val(options.value);
         break;
 
