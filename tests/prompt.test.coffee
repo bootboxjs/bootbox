@@ -244,6 +244,37 @@ describe "bootbox.prompt", ->
         it "has correct placeholder value", ->
           expect(@find("input[type='email']").prop("placeholder")).to.equal "enter your email"
 
+    describe "setting inputType password", ->
+      beforeEach ->
+        @options.inputType = "password"
+
+      describe "without default value", ->
+        beforeEach ->
+          @create()
+
+        it "shows password input ", ->
+          expect(@exists("input[type='password']")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("input[type='password']").hasClass("bootbox-input")).to.be.ok
+          expect(@find("input[type='password']").hasClass("bootbox-input-password")).to.be.ok
+
+      describe "with default value", ->
+        beforeEach ->
+          @options.value = "qwerty"
+          @create()
+
+        it "has correct default value", ->
+          expect(@find("input[type='password']").val()).to.equal "qwerty"
+
+      describe "with placeholder", ->
+        beforeEach ->
+          @options.placeholder = "enter your password"
+          @create()
+
+        it "has correct placeholder value", ->
+          expect(@find("input[type='password']").prop("placeholder")).to.equal "enter your password"
+
     describe "setting inputType select", ->
       describe "without options", ->
         beforeEach ->
