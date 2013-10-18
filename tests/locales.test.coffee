@@ -195,3 +195,16 @@ describe "bootbox locales", ->
 
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "OK"
+
+  describe "Swedish", ->
+    beforeEach ->
+      @setLocale "sv"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "OK"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Avbryt"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "OK"
