@@ -41,9 +41,6 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     }
   };
 
-  // cache a reference to the jQueryfied body element
-  var appendTo = $("body");
-
   var defaults = {
     // default language
     locale: "en",
@@ -56,7 +53,9 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     // whether or not to include a close button
     closeButton: true,
     // show the dialog immediately by default
-    show: true
+    show: true,
+    // dialog container
+    container: "body"
   };
 
   // our public object; augmented after our private API
@@ -647,7 +646,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     // functionality and then giving the resulting object back
     // to our caller
 
-    appendTo.append(dialog);
+    $(options.container).append(dialog);
 
     dialog.modal({
       backdrop: options.backdrop,
