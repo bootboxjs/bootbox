@@ -92,7 +92,19 @@ describe("bootbox.setDefaults", function() {
   });
 
   describe("container", function () {
-    describe("when set to body", function() {
+    describe("when not explicitly set", function() {
+      beforeEach(function() {
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("defaults to the body element", function() {
+        expect(this.dialog.parent().is("body")).to.be.true;
+      });
+    });
+
+    describe("when explicitly set to body", function() {
       beforeEach(function() {
         bootbox.setDefaults({
           container: "body"
@@ -103,17 +115,17 @@ describe("bootbox.setDefaults", function() {
         });
       });
 
-      it("parent is body", function() {
-        expect(this.dialog.parent().is('body')).to.be.true;
+      it("sets the correct parent element", function() {
+        expect(this.dialog.parent().is("body")).to.be.true;
       });
     });
 
-    describe("when set to another dom", function() {
-      var expectedContainer = $('<div></div>');
+    describe("when set to another dom element", function() {
 
       beforeEach(function() {
+        this.container = $("<div></div>");
         bootbox.setDefaults({
-          container: expectedContainer
+          container: this.container
         });
 
         this.dialog = bootbox.dialog({
@@ -121,9 +133,8 @@ describe("bootbox.setDefaults", function() {
         });
       });
 
-      it("parent is that dom and not body", function() {
-        expect(this.dialog.parent().is(expectedContainer)).to.be.true;
-        expect(this.dialog.parent().is('body')).to.be.false;
+      it("sets the correct parent element", function() {
+        expect(this.dialog.parent().is(this.container)).to.be.true;
       });
     });
   });
