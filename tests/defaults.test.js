@@ -76,4 +76,40 @@ describe("bootbox.setDefaults", function() {
       });
     });
   });
+  
+  describe("container", function () {
+	describe("when set to body", function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          container: "body"
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("parent is body", function() {
+        expect(this.dialog.parent().is('body')).to.be.true;
+      });
+    });
+	
+	describe("when set to another dom", function() {
+	  var expectedContainer = $('<div></div>');
+      beforeEach(function() {
+        bootbox.setDefaults({
+          container: expectedContainer
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("parent is that dom and not body", function() {
+        expect(this.dialog.parent().is(expectedContainer)).to.be.true;
+        expect(this.dialog.parent().is('body')).to.be.false;
+      });
+    });
+  });
 });

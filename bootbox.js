@@ -47,7 +47,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     // show the dialog immediately by default
     show: true,
     // dialog container
-    container: $("body")
+    container: "body"
   };
 
   // our public object; augmented after our private API
@@ -481,7 +481,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     // functionality and then giving the resulting object back
     // to our caller
 
-    options.container.append(dialog);
+    $(options.container).append(dialog);
 
     dialog.modal({
       backdrop: options.backdrop,
