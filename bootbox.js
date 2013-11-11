@@ -771,12 +771,12 @@ window.bootbox = window.bootbox || (function init($, undefined) {
       CANCEL  : "Avbryt",
       CONFIRM : "OK"
     },
-    zh_CN : {
+    zh-CN : {
       OK      : "OK",
       CANCEL  : "取消",
       CONFIRM : "确认"
     },
-    zh_TW : {
+    zh-TW : {
       OK      : "OK",
       CANCEL  : "取消",
       CONFIRM : "確認"
