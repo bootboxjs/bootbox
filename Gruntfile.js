@@ -16,9 +16,18 @@ module.exports = function(grunt) {
         jshintrc: ".jshintrc"
       },
       all: ["bootbox.js"]
+    },
+
+    karma: {
+      unit: {
+        configFile: "karma.conf.js"
+      }
     }
   });
 
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-jshint");
+  grunt.loadNpmTasks("grunt-karma");
+
+  grunt.registerTask("default", ["jshint", "karma"]);
 };

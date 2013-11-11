@@ -6,3 +6,4 @@ bootbox.min.js
 .idea
 tests/reports
 tests/coverage
+build/size.csv

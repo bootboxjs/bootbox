@@ -1,4 +1,13 @@
-## Latest Release: 4.0.0
+## Latest Release: 4.1.0
+
+* Add support for placeholder attribute in prompts
+* Add select, email and checkbox types for prompts (thanks [@tarlepp](https://github.com/tarlepp))
+* Add Norwegian locale
+* Allow setDefaults to take two key/val arguments
+* Add unique classes for main dialog methods
+* Create bower package
+
+### 4.0.0
 
 * Bootstrap 3.0.0 compatibility
 * Complete rewrite (and new public API)

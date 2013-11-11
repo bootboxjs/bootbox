@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+SRC="bootbox.js"
+MIN="/tmp/bootbox.min.js"
+
+uglifyjs $SRC -c -m > $MIN
+
+RAW="$(wc -c $SRC | awk '{print $1}')"
+MRAW="$(wc -c $MIN | awk '{print $1}')"
+GZIP="$(cat $SRC | gzip | wc -c | awk '{print $1}')"
+MGZIP="$(cat $MIN | gzip | wc -c | awk '{print $1}')"
+
+echo "raw,min,raw+gzip,min+gzip\n$RAW,$MRAW,$GZIP,$MGZIP" > build/size.csv
+rm $MIN

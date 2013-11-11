@@ -1,9 +1,15 @@
 {
   "name": "bootbox.js",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "main": "./bootbox.js",
   "ignore": [
-    "**/.*"
+    "CHANGELOG.md",
+    "CONTRIBUTING",
+    "Gruntfile.js",
+    "header.txt",
+    "karma*.js",
+    "build",
+    "tests"
   ],
   "dependencies": {
     "bootstrap": ">= 3.0.0"

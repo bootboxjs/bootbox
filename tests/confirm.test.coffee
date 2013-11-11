@@ -80,6 +80,9 @@ describe "bootbox.confirm", ->
         it "creates a dialog object", ->
           expect(@dialog).to.be.an "object"
 
+        it "applies the bootbox-confirm class to the dialog", ->
+          expect(@dialog.hasClass("bootbox-confirm")).to.be.true
+
         it "adds the correct button labels", ->
           expect(@dialog.find(".btn:first").text()).to.equal "Cancel"
           expect(@dialog.find(".btn:last").text()).to.equal "OK"
