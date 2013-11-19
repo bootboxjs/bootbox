@@ -4,7 +4,23 @@
  * http://bootboxjs.com/license.txt
  */
 // @see https://github.com/makeusabrew/bootbox/issues/71
-window.bootbox = window.bootbox || (function init($, undefined) {
+
+(function (root, factory) {
+  "use strict";
+  if (typeof define === "function" && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(["jquery"], factory);
+  } else if (typeof exports === "object") {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory(require("jquery"));
+  } else {
+    // Browser globals (root is window)
+    root.bootbox = factory(root.jQuery);
+  }
+}(this, function init($, undefined) {
+  
   "use strict";
 
   // the base DOM structure needed to create a modal
@@ -786,7 +802,5 @@ window.bootbox = window.bootbox || (function init($, undefined) {
   exports.init = function(_$) {
     window.bootbox = init(_$ || $);
   };
-
   return exports;
-
-}(window.jQuery));
+}));
