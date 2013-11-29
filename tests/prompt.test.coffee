@@ -1,6 +1,6 @@
 describe "bootbox.prompt", ->
   beforeEach ->
-    bootbox.init()
+    window.bootbox = bootbox.init()
 
     @find   = (selector) -> @dialog.find selector
     @text   = (selector) -> @find(selector).text()

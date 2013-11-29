@@ -3,9 +3,11 @@
  *
  * http://bootboxjs.com/license.txt
  */
-// @see https://github.com/makeusabrew/bootbox/issues/71
 
+// @see https://github.com/makeusabrew/bootbox/issues/180
+// @see https://github.com/makeusabrew/bootbox/issues/186
 (function (root, factory) {
+
   "use strict";
   if (typeof define === "function" && define.amd) {
     // AMD. Register as an anonymous module.
@@ -19,8 +21,9 @@
     // Browser globals (root is window)
     root.bootbox = factory(root.jQuery);
   }
+
 }(this, function init($, undefined) {
-  
+
   "use strict";
 
   // the base DOM structure needed to create a modal
@@ -800,7 +803,8 @@
   };
 
   exports.init = function(_$) {
-    window.bootbox = init(_$ || $);
+    return init(_$ || $);
   };
+
   return exports;
 }));

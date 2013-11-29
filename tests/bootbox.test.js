@@ -1,9 +1,5 @@
 describe("Bootbox", function() {
 
-  beforeEach(function() {
-    bootbox.init();
-  });
-
   it("is attached to the window object", function() {
     expect(window.bootbox).to.be.an("object");
   });
