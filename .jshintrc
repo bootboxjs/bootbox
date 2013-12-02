@@ -13,6 +13,9 @@
       "beforeEach": true,
       "describe": true,
       "it": true,
+      "define": true,
+      "module": true,
+      "require": true,
       "expect": true
     }
 }

@@ -1,6 +1,5 @@
 describe "bootbox locales", ->
   beforeEach ->
-    bootbox.init()
 
     @setLocale = (locale) ->
       bootbox.setDefaults locale: locale

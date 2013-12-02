@@ -5,7 +5,6 @@ describe("bootbox.alert", function() {
   var self;
 
   beforeEach(function() {
-    bootbox.init();
 
     self = this;
 

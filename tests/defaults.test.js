@@ -1,7 +1,6 @@
 describe("bootbox.setDefaults", function() {
 
   beforeEach(function() {
-    bootbox.init();
 
     this.find = function(selector) {
       return this.dialog.find(selector);
@@ -88,6 +87,54 @@ describe("bootbox.setDefaults", function() {
     it("applies the arguments as a key/value pair", function() {
       expect(this.dialog.hasClass("bootbox")).to.be.true;
       expect(this.dialog.hasClass("my-class")).to.be.true;
+    });
+  });
+
+  describe("container", function () {
+    describe("when not explicitly set", function() {
+      beforeEach(function() {
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("defaults to the body element", function() {
+        expect(this.dialog.parent().is("body")).to.be.true;
+      });
+    });
+
+    describe("when explicitly set to body", function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          container: "body"
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("sets the correct parent element", function() {
+        expect(this.dialog.parent().is("body")).to.be.true;
+      });
+    });
+
+    describe("when set to another dom element", function() {
+
+      beforeEach(function() {
+        this.container = $("<div></div>");
+        bootbox.setDefaults({
+          container: this.container
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("sets the correct parent element", function() {
+        expect(this.dialog.parent().is(this.container)).to.be.true;
+      });
     });
   });
 });

@@ -3,8 +3,27 @@
  *
  * http://bootboxjs.com/license.txt
  */
-// @see https://github.com/makeusabrew/bootbox/issues/71
-window.bootbox = window.bootbox || (function init($, undefined) {
+
+// @see https://github.com/makeusabrew/bootbox/issues/180
+// @see https://github.com/makeusabrew/bootbox/issues/186
+(function (root, factory) {
+
+  "use strict";
+  if (typeof define === "function" && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(["jquery"], factory);
+  } else if (typeof exports === "object") {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory(require("jquery"));
+  } else {
+    // Browser globals (root is window)
+    root.bootbox = factory(root.jQuery);
+  }
+
+}(this, function init($, undefined) {
+
   "use strict";
 
   // the base DOM structure needed to create a modal
@@ -41,9 +60,6 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     }
   };
 
-  // cache a reference to the jQueryfied body element
-  var appendTo = $("body");
-
   var defaults = {
     // default language
     locale: "en",
@@ -56,7 +72,9 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     // whether or not to include a close button
     closeButton: true,
     // show the dialog immediately by default
-    show: true
+    show: true,
+    // dialog container
+    container: "body"
   };
 
   // our public object; augmented after our private API
@@ -647,7 +665,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     // functionality and then giving the resulting object back
     // to our caller
 
-    appendTo.append(dialog);
+    $(options.container).append(dialog);
 
     dialog.modal({
       backdrop: options.backdrop,
@@ -785,9 +803,8 @@ window.bootbox = window.bootbox || (function init($, undefined) {
   };
 
   exports.init = function(_$) {
-    window.bootbox = init(_$ || $);
+    return init(_$ || $);
   };
 
   return exports;
-
-}(window.jQuery));
+}));
