@@ -765,6 +765,11 @@
       CANCEL  : "Annulla",
       CONFIRM : "Conferma"
     },
+    lv : {
+      OK      : "OK",
+      CANCEL  : "Atcelt",
+      CONFIRM : "Apstiprināt"
+    },
     nl : {
       OK      : "OK",
       CANCEL  : "Annuleren",
