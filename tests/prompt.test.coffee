@@ -213,6 +213,37 @@ describe "bootbox.prompt", ->
         it "has correct placeholder value", ->
           expect(@find("input[type='text']").prop("placeholder")).to.equal "enter your name"
 
+    describe "setting inputType textarea", ->
+      beforeEach ->
+        @options.inputType = "textarea"
+
+      describe "without default value", ->
+        beforeEach ->
+          @create()
+
+        it "shows text input ", ->
+          expect(@exists("textarea")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("textarea").hasClass("bootbox-input")).to.be.ok
+          expect(@find("textarea").hasClass("bootbox-input-textarea")).to.be.ok
+
+      describe "with default value", ->
+        beforeEach ->
+          @options.value = "Once upon a time..."
+          @create()
+
+        it "has correct default value", ->
+          expect(@find("textarea").val()).to.equal "Once upon a time..."
+
+      describe "with placeholder", ->
+        beforeEach ->
+          @options.placeholder = "enter your favorite fairy tale"
+          @create()
+
+        it "has correct placeholder value", ->
+          expect(@find("textarea").prop("placeholder")).to.equal "enter your favorite fairy tale"
+
     describe "setting inputType email", ->
       beforeEach ->
         @options.inputType = "email"

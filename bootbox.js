@@ -49,6 +49,8 @@
     inputs: {
       text:
         "<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type=text />",
+      textarea:
+        "<textarea class='bootbox-input bootbox-input-textarea form-control'></textarea>",
       email:
         "<input class='bootbox-input bootbox-input-email form-control' autocomplete='off' type='email' />",
       select:
@@ -386,6 +388,7 @@
 
       switch (options.inputType) {
         case "text":
+        case "textarea":
         case "email":
         case "select":
         case "password":
@@ -428,6 +431,7 @@
 
     switch (options.inputType) {
       case "text":
+      case "textarea":
       case "email":
       case "password":
         input.val(options.value);
