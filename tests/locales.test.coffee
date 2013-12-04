@@ -8,9 +8,9 @@ describe "bootbox locales", ->
       d2 = bootbox.confirm "foo", -> true
 
       @labels =
-        ok: d1.find(".btn:first").text()
-        cancel: d2.find(".btn:first").text()
-        confirm: d2.find(".btn:last").text()
+        ok: d1.find(".btn-primary").text()
+        cancel: d2.find(".btn:last").text()
+        confirm: d2.find(".btn-primary").text()
 
   describe "Invalid locale", ->
     beforeEach ->
