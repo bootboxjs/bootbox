@@ -60,12 +60,12 @@ describe "bootbox.prompt", ->
             expect(@dialog.hasClass("bootbox-prompt")).to.be.true
 
           it "adds the correct button labels", ->
-            expect(@dialog.find(".btn:first").text()).to.equal "Cancel"
-            expect(@dialog.find(".btn:last").text()).to.equal "OK"
+            expect(@dialog.find(".btn:last").text()).to.equal "Cancel"
+            expect(@dialog.find(".btn:first").text()).to.equal "OK"
 
           it "adds the correct button classes", ->
-            expect(@dialog.find(".btn:first").hasClass("btn-default")).to.be.true
-            expect(@dialog.find(".btn:last").hasClass("btn-primary")).to.be.true
+            expect(@dialog.find(".btn:last").hasClass("btn-default")).to.be.true
+            expect(@dialog.find(".btn:first").hasClass("btn-primary")).to.be.true
 
     describe "with two arguments", ->
       describe "where the second argument is not a function", ->
@@ -88,12 +88,12 @@ describe "bootbox.prompt", ->
           expect(@dialog).to.be.an "object"
 
         it "adds the correct button labels", ->
-          expect(@text(".btn:first")).to.equal "Cancel"
-          expect(@text(".btn:last")).to.equal "OK"
+          expect(@text(".btn:last")).to.equal "Cancel"
+          expect(@text(".btn:first")).to.equal "OK"
 
         it "adds the correct button classes", ->
-          expect(@dialog.find(".btn:first").hasClass("btn-default")).to.be.true
-          expect(@dialog.find(".btn:last").hasClass("btn-primary")).to.be.true
+          expect(@dialog.find(".btn:last").hasClass("btn-default")).to.be.true
+          expect(@dialog.find(".btn:first").hasClass("btn-primary")).to.be.true
 
         it "adds the expected dialog title", ->
           expect(@text("h4")).to.equal "What is your name?"
@@ -128,7 +128,7 @@ describe "bootbox.prompt", ->
 
         @create()
 
-        @button = @dialog.find(".btn:first")
+        @button = @dialog.find(".btn:last")
 
       it "adds the correct cancel button", ->
         expect(@button.text()).to.equal "Custom cancel"
@@ -143,7 +143,7 @@ describe "bootbox.prompt", ->
 
         @create()
 
-        @button = @dialog.find(".btn:last")
+        @button = @dialog.find(".btn:first")
 
       it "adds the correct confirm button", ->
         expect(@button.text()).to.equal "Custom confirm"
