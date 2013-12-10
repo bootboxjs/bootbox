@@ -810,9 +810,9 @@
       CONFIRM : "確認"
     },
     kk : {
-        OK      : 'OK',
-        CANCEL  : 'Болдырмау',
-        CONFIRM : 'Растау'
+      OK      : "OK",
+      CANCEL  : "Болдырмау",
+      CONFIRM : "Растау"
     },
   };
 
