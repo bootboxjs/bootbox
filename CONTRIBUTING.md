@@ -8,6 +8,7 @@
 * Please ensure that the test suite passes **and** that bootbox.js is lint free before submitting a PR by running:
  * ```grunt```
 * If you've added new functionality, **please** include tests which validate its behaviour
+ * **this includes pull requests which only add new locales, too!**
 
 ## Submitting bug reports
 
