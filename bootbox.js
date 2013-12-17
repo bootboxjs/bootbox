@@ -799,6 +799,11 @@
       CANCEL  : "Avbryt",
       CONFIRM : "OK"
     },
+    tr : {
+      OK      : "Tamam",
+      CANCEL  : "İptal",
+      CONFIRM : "Onayla"
+    },
     zh_CN : {
       OK      : "OK",
       CANCEL  : "取消",
