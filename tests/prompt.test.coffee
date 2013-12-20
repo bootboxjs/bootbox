@@ -449,6 +449,130 @@ describe "bootbox.prompt", ->
         it "with three checkboxes", ->
           expect(@find("input[type='checkbox']").length).to.equal 3
 
+    describe "setting inputType date", ->
+      beforeEach ->
+        @options.inputType = "date"
+
+      describe "without default value", ->
+        beforeEach ->
+          @create()
+
+        it "shows date input ", ->
+          expect(@exists("input[type='date']")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("input[type='date']").hasClass("bootbox-input")).to.be.ok
+          expect(@find("input[type='date']").hasClass("bootbox-input-date")).to.be.ok
+
+      describe "with default value", ->
+        beforeEach ->
+          @options.value = "17/08/2005"
+          @create()
+
+        it "has correct default value", ->
+          expect(@find("input[type='date']").val()).to.equal "17/08/2005"
+
+      describe "with placeholder", ->
+        beforeEach ->
+          @options.placeholder = "enter the date"
+          @create()
+
+        it "has correct placeholder value", ->
+          expect(@find("input[type='date']").prop("placeholder")).to.equal "enter the date"
+
+    describe "setting inputType time", ->
+      beforeEach ->
+        @options.inputType = "time"
+
+      describe "without default value", ->
+        beforeEach ->
+          @create()
+
+        it "shows time input ", ->
+          expect(@exists("input[type='time']")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("input[type='time']").hasClass("bootbox-input")).to.be.ok
+          expect(@find("input[type='time']").hasClass("bootbox-input-time")).to.be.ok
+
+      describe "with default value", ->
+        beforeEach ->
+          @options.value = "19:02"
+          @create()
+
+        it "has correct default value", ->
+          expect(@find("input[type='time']").val()).to.equal "19:02"
+
+      describe "with placeholder", ->
+        beforeEach ->
+          @options.placeholder = "enter the time"
+          @create()
+
+        it "has correct placeholder value", ->
+          expect(@find("input[type='time']").prop("placeholder")).to.equal "enter the time"
+
+    describe "setting inputType time", ->
+      beforeEach ->
+        @options.inputType = "time"
+
+      describe "without default value", ->
+        beforeEach ->
+          @create()
+
+        it "shows time input ", ->
+          expect(@exists("input[type='time']")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("input[type='time']").hasClass("bootbox-input")).to.be.ok
+          expect(@find("input[type='time']").hasClass("bootbox-input-time")).to.be.ok
+
+      describe "with default value", ->
+        beforeEach ->
+          @options.value = "19:02"
+          @create()
+
+        it "has correct default value", ->
+          expect(@find("input[type='time']").val()).to.equal "19:02"
+
+      describe "with placeholder", ->
+        beforeEach ->
+          @options.placeholder = "enter the time"
+          @create()
+
+        it "has correct placeholder value", ->
+          expect(@find("input[type='time']").prop("placeholder")).to.equal "enter the time"
+
+    describe "setting inputType number", ->
+      beforeEach ->
+        @options.inputType = "number"
+
+      describe "without default value", ->
+        beforeEach ->
+          @create()
+
+        it "shows number input ", ->
+          expect(@exists("input[type='number']")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("input[type='number']").hasClass("bootbox-input")).to.be.ok
+          expect(@find("input[type='number']").hasClass("bootbox-input-number")).to.be.ok
+
+      describe "with default value", ->
+        beforeEach ->
+          @options.value = "300"
+          @create()
+
+        it "has correct default value", ->
+          expect(@find("input[type='number']").val()).to.equal "300"
+
+      describe "with placeholder", ->
+        beforeEach ->
+          @options.placeholder = "enter the number"
+          @create()
+
+        it "has correct placeholder value", ->
+          expect(@find("input[type='number']").prop("placeholder")).to.equal "enter the number"
+
   describe "callback tests", ->
     describe "with a simple callback", ->
       beforeEach ->

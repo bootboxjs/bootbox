@@ -57,6 +57,12 @@
         "<select class='bootbox-input bootbox-input-select form-control'></select>",
       checkbox:
         "<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' /></label></div>",
+      date:
+        "<input class='bootbox-input bootbox-input-date form-control' autocomplete=off type='date' />",
+      time:
+        "<input class='bootbox-input bootbox-input-time form-control' autocomplete=off type='time' />",      
+      number:
+        "<input class='bootbox-input bootbox-input-number form-control' autocomplete=off type='number' />",      
       password:
         "<input class='bootbox-input bootbox-input-password form-control' autocomplete='off' type='password' />"
     }
@@ -391,6 +397,9 @@
         case "textarea":
         case "email":
         case "select":
+        case "date":
+        case "time":        
+        case "number":        
         case "password":
           value = input.val();
           break;
@@ -433,6 +442,9 @@
       case "text":
       case "textarea":
       case "email":
+      case "date":
+      case "time":      
+      case "number":      
       case "password":
         input.val(options.value);
         break;
