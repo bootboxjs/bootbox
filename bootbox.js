@@ -536,6 +536,10 @@
       input.attr("placeholder", options.placeholder);
     }
 
+    if(options.pattern){
+      input.attr("pattern", options.pattern);
+    }
+
     // now place it in our form
     form.append(input);
 

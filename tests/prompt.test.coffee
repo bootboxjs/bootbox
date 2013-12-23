@@ -213,6 +213,14 @@ describe "bootbox.prompt", ->
         it "has correct placeholder value", ->
           expect(@find("input[type='text']").prop("placeholder")).to.equal "enter your name"
 
+      describe "with pattern", ->
+        beforeEach ->
+          @options.pattern = "\d{1,2}/\d{1,2}/\d{4}"
+          @create()
+
+        it "has correct pattern value", ->
+          expect(@find("input[type='text']").prop("pattern")).to.equal "\d{1,2}/\d{1,2}/\d{4}"
+
     describe "setting inputType textarea", ->
       beforeEach ->
         @options.inputType = "textarea"
@@ -274,6 +282,14 @@ describe "bootbox.prompt", ->
 
         it "has correct placeholder value", ->
           expect(@find("input[type='email']").prop("placeholder")).to.equal "enter your email"
+
+      describe "with pattern", ->
+        beforeEach ->
+          @options.pattern = "\d{1,2}/\d{1,2}/\d{4}"
+          @create()
+
+        it "has correct pattern value", ->
+          expect(@find("input[type='email']").prop("pattern")).to.equal "\d{1,2}/\d{1,2}/\d{4}"
 
     describe "setting inputType password", ->
       beforeEach ->
@@ -480,6 +496,14 @@ describe "bootbox.prompt", ->
         it "has correct placeholder value", ->
           expect(@find("input[type='date']").prop("placeholder")).to.equal "enter the date"
 
+      describe "with pattern", ->
+        beforeEach ->
+          @options.pattern = "\d{1,2}/\d{1,2}/\d{4}"
+          @create()
+
+        it "has correct pattern value", ->
+          expect(@find("input[type='date']").prop("pattern")).to.equal "\d{1,2}/\d{1,2}/\d{4}"
+
     describe "setting inputType time", ->
       beforeEach ->
         @options.inputType = "time"
@@ -511,36 +535,13 @@ describe "bootbox.prompt", ->
         it "has correct placeholder value", ->
           expect(@find("input[type='time']").prop("placeholder")).to.equal "enter the time"
 
-    describe "setting inputType time", ->
-      beforeEach ->
-        @options.inputType = "time"
-
-      describe "without default value", ->
+      describe "with pattern", ->
         beforeEach ->
+          @options.pattern = "\d{1,2}/\d{1,2}/\d{4}"
           @create()
 
-        it "shows time input ", ->
-          expect(@exists("input[type='time']")).to.be.ok
-
-        it "has proper class", ->
-          expect(@find("input[type='time']").hasClass("bootbox-input")).to.be.ok
-          expect(@find("input[type='time']").hasClass("bootbox-input-time")).to.be.ok
-
-      describe "with default value", ->
-        beforeEach ->
-          @options.value = "19:02"
-          @create()
-
-        it "has correct default value", ->
-          expect(@find("input[type='time']").val()).to.equal "19:02"
-
-      describe "with placeholder", ->
-        beforeEach ->
-          @options.placeholder = "enter the time"
-          @create()
-
-        it "has correct placeholder value", ->
-          expect(@find("input[type='time']").prop("placeholder")).to.equal "enter the time"
+        it "has correct pattern value", ->
+          expect(@find("input[type='time']").prop("pattern")).to.equal "\d{1,2}/\d{1,2}/\d{4}"
 
     describe "setting inputType number", ->
       beforeEach ->
