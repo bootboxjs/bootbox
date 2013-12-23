@@ -60,9 +60,9 @@
       date:
         "<input class='bootbox-input bootbox-input-date form-control' autocomplete=off type='date' />",
       time:
-        "<input class='bootbox-input bootbox-input-time form-control' autocomplete=off type='time' />",      
+        "<input class='bootbox-input bootbox-input-time form-control' autocomplete=off type='time' />",
       number:
-        "<input class='bootbox-input bootbox-input-number form-control' autocomplete=off type='number' />",      
+        "<input class='bootbox-input bootbox-input-number form-control' autocomplete=off type='number' />",
       password:
         "<input class='bootbox-input bootbox-input-password form-control' autocomplete='off' type='password' />"
     }
@@ -380,6 +380,14 @@
     // it, but we need to make sure we respect a preference not to show it
     shouldShow = (options.show === undefined) ? true : options.show;
 
+    // check if the browser supports the option.inputType
+    var html5inputs = ["date","time","number"];
+    var i = document.createElement("input");
+    i.setAttribute("type", options.inputType);
+    if(html5inputs[options.inputType]){
+      options.inputType = i.type;
+    }
+
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
@@ -398,8 +406,8 @@
         case "email":
         case "select":
         case "date":
-        case "time":        
-        case "number":        
+        case "time":
+        case "number":
         case "password":
           value = input.val();
           break;
@@ -443,8 +451,8 @@
       case "textarea":
       case "email":
       case "date":
-      case "time":      
-      case "number":      
+      case "time":
+      case "number":
       case "password":
         input.val(options.value);
         break;
