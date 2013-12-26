@@ -764,6 +764,11 @@
       CANCEL  : "Annuler",
       CONFIRM : "D'accord"
     },
+    he : {
+      OK      : "אישור",
+      CANCEL  : "ביטול",
+      CONFIRM : "אישור"
+    },
     it : {
       OK      : "OK",
       CANCEL  : "Annulla",
