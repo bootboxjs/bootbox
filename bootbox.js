@@ -97,6 +97,7 @@
   }
 
   function processCallback(e, dialog, callback) {
+    e.stopPropagation();
     e.preventDefault();
 
     // by default we assume a callback will get rid of the dialog,
