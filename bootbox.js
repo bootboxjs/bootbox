@@ -799,6 +799,11 @@
       CANCEL  : "Annulla",
       CONFIRM : "Conferma"
     },
+    lt : {
+      OK      : "Gerai",
+      CANCEL  : "Atšaukti",
+      CONFIRM : "Patvirtinti"
+    },
     lv : {
       OK      : "OK",
       CANCEL  : "Atcelt",
