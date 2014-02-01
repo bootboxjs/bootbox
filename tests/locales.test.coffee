@@ -220,6 +220,19 @@ describe "bootbox locales", ->
 
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "Apstiprināt"
+      
+  describe "Lithuanian", ->
+    beforeEach ->
+      @setLocale "lt"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "Gerai"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Atšaukti"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "Patvirtinti"
 
   describe "Turkish", ->
     beforeEach ->
