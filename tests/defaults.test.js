@@ -1,7 +1,6 @@
 describe("bootbox.setDefaults", function() {
 
   beforeEach(function() {
-    bootbox.init();
 
     this.find = function(selector) {
       return this.dialog.find(selector);

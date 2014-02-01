@@ -1,6 +1,5 @@
 describe "bootbox locales", ->
   beforeEach ->
-    bootbox.init()
 
     @setLocale = (locale) ->
       bootbox.setDefaults locale: locale
@@ -208,3 +207,55 @@ describe "bootbox locales", ->
 
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "OK"
+
+  describe "Latvian", ->
+    beforeEach ->
+      @setLocale "lv"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "OK"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Atcelt"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "Apstiprināt"
+      
+  describe "Lithuanian", ->
+    beforeEach ->
+      @setLocale "lt"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "Gerai"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Atšaukti"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "Patvirtinti"
+
+  describe "Turkish", ->
+    beforeEach ->
+      @setLocale "tr"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "Tamam"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "İptal"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "Onayla"
+
+  describe "Hebrew", ->
+    beforeEach ->
+      @setLocale "he"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "אישור"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "ביטול"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "אישור"

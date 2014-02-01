@@ -1,6 +1,5 @@
 describe "bootbox.dialog", ->
   beforeEach ->
-    bootbox.init()
 
     # need to take care with these helpers; don't want too much
     # cleverness in the tests which runs the risk of making them
