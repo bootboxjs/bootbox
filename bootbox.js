@@ -805,7 +805,7 @@
       CONFIRM : "Patvirtinti"
     },
     lv : {
-      OK      : "OK",
+      OK      : "Labi",
       CANCEL  : "Atcelt",
       CONFIRM : "Apstiprināt"
     },

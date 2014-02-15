@@ -213,14 +213,14 @@ describe "bootbox locales", ->
       @setLocale "lv"
 
     it "shows the correct OK translation", ->
-      expect(@labels.ok).to.equal "OK"
+      expect(@labels.ok).to.equal "Labi"
 
     it "shows the correct CANCEL translation", ->
       expect(@labels.cancel).to.equal "Atcelt"
 
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "Apstiprināt"
-      
+
   describe "Lithuanian", ->
     beforeEach ->
       @setLocale "lt"
