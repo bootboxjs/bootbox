@@ -44,19 +44,25 @@ The latest major release of Bootbox - 4.0.0 - involved a total rewrite of the
 internal code and introduced an entirely new public API. It has not re-implemented
 some functionality from the 3.x series as of yet; this will be addressed in the
 coming weeks in the form of new minor releases;
-[a task list for 4.2.0 is available](https://github.com/makeusabrew/bootbox/issues/162) -
+[a task list for 4.3.0 is available](https://github.com/makeusabrew/bootbox/issues/220) -
 please feel free to add feedback and requests.
 
 There is no new major (e.g. 5.x) release on the roadmap at present.
 
-## Latest Release: 4.1.0
+## Latest Release: 4.2.0
 
-* Add support for placeholder attribute in prompts
-* Add select, email and checkbox types for prompts (thanks [@tarlepp](https://github.com/tarlepp))
-* Add Norwegian locale
-* Allow setDefaults to take two key/val arguments
-* Add unique classes for main dialog methods
-* Create bower package
+* Add Swedish locale
+* Add Latvian locale
+* Add Turkish locale
+* Add Hebrew locale
+* Add password input type
+* Add textarea input type
+* Add date input type
+* Add time input type
+* Add number input type
+* Support DOM selectors for container argument
+* UMD support
+* Better support on mobile devices
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 
@@ -64,7 +70,7 @@ For a full list of releases and changes please see [the changelog](https://githu
 
 (The MIT License)
 
-Copyright (C) 2011-2013 by Nick Payne <nick@kurai.co.uk>
+Copyright (C) 2011-2014 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

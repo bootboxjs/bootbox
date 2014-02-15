@@ -1,4 +1,19 @@
-## Latest Release: 4.1.0
+## Latest Release: 4.2.0
+
+* Add Swedish locale
+* Add Latvian locale
+* Add Turkish locale
+* Add Hebrew locale
+* Add password input type
+* Add textarea input type
+* Add date input type
+* Add time input type
+* Add number input type
+* Support DOM selectors for container argument
+* UMD support
+* Better support on mobile devices
+
+### 4.1.0
 
 * Add support for placeholder attribute in prompts
 * Add select, email and checkbox types for prompts (thanks [@tarlepp](https://github.com/tarlepp))
