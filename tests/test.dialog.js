@@ -87,6 +87,7 @@ describe("#dialog", function() {
                         "class": "my-class",
                         "label": "My Button",
                         "icon": "my-icon-class",
+                        "data": {"foo": "bar", "answer": 42},
                         "callback": function() {
                             called = true;
                         }
@@ -116,6 +117,16 @@ describe("#dialog", function() {
 
                 it("should add an icon element to the button", function() {
                     assert.ok(box.find("a:first i.my-icon-class").length);
+                });
+
+                describe("when two data attributes are given", function(){
+                  it("should set data-foo attribute to the button", function() {
+                    assert.equal(box.find("a:first").attr('data-foo'), 'bar')
+                  });
+
+                  it("should set data-answer attribute to the button", function() {
+                    assert.equal(box.find("a:first").attr('data-answer'), '42')
+                  });
                 });
 
                 describe("when clicking the button", function() {
