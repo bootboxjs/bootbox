@@ -460,6 +460,7 @@
 
       case "select":
         var groups = {};
+        var selected = null;
         inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
@@ -487,6 +488,7 @@
             elem = groups[option.group];
           }
 
+          selected = (option.selected) ? option.value : selected;
           elem.append("<option value='" + option.value + "'>" + option.text + "</option>");
         });
 
@@ -495,7 +497,11 @@
         });
 
         // safe to set a select's value as per a normal input
-        input.val(options.value);
+        if (selected) {
+            input.val(selected);
+        } else {
+            input.val(options.value);
+        }
         break;
 
       case "checkbox":
@@ -549,6 +555,8 @@
       // @TODO can we actually click *the* button object instead?
       // e.g. buttons.confirm.click() or similar
       dialog.find(".btn-primary").click();
+      // Fix for SammyJS (or similar JS routing library) hijacking the form post.
+      return false;
     });
 
     dialog = exports.dialog(options);

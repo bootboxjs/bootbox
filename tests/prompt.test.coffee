@@ -373,6 +373,26 @@ describe "bootbox.prompt", ->
         it "throws an error", ->
           expect(@create).to.throw /given options in wrong format/
 
+      describe "with valid options and selected", ->
+        beforeEach ->
+          @options.inputType = "select"
+          @options.inputOptions = [{value: 1, text: 'foo'},{value: 2, text: 'bar', selected: true},{value: 3, text: 'foobar'}]
+
+          @create()
+
+        it "shows select input", ->
+          expect(@exists("select")).to.be.ok
+
+        it "has proper class", ->
+          expect(@find("select").hasClass("bootbox-input")).to.be.ok
+          expect(@find("select").hasClass("bootbox-input-select")).to.be.ok
+
+        it "with three options", ->
+          expect(@find("option").length).to.equal 3
+
+        it "specified option is selected", ->
+          expect(@dialog.find(".bootbox-input-select").val()).to.equal "2"
+
 
       describe "with valid options", ->
         beforeEach ->
