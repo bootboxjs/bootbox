@@ -58,6 +58,25 @@ describe("bootbox.setDefaults", function() {
     });
   });
 
+  describe("classNameSize", function() {
+    describe("when passed as a string", function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          classNameSize: "my-class-size"
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("adds the extra size class to the dialog", function() {
+        expect(this.dialog.children(":first").hasClass("modal-dialog")).to.be.true;
+        expect(this.dialog.children(":first").hasClass("my-class-size")).to.be.true;
+      });
+    });
+  });
+
   describe("backdrop", function() {
     describe("when set to false", function() {
       beforeEach(function() {
@@ -87,6 +106,20 @@ describe("bootbox.setDefaults", function() {
     it("applies the arguments as a key/value pair", function() {
       expect(this.dialog.hasClass("bootbox")).to.be.true;
       expect(this.dialog.hasClass("my-class")).to.be.true;
+    });
+  });
+
+  describe("when passed two arguments", function() {
+    beforeEach(function() {
+      bootbox.setDefaults("classNameSize", "my-class-size");
+      this.dialog = bootbox.dialog({
+        message: "test"
+      });
+    });
+
+    it("applies the arguments as a key/value pair", function() {
+      expect(this.dialog.children(":first").hasClass("modal-dialog")).to.be.true;
+      expect(this.dialog.children(":first").hasClass("my-class-size")).to.be.true;
     });
   });
 
