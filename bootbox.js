@@ -290,7 +290,8 @@ var bootbox = window.bootbox || (function(document, $) {
                 href     = null,
                 _class   = null,
                 icon     = '',
-                callback = null;
+                callback = null,
+                data     = '';
 
             if (typeof handlers[i]['label']    == 'undefined' &&
                 typeof handlers[i]['class']    == 'undefined' &&
@@ -348,7 +349,13 @@ var bootbox = window.bootbox || (function(document, $) {
                 href = _defaultHref;
             }
 
-            buttons = "<a data-handler='"+i+"' class='"+_class+"' href='" + href + "'>"+icon+""+label+"</a>" + buttons;
+            if (handlers[i]['data']) {
+                for(var key in handlers[i]['data']){
+                    data = data + ' ' + 'data-' + key + '=' + handlers[i]['data'][key];
+                }
+            }
+
+            buttons = "<a data-handler='"+i+"' class='"+_class+"' href='" + href + "' " + data + ">"+icon+""+label+"</a>" + buttons;
 
             callbacks[i] = callback;
         }
