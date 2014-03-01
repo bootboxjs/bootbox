@@ -58,11 +58,11 @@ describe("bootbox.setDefaults", function() {
     });
   });
 
-  describe("classNameSize", function() {
-    describe("when passed as a string", function() {
+  describe("size", function() {
+    describe("when set to large", function() {
       beforeEach(function() {
         bootbox.setDefaults({
-          classNameSize: "my-class-size"
+          size: "large"
         });
 
         this.dialog = bootbox.dialog({
@@ -70,9 +70,25 @@ describe("bootbox.setDefaults", function() {
         });
       });
 
-      it("adds the extra size class to the dialog", function() {
+      it("adds the large class to the innerDialog", function() {
         expect(this.dialog.children(":first").hasClass("modal-dialog")).to.be.true;
-        expect(this.dialog.children(":first").hasClass("my-class-size")).to.be.true;
+        expect(this.dialog.children(":first").hasClass("modal-lg")).to.be.true;
+      });
+    });
+    describe("when set to small", function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          size: "small"
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("adds the small class to the innerDialog", function() {
+        expect(this.dialog.children(":first").hasClass("modal-dialog")).to.be.true;
+        expect(this.dialog.children(":first").hasClass("modal-sm")).to.be.true;
       });
     });
   });
@@ -106,20 +122,6 @@ describe("bootbox.setDefaults", function() {
     it("applies the arguments as a key/value pair", function() {
       expect(this.dialog.hasClass("bootbox")).to.be.true;
       expect(this.dialog.hasClass("my-class")).to.be.true;
-    });
-  });
-
-  describe("when passed two arguments", function() {
-    beforeEach(function() {
-      bootbox.setDefaults("classNameSize", "my-class-size");
-      this.dialog = bootbox.dialog({
-        message: "test"
-      });
-    });
-
-    it("applies the arguments as a key/value pair", function() {
-      expect(this.dialog.children(":first").hasClass("modal-dialog")).to.be.true;
-      expect(this.dialog.children(":first").hasClass("my-class-size")).to.be.true;
     });
   });
 
