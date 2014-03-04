@@ -313,3 +313,22 @@ describe "bootbox.dialog", ->
 
         it "should not hide the modal", ->
           expect(@hidden).not.to.have.been.called
+
+  describe "with size option", ->
+    describe "when the size option is set to large", ->
+      beforeEach ->
+        @dialog = bootbox.dialog
+          message: "test"
+          size: "large"
+                                                            
+      it "adds the large class to the innerDialog", ->
+        expect(@dialog.children(":first").hasClass("modal-lg")).to.be.true
+
+    describe "when the size option is set to small", ->
+      beforeEach ->
+        @dialog = bootbox.dialog
+          message: "test"
+          size: "small"
+                                                            
+      it "adds the large class to the innerDialog", ->
+        expect(@dialog.children(":first").hasClass("modal-sm")).to.be.true

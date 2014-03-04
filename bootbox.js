@@ -574,6 +574,7 @@
     options = sanitize(options);
 
     var dialog = $(templates.dialog);
+    var innerDialog = dialog.find(".modal-dialog");
     var body = dialog.find(".modal-body");
     var buttons = options.buttons;
     var buttonStr = "";
@@ -598,6 +599,14 @@
 
     if (options.className) {
       dialog.addClass(options.className);
+    }
+
+    if (options.size === "large") {
+      innerDialog.addClass("modal-lg");
+    }
+
+    if (options.size === "small") {
+      innerDialog.addClass("modal-sm");
     }
 
     if (options.title) {

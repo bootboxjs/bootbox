@@ -58,6 +58,41 @@ describe("bootbox.setDefaults", function() {
     });
   });
 
+  describe("size", function() {
+    describe("when set to large", function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          size: "large"
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("adds the large class to the innerDialog", function() {
+        expect(this.dialog.children(":first").hasClass("modal-dialog")).to.be.true;
+        expect(this.dialog.children(":first").hasClass("modal-lg")).to.be.true;
+      });
+    });
+    describe("when set to small", function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          size: "small"
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("adds the small class to the innerDialog", function() {
+        expect(this.dialog.children(":first").hasClass("modal-dialog")).to.be.true;
+        expect(this.dialog.children(":first").hasClass("modal-sm")).to.be.true;
+      });
+    });
+  });
+
   describe("backdrop", function() {
     describe("when set to false", function() {
       beforeEach(function() {
