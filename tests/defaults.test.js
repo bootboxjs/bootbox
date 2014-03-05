@@ -1,7 +1,6 @@
 describe("bootbox.setDefaults", function() {
 
   beforeEach(function() {
-
     this.find = function(selector) {
       return this.dialog.find(selector);
     };
@@ -22,19 +21,33 @@ describe("bootbox.setDefaults", function() {
         expect(this.dialog.hasClass("fade")).to.be.false;
       });
 
-      describe("when set to true", function() {
+      it("applies the correct class to the body", function() {
+        expect($("body").hasClass("modal-open")).to.be.true;
+      });
+
+      describe("when clicking the close button", function() {
         beforeEach(function() {
-          bootbox.setDefaults({
-            animate: true
-          });
-          this.dialog = bootbox.dialog({
-            message: "test"
-          });
+          this.dialog.find(".close").trigger("click");
         });
 
-        it("adds the fade class to the dialog", function() {
-          expect(this.dialog.hasClass("fade")).to.be.true;
+        it("removes the modal-open class from the body", function() {
+          expect($("body").hasClass("modal-open")).to.be.false;
         });
+      });
+    });
+
+    describe("when set to true", function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          animate: true
+        });
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("adds the fade class to the dialog", function() {
+        expect(this.dialog.hasClass("fade")).to.be.true;
       });
     });
   });

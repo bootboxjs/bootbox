@@ -70,6 +70,9 @@ describe("bootbox.alert", function() {
           expect(this.find("button.close").attr("aria-hidden")).to.equal("true");
         });
 
+        it("applies the correct class to the body", function() {
+          expect($("body").hasClass("modal-open")).to.be.true;
+        });
       });
     });
 
