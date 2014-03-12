@@ -757,6 +757,8 @@
 
   exports.hideAll = function() {
     $(".bootbox").modal("hide");
+
+    return exports;
   };
 
 
