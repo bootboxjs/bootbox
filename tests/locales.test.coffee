@@ -259,3 +259,16 @@ describe "bootbox locales", ->
 
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "אישור"
+
+  describe "Greek", ->
+    beforeEach ->
+      @setLocale "el"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "Εντάξει"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Ακύρωση"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "Επιβεβαίωση"
