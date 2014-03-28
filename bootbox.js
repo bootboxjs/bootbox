@@ -780,6 +780,11 @@
       CANCEL  : "Abbrechen",
       CONFIRM : "Akzeptieren"
     },
+    el : {
+      OK      : "Εντάξει",
+      CANCEL  : "Ακύρωση",
+      CONFIRM : "Επιβεβαίωση"
+    },
     en : {
       OK      : "OK",
       CANCEL  : "Cancel",
