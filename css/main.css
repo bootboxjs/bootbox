@@ -37,6 +37,12 @@
     z-index:2000;
 }
 
+.alert--finch {
+    display:block;
+    font-weight:bold;
+    text-align:center;
+}
+
 #gist6327194,
 #gist6339916 {
     height:300px;
