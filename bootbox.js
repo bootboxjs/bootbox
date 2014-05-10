@@ -802,6 +802,11 @@
       CANCEL  : "Cancelar",
       CONFIRM : "Aceptar"
     },
+    et : {
+      OK      : "OK",
+      CANCEL  : "Katkesta",
+      CONFIRM : "OK"
+    },
     fi : {
       OK      : "OK",
       CANCEL  : "Peruuta",
