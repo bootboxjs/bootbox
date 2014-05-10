@@ -381,14 +381,6 @@
     // it, but we need to make sure we respect a preference not to show it
     shouldShow = (options.show === undefined) ? true : options.show;
 
-    // check if the browser supports the option.inputType
-    var html5inputs = ["date","time","number"];
-    var i = document.createElement("input");
-    i.setAttribute("type", options.inputType);
-    if(html5inputs[options.inputType]){
-      options.inputType = i.type;
-    }
-
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
