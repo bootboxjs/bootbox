@@ -772,6 +772,11 @@
       CANCEL  : "Cancelar",
       CONFIRM : "Sim"
     },
+    cs : {
+      OK      : "OK",
+      CANCEL  : "Zrušit",
+      CONFIRM : "Potvrdit"
+    },
     da : {
       OK      : "OK",
       CANCEL  : "Annuller",
