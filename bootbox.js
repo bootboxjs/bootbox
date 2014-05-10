@@ -842,6 +842,11 @@
       CANCEL  : "Anuluj",
       CONFIRM : "Potwierdź"
     },
+    pt : {
+      OK      : "OK",
+      CANCEL  : "Cancelar",
+      CONFIRM : "Confirmar"
+    },
     ru : {
       OK      : "OK",
       CANCEL  : "Отмена",
