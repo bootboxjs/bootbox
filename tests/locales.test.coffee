@@ -116,6 +116,19 @@ describe "bootbox locales", ->
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "Применить"
 
+  describe "Indonesian", ->
+    beforeEach ->
+      @setLocale "id"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "OK"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Batal"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "OK"
+
   describe "Italian", ->
     beforeEach ->
       @setLocale "it"
