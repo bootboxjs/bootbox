@@ -814,6 +814,11 @@
       CANCEL  : "ביטול",
       CONFIRM : "אישור"
     },
+    id : {
+      OK      : "OK",
+      CANCEL  : "Batal",
+      CONFIRM : "OK"
+    },
     it : {
       OK      : "OK",
       CANCEL  : "Annulla",
