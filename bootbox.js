@@ -253,15 +253,17 @@ var bootbox = window.bootbox || (function(document, $) {
         // before any show(n) events are triggered
         // @see https://github.com/makeusabrew/bootbox/issues/69
 
-        div.on("shown", function() {
-            form.find("input[type=text]").focus();
-
-            // ensure that submitting the form (e.g. with the enter key)
-            // replicates the behaviour of a normal prompt()
-            form.on("submit", function(e) {
-                e.preventDefault();
-                div.find(".btn-primary").click();
-            });
+        div.on("shown", function(ev) {
+            if (ev.target === this) {
+                form.find("input[type=text]").focus();
+    
+                // ensure that submitting the form (e.g. with the enter key)
+                // replicates the behaviour of a normal prompt()
+                form.on("submit", function(e) {
+                    e.preventDefault();
+                    div.find(".btn-primary").click();
+                });
+            }
         });
 
         div.modal("show");
@@ -432,8 +434,10 @@ var bootbox = window.bootbox || (function(document, $) {
         });
 
         // well, *if* we have a primary - give the first dom element focus
-        div.on('shown', function() {
-            div.find("a.btn-primary:first").focus();
+        div.on('shown', function(e) {
+            if (e.target === this) {
+                div.find("a.btn-primary:first").focus();
+            }
         });
 
         div.on('hidden', function(e) {
@@ -494,7 +498,9 @@ var bootbox = window.bootbox || (function(document, $) {
         // ...caused by...
         // @see https://github.com/twitter/bootstrap/issues/4781
         div.on("show", function(e) {
-            $(document).off("focusin.modal");
+            if (e.target === this) {
+                $(document).off("focusin.modal");
+            }
         });
 
         if (typeof options.show === 'undefined' || options.show === true) {
