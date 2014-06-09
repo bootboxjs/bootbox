@@ -83,8 +83,8 @@
     show: true,
     // dialog container
     container: "body",
-	// buttons will be permuted (confirm / prompt)
-	invertbuttons: false
+    // buttons will be permuted (confirm / prompt)
+    invertbuttons: false
   };
 
   // our public object; augmented after our private API
@@ -172,8 +172,8 @@
       if (!button.label) {
         // the lack of an explicit label means we'll assume the key is good enough
         button.label = key;
-      }	  
-	  
+      }
+
       if (!button.className) {
         if (total <= 2 && index === total-1) {
           // always add a primary to the main option in a two-button dialog
