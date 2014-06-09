@@ -141,6 +141,31 @@ describe "bootbox.confirm", ->
       it "throws an error", ->
         expect(@create).to.throw /key is not allowed/
 
+    describe "with an invertbuttons option is enabled", ->
+      beforeEach ->
+        @options.buttons =
+          cancel:
+            label: "Cancel"
+            className: "btn-default"
+          confirm:
+            label: "OK"
+            className: "btn-primary"
+
+        @options =
+          invertbuttons: true
+          callback: -> @options.callback
+          message: @options.message
+
+        @create()
+
+      it "adds the correct button labels", ->
+          expect(@dialog.find(".btn:first").text()).to.equal "OK"
+          expect(@dialog.find(".btn:last").text()).to.equal "Cancel"
+
+      it "adds the correct button classes", ->
+          expect(@dialog.find(".btn:first").hasClass("btn-primary")).to.be.true
+          expect(@dialog.find(".btn:last").hasClass("btn-default")).to.be.true
+
   describe "callback tests", ->
     describe "with a simple callback", ->
       beforeEach ->
