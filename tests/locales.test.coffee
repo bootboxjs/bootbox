@@ -285,3 +285,16 @@ describe "bootbox locales", ->
 
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "Επιβεβαίωση"
+
+  describe "Japanese", ->
+    beforeEach ->
+      @setLocale "ja"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "OK"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "キャンセル"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "確認"

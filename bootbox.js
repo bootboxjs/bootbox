@@ -824,6 +824,11 @@
       CANCEL  : "Annulla",
       CONFIRM : "Conferma"
     },
+    ja : {
+      OK      : "OK",
+      CANCEL  : "キャンセル",
+      CONFIRM : "確認"
+    },
     lt : {
       OK      : "Gerai",
       CANCEL  : "Atšaukti",
