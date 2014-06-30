@@ -624,6 +624,12 @@
       dialog.find(".modal-footer").html(buttonStr);
     }
 
+    //by @bhagyas adds support for a timeout for the model, time to be specified in miliseconds
+    if(options.timeOut){
+        window.setTimeout(function(){
+           dialog.modal('hide');
+        }, options.timeOut);
+    }
 
     /**
      * Bootstrap event listeners; used handle extra
