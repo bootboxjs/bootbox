@@ -799,6 +799,11 @@
       CANCEL  : "Katkesta",
       CONFIRM : "OK"
     },
+    fa : {
+      OK      : "تایید",
+      CANCEL  : "لغو",
+      CONFIRM : "تایید"
+    },
     fi : {
       OK      : "OK",
       CANCEL  : "Peruuta",
