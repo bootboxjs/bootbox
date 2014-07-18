@@ -43,7 +43,7 @@
     footer:
       "<div class='modal-footer'></div>",
     closeButton:
-      "<button type='button' class='bootbox-close-button close' data-dismiss='modal' aria-hidden='true'>&times;</button>",
+      ' <button type="button" class="bootbox-close-button close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>',
     form:
       "<form class='bootbox-form'></form>",
     inputs: {
@@ -79,6 +79,12 @@
     className: null,
     // whether or not to include a close button
     closeButton: true,
+
+    // set alert title
+    showAlertTitle: true,
+
+    // default alert title
+    alertTitle: 'Message',
     // show the dialog immediately by default
     show: true,
     // dialog container
@@ -128,6 +134,15 @@
       iterator(key, value, index++);
     });
   }
+
+   function uuid() {
+      var a = function() {
+          return (65536 * (1 + Math.random()) | 0).toString(16).substring(1)
+      };
+      return  a() + a() + a()
+      //return a() + a() + "-" + a() + "-" + a() + "-" + a() + "-" + a() + a() + a()
+  }
+
 
   function sanitize(options) {
     var buttons;
@@ -203,16 +218,42 @@
     var argn = args.length;
     var options = {};
 
+
     if (argn < 1 || argn > 2) {
       throw new Error("Invalid argument length");
     }
 
-    if (argn === 2 || typeof args[0] === "string") {
-      options[properties[0]] = args[0];
-      options[properties[1]] = args[1];
-    } else {
-      options = args[0];
+    if(argn === 2){
+      if( typeof args[1] === "function" ){
+           options[properties[1]] = args[1];
+      }
+      if( $.type(args[1]) == 'object' ){
+        options = $.extend(true,{},options,{buttons:args[1]}); // buttons
+      }
+
+      if( typeof args[0] === "string" ){
+        options[properties[0]] = args[0];
+      }
+      if( $.type(args[0]) == 'object' ){
+        options = $.extend(true,{},options,args[0]); // message,  title
+      }
+    }else if(argn === 1){
+      if(typeof args[0] === "string"){
+        options[properties[0]] = args[0];
+      }
+      if( $.type(args[0]) == 'object' ){
+        options = args[0];
+      }
+
     }
+
+    // if (argn === 2 || typeof args[0] === "string") {
+    //   options[properties[0]] = args[0];
+    //   options[properties[1]] = args[1];
+    // }else{
+    //   options = args[0];
+    // }
+
 
     return options;
   }
@@ -231,8 +272,8 @@
       // args could be an object or array; if it's an array properties will
       // map it to a proper options object
       mapArguments(
-        args,
-        properties
+        args, 
+        properties // ['message','callback']
       )
     );
   }
@@ -247,6 +288,7 @@
       className: "bootbox-" + className,
       buttons: createLabels.apply(null, labels)
     };
+    var args = [].slice.call(args,0);
 
     // ensure the buttons properties generated, *after* merging
     // with user args are still valid against the supplied labels
@@ -300,7 +342,6 @@
 
   exports.alert = function() {
     var options;
-
     options = mergeDialogOptions("alert", ["ok"], ["message", "callback"], arguments);
 
     if (options.callback && !$.isFunction(options.callback)) {
@@ -564,6 +605,9 @@
 
   exports.dialog = function(options) {
     options = sanitize(options);
+    if(!options.title && options.showAlertTitle && options.alertTitle && options.className && ~options.className.indexOf('alert')){
+      options.title = options.alertTitle
+    }
 
     var dialog = $(templates.dialog);
     var innerDialog = dialog.find(".modal-dialog");
@@ -616,7 +660,13 @@
     }
 
     if (options.title) {
-      dialog.find(".modal-title").html(options.title);
+      var globalId = 'bootbox-dialog-' + uuid();
+      dialog.attr({
+        'aria-labelledby': globalId
+      })
+      dialog.find(".modal-title").html(options.title).attr({
+        id: globalId
+      });
     }
 
     if (buttonStr.length) {
@@ -872,8 +922,7 @@
     tr : {
       OK      : "Tamam",
       CANCEL  : "İptal",
-      CONFIRM : "Onayla"
-    },
+      CONFIRM : "Onayla"    },
     zh_CN : {
       OK      : "OK",
       CANCEL  : "取消",
