@@ -254,7 +254,6 @@
     //   options = args[0];
     // }
 
-
     return options;
   }
 
@@ -351,12 +350,14 @@
     /**
      * overrides
      */
-    options.buttons.ok.callback = options.onEscape = function() {
-      if ($.isFunction(options.callback)) {
-        return options.callback();
-      }
-      return true;
-    };
+    options.buttons.ok.callback = options.onEscape = $.isFunction(options.buttons.ok.callback) 
+      ? options.buttons.ok.callback 
+      : function() {
+        if ($.isFunction(options.callback)) {
+          return options.callback();
+        }
+        return true;
+      };
 
     return exports.dialog(options);
   };
@@ -364,21 +365,26 @@
   exports.confirm = function() {
     var options;
 
+
     options = mergeDialogOptions("confirm", ["cancel", "confirm"], ["message", "callback"], arguments);
 
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
-    options.buttons.cancel.callback = options.onEscape = function() {
-      return options.callback(false);
-    };
+    options.buttons.cancel.callback = options.onEscape = $.isFunction( options.buttons.cancel.callback )
+      ? options.buttons.cancel.callback 
+      : function() {
+        return options.callback(false);
+      };
 
-    options.buttons.confirm.callback = function() {
-      return options.callback(true);
-    };
+    options.buttons.confirm.callback =  $.isFunction( options.buttons.confirm.callback ) 
+      ? options.buttons.confirm.callback 
+      : function() {
+        return options.callback(true);
+      };
 
     // confirm specific validation
-    if (!$.isFunction(options.callback)) {
+    if ($.isFunction( arguments[1] ) && !$.isFunction(options.callback)) {
       throw new Error("confirm requires a callback");
     }
 
@@ -393,6 +399,7 @@
     var input;
     var shouldShow;
     var inputOptions;
+    var callbackValue;
 
     // we have to create our form first otherwise
     // its value is undefined when gearing up our options
@@ -427,13 +434,21 @@
      */
     options.message = form;
 
+    var originalConfirmCallback = options.buttons.confirm.callback,
+        originalCancelCallback = options.buttons.cancel.callback;
+
     options.buttons.cancel.callback = options.onEscape = function() {
+      if( $.isFunction( originalCancelCallback ) ) 
+        return originalCancelCallback(null);
+      
+      if( $.isFunction( originalConfirmCallback ) ) 
+        return originalConfirmCallback(null);
+
       return options.callback(null);
     };
 
-    options.buttons.confirm.callback = function() {
+    callbackValue = function(){
       var value;
-
       switch (options.inputType) {
         case "text":
         case "textarea":
@@ -458,6 +473,16 @@
           });
           break;
       }
+      return value;
+    };
+
+
+    
+
+    options.buttons.confirm.callback =  function() {
+        var value = callbackValue();
+          if( $.isFunction( originalConfirmCallback ) ) 
+            return originalConfirmCallback(value);
 
       return options.callback(value);
     };
@@ -469,7 +494,7 @@
       throw new Error("prompt requires a title");
     }
 
-    if (!$.isFunction(options.callback)) {
+    if ( $.isFunction( arguments[1] ) && !$.isFunction(options.callback)) {
       throw new Error("prompt requires a callback");
     }
 
@@ -623,7 +648,7 @@
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
       // can we just build up button elements instead? slower but neater. Then button
       // can just become a template too
-      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
+      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "' "+ (button.title ? " title=" + button.title : "") +">" + button.label + "</button>";
       callbacks[key] = button.callback;
     });
 
