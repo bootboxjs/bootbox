@@ -320,7 +320,7 @@ describe "bootbox.dialog", ->
         @dialog = bootbox.dialog
           message: "test"
           size: "large"
-                                                            
+
       it "adds the large class to the innerDialog", ->
         expect(@dialog.children(":first").hasClass("modal-lg")).to.be.true
 
@@ -329,6 +329,6 @@ describe "bootbox.dialog", ->
         @dialog = bootbox.dialog
           message: "test"
           size: "small"
-                                                            
+
       it "adds the large class to the innerDialog", ->
         expect(@dialog.children(":first").hasClass("modal-sm")).to.be.true
