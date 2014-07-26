@@ -2,7 +2,7 @@
   "name": "bootbox.js",
   "private": true,
   "version": "4.2.0",
-  "description": "Wrappers for JavaScript alert(), confirm() and other flexible dialogs using Twitter's bootstrap framework",
+  "description": "Wrappers for JavaScript alert(), confirm() and other flexible dialogs using the Bootstrap framework",
   "directories": {
     "test": "tests"
   },
