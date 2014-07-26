@@ -1,4 +1,16 @@
-## Latest Release: 4.2.0
+### Latest Release: 4.3.0
+
+* Add `size` option (large, small)
+* Stop propagation on form submit
+* Return bootbox object from `hideAll`
+* Add Portuguese locale
+* Add Czech locale
+* Add Greek locale
+* Add Estonian locale
+* Add Indonesian locale
+* Add Japanese locale
+
+### 4.2.0
 
 * Add Swedish locale
 * Add Latvian locale
