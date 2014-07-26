@@ -1,3 +1,0 @@
-[submodule "deps/bootstrap-3.0.0-wip"]
-	path = deps/bootstrap-3.0.0-wip
-	url = https://github.com/twbs/bootstrap.git
