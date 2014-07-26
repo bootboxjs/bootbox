@@ -354,9 +354,9 @@ var bootbox = window.bootbox || (function(document, $) {
         }
 
         // @see https://github.com/makeusabrew/bootbox/issues/46#issuecomment-8235302
-        // and https://github.com/twitter/bootstrap/issues/4474
+        // and https://github.com/twbs/bootstrap/issues/4474
         // for an explanation of the inline overflow: hidden
-        // @see https://github.com/twitter/bootstrap/issues/4854
+        // @see https://github.com/twbs/bootstrap/issues/4854
         // for an explanation of tabIndex=-1
 
         var parts = ["<div class='bootbox modal' tabindex='-1' style='overflow:hidden;'>"];
@@ -485,7 +485,7 @@ var bootbox = window.bootbox || (function(document, $) {
         // @see https://github.com/makeusabrew/bootbox/issues/64
         // @see https://github.com/makeusabrew/bootbox/issues/60
         // ...caused by...
-        // @see https://github.com/twitter/bootstrap/issues/4781
+        // @see https://github.com/twbs/bootstrap/issues/4781
         div.on("show", function(e) {
             $(document).off("focusin.modal");
         });
