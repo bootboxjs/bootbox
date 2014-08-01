@@ -135,12 +135,10 @@
     });
   }
 
-   function uuid() {
-      var a = function() {
-          return (65536 * (1 + Math.random()) | 0).toString(16).substring(1)
-      };
-      return  a() + a() + a()
-      //return a() + a() + "-" + a() + "-" + a() + "-" + a() + "-" + a() + a() + a()
+  function uid (prefix) {
+    do prefix += ~~(Math.random() * 1000000)
+    while (document.getElementById(prefix))
+    return prefix
   }
 
 
@@ -246,13 +244,6 @@
       }
 
     }
-
-    // if (argn === 2 || typeof args[0] === "string") {
-    //   options[properties[0]] = args[0];
-    //   options[properties[1]] = args[1];
-    // }else{
-    //   options = args[0];
-    // }
 
     return options;
   }
@@ -477,8 +468,6 @@
     };
 
 
-    
-
     options.buttons.confirm.callback =  function() {
         var value = callbackValue();
           if( $.isFunction( originalConfirmCallback ) ) 
@@ -648,7 +637,7 @@
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
       // can we just build up button elements instead? slower but neater. Then button
       // can just become a template too
-      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "' "+ (button.title ? " title=" + button.title : "") +">" + button.label + "</button>";
+      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "' " + (button.title ? " title=" + button.title : "") + ">" + button.label + "</button>";
       callbacks[key] = button.callback;
     });
 
@@ -685,7 +674,7 @@
     }
 
     if (options.title) {
-      var globalId = 'bootbox-dialog-' + uuid();
+      var globalId = uid('bootbox-dialog');
       dialog.attr({
         'aria-labelledby': globalId
       })
@@ -947,7 +936,8 @@
     tr : {
       OK      : "Tamam",
       CANCEL  : "İptal",
-      CONFIRM : "Onayla"    },
+      CONFIRM : "Onayla"
+    },
     zh_CN : {
       OK      : "OK",
       CANCEL  : "取消",
