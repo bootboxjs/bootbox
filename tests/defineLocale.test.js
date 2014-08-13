@@ -47,7 +47,7 @@
             expect(this.labels.cancel).to.equal("Cancel");
         });
         it("shows the default PROMPT translation", function () {
-            expect(this.labels.prompt).to.equal("OK");
+            expect(this.labels.confirm).to.equal("OK");
         });
     });
 });
