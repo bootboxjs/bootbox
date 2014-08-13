@@ -22,7 +22,7 @@
             expect(this.labels.cancel).to.equal("BTN2");
         });
         it("shows the default PROMPT translation", function() {
-            expect(this.labels.prompt).to.equal("BTN3");
+            expect(this.labels.confirm).to.equal("BTN3");
         });
     });
 
