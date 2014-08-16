@@ -1,5 +1,5 @@
 /**
- * bootbox.js [v4.3.0]
+ * bootbox.js [master branch]
  *
  * http://bootboxjs.com/license.txt
  */
@@ -467,7 +467,6 @@
             throw new Error("given options in wrong format");
           }
 
-
           // ... but override that element if this option sits in a group
 
           if (option.group) {
@@ -573,6 +572,14 @@
     var callbacks = {
       onEscape: options.onEscape
     };
+
+    if ($.fn.modal === undefined) {
+      throw new Error(
+        "$.fn.modal is not defined; please double check you have included " +
+        "the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ " +
+        "for more details."
+      );
+    }
 
     each(buttons, function(key, button) {
 

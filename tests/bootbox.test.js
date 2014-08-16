@@ -58,4 +58,29 @@ describe("Bootbox", function() {
       });
     });
   });
+
+  describe("If $.fn.modal is undefined", function() {
+    beforeEach(function() {
+      this.oldModal = window.jQuery.fn.modal;
+      window.jQuery.fn.modal = undefined;
+    });
+
+    afterEach(function() {
+      window.jQuery.fn.modal = this.oldModal;
+    });
+
+    describe("When invoking a dialog", function() {
+      beforeEach(function() {
+        try {
+          bootbox.alert("Hi", function() {});
+        } catch (e) {
+          this.e = e;
+        }
+      });
+
+      it("throws the correct error", function() {
+        expect(this.e.message).to.contain("$.fn.modal is not defined");
+      });
+    });
+  });
 });
