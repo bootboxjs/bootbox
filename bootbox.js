@@ -298,6 +298,20 @@
     return options;
   }
 
+  exports.defineLocale = function (name, values) {
+      if (values) {
+          locales[name] = {
+              OK: values.OK,
+              CANCEL: values.CANCEL,
+              CONFIRM: values.CONFIRM
+          };
+          return locales[name];
+      } else {
+          delete locales[name];
+          return null;
+      }
+  };
+
   exports.alert = function() {
     var options;
 
