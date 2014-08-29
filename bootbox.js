@@ -325,12 +325,17 @@
      * overrides
      */
     options.buttons.ok.callback = options.onEscape = function() {
-      if ($.isFunction(options.callback)) {
+      $('.modal.fade.out').modal('show'); $('.modal.fade.out').removeClass('out'); // Shows the Bootstrap Modal previously hidden
+	  if ($.isFunction(options.callback)) {
         return options.callback();
       }
       return true;
     };
-
+	
+	if( $('.modal').is(':visible') ){ // There is a Bootstrap Modal shown
+		$('.modal.fade.in').removeClass('in').addClass('out');$('.modal.fade.out').modal('hide'); // Hidden the current Bootstrap Modal shown
+	}
+	
     return exports.dialog(options);
   };
 
