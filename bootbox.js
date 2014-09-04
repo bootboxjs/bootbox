@@ -113,6 +113,7 @@
     }
   }
 
+
   function getKeyLength(obj) {
     // @TODO defer to Object.keys(x).length if available?
     var k, t = 0;
@@ -298,20 +299,6 @@
     return options;
   }
 
-  exports.defineLocale = function (name, values) {
-      if (values) {
-          locales[name] = {
-              OK: values.OK,
-              CANCEL: values.CANCEL,
-              CONFIRM: values.CONFIRM
-          };
-          return locales[name];
-      } else {
-          delete locales[name];
-          return null;
-      }
-  };
-
   exports.alert = function() {
     var options;
 
@@ -481,6 +468,7 @@
             throw new Error("given options in wrong format");
           }
 
+
           // ... but override that element if this option sits in a group
 
           if (option.group) {
@@ -584,16 +572,10 @@
     var buttons = options.buttons;
     var buttonStr = "";
     var callbacks = {
-      onEscape: options.onEscape
+      onEscape: options.onEscape,
+      onAjaxLoaded: options.onAjaxLoaded,
+      onLoad: options.onLoad
     };
-
-    if ($.fn.modal === undefined) {
-      throw new Error(
-        "$.fn.modal is not defined; please double check you have included " +
-        "the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ " +
-        "for more details."
-      );
-    }
 
     each(buttons, function(key, button) {
 
@@ -603,6 +585,11 @@
       buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
       callbacks[key] = button.callback;
     });
+    
+    if( options.url ){
+        //in case of ajax request, put the loader animated icon in the modal dialog
+        options.message = "<div style='padding:20px;text-align:center;'><i class='fa fa-spinner fa-spin fa-5x'></i></div>";
+    }
 
     body.find(".bootbox-body").html(options.message);
 
@@ -645,7 +632,20 @@
       dialog.find(".modal-footer").html(buttonStr);
     }
 
-
+    /**
+      * Load Ajax Page then return the response
+      * And Trigger onAjaxLoaded Event
+     */ 
+    if( options.url ){
+        dialog.find(".modal-footer").hide();
+        $.get(options.url, function(response){
+            body.find(".bootbox-body").html(response);
+            if( $.isFunction( options.onAjaxLoaded ) ){
+                options.onAjaxLoaded( dialog );
+            }
+            dialog.find(".modal-footer").show();
+        });
+    }
     /**
      * Bootstrap event listeners; used handle extra
      * setup & teardown required after the underlying
@@ -668,11 +668,14 @@
       // otherwise... leaving in as would be nice
       if (options.backdrop) {
         dialog.next(".modal-backdrop").addClass("bootbox-backdrop");
-      }
+      }      
     });
     */
 
     dialog.on("shown.bs.modal", function() {
+        if( $.isFunction( options.onLoad ) ){
+            options.onLoad( dialog );
+        }
       dialog.find(".btn-primary:first").focus();
     });
 
@@ -724,10 +727,10 @@
       backdrop: options.backdrop,
       keyboard: false,
       show: false
-    });
+    });        
 
     if (options.show) {
-      dialog.modal("show");
+        dialog.modal("show");
     }
 
     // @TODO should we return the raw element here or should
