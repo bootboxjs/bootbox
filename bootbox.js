@@ -82,7 +82,8 @@
     // show the dialog immediately by default
     show: true,
     // dialog container
-    container: "body"
+    container: "body",
+    onShow: function() {}
   };
 
   // our public object; augmented after our private API
@@ -584,7 +585,8 @@
     var buttons = options.buttons;
     var buttonStr = "";
     var callbacks = {
-      onEscape: options.onEscape
+      onEscape: options.onEscape,
+      onShow: options.onShow
     };
 
     if ($.fn.modal === undefined) {
@@ -674,6 +676,9 @@
 
     dialog.on("shown.bs.modal", function() {
       dialog.find(".btn-primary:first").focus();
+      if ( callbacks.onShow ) {
+          callbacks.onShow( dialog );
+      }
     });
 
     /**
