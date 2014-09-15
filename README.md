@@ -3,6 +3,13 @@
 Please see http://bootboxjs.com for full usage instructions, or head over to http://paynedigital.com/bootbox for
 the original writeup about the project.
 
+## This fork (@MarQuisKnox) contains the following improvement(s):
+
+<ol>
+<li>An 'onShow' callback (optional)</li>
+</ol>
+<br>
+
 ## Contact
 
 The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/makeusabrew).
