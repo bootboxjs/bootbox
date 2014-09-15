@@ -8,7 +8,6 @@ the original writeup about the project.
 <ol>
 <li>An 'onShow' callback (optional)</li>
 </ol>
-<br>
 
 ## Contact
 
