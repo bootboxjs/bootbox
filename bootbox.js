@@ -890,6 +890,11 @@
       CANCEL  : "Avbryt",
       CONFIRM : "OK"
     },
+    sq : {
+      OK      : "OK",
+      CANCEL  : "Anulo",
+      CONFIRM : "Prano"
+    },
     tr : {
       OK      : "Tamam",
       CANCEL  : "İptal",
