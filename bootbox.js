@@ -835,6 +835,11 @@
       CANCEL  : "ביטול",
       CONFIRM : "אישור"
     },
+    hu : {
+      OK      : "OK",
+      CANCEL  : "Mégsem",
+      CONFIRM : "Megerősít"
+    },
     id : {
       OK      : "OK",
       CANCEL  : "Batal",
