@@ -52,6 +52,49 @@ describe("bootbox.setDefaults", function() {
     });
   });
 
+  describe("keyboard", function () {
+    var e = $.Event("keyup");
+    e.keyCode = e.which = 27;
+
+    describe("when set to true", function () {
+      beforeEach(function () {
+        bootbox.setDefaults({
+          animate: false,
+          keyboard: true
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+
+        this.dialog.trigger(e);
+      });
+
+      it("removes the modal-open class from body", function () {
+          expect($("body").hasClass("modal-open")).to.be.false;
+      });
+    });
+
+    describe("when set to false", function () {
+      beforeEach(function () {
+        bootbox.setDefaults({
+          animate: false,
+          keyboard: false
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+
+        this.dialog.trigger(e);
+      });
+
+      it("doesn't remove the modal-open class from body", function () {
+        expect($("body").hasClass("modal-open")).to.be.true;
+      });
+    });
+  });
+
   describe("className", function() {
     describe("when passed as a string", function() {
       beforeEach(function() {
