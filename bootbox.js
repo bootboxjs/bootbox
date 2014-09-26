@@ -842,6 +842,11 @@
       CANCEL  : "Mégsem",
       CONFIRM : "Megerősít"
     },
+    hr : {
+      OK      : "OK",
+      CANCEL  : "Odustani",
+      CONFIRM : "Potvrdi"
+    },
     id : {
       OK      : "OK",
       CANCEL  : "Batal",

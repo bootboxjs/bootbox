@@ -311,3 +311,16 @@ describe "bootbox locales", ->
 
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "Megerősít"
+
+  describe "Croatian", ->
+    beforeEach ->
+      @setLocale "hr"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "OK"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Odustani"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "Potvrdi"
