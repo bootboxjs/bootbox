@@ -324,3 +324,15 @@ describe "bootbox locales", ->
 
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "Potvrdi"
+  describe "Bulgarian", ->
+    beforeEach ->
+      @setLocale "bg_BG"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "Ок"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Отказ"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "Потвърждавам"
