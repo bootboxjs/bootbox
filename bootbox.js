@@ -907,6 +907,11 @@
       CANCEL  : "Avbryt",
       CONFIRM : "OK"
     },
+    th : {
+      OK      : "ตกลง",
+      CANCEL  : "ยกเลิก",
+      CONFIRM : "ยืนยัน"
+    },
     tr : {
       OK      : "Tamam",
       CANCEL  : "İptal",
