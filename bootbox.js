@@ -43,7 +43,7 @@
     footer:
       "<div class='modal-footer'></div>",
     closeButton:
-      "<button type='button' class='bootbox-close-button close' data-dismiss='modal' aria-hidden='true'>&times;</button>",
+      ' <button type="button" class="bootbox-close-button close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>',
     form:
       "<form class='bootbox-form'></form>",
     inputs: {
@@ -81,6 +81,12 @@
     keyboard: false,
     // whether or not to include a close button
     closeButton: true,
+
+    // set alert title
+    showAlertTitle: true,
+
+    // default alert title
+    alertTitle: 'Message',
     // show the dialog immediately by default
     show: true,
     // dialog container
@@ -130,6 +136,13 @@
       iterator(key, value, index++);
     });
   }
+
+  function uid (prefix) {
+    do prefix += ~~(Math.random() * 1000000)
+    while (document.getElementById(prefix))
+    return prefix
+  }
+
 
   function sanitize(options) {
     var buttons;
@@ -205,15 +218,33 @@
     var argn = args.length;
     var options = {};
 
+
     if (argn < 1 || argn > 2) {
       throw new Error("Invalid argument length");
     }
 
-    if (argn === 2 || typeof args[0] === "string") {
-      options[properties[0]] = args[0];
-      options[properties[1]] = args[1];
-    } else {
-      options = args[0];
+    if(argn === 2){
+      if( typeof args[1] === "function" ){
+           options[properties[1]] = args[1];
+      }
+      if( $.type(args[1]) == 'object' ){
+        options = $.extend(true,{},options,{buttons:args[1]}); // buttons
+      }
+
+      if( typeof args[0] === "string" ){
+        options[properties[0]] = args[0];
+      }
+      if( $.type(args[0]) == 'object' ){
+        options = $.extend(true,{},options,args[0]); // message,  title
+      }
+    }else if(argn === 1){
+      if(typeof args[0] === "string"){
+        options[properties[0]] = args[0];
+      }
+      if( $.type(args[0]) == 'object' ){
+        options = args[0];
+      }
+
     }
 
     return options;
@@ -233,8 +264,8 @@
       // args could be an object or array; if it's an array properties will
       // map it to a proper options object
       mapArguments(
-        args,
-        properties
+        args, 
+        properties // ['message','callback']
       )
     );
   }
@@ -249,6 +280,7 @@
       className: "bootbox-" + className,
       buttons: createLabels.apply(null, labels)
     };
+    var args = [].slice.call(args,0);
 
     // ensure the buttons properties generated, *after* merging
     // with user args are still valid against the supplied labels
@@ -316,7 +348,6 @@
 
   exports.alert = function() {
     var options;
-
     options = mergeDialogOptions("alert", ["ok"], ["message", "callback"], arguments);
 
     if (options.callback && !$.isFunction(options.callback)) {
@@ -326,12 +357,14 @@
     /**
      * overrides
      */
-    options.buttons.ok.callback = options.onEscape = function() {
-      if ($.isFunction(options.callback)) {
-        return options.callback();
-      }
-      return true;
-    };
+    options.buttons.ok.callback = options.onEscape = $.isFunction(options.buttons.ok.callback) 
+      ? options.buttons.ok.callback 
+      : function() {
+        if ($.isFunction(options.callback)) {
+          return options.callback();
+        }
+        return true;
+      };
 
     return exports.dialog(options);
   };
@@ -339,21 +372,26 @@
   exports.confirm = function() {
     var options;
 
+
     options = mergeDialogOptions("confirm", ["cancel", "confirm"], ["message", "callback"], arguments);
 
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
-    options.buttons.cancel.callback = options.onEscape = function() {
-      return options.callback(false);
-    };
+    options.buttons.cancel.callback = options.onEscape = $.isFunction( options.buttons.cancel.callback )
+      ? options.buttons.cancel.callback 
+      : function() {
+        return options.callback(false);
+      };
 
-    options.buttons.confirm.callback = function() {
-      return options.callback(true);
-    };
+    options.buttons.confirm.callback =  $.isFunction( options.buttons.confirm.callback ) 
+      ? options.buttons.confirm.callback 
+      : function() {
+        return options.callback(true);
+      };
 
     // confirm specific validation
-    if (!$.isFunction(options.callback)) {
+    if ($.isFunction( arguments[1] ) && !$.isFunction(options.callback)) {
       throw new Error("confirm requires a callback");
     }
 
@@ -368,6 +406,7 @@
     var input;
     var shouldShow;
     var inputOptions;
+    var callbackValue;
 
     // we have to create our form first otherwise
     // its value is undefined when gearing up our options
@@ -402,13 +441,21 @@
      */
     options.message = form;
 
+    var originalConfirmCallback = options.buttons.confirm.callback,
+        originalCancelCallback = options.buttons.cancel.callback;
+
     options.buttons.cancel.callback = options.onEscape = function() {
+      if( $.isFunction( originalCancelCallback ) ) 
+        return originalCancelCallback(null);
+      
+      if( $.isFunction( originalConfirmCallback ) ) 
+        return originalConfirmCallback(null);
+
       return options.callback(null);
     };
 
-    options.buttons.confirm.callback = function() {
+    callbackValue = function(){
       var value;
-
       switch (options.inputType) {
         case "text":
         case "textarea":
@@ -433,6 +480,14 @@
           });
           break;
       }
+      return value;
+    };
+
+
+    options.buttons.confirm.callback =  function() {
+        var value = callbackValue();
+          if( $.isFunction( originalConfirmCallback ) ) 
+            return originalConfirmCallback(value);
 
       return options.callback(value);
     };
@@ -444,7 +499,7 @@
       throw new Error("prompt requires a title");
     }
 
-    if (!$.isFunction(options.callback)) {
+    if ( $.isFunction( arguments[1] ) && !$.isFunction(options.callback)) {
       throw new Error("prompt requires a callback");
     }
 
@@ -579,6 +634,9 @@
 
   exports.dialog = function(options) {
     options = sanitize(options);
+    if(!options.title && options.showAlertTitle && options.alertTitle && options.className && ~options.className.indexOf('alert')){
+      options.title = options.alertTitle
+    }
 
     var dialog = $(templates.dialog);
     var innerDialog = dialog.find(".modal-dialog");
@@ -602,7 +660,7 @@
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
       // can we just build up button elements instead? slower but neater. Then button
       // can just become a template too
-      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
+      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "' " + (button.title ? " title=" + button.title : "") + ">" + button.label + "</button>";
       callbacks[key] = button.callback;
     });
 
@@ -639,7 +697,13 @@
     }
 
     if (options.title) {
-      dialog.find(".modal-title").html(options.title);
+      var globalId = uid('bootbox-dialog');
+      dialog.attr({
+        'aria-labelledby': globalId
+      })
+      dialog.find(".modal-title").html(options.title).attr({
+        id: globalId
+      });
     }
 
     if (buttonStr.length) {
