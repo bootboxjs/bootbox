@@ -107,7 +107,7 @@
 
     // so, if the callback can be invoked and it *explicitly returns false*
     // then we'll set a flag to keep the dialog active...
-    var preserveDialog = $.isFunction(callback) && callback(e) === false;
+        var preserveDialog = $.isFunction(callback) && callback.apply(dialog,[e]) === false;
 
     // ... otherwise we'll bin it
     if (!preserveDialog) {
