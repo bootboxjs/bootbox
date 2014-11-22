@@ -787,11 +787,6 @@
       CANCEL  : "Отказ",
       CONFIRM : "Потвърждавам"
     },
-    br : {
-      OK      : "OK",
-      CANCEL  : "Cancelar",
-      CONFIRM : "Sim"
-    },
     cs : {
       OK      : "OK",
       CANCEL  : "Zrušit",
@@ -897,7 +892,12 @@
       CANCEL  : "Anuluj",
       CONFIRM : "Potwierdź"
     },
-    pt : {
+	pt_BR : {
+      OK      : "OK",
+      CANCEL  : "Cancelar",
+      CONFIRM : "Confirmar"
+    },
+    pt_PT : {
       OK      : "OK",
       CANCEL  : "Cancelar",
       CONFIRM : "Confirmar"
