@@ -148,6 +148,13 @@
     // make sure any supplied options take precedence over defaults
     options = $.extend({}, defaults, options);
 
+    if(options.zindexScaleLevel){
+      if(options.zindexScaleLevel < 0) options.zindexScaleLevel = null;
+      if(options.zindexScaleLevel > 10) options.zindexScaleLevel = 10;
+    }
+
+
+
     if (!options.buttons) {
       options.buttons = {};
     }
