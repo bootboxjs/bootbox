@@ -936,15 +936,15 @@
       CANCEL  : "Avbryt",
       CONFIRM : "OK"
     },
-    tr : {
-      OK      : "Tamam",
-      CANCEL  : "İptal",
-      CONFIRM : "Onayla"
-    },
     th : {
       OK      : "ตกลง",
       CANCEL  : "ยกเลิก",
       CONFIRM : "ยืนยัน"
+    },
+    tr : {
+      OK      : "Tamam",
+      CANCEL  : "İptal",
+      CONFIRM : "Onayla"
     },
     zh_CN : {
       OK      : "OK",
