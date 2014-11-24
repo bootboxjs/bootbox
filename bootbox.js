@@ -84,7 +84,9 @@
     // show the dialog immediately by default
     show: true,
     // dialog container
-    container: "body"
+    container: "body",
+    // z-index scale level
+    zindexScaleLevel : null,
   };
 
   // our public object; augmented after our private API
@@ -246,7 +248,7 @@
   function mergeDialogOptions(className, labels, properties, args) {
     //  build up a base set of dialog properties
     var baseOptions = {
-      className: "bootbox-" + className,
+      className: "bootbox-" + className ,
       buttons: createLabels.apply(null, labels)
     };
 
@@ -616,6 +618,11 @@
       dialog.addClass(options.className);
     }
 
+    if (options.zindexScaleLevel){
+      dialog.addClass("zIndex-"+options.zindexScaleLevel);
+
+    }
+
     if (options.size === "large") {
       innerDialog.addClass("modal-lg");
     }
@@ -722,11 +729,14 @@
 
     $(options.container).append(dialog);
 
-    dialog.modal({
+    var dialogs=dialog.modal({
       backdrop: options.backdrop,
       keyboard: options.keyboard || false,
       show: false
     });
+
+    if(options.zindexScaleLevel)
+    	dialogs.find('.modal-backdrop').addClass("zIndex-"+options.zindexScaleLevel);
 
     if (options.show) {
       dialog.modal("show");
@@ -751,7 +761,21 @@
       }
     };
     */
-
+    dialog.on('hidden.bs.modal', function (e) {
+      var check=false;
+      $(".bootbox").each(function(i,e){
+        
+        if($(e).data('bs.modal'))
+          if($(e).data('bs.modal').isShown){
+            check=true;
+            return false;
+          }
+      });
+      console.log(check);
+      if(check)
+        $('body').addClass('modal-open');
+    })
+    
     return dialog;
 
   };
@@ -782,11 +806,6 @@
    * unlikely to be required. If this gets too large it can be split out into separate JS files.
    */
   var locales = {
-    bg_BG : {
-      OK      : "Ок",
-      CANCEL  : "Отказ",
-      CONFIRM : "Потвърждавам"
-    },
     br : {
       OK      : "OK",
       CANCEL  : "Cancelar",
@@ -826,11 +845,6 @@
       OK      : "OK",
       CANCEL  : "Katkesta",
       CONFIRM : "OK"
-    },
-    fa : {
-      OK      : "قبول",
-      CANCEL  : "لغو",
-      CONFIRM : "تایید"
     },
     fi : {
       OK      : "OK",
@@ -911,11 +925,6 @@
       OK      : "OK",
       CANCEL  : "Avbryt",
       CONFIRM : "OK"
-    },
-    th : {
-      OK      : "ตกลง",
-      CANCEL  : "ยกเลิก",
-      CONFIRM : "ยืนยัน"
     },
     tr : {
       OK      : "Tamam",
