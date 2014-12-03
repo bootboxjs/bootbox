@@ -49,20 +49,17 @@ please feel free to add feedback and requests.
 
 There is no new major (e.g. 5.x) release on the roadmap at present.
 
-## Latest Release: 4.2.0
+## Latest Release: 4.3.0
 
-* Add Swedish locale
-* Add Latvian locale
-* Add Turkish locale
-* Add Hebrew locale
-* Add password input type
-* Add textarea input type
-* Add date input type
-* Add time input type
-* Add number input type
-* Support DOM selectors for container argument
-* UMD support
-* Better support on mobile devices
+* Add `size` option (large, small)
+* Stop propagation on form submit
+* Return bootbox object from `hideAll`
+* Add Portuguese locale
+* Add Czech locale
+* Add Greek locale
+* Add Estonian locale
+* Add Indonesian locale
+* Add Japanese locale
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 
