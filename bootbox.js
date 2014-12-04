@@ -907,6 +907,11 @@
       CANCEL  : "Отмена",
       CONFIRM : "Применить"
     },
+    sq : {
+      OK : "OK",
+      CANCEL : "Anulo",
+      CONFIRM : "Prano"
+    },
     sv : {
       OK      : "OK",
       CANCEL  : "Avbryt",
