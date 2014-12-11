@@ -71,8 +71,8 @@
   var defaults = {
     // default language
     locale: "en",
-    // show backdrop or not
-    backdrop: true,
+    // show backdrop, no backdrop or static
+    backdrop: "static",
     // animate the modal in/out
     animate: true,
     // additional class string applied to the top level dialog
@@ -149,11 +149,6 @@
     if (!options.buttons) {
       options.buttons = {};
     }
-
-    // we only support Bootstrap's "static" and false backdrop args
-    // supporting true would mean you could dismiss the dialog without
-    // explicitly interacting with it
-    options.backdrop = options.backdrop ? "static" : false;
 
     buttons = options.buttons;
 
