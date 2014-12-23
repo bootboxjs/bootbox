@@ -782,6 +782,11 @@
    * unlikely to be required. If this gets too large it can be split out into separate JS files.
    */
   var locales = {
+    ar : {
+      OK      : "حسنا",
+      CANCEL  : "إلغاء",
+      CONFIRM : "موافق"
+    },
     bg_BG : {
       OK      : "Ок",
       CANCEL  : "Отказ",
