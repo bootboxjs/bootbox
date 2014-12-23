@@ -84,7 +84,9 @@
     // show the dialog immediately by default
     show: true,
     // dialog container
-    container: "body"
+    container: "body",
+    // class for header
+    classHeader: null
   };
 
   // our public object; augmented after our private API
@@ -626,6 +628,14 @@
 
     if (options.title) {
       body.before(templates.header);
+    }
+
+    if (options.classHeader){
+      if (options.title) {
+        dialog.find(".modal-header").addClass(options.classHeader);
+      } else {
+        dialog.find(".modal-body").addClass(options.classHeader);
+      }
     }
 
     if (options.closeButton) {
