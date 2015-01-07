@@ -1,0 +1,8 @@
+*.swo
+*.swp
+node_modules
+npm-debug.log
+.idea
+tests/reports
+tests/coverage
+build/size.csv
