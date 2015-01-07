@@ -300,18 +300,21 @@
     return options;
   }
 
+  /**
+   * @TODO: split into addLocale / removeLocale
+   */
   exports.defineLocale = function (name, values) {
-      if (values) {
-          locales[name] = {
-              OK: values.OK,
-              CANCEL: values.CANCEL,
-              CONFIRM: values.CONFIRM
-          };
-          return locales[name];
-      } else {
-          delete locales[name];
-          return null;
-      }
+    if (values) {
+      locales[name] = {
+        OK: values.OK,
+        CANCEL: values.CANCEL,
+        CONFIRM: values.CONFIRM
+      };
+      return locales[name];
+    } else {
+      delete locales[name];
+      return null;
+    }
   };
 
   exports.alert = function() {
