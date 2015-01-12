@@ -4,6 +4,14 @@
  * http://bootboxjs.com/license.txt
  */
 
+
+// @see https://github.com/makeusabrew/bootbox/issues/298
+
+if (typeof $().emulateTransitionEnd !== "function") {
+  throw new Error("Bootbox's JavaScript requires Bootstrap.js");
+}
+
+
 // @see https://github.com/makeusabrew/bootbox/issues/180
 // @see https://github.com/makeusabrew/bootbox/issues/186
 (function (root, factory) {
