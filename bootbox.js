@@ -559,6 +559,8 @@
       // @TODO can we actually click *the* button object instead?
       // e.g. buttons.confirm.click() or similar
       dialog.find(".btn-primary").click();
+      // For some reason, e.preventDefault() isn't enough, at least in Chrome
+      return false;
     });
 
     dialog = exports.dialog(options);
