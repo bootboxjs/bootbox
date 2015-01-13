@@ -662,18 +662,21 @@
       if (e.target === this) {
         dialog.remove();
       }
+      
+      if (!dialog.isOpener) {
+          $('body').addClass('modal-open');
+      }
     });
 
-    /*
     dialog.on("show.bs.modal", function() {
       // sadly this doesn't work; show is called *just* before
       // the backdrop is added so we'd need a setTimeout hack or
       // otherwise... leaving in as would be nice
-      if (options.backdrop) {
-        dialog.next(".modal-backdrop").addClass("bootbox-backdrop");
-      }
+      //if (options.backdrop) {
+      //  dialog.next(".modal-backdrop").addClass("bootbox-backdrop");
+      //}
+      dialog.isOpener = !$('body').hasClass('modal-open');
     });
-    */
 
     dialog.on("shown.bs.modal", function() {
       dialog.find(".btn-primary:first").focus();
