@@ -664,9 +664,7 @@
 
       dialog.find(".modal-header").on('dragend', function(event){
         innerDialog.css({
-          margin:0
-        });
-        innerDialog.css({
+          margin:0,
           top:event.originalEvent.pageY - dialogPosition.y,
           left:event.originalEvent.pageX - dialogPosition.x
         });
