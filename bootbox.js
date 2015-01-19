@@ -81,6 +81,8 @@
     closeButton: true,
     // show the dialog immediately by default
     show: true,
+    //dialog should be draggable or not
+    draggable: false,
     // dialog container
     container: "body"
   };
@@ -589,7 +591,10 @@
     var callbacks = {
       onEscape: options.onEscape
     };
-
+    var dialogPosition = {
+      x:0,
+      y:0
+    };
     if ($.fn.modal === undefined) {
       throw new Error(
         "$.fn.modal is not defined; please double check you have included " +
@@ -648,6 +653,26 @@
       dialog.find(".modal-footer").html(buttonStr);
     }
 
+    if(options.draggable) {
+
+      dialog.find(".modal-header").attr('draggable', 'true');
+      dialog.find(".modal-header").on('dragstart', function(event){
+        dialogPosition.x = event.originalEvent.pageX - innerDialog.offset().left;
+        dialogPosition.y = event.originalEvent.pageY - innerDialog.offset().top;
+        dialog.css('opacity','0.2');
+      });
+
+      dialog.find(".modal-header").on('dragend', function(event){
+        innerDialog.css({
+          margin:0
+        });
+        innerDialog.css({
+          top:event.originalEvent.pageY - dialogPosition.y,
+          left:event.originalEvent.pageX - dialogPosition.x
+        });
+        dialog.css('opacity','1');
+      });
+    }
 
     /**
      * Bootstrap event listeners; used handle extra
