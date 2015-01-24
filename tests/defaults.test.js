@@ -5,7 +5,39 @@ describe("bootbox.setDefaults", function() {
       return this.dialog.find(selector);
     };
   });
+  describe("draggable",function() {
+    describe("when set to false", function() {
+      beforeEach(function() {
+        bootbox.setDefault({
+          draggable: false
+        });
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
 
+        it("does not add draggable html5 attribute", function() {
+          expect(this.dialog.find(".modal-header").attr('draggable')).to.be.false;
+        });
+
+      });
+    });
+
+    describe("when set to true", function() {
+      beforeEach(function() {
+        bootbox.setDefault({
+          draggable: true
+        });
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+
+        it("does add draggable html5 attribute", function() {
+          expect(this.dialog.find(".modal-header").attr('draggable')).to.be.true;
+        });
+
+      });
+    });
+  });
   describe("animate", function() {
     describe("when set to false", function() {
       beforeEach(function() {
