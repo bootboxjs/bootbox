@@ -238,6 +238,11 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
+        // @TODO: fix this; object is coming back un-jquerified
+        it.skip("should pass the dialog as `this`", function() {
+          expect(this.callback.thisValues[0]).to.equal(this.dialog);
+        });
+
         it("should hide the modal", function() {
           expect(this.hidden).to.have.been.calledWithExactly("hide");
         });
