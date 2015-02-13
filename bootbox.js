@@ -680,9 +680,9 @@
      * respective triggers
      */
 
-    if (options.backdrop === true) {
-      // a strict value of true according to Bootstrap's docs
-      // should be one the user can dismiss by clicking on
+    if (options.backdrop !== "static") {
+      // A boolean true/false according to the Bootstrap docs
+      // should show a dialog the user can dismiss by clicking on
       // the background.
       // We always only ever pass static/false to the actual
       // $.modal function because with `true` we can't trap
