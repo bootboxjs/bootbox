@@ -686,7 +686,7 @@
       // the background.
       // We always only ever pass static/false to the actual
       // $.modal function because with `true` we can't trap
-      // this event.
+      // this event (the .modal-backdrop swallows it)
       // However, we still want to sort of respect true
       // and invoke the escape mechanism instead
       dialog.on("click.dismiss.bs.modal", function(e) {
