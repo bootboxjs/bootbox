@@ -71,8 +71,8 @@
   var defaults = {
     // default language
     locale: "en",
-    // show backdrop or not
-    backdrop: true,
+    // show backdrop or not. Default to static so user has to interact with dialog
+    backdrop: "static",
     // animate the modal in/out
     animate: true,
     // additional class string applied to the top level dialog
@@ -147,11 +147,6 @@
     if (!options.buttons) {
       options.buttons = {};
     }
-
-    // we only support Bootstrap's "static" and false backdrop args
-    // supporting true would mean you could dismiss the dialog without
-    // explicitly interacting with it
-    options.backdrop = options.backdrop ? "static" : false;
 
     buttons = options.buttons;
 
@@ -545,7 +540,7 @@
       input.attr("placeholder", options.placeholder);
     }
 
-    if(options.pattern){
+    if (options.pattern) {
       input.attr("pattern", options.pattern);
     }
 
@@ -568,6 +563,8 @@
 
     // ...and replace it with one focusing our input, if possible
     dialog.on("shown.bs.modal", function() {
+      // need the closure here since input isn't
+      // an object otherwise
       input.focus();
     });
 
@@ -619,9 +616,7 @@
 
     if (options.size === "large") {
       innerDialog.addClass("modal-lg");
-    }
-
-    if (options.size === "small") {
+    } else if (options.size === "small") {
       innerDialog.addClass("modal-sm");
     }
 
@@ -685,6 +680,23 @@
      * respective triggers
      */
 
+    if (options.backdrop === true) {
+      // a strict value of true according to Bootstrap's docs
+      // should be one the user can dismiss by clicking on
+      // the background.
+      // We always only ever pass static/false to the actual
+      // $.modal function because with `true` we can't trap
+      // this event.
+      // However, we still want to sort of respect true
+      // and invoke the escape mechanism instead
+      dialog.on("click.dismiss.bs.modal", function(e) {
+        if (e.target !== e.currentTarget) {
+          return;
+        }
+        dialog.trigger("escape.close.bb");
+      });
+    }
+
     dialog.on("escape.close.bb", function(e) {
       if (callbacks.onEscape) {
         processCallback(e, dialog, callbacks.onEscape);
@@ -724,7 +736,7 @@
     $(options.container).append(dialog);
 
     dialog.modal({
-      backdrop: options.backdrop,
+      backdrop: options.backdrop ? "static": false,
       keyboard: false,
       show: false
     });
