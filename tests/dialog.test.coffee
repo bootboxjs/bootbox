@@ -332,3 +332,20 @@ describe "bootbox.dialog", ->
 
       it "adds the large class to the innerDialog", ->
         expect(@dialog.children(":first").hasClass("modal-sm")).to.be.true
+
+  describe "when creating a dialog with header class", ->
+        beforeEach ->
+          @dialog = bootbox.dialog
+            message: "Custom header class"
+            classHeader: "alert-info"
+
+        describe "without title argument", ->
+          it "adds the custom class to the modal-body", ->
+            expect(@exists(".modal-body.alert-info")).to.be.ok
+
+        describe "with title argument", ->
+          beforeEach ->
+            @create
+              title: "Info"
+            it "adds the custom class to the modal-header", ->
+              expect(@exists(".modal-header.alert-info")).to.be.ok
