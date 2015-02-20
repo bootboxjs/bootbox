@@ -544,6 +544,10 @@
       input.attr("pattern", options.pattern);
     }
 
+    if (options.maxlength) {
+      input.attr("maxlength", options.maxlength);
+    }
+
     // now place it in our form
     form.append(input);
 
