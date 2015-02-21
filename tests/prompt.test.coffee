@@ -221,6 +221,14 @@ describe "bootbox.prompt", ->
         it "has correct pattern value", ->
           expect(@find("input[type='text']").prop("pattern")).to.equal "\d{1,2}/\d{1,2}/\d{4}"
 
+      describe "with maxlength", ->
+        beforeEach ->
+          @options.maxlength = 5
+          @create()
+
+        it "has correct maxlength value", ->
+          expect(@find("input[type='text']").prop("maxlength")).to.equal 5
+
     describe "setting inputType textarea", ->
       beforeEach ->
         @options.inputType = "textarea"
