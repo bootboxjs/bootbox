@@ -77,9 +77,9 @@ describe "bootbox locales", ->
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "Aceptar"
 
-  describe "Portuguese", ->
+  describe "Brazilian Portuguese", ->
     beforeEach ->
-      @setLocale "br"
+      @setLocale "pt_BR"
 
     it "shows the correct OK translation", ->
       expect(@labels.ok).to.equal "OK"
@@ -88,7 +88,20 @@ describe "bootbox locales", ->
       expect(@labels.cancel).to.equal "Cancelar"
 
     it "shows the correct CONFIRM translation", ->
-      expect(@labels.confirm).to.equal "Sim"
+      expect(@labels.confirm).to.equal "Confirmar"
+
+  describe "Portuguese", ->
+    beforeEach ->
+      @setLocale "pt_PT"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "OK"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "Cancelar"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "Confirmar"
 
   describe "Dutch", ->
     beforeEach ->
