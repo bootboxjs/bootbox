@@ -892,7 +892,7 @@
       CANCEL  : "Anuluj",
       CONFIRM : "Potwierdź"
     },
-	pt_BR : {
+    pt_BR : {
       OK      : "OK",
       CANCEL  : "Cancelar",
       CONFIRM : "Confirmar"
