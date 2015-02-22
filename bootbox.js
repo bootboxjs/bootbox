@@ -685,10 +685,11 @@
       dialog.on("click.dismiss.bs.modal", function(e) {
         // @NOTE: the target varies in >= 3.3.x releases since the modal backdrop
         // moved *inside* the outer dialog rather than *alongside* it
-        // As such backdrop: true only currently works with 3.3.x Bootstrap releases
-        var target = options.backdrop ? dialog.children(".modal-backdrop").get(0) : e.currentTarget;
+        if (dialog.children(".modal-backdrop").length) {
+          e.currentTarget = dialog.children(".modal-backdrop").get(0);
+        }
 
-        if (e.target !== target) {
+        if (e.target !== e.currentTarget) {
           return;
         }
 
