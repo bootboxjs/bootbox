@@ -344,7 +344,7 @@ describe "bootbox.prompt", ->
           @options.inputOptions = 'foo'
 
         it "throws an error", ->
-          expect(@create).to.throw /given options in wrong format/
+          expect(@create).to.throw "Please pass an array of input options"
 
       describe "with empty options", ->
         beforeEach ->

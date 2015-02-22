@@ -449,6 +449,10 @@
         var groups = {};
         inputOptions = options.inputOptions || [];
 
+        if (!$.isArray(inputOptions)) {
+          throw new Error("Please pass an array of input options");
+        }
+
         if (!inputOptions.length) {
           throw new Error("prompt with select requires options");
         }
