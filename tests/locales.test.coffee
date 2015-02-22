@@ -350,7 +350,7 @@ describe "bootbox locales", ->
 
     it "shows the correct CONFIRM translation", ->
       expect(@labels.confirm).to.equal "ยืนยัน"
-      
+
   describe "Persian", ->
     beforeEach ->
       @setLocale "fa"
@@ -375,4 +375,4 @@ describe "bootbox locales", ->
       expect(@labels.cancel).to.equal "Anulo"
 
     it "shows the correct CONFIRM translation", ->
-      expect(@labels.confirm).to.equal "Prano" 
+      expect(@labels.confirm).to.equal "Prano"
