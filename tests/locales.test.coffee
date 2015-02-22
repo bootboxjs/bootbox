@@ -2,7 +2,7 @@ describe "bootbox locales", ->
   beforeEach ->
 
     @setLocale = (locale) ->
-      bootbox.setDefaults locale: locale
+      bootbox.setLocale locale
 
       d1 = bootbox.alert "foo"
       d2 = bootbox.confirm "foo", -> true
