@@ -238,8 +238,7 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
-        // @TODO: fix this; object is coming back un-jquerified
-        it.skip("should pass the dialog as `this`", function() {
+        it("should pass the dialog as `this`", function() {
           expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
 
@@ -257,6 +256,10 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
+        it("should pass the dialog as `this`", function() {
+          expect(this.callback.thisValues[0]).to.equal(this.dialog);
+        });
+
         it("should hide the modal", function() {
           expect(this.hidden).to.have.been.calledWithExactly("hide");
         });
@@ -269,6 +272,10 @@ describe("bootbox.alert", function() {
 
         it("should invoke the callback", function() {
           expect(this.callback).to.have.been.called;
+        });
+
+        it("should pass the dialog as `this`", function() {
+          expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
 
         it("should hide the modal", function() {
@@ -299,6 +306,10 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
+        it("should pass the dialog as `this`", function() {
+          expect(this.callback.thisValues[0]).to.equal(this.dialog);
+        });
+
         it("should not hide the modal", function() {
           expect(this.hidden).not.to.have.been.called;
         });
@@ -313,6 +324,10 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
+        it("should pass the dialog as `this`", function() {
+          expect(this.callback.thisValues[0]).to.equal(this.dialog);
+        });
+
         it("should not hide the modal", function() {
           expect(this.hidden).not.to.have.been.called;
         });
@@ -325,6 +340,10 @@ describe("bootbox.alert", function() {
 
         it("should invoke the callback", function() {
           expect(this.callback).to.have.been.called;
+        });
+
+        it("should pass the dialog as `this`", function() {
+          expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
 
         it("should not hide the modal", function() {

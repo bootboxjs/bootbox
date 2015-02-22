@@ -143,6 +143,9 @@ describe "bootbox.dialog", ->
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
 
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
+
         it "should hide the modal", ->
           expect(@hidden).to.have.been.calledWithExactly "hide"
 
@@ -213,6 +216,9 @@ describe "bootbox.dialog", ->
 
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
+
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
 
       describe "when its value is not an object or function", ->
         beforeEach ->
@@ -292,6 +298,9 @@ describe "bootbox.dialog", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "should hide the modal", ->
             expect(@hidden).to.have.been.calledWithExactly "hide"
 
@@ -310,6 +319,9 @@ describe "bootbox.dialog", ->
 
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
+
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
 
         it "should not hide the modal", ->
           expect(@hidden).not.to.have.been.called

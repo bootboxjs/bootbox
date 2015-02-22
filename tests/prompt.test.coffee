@@ -237,7 +237,7 @@ describe "bootbox.prompt", ->
         beforeEach ->
           @create()
 
-        it "shows text input ", ->
+        it "shows text input", ->
           expect(@exists("textarea")).to.be.ok
 
         it "has proper class", ->
@@ -268,7 +268,7 @@ describe "bootbox.prompt", ->
         beforeEach ->
           @create()
 
-        it "shows email input ", ->
+        it "shows email input", ->
           expect(@exists("input[type='email']")).to.be.ok
 
         it "has proper class", ->
@@ -307,7 +307,7 @@ describe "bootbox.prompt", ->
         beforeEach ->
           @create()
 
-        it "shows password input ", ->
+        it "shows password input", ->
           expect(@exists("input[type='password']")).to.be.ok
 
         it "has proper class", ->
@@ -520,7 +520,7 @@ describe "bootbox.prompt", ->
         beforeEach ->
           @create()
 
-        it "shows time input ", ->
+        it "shows time input", ->
           expect(@exists("input[type='time']")).to.be.ok
 
         it "has proper class", ->
@@ -602,6 +602,9 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly ""
 
@@ -614,6 +617,9 @@ describe "bootbox.prompt", ->
 
           it "invokes the callback with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly ""
+
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
 
           it "should hide the modal", ->
             expect(@hidden).to.have.been.calledWithExactly "hide"
@@ -629,6 +635,9 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly "Test input"
 
@@ -642,6 +651,9 @@ describe "bootbox.prompt", ->
           it "invokes the callback with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly "Test input"
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "should hide the modal", ->
             expect(@hidden).to.have.been.calledWithExactly "hide"
 
@@ -651,6 +663,9 @@ describe "bootbox.prompt", ->
 
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
+
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
 
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly null
@@ -665,6 +680,9 @@ describe "bootbox.prompt", ->
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
 
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
+
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly null
 
@@ -677,6 +695,9 @@ describe "bootbox.prompt", ->
 
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
+
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
 
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly null
@@ -704,6 +725,9 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly ""
 
@@ -721,6 +745,9 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly "Test input"
 
@@ -733,6 +760,9 @@ describe "bootbox.prompt", ->
 
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
+
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
 
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly null
@@ -747,6 +777,9 @@ describe "bootbox.prompt", ->
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
 
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
+
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly null
 
@@ -759,6 +792,9 @@ describe "bootbox.prompt", ->
 
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
+
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
 
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly null
@@ -789,6 +825,9 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly "Bob"
 
@@ -798,6 +837,9 @@ describe "bootbox.prompt", ->
 
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
+
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
 
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly null
@@ -813,6 +855,9 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly "Alice"
 
@@ -822,6 +867,9 @@ describe "bootbox.prompt", ->
 
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
+
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
 
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly null
@@ -867,6 +915,9 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly "#"
 
@@ -876,6 +927,9 @@ describe "bootbox.prompt", ->
 
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
+
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
 
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly null
@@ -909,6 +963,9 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly "1"
 
@@ -918,6 +975,9 @@ describe "bootbox.prompt", ->
 
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
+
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
 
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly null
@@ -952,6 +1012,9 @@ describe "bootbox.prompt", ->
           it "should invoke the callback", ->
             expect(@callback).to.have.been.called
 
+          it "should pass the dialog as `this`", ->
+            expect(@callback.thisValues[0]).to.equal @dialog
+
           it "with the correct value", ->
             expect(@callback).to.have.been.calledWithExactly ""
 
@@ -978,6 +1041,9 @@ describe "bootbox.prompt", ->
 
             it "should invoke the callback", ->
               expect(@callback).to.have.been.called
+
+            it "should pass the dialog as `this`", ->
+              expect(@callback.thisValues[0]).to.equal @dialog
 
             it "with the correct value", ->
               expect(@callback).to.have.been.calledWithExactly "john@smith.com"

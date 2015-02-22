@@ -307,7 +307,7 @@
      */
     options.buttons.ok.callback = options.onEscape = function() {
       if ($.isFunction(options.callback)) {
-        return options.callback();
+        return options.callback.call(this);
       }
       return true;
     };
@@ -324,11 +324,11 @@
      * overrides; undo anything the user tried to set they shouldn't have
      */
     options.buttons.cancel.callback = options.onEscape = function() {
-      return options.callback(false);
+      return options.callback.call(this, false);
     };
 
     options.buttons.confirm.callback = function() {
-      return options.callback(true);
+      return options.callback.call(this, true);
     };
 
     // confirm specific validation
@@ -382,7 +382,7 @@
     options.message = form;
 
     options.buttons.cancel.callback = options.onEscape = function() {
-      return options.callback(null);
+      return options.callback.call(this, null);
     };
 
     options.buttons.confirm.callback = function() {
@@ -413,7 +413,7 @@
           break;
       }
 
-      return options.callback(value);
+      return options.callback.call(this, value);
     };
 
     options.show = false;
@@ -519,6 +519,8 @@
         break;
     }
 
+    // @TODO provide an attributes option instead
+    // and simply map that as keys: vals
     if (options.placeholder) {
       input.attr("placeholder", options.placeholder);
     }
@@ -699,7 +701,6 @@
       var callbackKey = $(this).data("bb-handler");
 
       processCallback(e, dialog, callbacks[callbackKey]);
-
     });
 
     dialog.on("click", ".bootbox-close-button", function(e) {

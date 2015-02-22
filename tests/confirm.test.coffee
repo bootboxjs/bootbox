@@ -159,6 +159,9 @@ describe "bootbox.confirm", ->
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
 
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
+
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly true
 
@@ -172,6 +175,9 @@ describe "bootbox.confirm", ->
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
 
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
+
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly false
 
@@ -184,6 +190,9 @@ describe "bootbox.confirm", ->
 
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
+
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
 
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly false
@@ -209,6 +218,9 @@ describe "bootbox.confirm", ->
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
 
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
+
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly true
 
@@ -222,6 +234,9 @@ describe "bootbox.confirm", ->
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
 
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
+
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly false
 
@@ -234,6 +249,9 @@ describe "bootbox.confirm", ->
 
         it "should invoke the callback", ->
           expect(@callback).to.have.been.called
+
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
 
         it "with the correct value", ->
           expect(@callback).to.have.been.calledWithExactly false
