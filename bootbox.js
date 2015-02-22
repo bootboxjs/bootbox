@@ -293,23 +293,6 @@
     return options;
   }
 
-  /**
-   * @TODO: split into addLocale / removeLocale
-   */
-  exports.defineLocale = function (name, values) {
-    if (values) {
-      locales[name] = {
-        OK: values.OK,
-        CANCEL: values.CANCEL,
-        CONFIRM: values.CONFIRM
-      };
-      return locales[name];
-    } else {
-      delete locales[name];
-      return null;
-    }
-  };
-
   exports.alert = function() {
     var options;
 
@@ -954,6 +937,32 @@
       CANCEL  : "取消",
       CONFIRM : "確認"
     }
+  };
+
+  exports.addLocale = function(name, values) {
+    $.each(["OK", "CANCEL", "CONFIRM"], function(v) {
+      if (!values[v]) {
+        throw new Error("Please supply a translation for '" + v + "'");
+      }
+    });
+
+    locales[name] = {
+      OK: values.OK,
+      CANCEL: values.CANCEL,
+      CONFIRM: values.CONFIRM
+    };
+
+    return exports;
+  };
+
+  exports.removeLocale = function(name) {
+    delete locales[name];
+
+    return exports;
+  };
+
+  exports.setLocale = function(name) {
+    return exports.setDefaults("locale", name);
   };
 
   exports.init = function(_$) {

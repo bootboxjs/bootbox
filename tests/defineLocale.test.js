@@ -1,6 +1,8 @@
 describe("bootbox.defineLocale", function() {
   "use strict";
 
+  var bootbox = window.bootbox;
+
   describe("basic usage", function() {
     beforeEach(function() {
       bootbox.defineLocale("xy", { OK: "BTN1", CANCEL: "BTN2", CONFIRM: "BTN3" });
