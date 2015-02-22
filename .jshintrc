@@ -16,6 +16,8 @@
       "define": true,
       "module": true,
       "require": true,
-      "expect": true
+      "expect": true,
+      "bootbox": true,
+      "sinon": true
     }
 }

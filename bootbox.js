@@ -940,7 +940,7 @@
   };
 
   exports.addLocale = function(name, values) {
-    $.each(["OK", "CANCEL", "CONFIRM"], function(v) {
+    $.each(["OK", "CANCEL", "CONFIRM"], function(_, v) {
       if (!values[v]) {
         throw new Error("Please supply a translation for '" + v + "'");
       }
