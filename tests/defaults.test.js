@@ -84,8 +84,7 @@ describe("bootbox.setDefaults", function() {
       });
 
       it("adds the large class to the innerDialog", function() {
-        expect(this.dialog.children(":first").hasClass("modal-dialog")).to.be.true;
-        expect(this.dialog.children(":first").hasClass("modal-lg")).to.be.true;
+        expect(this.dialog.children(".modal-dialog").hasClass("modal-lg")).to.be.true;
       });
     });
     describe("when set to small", function() {
@@ -100,8 +99,7 @@ describe("bootbox.setDefaults", function() {
       });
 
       it("adds the small class to the innerDialog", function() {
-        expect(this.dialog.children(":first").hasClass("modal-dialog")).to.be.true;
-        expect(this.dialog.children(":first").hasClass("modal-sm")).to.be.true;
+        expect(this.dialog.children(".modal-dialog").hasClass("modal-sm")).to.be.true;
       });
     });
   });

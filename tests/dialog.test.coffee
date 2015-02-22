@@ -77,7 +77,10 @@ describe "bootbox.dialog", ->
       expect(@exists(".modal-footer")).not.to.be.ok
 
     it "has a backdrop", ->
-      expect(@dialog.next(".modal-backdrop").length).to.equal 1
+      # bootstrap < 3.3.x
+      # expect(@dialog.next(".modal-backdrop").length).to.equal 1
+      # bootstrap >= 3.3.x
+      expect(@dialog.children(".modal-backdrop").length).to.equal 1
 
   describe "when creating a dialog with a button", ->
     beforeEach ->
@@ -334,7 +337,7 @@ describe "bootbox.dialog", ->
           size: "large"
 
       it "adds the large class to the innerDialog", ->
-        expect(@dialog.children(":first").hasClass("modal-lg")).to.be.true
+        expect(@dialog.children(".modal-dialog").hasClass("modal-lg")).to.be.true
 
     describe "when the size option is set to small", ->
       beforeEach ->
@@ -343,4 +346,4 @@ describe "bootbox.dialog", ->
           size: "small"
 
       it "adds the large class to the innerDialog", ->
-        expect(@dialog.children(":first").hasClass("modal-sm")).to.be.true
+        expect(@dialog.children(".modal-dialog").hasClass("modal-sm")).to.be.true
