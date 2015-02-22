@@ -11,6 +11,7 @@
 
     "globals": {
       "beforeEach": true,
+      "afterEach": true,
       "describe": true,
       "it": true,
       "define": true,

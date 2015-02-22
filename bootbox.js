@@ -683,9 +683,15 @@
       // However, we still want to sort of respect true
       // and invoke the escape mechanism instead
       dialog.on("click.dismiss.bs.modal", function(e) {
-        if (e.target !== e.currentTarget) {
+        // @NOTE: the target varies in >= 3.3.x releases since the modal backdrop
+        // moved *inside* the outer dialog rather than *alongside* it
+        // As such backdrop: true only currently works with 3.3.x Bootstrap releases
+        var target = options.backdrop ? dialog.children(".modal-backdrop").get(0) : e.currentTarget;
+
+        if (e.target !== target) {
           return;
         }
+
         dialog.trigger("escape.close.bb");
       });
     }

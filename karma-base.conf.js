@@ -37,7 +37,7 @@ module.exports = function(params) {
       singleRun: true,
 
       coverageReporter: {
-        type: "cobertura",
+        type: "html",
         dir: "tests/coverage"
       },
 

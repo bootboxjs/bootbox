@@ -30,13 +30,18 @@ describe("Bootbox", function() {
       beforeEach(function() {
         this.dialog = bootbox.alert("hi");
 
+        this.removed = sinon.stub(this.dialog, "remove");
+
         this.e = function(target) {
-          this.removed = sinon.stub(this.dialog, "remove");
 
           $(this.dialog).trigger($.Event("hidden.bs.modal", {
             target: target
           }));
         };
+      });
+
+      afterEach(function() {
+        this.removed.restore();
       });
 
       describe("when triggered with the wrong target", function() {
@@ -157,6 +162,107 @@ describe("Bootbox", function() {
       });
       it("falls back to the default PROMPT translation", function () {
         expect(this.labels.confirm).to.equal("OK");
+      });
+    });
+  });
+
+  describe("backdrop variations", function() {
+    beforeEach(function() {
+      this.e = function(target) {
+        $(this.dialog).trigger($.Event("click.dismiss.bs.modal", {
+          target: target
+        }));
+      };
+    });
+
+    describe("with the default value", function() {
+      beforeEach(function() {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.alert("hi", this.callback);
+      });
+
+      describe("When triggering the backdrop click dismiss event", function() {
+        beforeEach(function() {
+          this.e({an: "object"});
+        });
+
+        it("does not invoke the callback", function() {
+          expect(this.callback).not.to.have.been.called;
+        });
+      });
+    });
+
+    describe("when set to false", function() {
+      beforeEach(function() {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.alert({
+          message: "hi",
+          callback: this.callback,
+          backdrop: false
+        });
+      });
+
+      describe("When triggering the backdrop click dismiss event", function() {
+        describe("With the wrong target", function() {
+          beforeEach(function() {
+            this.e({an: "object"});
+          });
+
+          it("does not invoke the callback", function() {
+            expect(this.callback).not.to.have.been.called;
+          });
+        });
+
+        describe("With the correct target", function() {
+          beforeEach(function() {
+            this.e(this.dialog.get(0));
+          });
+
+          it("invokes the callback", function() {
+            expect(this.callback).to.have.been.called;
+          });
+
+          it("should pass the dialog as `this`", function() {
+            expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+        });
+      });
+    });
+
+    describe("when set to true", function() {
+      beforeEach(function() {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.alert({
+          message: "hi",
+          callback: this.callback,
+          backdrop: true
+        });
+      });
+
+      describe("When triggering the backdrop click dismiss event", function() {
+        describe("With the wrong target", function() {
+          beforeEach(function() {
+            this.e({an: "object"});
+          });
+
+          it("does not invoke the callback", function() {
+            expect(this.callback).not.to.have.been.called;
+          });
+        });
+
+        describe("With the correct target", function() {
+          beforeEach(function() {
+            this.e(this.dialog.children(".modal-backdrop").get(0));
+          });
+
+          it("invokes the callback", function() {
+            expect(this.callback).to.have.been.called;
+          });
+
+          it("should pass the dialog as `this`", function() {
+            expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+        });
       });
     });
   });
