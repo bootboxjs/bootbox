@@ -43,23 +43,26 @@ Much more dependency information can be found [on the Bootbox website](http://bo
 The latest major release of Bootbox - 4.0.0 - involved a total rewrite of the
 internal code and introduced an entirely new public API. It has not re-implemented
 some functionality from the 3.x series as of yet; this will be addressed in the
-coming weeks in the form of new minor releases;
-[a task list for 4.3.0 is available](https://github.com/makeusabrew/bootbox/issues/220) -
-please feel free to add feedback and requests.
+the form of new minor releases. Please feel free to add feedback and requests.
 
 There is no new major (e.g. 5.x) release on the roadmap at present.
 
-## Latest Release: 4.3.0
+### Latest Release: 4.4.0
 
-* Add `size` option (large, small)
-* Stop propagation on form submit
-* Return bootbox object from `hideAll`
-* Add Portuguese locale
-* Add Czech locale
-* Add Greek locale
-* Add Estonian locale
-* Add Indonesian locale
-* Add Japanese locale
+* Allow `backdrop` options of `true` and `false` to dismiss modals
+* Pass dialog as `this` value in callbacks
+* Bootstrap 3.3.2 compatibility
+* jQuery 1.11.2 compatibility
+* Add support for `maxlength` prompt input attribute
+* Gracefully detect lack of Bootstrap library rather than crashing
+* Expose `addLocale` and `removeLocale` for custom locale settings
+* Expose `setLocale` helper to select a locale rather than using `setDefaults("locale", ...)`
+* Add Hungarian locale
+* Add Croatian locale
+* Add Bulgarian locale
+* Add Thai locale
+* Add Persian locale
+* Add Albanian locale
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 

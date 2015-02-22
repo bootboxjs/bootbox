@@ -1,4 +1,21 @@
-### Latest Release: 4.3.0
+### Latest Release: 4.4.0
+
+* Allow `backdrop` options of `true` and `false` to dismiss modals
+* Pass dialog as `this` value in callbacks
+* Bootstrap 3.3.2 compatibility
+* jQuery 1.11.2 compatibility
+* Add support for `maxlength` prompt input attribute
+* Gracefully detect lack of Bootstrap library rather than crashing
+* Expose `addLocale` and `removeLocale` for custom locale settings
+* Expose `setLocale` helper to select a locale rather than using `setDefaults("locale", ...)`
+* Add Hungarian locale
+* Add Croatian locale
+* Add Bulgarian locale
+* Add Thai locale
+* Add Persian locale
+* Add Albanian locale
+
+## 4.3.0
 
 * Add `size` option (large, small)
 * Stop propagation on form submit
