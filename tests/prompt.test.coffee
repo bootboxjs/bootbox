@@ -354,10 +354,10 @@ describe "bootbox.prompt", ->
         it "throws an error", ->
           expect(@create).to.throw /prompt with select requires options/
 
-      describe "with options in wrong format", ->
+      describe "with options in the wrong format", ->
         beforeEach ->
-          @options.inputType = 'select'
-          @options.inputOptions = [{foo: 'bar'}]
+          @options.inputType = "select"
+          @options.inputOptions = [{foo: "bar"}]
 
         it "throws an error", ->
           expect(@create).to.throw /given options in wrong format/
@@ -451,6 +451,14 @@ describe "bootbox.prompt", ->
 
         it "throws an error", ->
             expect(@create).to.throw /prompt with checkbox requires options/
+
+      describe "with options in the wrong format", ->
+        beforeEach ->
+          @options.inputType = "checkbox"
+          @options.inputOptions = [{foo: "bar"}]
+
+        it "throws an error", ->
+          expect(@create).to.throw /given options in wrong format/
 
       describe "with options", ->
         beforeEach ->
