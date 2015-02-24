@@ -84,7 +84,7 @@
     // dialog container
     container: "body",
     // buttons will be permuted (confirm / prompt)
-    invertbuttons: false
+    invertButtons: false
   };
 
   // our public object; augmented after our private API
@@ -319,14 +319,15 @@
 
   exports.confirm = function() {
     var options;
-    var invertButtons = defaults.invertbuttons;
+    var invertButtons = defaults.invertButtons;
     var dialog;
 
     options = mergeDialogOptions("confirm", ["cancel", "confirm"], ["message", "callback"], arguments);
 
-    if (options.invertbuttons != undefined)
-        invertButtons = options.invertbuttons;
-    
+    if (options.invertButtons !== undefined) {
+      invertButtons = options.invertButtons;
+    }
+	
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
@@ -344,10 +345,9 @@
     }
     dialog = exports.dialog(options);
 
-    if (invertButtons)
-    {
-        var modalFooterButtons = dialog.find(".modal-footer :button");
-        modalFooterButtons.last().insertBefore(modalFooterButtons.first());
+    if (invertButtons) {
+      var modalFooterButtons = dialog.find(".modal-footer :button");
+      modalFooterButtons.last().insertBefore(modalFooterButtons.first());
     }
 
     return dialog;
@@ -378,7 +378,7 @@
       buttons: createLabels("cancel", "confirm"),
       value: "",
       inputType: "text",
-	  invertbuttons: defaults.invertbuttons
+      invertButtons: defaults.invertButtons
     };
 
     options = validateButtons(
@@ -580,11 +580,10 @@
       dialog.modal("show");
     }
 
-	if (options.invertbuttons)
-	{
-		var modalFooterButtons = dialog.find(".modal-footer :button");
-		modalFooterButtons.last().insertBefore(modalFooterButtons.first());
-	}
+    if (options.invertButtons) {
+      var modalFooterButtons = dialog.find(".modal-footer :button");
+      modalFooterButtons.last().insertBefore(modalFooterButtons.first());
+    }
 	
     return dialog;
   };

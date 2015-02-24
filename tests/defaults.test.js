@@ -184,39 +184,40 @@ describe("bootbox.setDefaults", function() {
     });
   });
 
-  describe("invertbuttons", function() {
+  describe("invertButtons", function() {
     describe("confirm - when set to true", function() {
       beforeEach(function() {
         bootbox.setDefaults({
-          invertbuttons: true
+          invertButtons: true
         });
         this.confirm = bootbox.confirm("test", function(){});
       });
 
       it("adds the correct button labels", function() {
-		expect(this.confirm.find(".btn:first").text()).to.equal("OK");
-		expect(this.confirm.find(".btn:last").text()).to.equal("Cancel");
+        expect(this.confirm.find(".btn:first").text()).to.equal("OK");
+        expect(this.confirm.find(".btn:last").text()).to.equal("Cancel");
       });
-	  it("adds the correct button classes", function() {
-		expect(this.confirm.find(".btn:first").hasClass("btn-primary")).to.be.true;
-		expect(this.confirm.find(".btn:last").hasClass("btn-default")).to.be.true;
+      it("adds the correct button classes", function() {
+        expect(this.confirm.find(".btn:first").hasClass("btn-primary")).to.be.true;
+        expect(this.confirm.find(".btn:last").hasClass("btn-default")).to.be.true;
       });
     });
-	describe("prompt - when set to true", function() {
-      beforeEach(function() {
-        bootbox.setDefaults({
-          invertbuttons: true
-        });
-        this.prompt = bootbox.prompt("test", function(result){});
+    
+  describe("prompt - when set to true", function() {
+    beforeEach(function() {
+      bootbox.setDefaults({
+        invertButtons: true
       });
+      this.prompt = bootbox.prompt("test", function(result){});
+    });
 
-      it("adds the correct button labels", function() {
-		expect(this.prompt.find(".btn:first").text()).to.equal("OK");
-		expect(this.prompt.find(".btn:last").text()).to.equal("Cancel");
-      });
-	  it("adds the correct button classes", function() {
-		expect(this.prompt.find(".btn:first").hasClass("btn-primary")).to.be.true;
-		expect(this.prompt.find(".btn:last").hasClass("btn-default")).to.be.true;
+    it("adds the correct button labels", function() {
+      expect(this.prompt.find(".btn:first").text()).to.equal("OK");
+      expect(this.prompt.find(".btn:last").text()).to.equal("Cancel");
+    });
+    it("adds the correct button classes", function() {
+      expect(this.prompt.find(".btn:first").hasClass("btn-primary")).to.be.true;
+      expect(this.prompt.find(".btn:last").hasClass("btn-default")).to.be.true;
       });
     });
   });
