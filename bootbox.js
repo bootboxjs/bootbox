@@ -46,6 +46,8 @@
       "<button type='button' class='bootbox-close-button close' data-dismiss='modal' aria-hidden='true'>&times;</button>",
     form:
       "<form class='bootbox-form'></form>",
+    label:
+      "<label class='bootbox-label'></label>",
     inputs: {
       text:
         "<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type=text />",
@@ -376,9 +378,7 @@
     // it, but we need to make sure we respect a preference not to show it
     shouldShow = (options.show === undefined) ? true : options.show;
 
-    /**
-     * overrides; undo anything the user tried to set they shouldn't have
-     */
+    var message = options.message;
     options.message = form;
 
     options.buttons.cancel.callback = options.onEscape = function() {
@@ -537,6 +537,10 @@
       input.attr("maxlength", options.maxlength);
     }
 
+    if (message) {
+      var label = $(templates.label).text(message);
+      form.append(label);
+    }
     // now place it in our form
     form.append(input);
 
