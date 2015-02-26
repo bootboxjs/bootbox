@@ -701,6 +701,10 @@
       if (callbacks.onEscape) {
         processCallback(e, dialog, callbacks.onEscape);
       }
+      else
+      {
+          dialog.modal("hide");
+      }
     });
 
     /**
