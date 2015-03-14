@@ -5,6 +5,8 @@ the original writeup about the project.
 
 ## Contact
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/makeusabrew/bootbox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/makeusabrew).
 
 ## Contributing
