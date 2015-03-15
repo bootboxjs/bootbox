@@ -597,6 +597,19 @@
       callbacks[key] = button.callback;
     });
 
+    // Preserve the current dom as data so that we can use it to place it back.
+    if (options.message && typeof options.message !== "string" && (options.message.parentNode || options.message.jquery)) {
+        var node = options.message.jquery ? options.message[0] : options.message;
+        var data = {};
+        $(window).data("bootbox.history", data);
+        data.el = node;
+        data.parent = node.parentNode;
+        data.display = node.style.display;
+        data.position = node.style.position;
+        if (data.parent) {
+            data.parent.removeChild(node);
+        }
+    }
     body.find(".bootbox-body").html(options.message);
 
     if (options.animate === true) {
@@ -648,6 +661,15 @@
       // by children of the current dialog. We shouldn't anymore now BS
       // namespaces its events; but still worth doing
       if (e.target === this) {
+        var data = $(window).data("bootbox.history");
+        if (data && data.el) {
+          data.el.style.display = data.display;
+          data.el.style.position = data.position;
+          if (data.parent) {
+            data.parent.appendChild(data.el);
+          }
+          $(window).removeData("bootbox.history");
+        }
         dialog.remove();
       }
     });
