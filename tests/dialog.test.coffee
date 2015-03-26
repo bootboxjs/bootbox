@@ -347,3 +347,12 @@ describe "bootbox.dialog", ->
 
       it "adds the large class to the innerDialog", ->
         expect(@dialog.children(".modal-dialog").hasClass("modal-sm")).to.be.true
+
+  describe "with a custom animation class", ->
+    beforeEach ->
+      @dialog = bootbox.dialog
+        message: "test"
+        animationClassName: "appear"
+
+    it "adds the class to the root element", ->
+      expect(@dialog.hasClass('appear')).to.be.true

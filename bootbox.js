@@ -75,6 +75,8 @@
     backdrop: "static",
     // animate the modal in/out
     animate: true,
+    // default animation class name
+    animationClassName: "fade",
     // additional class string applied to the top level dialog
     className: null,
     // whether or not to include a close button
@@ -600,7 +602,7 @@
     body.find(".bootbox-body").html(options.message);
 
     if (options.animate === true) {
-      dialog.addClass("fade");
+      dialog.addClass(options.animationClassName);
     }
 
     if (options.className) {
