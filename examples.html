@@ -1,132 +1,148 @@
-<!DOCTYPE html>
-<html lang=en>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset=utf-8>
-    <title>Examples | Bootbox.js&mdash;alert, confirm and flexible dialogs for the Bootstrap framework</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples | Bootbox.js&mdash;alert, confirm and flexible dialogs for the Bootstrap framework</title>
 
     <!-- CSS dependencies -->
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <script type="text/javascript">
+    <!--<script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20517424-8']);
+        _gaq.push(['_trackPageview']);
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-20517424-8']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
+        (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+        })();
+    </script>-->
 
-    </script>
+    <!--<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-20517424-8', 'auto');
+        ga('send', 'pageview');
+    </script>-->
 </head>
-<body>
+<body class="bb-js">
     <div class="bb-alert alert alert-info" style="display:none;">
         <span>The examples populate this alert with dummy content</span>
     </div>
-
     <div class="navbar navbar-inverse" role="navigation">
-      <div class=container>
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-bb-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a id=top class="navbar-brand navbar-brand-active" href="http://bootboxjs.com">Bootbox.js</a>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-bb-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a id=top class="navbar-brand navbar-brand-active" href="./">Bootbox.js</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-bb-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="./#getting-started">Getting Started</a></li>
+                    <li><a href="./#dependencies">Dependencies</a></li>
+                    <li><a href="./#usage">Usage</a></li>
+                    <li class="active"><a href="./examples.html">Examples</a></li>
+                    <li><a href="http://paynedigital.com/bootbox">Writeup</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="./documentation.html">API Documentation</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse navbar-bb-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#api">Methods</a></li>
-            <li><a href="index.html#examples">Examples</a></li>
-            <li><a href="index.html#download">Download</a></li>
-            <li><a href="index.html#dependencies">Dependencies</a></li>
-            <li><a href="index.html#usage">Usage</a></li>
-            <li><a href="http://paynedigital.com/bootbox">Writeup</a></li>
-            <li><a href="https://github.com/makeusabrew/bootbox">GitHub</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-
+    <div id="content" class="bb-docs-header" tabindex="-1">
+        <div class="container">
+            <h1>Examples</h1>
+            <p>
+                Currently viewing examples for version 4.x..
+            </p>
+        </div>
+    </div>
     <div class="container">
-        <h1>Examples</h1>
-
         <p class="alert alert-info">
             This page needs you! We need lots more examples. Please consider helping out
             by <a href="https://github.com/makeusabrew/bootbox/tree/gh-pages">forking the project</a> on GitHub.
         </p>
-
-        <div class="alert alert-warning">Documentation for older versions of Bootbox is also available: <a href="./v3.x/">v3.x</a>, <a href="./v2.x/">v2.x</a>.</div>
-
-        <p><b>Please note:</b> the &lsquo;Example&rsquo; object used in the following examples
-        simply displays a notification to help illustrate when each callback is invoked. It is nothing
-        to do with Bootbox itself, but you may <a href="js/example.js">view its source</a> if you&rsquo;re
-        interested in how it works.</p>
-
-        <div class=row>
-            <div class=col-md-12>
-                <p class=lead>
+        <div class="alert alert-warning">
+            Documentation for older versions of Bootbox is also available: <a href="./v3.x/">v3.x</a>, <a href="./v2.x/">v2.x</a>.
+        </div>
+        <p>
+            <b>Please note:</b> the &lsquo;Example&rsquo; object used in the following examples
+            simply displays a notification to help illustrate when each callback is invoked. It is nothing
+            to do with Bootbox itself, but you may <a href="js/example.js">view its source</a> if you&rsquo;re
+            interested in how it works.
+        </p>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
                     Alert
                     <a href="#" data-bb="alert_callback" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
                 <script src="https://gist.github.com/10a21523641a211529da.js"></script>
             </div>
         </div>
-        <div class=row>
-            <div class=col-md-12>
-                <p class=lead>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
                     Confirm
                     <a href="#" data-bb="confirm" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
                 <script src="https://gist.github.com/f06984e4c5b37f121b85.js"></script>
             </div>
         </div>
-        <div class=row>
-            <div class=col-md-12>
-                <p class=lead>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
                     Prompt
                     <a href="#" data-bb="prompt" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
                 <script src="https://gist.github.com/bb3fd1f1a2c5899ef17e.js"></script>
             </div>
         </div>
-        <div class=row>
-            <div class=col-md-12>
-                <p class=lead>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
                     Prompt with default value
                     <a href="#" data-bb="prompt_default_value" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
                 <script src="https://gist.github.com/k-nut/ceff736be60c76cb6047.js"></script>
             </div>
         </div>
-        <div class=row>
-            <div class=col-md-12>
-                <p class=lead>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
                     Custom Dialog
                     <a href="#" data-bb="dialog" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
                 <script src="https://gist.github.com/makeusabrew/6327301.js"></script>
             </div>
         </div>
-        <div class=row>
-            <div class=col-md-12>
-                <p class=lead>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
                     Custom HTML Contents
                     <a href="#" data-bb="custom_html" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
-		        <script src="https://gist.github.com/nahakiole/862b71024acf2a2660ab.js"></script>
+                <script src="https://gist.github.com/nahakiole/862b71024acf2a2660ab.js"></script>
             </div>
         </div>
-
-        <div class=row>
-            <div class=col-md-12>
-                <p class=lead>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
                     Custom HTML Forms
                     <a href="#" data-bb="custom_form" class="btn btn-default"><i class="glyphicon glyphicon-play"></i></a>
                 </p>
@@ -134,32 +150,29 @@
             </div>
         </div>
     </div>
-    <div class='well container'>
-        <div style='float:right'>
+    <div class="well container">
+        <div style="float:right">
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://paynedigital.com/2011/11/bootbox-js-alert-confirm-dialogs-for-twitter-bootstrap" data-via="makeusabrew" data-related="makeusabrew" data-size="large">Tweet</a>
             <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
         </div>
         &copy; 2011-2015 <a href="http://twitter.com/makeusabrew">Nick Payne</a>.
         I run <a href="http://paynedigital.com">a small company</a>&mdash;why not see if you want to
         <a href="http://paynedigital.com/contact">work with us</a>?
     </div>
-
     <!-- JS dependencies -->
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="js/example.js"></script>
     <script>
-        $(function() {
+        $(function () {
             Example.init({
                 "selector": ".bb-alert"
             });
         });
     </script>
-
     <!-- bootbox code -->
     <script src="bootbox.js"></script>
-
     <!-- put all demo code in one place -->
     <script src="js/demos.js"></script>
 </body>
