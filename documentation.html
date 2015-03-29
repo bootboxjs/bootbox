@@ -489,24 +489,56 @@
                         </table>
                     </div>
                 </section>
-                <section id="bb-dialog-helper-methods" class="bb-section">
+                <section id="bb-public-methods" class="bb-section">
                     <div class="page-header">
-                        <h2>Helper methods</h2>
+                        <h2>Public Methods</h2>
                     </div>
-                    <h3 id="bb-method-setDefaults">bootbox.setDefaults(object <b>options</b>)</h3>
-                    <p>
-                        This method allows the user to set many of the default options shown
-                        in the previous dialog example. Many of these options are also applied to
-                        the basic wrapper methods and can be overridden whenever the wrapper methods
-                        are invoked with a single options argument:
-                    </p>
-                    <script src="https://gist.github.com/makeusabrew/6339916.js"></script>
-
-                    <h3 id="bb-method-hideAll">bootbox.hideAll()</h3>
-                    <p>
-                        Hide all currently active bootbox dialogs. Individual dialogs can be closed as per normal Bootstrap dialogs:
-                    </p>
-                    <pre class="prettyprint linenums">dialog.modal('hide')</pre>
+                    <div id="bb-method-removeLocale" class="bb-method">
+                        <h3>bootbox.init(function)</h3>
+                        <p>
+                            Allows the user to supply a function to be called when dialog gets initialized.
+                        </p>
+                    </div>
+                    <div id="bb-method-setDefaults" class="bb-method">
+                        <h3>bootbox.setDefaults(object <b>options</b>)</h3>
+                        <p>
+                            This method allows the user to set many of the default options shown
+                            in the dialog example. Many of these options are also applied to
+                            the basic wrapper methods and can be overridden whenever the wrapper methods
+                            are invoked with a single options argument:
+                        </p>
+                        <script src="https://gist.github.com/makeusabrew/6339916.js"></script>
+                    </div>
+                    <div id="bb-method-addLocale" class="bb-method">
+                        <h3>bootbox.addLocale(String <b>name</b>, object <b>values</b>)</h3>
+                        <p>
+                            Allows the user to add a custom translation for each of the built-in command buttons. The <code>values</code> object should be in this format:
+                        </p>
+                        <pre class="prettyprint linenums"><code>{
+    OK : '',
+    CANCEL : '',
+    CONFIRM : ''
+}</code></pre>
+                    </div>
+                    <div id="bb-method-removeLocale" class="bb-method">
+                        <h3>bootbox.removeLocale(String <b>name</b>)</h3>
+                        <p>
+                            Allows the user to remove a locale from the available locale settings.
+                        </p>
+                    </div>
+                    <div id="bb-method-setLocale" class="bb-method">
+                        <h3>bootbox.setLocale(String <b>name</b>)</h3>
+                        <p>
+                            Allows the user to select a locale rather than using <code>setDefaults("locale", ...)</code>.
+                        </p>
+                    </div>
+                    <div id="bb-method-hideAll" class="bb-method">
+                        <h3>bootbox.hideAll()</h3>
+                        <p>
+                            Hide all currently active bootbox dialogs. Individual dialogs can be closed as per normal Bootstrap dialogs:
+                        </p>
+                        <pre class="prettyprint linenums">dialog.modal('hide')</pre>
+                    </div>
                 </section>
             </div>
             <div class="col-xs-3">
@@ -555,10 +587,32 @@
                             <a href="#bb-dialog-options">Dialog Options</a>
                         </li>
                         <li>
-                            <a href="#bb-dialog-helper-methods">Helper Methods</a>
+                            <a href="#bb-public-methods">Public Methods</a>
+                            <ul class="nav">
+                                <li>
+                                    <a href="#bb-method-setDefaults">setDefaults(object)</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-method-hideAll">hideAll()</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-method-addLocale">addLocale(name, values)</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-method-removeLocale">removeLocale(name)</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-method-setLocale">setLocale(name)</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-method-init">init(function)</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                    <a href="#" class="back-to-top">Back to top</a>
+                    <p>
+                        <a href="#" class="back-to-top">Back to top</a>
+                    </p>
                 </nav>
             </div>
         </div>
