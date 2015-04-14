@@ -82,7 +82,7 @@
                     </div>
                     <h3>bootbox.alert(&hellip;)</h3>
                     <p>
-                        A simple alert dialog with a single button. Pressing escape or clicking the close
+                        A simple alert dialog with a single button. Pressing the <kbd>ESC</kbd> key or clicking the close
                         button dismisses the dialog. If a callback is provided it is not passed any value
                         when executed.
                     </p>
@@ -128,7 +128,7 @@
                     </div>
                     <h3>bootbox.confirm(&hellip;)</h3>
                     <p>
-                        A confirm dialog with a cancel and a confirm button. Pressing escape or clicking
+                        A confirm dialog with a cancel and a confirm button. Pressing the <kbd>ESC</kbd> key or clicking
                         close dismisses the dialog and invokes the callback as if the user had clicked the
                         cancel button.
                     </p>
@@ -171,7 +171,7 @@
                     </div>
                     <h3>bootbox.prompt(&hellip;)</h3>
                     <p>
-                        A dialog which prompts for user input. Pressing escape or clicking close dismisses
+                        A dialog which prompts for user input. Pressing the <kbd>ESC</kbd> key or clicking close dismisses
                         the dialog and invokes the callback as if the user had clicked the cancel button.
                     </p>
                     <p>
@@ -222,6 +222,10 @@
                     <h3>bootbox.dialog(&hellip;)</h3>
                     <p>
                         A completely customisable dialog method which takes a single argument; an options object.
+                    </p>
+                    <p>
+                        Custom dialogs do <b>not</b> close automatically when the <kbd>ESC</kbd> key is pressed; you must
+                        implement this behavior yourself using the <code>onEscape</code> option.
                     </p>
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -378,12 +382,31 @@
                                 </tr>
                                 <tr>
                                     <td>onEscape</td>
-                                    <td>Function</td>
+                                    <td>Boolean | Function</td>
                                     <td>
                                         <p>
                                             Allows the user to dismisss the dialog by hitting <kbd>ESC</kbd>, which will invoke this function.
                                         </p>
-                                        <p>Default: <code>null</code></p>
+                                        <h4>Options:</h4>
+                                        <table class="table table-condensed">
+                                            <colgroup>
+                                                <col style="width: 150px;" />
+                                                <col />
+                                            </colgroup>
+                                            <tr>
+                                                <td>Undefined (<code>null</code>)</td>
+                                                <td>No callback function has been provided.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>true</code></td>
+                                                <td>Hitting the <kbd>ESC</kbd> dismisses the dialog.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>false</code></td>
+                                                <td>Hitting the <kbd>ESC</kbd> does <b>not</b> dismiss the dialog.</td>
+                                            </tr>
+                                        </table>
+                                        <p>Default: <code>true</code> for alert, confirm, and prompt; <code>null</code> for custom dialogs.</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -399,9 +422,29 @@
                                     <td>Boolean</td>
                                     <td>
                                         <p>
-                                            Whether the dialog should be have a backdrop or not.
+                                            Whether the dialog should be have a backdrop or not. Also determines whether clicking on the
+											backdrop dismisses the modal.
                                         </p>
-                                        <p>Default: <code>true</code></p>
+										<h4>Options:</h4>
+                                        <table class="table table-condensed">
+                                            <colgroup>
+                                                <col style="width: 150px;" />
+                                                <col />
+                                            </colgroup>
+                                            <tr>
+                                                <td>Undefined (<code>null</code>)</td>
+                                                <td>The backdrop is displayed, but clicking on it has no effect.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>true</code></td>
+                                                <td>The backdrop is displayed, and clicking on it dismisses the dialog.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>false</code></td>
+                                                <td>The backdrop is not displayed.</td>
+                                            </tr>
+                                        </table>
+                                        <p>Default: <code>null</code></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -442,6 +485,9 @@
                                         <p>
                                             Adds the relevant Bootstrap modal size class to the dialog wrapper. Valid values are
                                             <code>'large'</code> and <code>'small'</code>
+                                        </p>
+                                        <p>
+                                            <b>Requires Bootstrap 3.1.0 or newer</b>.
                                         </p>
                                         <p>Default: <code>null</code></p>
                                     </td>
