@@ -84,7 +84,9 @@
     // show the dialog immediately by default
     show: true,
     // dialog container
-    container: "body"
+    container: "body",
+    // default button class name
+    defaultButtonClassName: "btn-default"
   };
 
   // our public object; augmented after our private API
@@ -179,7 +181,7 @@
           // always add a primary to the main option in a two-button dialog
           button.className = "btn-primary";
         } else {
-          button.className = "btn-default";
+          button.className = options.defaultButtonClassName;
         }
       }
     });
@@ -654,16 +656,14 @@
       }
     });
 
-    /*
-    dialog.on("show.bs.modal", function() {
-      // sadly this doesn't work; show is called *just* before
-      // the backdrop is added so we'd need a setTimeout hack or
-      // otherwise... leaving in as would be nice
+    dialog.on("shown.bs.modal", function() {
       if (options.backdrop) {
         dialog.next(".modal-backdrop").addClass("bootbox-backdrop");
+        if (options.animationClassName) {
+          dialog.next(".modal-backdrop").addClass(options.animationClassName);
+        }
       }
     });
-    */
 
     dialog.on("shown.bs.modal", function() {
       dialog.find(".btn-primary:first").focus();
