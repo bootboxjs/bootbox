@@ -25,6 +25,19 @@ describe "bootbox locales", ->
     it "shows the default CONFIRM translation", ->
       expect(@labels.confirm).to.equal "OK"
 
+  describe "Arabic", ->
+    beforeEach ->
+      @setLocale "ar"
+
+    it "shows the correct OK translation", ->
+      expect(@labels.ok).to.equal "موافق"
+
+    it "shows the correct CANCEL translation", ->
+      expect(@labels.cancel).to.equal "الغاء"
+
+    it "shows the correct CONFIRM translation", ->
+      expect(@labels.confirm).to.equal "تأكيد"
+
   describe "English", ->
     beforeEach ->
       @setLocale "en"
