@@ -7,8 +7,7 @@
     <title>Documentation | Bootbox.js&mdash;alert, confirm and flexible dialogs for the Bootstrap framework</title>
 
     <!-- CSS dependencies -->
-    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" media="screen" />
-    <!--<link rel="stylesheet" type="text/css" href="vendor/css/google.prettify.min.css" />-->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="vendor/css/github.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script>
@@ -212,6 +211,7 @@
 <pre class="prettyprint linenums"><code>bootbox.prompt({ 
     size: 'small',
     message: "Your message here&hellip;", 
+    value: 'This is the initial value',
     callback: function(result){ /* your callback code */ }
 })</code></pre>
                 </section>
@@ -272,7 +272,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr id="bb-option-message">
                                     <td>
                                         <p>message</p>
                                         <span class="label label-danger">
@@ -286,7 +286,7 @@
                                         </p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-title">
                                     <td>title</td>
                                     <td>String | Element</td>
                                     <td>
@@ -295,15 +295,26 @@
                                         </p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-value">
+                                    <td>
+                                        value
+                                    </td>
+                                    <td>String</td>
+                                    <td>
+                                        <p>The default value of the prompt dialog's input element.</p>
+                                        <p>
+                                            <b>Only valid for prompts.</b>
+                                        </p>
+                                        <hr />
+                                        <p>Default: <code>null</code></p>
+                                    </td>
+                                </tr>
+                                <tr id="bb-option-locale">
                                     <td>locale</td>
                                     <td>String</td>
                                     <td>
                                         <p>
                                             The locale settings used to translate the three standard button labels: OK, CONFIRM, CANCEL
-                                        </p>
-                                        <p>
-                                            Default: <code>en</code>
                                         </p>
                                         <p>Currently available:</p>
                                         <ul class="bb-locales-list">
@@ -339,9 +350,13 @@
                                             <li><code>zh_CN</code></li>
                                             <li><code>zh_TW</code></li>
                                         </ul>
+                                        <hr />
+                                        <p>
+                                            Default: <code>en</code>
+                                        </p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-callback">
                                     <td>
                                         <p>callback</p>
                                         <span class="label label-danger">
@@ -350,23 +365,25 @@
                                     </td>
                                     <td>Function</td>
                                     <td>
-                                        <p class="bg-info">
-                                            * Alerts do not require a callback.
+                                        <p>
+                                            * Alerts <b>do not</b> require a callback.
                                         </p>
                                         <p>
                                             An alert callback should not supply an argument; it will be ignored if it does:
                                         </p>
                                         <pre class="prettyprint"><code>bootbox.alert({ message: "I'm an alert!", callback: function() {} })</code></pre>
+                                        <hr />
                                         <p>
-                                            Confirm and prompt callbacks must supply an argument for the result; for confirm, it will be
-                                            a <code>true</code> or <code>false</code> value, while the prompt result will hold the value
-                                            entered by the user:
+                                            Confirm and prompt callbacks must supply an argument for the result.
+                                        </p>
+                                        <p>
+                                            For confirm, <code>result</code> will be a <code>true</code> or <code>false</code> value:
                                         </p>
                                         <pre class="prettyprint linenums"><code>bootbox.confirm("Are you sure?", function(result) {
     // result will be true or false
 }); </code></pre>
                                         <p>
-                                            or
+                                            For prompt, <code>result</code> will hold the value entered by the user (or <code>null</code> if it was dismissed):
                                         </p>
                                         <pre class="prettyprint linenums"><code>bootbox.prompt("What is your name?", function(result) {
     if (result === null) {
@@ -375,12 +392,13 @@
         // result has a value
     }
 }); </code></pre>
+                                        <hr />
                                         <p>
                                             Default: <code>null</code>
                                         </p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-onEscape">
                                     <td>onEscape</td>
                                     <td>Boolean | Function</td>
                                     <td>
@@ -406,26 +424,28 @@
                                                 <td>Hitting the <kbd>ESC</kbd> does <b>not</b> dismiss the dialog.</td>
                                             </tr>
                                         </table>
+                                        <hr />
                                         <p>Default: <code>true</code> for alert, confirm, and prompt; <code>null</code> for custom dialogs.</p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-show">
                                     <td>show</td>
                                     <td>Boolean</td>
                                     <td>
                                         <p>Whether the dialog should be shown immediately.</p>
+                                        <hr />
                                         <p>Default: <code>true</code></p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-backdrop">
                                     <td>backdrop</td>
                                     <td>Boolean</td>
                                     <td>
                                         <p>
                                             Whether the dialog should be have a backdrop or not. Also determines whether clicking on the
-											backdrop dismisses the modal.
+                                            backdrop dismisses the modal.
                                         </p>
-										<h4>Options:</h4>
+                                        <h4>Options:</h4>
                                         <table class="table table-condensed">
                                             <colgroup>
                                                 <col style="width: 150px;" />
@@ -444,20 +464,25 @@
                                                 <td>The backdrop is not displayed.</td>
                                             </tr>
                                         </table>
+                                        <p>
+                                            <b>Requires Bootbox 4.4.x or newer</b>.
+                                        </p>
+                                        <hr />
                                         <p>Default: <code>null</code></p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-closeButton">
                                     <td>closeButton</td>
                                     <td>Boolean</td>
                                     <td>
                                         <p>
                                             Whether the dialog should have a close button or not.
                                         </p>
+                                        <hr />
                                         <p>Default: <code>true</code></p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-animate">
                                     <td>animate</td>
                                     <td>Boolean</td>
                                     <td>
@@ -465,20 +490,22 @@
                                             Animate the dialog in and out
                                             (requires a browser which <a href="http://caniuse.com/#search=css-animation">supports CSS animations</a>).
                                         </p>
+                                        <hr />
                                         <p>Default: <code>true</code></p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-className">
                                     <td>className</td>
                                     <td>String</td>
                                     <td>
                                         <p>
                                             An additional class to apply to the dialog wrapper.
                                         </p>
+                                        <hr />
                                         <p>Default: <code>null</code></p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-size">
                                     <td>size</td>
                                     <td>String</td>
                                     <td>
@@ -489,10 +516,11 @@
                                         <p>
                                             <b>Requires Bootstrap 3.1.0 or newer</b>.
                                         </p>
+                                        <hr />
                                         <p>Default: <code>null</code></p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr id="bb-option-buttons">
                                     <td>
                                         <p>buttons</p>
                                         <span class="label label-danger">
@@ -510,6 +538,7 @@
     }
 }
 </code></pre>
+                                        <hr />
                                         <h4>Defaults:</h4>
                                         <table>
                                             <colgroup>
@@ -631,6 +660,44 @@
                         </li>
                         <li>
                             <a href="#bb-dialog-options">Dialog Options</a>
+                            <ul class="nav">
+                                <li>
+                                    <a href="#bb-option-message">message</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-title">title</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-value">value</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-callback">callback</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-onEscape">onEscape</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-show">show</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-backdrop">backdrop</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-closeButton">closeButton</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-animate">animate</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-className">className</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-size">size</a>
+                                </li>
+                                <li>
+                                    <a href="#bb-option-buttons">buttons</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#bb-public-methods">Public Methods</a>
@@ -674,7 +741,7 @@
     </div>
     <!-- JS dependencies -->
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="vendor/js/highlight.pack.js"></script>
     <script src="js/example.js"></script>
     <script>

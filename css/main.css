@@ -350,6 +350,12 @@ body
     .bb-api-sidebar .bb-api-sidenav .nav
     {
         margin-left: 1em;
+        display: none;
+    }
+
+    .bb-api-sidebar .bb-api-sidenav li.active .nav
+    {
+        display: block;
     }
 
         .bb-api-sidebar .bb-api-sidenav .nav a
