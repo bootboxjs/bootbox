@@ -1,5 +1,5 @@
 {
-  "name": "components/bootbox",
+  "name": "makeusabrew/bootbox",
   "type": "component",
   "description": "Wrappers for JavaScript alert(), confirm() and other flexible dialogs using the Bootstrap framework",
   "license": "MIT",
