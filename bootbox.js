@@ -45,7 +45,7 @@
     closeButton:
       "<button type='button' class='bootbox-close-button close' data-dismiss='modal' aria-hidden='true'>&times;</button>",
     form:
-      "<form class='bootbox-form'></form>",
+      "<form class='bootbox-form' method='post'></form>",
     inputs: {
       text:
         "<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type=text />",
