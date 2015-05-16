@@ -1,0 +1,22 @@
+{
+  "name": "makeusabrew/bootbox",
+  "type": "component",
+  "description": "Wrappers for JavaScript alert(), confirm() and other flexible dialogs using the Bootstrap framework",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nick Payne",
+      "email": "nick@kurai.co.uk"
+    }
+  ],
+  "require": {
+    "components/bootstrap": "*"
+  },
+  "extra": {
+    "component": {
+      "scripts": [
+        "bootbox.js"
+      ]
+    }
+  }
+}
