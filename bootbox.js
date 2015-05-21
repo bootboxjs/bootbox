@@ -597,7 +597,12 @@
       callbacks[key] = button.callback;
     });
 
-    body.find(".bootbox-body").html(options.message);
+    
+    if (options.message instanceof jQuery && options.message.hasClass("bootbox-template")) {
+    	body.find(".bootbox-body").append(options.message.clone(true).removeClass("hidden"));
+    } else {
+      body.find(".bootbox-body").html(options.message);    	
+    }
 
     if (options.animate === true) {
       dialog.addClass("fade");
