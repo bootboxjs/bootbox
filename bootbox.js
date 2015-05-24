@@ -16,7 +16,15 @@
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
-    module.exports = factory(require("jquery"));
+     if(typeof($) === "undefined")
+     {
+         module.exports = factory(require("jquery"));
+     }
+     else
+     {
+         module.exports = factory($);
+     }
+
   } else {
     // Browser globals (root is window)
     root.bootbox = factory(root.jQuery);
