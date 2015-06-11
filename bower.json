@@ -1,6 +1,5 @@
 {
   "name": "bootbox.js",
-  "version": "4.4.0",
   "main": "./bootbox.js",
   "ignore": [
     "CHANGELOG.md",
