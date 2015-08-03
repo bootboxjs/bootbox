@@ -79,6 +79,8 @@
     className: null,
     // whether or not to include a close button
     closeButton: true,
+    //wheiter or not to apply .button('loading') to opener
+    loadingButton: false,
     // show the dialog immediately by default
     show: true,
     // dialog container
@@ -648,20 +650,26 @@
       // by children of the current dialog. We shouldn't anymore now BS
       // namespaces its events; but still worth doing
       if (e.target === this) {
+        if (options.loadingButton) {
+          $(options.loadingButton).button('reset');
+        }
         dialog.remove();
       }
     });
 
-    /*
+    
     dialog.on("show.bs.modal", function() {
-      // sadly this doesn't work; show is called *just* before
+      if(options.loadingButton){
+         $(options.loadingButton).button('loading');
+      }
+     /* // sadly this doesn't work; show is called *just* before
       // the backdrop is added so we'd need a setTimeout hack or
       // otherwise... leaving in as would be nice
       if (options.backdrop) {
         dialog.next(".modal-backdrop").addClass("bootbox-backdrop");
-      }
+      }  */
     });
-    */
+  
 
     dialog.on("shown.bs.modal", function() {
       dialog.find(".btn-primary:first").focus();
