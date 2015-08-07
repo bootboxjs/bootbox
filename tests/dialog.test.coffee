@@ -329,6 +329,29 @@ describe "bootbox.dialog", ->
         it "should not hide the modal", ->
           expect(@hidden).not.to.have.been.called
 
+  describe "when creating a dialog with an onRendered handler", ->
+    describe "with a simple callback", ->
+      beforeEach ->
+        @callback = sinon.spy()
+
+        @dialog = bootbox.dialog
+          message: "Are you sure?"
+          onRendered: @callback
+
+      describe "when the dialog is rendered", ->
+        beforeEach ->
+          # Although this mimics internal behavior there are no better ways
+          # to make sure our assertions run after the callback has been called.
+          # A diffrent, but rather nasty approach could be to use timeouts:
+          #    `setTimeout (-> expect(@callback).to.have.been.called), 1000`
+          @dialog.trigger "shown.bs.modal"
+
+        it "should invoke the callback", ->
+          expect(@callback).to.have.been.called
+
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
+
   describe "with size option", ->
     describe "when the size option is set to large", ->
       beforeEach ->

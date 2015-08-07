@@ -577,7 +577,8 @@
     var buttons = options.buttons;
     var buttonStr = "";
     var callbacks = {
-      onEscape: options.onEscape
+      onEscape: options.onEscape,
+      onRendered: options.onRendered
     };
 
     if ($.fn.modal === undefined) {
@@ -663,7 +664,18 @@
     });
     */
 
-    dialog.on("shown.bs.modal", function() {
+    dialog.on("shown.bs.modal", function(e) {
+      if (callbacks.onRendered) {
+        // We do not want to send this callback through processCallback
+        // because by default processCallback wants to hide the dialog.
+        // This is mentioned because the method name is ambigous and
+        // might be better named processOnEscapeCallback. Its core
+        // functionality seems to have only been intended for closing the
+        // dialog after button clicks or close events.
+        //   `processCallback(e, dialog, callbacks.onRendered);`
+        callbacks.onRendered.call(dialog, e);
+      }
+
       dialog.find(".btn-primary:first").focus();
     });
 
