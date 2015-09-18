@@ -82,7 +82,7 @@
     // show the dialog immediately by default
     show: true,
     // dialog container
-    container: "body"
+    container: "html>body"
   };
 
   // our public object; augmented after our private API
