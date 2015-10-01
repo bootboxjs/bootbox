@@ -537,6 +537,14 @@
       input.attr("maxlength", options.maxlength);
     }
 
+    if (options.min) {
+      input.attr("min", options.min);
+    }
+
+    if (options.max) {
+      input.attr("max", options.max);
+    }
+
     // now place it in our form
     form.append(input);
 
