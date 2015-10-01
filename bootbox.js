@@ -1,5 +1,5 @@
 /**
- * bootbox.js [v4.4.1]
+ * bootbox.js [branch master]
  *
  * http://bootboxjs.com/license.txt
  */
@@ -537,11 +537,11 @@
       input.attr("maxlength", options.maxlength);
     }
 
-    if (options.min) {
+    if (options.min !== undefined) {
       input.attr("min", options.min);
     }
 
-    if (options.max) {
+    if (options.max != undefined) {
       input.attr("max", options.max);
     }
 
