@@ -62,7 +62,7 @@ describe "bootbox locales", ->
       expect(@labels.cancel).to.equal "Annuler"
 
     it "shows the correct CONFIRM translation", ->
-      expect(@labels.confirm).to.equal "D'accord"
+      expect(@labels.confirm).to.equal "Confirmer"
 
   describe "German", ->
     beforeEach ->
