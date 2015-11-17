@@ -385,6 +385,9 @@ body
 }
 
 .finch-promo {
+    display:block;
+    color:rgb(68, 68, 68);
+    text-decoration:none;
     margin-top:2em;
     font-size:21px;
     font-weight:300;
@@ -398,9 +401,23 @@ body
     background-color:#f7f7f7;
 }
 
+.finch-promo:hover {
+    background-color:#f3f3f3;
+    color:rgb(68, 68, 68);
+    text-decoration:none;
+}
+
+.promo-hl {
+    color: #337ab7;
+}
+
 @media (-webkit-min-device-pixel-ratio: 2) {
     .finch-promo {
         background-image:url('https://meetfinch.com/img/finch-icon@2x.png');
         background-size:96px;
     }
+}
+
+.bb-light-blue {
+    background-color:#54949B;
 }
