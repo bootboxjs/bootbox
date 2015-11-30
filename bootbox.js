@@ -293,6 +293,43 @@
     return options;
   }
 
+  /** Set new buttons to already opened dialog
+   */
+  exports.setButtons = function(options) {
+
+    var dialog = $('.modal-dialog');
+    var buttons = options.buttons;
+
+    var buttonStr = "";
+    var callbacks = {
+      onEscape: options.onEscape
+    };
+
+    //construct new buttons
+    each(buttons, function(key, button) {
+
+      // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
+      // can we just build up button elements instead? slower but neater. Then button
+      // can just become a template too
+      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
+      callbacks[key] = button.callback;
+    });
+    
+    if (buttonStr.length) {
+      dialog.find(".modal-footer").html(buttonStr);
+    }
+    
+    //assign new handlers
+    $( ".modal-footer button").unbind( "click" );
+    
+    dialog.on("click", ".modal-footer button", function(e) {
+      var callbackKey = $(this).data("bb-handler");
+
+      processCallback(e, dialog, callbacks[callbackKey]);
+    });
+    
+  };
+  
   exports.alert = function() {
     var options;
 
