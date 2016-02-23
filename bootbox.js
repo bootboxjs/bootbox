@@ -88,7 +88,9 @@
     // show the dialog immediately by default
     show: true,
     // dialog container
-    container: "body"
+    container: "body",
+    // element to be focused once the modal has been shown
+    focus: ".btn-primary:first"
   };
 
   // our public object; augmented after our private API
@@ -676,9 +678,11 @@
     });
     */
 
-    dialog.one("shown.bs.modal", function() {
-      dialog.find(".btn-primary:first").focus();
-    });
+    if (options.focus) {
+      dialog.one("shown.bs.modal", function() {
+        $(options.focus, dialog).focus();
+      });
+    }
 
     /**
      * Bootbox event listeners; used to decouple some
