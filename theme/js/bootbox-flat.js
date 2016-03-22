@@ -43,7 +43,7 @@
     footer:
       "<div class='modal-footer'></div>",
     closeButton:
-      "<button type='button' class='bootbox-close-button close' data-dismiss='modal' aria-hidden='true'>&times;</button>",
+      "<button type='button' class='bootbox-close-button close' data-dismiss='modal' aria-hidden='true'><i class='ion-ios-close-empty'></i></button>",
     form:
       "<form class='bootbox-form'></form>",
     inputs: {
@@ -994,4 +994,3 @@
 
   return exports;
 }));
-

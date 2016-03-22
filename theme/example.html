@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootbox Flat</title>
+
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/theme.min.css">
+    <style>
+        .bootbox-title{
+            background: #fed700;
+            padding: 20px 0;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid bootbox-title">
+        <div class="container">
+            <div class="row">
+                <h1>BOOTBOX FLAT</h1>
+                <p>Ready to use! Just plug and play!</p>
+            </div>
+        </div>
+    </div>
+    <div class="bb-alert alert alert-info" style="display:none;">
+        <span>The examples populate this alert with dummy content</span>
+    </div>
+    <section id="getting-started" class="container">
+        <div class="page-header">
+            <h2>Core Methods <small>(<a href="../documentation.html">Read the full API docs</a>)</small></h2>
+        </div>
+        <p>
+            The library exposes three methods designed to mimic their native JavaScript equivalents. Their
+            exact method signatures are flexible as each can take various parameters to customise labels and specify defaults,
+            but they are most commonly called like so:
+        </p>
+        <ul>
+            <li class="bb-code">bootbox.alert(message, callback)</li>
+            <li class="bb-code">bootbox.prompt(message, callback)</li>
+            <li class="bb-code">bootbox.confirm(message, callback)</li>
+        </ul>
+        <p>
+            The only required argument for <span class="bb-code">alert</span> calls is <b>message</b>;
+            <b>callback</b> is required for <span class="bb-code">confirm</span> and <span class="bb-code">prompt</span>
+            calls in order to determine what the user’s response was. Even when calling
+            <span class="bb-code">alert</span> a callback is useful to determine when the user
+            dismissed the dialog since our wrapper methods <b>can’t</b> &amp; <b>don’t</b> block
+            like their native counterparts: they are asynchronous rather than synchronous.
+        </p>
+        <p>
+            Each of these three methods calls a fourth public method which you too can use to create your
+            own custom dialogs:
+        </p>
+        <ul>
+            <li class="bb-code">bootbox.dialog(options)</li>
+        </ul>
+        <div class="page-header">
+            <h2>How to use</h2>
+        </div>
+        <p>
+            The library exposes three methods designed to mimic their native JavaScript equivalents. Their
+            exact method signatures are flexible as each can take various parameters to customise labels and specify defaults,
+            but they are most commonly called like so:
+        </p>
+    </section>
+    <div class="container">
+        <p>
+            <b>Please note:</b> the &lsquo;Example&rsquo; object used in the following examples
+            simply displays a notification to help illustrate when each callback is invoked. It is nothing
+            to do with Bootbox itself, but you may <a href="js/example.js">view its source</a> if you&rsquo;re
+            interested in how it works.
+        </p>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
+                    Alert
+                    <a href="#" data-bb="alert_callback" class="btn btn-default"><i class="ion-android-arrow-dropright-circle"></i></a>
+                </p>
+                <script src="https://gist.github.com/10a21523641a211529da.js"></script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
+                    Confirm
+                    <a href="#" data-bb="confirm" class="btn btn-default"><i class="ion-android-arrow-dropright-circle"></i></a>
+                </p>
+                <script src="https://gist.github.com/f06984e4c5b37f121b85.js"></script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
+                    Prompt
+                    <a href="#" data-bb="prompt" class="btn btn-default"><i class="ion-android-arrow-dropright-circle"></i></a>
+                </p>
+                <script src="https://gist.github.com/bb3fd1f1a2c5899ef17e.js"></script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
+                    Prompt with default value
+                    <a href="#" data-bb="prompt_default_value" class="btn btn-default"><i class="ion-android-arrow-dropright-circle"></i></a>
+                </p>
+                <script src="https://gist.github.com/k-nut/ceff736be60c76cb6047.js"></script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
+                    Custom Dialog
+                    <a href="#" data-bb="dialog" class="btn btn-default"><i class="ion-android-arrow-dropright-circle"></i></a>
+                </p>
+                <script src="https://gist.github.com/makeusabrew/6327301.js"></script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
+                    Custom HTML Contents
+                    <a href="#" data-bb="custom_html" class="btn btn-default"><i class="ion-android-arrow-dropright-circle"></i></a>
+                </p>
+                <script src="https://gist.github.com/nahakiole/862b71024acf2a2660ab.js"></script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
+                    Custom HTML Forms
+                    <a href="#" data-bb="custom_form" class="btn btn-default"><i class="ion-android-arrow-dropright-circle"></i></a>
+                </p>
+                <script src="https://gist.github.com/nahakiole/42f66c9ca7af4b528b4f.js"></script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead">
+                    AJAX
+                    <a href="#" data-bb="ajax_form" class="btn btn-default"><i class="ion-android-arrow-dropright-circle"></i></a>
+                </p>
+                <script src="https://gist.github.com/hsleonis/2b0784292602d6fae48f.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS dependencies -->
+    <script src="../tests/vendor/jquery-1.11.2.min.js"></script>
+    <script src="../tests/vendor/bootstrap-3.3.2.min.js"></script>
+
+    <!-- bootbox code -->
+    <script src="js/bootbox-flat.js"></script>
+    <script src="js/init.js"></script>
+</body>
