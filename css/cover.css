@@ -1,0 +1,319 @@
+.bb-js .navbar-inverse
+{
+    background-color: transparent;
+    border-bottom: none;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+    .bb-js .navbar-inverse .navbar-brand
+    {
+        color: #fff;
+    }
+
+        .bb-js .navbar-inverse .navbar-brand:hover,
+        .bb-js .navbar-inverse .navbar-brand:focus
+        {
+            color: rgba(255, 255, 255,.75);
+            background-color: transparent;
+        }
+
+    .bb-js .navbar-inverse .navbar-text
+    {
+        color: #fff;
+    }
+
+    .bb-js .navbar-inverse .navbar-nav > li > a
+    {
+        color: #fff;
+    }
+
+        .bb-js .navbar-inverse .navbar-nav > li > a:hover,
+        .bb-js .navbar-inverse .navbar-nav > li > a:focus
+        {
+            color: #fff;
+            background-color: transparent;
+        }
+
+    .bb-js .navbar-inverse .navbar-nav > .active > a,
+    .bb-js .navbar-inverse .navbar-nav > .active > a:hover,
+    .bb-js .navbar-inverse .navbar-nav > .active > a:focus
+    {
+        color: #fff;
+        background-color: #477e84;
+    }
+
+    .bb-js .navbar-inverse .navbar-nav > .disabled > a,
+    .bb-js .navbar-inverse .navbar-nav > .disabled > a:hover,
+    .bb-js .navbar-inverse .navbar-nav > .disabled > a:focus
+    {
+        color: #ccc;
+        background-color: transparent;
+    }
+
+    .bb-js .navbar-inverse .navbar-toggle
+    {
+        border-color: #dddddd;
+    }
+
+        .bb-js .navbar-inverse .navbar-toggle:hover,
+        .bb-js .navbar-inverse .navbar-toggle:focus
+        {
+            background-color: #dddddd;
+        }
+
+        .bb-js .navbar-inverse .navbar-toggle .icon-bar
+        {
+            background-color: #ccc;
+        }
+
+    .bb-js .navbar-inverse .navbar-collapse,
+    .bb-js .navbar-inverse .navbar-form
+    {
+        border-color: #477e84;
+    }
+
+    .bb-js .navbar-inverse .navbar-nav > .dropdown > a:hover .caret,
+    .bb-js .navbar-inverse .navbar-nav > .dropdown > a:focus .caret
+    {
+        border-top-color: #fff;
+        border-bottom-color: #fff;
+    }
+
+    .bb-js .navbar-inverse .navbar-nav > .open > a,
+    .bb-js .navbar-inverse .navbar-nav > .open > a:hover,
+    .bb-js .navbar-inverse .navbar-nav > .open > a:focus
+    {
+        background-color: #477e84;
+        color: #fff;
+    }
+
+        .bb-js .navbar-inverse .navbar-nav > .open > a .caret,
+        .bb-js .navbar-inverse .navbar-nav > .open > a:hover .caret,
+        .bb-js .navbar-inverse .navbar-nav > .open > a:focus .caret
+        {
+            border-top-color: #fff;
+            border-bottom-color: #fff;
+        }
+
+    .bb-js .navbar-inverse .navbar-nav > .dropdown > a .caret
+    {
+        border-top-color: #fff;
+        border-bottom-color: #fff;
+    }
+
+@media (max-width: 767)
+{
+    .bb-js .navbar-inverse .navbar-nav .open .dropdown-menu > li > a
+    {
+        color: #fff;
+    }
+
+        .bb-js .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+        .bb-js .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus
+        {
+            color: #fff;
+            background-color: transparent;
+        }
+
+    .bb-js .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+    .bb-js .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .bb-js .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus
+    {
+        color: #fff;
+        background-color: #477e84;
+    }
+
+    .bb-js .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
+    .bb-js .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+    .bb-js .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus
+    {
+        color: #ccc;
+        background-color: transparent;
+    }
+}
+
+.bb-js .navbar-inverse .navbar-link
+{
+    color: #fff;
+}
+
+    .bb-js .navbar-inverse .navbar-link:hover
+    {
+        color: #fff;
+    }
+
+.container
+{
+    max-width: 940px;
+}
+
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6
+{
+    color: #232830;
+    font-weight: 700;
+}
+
+
+.bb-header
+{
+    color: #fff;
+    background: #3b696e url(../images/ps_neutral.png) repeat top left;
+}
+
+    .bb-header h1
+    {
+        color: #fff;
+    }
+
+.bb-docs-header
+{
+    /*color: #fff;
+    background-color: #343E60;*/
+    padding: 50px 0 75px;
+}
+
+.bb-masthead
+{
+}
+
+    .bb-masthead h1
+    {
+        font-size: 5em;
+    }
+
+.bb-meta
+{
+    font-size: 16px;
+}
+
+    .bb-meta .bb-meta-list
+    {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .bb-meta .bb-meta-list li
+        {
+            display: inline-block;
+            margin: 5px 2em;
+        }
+
+    .bb-meta a
+    {
+        color: #34C2F1;
+    }
+
+
+.docs-container
+{
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 40px 0;
+    -moz-transition: -webkit-transform 200ms ease-in-out 0s, -moz-transform 200ms ease-in-out 0s, -o-transform 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+    -o-transition: -webkit-transform 200ms ease-in-out 0s, -moz-transform 200ms ease-in-out 0s, -o-transform 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+    -webkit-transition: -webkit-transform 200ms ease-in-out 0s, -moz-transform 200ms ease-in-out 0s, -o-transform 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+    transition: -webkit-transform 200ms ease-in-out 0s, -moz-transform 200ms ease-in-out 0s, -o-transform 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+}
+
+    .docs-container .intro h3
+    {
+        color: #566076;
+        font-weight: normal;
+    }
+
+
+.bb-section
+{
+    margin: 2em 0;
+}
+
+    .bb-section p
+    {
+        margin-bottom: 1.35em;
+    }
+
+    .bb-section pre.prettyprint
+    {
+        margin-bottom: 1.35em;
+    }
+
+.code-leader code
+{
+    font-size: 2em;
+}
+
+#gist6327194,
+#gist6339916
+{
+    height: 300px;
+    overflow: auto;
+}
+
+#gist6339780
+{
+    height: 600px;
+    overflow: auto;
+}
+
+.bb-code
+{
+    font-family: "Courier";
+    font-size: 1.2em;
+}
+
+.bb-code-string
+{
+    color: #3276b1;
+}
+
+.bb-code .bb-code-outline
+{
+    padding: 1em;
+    border: solid 1px rgba(255, 255, 255, .5);
+}
+
+#footer
+{
+    margin-top: 3em;
+    padding: 3em 0;
+    background: #141414;
+    color: rgba(255, 255, 255, .5);
+}
+
+    #footer a
+    {
+        color: #34C2F1;
+    }
+
+
+#scroll-up-btn
+{
+    bottom: 20px;
+    right: 20px;
+    padding: 5px;
+    background: none;
+    color: #77c2db;
+    line-height: 1;
+    opacity: .65;
+}
+
+    #scroll-up-btn:hover
+    {
+        color: #f40;
+        opacity: 1;
+    }
+
+
+.finch-logo
+{
+    padding: 6px 8px; 
+    background: #2689ca;
+    color: #fff; 
+}

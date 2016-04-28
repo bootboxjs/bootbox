@@ -1,0 +1,325 @@
+﻿.bb-logo
+{
+    padding: 10px 12px;
+    font-size: 24px;
+    /*font-weight: 700;*/
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar
+{
+    background: #3b696e url(../images/ps_neutral.png) repeat top left;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-right: solid 5px rgba(255, 255, 255,.5);
+    overflow: auto;
+}
+
+    .sidebar nav
+    {
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+
+    .sidebar a
+    {
+        color: #fff;
+    }
+
+    .sidebar ul
+    {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar nav li
+    {
+        display: block;
+    }
+
+        .sidebar nav li a
+        {
+            color: #fafafa;
+            display: block;
+            padding: 10px 12px;
+            text-decoration: none;
+            -moz-transition: background-color 200ms ease-in-out 0s;
+            -o-transition: background-color 200ms ease-in-out 0s;
+            -webkit-transition: background-color 200ms ease-in-out 0s;
+            transition: background-color 200ms ease-in-out 0s;
+        }
+
+            .sidebar nav li a:hover
+            {
+                background-color: rgba(0,0,0,.125);
+            }
+
+    .sidebar .bb-navlist-header
+    {
+        font-weight: 600;
+    }
+
+    .sidebar .subsection-navigation li
+    {
+        border-left: 1px solid rgba(0,0,0,.125);
+        font-size: 12px;
+        margin-left: 12px;
+    }
+
+        .sidebar .subsection-navigation li a
+        {
+            padding: 6px 12px;
+        }
+
+.content
+{
+    background: #fff;
+    color: #555;
+}
+
+.docs-container
+{
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 40px 0;
+    -moz-transition: -webkit-transform 200ms ease-in-out 0s, -moz-transform 200ms ease-in-out 0s, -o-transform 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+    -o-transition: -webkit-transform 200ms ease-in-out 0s, -moz-transform 200ms ease-in-out 0s, -o-transform 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+    -webkit-transition: -webkit-transform 200ms ease-in-out 0s, -moz-transform 200ms ease-in-out 0s, -o-transform 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+    transition: -webkit-transform 200ms ease-in-out 0s, -moz-transform 200ms ease-in-out 0s, -o-transform 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+}
+
+    .docs-container section:first-child
+    {
+        padding-top: 0;
+    }
+
+    .docs-container section
+    {
+    }
+
+    .docs-container h1
+    {
+        font-size: 42px;
+        /*margin-bottom: 30px;*/
+    }
+
+    .docs-container h1,
+    .docs-container h2,
+    .docs-container h3,
+    .docs-container h4:not(.modal-title),
+    .docs-container h5,
+    .docs-container h6
+    {
+        color: #232830;
+        font-weight: 700;
+    }
+
+    .docs-container .intro h3
+    {
+        color: #566076;
+        font-weight: normal;
+    }
+
+    .docs-container h3.bb-subsection-header
+    {
+        clear: both;
+        font-size: 22px;
+        margin-bottom: 12px;
+        padding-top: 16px;
+    }
+
+    .docs-container h4.bb-subsection-header
+    {
+        margin: 18px 0 12px;
+    }
+
+    .docs-container .bb-subsection
+    {
+        margin-bottom: 25px;
+    }
+
+        .docs-container .bb-subsection pre
+        {
+            margin-bottom: 2em;
+        }
+
+        .docs-container .bb-subsection h4:not(.modal-title)
+        {
+            margin-top: 1.5em;
+        }
+
+
+    .docs-container .bb-example figure
+    {
+        background-color: #F7F7F9;
+        border-radius: 4px;
+        border-color: #e5e5e5 #eee #eee;
+        border-style: solid;
+        border-width: 1px 0;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05) inset;
+        margin: 0 0 15px;
+        padding: 45px 0 15px;
+        position: relative;
+    }
+
+    .docs-container .bb-example pre
+    {
+        margin-bottom: 5px;
+    }
+
+    .docs-container .bb-example figcaption
+    {
+        color: #959595;
+        font-size: 12px;
+        font-weight: 700;
+        left: 15px;
+        letter-spacing: 1px;
+        position: absolute;
+        text-transform: uppercase;
+        top: 15px;
+    }
+
+    .docs-container .bb-function
+    {
+    }
+
+        .docs-container .bb-function h3
+        {
+            font-weight: normal;
+            font-family: monospace;
+        }
+
+.bb-code
+{
+    font-family: "Courier";
+    font-size: 1.2em;
+}
+
+.bb-code-string
+{
+    color: #3276b1;
+}
+
+.bb-code .bb-code-outline
+{
+    padding: 1em;
+    border: solid 1px rgba(255, 255, 255, .5);
+}
+
+
+.bb-locales-list
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .bb-locales-list li
+    {
+        display: inline-block;
+    }
+
+
+.bb-notes-list
+{
+    margin: 2em 0;
+}
+
+    .bb-notes-list dt
+    {
+        border-bottom: dotted 1px #e5e5e5;
+        margin-bottom: 8px;
+    }
+
+        .bb-notes-list dt:before
+        {
+            content: '\f0a4';
+            font-family: FontAwesome;
+        }
+
+    .bb-notes-list dd
+    {
+        margin-bottom: 1.5em;
+    }
+
+.bb-examples-list
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .bb-examples-list > li
+    {
+        padding-bottom: 1em;
+        margin-bottom: 2em;
+        border-bottom: dotted 1px #d5d5d5;
+    }
+
+.console
+{
+    border: dotted 1px #d5d5d5;
+    height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+    .console > div
+    {
+        padding: 8px;
+        border-bottom: dotted 1px #d5d5d5;
+    }
+
+        .console > div .count
+        {
+            font-weight: 600;
+            padding: 0 3px;
+        }
+
+.bb-examples-console-sidebar
+{
+}
+
+    .bb-examples-console-sidebar.affix
+    {
+        top: 200px;
+        width: 278px;
+    }
+
+
+.modal.bb-alternate-modal .modal-content
+{
+    background: #555;
+    color: #fff;
+}
+
+
+#scroll-up-btn
+{
+    bottom: 20px;
+    right: 20px;
+    padding: 5px;
+    background: none;
+    color: #77c2db;
+    line-height: 1;
+    opacity: .65;
+}
+
+    #scroll-up-btn:hover
+    {
+        color: #f40;
+        opacity: 1;
+    }
+
+
+.finch-logo
+{
+    padding: 6px 8px; 
+    background: #2689ca;
+    color: #fff; 
+}
