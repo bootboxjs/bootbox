@@ -62,10 +62,6 @@ describe("bootbox.alert", function() {
           expect(this.find(".modal-body button").hasClass("close")).to.be.true;
         });
 
-        it("applies the correct data-dismiss attribute to the close button", function() {
-          expect(this.find("button.close").attr("data-dismiss")).to.equal("modal");
-        });
-
         it("applies the correct aria-hidden attribute to the close button", function() {
           expect(this.find("button.close").attr("aria-hidden")).to.equal("true");
         });
