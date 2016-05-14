@@ -11,7 +11,7 @@
     <script src="./vendor/js/modernizr-custom.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="./vendor/css/google.prettify.min.css" />
 
     <link rel="stylesheet" href="./css/docs.css" />
@@ -779,25 +779,53 @@
     callback: function() {
     }
 }</code></pre>
-                                                <table>
-                                                    <caption>Defaults:</caption>
+                                                <table class="table">
+                                                    <caption>Options:</caption>
                                                     <colgroup>
                                                         <col style="width: 75px;" />
                                                         <col />
                                                     </colgroup>
                                                     <tr>
                                                         <td>alert</td>
-                                                        <td> <code>"ok"</code></td>
+                                                        <td>
+                                                            <code>ok</code>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>confirm</td>
-                                                        <td> <code>"cancel", "confirm"</code></td>
+                                                        <td>
+                                                            <code>cancel, confirm</code>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>prompt</td>
-                                                        <td> <code>"cancel", "ok"</code></td>
+                                                        <td>
+                                                            <code>cancel, confirm</code>
+                                                        </td>
                                                     </tr>
                                                 </table>
+                                                <p>
+                                                    Each of the available button options can be overridden to use custom content (text or HTML) and CSS styles. For example:
+                                                </p>
+                                                <pre class="prettyprint linenums"><code>bootbox.confirm({
+    message: "This is a confirm with custom button text and color! Do you like it?",
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+        // ...
+    }
+});</code></pre>
+                                                <p>
+                                                    You <b>cannot</b> override the callbacks for the alert, confirm, and prompt dialog's buttons.
+                                                </p>
                                             </td>
                                         </tr>
                                     </tbody>
