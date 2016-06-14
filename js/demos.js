@@ -1,12 +1,11 @@
 
 $(function () {
+    var doc = $('html, body');
+
     try {
         window.prettyPrint && prettyPrint();
 
-        $('a.back-to-top').on('click', function (e) {
-            e.preventDefault();
-            $('html, body').animate({ scrollTop: 0 }, 'slow');
-        });
+        anchors.add('.bb-examples-list .bb-example');
     }
     catch (ex) {
         console.log(ex.message);
@@ -24,11 +23,23 @@ $(function () {
     }
 
     try {
-        var anchor = window.location.hash;
-        if (anchor != null && anchor != "") {
-            $('#bb-nav-sidebar .collapse').collapse('hide')
-            $('#bb-nav-sidebar a[href*="' + anchor + '"]').parents('.collapse').collapse('show');
-        }
+        $(document)
+            .on('click', '[href^="#"]:not(#scroll-up-btn)', function (e) {
+                e.preventDefault();
+
+                var target = $(this).attr('href');
+
+                doc.animate({
+                    scrollTop: ($(target).offset().top - 75)
+                }, 'slow', function () {
+                    window.location.hash = target;
+                });
+            })
+            .off('click', 'a.back-to-top')
+            .on('click', 'a.back-to-top', function (e) {
+                e.preventDefault();
+                doc.animate({ scrollTop: 0 }, 'slow');
+            });
     }
     catch (ex) {
         console.log(ex.message);
