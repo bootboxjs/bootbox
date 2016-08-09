@@ -466,6 +466,7 @@ bb-logo
     {
         border-bottom: dotted 1px #e5e5e5;
         margin-bottom: 8px;
+        font-size: 1.3em;
     }
 
         .bb-notes-list dt:before
@@ -529,3 +530,71 @@ bb-logo
     background: #555;
     color: #fff;
 }
+
+
+.docs-container .bs-callout
+{
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #eee;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px 1px 1px 5px;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+    .docs-container .bs-callout h4,
+    .docs-container .bb-section .bs-callout h4
+    {
+        margin-bottom: 5px;
+        margin-top: 0;
+    }
+
+    .docs-container .bs-callout p:last-child
+    {
+        margin-bottom: 0;
+    }
+
+    .docs-container .bs-callout code
+    {
+        border-radius: 3px;
+    }
+
+    .docs-container .bs-callout + .bs-callout
+    {
+        margin-top: -5px;
+    }
+
+.docs-container .bs-callout-danger
+{
+    border-left-color: #ce4844;
+}
+
+    .docs-container .bs-callout-danger h4
+    {
+        color: #ce4844;
+    }
+
+.docs-container .bs-callout-warning
+{
+    border-left-color: #aa6708;
+}
+
+    .docs-container .bs-callout-warning h4
+    {
+        color: #aa6708;
+    }
+
+.docs-container .bs-callout-info
+{
+    border-left-color: #1b809e;
+}
+
+    .docs-container .bs-callout-info h4
+    {
+        color: #1b809e;
+    }

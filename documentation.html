@@ -132,7 +132,7 @@
         </div>
 
         <div class="docs-container">
-            <div class="alert alert-warning">
+            <div class="bs-callout bs-callout-danger">
                 <h4>
                     Please note:
                 </h4>
@@ -265,12 +265,15 @@
                             </div>
                         </figure>
                     </div>
-                    <h4>Please note:</h4>
-                    <p>
-                        <b>All</b> Bootstrap modals, unlike native alerts, confirms, or prompts, generate <b>non-blocking</b> events. Keep that in mind when using the <code>confirm()</code>
-                        dialog, as it is <b>not</b> a drop-in replacement for native confirm dialogs. Any code that depends on the user's selection <b>must</b> be placed in the
-                        callback function.
-                    </p>
+                    <div class="bs-callout bs-callout-danger">
+                        <h4>Please note:</h4>
+                        <p>
+                            <b>All</b> Bootstrap modals, unlike native alerts, confirms, or prompts, generate <b>non-blocking</b> events. Keep that in mind when using the <code>confirm()</code>
+                            dialog, as it is <b>not</b> a drop-in replacement for native confirm dialogs. Any code that depends on the user's selection <b>must</b> be placed in the
+                            callback function.
+                        </p>
+                    </div>
+
                 </div>
 
                 <div class="bb-subsection">
@@ -345,12 +348,14 @@
                             </div>
                         </figure>
                     </div>
-                    <h4>Please note:</h4>
-                    <p>
-                        <b>All</b> Bootstrap modals, unlike native alerts, confirms, or prompts, generate <b>non-blocking</b> events. Keep that in mind when using the <code>prompt()</code>
-                        dialog, as it is <b>not</b> a drop-in replacement for native prompt dialogs. Any code that depends on the user's input <b>must</b> be placed in the
-                        callback function.
-                    </p>
+                    <div class="bs-callout bs-callout-danger">
+                        <h4>Please note:</h4>
+                        <p>
+                            <b>All</b> Bootstrap modals, unlike native alerts, confirms, or prompts, generate <b>non-blocking</b> events. Keep that in mind when using the <code>prompt()</code>
+                            dialog, as it is <b>not</b> a drop-in replacement for native prompt dialogs. Any code that depends on the user's input <b>must</b> be placed in the
+                            callback function.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="bb-subsection">
@@ -387,9 +392,13 @@
                             </div>
                         </figure>
                     </div>
-                    <p>
-                        <b>Please note:</b> prompt requires the <code>title</code> option (when using the options object) and disallows the <code>message</code> option.
-                    </p>
+                    <div class="bs-callout bs-callout-info">
+                        <h4>Please note:</h4>
+                        <p>
+                            Prompt requires the <code>title</code> option (when using the options object) and disallows the <code>message</code> option.
+                        </p>
+                    </div>
+
                     <h4>
                         Prompt Dialog Options
                     </h4>
@@ -892,7 +901,7 @@ dialog.init(function(){
                     Using Bootbox does have some caveats, as noted below.
                 </p>
                 <dl class="bb-notes-list">
-                    <dt>
+                    <dt class="text-danger">
                         Dialog code does not block code execution
                     </dt>
                     <dd>
@@ -902,8 +911,7 @@ dialog.init(function(){
                             placed (or called) within the callback function of the dialog.
                         </p>
                     </dd>
-
-                    <dt>
+                    <dt class="text-danger">
                         Multiple open modals are not supported
                     </dt>
                     <dd>
