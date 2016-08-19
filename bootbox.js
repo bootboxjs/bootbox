@@ -216,10 +216,12 @@
       $.each(defaults.buttons, function(defaultButtonKey, defaultButton) {
         var found = false;
         $.each(mapArgumentsResult.buttons, function(mapArgumentButtonKey, mapArgumentButton) {
+
           if (defaultButton.key === mapArgumentButton.key) {
             found = true;
           }
         });
+        
         if (!found) {
           mapArgumentsResult.buttons.splice(defaultButtonKey, 0, defaultButton);
         }
