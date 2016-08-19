@@ -113,15 +113,6 @@
     }
   }
 
-  function getKeyLength(obj) {
-    // @TODO defer to Object.keys(x).length if available?
-    var k, t = 0;
-    for (k in obj) {
-      t ++;
-    }
-    return t;
-  }
-
   function each(collection, iterator) {
     var index = 0;
     $.each(collection, function(key, value) {
