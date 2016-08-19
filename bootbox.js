@@ -145,12 +145,12 @@
     options = $.extend({}, defaults, options);
 
     if (!options.buttons) {
-      options.buttons = {};
+      options.buttons = [];
     }
 
     buttons = options.buttons;
 
-    total = getKeyLength(buttons);
+    total = buttons.length;
 
     each(buttons, function(key, button, index) {
 
@@ -164,12 +164,12 @@
 
       // before any further checks make sure by now button is the correct type
       if ($.type(button) !== "object") {
-        throw new Error("button with key " + key + " must be an object");
+        throw new Error("button with key " + button + " must be an object");
       }
 
       if (!button.label) {
         // the lack of an explicit label means we'll assume the key is good enough
-        button.label = key;
+        button.label = button.key;
       }
 
       if (!button.className) {
@@ -216,6 +216,24 @@
    * merge a set of default dialog options with user supplied arguments
    */
   function mergeArguments(defaults, args, properties) {
+    var mapArgumentsResult = mapArguments(
+      args,
+      properties
+    );
+    if(defaults && defaults.buttons && mapArgumentsResult && mapArgumentsResult.buttons){
+      $.each(defaults.buttons, function(defaultButtonKey, defaultButton){
+        var found = false;
+        $.each(mapArgumentsResult.buttons, function(mapArgumentButtonKey, mapArgumentButton){
+          if(defaultButton.key === mapArgumentButton.key){
+            found = true;
+          }
+        });
+        if(!found){
+          mapArgumentsResult.buttons.splice(defaultButtonKey, 0, defaultButton);
+        }
+      });
+    }
+
     return $.extend(
       // deep merge
       true,
@@ -225,10 +243,7 @@
       defaults,
       // args could be an object or array; if it's an array properties will
       // map it to a proper options object
-      mapArguments(
-        args,
-        properties
-      )
+      mapArgumentsResult
     );
   }
 
@@ -258,38 +273,42 @@
   }
 
   /**
-   * from a given list of arguments return a suitable object of button labels
+   * from a given list of arguments return a suitable array of button labels
    * all this does is normalise the given labels and translate them where possible
-   * e.g. "ok", "confirm" -> { ok: "OK, cancel: "Annuleren" }
+   * e.g. "ok", "confirm" -> [ ok: "OK", cancel: "Annuleren" ]
    */
   function createLabels() {
-    var buttons = {};
+    var buttons = [];
 
     for (var i = 0, j = arguments.length; i < j; i++) {
       var argument = arguments[i];
       var key = argument.toLowerCase();
       var value = argument.toUpperCase();
-
+      buttons.push({
+        label: _t(value),
+        key: key
+      });
+      /*
       buttons[key] = {
         label: _t(value)
       };
+       */
     }
 
     return buttons;
   }
 
   function validateButtons(options, buttons) {
-    var allowedButtons = {};
-    each(buttons, function(key, value) {
-      allowedButtons[value] = true;
+    var allowedButtons = [];
+    each(buttons, function(key, button) {
+      allowedButtons.push(button);
     });
 
-    each(options.buttons, function(key) {
-      if (allowedButtons[key] === undefined) {
-        throw new Error("button key " + key + " is not allowed (options are " + buttons.join("\n") + ")");
+    each(options.buttons, function(buttonKey, buttonValue) {
+      if (allowedButtons[buttonKey] === undefined) {
+        throw new Error("button key " + buttonValue.key + " is not allowed (options are " + allowedButtons.join("\n") + ")");
       }
     });
-
     return options;
   }
 
@@ -302,15 +321,21 @@
       throw new Error("alert requires callback property to be a function when provided");
     }
 
-    /**
-     * overrides
-     */
-    options.buttons.ok.callback = options.onEscape = function() {
+    options.onEscape = function() {
       if ($.isFunction(options.callback)) {
         return options.callback.call(this);
       }
       return true;
     };
+
+    /**
+     * overrides
+     */
+    each(options.buttons, function(buttonKey, button){
+      if(button.key === "ok"){
+        button.callback = options.onEscape;
+      }
+    });
 
     return exports.dialog(options);
   };
@@ -320,16 +345,24 @@
 
     options = mergeDialogOptions("confirm", ["cancel", "confirm"], ["message", "callback"], arguments);
 
-    /**
-     * overrides; undo anything the user tried to set they shouldn't have
-     */
-    options.buttons.cancel.callback = options.onEscape = function() {
+    options.onEscape = function() {
       return options.callback.call(this, false);
     };
 
-    options.buttons.confirm.callback = function() {
+    var confirmCallback = function() {
       return options.callback.call(this, true);
     };
+
+    /**
+     * overrides; undo anything the user tried to set they shouldn't have
+     */
+    each(options.buttons, function(buttonKey, button){
+      if(button.key === "cancel"){
+        button.callback = options.onEscape;
+      } else if(button.key === "confirm"){
+        button.callback = confirmCallback;
+      }
+    });
 
     // confirm specific validation
     if (!$.isFunction(options.callback)) {
@@ -381,11 +414,11 @@
      */
     options.message = form;
 
-    options.buttons.cancel.callback = options.onEscape = function() {
+    options.onEscape = function() {
       return options.callback.call(this, null);
     };
 
-    options.buttons.confirm.callback = function() {
+    var onConfirm = function() {
       var value;
 
       switch (options.inputType) {
@@ -415,6 +448,14 @@
 
       return options.callback.call(this, value);
     };
+
+    each(options.buttons, function(buttonKey, button){
+      if(button.key === "cancel"){
+        button.callback = options.onEscape;
+      } else if(button.key === "confirm"){
+        button.callback = onConfirm;
+      }
+    });
 
     options.show = false;
 

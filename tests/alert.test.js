@@ -130,12 +130,13 @@ describe("bootbox.alert", function() {
 
     describe("with a custom ok button", function() {
       beforeEach(function() {
-        this.options.buttons = {
-          ok: {
+        this.options.buttons = [
+          {
+            key: "ok",
             label: "Custom OK",
             className: "btn-danger"
           }
-        };
+        ];
 
         this.create();
 
@@ -150,12 +151,13 @@ describe("bootbox.alert", function() {
 
     describe("with an unrecognised button key", function() {
       beforeEach(function() {
-        this.options.buttons = {
-          "Another key": {
+        this.options.buttons = [
+          {
+            key: "Another key",
             label: "Custom OK",
             className: "btn-danger"
           }
-        };
+        ];
       });
 
       it("throws an error", function() {

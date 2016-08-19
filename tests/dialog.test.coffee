@@ -44,8 +44,9 @@ describe "bootbox.dialog", ->
           @create = ->
             bootbox.dialog
               message: "test"
-              buttons:
-                ok: "foo"
+              buttons: [
+                "ok"
+              ]
 
         it "throws an error", ->
           expect(@create).to.throw /button with key ok must be an object/
@@ -87,8 +88,9 @@ describe "bootbox.dialog", ->
       @create = (button = {}) =>
         @dialog = bootbox.dialog
           message: "test"
-          buttons:
-            one: button
+          buttons: [
+            button
+          ]
 
     describe "when the button has no callback", ->
       beforeEach ->
@@ -193,10 +195,11 @@ describe "bootbox.dialog", ->
 
       describe "when its value is an object", ->
         beforeEach ->
-          @create
-            "Short form":
-              className: "btn-custom"
-              callback: -> true
+          @create [
+            key: "Short form"
+            className: "btn-custom"
+            callback: -> true
+          ]
 
         it "uses the key name as the button text", ->
           expect(@text(".btn")).to.equal "Short form"
@@ -207,8 +210,10 @@ describe "bootbox.dialog", ->
       describe "when its value is a function", ->
         beforeEach ->
           @callback = sinon.spy()
-          @create
-            my_label: @callback
+          @create [
+            key: "my_label"
+            callback: @callback
+          ]
 
         it "uses the key name as the button text", ->
           expect(@text(".btn")).to.equal "my_label"
@@ -226,8 +231,9 @@ describe "bootbox.dialog", ->
       describe "when its value is not an object or function", ->
         beforeEach ->
           @badCreate = =>
-            @create
-              "Short form": "hello world"
+            @create [
+              "Short form"
+            ]
 
         it "throws an error", ->
           expect(@badCreate).to.throw /button with key Short form must be an object/
