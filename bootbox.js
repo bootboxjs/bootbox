@@ -279,11 +279,6 @@
         label: _t(value),
         key: key
       });
-      /*
-      buttons[key] = {
-        label: _t(value)
-      };
-       */
     }
 
     return buttons;
