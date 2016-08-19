@@ -212,9 +212,9 @@
       properties
     );
     if (defaults && defaults.buttons && mapArgumentsResult && mapArgumentsResult.buttons) {
-      $.each(defaults.buttons, function(defaultButtonKey, defaultButton){
+      $.each(defaults.buttons, function(defaultButtonKey, defaultButton) {
         var found = false;
-        $.each(mapArgumentsResult.buttons, function(mapArgumentButtonKey, mapArgumentButton){
+        $.each(mapArgumentsResult.buttons, function(mapArgumentButtonKey, mapArgumentButton) {
           if (defaultButton.key === mapArgumentButton.key) {
             found = true;
           }
@@ -317,7 +317,7 @@
     /**
      * overrides
      */
-    each(options.buttons, function(buttonKey, button){
+    each(options.buttons, function(buttonKey, button) {
       if (button.key === "ok") {
         button.callback = options.onEscape;
       }
@@ -342,7 +342,7 @@
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
-    each(options.buttons, function(buttonKey, button){
+    each(options.buttons, function(buttonKey, button) {
       if (button.key === "cancel") {
         button.callback = options.onEscape;
       } else if (button.key === "confirm") {
@@ -435,7 +435,7 @@
       return options.callback.call(this, value);
     };
 
-    each(options.buttons, function(buttonKey, button){
+    each(options.buttons, function(buttonKey, button) {
       if (button.key === "cancel") {
         button.callback = options.onEscape;
       } else if (button.key === "confirm") {
