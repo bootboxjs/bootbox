@@ -211,6 +211,7 @@
       args,
       properties
     );
+
     if (defaults && defaults.buttons && mapArgumentsResult && mapArgumentsResult.buttons) {
       $.each(defaults.buttons, function(defaultButtonKey, defaultButton) {
         var found = false;
