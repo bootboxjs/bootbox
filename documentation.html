@@ -116,9 +116,9 @@
                     <p>
                         Alerts can be customized, using the <a href="#">options described below</a>.
                     </p>
-<pre class="prettyprint linenums"><code>bootbox.alert({ 
+<pre class="prettyprint linenums"><code>bootbox.alert({
     size: 'small',
-    message: "Your message here&hellip;", 
+    message: "Your message here&hellip;",
     callback: function(){ /* your callback code */ }
 })</code></pre>
                 </section>
@@ -159,9 +159,9 @@
                     <p>
                         Confirm dialogs can be customized, using the <a href="#">options described below</a>.
                     </p>
-<pre class="prettyprint linenums"><code>bootbox.confirm({ 
+<pre class="prettyprint linenums"><code>bootbox.confirm({
     size: 'small',
-    message: "Your message here&hellip;", 
+    message: "Your message here&hellip;",
     callback: function(result){ /* your callback code */ }
 })</code></pre>
                 </section>
@@ -209,9 +209,9 @@
                     <p>
                         Prompt dialogs can be customized, using the <a href="#">options described below</a>.
                     </p>
-<pre class="prettyprint linenums"><code>bootbox.prompt({ 
+<pre class="prettyprint linenums"><code>bootbox.prompt({
     size: 'small',
-    message: "Your message here&hellip;", 
+    message: "Your message here&hellip;",
     callback: function(result){ /* your callback code */ }
 })</code></pre>
                 </section>
@@ -247,7 +247,7 @@
                         The following snippet attempts to demonstrate these options as best as possible, though
                         more formal documentation would be welcome:
                     </p>
-                    <script src="https://gist.github.com/makeusabrew/6339780.js"></script>
+                    <script src="https://gist.github.com/DavidePastore/451788527adeb5b4a1886e421b4bf740.js"></script>
                 </section>
                 <section id="bb-dialog-options" class="bb-section">
                     <div class="page-header">
@@ -499,12 +499,13 @@
                                             Required
                                         </span>
                                     </td>
-                                    <td>Object</td>
+                                    <td>Array</td>
                                     <td>
                                         <p>
                                             Buttons are defined as JavaScript objects. The minimum requirement to define a button is:
                                         </p>
-                                        <pre class="prettyprint linenums"><code>buttonName: {
+                                        <pre class="prettyprint linenums"><code>{
+    key: buttonName,
     label: 'Your Label Text',
     callback: function() {
     }

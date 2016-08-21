@@ -66,36 +66,39 @@ $(function() {
                     Example.show("Hi <b>"+result+"</b>");
                 }
             }
-        }); 
+        });
     };
 
     demos.dialog = function() {
       bootbox.dialog({
         message: "I am a custom dialog",
         title: "Custom title",
-        buttons: {
-          success: {
+        buttons: [
+          {
+            key: 'success',
             label: "Success!",
             className: "btn-success",
             callback: function() {
               Example.show("great success");
             }
           },
-          danger: {
+          {
+            key: 'danger',
             label: "Danger!",
             className: "btn-danger",
             callback: function() {
               Example.show("uh oh, look out!");
             }
           },
-          main: {
+          {
+            key: 'main',
             label: "Click ME!",
             className: "btn-primary",
             callback: function() {
               Example.show("Primary button");
             }
           }
-        }
+        ]
       });
     };
 
@@ -128,8 +131,9 @@ $(function() {
           '</div> ' +
           '</div> </div>' +
           '</form> </div>  </div>',
-        buttons: {
-          success: {
+        buttons: [
+          {
+            key: 'success',
             label: "Save",
             className: "btn-success",
             callback: function () {
@@ -138,7 +142,7 @@ $(function() {
               Example.show("Hello " + name + ". You've chosen <b>" + answer + "</b>");
             }
           }
-        }
+        ]
       }
     );
   };
