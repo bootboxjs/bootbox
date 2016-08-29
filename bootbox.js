@@ -366,6 +366,12 @@ var bootbox = window.bootbox || (function(document, $) {
                 }
             }
 
+            if (handlers[i]['attr']) {
+                for(var key in handlers[i]['attr']){
+                    data = data + ' ' + key + '=' + handlers[i]['attr'][key];
+                }
+            }
+
             buttons = "<a data-handler='"+i+"' class='"+_class+"' href='" + href + "' " + data + ">"+icon+""+label+"</a>" + buttons;
 
             callbacks[i] = callback;
