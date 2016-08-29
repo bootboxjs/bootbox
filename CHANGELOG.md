@@ -1,4 +1,8 @@
-## Latest Release: 3.3.1
+## Latest Release: 3.4.0
+
+* Add support for extra attributes for custom buttons in dialog
+
+### 3.3.1
 
 **This was the first forked version by [rui-ferreira](https://github.com/rui-ferreira/bootbox)**
 
