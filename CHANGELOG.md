@@ -1,6 +1,7 @@
 ## Latest Release: 3.4.0
 
 * Add support for extra attributes for custom buttons in dialog
+* Option to disable focus on btn-primary
 
 ### 3.3.1
 

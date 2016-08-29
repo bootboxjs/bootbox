@@ -449,11 +449,13 @@ var bootbox = window.bootbox || (function(document, $) {
         });
 
         // well, *if* we have a primary - give the first dom element focus
-        div.on('shown', function(e) {
-            if (e.target === this) {
-            div.find("a.btn-primary:first").focus();
-            }
-        });
+        if(options.disableFocus !== true) {
+            div.on('shown', function (e) {
+                if (e.target === this) {
+                    div.find("a.btn-primary:first").focus();
+                }
+            });
+        }
 
         div.on('hidden', function(e) {
             // @see https://github.com/makeusabrew/bootbox/issues/115
