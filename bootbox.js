@@ -14,6 +14,7 @@ var bootbox = window.bootbox || (function(document, $) {
         _classes       = '',
         _btnClasses    = {},
         _icons         = {},
+        _autoFocus     = true,
         /* last var should always be the public object we'll return */
         that           = {};
 
@@ -51,6 +52,13 @@ var bootbox = window.bootbox || (function(document, $) {
         _btnClasses = btnClasses;
         if (typeof _btnClasses !== 'object' || _btnClasses === null) {
             _btnClasses = {};
+        }
+    };
+
+    that.setAutoFocus = function(autoFocus) {
+        _autoFocus = autoFocus;
+        if (typeof _autoFocus !== 'boolean' || _autoFocus === null) {
+            _autoFocus = true;
         }
     };
 
@@ -449,7 +457,7 @@ var bootbox = window.bootbox || (function(document, $) {
         });
 
         // well, *if* we have a primary - give the first dom element focus
-        if(options.disableFocus !== true) {
+        if(_autoFocus) {
             div.on('shown', function (e) {
                 if (e.target === this) {
                     div.find("a.btn-primary:first").focus();
