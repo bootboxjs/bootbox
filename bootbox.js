@@ -54,10 +54,15 @@ var bootbox = window.bootbox || (function(document, $) {
         }
     };
 
-    that.alert = function(/*str, label, cb*/) {
-        var str   = "",
-            label = _translate('OK'),
-            cb    = null;
+    that.alert = function(/*str, label, cb, options*/) {
+        var str     = "",
+            label   = _translate('OK'),
+            cb      = null,
+            options = {
+                // ensure that the escape key works; either invoking the user's
+                // callback or true to just close the dialog
+                "onEscape": cb || true
+            };
 
         switch (arguments.length) {
             case 1:
@@ -65,12 +70,14 @@ var bootbox = window.bootbox || (function(document, $) {
                 str = arguments[0];
                 break;
             case 2:
-                // callback *or* custom button label dependent on type
+                // callback *or* custom button label *or* options object dependent on type
                 str = arguments[0];
                 if (typeof arguments[1] == 'function') {
                     cb = arguments[1];
-                } else {
+                } else if (typeof arguments[1] == 'string') {
                     label = arguments[1];
+                } else { //options
+                    options = $.extend(options, arguments[1]);
                 }
                 break;
             case 3:
@@ -79,8 +86,14 @@ var bootbox = window.bootbox || (function(document, $) {
                 label = arguments[1];
                 cb    = arguments[2];
                 break;
+            case 4:
+                str = arguments[0];
+                label = arguments[1];
+                cb = arguments[2];
+                options = $.extend(options, arguments[3]);
+                break;
             default:
-                throw new Error("Incorrect number of arguments: expected 1-3");
+                throw new Error("Incorrect number of arguments: expected 1-4");
         }
 
         return that.dialog(str, {
@@ -89,11 +102,7 @@ var bootbox = window.bootbox || (function(document, $) {
             "icon"    : _icons.OK,
             "class"   : _btnClasses.OK,
             "callback": cb
-        }, {
-            // ensure that the escape key works; either invoking the user's
-            // callback or true to just close the dialog
-            "onEscape": cb || true
-        });
+        }, options);
     };
 
     that.confirm = function(/*str, labelCancel, labelOk, cb*/) {
@@ -255,14 +264,14 @@ var bootbox = window.bootbox || (function(document, $) {
 
         div.on("shown", function(ev) {
             if (ev.target === this) {
-                form.find("input[type=text]").focus();
-    
-                // ensure that submitting the form (e.g. with the enter key)
-                // replicates the behaviour of a normal prompt()
-                form.on("submit", function(e) {
-                    e.preventDefault();
-                    div.find(".btn-primary").click();
-                });
+            form.find("input[type=text]").focus();
+
+            // ensure that submitting the form (e.g. with the enter key)
+            // replicates the behaviour of a normal prompt()
+            form.on("submit", function(e) {
+                e.preventDefault();
+                div.find(".btn-primary").click();
+            });
             }
         });
 
@@ -436,7 +445,7 @@ var bootbox = window.bootbox || (function(document, $) {
         // well, *if* we have a primary - give the first dom element focus
         div.on('shown', function(e) {
             if (e.target === this) {
-                div.find("a.btn-primary:first").focus();
+            div.find("a.btn-primary:first").focus();
             }
         });
 
@@ -499,7 +508,7 @@ var bootbox = window.bootbox || (function(document, $) {
         // @see https://github.com/twitter/bootstrap/issues/4781
         div.on("show", function(e) {
             if (e.target === this) {
-                $(document).off("focusin.modal");
+            $(document).off("focusin.modal");
             }
         });
 
