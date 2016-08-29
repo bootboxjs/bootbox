@@ -58,11 +58,7 @@ var bootbox = window.bootbox || (function(document, $) {
         var str     = "",
             label   = _translate('OK'),
             cb      = null,
-            options = {
-                // ensure that the escape key works; either invoking the user's
-                // callback or true to just close the dialog
-                "onEscape": cb || true
-            };
+            options = {};
 
         switch (arguments.length) {
             case 1:
@@ -95,6 +91,10 @@ var bootbox = window.bootbox || (function(document, $) {
             default:
                 throw new Error("Incorrect number of arguments: expected 1-4");
         }
+
+        // ensure that the escape key works; either invoking the user's
+        // callback or true to just close the dialog
+        options.onEscape = options.onEscape || cb || true;
 
         return that.dialog(str, {
             // only button (ok)
