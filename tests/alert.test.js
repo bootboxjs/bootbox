@@ -148,6 +148,27 @@ describe("bootbox.alert", function() {
       });
     });
 
+
+    describe("with a custom styling", function() {
+      beforeEach(function() {
+        this.options.buttons = {
+          ok: {
+            style: "float:left;",
+            label: "Custom OK",
+            className: "btn-danger",
+          }
+        };
+
+        this.create();
+
+        this.button = this.dialog.find(".btn:first");
+      });
+
+      it("shows styling of button", function() {
+        expect(this.button.css("float")).to.eq("left");
+      });
+    });
+
     describe("with an unrecognised button key", function() {
       beforeEach(function() {
         this.options.buttons = {
