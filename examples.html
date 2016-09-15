@@ -116,17 +116,19 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-xs-6">
-                <a href="https://meetfinch.com" style="display: block;" class="lead">
-                    Bootbox.js is proudly sponsored by <img src="./images/logo.svg" alt="Finch" class="img-rounded finch-logo" />
-                </a>
-            </div>
-            <div class="col-xs-6">
-                <p>
-                    Test local websites across multiple devices, share them with your team and get feedback from clients through a secure, public URL.
-                    <a href="https://meetfinch.com" style="display: block;" class="lead">&mdash; meetfinch.com</a>
-                </p>
+        <div id="finch-banner">
+            <div class="row">
+                <div class="col-xs-6">
+                    <a href="https://meetfinch.com" style="display: block;" class="lead">
+                        Bootbox.js is proudly sponsored by <img src="./images/logo.svg" alt="Finch" class="img-rounded finch-logo" />
+                    </a>
+                </div>
+                <div class="col-xs-6">
+                    <p>
+                        Test local websites across multiple devices, share them with your team and get feedback from clients through a secure, public URL.
+                        <a href="https://meetfinch.com" style="display: block;" class="lead">&mdash; meetfinch.com</a>
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -585,6 +587,10 @@ dialog.init(function(){
         </div>
     </footer>
 
+    <div class="bb-alert alert alert-info" style="display:none;">
+        <span>The examples populate this alert with dummy content</span>
+    </div>
+
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.js"></script>
@@ -592,6 +598,7 @@ dialog.init(function(){
 
     <script src="./vendor/js/prettify.min.js"></script>
     <script src="./vendor/js/jquery.scrollUp.min.js"></script>
+    <script src="./js/example.js"></script>
     <script src="./js/demos.js"></script>
 </body>
 </html>

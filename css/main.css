@@ -354,7 +354,7 @@
 
     #scroll-up-btn:hover
     {
-        color: #f40;
+        color: #B40E4D;
         opacity: 1;
     }
 
@@ -365,6 +365,19 @@
     background: #2689ca;
     color: #fff;
 }
+
+#finch-banner
+{
+    border: solid 2px rgba(38, 137, 202, .5);
+    background: rgba(38, 137, 202, .125);
+    padding: 1.5em 1em;
+}
+
+    #finch-banner .lead,
+    #finch-banner p
+    {
+        margin-bottom: 0;
+    }
 
 
 bb-logo
@@ -598,3 +611,31 @@ bb-logo
     {
         color: #1b809e;
     }
+
+
+
+.block-danger
+{
+    color: #fff;
+    background: #ce4844;
+    margin: 0;
+    padding: 1em;
+}
+
+    .block-danger a
+    {
+        color: rgba(255, 255, 255, .85);
+        text-decoration: underline;
+    }
+
+
+.bb-alert
+{
+    position: fixed;
+    bottom: 25%;
+    right: 0;
+    margin-bottom: 0;
+    font-size: 1.2em;
+    padding: 1em 1.3em;
+    z-index: 2000;
+}

@@ -6,6 +6,10 @@ $(function () {
         window.prettyPrint && prettyPrint();
 
         anchors.add('.bb-examples-list .bb-example');
+
+        Example.init({
+            "selector": ".bb-alert"
+        });
     }
     catch (ex) {
         console.log(ex.message);
@@ -58,12 +62,12 @@ $(function () {
 
                     case 'alert-default':
                         bootbox.alert("This is the default alert!");
-                        console.log('Default alert');
+                        Example.show('Default alert');
                         break;
 
                     case 'alert-callback':
                         bootbox.alert("This is an alert with a callback!", function () {
-                            console.log('This was logged in the callback!');
+                            Example.show('This was logged in the callback!');
                         });
                         break;
 
@@ -71,7 +75,7 @@ $(function () {
                         bootbox.alert({
                             message: "This is an alert with a callback!",
                             callback: function () {
-                                console.log('This was logged in the callback!');
+                                Example.show('This was logged in the callback!');
                             }
                         });
                         break;
@@ -81,7 +85,7 @@ $(function () {
                             message: "This is the small alert!",
                             size: 'small'
                         });
-                        console.log('Small alert shown');
+                        Example.show('Small alert shown');
                         break;
 
                     case 'alert-large':
@@ -89,7 +93,7 @@ $(function () {
                             message: "This is the large alert!",
                             size: 'large'
                         });
-                        console.log('Large alert shown');
+                        Example.show('Large alert shown');
                         break;
 
                     case 'alert-custom-class':
@@ -97,7 +101,7 @@ $(function () {
                             message: "This is an alert with an additional class!",
                             className: 'bb-alternate-modal'
                         });
-                        console.log('Custom class alert shown');
+                        Example.show('Custom class alert shown');
                         break;
 
                     case 'alert-overlay-click':
@@ -105,14 +109,16 @@ $(function () {
                             message: "This alert can be dismissed by clicking on the background!",
                             backdrop: true
                         });
-                        console.log('Dismissable background alert shown');
+                        Example.show('Dismissable background alert shown');
                         break;
 
 
                         /* Confirms */
 
                     case 'confirm-default':
-                        bootbox.confirm("This is the default confirm.", function (result) { console.log('This was logged in the callback: ' + result); });
+                        bootbox.confirm("This is the default confirm.", function (result) {
+                            Example.show('This was logged in the callback: ' + result);
+                        });
                         break;
 
                     case 'confirm-options':
@@ -129,7 +135,7 @@ $(function () {
                                 }
                             },
                             callback: function (result) {
-                                console.log('This was logged in the callback: ' + result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
@@ -147,14 +153,16 @@ $(function () {
                                 }
                             },
                             callback: function (result) {
-                                console.log('This was logged in the callback: ' + result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
 
                         /* Prompts */
                     case 'prompt-default':
-                        bootbox.prompt("This is the default prompt!", function (result) { console.log(result); });
+                        bootbox.prompt("This is the default prompt!", function (result) {
+                            Example.show('This was logged in the callback: ' + result);
+                        });
                         break;
 
                     case 'prompt-checkbox':
@@ -176,7 +184,7 @@ $(function () {
                                 }
                             ],
                             callback: function (result) {
-                                console.log(result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
@@ -186,7 +194,7 @@ $(function () {
                             title: "This is a prompt with a date input!",
                             inputType: 'date',
                             callback: function (result) {
-                                console.log(result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
@@ -196,7 +204,7 @@ $(function () {
                             title: "This is a prompt with an email input!",
                             inputType: 'email',
                             callback: function (result) {
-                                console.log(result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
@@ -206,7 +214,7 @@ $(function () {
                             title: "This is a prompt with a number input!",
                             inputType: 'number',
                             callback: function (result) {
-                                console.log(result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
@@ -216,7 +224,7 @@ $(function () {
                             title: "This is a prompt with a password input!",
                             inputType: 'password',
                             callback: function (result) {
-                                console.log(result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
@@ -244,7 +252,7 @@ $(function () {
                                 }
                             ],
                             callback: function (result) {
-                                console.log(result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
@@ -254,7 +262,7 @@ $(function () {
                             title: "This is a prompt with a textarea!",
                             inputType: 'textarea',
                             callback: function (result) {
-                                console.log(result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
@@ -264,7 +272,7 @@ $(function () {
                             title: "This is a prompt with a time input!",
                             inputType: 'time',
                             callback: function (result) {
-                                console.log(result);
+                                Example.show('This was logged in the callback: ' + result);
                             }
                         });
                         break;
