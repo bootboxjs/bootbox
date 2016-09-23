@@ -141,6 +141,12 @@
       throw new Error("Please specify a message");
     }
 
+    // convert string message to callback.
+    if (typeof options.message === 'string'){
+      var message = options.message;
+      options.message = function(dialog){ return message; };
+    }
+
     // make sure any supplied options take precedence over defaults
     options = $.extend({}, defaults, options);
 
@@ -320,6 +326,11 @@
 
     options = mergeDialogOptions("confirm", ["cancel", "confirm"], ["message", "callback"], arguments);
 
+    // confirm specific validation
+    if (!$.isFunction(options.callback)) {
+      throw new Error("confirm requires a callback");
+    }
+
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
@@ -331,28 +342,14 @@
       return options.callback.call(this, true);
     };
 
-    // confirm specific validation
-    if (!$.isFunction(options.callback)) {
-      throw new Error("confirm requires a callback");
-    }
-
     return exports.dialog(options);
   };
 
   exports.prompt = function() {
     var options;
     var defaults;
-    var dialog;
-    var form;
     var input;
-    var shouldShow;
     var inputOptions;
-
-    // we have to create our form first otherwise
-    // its value is undefined when gearing up our options
-    // @TODO this could be solved by allowing message to
-    // be a function instead...
-    form = $(templates.form);
 
     // prompt defaults are more complex than others in that
     // users can override more defaults
@@ -371,15 +368,18 @@
       ["cancel", "confirm"]
     );
 
-    // capture the user's show value; we always set this to false before
-    // spawning the dialog to give us a chance to attach some handlers to
-    // it, but we need to make sure we respect a preference not to show it
-    shouldShow = (options.show === undefined) ? true : options.show;
+    // prompt specific validation
+    if (!options.title) {
+      throw new Error("prompt requires a title");
+    }
 
-    /**
-     * overrides; undo anything the user tried to set they shouldn't have
-     */
-    options.message = form;
+    if (!$.isFunction(options.callback)) {
+      throw new Error("prompt requires a callback");
+    }
+
+    if (!templates.inputs[options.inputType]) {
+      throw new Error("invalid prompt type");
+    }
 
     options.buttons.cancel.callback = options.onEscape = function() {
       return options.callback.call(this, null);
@@ -416,156 +416,138 @@
       return options.callback.call(this, value);
     };
 
-    options.show = false;
+    options.message = function(dialog){
+      // we have to create our form first otherwise
+      // its value is undefined when gearing up our options
+      // @TODO this could be solved by allowing message to
+      // be a function instead...
+      var form = $(templates.form);
 
-    // prompt specific validation
-    if (!options.title) {
-      throw new Error("prompt requires a title");
-    }
+      // create the input based on the supplied type
+      form.append(input = $(templates.inputs[options.inputType]));
 
-    if (!$.isFunction(options.callback)) {
-      throw new Error("prompt requires a callback");
-    }
+      switch (options.inputType) {
+        case "text":
+        case "textarea":
+        case "email":
+        case "date":
+        case "time":
+        case "number":
+        case "password":
+          input.val(options.value);
+          break;
 
-    if (!templates.inputs[options.inputType]) {
-      throw new Error("invalid prompt type");
-    }
+        case "select":
+          var groups = {};
+          inputOptions = options.inputOptions || [];
 
-    // create the input based on the supplied type
-    input = $(templates.inputs[options.inputType]);
+          if (!$.isArray(inputOptions)) {
+            throw new Error("Please pass an array of input options");
+          }
 
-    switch (options.inputType) {
-      case "text":
-      case "textarea":
-      case "email":
-      case "date":
-      case "time":
-      case "number":
-      case "password":
-        input.val(options.value);
-        break;
+          if (!inputOptions.length) {
+            throw new Error("prompt with select requires options");
+          }
 
-      case "select":
-        var groups = {};
-        inputOptions = options.inputOptions || [];
+          each(inputOptions, function(_, option) {
 
-        if (!$.isArray(inputOptions)) {
-          throw new Error("Please pass an array of input options");
-        }
+            // assume the element to attach to is the input...
+            var elem = input;
 
-        if (!inputOptions.length) {
-          throw new Error("prompt with select requires options");
-        }
+            if (option.value === undefined || option.text === undefined) {
+              throw new Error("given options in wrong format");
+            }
 
-        each(inputOptions, function(_, option) {
+            // ... but override that element if this option sits in a group
 
-          // assume the element to attach to is the input...
-          var elem = input;
+            if (option.group) {
+              // initialise group if necessary
+              if (!groups[option.group]) {
+                groups[option.group] = $("<optgroup/>").attr("label", option.group);
+              }
 
-          if (option.value === undefined || option.text === undefined) {
+              elem = groups[option.group];
+            }
+
+            elem.append("<option value='" + option.value + "'>" + option.text + "</option>");
+          });
+
+          each(groups, function(_, group) {
+            input.append(group);
+          });
+
+          // safe to set a select's value as per a normal input
+          input.val(options.value);
+          break;
+
+        case "checkbox":
+          var values   = $.isArray(options.value) ? options.value : [options.value];
+          inputOptions = options.inputOptions || [];
+
+          if (!inputOptions.length) {
+            throw new Error("prompt with checkbox requires options");
+          }
+
+          if (!inputOptions[0].value || !inputOptions[0].text) {
             throw new Error("given options in wrong format");
           }
 
-          // ... but override that element if this option sits in a group
+          // checkboxes have to nest within a containing element, so
+          // they break the rules a bit and we end up re-assigning
+          // our 'input' element to this container instead
+          input = $("<div/>");
 
-          if (option.group) {
-            // initialise group if necessary
-            if (!groups[option.group]) {
-              groups[option.group] = $("<optgroup/>").attr("label", option.group);
-            }
+          each(inputOptions, function(_, option) {
+            var checkbox = $(templates.inputs[options.inputType]);
 
-            elem = groups[option.group];
-          }
+            checkbox.find("input").attr("value", option.value);
+            checkbox.find("label").append(option.text);
 
-          elem.append("<option value='" + option.value + "'>" + option.text + "</option>");
-        });
+            // we've ensured values is an array so we can always iterate over it
+            each(values, function(_, value) {
+              if (value === option.value) {
+                checkbox.find("input").prop("checked", true);
+              }
+            });
 
-        each(groups, function(_, group) {
-          input.append(group);
-        });
-
-        // safe to set a select's value as per a normal input
-        input.val(options.value);
-        break;
-
-      case "checkbox":
-        var values   = $.isArray(options.value) ? options.value : [options.value];
-        inputOptions = options.inputOptions || [];
-
-        if (!inputOptions.length) {
-          throw new Error("prompt with checkbox requires options");
-        }
-
-        if (!inputOptions[0].value || !inputOptions[0].text) {
-          throw new Error("given options in wrong format");
-        }
-
-        // checkboxes have to nest within a containing element, so
-        // they break the rules a bit and we end up re-assigning
-        // our 'input' element to this container instead
-        input = $("<div/>");
-
-        each(inputOptions, function(_, option) {
-          var checkbox = $(templates.inputs[options.inputType]);
-
-          checkbox.find("input").attr("value", option.value);
-          checkbox.find("label").append(option.text);
-
-          // we've ensured values is an array so we can always iterate over it
-          each(values, function(_, value) {
-            if (value === option.value) {
-              checkbox.find("input").prop("checked", true);
-            }
+            input.append(checkbox);
           });
+          break;
+      }
 
-          input.append(checkbox);
-        });
-        break;
-    }
+      // @TODO provide an attributes option instead
+      // and simply map that as keys: vals
+      if (options.placeholder) {
+        input.attr("placeholder", options.placeholder);
+      }
 
-    // @TODO provide an attributes option instead
-    // and simply map that as keys: vals
-    if (options.placeholder) {
-      input.attr("placeholder", options.placeholder);
-    }
+      if (options.pattern) {
+        input.attr("pattern", options.pattern);
+      }
 
-    if (options.pattern) {
-      input.attr("pattern", options.pattern);
-    }
+      if (options.maxlength) {
+        input.attr("maxlength", options.maxlength);
+      }
 
-    if (options.maxlength) {
-      input.attr("maxlength", options.maxlength);
-    }
+      form.on("submit", function(e) {
+        e.preventDefault();
+        // Fix for SammyJS (or similar JS routing library) hijacking the form post.
+        e.stopPropagation();
+        // @TODO can we actually click *the* button object instead?
+        // e.g. buttons.confirm.click() or similar
+        dialog.find(".btn-primary").click();
+      });
 
-    // now place it in our form
-    form.append(input);
+      dialog.on("shown.bs.modal", function() {
+        // need the closure here since input isn't
+        // an object otherwise
+        input.focus();
+      });
 
-    form.on("submit", function(e) {
-      e.preventDefault();
-      // Fix for SammyJS (or similar JS routing library) hijacking the form post.
-      e.stopPropagation();
-      // @TODO can we actually click *the* button object instead?
-      // e.g. buttons.confirm.click() or similar
-      dialog.find(".btn-primary").click();
-    });
+      return form;
+    };
 
-    dialog = exports.dialog(options);
-
-    // clear the existing handler focusing the submit button...
-    dialog.off("shown.bs.modal");
-
-    // ...and replace it with one focusing our input, if possible
-    dialog.on("shown.bs.modal", function() {
-      // need the closure here since input isn't
-      // an object otherwise
-      input.focus();
-    });
-
-    if (shouldShow === true) {
-      dialog.modal("show");
-    }
-
-    return dialog;
+    return exports.dialog(options);
   };
 
   exports.dialog = function(options) {
@@ -598,7 +580,7 @@
       callbacks[key] = button.callback;
     });
 
-    body.find(".bootbox-body").html(options.message);
+    body.find(".bootbox-body").html(options.message(dialog));
 
     if (options.animate === true) {
       dialog.addClass("fade");
@@ -709,28 +691,27 @@
       });
     }
 
-    dialog.on("escape.close.bb", function(e) {
-      if (callbacks.onEscape) {
-        processCallback(e, dialog, callbacks.onEscape);
-      }
-    });
-
     /**
      * Standard jQuery event listeners; used to handle user
      * interaction with our dialog
      */
-
     dialog.on("click", ".modal-footer button", function(e) {
       var callbackKey = $(this).data("bb-handler");
 
       processCallback(e, dialog, callbacks[callbackKey]);
     });
 
+    dialog.on("escape.close.bb", function(e) {
+      if (callbacks.onEscape) {
+        processCallback(e, dialog, callbacks.onEscape);
+      }
+    });
+
     dialog.on("click", ".bootbox-close-button", function(e) {
       // onEscape might be falsy but that's fine; the fact is
       // if the user has managed to click the close button we
       // have to close the dialog, callback or not
-      processCallback(e, dialog, callbacks.onEscape);
+        dialog.trigger("escape.close.bb");
     });
 
     dialog.on("keyup", function(e) {
