@@ -103,10 +103,11 @@ describe "bootbox.confirm", ->
 
     describe "with a custom cancel button", ->
       beforeEach ->
-        @options.buttons =
-          cancel:
-            label: "Custom cancel"
-            className: "btn-danger"
+        @options.buttons = [
+          key: "cancel"
+          label: "Custom cancel"
+          className: "btn-danger"
+        ]
 
         @create()
 
@@ -118,10 +119,11 @@ describe "bootbox.confirm", ->
 
     describe "with a custom confirm button", ->
       beforeEach ->
-        @options.buttons =
-          confirm:
-            label: "Custom confirm"
-            className: "btn-warning"
+        @options.buttons = [
+          key: "confirm"
+          label: "Custom confirm"
+          className: "btn-warning"
+        ]
 
         @create()
 
@@ -133,10 +135,11 @@ describe "bootbox.confirm", ->
 
     describe "with an unrecognised button key", ->
       beforeEach ->
-        @options.buttons =
-          "Bad key":
-            label: "Custom confirm"
-            className: "btn-warning"
+        @options.buttons = [
+          key: "Bad key"
+          label: "Custom confirm"
+          className: "btn-warning"
+        ]
 
       it "throws an error", ->
         expect(@create).to.throw /key is not allowed/

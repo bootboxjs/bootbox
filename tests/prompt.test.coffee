@@ -121,10 +121,11 @@ describe "bootbox.prompt", ->
 
     describe "with a custom cancel button", ->
       beforeEach ->
-        @options.buttons =
-          cancel:
-            label: "Custom cancel"
-            className: "btn-danger"
+        @options.buttons = [
+          key: "cancel",
+          label: "Custom cancel"
+          className: "btn-danger"
+        ]
 
         @create()
 
@@ -136,10 +137,11 @@ describe "bootbox.prompt", ->
 
     describe "with a custom confirm button", ->
       beforeEach ->
-        @options.buttons =
-          confirm:
-            label: "Custom confirm"
-            className: "btn-warning"
+        @options.buttons = [
+          key: "confirm"
+          label: "Custom confirm"
+          className: "btn-warning"
+        ]
 
         @create()
 
@@ -151,10 +153,11 @@ describe "bootbox.prompt", ->
 
     describe "with an unrecognised button key", ->
       beforeEach ->
-        @options.buttons =
-          prompt:
-            label: "Custom confirm"
-            className: "btn-warning"
+        @options.buttons = [
+          key: "prompt"
+          label: "Custom confirm"
+          className: "btn-warning"
+        ]
 
       it "throws an error", ->
         expect(@create).to.throw /key prompt is not allowed/
@@ -1303,4 +1306,3 @@ describe "bootbox.prompt", ->
 
             it "with the correct value", ->
               expect(@callback).to.have.been.calledWithExactly ["1", "4"]
-
