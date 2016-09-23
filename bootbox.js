@@ -82,7 +82,9 @@
     // show the dialog immediately by default
     show: true,
     // dialog container
-    container: "body"
+    container: "body",
+    // buttons will be permuted (confirm / prompt)
+    invertButtons: false
   };
 
   // our public object; augmented after our private API
@@ -317,9 +319,15 @@
 
   exports.confirm = function() {
     var options;
+    var invertButtons = defaults.invertButtons;
+    var dialog;
 
     options = mergeDialogOptions("confirm", ["cancel", "confirm"], ["message", "callback"], arguments);
 
+    if (options.invertButtons !== undefined) {
+      invertButtons = options.invertButtons;
+    }
+	
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
@@ -335,13 +343,19 @@
     if (!$.isFunction(options.callback)) {
       throw new Error("confirm requires a callback");
     }
+    dialog = exports.dialog(options);
 
-    return exports.dialog(options);
+    if (invertButtons) {
+      var modalFooterButtons = dialog.find(".modal-footer :button");
+      modalFooterButtons.last().insertBefore(modalFooterButtons.first());
+    }
+
+    return dialog;
   };
 
   exports.prompt = function() {
     var options;
-    var defaults;
+    var promptDefaults;
     var dialog;
     var form;
     var input;
@@ -359,15 +373,16 @@
     // @TODO I don't like that prompt has to do a lot of heavy
     // lifting which mergeDialogOptions can *almost* support already
     // just because of 'value' and 'inputType' - can we refactor?
-    defaults = {
+    promptDefaults = {
       className: "bootbox-prompt",
       buttons: createLabels("cancel", "confirm"),
       value: "",
-      inputType: "text"
+      inputType: "text",
+      invertButtons: defaults.invertButtons
     };
 
     options = validateButtons(
-      mergeArguments(defaults, arguments, ["title", "callback"]),
+      mergeArguments(promptDefaults, arguments, ["title", "callback"]),
       ["cancel", "confirm"]
     );
 
@@ -565,6 +580,11 @@
       dialog.modal("show");
     }
 
+    if (options.invertButtons) {
+      var modalFooterButtons = dialog.find(".modal-footer :button");
+      modalFooterButtons.last().insertBefore(modalFooterButtons.first());
+    }
+	
     return dialog;
   };
 
