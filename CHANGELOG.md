@@ -1,4 +1,17 @@
-## Latest Release: 3.3.0
+## Latest Release: 3.4.0
+
+* Add support for extra attributes for custom buttons in dialog
+* Option to disable focus on btn-primary
+
+### 3.3.1
+
+**This was the first forked version by [rui-ferreira](https://github.com/rui-ferreira/bootbox)**
+
+* Add support for data attributes for custom buttons (dialog) (PR #221)
+* Check shown event was fired by dialog element (PR #268)
+* alert() can receive a custom options object, just like dialog does
+
+### 3.3.0
 
 * Add Polish translation (GH-93)
 * Add Danish translation (GH-96)

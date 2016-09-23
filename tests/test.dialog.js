@@ -88,6 +88,7 @@ describe("#dialog", function() {
                         "label": "My Button",
                         "icon": "my-icon-class",
                         "data": {"foo": "bar", "answer": 42},
+                        "attr": {"role": "link", "aria-label": "foobar"},
                         "callback": function() {
                             called = true;
                         }
@@ -127,6 +128,16 @@ describe("#dialog", function() {
                   it("should set data-answer attribute to the button", function() {
                     assert.equal(box.find("a:first").attr('data-answer'), '42')
                   });
+                });
+
+                describe("when two custom attributes are given", function(){
+                    it("should set role attribute to 'link'", function() {
+                        assert.equal(box.find("a:first").attr('role'), 'link')
+                    });
+
+                    it("should set aria-label attribute to 'foobar'", function() {
+                        assert.equal(box.find("a:first").attr('aria-label'), 'foobar')
+                    });
                 });
 
                 describe("when clicking the button", function() {

@@ -78,9 +78,27 @@ describe("#alert", function() {
     });
 
     describe("with four arguments", function() {
+        before(function() {
+            box = bootbox.alert("Foo", "Bar", function() {}, {"header": "My Header"});
+        });
+
+        it("shows the expected body copy", function() {
+            assert.equal(box.find(".modal-body").text(), "Foo");
+        });
+
+        it("shows the correct label text", function() {
+            assert.equal(box.find(".modal-footer a:first").text(), "Bar");
+        });
+
+        it("shows the correct header", function() {
+            assert.equal(box.find(".modal-header h3").text(), "My Header");
+        });
+    });
+
+    describe("with five arguments", function() {
         it("throws an error", function() {
             assert.throws(function() {
-                bootbox.alert(1, 2, 3, 4);
+                bootbox.alert(1, 2, 3, 4, 5);
             });
         });
     });
