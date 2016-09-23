@@ -329,6 +329,19 @@ describe "bootbox.dialog", ->
         it "should not hide the modal", ->
           expect(@hidden).not.to.have.been.called
 
+      describe "when clicking the escape button", ->
+        beforeEach ->
+          @dialog.find(".close").trigger "click"
+
+        it "should invoke the callback", ->
+          expect(@callback).to.have.been.called
+
+        it "should pass the dialog as `this`", ->
+          expect(@callback.thisValues[0]).to.equal @dialog
+
+        it "should not hide the modal", ->
+          expect(@hidden).not.to.have.been.called
+
   describe "with size option", ->
     describe "when the size option is set to large", ->
       beforeEach ->
