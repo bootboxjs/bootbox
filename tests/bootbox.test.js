@@ -20,6 +20,10 @@ describe("Bootbox", function() {
       bootbox.hideAll();
     });
 
+    afterEach(function() {
+      this.hidden.restore();
+    });
+
     it("should hide all .bootbox modals", function() {
       expect(this.hidden).to.have.been.calledWithExactly("hide");
     });
