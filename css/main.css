@@ -664,3 +664,41 @@
     padding: 1em 1.3em;
     z-index: 2000;
 }
+
+.finch-promo {
+    display:block;
+    color:rgb(68, 68, 68);
+    text-decoration:none;
+    margin-top:2em;
+    font-size:21px;
+    font-weight:300;
+    line-height:1.4;
+    background:url('https://meetfinch.com/img/finch-icon.png') 5px 5px no-repeat;
+    min-height:110px;
+    padding-top:10px;
+    padding-left:110px;
+    border-radius:3px;
+    border:1px solid #BBE4FF;
+    background-color:#f7f7f7;
+}
+
+.finch-promo:hover {
+    background-color:#f3f3f3;
+    color:rgb(68, 68, 68);
+    text-decoration:none;
+}
+
+.promo-hl {
+    color: #337ab7;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+    .finch-promo {
+        background-image:url('https://meetfinch.com/img/finch-icon@2x.png');
+        background-size:96px;
+    }
+}
+
+.bb-light-blue {
+    background-color:#54949B;
+}
