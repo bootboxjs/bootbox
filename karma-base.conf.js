@@ -19,12 +19,10 @@ module.exports = function(params) {
 
         params.src || "bootbox.js",
 
-        ["tests/**/*.test.coffee",
-        "tests/**/*.test.js"]
+        ["tests/**/*.test.js"]
       ),
       exclude: [],
       preprocessors: {
-        "**/*.coffee": ["coffee"],
         "bootbox.js": ["coverage"]
       },
       reporters: ["dots", "coverage", "junit"],
