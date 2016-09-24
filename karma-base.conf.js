@@ -40,7 +40,7 @@ module.exports = function(params) {
       },
 
       junitReporter: {
-        outputFile: "tests/reports/results.xml"
+        outputDir: "tests/reports"
       }
     });
 
