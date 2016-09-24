@@ -28,15 +28,20 @@ $(function () {
 
     try {
         $(document)
-            .on('click', '[href^="#"]:not(#scroll-up-btn)', function (e) {
+            .on('click', '.dropdown-menu li a[href^="#"]', function (e) {
                 e.preventDefault();
 
                 var target = $(this).attr('href');
+                var offset = 75;
+
+                if (target && $(target).offset()) {
+                    offset = $(target).offset().top - 75;
+                }
 
                 doc.animate({
-                    scrollTop: ($(target).offset().top - 75)
+                    scrollTop: offset
                 }, 'slow', function () {
-                    window.location.hash = target;
+                    //window.location.hash = target;
                 });
             })
             .off('click', 'a.back-to-top')
@@ -99,7 +104,7 @@ $(function () {
                     case 'alert-custom-class':
                         bootbox.alert({
                             message: "This is an alert with an additional class!",
-                            className: 'bb-alternate-modal'
+                            className: 'rubberBand animated'
                         });
                         Example.show('Custom class alert shown');
                         break;

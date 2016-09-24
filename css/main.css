@@ -359,34 +359,56 @@
     }
 
 
-.finch-logo
+.alert--finch
 {
-    padding: 6px 8px;
-    background: #2689ca;
-    color: #fff;
+    display: block;
+    font-weight: bold;
+    text-align: center;
 }
 
-#finch-banner
+.finch-promo
 {
-    border: solid 2px rgba(38, 137, 202, .5);
-    background: rgba(38, 137, 202, .125);
-    padding: 1.5em 1em;
+    display: block;
+    color: rgb(68, 68, 68);
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.4;
+    background: url('https://meetfinch.com/img/finch-icon.png') 5px 5px no-repeat;
+    min-height: 110px;
+    padding-top: 10px;
+    padding-left: 110px;
+    border-radius: 3px;
+    border: 1px solid #BBE4FF;
+    background-color: #f7f7f7;
 }
 
-    #finch-banner .lead,
-    #finch-banner p
+    .finch-promo:hover
     {
-        margin-bottom: 0;
+        background-color: #f3f3f3;
+        color: rgb(68, 68, 68);
+        text-decoration: none;
     }
 
-
-bb-logo
+.promo-hl
 {
-    padding: 10px 12px;
-    font-size: 24px;
-    /*font-weight: 700;*/
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    color: #337ab7;
 }
+
+@media (-webkit-min-device-pixel-ratio: 2)
+{
+    .finch-promo
+    {
+        background-image: url('https://meetfinch.com/img/finch-icon@2x.png');
+        background-size: 96px;
+    }
+}
+
+.bb-light-blue
+{
+    background-color: #54949B;
+}
+
 
 .docs-container h3.bb-subsection-header
 {
@@ -552,6 +574,9 @@ bb-logo
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     border-color: #eee;
+    -moz-border-image: none;
+    -o-border-image: none;
+    -webkit-border-image: none;
     border-image: none;
     border-radius: 3px;
     border-style: solid;
