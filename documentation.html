@@ -574,52 +574,6 @@
                                         </p>
                                     </td>
                                 </tr>
-                                <tr id="bb-option-locale">
-                                    <td>locale</td>
-                                    <td>String</td>
-                                    <td>
-                                        <p>
-                                            The locale settings used to translate the three standard button labels: OK, CONFIRM, CANCEL
-                                        </p>
-                                        <p>
-                                            Default: <code>en</code>
-                                        </p>
-                                        <p>Currently available:</p>
-                                        <ul class="bb-locales-list">
-                                            <li><code>bg_BG</code></li>
-                                            <li><code>br</code></li>
-                                            <li><code>cs</code></li>
-                                            <li><code>da</code></li>
-                                            <li><code>de</code></li>
-                                            <li><code>el</code></li>
-                                            <li><code>en</code></li>
-                                            <li><code>es</code></li>
-                                            <li><code>et</code></li>
-                                            <li><code>fa</code></li>
-                                            <li><code>fi</code></li>
-                                            <li><code>fr</code></li>
-                                            <li><code>he</code></li>
-                                            <li><code>hu</code></li>
-                                            <li><code>hr</code></li>
-                                            <li><code>id</code></li>
-                                            <li><code>it</code></li>
-                                            <li><code>ja</code></li>
-                                            <li><code>lt</code></li>
-                                            <li><code>lv</code></li>
-                                            <li><code>nl</code></li>
-                                            <li><code>no</code></li>
-                                            <li><code>pl</code></li>
-                                            <li><code>pt</code></li>
-                                            <li><code>ru</code></li>
-                                            <li><code>sq</code></li>
-                                            <li><code>sv</code></li>
-                                            <li><code>th</code></li>
-                                            <li><code>tr</code></li>
-                                            <li><code>zh_CN</code></li>
-                                            <li><code>zh_TW</code></li>
-                                        </ul>
-                                    </td>
-                                </tr>
                                 <tr id="bb-option-callback">
                                     <td>
                                         <p>callback</p>
@@ -879,6 +833,52 @@ dialog.init(function(){
                     </p>
                     <script src="https://gist.github.com/makeusabrew/6339916.js"></script>
                 </div>
+                <div id="bb-function-setLocale" class="bb-function">
+                    <h3>bootbox.setLocale(String <b>name</b>)</h3>
+                    <p>
+                        Allows the user to select a locale rather than using <code>setDefaults("locale", ...)</code>.
+                    </p>
+					<p>
+						The locale settings are used to translate the three standard button labels: OK, CONFIRM, CANCEL
+					</p>
+					<p>
+						Default: <code>en</code>
+					</p>
+					<p>Currently available:</p>
+					<ul class="bb-locales-list">
+						<li><code>bg_BG</code></li>
+						<li><code>br</code></li>
+						<li><code>cs</code></li>
+						<li><code>da</code></li>
+						<li><code>de</code></li>
+						<li><code>el</code></li>
+						<li><code>en</code></li>
+						<li><code>es</code></li>
+						<li><code>et</code></li>
+						<li><code>fa</code></li>
+						<li><code>fi</code></li>
+						<li><code>fr</code></li>
+						<li><code>he</code></li>
+						<li><code>hu</code></li>
+						<li><code>hr</code></li>
+						<li><code>id</code></li>
+						<li><code>it</code></li>
+						<li><code>ja</code></li>
+						<li><code>lt</code></li>
+						<li><code>lv</code></li>
+						<li><code>nl</code></li>
+						<li><code>no</code></li>
+						<li><code>pl</code></li>
+						<li><code>pt</code></li>
+						<li><code>ru</code></li>
+						<li><code>sq</code></li>
+						<li><code>sv</code></li>
+						<li><code>th</code></li>
+						<li><code>tr</code></li>
+						<li><code>zh_CN</code></li>
+						<li><code>zh_TW</code></li>
+					</ul>
+                </div>
                 <div id="bb-function-addLocale" class="bb-function">
                     <h3>bootbox.addLocale(String <b>name</b>, object <b>values</b>)</h3>
                     <p>
@@ -894,12 +894,6 @@ dialog.init(function(){
                     <h3>bootbox.removeLocale(String <b>name</b>)</h3>
                     <p>
                         Allows the user to remove a locale from the available locale settings.
-                    </p>
-                </div>
-                <div id="bb-function-setLocale" class="bb-function">
-                    <h3>bootbox.setLocale(String <b>name</b>)</h3>
-                    <p>
-                        Allows the user to select a locale rather than using <code>setDefaults("locale", ...)</code>.
                     </p>
                 </div>
                 <div id="bb-function-hideAll" class="bb-function">
