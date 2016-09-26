@@ -220,10 +220,10 @@
                     </p>
                     <div class="bb-example bb-example-modal">
 <pre class="prettyprint"><code>bootbox.alert({ 
-    size: 'small',
-    title: "Your Title",
-    message: "Your message here&hellip;", 
-    callback: function(){ /* your callback code */ }
+  size: "small",
+  title: "Your Title",
+  message: "Your message here&hellip;", 
+  callback: function(){ /* your callback code */ }
 })</code></pre>
                         <figure>
                             <figcaption>Example <b>bb.3</b></figcaption>
@@ -299,9 +299,9 @@
                     </p>
                     <div class="bb-example bb-example-modal">
                         <pre class="prettyprint"><code>bootbox.confirm({ 
-    size: 'small',
-    message: "Are you sure?", 
-    callback: function(result){ /* your callback code */ }
+  size: "small",
+  message: "Are you sure?", 
+  callback: function(result){ /* result is a boolean; true = OK, false = Cancel*/ }
 })</code></pre>
                         <figure>
                             <figcaption>Example <b>bb.5</b></figcaption>
@@ -381,9 +381,9 @@
                     </p>
                     <div class="bb-example bb-example-modal">
                         <pre class="prettyprint"><code>bootbox.prompt({ 
-    size: 'small',
-    title: "What is your name?", 
-    callback: function(result){ /* your callback code */ }
+  size: "small",
+  title: "What is your name?", 
+  callback: function(result){ /* result = String containing user input if OK clicked or null if Cancel clicked */ }
 })</code></pre>
                         <figure>
                             <figcaption>Example <b>bb.7</b></figcaption>
@@ -459,9 +459,9 @@
                                         of valid values in the format of:
                                     </p>
                                     <pre class="prettyprint"><code>{
-    text: '',
-    value: '',
-    group: ''
+  text: '',
+  value: '',
+  group: ''
 }
 </code></pre>
                                     <p>
@@ -731,20 +731,18 @@
                                     <td>Object</td>
                                     <td>
                                         <p>
-                                            Buttons are defined as JavaScript objects. The minimum requirement to define a button is:
+                                            Buttons are defined as JavaScript objects. The minimum shortform requirement to define a button is:
                                         </p>
-                                        <pre class="prettyprint"><code>'Your Label Text': {
-    callback: function() {
-    }
+                                        <pre class="prettyprint"><code>"Your button text": function() {
 }</code></pre>
                                         <p>
                                             The complete definition of a button object is:
                                         </p>
                                         <pre class="prettyprint"><code>buttonName : {
-    label: 'Your button text',
-    className: 'some-class',
-    callback: function() {
-    }
+  label: "Your button text',
+  className: "some-class",
+  callback: function() {
+  }
 }</code></pre>
                                         <table class="table">
                                             <caption>Options:</caption>
