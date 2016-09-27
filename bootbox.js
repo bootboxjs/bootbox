@@ -120,7 +120,10 @@
   }
 
   function getKeyLength(obj) {
-    // @TODO defer to Object.keys(x).length if available?
+    if (Object.keys) {
+      return Object.keys(obj).length;
+    }
+
     var k, t = 0;
     for (k in obj) {
       t ++;
