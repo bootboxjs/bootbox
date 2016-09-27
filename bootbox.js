@@ -1017,6 +1017,13 @@
     return exports.setDefaults("locale", name);
   };
 
+  exports.setTemplate = function(name, value) {
+    if (!templates[name]) {
+        throw new Error("Invalid template name");
+    }
+    templates[name] = value;
+  };
+
   exports.init = function(_$) {
     return init(_$ || $);
   };
