@@ -20,7 +20,7 @@
     if (typeof $ === "undefined") {
       module.exports = factory(require("jquery"));
     } else {
-      module.exports = factory($);
+      module.exports = factory($); // jshint ignore:line
     }
 
   } else {
@@ -660,7 +660,7 @@
      * modal has performed certain actions
      */
 
-    dialog.one("hide.bs.modal", function(e) {
+    dialog.one("hide.bs.modal", function() {
       dialog.off("escape.close.bb");
       dialog.off("click");
     });
