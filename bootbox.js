@@ -660,7 +660,12 @@
      * modal has performed certain actions
      */
 
-    dialog.on("hidden.bs.modal", function(e) {
+    dialog.one("hide.bs.modal", function(e) {
+      dialog.off("escape.close.bb");
+      dialog.off("click");
+    });
+
+    dialog.one("hidden.bs.modal", function(e) {
       // ensure we don't accidentally intercept hidden events triggered
       // by children of the current dialog. We shouldn't anymore now BS
       // namespaces its events; but still worth doing
@@ -680,7 +685,7 @@
     });
     */
 
-    dialog.on("shown.bs.modal", function(e) {
+    dialog.one("shown.bs.modal", function(e) {
       if (callbacks.onRendered) {
         // We do not want to send this callback through processCallback
         // because by default processCallback wants to hide the dialog.
@@ -725,6 +730,9 @@
     }
 
     dialog.on("escape.close.bb", function(e) {
+      // the if statement looks redundant but it isn't; without it
+      // if we *didn't* have an onEscape handler then processCallback
+      // would automatically dismiss the dialog
       if (callbacks.onEscape) {
         processCallback(e, dialog, callbacks.onEscape);
       }
