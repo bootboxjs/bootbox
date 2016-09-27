@@ -138,6 +138,11 @@
     });
   }
 
+  /**
+   * Filter and tidy up any user supplied parameters to this dialog.
+   * Also looks for any shorthands used and ensures that the options
+   * which are returned are all normalized properly
+   */
   function sanitize(options) {
     var buttons;
     var total;
@@ -307,6 +312,8 @@
 
     options = mergeDialogOptions("alert", ["ok"], ["message", "callback"], arguments);
 
+    // @TODO: can this move inside exports.dialog when we're iterating over each
+    // button and checking its button.callback value instead?
     if (options.callback && !$.isFunction(options.callback)) {
       throw new Error("alert requires callback property to be a function when provided");
     }
@@ -648,7 +655,7 @@
 
 
     /**
-     * Bootstrap event listeners; used handle extra
+     * Bootstrap event listeners; these handle extra
      * setup & teardown required after the underlying
      * modal has performed certain actions
      */
@@ -681,7 +688,6 @@
         // might be better named processOnEscapeCallback. Its core
         // functionality seems to have only been intended for closing the
         // dialog after button clicks or close events.
-        //   `processCallback(e, dialog, callbacks.onRendered);`
         callbacks.onRendered.call(dialog, e);
       }
 
