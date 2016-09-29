@@ -412,28 +412,6 @@ describe("bootbox.dialog", function() {
       });
     });
   });
-  describe("when creating a dialog with an onRendered handler", function() {
-    return describe("with a simple callback", function() {
-      beforeEach(function() {
-        this.callback = sinon.spy();
-        return this.dialog = bootbox.dialog({
-          message: "Are you sure?",
-          onRendered: this.callback
-        });
-      });
-      return describe("when the dialog is rendered", function() {
-        beforeEach(function() {
-          return this.dialog.trigger("shown.bs.modal");
-        });
-        it("should invoke the callback", function() {
-          return expect(this.callback).to.have.been.called;
-        });
-        return it("should pass the dialog as `this`", function() {
-          return expect(this.callback.thisValues[0]).to.equal(this.dialog);
-        });
-      });
-    });
-  });
   return describe("with size option", function() {
     describe("when the size option is set to large", function() {
       beforeEach(function() {
