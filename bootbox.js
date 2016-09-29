@@ -415,7 +415,7 @@
       if (options.inputType === "checkbox") {
         value = input.find("input:checked").map(function() {
           return $(this).val();
-        });
+        }).get();
       } else {
         value = input.val();
       }
