@@ -435,7 +435,7 @@ describe("bootbox.prompt", function() {
           ];
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"](/given options in wrong format/);
+          return expect(this.create).to["throw"]("each option needs a `value` and a `text` property");
         });
       });
       describe("with a value but no text", function() {
@@ -448,7 +448,7 @@ describe("bootbox.prompt", function() {
           ];
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"](/given options in wrong format/);
+          return expect(this.create).to["throw"]("each option needs a `value` and a `text` property");
         });
       });
       describe("with an invalid second options", function() {
@@ -464,7 +464,7 @@ describe("bootbox.prompt", function() {
           ];
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"](/given options in wrong format/);
+          return expect(this.create).to["throw"]("each option needs a `value` and a `text` property");
         });
       });
       describe("with valid options", function() {
@@ -583,7 +583,7 @@ describe("bootbox.prompt", function() {
           ];
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"](/given options in wrong format/);
+          return expect(this.create).to["throw"]("each option needs a `value` and a `text` property");
         });
       });
       return describe("with options", function() {
