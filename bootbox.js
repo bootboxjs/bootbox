@@ -540,6 +540,10 @@
       input.attr("pattern", options.pattern);
     }
 
+    if (options.required) {
+      input.prop("required", true);
+    }
+
     if (options.maxlength) {
       input.attr("maxlength", options.maxlength);
     }
