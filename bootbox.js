@@ -410,17 +410,9 @@
     };
 
     options.buttons.confirm.callback = function() {
-      var value;
-
-      if (options.inputType === "checkbox") {
-        value = input.find("input:checked").map(function() {
-          return $(this).val();
-        }).get();
-      } else {
-        value = input.val();
-      }
-
-      return options.callback.call(this, value);
+      // trigger form submit, including native validation
+      $("<input type='submit'>").hide().appendTo(form).click().remove();
+      return false;
     };
 
     options.show = false;
@@ -555,9 +547,24 @@
       e.preventDefault();
       // Fix for SammyJS (or similar JS routing library) hijacking the form post.
       e.stopPropagation();
-      // @TODO can we actually click *the* button object instead?
-      // e.g. buttons.confirm.click() or similar
-      dialog.find(".btn-primary").click();
+
+      if (e.target.checkValidity && !e.target.checkValidity()) {
+        return false;
+      }
+
+      var value;
+
+      if (options.inputType === "checkbox") {
+        value = input.find("input:checked").map(function() {
+          return $(this).val();
+        }).get();
+      } else {
+        value = input.val();
+      }
+
+      if (options.callback.call(dialog, value) !== false) {
+        dialog.modal("hide");
+      }
     });
 
     dialog = exports.dialog(options);

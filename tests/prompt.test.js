@@ -1128,6 +1128,78 @@ describe("bootbox.prompt", function() {
         return expect(this.dialog.find(".bootbox-input").attr("placeholder")).to.equal("e.g. Bob Smith");
       });
     });
+    describe("with form validation", function() {
+      beforeEach(function() {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.prompt({
+          title: "What is your name?",
+          required: true,
+          callback: this.callback
+        });
+        return this.hidden = sinon.spy(this.dialog, "modal");
+      });
+      describe("when dismissing the dialog by clicking OK", function() {
+        beforeEach(function() {
+          return this.dialog.find(".btn-primary").trigger("click");
+        });
+        return it("should not invoke the callback", function() {
+          return expect(this.callback).to.have.not.been.called;
+        });
+      });
+      describe("when submitting the form", function() {
+        beforeEach(function() {
+          return $('<input type="submit">')
+            .appendTo(this.dialog.find("form"))
+            .click()
+            .remove();
+        });
+        return it("should not invoke the callback", function() {
+          return expect(this.callback).to.have.not.been.called;
+        });
+      });
+      return describe("when entering a value in the text input", function() {
+        beforeEach(function() {
+          return this.dialog.find(".bootbox-input").val("Test input");
+        });
+        describe("when dismissing the dialog by clicking OK", function() {
+          beforeEach(function() {
+            return this.dialog.find(".btn-primary").trigger("click");
+          });
+          it("should invoke the callback", function() {
+            return expect(this.callback).to.have.been.called;
+          });
+          it("should pass the dialog as `this`", function() {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          it("with the correct value", function() {
+            return expect(this.callback).to.have.been.calledWithExactly("Test input");
+          });
+          return it("should hide the modal", function() {
+            return expect(this.hidden).to.have.been.calledWithExactly("hide");
+          });
+        });
+        describe("when submitting the form", function() {
+          beforeEach(function() {
+            return $('<input type="submit">')
+              .appendTo(this.dialog.find("form"))
+              .click()
+              .remove();
+          });
+          it("should invoke the callback", function() {
+            return expect(this.callback).to.have.been.called;
+          });
+          it("should pass the dialog as `this`", function() {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          it("with the correct value", function() {
+            return expect(this.callback).to.have.been.calledWithExactly("Test input");
+          });
+          return it("should hide the modal", function() {
+            return expect(this.hidden).to.have.been.calledWithExactly("hide");
+          });
+        });
+      });
+    });
     describe("with inputType select", function() {
       describe("without a default value", function() {
         beforeEach(function() {
