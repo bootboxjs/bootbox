@@ -104,13 +104,13 @@ describe("bootbox locales", function() {
       return this.setLocale("br");
     });
     it("shows the correct OK translation", function() {
-      return expect(this.labels.ok).to.equal("OK");
+      return expect(this.labels.ok).to.equal("Ok");
     });
     it("shows the correct CANCEL translation", function() {
       return expect(this.labels.cancel).to.equal("Cancelar");
     });
     return it("shows the correct CONFIRM translation", function() {
-      return expect(this.labels.confirm).to.equal("Sim");
+      return expect(this.labels.confirm).to.equal("Confirmar");
     });
   });
   describe("Dutch", function() {
