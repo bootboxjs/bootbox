@@ -814,6 +814,11 @@
       CANCEL  : "الغاء",
       CONFIRM : "تأكيد"
     },
+    az : {
+      OK      : "OK",
+      CANCEL  : "İmtina et",
+      CONFIRM : "Təsdiq et"
+    },
     bg_BG : {
       OK      : "Ок",
       CANCEL  : "Отказ",
