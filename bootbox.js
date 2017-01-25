@@ -939,6 +939,11 @@
       CANCEL  : "Отмена",
       CONFIRM : "Применить"
     },
+    sl : {
+      OK : "V redu",
+      CANCEL : "Prekliči",
+      CONFIRM : "V redu"
+    },    
     sq : {
       OK : "OK",
       CANCEL : "Anulo",
