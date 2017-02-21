@@ -1,7 +1,7 @@
 # Bootbox - Bootstrap powered alert, confirm and flexible dialog boxes
 
 Please see http://bootboxjs.com for full usage instructions, or head over to http://paynedigital.com/bootbox for
-the original writeup about the project.
+the original writeup about the project. [<img src="https://img.shields.io/badge/rating-4%2B%20stars-brightgreen.svg">](https://recordnotfound.com/bootbox-makeusabrew-1832)
 
 ## Contact
 
