@@ -99,6 +99,20 @@ describe("bootbox locales", function() {
       return expect(this.labels.confirm).to.equal("Aceptar");
     });
   });
+  describe("Basque", function() {
+    beforeEach(function() {
+      return this.setLocale("eu");
+    });
+    it("shows the correct OK translation", function() {
+      return expect(this.labels.ok).to.equal("OK");
+    });
+    it("shows the correct CANCEL translation", function() {
+      return expect(this.labels.cancel).to.equal("Ezeztatu");
+    });
+    return it("shows the correct CONFIRM translation", function() {
+      return expect(this.labels.confirm).to.equal("Onartu");
+    });
+  });
   describe("Portuguese", function() {
     beforeEach(function() {
       return this.setLocale("br");

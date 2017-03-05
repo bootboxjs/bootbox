@@ -854,6 +854,11 @@
       CANCEL  : "Cancelar",
       CONFIRM : "Aceptar"
     },
+    eu : {
+      OK      : "OK",
+      CANCEL  : "Ezeztatu",
+      CONFIRM : "Onartu"
+    },
     et : {
       OK      : "OK",
       CANCEL  : "Katkesta",
