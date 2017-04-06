@@ -451,4 +451,18 @@ describe("bootbox locales", function() {
       return expect(this.labels.confirm).to.equal("Potrdi");
     });
   });
+  return describe("Slovak", function() {
+    beforeEach(function() {
+      return this.setLocale("sk");
+    });
+    it("shows the correct OK translation", function() {
+      return expect(this.labels.ok).to.equal("OK");
+    });
+    it("shows the correct CANCEL translation", function() {
+      return expect(this.labels.cancel).to.equal("Zrušiť");
+    });
+    return it("shows the correct CONFIRM translation", function() {
+      return expect(this.labels.confirm).to.equal("Potvrdiť");
+    });
+  });
 });
