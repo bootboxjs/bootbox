@@ -944,6 +944,11 @@
       CANCEL  : "Отмена",
       CONFIRM : "Применить"
     },
+    sk : {
+      OK      : "OK",
+      CANCEL  : "Zrušiť",
+      CONFIRM : "Potvrdiť"
+    },
     sl : {
       OK : "OK",
       CANCEL : "Prekliči",
