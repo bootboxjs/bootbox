@@ -596,11 +596,15 @@
     }
 
     each(buttons, function(key, button) {
+      // append loading text attr
+      var buttonLoadingAttr = '';
+      if(button.loadingText)
+        buttonLoadingAttr = ' data-loading-text="' + button.loadingText + '"';
 
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
       // can we just build up button elements instead? slower but neater. Then button
       // can just become a template too
-      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
+      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'" + buttonLoadingAttr + ">" + button.label + "</button>";
       callbacks[key] = button.callback;
     });
 
