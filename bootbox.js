@@ -983,7 +983,12 @@
       OK      : "OK",
       CANCEL  : "取消",
       CONFIRM : "確認"
-    }
+    },
+    kk : {
+      OK      : "OK",
+      CANCEL  : "Болдырмау",
+      CONFIRM : "Растау"
+    },
   };
 
   exports.addLocale = function(name, values) {
