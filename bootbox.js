@@ -634,6 +634,12 @@
       }
     }
 
+    if(options.timeOut){
+        window.setTimeout(function(){
+           dialog.modal('hide');
+        }, options.timeOut);
+    }
+
     if (options.title) {
       dialog.find(".modal-title").html(options.title);
     }
@@ -757,6 +763,10 @@
 
     if (options.show) {
       dialog.modal("show");
+        
+        if(options.callback){
+            options.callback();
+        }
     }
 
     // @TODO should we return the raw element here or should
