@@ -983,6 +983,11 @@
       OK      : "OK",
       CANCEL  : "取消",
       CONFIRM : "確認"
+    },
+     fa_IR : {
+      OK      : "تایید",
+      CANCEL  : "لغو",
+      CONFIRM : "تایید"
     }
   };
 
