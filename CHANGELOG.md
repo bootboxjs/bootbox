@@ -29,6 +29,7 @@
 
 ### 4.2.0
 
+* Added Persian (Farsi) locale
 * Add Swedish locale
 * Add Latvian locale
 * Add Turkish locale
