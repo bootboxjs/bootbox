@@ -3,6 +3,12 @@
 Please see http://bootboxjs.com for full usage instructions, or head over to http://paynedigital.com/bootbox for
 the original writeup about the project.
 
+## This fork (@MarQuisKnox) contains the following improvement(s):
+
+<ol>
+<li>An 'onShow' callback (optional)</li>
+</ol>
+
 ## Contact
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/makeusabrew/bootbox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
