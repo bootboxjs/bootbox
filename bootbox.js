@@ -387,7 +387,8 @@
       className: "bootbox-prompt",
       buttons: createLabels("cancel", "confirm"),
       value: "",
-      inputType: "text"
+      inputType: "text",
+      selectAllOnFocus: false
     };
 
     options = validateButtons(
@@ -566,6 +567,9 @@
       // need the closure here since input isn't
       // an object otherwise
       input.focus();
+      if (options.selectAllOnFocus) {
+        input.select();
+      }
     });
 
     if (shouldShow === true) {
