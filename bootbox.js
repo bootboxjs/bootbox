@@ -1,5 +1,5 @@
 /**
- * bootbox.js [master branch]
+ * bootbox.js [v4.4.2]
  *
  * http://bootboxjs.com/license.txt
  */
@@ -542,6 +542,14 @@
 
     if (options.maxlength) {
       input.attr("maxlength", options.maxlength);
+    }
+
+    if (options.min !== undefined) {
+      input.attr("min", options.min);
+    }
+
+    if (options.max != undefined) {
+      input.attr("max", options.max);
     }
 
     // now place it in our form
