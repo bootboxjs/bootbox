@@ -1,5 +1,5 @@
 /**
- * bootbox.js [master branch]
+ * bootbox.js [4.4.3]
  *
  * http://bootboxjs.com/license.txt
  */
@@ -387,7 +387,8 @@
       className: "bootbox-prompt",
       buttons: createLabels("cancel", "confirm"),
       value: "",
-      inputType: "text"
+      inputType: "text",
+      defaultAction: "confirm"
     };
 
     options = validateButtons(
@@ -544,6 +545,14 @@
       input.attr("maxlength", options.maxlength);
     }
 
+    if (options.min !== undefined) {
+      input.attr("min", options.min);
+    }
+
+    if (options.max !== undefined) {
+      input.attr("max", options.max);
+    }
+
     // now place it in our form
     form.append(input);
 
@@ -553,7 +562,8 @@
       e.stopPropagation();
       // @TODO can we actually click *the* button object instead?
       // e.g. buttons.confirm.click() or similar
-      dialog.find(".btn-primary").click();
+      options.buttons[options.defaultAction].callback();
+      dialog.modal("hide");
     });
 
     dialog = exports.dialog(options);
