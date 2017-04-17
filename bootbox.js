@@ -566,6 +566,18 @@
       // need the closure here since input isn't
       // an object otherwise
       input.focus();
+      if (
+        (options.inputType == 'text') ||
+        (options.inputType == 'date') ||
+        (options.inputType == 'email') ||
+        (options.inputType == 'time') ||
+        (options.inputType == 'number') ||
+        (options.inputType == 'password')
+      ) {
+        var tmp = input.val();
+        input.val('');
+        input.val(tmp);
+      }
     });
 
     if (shouldShow === true) {
