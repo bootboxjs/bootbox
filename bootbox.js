@@ -85,6 +85,8 @@
     className: null,
     // whether or not to include a close button
     closeButton: true,
+    //wheiter or not to apply .button('loading') to opener
+    loadingButton: false,
     // show the dialog immediately by default
     show: true,
     // dialog container
@@ -600,7 +602,7 @@
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
       // can we just build up button elements instead? slower but neater. Then button
       // can just become a template too
-      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
+      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + (button.icon ? " <i class=\"" + button.icon + "\"></i> " : "") + button.label + "</button>";
       callbacks[key] = button.callback;
     });
 
@@ -661,20 +663,26 @@
       // by children of the current dialog. We shouldn't anymore now BS
       // namespaces its events; but still worth doing
       if (e.target === this) {
+        if (options.loadingButton) {
+          $(options.loadingButton).button('reset');
+        }
         dialog.remove();
       }
     });
 
-    /*
+    
     dialog.on("show.bs.modal", function() {
-      // sadly this doesn't work; show is called *just* before
+      if(options.loadingButton){
+         $(options.loadingButton).button('loading');
+      }
+     /* // sadly this doesn't work; show is called *just* before
       // the backdrop is added so we'd need a setTimeout hack or
       // otherwise... leaving in as would be nice
       if (options.backdrop) {
         dialog.next(".modal-backdrop").addClass("bootbox-backdrop");
-      }
+      }  */
     });
-    */
+  
 
     dialog.one("shown.bs.modal", function() {
       dialog.find(".btn-primary:first").focus();
