@@ -939,6 +939,11 @@
       CANCEL  : "Cancelar",
       CONFIRM : "Confirmar"
     },
+    ro : {
+        OK      : "OK",
+        CANCEL  : "Renunță",
+        CONFIRM : "De acord"
+    },
     ru : {
       OK      : "OK",
       CANCEL  : "Отмена",
