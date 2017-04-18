@@ -52,9 +52,17 @@
       "<button type='button' class='bootbox-close-button close' aria-hidden='true'>&times;</button>",
     form:
       "<form class='bootbox-form'></form>",
+    group:
+      "<div class='form-group'></div>",
+    label:
+      "<label class='col-sm-4 control-label'></label>",
+    inputWrapper:
+      "<div class='col-sm-8'></div>",
     inputs: {
       text:
         "<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type=text />",
+      hidden:
+        "<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type=hidden />",
       textarea:
         "<textarea class='bootbox-input bootbox-input-textarea form-control'></textarea>",
       email:
@@ -567,6 +575,237 @@
       // an object otherwise
       input.focus();
     });
+
+    if (shouldShow === true) {
+      dialog.modal("show");
+    }
+
+    return dialog;
+  };
+
+  exports.form = function() {
+    var options;
+    var defaults;
+    var dialog;
+    var form;
+    var inputs;
+    var shouldShow;
+
+    form = $(templates.form);
+
+    defaults = {
+      className: "bootbox-prompt",
+      buttons: createLabels("cancel", "confirm"),
+      fields: {},
+    };
+
+    options = validateButtons(
+      mergeArguments(defaults, arguments, ["title", "callback"]),
+      ["cancel", "confirm"]
+    );
+
+    // capture the user's show value; we always set this to false before
+    // spawning the dialog to give us a chance to attach some handlers to
+    // it, but we need to make sure we respect a preference not to show it
+    shouldShow = (options.show === undefined) ? true : options.show;
+
+    /**
+     * overrides; undo anything the user tried to set they shouldn't have
+     */
+    options.message = form;
+    form.addClass('form-horizontal');
+    options.buttons.cancel.callback = options.onEscape = function() {
+      return options.callback(null);
+    };
+
+    options.buttons.confirm.callback = function() {
+      var values = {};
+
+      each(options.fields, function(field,opts) {
+        switch (opts.type) {
+          case "text":
+          case "textarea":
+          case "email":
+          case "select":
+          case "password":
+            values[field] = inputs[field].val();
+            break;
+
+          case "hidden":
+            values[field] = opts.value;
+          break;
+          case "checkbox":
+            if (options.fields[field].options) {
+              var checkedItems = inputs[field].find("input:checked");
+              values[field] = [];
+              each(checkedItems, function(_, item) {
+                values[field].push($(item).val());
+              });
+            } else {
+              values[field] = inputs[field].find("input").is(":checked");
+            }
+            break;
+        }
+      });
+
+      return options.callback(values);
+    };
+
+    options.show = false;
+
+    // prompt specific validation
+    if (!options.title) {
+      throw new Error("prompt requires a title");
+    }
+
+    if (!$.isFunction(options.callback)) {
+      throw new Error("prompt requires a callback");
+    }
+
+    inputs = {};
+
+    each(options.fields,function(field, opts) {
+
+      if(opts.type == 'hidden'){
+        return;
+      }
+
+
+      if (!templates.inputs[opts.type]) {
+        throw new Error("invalid prompt type: " + opts.type);
+      }
+
+      inputs[field] = $(templates.inputs[opts.type]);
+
+      switch (opts.type) {
+        case "text":
+        case "textarea":
+        case "email":
+        case "password":
+          inputs[field].val(opts.value);
+          break;
+
+        case "select":
+          var groups = {};
+          var inputOptions = opts.options || [];
+
+          if (!inputOptions.length) {
+            throw new Error("select field requires options");
+          }
+
+          each(inputOptions, function(_, option) {
+
+            // assume the element to attach to is the input...
+            var elem = inputs[field];
+
+            if (option.value === undefined || option.text === undefined) {
+              throw new Error("given options in wrong format");
+            }
+
+
+            // ... but override that element if this option sits in a group
+
+            if (option.group) {
+              // initialise group if necessary
+              if (!groups[option.group]) {
+                groups[option.group] = $("<optgroup/>").attr("label", option.group);
+              }
+
+              elem = groups[option.group];
+            }
+
+            elem.append("<option value='" + option.value + "'>" + option.text + "</option>");
+          });
+
+          each(groups, function(_, group) {
+            inputs[field].append(group);
+          });
+
+          // safe to set a select's value as per a normal input
+          inputs[field].val(options.value);
+          break;
+
+        case "checkbox":
+          var vls   = $.isArray(opts.value) ? opts.value : [opts.value];
+          inputOptions = opts.options || [{value: true, text: ' '}];
+
+          if (!inputOptions.length) {
+            throw new Error("checkbox field requires options");
+          }
+
+          if (!inputOptions[0].value || !inputOptions[0].text) {
+            throw new Error("checkbox options given in wrong format");
+          }
+
+          inputs[field] = $("<div/>");
+
+          each(inputOptions, function(_, option) {
+            var checkbox = $(templates.inputs[opts.type]);
+
+            checkbox.find("input").attr("value", option.value);
+            checkbox.find("label").append(option.text);
+
+            // we've ensured values is an array so we can always iterate over it
+            each(vls, function(_, value) {
+              if (value === option.value) {
+                checkbox.find("input").prop("checked", true);
+              }
+            });
+
+            inputs[field].append(checkbox);
+          });
+          break;
+      }
+      
+      if (opts.placeholder) {
+        inputs[field].attr("placeholder", options.placeholder);
+      }
+
+      if (opts.readonly) {
+          inputs[field].attr('readOnly',opts.readonly);
+      }
+
+      if (opts.inputclass) {
+          inputs[field].addClass(opts.clinputclassass);
+      }
+
+      if (opts.gclass) {
+          inputs[field].gclass = opts.gclass;
+      }
+
+      if (opts.style) {
+          inputs[field].css(opts.style);
+      }
+
+
+    });
+
+    // now place it in our form
+    each(inputs, function(name, input) {
+      var group = $(templates.group);
+      if(input.gclass) {
+        group.addClass(input.gclass);
+      }
+      var label = $(templates.label);
+      var wrapper = $(templates.inputWrapper);
+      label.html(options.fields[name].label)
+      wrapper.append(input);
+      group.append(label);
+      group.append(wrapper);
+      form.append(group);
+    });
+
+    form.on("submit", function(e) {
+      e.preventDefault();
+      // @TODO can we actually click *the* button object instead?
+      // e.g. buttons.confirm.click() or similar
+      dialog.find(".btn-primary").click();
+    });
+
+    dialog = exports.dialog(options);
+
+    // clear the existing handler focusing the submit button...
+    dialog.off("shown.bs.modal");
 
     if (shouldShow === true) {
       dialog.modal("show");
