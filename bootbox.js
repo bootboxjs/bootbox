@@ -737,9 +737,17 @@
     });
 
     dialog.on("keyup", function(e) {
-      if (e.which === 27) {
-        dialog.trigger("escape.close.bb");
-      }
+      switch (e.which) {
+        case 13:
+          // When pressing Enter, the dialog form submits (if exists)
+          var $form = $("form", $(dialog));
+          $form.length && $form.trigger("submit");
+          break;
+        case 27:
+          // When pressing ESC button, the dialog box dismisses
+          dialog.trigger("escape.close.bb");
+          break;
+        }
     });
 
     // the remainder of this method simply deals with adding our
