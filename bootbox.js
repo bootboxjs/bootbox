@@ -660,7 +660,7 @@
       // ensure we don't accidentally intercept hidden events triggered
       // by children of the current dialog. We shouldn't anymore now BS
       // namespaces its events; but still worth doing
-      if (e.target === this) {
+      if (e.target === this && !(options.keepAfterHide === true)) {
         dialog.remove();
       }
     });
