@@ -618,6 +618,8 @@
       innerDialog.addClass("modal-lg");
     } else if (options.size === "small") {
       innerDialog.addClass("modal-sm");
+    } else {
+      innerDialog.addClass(options.size);
     }
 
     if (options.title) {
