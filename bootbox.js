@@ -192,6 +192,7 @@
         button.label = key;
       }
 
+
       if (!button.className) {
         if (total <= 2 && isLast) {
           // always add a primary to the main option in a one or two-button dialog
@@ -577,7 +578,6 @@
 
   exports.dialog = function(options) {
     options = sanitize(options);
-
     var dialog = $(templates.dialog);
     var innerDialog = dialog.find(".modal-dialog");
     var body = dialog.find(".modal-body");
@@ -600,7 +600,12 @@
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
       // can we just build up button elements instead? slower but neater. Then button
       // can just become a template too
-      buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
+      if(button.style) {
+        buttonStr += "<button data-bb-handler='" + key + "' type='button' style='"+button.style+"' class='btn " + button.className + "'>" + button.label + "</button>";
+      }
+      else {
+        buttonStr += "<button data-bb-handler='" + key + "' type='button' class='btn " + button.className + "'>" + button.label + "</button>";
+      }
       callbacks[key] = button.callback;
     });
 
