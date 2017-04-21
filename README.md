@@ -45,7 +45,7 @@ Much more dependency information can be found [on the Bootbox website](http://bo
 The latest major release of Bootbox - 4.0.0 - involved a total rewrite of the
 internal code and introduced an entirely new public API. It has not re-implemented
 some functionality from the 3.x series as of yet; this will be addressed in the
-the form of new minor releases. Please feel free to add feedback and requests.
+form of new minor releases. Please feel free to add feedback and requests.
 
 There is no new major (e.g. 5.x) release on the roadmap at present.
 
@@ -72,7 +72,7 @@ For a full list of releases and changes please see [the changelog](https://githu
 
 (The MIT License)
 
-Copyright (C) 2011-2015 by Nick Payne <nick@kurai.co.uk>
+Copyright (C) 2011-2017 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
