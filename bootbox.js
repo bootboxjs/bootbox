@@ -223,11 +223,9 @@
     }
 
     if (argn > 1 || typeof args[0] === "string") {
-      $.each(Array.prototype.slice.call(args), function (i, e) {
-        if (properties[i]) {
-          options[properties[i]] = e;
-        }
-      });
+      for (var i = 0, j = args.length; i < j; i++) {
+        options[properties[i]] = args[i];
+      }
     } else {
       options = args[0];
     }
@@ -318,7 +316,7 @@
 
   exports.msg = function () {
     var options;
-    options = mergeDialogOptions("msg", [], ["message", "callback", 'time'], arguments);
+    options = mergeDialogOptions("msg", [], ["message", "callback", "time"], arguments);
     if (options.callback && !$.isFunction(options.callback)) {
       throw new Error("alert requires callback property to be a function when provided");
     }
@@ -330,10 +328,10 @@
     dialog.on("shown.bs.modal", function () {
       var $this = $(this);
       setTimeout(function () {
-        $this.modal('hide');
+        $this.modal("hide");
       }, options.time || 3000);
 
-    }).on('hidden.bs.modal', function () {
+    }).on("hidden.bs.modal", function () {
       // var $this = $(this);
       if (options.callback && $.isFunction(options.callback)) {
         options.callback.call(options);
