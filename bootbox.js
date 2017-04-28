@@ -318,7 +318,7 @@
     var options;
     options = mergeDialogOptions("msg", [], ["message", "callback", "time"], arguments);
     if (options.callback && !$.isFunction(options.callback)) {
-      throw new Error("alert requires callback property to be a function when provided");
+      throw new Error("msg requires callback property to be a function when provided");
     }
     /**
      * overrides
