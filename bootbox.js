@@ -974,6 +974,11 @@
       CANCEL  : "İptal",
       CONFIRM : "Onayla"
     },
+    uk : {
+      OK      : "OK",
+      CANCEL  : "Відміна",
+      CONFIRM : "Прийняти"
+    },
     zh_CN : {
       OK      : "OK",
       CANCEL  : "取消",
