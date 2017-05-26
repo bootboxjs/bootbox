@@ -678,6 +678,7 @@
 
     dialog.one("shown.bs.modal", function() {
       dialog.find(".btn-primary:first").focus();
+      dialog.scrollTop(0);
     });
 
     /**
