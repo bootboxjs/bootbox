@@ -154,8 +154,8 @@
       throw new Error("Please supply an object of options");
     }
 
-    if (!options.message) {
-      throw new Error("Please specify a message");
+    if (!options.message && !options.ajax) {
+      throw new Error("Please specify a message or ajax url");
     }
 
     // make sure any supplied options take precedence over defaults
@@ -604,7 +604,11 @@
       callbacks[key] = button.callback;
     });
 
-    body.find(".bootbox-body").html(options.message);
+    if (options.ajax) {
+      body.find(".bootbox-body").load(options.ajax);
+    } else {
+      body.find(".bootbox-body").html(options.message);
+    }
 
     if (options.animate === true) {
       dialog.addClass("fade");
