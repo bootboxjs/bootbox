@@ -564,6 +564,60 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+    describe("setting inputType radio", function() {
+      describe("without options", function() {
+        beforeEach(function() {
+          return this.options.inputType = 'radio';
+        });
+        return it("throws an error", function() {
+          return expect(this.create).to["throw"](/prompt with radio requires options/);
+        });
+      });
+      describe("with options in the wrong format", function() {
+        beforeEach(function() {
+          this.options.inputType = "radio";
+          return this.options.inputOptions = [
+            {
+              foo: "bar"
+            }
+          ];
+        });
+        return it("throws an error", function() {
+          return expect(this.create).to["throw"]("each option needs a `value`, `text` and a `name` property");
+        });
+      });
+      return describe("with options", function() {
+        beforeEach(function() {
+          this.options.inputType = 'radio';
+          this.options.inputOptions = [
+            {
+              value: 1,
+              text: 'foo',
+              name: 'group'
+            }, {
+              value: 2,
+              text: 'bar',
+              name: 'group'
+            }, {
+              value: 3,
+              text: 'foobar',
+              name: 'group'
+            }
+          ];
+          return this.create();
+        });
+        it("shows radio input", function() {
+          return expect(this.exists("input[type='radio']")).to.be.ok;
+        });
+        it("has proper class", function() {
+          expect(this.find("input[type='radio']").hasClass("bootbox-input")).to.be.ok;
+          return expect(this.find("input[type='radio']").hasClass("bootbox-input-radio")).to.be.ok;
+        });
+        return it("with three radios", function() {
+          return expect(this.find("input[type='radio']").length).to.equal(3);
+        });
+      });
+    });
     describe("setting inputType checkbox", function() {
       describe("without options", function() {
         beforeEach(function() {
@@ -1330,6 +1384,147 @@ describe("bootbox.prompt", function() {
             });
             return it("with the correct value", function() {
               return expect(this.callback).to.have.been.calledWithExactly(null);
+            });
+          });
+        });
+      });
+    });
+    return describe("with input type radio", function() {
+      describe("without a default value", function() {
+        beforeEach(function() {
+          this.callback = sinon.spy();
+          this.dialog = bootbox.prompt({
+            title: "What is your IDE?",
+            inputType: 'radio',
+            inputOptions: [
+              {
+                value: 1,
+                text: 'Vim',
+                name: 'ide-group'
+              }, {
+                value: 2,
+                text: 'Sublime Text',
+                name: 'ide-group'
+              }, {
+                value: 3,
+                text: 'WebStorm/PhpStorm',
+                name: 'ide-group'
+              }, {
+                value: 4,
+                text: 'Komodo IDE',
+                name: 'ide-group'
+              }
+            ],
+            callback: this.callback
+          });
+          return this.hidden = sinon.spy(this.dialog, "modal");
+        });
+        describe("when dismissing the dialog by clicking OK", function() {
+          beforeEach(function() {
+            return this.dialog.find(".btn-primary").trigger("click");
+          });
+          it("should invoke the callback", function() {
+            return expect(this.callback).to.have.been.called;
+          });
+          it("with an undefined value", function() {
+            return expect(this.callback).to.have.been.calledWithExactly([]);
+          });
+          return it("should hide the modal", function() {
+            return expect(this.hidden).to.have.been.calledWithExactly("hide");
+          });
+        });
+        return describe("when dismissing the dialog by clicking Cancel", function() {
+          beforeEach(function() {
+            return this.dialog.find(".btn-default").trigger("click");
+          });
+          it("should invoke the callback", function() {
+            return expect(this.callback).to.have.been.called;
+          });
+          return it("with the correct value", function() {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+      return describe("with default value", function() {
+        describe("one value checked", function() {
+          beforeEach(function() {
+            this.callback = sinon.spy();
+            this.dialog = bootbox.prompt({
+              title: "What is your IDE?",
+              callback: this.callback,
+              value: 2,
+              inputType: "radio",
+              inputOptions: [
+                {
+                  value: 1,
+                  text: 'Vim',
+                  name: 'ide-group'
+                }, {
+                  value: 2,
+                  text: 'Sublime Text',
+                  name: 'ide-group'
+                }, {
+                  value: 3,
+                  text: 'WebStorm/PhpStorm',
+                  name: 'ide-group'
+                }, {
+                  value: 4,
+                  text: 'Komodo IDE',
+                  name: 'ide-group'
+                }
+              ]
+            });
+            return this.hidden = sinon.spy(this.dialog, "modal");
+          });
+          it("specified radio is checked", function() {
+            return expect(this.dialog.find("input:radio:checked").val()).to.equal("2");
+          });
+          describe("when dismissing the dialog by clicking OK", function() {
+            beforeEach(function() {
+              return this.dialog.find(".btn-primary").trigger("click");
+            });
+            it("should invoke the callback", function() {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it("with the correct value", function() {
+              return expect(this.callback).to.have.been.calledWithExactly(["2"]);
+            });
+          });
+          describe("when dismissing the dialog by clicking Cancel", function() {
+            beforeEach(function() {
+              return this.dialog.find(".btn-default").trigger("click");
+            });
+            it("should invoke the callback", function() {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it("with the correct value", function() {
+              return expect(this.callback).to.have.been.calledWithExactly(null);
+            });
+          });
+          describe("when changing the checked option and dismissing the dialog by clicking Cancel", function() {
+            beforeEach(function() {
+              this.dialog.find("input:radio:checked").prop('checked', false);
+              this.dialog.find("input:radio[value=3]").prop('checked', true);
+              return this.dialog.find(".btn-default").trigger("click");
+            });
+            it("should invoke the callback", function() {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it("with the correct value", function() {
+              return expect(this.callback).to.have.been.calledWithExactly(null);
+            });
+          });
+          return describe("when changing the selected option and dismissing the dialog by clicking OK", function() {
+            beforeEach(function() {
+              this.dialog.find("input:radio:checked").prop('checked', false);
+              this.dialog.find("input:radio[value=3]").prop('checked', true);
+              return this.dialog.find(".btn-primary").trigger("click");
+            });
+            it("should invoke the callback", function() {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it("with the correct value", function() {
+              return expect(this.callback).to.have.been.calledWithExactly(["3"]);
             });
           });
         });

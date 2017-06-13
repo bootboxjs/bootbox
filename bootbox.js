@@ -61,6 +61,8 @@
         "<input class='bootbox-input bootbox-input-email form-control' autocomplete='off' type='email' />",
       select:
         "<select class='bootbox-input bootbox-input-select form-control'></select>",
+      radio:
+        "<div class='radio'><label><input class='bootbox-input bootbox-input-radio' type='radio' /></label></div>",
       checkbox:
         "<div class='checkbox'><label><input class='bootbox-input bootbox-input-checkbox' type='checkbox' /></label></div>",
       date:
@@ -420,6 +422,20 @@
         value = input.val();
       }
 
+      if (options.inputType === "radio"){
+
+		var checkedItems = input.find("input:checked");
+
+		// we assume that checkboxes are always multiple,
+		// hence we default to an empty array
+		value = [];
+
+		each(checkedItems, function(_, item) {
+		  value.push($(item).val());
+	    });
+
+	  }
+
       return options.callback.call(this, value);
     };
 
@@ -493,6 +509,44 @@
 
         // safe to set a select's value as per a normal input
         input.val(options.value);
+        break;
+
+      case "radio":
+        var rvalues   = $.isArray(options.value) ? options.value : [options.value];
+        inputOptions = options.inputOptions || [];
+
+        if (!inputOptions.length) {
+          throw new Error("prompt with radio requires options");
+        }
+
+        if (!inputOptions[0].value || !inputOptions[0].text) {
+          throw new Error("each option needs a `value`, `text` and a `name` property");
+        }
+
+        // checkboxes have to nest within a containing element, so
+        // they break the rules a bit and we end up re-assigning
+        // our 'input' element to this container instead
+        input = $("<div/>");
+
+        each(inputOptions, function(_, option) {
+          var checkbox = $(templates.inputs[options.inputType]);
+
+          checkbox.find("input").attr("value", option.value);
+          checkbox.find("label").append(option.text);
+
+          if( typeof option.name !== "undefined" ) {
+            checkbox.find("input").attr("name", option.name);
+          }
+
+          // we've ensured radio values is an array so we can always iterate over it
+          each(rvalues, function(_, value) {
+            if (value === option.value) {
+              checkbox.find("input").prop("checked", true);
+            }
+          });
+
+          input.append(checkbox);
+        });
         break;
 
       case "checkbox":
@@ -820,9 +874,9 @@
       CONFIRM : "Потвърждавам"
     },
     br : {
-      OK      : "OK",
+      OK      : "Ok",
       CANCEL  : "Cancelar",
-      CONFIRM : "Sim"
+      CONFIRM : "Confirmar"
     },
     cs : {
       OK      : "OK",
