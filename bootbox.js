@@ -218,13 +218,14 @@
     var argn = args.length;
     var options = {};
 
-    if (argn < 1 || argn > 2) {
+    if (argn < 1 || argn > properties.length) {
       throw new Error("Invalid argument length");
     }
 
-    if (argn === 2 || typeof args[0] === "string") {
-      options[properties[0]] = args[0];
-      options[properties[1]] = args[1];
+    if (argn > 1 || typeof args[0] === "string") {
+      for (var i = 0, j = args.length; i < j; i++) {
+        options[properties[i]] = args[i];
+      }
     } else {
       options = args[0];
     }
@@ -313,6 +314,32 @@
     return options;
   }
 
+  exports.msg = function () {
+    var options;
+    options = mergeDialogOptions("msg", [], ["message", "callback", "time"], arguments);
+    if (options.callback && !$.isFunction(options.callback)) {
+      throw new Error("msg requires callback property to be a function when provided");
+    }
+    /**
+     * overrides
+     */
+    options = $.extend(true, {backdrop: true, keyboard: true}, options);
+    var dialog = exports.dialog(options);
+    dialog.on("shown.bs.modal", function () {
+      var $this = $(this);
+      setTimeout(function () {
+        $this.modal("hide");
+      }, options.time || 3000);
+
+    }).on("hidden.bs.modal", function () {
+      // var $this = $(this);
+      if (options.callback && $.isFunction(options.callback)) {
+        options.callback.call(options);
+      }
+    });
+    return dialog;
+  };
+  
   exports.alert = function() {
     var options;
 
