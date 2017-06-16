@@ -566,6 +566,7 @@
       // need the closure here since input isn't
       // an object otherwise
       input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
     });
 
     if (shouldShow === true) {
