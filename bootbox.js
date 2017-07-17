@@ -486,7 +486,10 @@
           if ( option.disabled === undefined ) {
             option.disabled = false;
           }
-          elem.append("<option value='" + option.value + "'" + (option.disabled?" disabled":"") + ">" + option.text + "</option>");
+          if ( option.class === undefined ) {
+            option.class = "";
+          }
+          elem.append("<option value='" + option.value + "'" + (option.disabled?" disabled":"") + " class='" + option.class + "'>" + option.text + "</option>");
         });
 
         each(groups, function(_, group) {
