@@ -483,8 +483,10 @@
 
             elem = groups[option.group];
           }
-
-          elem.append("<option value='" + option.value + "'>" + option.text + "</option>");
+          if ( option.disabled === undefined ) {
+            option.disabled = false;
+          }
+          elem.append("<option value='" + option.value + "'" + (option.disabled?" disabled":"") + ">" + option.text + "</option>");
         });
 
         each(groups, function(_, group) {
