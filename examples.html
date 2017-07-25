@@ -571,6 +571,40 @@ dialog.init(function(){
     }, 3000);
 });</code></pre>
                                 </li>
+                                <li id="custom-dialog-with-buttons">
+                                    <p>Custom dialog, with buttons and button callbacks</p>
+                                    <p>
+                                        <button type="button" class="btn btn-primary example-button" data-bb-example-key="custom-dialog-with-buttons">Run example</button>
+                                    </p>
+                                    <pre class="prettyprint linenums"><code>var dialog = bootbox.dialog({
+title: 'A custom dialog with buttons and callbacks',
+message: "&lt;p&gt;This dialog has buttons. Each button has it's own callback function.&lt;/p&gt;",
+buttons: {
+    cancel: {
+        label: "I'm a custom cancel button!",
+        className: 'btn-danger',
+        callback: function(){
+            Example.show('Custom cancel clicked');
+        }
+    },
+    noclose: {
+        label: "I'm a custom button, but I don't close the modal!",
+        className: 'btn-warning',
+        callback: function(){
+            Example.show('Custom button clicked');
+            return false;
+        }
+    },
+    ok: {
+        label: "I'm a custom OK button!",
+        className: 'btn-info',
+        callback: function(){
+            Example.show('Custom OK clicked');
+        }
+    }
+}
+});</code></pre>
+                                </li>
                             </ul>
                         </div>
                     </div>

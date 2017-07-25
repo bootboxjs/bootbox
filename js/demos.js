@@ -311,6 +311,38 @@ $(function () {
                         });
 
                         break;
+
+                    case 'custom-dialog-with-buttons':
+                        var dialog = bootbox.dialog({
+                            title: 'A custom dialog with buttons and callbacks',
+                            message: "<p>This dialog has buttons. Each button has it's own callback function.</p>",
+							buttons: {
+								cancel: {
+									label: "I'm a custom cancel button!",
+									className: 'btn-danger',
+									callback: function(){
+										Example.show('Custom cancel clicked');
+									}
+								},
+								noclose: {
+									label: "I'm a custom button, but I don't close the modal!",
+									className: 'btn-warning',
+									callback: function(){
+										Example.show('Custom button clicked');
+										return false;
+									}
+								},
+								ok: {
+									label: "I'm a custom OK button!",
+									className: 'btn-info',
+									callback: function(){
+										Example.show('Custom OK clicked');
+									}
+								}
+							}
+                        });
+
+                        break;
                 }
             }
         });
