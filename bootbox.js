@@ -854,6 +854,11 @@
       CANCEL  : "Cancelar",
       CONFIRM : "Aceptar"
     },
+    eu : {
+      OK      : "OK",
+      CANCEL  : "Ezeztatu",
+      CONFIRM : "Onartu"
+    },
     et : {
       OK      : "OK",
       CANCEL  : "Katkesta",
@@ -939,6 +944,16 @@
       CANCEL  : "Отмена",
       CONFIRM : "Применить"
     },
+    sk : {
+      OK      : "OK",
+      CANCEL  : "Zrušiť",
+      CONFIRM : "Potvrdiť"
+    },
+    sl : {
+      OK : "OK",
+      CANCEL : "Prekliči",
+      CONFIRM : "Potrdi"
+    },
     sq : {
       OK : "OK",
       CANCEL : "Anulo",
@@ -958,6 +973,11 @@
       OK      : "Tamam",
       CANCEL  : "İptal",
       CONFIRM : "Onayla"
+    },
+    uk : {
+      OK      : "OK",
+      CANCEL  : "Відміна",
+      CONFIRM : "Прийняти"
     },
     zh_CN : {
       OK      : "OK",

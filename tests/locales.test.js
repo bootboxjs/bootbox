@@ -99,6 +99,20 @@ describe("bootbox locales", function() {
       return expect(this.labels.confirm).to.equal("Aceptar");
     });
   });
+  describe("Basque", function() {
+    beforeEach(function() {
+      return this.setLocale("eu");
+    });
+    it("shows the correct OK translation", function() {
+      return expect(this.labels.ok).to.equal("OK");
+    });
+    it("shows the correct CANCEL translation", function() {
+      return expect(this.labels.cancel).to.equal("Ezeztatu");
+    });
+    return it("shows the correct CONFIRM translation", function() {
+      return expect(this.labels.confirm).to.equal("Onartu");
+    });
+  });
   describe("Portuguese", function() {
     beforeEach(function() {
       return this.setLocale("br");
@@ -409,6 +423,20 @@ describe("bootbox locales", function() {
       return expect(this.labels.confirm).to.equal("تایید");
     });
   });
+   describe("Ukrainian", function() {
+        beforeEach(function() {
+            return this.setLocale("uk");
+        });
+        it("shows the correct OK translation", function() {
+            return expect(this.labels.ok).to.equal("OK");
+        });
+        it("shows the correct CANCEL translation", function() {
+            return expect(this.labels.cancel).to.equal("Відміна");
+        });
+        return it("shows the correct CONFIRM translation", function() {
+            return expect(this.labels.confirm).to.equal("Прийняти");
+        });
+    });
   return describe("Albanian", function() {
     beforeEach(function() {
       return this.setLocale("sq");
@@ -421,6 +449,34 @@ describe("bootbox locales", function() {
     });
     return it("shows the correct CONFIRM translation", function() {
       return expect(this.labels.confirm).to.equal("Prano");
+    });
+  });
+  return describe("Slovenian", function() {
+    beforeEach(function() {
+      return this.setLocale("sl");
+    });
+    it("shows the correct OK translation", function() {
+      return expect(this.labels.ok).to.equal("OK");
+    });
+    it("shows the correct CANCEL translation", function() {
+      return expect(this.labels.cancel).to.equal("Prekliči");
+    });
+    return it("shows the correct CONFIRM translation", function() {
+      return expect(this.labels.confirm).to.equal("Potrdi");
+    });
+  });
+  return describe("Slovak", function() {
+    beforeEach(function() {
+      return this.setLocale("sk");
+    });
+    it("shows the correct OK translation", function() {
+      return expect(this.labels.ok).to.equal("OK");
+    });
+    it("shows the correct CANCEL translation", function() {
+      return expect(this.labels.cancel).to.equal("Zrušiť");
+    });
+    return it("shows the correct CONFIRM translation", function() {
+      return expect(this.labels.confirm).to.equal("Potvrdiť");
     });
   });
 });
