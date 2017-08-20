@@ -32,16 +32,7 @@ module.exports = function(grunt) {
                       }
                   }));
               }
-          },
-          compileBootbox = function() {
-              var regexp = /([\s])return bootbox;(?:\s\}\)\);)/;
-              var numeral = grunt.file.read('src/bootbox.js');
-              var index = numeral.indexOf('return bootbox;');
-  
-              bootbox = bootbox.substr(0, index) + '\n' + formats + bootbox.substr(index);
-  
-              grunt.file.write('bootbox.js', numeral);
-          };
+          }
   
       require('load-grunt-tasks')(grunt);
   
@@ -122,8 +113,6 @@ module.exports = function(grunt) {
       ]);
   
       grunt.registerMultiTask('compile', compileType);
-  
-      grunt.registerTask('compile:bootbox', compileBootbox);
   
       grunt.registerTask('build', [
           'jshint',

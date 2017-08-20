@@ -1,3 +1,11 @@
+/*! @preserve
+ * bootbox.js
+ * version: 5.0.0
+ * author: Nick Payne <nick@kurai.co.uk>
+ * license: MIT
+ * http://bootboxjs.com/
+ */
+
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD
@@ -55,6 +63,9 @@
       };
     }());
   }
+
+
+  var VERSION = '5.0.0';
 
   var locales = {};
 
