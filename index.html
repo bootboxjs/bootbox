@@ -5,33 +5,99 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
+    <title>bootbox 5 demo</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous" />
 </head>
 
 <body>
-    <div class="container">
-        <h1>Hello, world!</h1>
 
-        <p>
-            <button type="button" class="btn btn-light" id="show-dialog">Show dialog</button>
-        </p>
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">bootbox.js &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+                aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+        </div>
+    </nav>
 
-        <p>
-            <button type="button" class="btn btn-light" id="show-alert">Show alert</button>
-        </p>
-
-        <p>
-            <button type="button" class="btn btn-light" id="show-confirm">Show confirm</button>
-        </p>
-
-        <p>
-            <button type="button" class="btn btn-light" id="show-prompt">Show prompt</button>
-        </p>
-
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Hello, Bootbox <b class="text-danger">5</b>!</h1>
+            <p>
+                This is a simple demo page for the in-progress revamp of bootbox.js. The primary focus is to make sure the various helper 
+                functions work consistently, to make any required Bootstrap 4 compatibility updates, and to reduce any code duplication 
+                that may have crept in over the years.
+            </p>
+            <p>
+                We've also implemented the ability to set a locale on a per-dialog basis, using the <b>locale</b> option. Locales are also 
+                being split out into separate files, hopefully making pull-requests a little simpler. Grunt will be used eventually to 
+                combine the individual locale files into one master file, or you can just reference the locales you need.
+            </p>
+        </div>
     </div>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Dialog</h2>
+                <p>
+                    This is just a custom dialog. It <em>should</em> function just like version 4.4.x.
+                </p>
+                <p>
+                    <button type="button" class="btn btn-primary" id="show-dialog">Show dialog</button>
+                </p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Alert</h2>
+                <p>
+                    This is an alert. It is also a test of the <em>slightly</em> revamped locale code. This alert uses a
+                    custom locale, set with the <b>setLocale</b> function.
+                </p>
+                <p>
+                    <button type="button" class="btn btn-primary" id="show-alert">Show alert</button>
+                </p>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Confirm</h2>
+                <p>
+                    This is a confirm. If you clicked the "show alert" button above, you'll see that it uses locale set with the 
+                    <b>setLocale</b> function. Otherwise, it will use the default "en" locale.
+                </p>
+                <p>
+                    <button type="button" class="btn btn-primary" id="show-confirm">Show confirm</button>
+                </p>
+            </div>
+
+            <div class="col-md-12">
+                <h2>Prompt</h2>
+                <p>
+                    This is a prompt. This function probably has the most updates, not the least of which is the ability to prepend 
+                    some text before the input. In other words, you can use the <b>message</b> option just like
+                    any of the other functions. We've also added radio and range as input types, and added code to allow the
+                    <b>min</b>,
+                    <b>max</b>, and <b>step</b> values to be set on number, range, and date inputs.
+                </p>
+                <p>
+                    <button type="button" class="btn btn-primary" id="show-prompt">Show prompt</button>
+                </p>
+            </div>
+        </div>
+
+        <hr>
+
+        <footer>
+            <p>&copy; 2017 Nick Payne &amp; <a href="https://github.com/makeusabrew/bootbox/graphs/contributors">contributers</a></p>
+        </footer>
+    </div>
+    <!-- /container -->
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
