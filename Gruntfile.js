@@ -46,37 +46,6 @@ module.exports = function(grunt) {
       require('load-grunt-tasks')(grunt);
   
       grunt.initConfig({
-          mochaTest : {
-              all: [
-                  'tests/bootbox.js',
-                  'tests/locales/*.js'
-              ]
-          },
-          karma: {
-              options: {
-                  files: [
-                      'bootbox.js',
-                      'locales.js',
-                      'tests/bootbox.js',
-                      'tests/locales/*.js'
-                  ],
-                  frameworks: [
-                      'mocha',
-                      'chai'
-                  ],
-                  singleRun: true,
-                  autoWatch: false
-              },
-              local: {
-                  browsers: [
-                      'Chrome',
-                      'Firefox'
-                  ]
-              },
-              ci: {
-                  configFile: 'karma-ci.conf.js'
-              }
-          },
           copy: {
               locales: {
                   files: [
@@ -164,19 +133,15 @@ module.exports = function(grunt) {
       ]);
   
       grunt.registerTask('test', [
-          'build',
-          'mochaTest',
-          'karma:local'
+          'build'
       ]);
   
       grunt.registerTask('test:npm', [
-          'build',
-          'mochaTest'
+          'build'
       ]);
   
       grunt.registerTask('test:browser', [
-          'build',
-          'karma:local'
+          'build'
       ]);
   
       grunt.registerTask('dist', [
@@ -246,9 +211,7 @@ module.exports = function(grunt) {
   
       // Travis CI task.
       grunt.registerTask('travis', [
-          'build',
-          'mochaTest',
-          'karma:ci'
+          'build'
       ]);
   };
   
