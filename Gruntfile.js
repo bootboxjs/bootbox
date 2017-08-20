@@ -117,7 +117,6 @@ module.exports = function(grunt) {
       grunt.registerTask('build', [
           'jshint',
           'compile',
-          'compile:bootbox',
           'copy'
       ]);
   
