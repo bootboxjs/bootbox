@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('fa', {
-        OK      : "قبول",
-        CANCEL  : "لغو",
-        CONFIRM : "تایید"
+        OK      : 'قبول',
+        CANCEL  : 'لغو',
+        CONFIRM : 'تایید'
     });
 }));

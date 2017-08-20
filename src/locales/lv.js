@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('lv', {
-        OK      : "Labi",
-        CANCEL  : "Atcelt",
-        CONFIRM : "Apstiprināt"
+        OK      : 'Labi',
+        CANCEL  : 'Atcelt',
+        CONFIRM : 'Apstiprināt'
     });
 }));

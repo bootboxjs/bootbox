@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('zh-ch', {
-        OK      : "OK",
-        CANCEL  : "取消",
-        CONFIRM : "确认"
+        OK      : 'OK',
+        CANCEL  : '取消',
+        CONFIRM : '确认'
     });
 }));

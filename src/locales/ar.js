@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('ar', {
-        OK      : "موافق",
-        CANCEL  : "الغاء",
-        CONFIRM : "تأكيد"
+        OK      : 'موافق',
+        CANCEL  : 'الغاء',
+        CONFIRM : 'تأكيد'
     });
 }));

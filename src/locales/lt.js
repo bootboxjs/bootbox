@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('lt', {
-        OK      : "Gerai",
-        CANCEL  : "Atšaukti",
-        CONFIRM : "Patvirtinti"
+        OK      : 'Gerai',
+        CANCEL  : 'Atšaukti',
+        CONFIRM : 'Patvirtinti'
     });
 }));

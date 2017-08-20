@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('et', {
-        OK      : "OK",
-        CANCEL  : "Katkesta",
-        CONFIRM : "OK"
+        OK      : 'OK',
+        CANCEL  : 'Katkesta',
+        CONFIRM : 'OK'
     });
 }));

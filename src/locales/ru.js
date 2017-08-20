@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('ru', {
-        OK      : "OK",
-        CANCEL  : "Отмена",
-        CONFIRM : "Применить"
+        OK      : 'OK',
+        CANCEL  : 'Отмена',
+        CONFIRM : 'Применить'
     });
 }));

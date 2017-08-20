@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('cs', {
-        OK      : "OK",
-        CANCEL  : "Zrušit",
-        CONFIRM : "Potvrdit"
+        OK      : 'OK',
+        CANCEL  : 'Zrušit',
+        CONFIRM : 'Potvrdit'
     });
 }));

@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('sl', {
-        OK : "OK",
-        CANCEL : "Prekliči",
-        CONFIRM : "Potrdi"
+        OK : 'OK',
+        CANCEL : 'Prekliči',
+        CONFIRM : 'Potrdi'
     });
 }));

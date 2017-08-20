@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('uk', {
-        OK      : "OK",
-        CANCEL  : "Відміна",
-        CONFIRM : "Прийняти"
+        OK      : 'OK',
+        CANCEL  : 'Відміна',
+        CONFIRM : 'Прийняти'
     });
 }));

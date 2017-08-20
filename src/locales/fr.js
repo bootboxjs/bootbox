@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('fr', {
-        OK      : "OK",
-        CANCEL  : "Annuler",
-        CONFIRM : "Confirmer"
+        OK      : 'OK',
+        CANCEL  : 'Annuler',
+        CONFIRM : 'Confirmer'
     });
 }));

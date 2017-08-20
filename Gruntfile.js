@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                       }
                   }));
               }
-          }
+          };
   
       require('load-grunt-tasks')(grunt);
   
@@ -145,9 +145,7 @@ module.exports = function(grunt) {
   
           grunt.config('string-replace.json', {
               files: {
-                  'package.json': 'package.json',
-                  'component.json': 'component.json',
-                  'bower.json': 'bower.json'
+                  'package.json': 'package.json'
               },
               options: {
                   replacements: [

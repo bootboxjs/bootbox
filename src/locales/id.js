@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('id', {
-        OK      : "OK",
-        CANCEL  : "Batal",
-        CONFIRM : "OK"
+        OK      : 'OK',
+        CANCEL  : 'Batal',
+        CONFIRM : 'OK'
     });
 }));

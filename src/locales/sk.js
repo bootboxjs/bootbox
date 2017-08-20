@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('sk', {
-        OK      : "OK",
-        CANCEL  : "Zrušiť",
-        CONFIRM : "Potvrdiť"
+        OK      : 'OK',
+        CANCEL  : 'Zrušiť',
+        CONFIRM : 'Potvrdiť'
     });
 }));

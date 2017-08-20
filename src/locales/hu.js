@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('hu', {
-        OK      : "OK",
-        CANCEL  : "Mégsem",
-        CONFIRM : "Megerősít"
+        OK      : 'OK',
+        CANCEL  : 'Mégsem',
+        CONFIRM : 'Megerősít'
     });
 }));

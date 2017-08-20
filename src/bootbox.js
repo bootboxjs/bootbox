@@ -121,9 +121,9 @@
 
   var defaults = {
     // default language
-    locale: "en",
+    locale: 'en',
     // show backdrop or not. Default to static so user has to interact with dialog
-    backdrop: "static",
+    backdrop: 'static',
     // animate the modal in/out
     animate: true,
     // additional class string applied to the top level dialog
@@ -135,7 +135,7 @@
     // allow the dialog to be closed by pressing the escape key
     keyboard: false,
     // dialog container
-    container: "body"
+    container: 'body'
   };
 
 
@@ -150,7 +150,7 @@
     locales[name] = format;
 
     return this;
-  };
+  }
 
 
   // Remove a previously-registered locale
@@ -158,13 +158,13 @@
     delete locales[name];
 
     return this;
-  };
+  }
 
 
   // Set the default locale
   function setLocale(name) {
-    return setDefaults("locale", name);
-  };
+    return setDefaults('locale', name);
+  }
 
 
   // Override default value(s) of Bootbox.
@@ -182,7 +182,7 @@
     $.extend(defaults, values);
 
     return this;
-  };
+  }
 
 
   /**
@@ -199,10 +199,10 @@
     var options = {};
 
     if (argn < 1 || argn > 2) {
-      throw new Error("Invalid argument length");
+      throw new Error('Invalid argument length');
     }
 
-    if (argn === 2 || typeof args[0] === "string") {
+    if (argn === 2 || typeof args[0] === 'string') {
       options[properties[0]] = args[0];
       options[properties[1]] = args[1];
     } else {
@@ -241,7 +241,7 @@
   function mergeDialogOptions(className, labels, properties, args) {
     //  build up a base set of dialog properties
     var baseOptions = {
-      className: "bootbox-" + className,
+      className: 'bootbox-' + className,
       buttons: createLabels(labels, args && args[0].locale ? args[0].locale : defaults.locale)
     };
 
@@ -271,7 +271,7 @@
 
     each(options.buttons, function (key) {
       if (allowedButtons[key] === undefined) {
-        throw new Error("button key " + key + " is not allowed (options are " + buttons.join("\n") + ")");
+        throw new Error('button key `' + key + '` is not allowed (options are ' + buttons.join('\n') + ')');
       }
     });
 
@@ -321,12 +321,12 @@
     var buttons;
     var total;
 
-    if (typeof options !== "object") {
-      throw new Error("Please supply an object of options");
+    if (typeof options !== 'object') {
+      throw new Error('Please supply an object of options');
     }
 
     if (!options.message) {
-      throw new Error("Please specify a message");
+      throw new Error('Please specify a message');
     }
 
     // make sure any supplied options take precedence over defaults
@@ -354,8 +354,8 @@
       }
 
       // before any further checks make sure by now button is the correct type
-      if ($.type(button) !== "object") {
-        throw new Error("button with key " + key + " must be an object");
+      if ($.type(button) !== 'object') {
+        throw new Error('button with key `' + key + '` must be an object');
       }
 
       if (!button.label) {
@@ -366,9 +366,9 @@
       if (!button.className) {
         if (total <= 2 && isLast) {
           // always add a primary to the main option in a one or two-button dialog
-          button.className = "btn-primary";
+          button.className = 'btn-primary';
         } else {
-          button.className = "btn-secondary";
+          button.className = 'btn-secondary';
         }
       }
     });
@@ -404,7 +404,7 @@
 
     // ... otherwise we'll bin it
     if (!preserveDialog) {
-      dialog.modal("hide");
+      dialog.modal('hide');
     }
   }
 
@@ -414,8 +414,8 @@
     options = sanitize(options);
 
     var builder = $(templates.dialog);
-    var innerDialog = builder.find(".modal-dialog");
-    var body = builder.find(".modal-body");
+    var innerDialog = builder.find('.modal-dialog');
+    var body = builder.find('.modal-body');
     var header = $(templates.header);
     var footer = $(templates.footer);
     var buttons = options.buttons;
@@ -426,13 +426,13 @@
 
     if ($.fn.modal === undefined) {
       throw new Error(
-        "$.fn.modal is not defined; please double check you have included " +
-        "the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ " +
-        "for more details."
+        '`$.fn.modal` is not defined; please double check you have included ' +
+        'the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ ' +
+        'for more details.'
       );
     }
 
-    body.find(".bootbox-body").html(options.message);
+    body.find('.bootbox-body').html(options.message);
 
     each(buttons, function (key, b) {
       callbacks[key] = b.callback;
@@ -448,51 +448,51 @@
     body.after(footer);
 
     if (options.animate === true) {
-      builder.addClass("fade");
+      builder.addClass('fade');
     }
 
     if (options.className) {
       builder.addClass(options.className);
     }
 
-    if (options.size === "large") {
-      innerDialog.addClass("modal-lg");
-    } else if (options.size === "small") {
-      innerDialog.addClass("modal-sm");
+    if (options.size === 'large') {
+      innerDialog.addClass('modal-lg');
+    } else if (options.size === 'small') {
+      innerDialog.addClass('modal-sm');
     }
 
     if (options.title) {
       body.before(templates.header);
-      builder.find(".modal-title").html(options.title);
+      builder.find('.modal-title').html(options.title);
     }
 
     if (options.closeButton) {
       var closeButton = $(templates.closeButton);
 
       if (options.title) {
-        builder.find(".modal-header").append(closeButton);
+        builder.find('.modal-header').append(closeButton);
       } else {
-        closeButton.css("margin-top", "-2px").prependTo(body);
+        closeButton.css('margin-top', '-2px').prependTo(body);
       }
     }
 
 
-    builder.on("click", ".modal-footer button", function (e) {
-      var callbackKey = $(this).data("bb-handler");
+    builder.on('click', '.modal-footer button', function (e) {
+      var callbackKey = $(this).data('bb-handler');
 
       processCallback(e, builder, callbacks[callbackKey]);
     });
 
-    builder.on("click", ".bootbox-close-button", function (e) {
+    builder.on('click', '.bootbox-close-button', function (e) {
       // onEscape might be falsy but that's fine; the fact is
       // if the user has managed to click the close button we
       // have to close the dialog, callback or not
       processCallback(e, builder, callbacks.onEscape);
     });
 
-    builder.on("keyup", function (e) {
+    builder.on('keyup', function (e) {
       if (e.which === 27) {
-        builder.trigger("escape.close.bb");
+        builder.trigger('escape.close.bb');
       }
     });
 
@@ -504,7 +504,7 @@
     $(options.container).append(builder);
 
     builder.modal({
-      backdrop: options.backdrop ? "static" : false,
+      backdrop: options.backdrop ? 'static' : false,
       keyboard: false,
       show: false
     });
@@ -514,7 +514,7 @@
     }
 
     return builder;
-  };
+  }
 
 
   /*
@@ -524,12 +524,12 @@
   */
   function alert() {
     var options;
-    options = mergeDialogOptions("alert", ["ok"], ["message", "callback"], arguments);
+    options = mergeDialogOptions('alert', ['ok'], ['message', 'callback'], arguments);
 
     // @TODO: can this move inside exports.dialog when we're iterating over each
     // button and checking its button.callback value instead?
     if (options.callback && !$.isFunction(options.callback)) {
-      throw new Error("alert requires callback property to be a function when provided");
+      throw new Error('alert requires callback property to be a function when provided');
     }
 
     /**
@@ -545,7 +545,7 @@
     };
 
     return dialog(options);
-  };
+  }
 
 
   /*
@@ -556,12 +556,12 @@ for this confirm.
   function confirm() {
     var options;
 
-    options = mergeDialogOptions("confirm", ["cancel", "confirm"], ["message", "callback"], arguments);
+    options = mergeDialogOptions('confirm', ['cancel', 'confirm'], ['message', 'callback'], arguments);
 
     // confirm specific validation; they don't make sense without a callback so make
     // sure it's present
     if (!$.isFunction(options.callback)) {
-      throw new Error("confirm requires a callback");
+      throw new Error('confirm requires a callback');
     }
 
     /**
@@ -576,7 +576,7 @@ for this confirm.
     };
 
     return dialog(options);
-  };
+  }
 
 
   /*
@@ -606,13 +606,13 @@ for this prompt.
     // lifting which mergeDialogOptions can *almost* support already
     // just because of 'value' and 'inputType' - can we refactor?
     defaults = {
-      className: "bootbox-prompt",
-      buttons: createLabels(["cancel", "confirm"]),
-      value: "",
-      inputType: "text"
+      className: 'bootbox-prompt',
+      buttons: createLabels(['cancel', 'confirm']),
+      value: '',
+      inputType: 'text'
     };
 
-    options = validateButtons(mergeArguments(defaults, arguments, ["title", "callback"]), ["cancel", "confirm"]);
+    options = validateButtons(mergeArguments(defaults, arguments, ['title', 'callback']), ['cancel', 'confirm']);
 
     // capture the user's show value; we always set this to false before
     // spawning the dialog to give us a chance to attach some handlers to
@@ -626,12 +626,12 @@ for this prompt.
     options.buttons.confirm.callback = function () {
       var value;
 
-      if (options.inputType === "checkbox") {
-        value = input.find("input:checked").map(function () {
+      if (options.inputType === 'checkbox') {
+        value = input.find('input:checked').map(function () {
           return $(this).val();
         }).get();
-      } else if (options.inputType === "radio") {
-        value = input.find("input:checked").val();
+      } else if (options.inputType === 'radio') {
+        value = input.find('input:checked').val();
       }
       else {
         value = input.val();
@@ -644,42 +644,42 @@ for this prompt.
 
     // prompt specific validation
     if (!options.title) {
-      throw new Error("prompt requires a title");
+      throw new Error('prompt requires a title');
     }
 
     if (!$.isFunction(options.callback)) {
-      throw new Error("prompt requires a callback");
+      throw new Error('prompt requires a callback');
     }
 
     if (!templates.inputs[options.inputType]) {
-      throw new Error("invalid prompt type");
+      throw new Error('invalid prompt type');
     }
 
     // create the input based on the supplied type
     input = $(templates.inputs[options.inputType]);
 
     switch (options.inputType) {
-      case "text":
-      case "textarea":
-      case "email":
-      case "date":
-      case "time":
-      case "number":
-      case "password":
+      case 'text':
+      case 'textarea':
+      case 'email':
+      case 'date':
+      case 'time':
+      case 'number':
+      case 'password':
         input.val(options.value);
         break;
 
 
-      case "select":
+      case 'select':
         var groups = {};
         inputOptions = options.inputOptions || [];
 
         if (!$.isArray(inputOptions)) {
-          throw new Error("Please pass an array of input options");
+          throw new Error('Please pass an array of input options');
         }
 
         if (!inputOptions.length) {
-          throw new Error("prompt with select requires at least one option value");
+          throw new Error('prompt with select requires at least one option value');
         }
 
         each(inputOptions, function (_, option) {
@@ -688,7 +688,7 @@ for this prompt.
           var elem = input;
 
           if (option.value === undefined || option.text === undefined) {
-            throw new Error("each option needs a `value` and a `text` property");
+            throw new Error('each option needs a `value` and a `text` property');
           }
 
           // ... but override that element if this option sits in a group
@@ -716,33 +716,33 @@ for this prompt.
         break;
 
 
-      case "checkbox":
+      case 'checkbox':
         var values = $.isArray(options.value) ? options.value : [options.value];
         inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
-          throw new Error("prompt with checkbox requires options");
+          throw new Error('prompt with checkbox requires options');
         }
 
         if (!inputOptions[0].value || !inputOptions[0].text) {
-          throw new Error("each option needs a `value` and a `text` property");
+          throw new Error('each option needs a `value` and a `text` property');
         }
 
         // checkboxes have to nest within a containing element, so
         // they break the rules a bit and we end up re-assigning
         // our 'input' element to this container instead
-        input = $("<div/>");
+        input = $('<div/>');
 
         each(inputOptions, function (_, option) {
           var checkbox = $(templates.inputs[options.inputType]);
 
-          checkbox.find("input").attr("value", option.value);
-          checkbox.find("label").append(option.text);
+          checkbox.find('input').attr('value', option.value);
+          checkbox.find('label').append(option.text);
 
           // we've ensured values is an array so we can always iterate over it
           each(values, function (_, value) {
             if (value === option.value) {
-              checkbox.find("input").prop("checked", true);
+              checkbox.find('input').prop('checked', true);
             }
           });
 
@@ -751,22 +751,22 @@ for this prompt.
         break;
 
 
-      case "radio":
+      case 'radio':
         var values = $.isArray(options.value) ? options.value : [options.value];
         inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
-          throw new Error("prompt with radio requires options");
+          throw new Error('prompt with radio requires options');
         }
 
         if (!inputOptions[0].value || !inputOptions[0].text) {
-          throw new Error("each option needs a `value` and a `text` property");
+          throw new Error('each option needs a `value` and a `text` property');
         }
 
         // radiobuttons have to nest within a containing element, so
         // they break the rules a bit and we end up re-assigning
         // our 'input' element to this container instead
-        input = $("<div/>");
+        input = $('<div/>');
 
         // Radiobuttons should always have an initial checked input checked in a "group".
         // If value is empty or doesn't match an input option, select the first radiobutton
@@ -775,13 +775,13 @@ for this prompt.
         each(inputOptions, function (_, option) {
           var radio = $(templates.inputs[options.inputType]);
 
-          radio.find("input").attr("value", option.value);
-          radio.find("label").append(option.text);
+          radio.find('input').attr('value', option.value);
+          radio.find('label').append(option.text);
 
           // we've ensured values is an array so we can always iterate over it
           each(values, function (_, value) {
             if (value === option.value) {
-              radio.find("input").prop("checked", true);
+              radio.find('input').prop('checked', true);
               checkFirstRadio = false;
             }
           });
@@ -790,7 +790,7 @@ for this prompt.
         });
 
         if (checkFirstRadio) {
-          input.first("input.form-check").prop("checked", true);
+          input.first('input.form-check').prop('checked', true);
         }
         break;
     }
@@ -798,15 +798,15 @@ for this prompt.
     // @TODO provide an attributes option instead
     // and simply map that as keys: vals
     if (options.placeholder) {
-      input.attr("placeholder", options.placeholder);
+      input.attr('placeholder', options.placeholder);
     }
 
     if (options.pattern) {
-      input.attr("pattern", options.pattern);
+      input.attr('pattern', options.pattern);
     }
 
     if (options.maxlength) {
-      input.attr("maxlength", options.maxlength);
+      input.attr('maxlength', options.maxlength);
     }
 
     // These input types have extra attributes which affect their input validation.
@@ -814,40 +814,40 @@ for this prompt.
     if (options.inputType == 'date' || options.inputType == 'number' || options.inputType == 'range') {
       if (options.step) {
         if (options.step == 'any' || !isNaN(options.step)) {
-          input.attr("step", options.step);
+          input.attr('step', options.step);
         }
         else {
-          throw new Error("step must be a valid number or the value 'any'. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.");
+          throw new Error('`step` must be a valid number or the value `any`. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
         }
       }
 
       if (options.min) {
-        input.attr("min", options.min);
+        input.attr('min', options.min);
         if (!isNaN(options.min)) {
           if (options.max > options.min) {
-            input.attr("min", options.min);
+            input.attr('min', options.min);
           }
           else {
-            throw new Error("max must be greater than min. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.");
+            throw new Error('`max` must be greater than `min`. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
           }
         }
         else {
-          throw new Error("min must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.");
+          throw new Error('`min` must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
         }
       }
 
       if (options.max) {
-        input.attr("max", options.max);
+        input.attr('max', options.max);
         if (!isNaN(options.max)) {
           if (options.max > options.min) {
-            input.attr("max", options.max);
+            input.attr('max', options.max);
           }
           else {
-            throw new Error("max must be greater than min. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.");
+            throw new Error('`max` must be greater than `min`. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
           }
         }
         else {
-          throw new Error("max must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.");
+          throw new Error('`max` must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         }
       }
 
@@ -860,13 +860,13 @@ for this prompt.
     // now place it in our form
     form.append(input);
 
-    form.on("submit", function (e) {
+    form.on('submit', function (e) {
       e.preventDefault();
       // Fix for SammyJS (or similar JS routing library) hijacking the form post.
       e.stopPropagation();
       // @TODO can we actually click *the* button object instead?
       // e.g. buttons.confirm.click() or similar
-      promptDialog.find(".btn-primary").click();
+      promptDialog.find('.btn-primary').click();
     });
 
     // Add the form to whatever content the user may have added.
@@ -877,21 +877,21 @@ for this prompt.
     promptDialog = dialog(options);
 
     // clear the existing handler focusing the submit button...
-    promptDialog.off("shown.bs.modal");
+    promptDialog.off('shown.bs.modal');
 
     // ...and replace it with one focusing our input, if possible
-    promptDialog.on("shown.bs.modal", function () {
+    promptDialog.on('shown.bs.modal', function () {
       // need the closure here since input isn't
       // an object otherwise
       input.focus();
     });
 
     if (shouldShow === true) {
-      promptDialog.modal("show");
+      promptDialog.modal('show');
     }
 
     return promptDialog;
-  };
+  }
 
 
   //    exposed public methods

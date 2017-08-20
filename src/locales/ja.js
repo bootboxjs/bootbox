@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('ja', {
-        OK      : "OK",
-        CANCEL  : "キャンセル",
-        CONFIRM : "確認"
+        OK      : 'OK',
+        CANCEL  : 'キャンセル',
+        CONFIRM : '確認'
     });
 }));

@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('nl', {
-        OK      : "OK",
-        CANCEL  : "Annuleren",
-        CONFIRM : "Accepteren"
+        OK      : 'OK',
+        CANCEL  : 'Annuleren',
+        CONFIRM : 'Accepteren'
     });
 }));

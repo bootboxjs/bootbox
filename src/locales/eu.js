@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('eu', {
-        OK      : "OK",
-        CANCEL  : "Ezeztatu",
-        CONFIRM : "Onartu"
+        OK      : 'OK',
+        CANCEL  : 'Ezeztatu',
+        CONFIRM : 'Onartu'
     });
 }));

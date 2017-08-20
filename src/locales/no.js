@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('no', {
-        OK      : "OK",
-        CANCEL  : "Avbryt",
-        CONFIRM : "OK"
+        OK      : 'OK',
+        CANCEL  : 'Avbryt',
+        CONFIRM : 'OK'
     });
 }));

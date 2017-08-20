@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('hr', {
-        OK      : "OK",
-        CANCEL  : "Odustani",
-        CONFIRM : "Potvrdi"
+        OK      : 'OK',
+        CANCEL  : 'Odustani',
+        CONFIRM : 'Potvrdi'
     });
 }));

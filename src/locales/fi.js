@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('fi', {
-        OK      : "OK",
-        CANCEL  : "Peruuta",
-        CONFIRM : "OK"
+        OK      : 'OK',
+        CANCEL  : 'Peruuta',
+        CONFIRM : 'OK'
     });
 }));

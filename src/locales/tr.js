@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('tr', {
-        OK      : "Tamam",
-        CANCEL  : "İptal",
-        CONFIRM : "Onayla"
+        OK      : 'Tamam',
+        CANCEL  : 'İptal',
+        CONFIRM : 'Onayla'
     });
 }));

@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('th', {
-        OK      : "ตกลง",
-        CANCEL  : "ยกเลิก",
-        CONFIRM : "ยืนยัน"
+        OK      : 'ตกลง',
+        CANCEL  : 'ยกเลิก',
+        CONFIRM : 'ยืนยัน'
     });
 }));

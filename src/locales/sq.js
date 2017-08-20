@@ -12,8 +12,8 @@
     }
 }(this, function (bootbox) {
     bootbox.addLocale('sq', {
-        OK : "OK",
-        CANCEL : "Anulo",
-        CONFIRM : "Prano"
+        OK : 'OK',
+        CANCEL : 'Anulo',
+        CONFIRM : 'Prano'
     });
 }));
