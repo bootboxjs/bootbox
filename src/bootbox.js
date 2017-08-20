@@ -717,7 +717,7 @@ for this prompt.
 
 
       case 'checkbox':
-        var values = $.isArray(options.value) ? options.value : [options.value];
+        var checkboxValues = $.isArray(options.value) ? options.value : [options.value];
         inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
@@ -740,7 +740,7 @@ for this prompt.
           checkbox.find('label').append(option.text);
 
           // we've ensured values is an array so we can always iterate over it
-          each(values, function (_, value) {
+          each(checkboxValues, function (_, value) {
             if (value === option.value) {
               checkbox.find('input').prop('checked', true);
             }
@@ -752,7 +752,7 @@ for this prompt.
 
 
       case 'radio':
-        var values = $.isArray(options.value) ? options.value : [options.value];
+        var radioValues = $.isArray(options.value) ? options.value : [options.value];
         inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
@@ -779,7 +779,7 @@ for this prompt.
           radio.find('label').append(option.text);
 
           // we've ensured values is an array so we can always iterate over it
-          each(values, function (_, value) {
+          each(radioValues, function (_, value) {
             if (value === option.value) {
               radio.find('input').prop('checked', true);
               checkFirstRadio = false;
@@ -811,9 +811,9 @@ for this prompt.
 
     // These input types have extra attributes which affect their input validation.
     // Ignore these options for any other type.
-    if (options.inputType == 'date' || options.inputType == 'number' || options.inputType == 'range') {
+    if (options.inputType === 'date' || options.inputType === 'number' || options.inputType === 'range') {
       if (options.step) {
-        if (options.step == 'any' || !isNaN(options.step)) {
+        if (options.step === 'any' || !isNaN(options.step)) {
           input.attr('step', options.step);
         }
         else {
