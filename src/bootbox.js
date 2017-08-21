@@ -765,10 +765,19 @@ for this prompt.
    * range of inputs and return valid options suitable for passing to bootbox.dialog
    */
   function mergeDialogOptions(className, labels, properties, args) {
+    var hasLocale = false;
+    if(args){
+      if(args.length > 0){
+        if(args[0] != undefined){
+          hasLocale = args[0].locale != undefined;
+        }
+      }
+    }
+
     //  build up a base set of dialog properties
     var baseOptions = {
       className: 'bootbox-' + className,
-      buttons: createLabels(labels, args && args[0].locale ? args[0].locale : defaults.locale)
+      buttons: createLabels(labels, hasLocale ? args[0].locale : defaults.locale)
     };
 
     // ensure the buttons properties generated, *after* merging
