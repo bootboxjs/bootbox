@@ -64,9 +64,10 @@
     }());
   }
 
-  var bootbox = {};
+  var exports = {};
 
   var VERSION = '5.0.0';
+  exports.VERSION = VERSION;
 
   var locales = {};
 
@@ -152,41 +153,47 @@
 
 
   // Return all currently registered locales, or a specific locale if `name` is defined
-  function locales(name) {
+  exports.locales = function (name) {
     return name ? locales[name] : locales;
   }
 
 
   // Register localized strings for the OK, Confirm, and Cancel buttons
-  function addLocale(name, format) {
+  exports.addLocale = function (name, values) {
+    $.each(['OK', 'CANCEL', 'CONFIRM'], function(_, v) {
+      if (!values[v]) {
+        throw new Error('Please supply a translation for "' + v + '"');
+      }
+    });
+
     name = name.toLowerCase();
 
-    if (locales[name]) {
-      throw new TypeError(name + ' locale is already registered.');
-    }
+    locales[name] = {
+      OK: values.OK,
+      CANCEL: values.CANCEL,
+      CONFIRM: values.CONFIRM
+    };
 
-    locales[name] = format;
-
-    return this;
+    return exports;
   }
 
 
   // Remove a previously-registered locale
-  function removeLocale(name) {
+  exports.removeLocale = function (name) {
     delete locales[name];
 
-    return this;
+    return exports;
   }
 
 
   // Set the default locale
-  function setLocale(name) {
-    return setDefaults('locale', name);
+  exports.setLocale = function (name) {
+    return exports.setDefaults('locale', name);
   }
 
 
   // Override default value(s) of Bootbox.
-  function setDefaults() {
+  exports.setDefaults = function () {
     var values = {};
 
     if (arguments.length === 2) {
@@ -199,20 +206,20 @@
 
     $.extend(defaults, values);
 
-    return this;
+    return exports;
   }
 
 
   // Hides all currently active Bootbox modals
-  function hideAll() {
+  exports.hideAll = function () {
     $(".bootbox").modal("hide");
 
-    return this;
+    return exports;
   }
 
 
   // Allows the base init() function to be overridden
-  function init(_$) {
+  exports.init = function (_$) {
     return init(_$ || $);
   }
 
@@ -224,12 +231,12 @@
 
 
   // Core dialog function
-  function dialog(options) {
+  exports.dialog = function (options) {
     options = sanitize(options);
 
-    var builder = $(templates.dialog);
-    var innerDialog = builder.find('.modal-dialog');
-    var body = builder.find('.modal-body');
+    var dialog = $(templates.dialog);
+    var innerDialog = dialog.find('.modal-dialog');
+    var body = dialog.find('.modal-body');
     var header = $(templates.header);
     var footer = $(templates.footer);
     var buttons = options.buttons;
@@ -262,11 +269,11 @@
     body.after(footer);
 
     if (options.animate === true) {
-      builder.addClass('fade');
+      dialog.addClass('fade');
     }
 
     if (options.className) {
-      builder.addClass(options.className);
+      dialog.addClass(options.className);
     }
 
     // Requires Bootstrap 3.3.1 or higher
@@ -278,7 +285,7 @@
 
     if (options.title) {
       body.before(templates.header);
-      builder.find('.modal-title').html(options.title);
+      dialog.find('.modal-title').html(options.title);
     }
 
     if (options.closeButton) {
@@ -286,10 +293,10 @@
 
       if (options.title) {
         if (options.bootstrap > 3) {
-          builder.find('.modal-header').append(closeButton);
+          dialog.find('.modal-header').append(closeButton);
         }
         else {
-          builder.find('.modal-header').prepend(closeButton);
+          dialog.find('.modal-header').prepend(closeButton);
         }
       } else {
         closeButton.css('margin-top', '-2px').prependTo(body);
@@ -297,22 +304,22 @@
     }
 
 
-    builder.on('click', '.modal-footer button', function (e) {
+    dialog.on('click', '.modal-footer button', function (e) {
       var callbackKey = $(this).data('bb-handler');
 
-      processCallback(e, builder, callbacks[callbackKey]);
+      processCallback(e, dialog, callbacks[callbackKey]);
     });
 
-    builder.on('click', '.bootbox-close-button', function (e) {
+    dialog.on('click', '.bootbox-close-button', function (e) {
       // onEscape might be falsy but that's fine; the fact is
       // if the user has managed to click the close button we
       // have to close the dialog, callback or not
-      processCallback(e, builder, callbacks.onEscape);
+      processCallback(e, dialog, callbacks.onEscape);
     });
 
-    builder.on('keyup', function (e) {
+    dialog.on('keyup', function (e) {
       if (e.which === 27) {
-        builder.trigger('escape.close.bb');
+        dialog.trigger('escape.close.bb');
       }
     });
 
@@ -321,19 +328,19 @@
     // functionality and then giving the resulting object back
     // to our caller
 
-    $(options.container).append(builder);
+    $(options.container).append(dialog);
 
-    builder.modal({
+    dialog.modal({
       backdrop: options.backdrop ? 'static' : false,
       keyboard: false,
       show: false
     });
 
     if (options.show) {
-      builder.modal('show');
+      dialog.modal('show');
     }
 
-    return builder;
+    return dialog;
   }
 
 
@@ -342,7 +349,7 @@
   code that must happen after the alert is dismissed should be placed within the callback function 
   for this alert.
   */
-  function alert() {
+  exports.alert = function () {
     var options;
     options = mergeDialogOptions('alert', ['ok'], ['message', 'callback'], arguments);
 
@@ -364,7 +371,7 @@
       return true;
     };
 
-    return dialog(options);
+    return exports.dialog(options);
   }
 
 
@@ -373,7 +380,7 @@ Helper function to simulate the native confirm() behavior. **NOTE**: This is non
 code that must happen after the confirm is dismissed should be placed within the callback function 
 for this confirm.
 */
-  function confirm() {
+  exports.confirm = function () {
     var options;
 
     options = mergeDialogOptions('confirm', ['cancel', 'confirm'], ['message', 'callback'], arguments);
@@ -395,7 +402,7 @@ for this confirm.
       return options.callback.call(this, true);
     };
 
-    return dialog(options);
+    return exports.dialog(options);
   }
 
 
@@ -404,7 +411,7 @@ Helper function to simulate the native prompt() behavior. **NOTE**: This is non-
 code that must happen after the prompt is dismissed should be placed within the callback function 
 for this prompt.
 */
-  function prompt() {
+  exports.prompt = function () {
 
     var options;
     var promptDialog;
@@ -686,7 +693,7 @@ for this prompt.
     form.prepend(message);
     options.message = form;
 
-    promptDialog = dialog(options);
+    promptDialog = exports.dialog(options);
 
     // clear the existing handler focusing the submit button...
     promptDialog.off('shown.bs.modal');
@@ -766,9 +773,9 @@ for this prompt.
    */
   function mergeDialogOptions(className, labels, properties, args) {
     var hasLocale = false;
-    if(args){
-      if(args.length > 0){
-        if(args[0] != undefined){
+    if (args) {
+      if (args.length > 0) {
+        if (args[0] != undefined) {
           hasLocale = args[0].locale != undefined;
         }
       }
@@ -962,7 +969,7 @@ for this prompt.
 
 
   // Register the default locale
-  addLocale('en', {
+  exports.addLocale('en', {
     OK: 'OK',
     CANCEL: 'Cancel',
     CONFIRM: 'OK'
@@ -970,17 +977,5 @@ for this prompt.
 
 
   // exposed public functions
-  return {
-    dialog: dialog,
-    alert: alert,
-    confirm: confirm,
-    prompt: prompt,
-    addLocale: addLocale,
-    setLocale: setLocale,
-    removeLocale: removeLocale,
-    setDefaults: setDefaults,
-    hideAll: hideAll,
-    init: init,
-    locales : locales
-  };
+  return exports;
 }));
