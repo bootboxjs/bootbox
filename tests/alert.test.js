@@ -166,7 +166,7 @@ describe("bootbox.alert", function() {
       });
 
       it("shows the correct title", function() {
-        expect(this.text("h4")).to.equal("Hello?");
+        expect(this.text(".modal-title")).to.equal("Hello?");
       });
     });
   });
