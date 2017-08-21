@@ -7,19 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>bootbox 5 demo</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-        crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
         <div class="container">
             <a class="navbar-brand" href="/">bootbox.js &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
-                aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+            </button>
+			<div class="collapse navbar-collapse" id="main-navbar">
+				<ul class="navbar-nav ml-auto">
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Docs</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#">Examples</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="https://github.com/tiesont/bootbox">
+						<i class="fa fa-github"></i>
+						Github
+					</a>
+				  </li>
+				</ul>
+			</div>
         </div>
     </nav>
 
@@ -46,37 +60,40 @@
             <div class="col-md-4">
                 <h2>Dialog</h2>
                 <p>
-                    This is just a custom dialog. It <em>should</em> function just like version 4.4.x.
+                    <button type="button" class="btn btn-primary" id="show-dialog">Show dialog</button>
                 </p>
                 <p>
-                    <button type="button" class="btn btn-primary" id="show-dialog">Show dialog</button>
+                    This is just a custom dialog. It <em>should</em> function just like version 4.4.x.
                 </p>
             </div>
 
             <div class="col-md-4">
                 <h2>Alert</h2>
                 <p>
-                    This is an alert. It is also a test of the <em>slightly</em> revamped locale code. This alert uses a
-                    custom locale, set with the <b>setLocale</b> function.
+                    <button type="button" class="btn btn-primary" id="show-alert">Show alert</button>
                 </p>
                 <p>
-                    <button type="button" class="btn btn-primary" id="show-alert">Show alert</button>
+                    This is an alert. It is also a test of the <em>slightly</em> revamped locale code. This alert uses a
+                    custom locale, set with the <b>setLocale</b> function.
                 </p>
             </div>
 
             <div class="col-md-4">
                 <h2>Confirm</h2>
                 <p>
-                    This is a confirm. If you clicked the "show alert" button above, you'll see that it uses locale set with the 
-                    <b>setLocale</b> function. Otherwise, it will use the default "en" locale.
+                    <button type="button" class="btn btn-primary" id="show-confirm">Show confirm</button>
                 </p>
                 <p>
-                    <button type="button" class="btn btn-primary" id="show-confirm">Show confirm</button>
+                    This is a confirm. If you clicked the "show alert" button above, you'll see that it uses locale set with the 
+                    <b>setLocale</b> function. Otherwise, it will use the default "en" locale.
                 </p>
             </div>
 
             <div class="col-md-12">
                 <h2>Prompt</h2>
+                <p>
+                    <button type="button" class="btn btn-primary" id="show-prompt">Show prompt</button>
+                </p>
                 <p>
                     This is a prompt. This function probably has the most updates, not the least of which is the ability to prepend 
                     some text before the input. In other words, you can use the <b>message</b> option just like
@@ -84,13 +101,10 @@
                     <b>min</b>,
                     <b>max</b>, and <b>step</b> values to be set on number, range, and date inputs.
                 </p>
-                <p>
-                    <button type="button" class="btn btn-primary" id="show-prompt">Show prompt</button>
-                </p>
             </div>
         </div>
 
-        <hr>
+        <hr />
 
         <footer>
             <p>&copy; 2017 Nick Payne &amp; <a href="https://github.com/makeusabrew/bootbox/graphs/contributors">contributers</a></p>
@@ -107,7 +121,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
     <script src="src/bootbox.js"></script>
-    <script src="src/locales/en.js"></script>
     <script>
         $(function () {
             bootbox.addLocale('test', {
@@ -115,7 +128,6 @@
                 CANCEL: "Boogie",
                 CONFIRM: "Rawr"
             });
-
 
             $('#show-dialog').on('click', function (e) {
                 var d = bootbox.dialog({
@@ -126,18 +138,18 @@
                             label: 'OK',
                             className: 'btn-primary',
                             callback: function () {
-                                $(this).modal('hide');
+                                d.modal('hide');
                             }
                         }
                     }
                 });
-
             });
 
             $('#show-alert').on('click', function (e) {
                 bootbox.setLocale('test');
 
                 var a = bootbox.alert({
+                    bootstrap: '',
                     message: 'This is an alert with a custom locale.'
                 });
 
@@ -156,9 +168,10 @@
 
             $('#show-prompt').on('click', function (e) {
                 var p = bootbox.prompt({
-                    locale: 'en',
                     title: 'Test',
-                    message: '<p>This is a mild rewrite of the prompt function. How do you like it?</p>',
+                    inputType: 'radio',
+                    inputOptions: [{text: 'Eenie', value: '1'},{text: 'Meenie', value: '2'},{text: 'Minie', value: '3'},{text: 'Moe', value: '4'}],
+                    message: '<p>Choose one of the options below:</p>',
                     callback: function (result) {
                         console.log(result);
                     }
