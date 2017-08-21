@@ -155,7 +155,7 @@ describe("bootbox.alert", function() {
       });
 
       it("throws an error", function() {
-        expect(this.create).to.throw("button key Another key is not allowed (options are ok)");
+        expect(this.create).to.throw("button key `Another key` is not allowed (options are ok)");
       });
     });
 

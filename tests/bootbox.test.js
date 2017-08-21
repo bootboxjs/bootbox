@@ -90,7 +90,7 @@ describe("Bootbox", function() {
       });
 
       it("throws the correct error", function() {
-        expect(this.e.message).to.contain("$.fn.modal is not defined");
+        expect(this.e.message).to.contain("`$.fn.modal` is not defined");
       });
     });
   });
