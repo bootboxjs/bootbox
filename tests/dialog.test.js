@@ -66,7 +66,7 @@ describe("bootbox.dialog", function() {
           };
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"](/button with key ok must be an object/);
+          return expect(this.create).to["throw"](/button with key `ok` must be an object/);
         });
       });
     });
@@ -280,7 +280,7 @@ describe("bootbox.dialog", function() {
           })(this);
         });
         return it("throws an error", function() {
-          return expect(this.badCreate).to["throw"](/button with key Short form must be an object/);
+          return expect(this.badCreate).to["throw"](/button with key `Short form` must be an object/);
         });
       });
     });
