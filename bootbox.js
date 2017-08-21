@@ -256,14 +256,14 @@
     body.find('.bootbox-body').html(options.message);
 
     each(buttons, function (key, b) {
-      callbacks[key] = b.callback;
 
       var button = $(templates.button);
       button.data('bb-handler', key);
       button.addClass(b.className);
       button.html(b.label);
-
       footer.append(button);
+
+      callbacks[key] = b.callback;
     });
 
     body.after(footer);
@@ -302,6 +302,82 @@
         closeButton.css('margin-top', '-2px').prependTo(body);
       }
     }
+
+    
+
+    /**
+     * Bootstrap event listeners; these handle extra
+     * setup & teardown required after the underlying
+     * modal has performed certain actions
+     */
+
+    // make sure we unbind any listeners once the dialog has definitively been dismissed
+    dialog.one("hide.bs.modal", function() {
+      dialog.off("escape.close.bb");
+      dialog.off("click");
+    });
+
+    dialog.one("hidden.bs.modal", function(e) {
+      // ensure we don't accidentally intercept hidden events triggered
+      // by children of the current dialog. We shouldn't anymore now BS
+      // namespaces its events; but still worth doing
+      if (e.target === this) {
+        dialog.remove();
+      }
+    });
+
+    /*
+    dialog.on("show.bs.modal", function() {
+      // sadly this doesn't work; show is called *just* before
+      // the backdrop is added so we'd need a setTimeout hack or
+      // otherwise... leaving in as would be nice
+      if (options.backdrop) {
+        dialog.next(".modal-backdrop").addClass("bootbox-backdrop");
+      }
+    });
+    */
+
+    dialog.one('shown.bs.modal', function() {
+      dialog.find('.btn-primary:first').focus();
+    });
+
+    /**
+     * Bootbox event listeners; used to decouple some
+     * behaviours from their respective triggers
+     */
+
+    if (options.backdrop !== 'static') {
+      // A boolean true/false according to the Bootstrap docs
+      // should show a dialog the user can dismiss by clicking on
+      // the background.
+      // We always only ever pass static/false to the actual
+      // $.modal function because with `true` we can't trap
+      // this event (the .modal-backdrop swallows it)
+      // However, we still want to sort of respect true
+      // and invoke the escape mechanism instead
+      dialog.on('click.dismiss.bs.modal', function(e) {
+        // @NOTE: the target varies in >= 3.3.x releases since the modal backdrop
+        // moved *inside* the outer dialog rather than *alongside* it
+        if (dialog.children('.modal-backdrop').length) {
+          e.currentTarget = dialog.children('.modal-backdrop').get(0);
+        }
+
+        if (e.target !== e.currentTarget) {
+          return;
+        }
+
+        dialog.trigger('escape.close.bb');
+      });
+    }
+
+    dialog.on('escape.close.bb', function(e) {
+      // the if statement looks redundant but it isn't; without it
+      // if we *didn't* have an onEscape handler then processCallback
+      // would automatically dismiss the dialog
+      if (callbacks.onEscape) {
+        processCallback(e, dialog, callbacks.onEscape);
+      }
+    });
 
 
     dialog.on('click', '.modal-footer button', function (e) {
