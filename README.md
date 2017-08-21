@@ -8,6 +8,7 @@ the original writeup about the project.
 This is a work-in-progress update to Bootbox. I am no JavaScript wizard, so this is likely to be broken more often 
 than not. So, if you **need** something that works, stick to the main repo: https://github.com/makeusabrew/bootbox
 
+[![Build Status](https://api.travis-ci.org/tiesont/bootbox.svg)](http://travis-ci.org/tiesont/bootbox)
 
 ## License
 
