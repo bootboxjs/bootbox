@@ -164,7 +164,7 @@
   exports.addLocale = function (name, values) {
     $.each(['OK', 'CANCEL', 'CONFIRM'], function (_, v) {
       if (!values[v]) {
-        throw new Error('Please supply a translation for "' + v + '"');
+        throw new Error('Please supply a translation for `' + v + '`');
       }
     });
 
@@ -905,7 +905,7 @@ for this prompt.
 
     each(options.buttons, function (key) {
       if (allowedButtons[key] === undefined) {
-        throw new Error('button key ' + key + ' is not allowed (options are ' + buttons.join(' ') + ')');
+        throw new Error('button key `' + key + '` is not allowed (options are ' + buttons.join(' ') + ')');
       }
     });
 
