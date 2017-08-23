@@ -19,6 +19,8 @@ module.exports = function(params) {
 
         params.src || 'bootbox.js',
 
+        'locales.js',
+
         ['tests/**/*.test.js']
       ),
       exclude: [],
