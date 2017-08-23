@@ -91,7 +91,7 @@
     closeButton:
     '<button type="button" class="bootbox-close-button close" aria-hidden="true">&times;</button>',
     form:
-    '<div><form class="bootbox-form"></form></div>',
+    '<form class="bootbox-form"></form>',
     button:
     '<button type="button" class="btn"></button>',
     option:
@@ -563,6 +563,7 @@ for this prompt.
 
     // create the input based on the supplied type
     input = $(templates.inputs[options.inputType]);
+    console.log(input);
 
     switch (options.inputType) {
       case 'text':
