@@ -21,10 +21,8 @@
 }(this, function init($, undefined) {
   'use strict';
 
-  /*
-  * Polyfills Object.keys, if necessary.
-  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
-  */
+  //  Polyfills Object.keys, if necessary.
+  //  @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
   if (!Object.keys) {
     Object.keys = (function () {
       'use strict';
@@ -136,8 +134,6 @@
     closeButton: true,
     // show the dialog immediately by default
     show: true,
-    // Bootstrap version - if blank, we'll try to detect the version from the modal plugin's VERSION property
-    bootstrap: "",
     // dialog container
     container: 'body',
     // default value (used by the prompt helper)
@@ -236,11 +232,16 @@
 
     options = sanitize(options);
 
-    options.fullBootstrapVersion = $.fn.modal.Constructor.VERSION;
-    options.bootstrap = options.fullBootstrapVersion.substring(0, 1);
+    if ($.fn.modal.Constructor.VERSION) {
+      options.fullBootstrapVersion = $.fn.modal.Constructor.VERSION;
+      options.bootstrap = options.fullBootstrapVersion.substring(0, 1);
+    }
+    else {
+      // Assuming version 2.3.2, as that was the last "supported" 2.x version
+      options.bootstrap = '2';
+      options.fullBootstrapVersion = '2.3.2';
 
-    if (options.bootstrap < '3') {
-      throw new Error('Bootbox is only compatible with Bootstrap 3 or higher.');
+      console.warn('Bootbox will *mostly* work with Bootstrap 2, but we do not officially support it. Please upgrade, if possible.');
     }
 
     var dialog = $(templates.dialog);
@@ -313,13 +314,9 @@
       }
     }
 
-
-
-    /**
-     * Bootstrap event listeners; these handle extra
-     * setup & teardown required after the underlying
-     * modal has performed certain actions
-     */
+    // Bootstrap event listeners; these handle extra
+    // setup & teardown required after the underlying
+    // modal has performed certain actions.
 
     // make sure we unbind any listeners once the dialog has definitively been dismissed
     dialog.one("hide.bs.modal", function () {
@@ -336,25 +333,12 @@
       }
     });
 
-    /*
-    dialog.on("show.bs.modal", function() {
-      // sadly this doesn't work; show is called *just* before
-      // the backdrop is added so we'd need a setTimeout hack or
-      // otherwise... leaving in as would be nice
-      if (options.backdrop) {
-        dialog.next(".modal-backdrop").addClass("bootbox-backdrop");
-      }
-    });
-    */
-
     dialog.one('shown.bs.modal', function () {
       dialog.find('.btn-primary:first').focus();
     });
 
-    /**
-     * Bootbox event listeners; used to decouple some
-     * behaviours from their respective triggers
-     */
+    // Bootbox event listeners; used to decouple some
+    // behaviours from their respective triggers
 
     if (options.backdrop !== 'static') {
       // A boolean true/false according to the Bootstrap docs
@@ -430,11 +414,9 @@
   }
 
 
-  /*
-  Helper function to simulate the native alert() behavior. **NOTE**: This is non-blocking, so any
-  code that must happen after the alert is dismissed should be placed within the callback function 
-  for this alert.
-  */
+  // Helper function to simulate the native alert() behavior. **NOTE**: This is non-blocking, so any
+  // code that must happen after the alert is dismissed should be placed within the callback function 
+  // for this alert.
   exports.alert = function () {
     var options;
     options = mergeDialogOptions('alert', ['ok'], ['message', 'callback'], arguments);
@@ -445,10 +427,8 @@
       throw new Error('alert requires callback property to be a function when provided');
     }
 
-    /**
-     * override the ok and escape callback to make sure they just invoke
-     * the single user-supplied one (if provided)
-     */
+    // override the ok and escape callback to make sure they just invoke
+    // the single user-supplied one (if provided)
     options.buttons.ok.callback = options.onEscape = function () {
       if ($.isFunction(options.callback)) {
         return options.callback.call(this);
@@ -461,11 +441,9 @@
   }
 
 
-  /*
-Helper function to simulate the native confirm() behavior. **NOTE**: This is non-blocking, so any
-code that must happen after the confirm is dismissed should be placed within the callback function 
-for this confirm.
-*/
+  // Helper function to simulate the native confirm() behavior. **NOTE**: This is non-blocking, so any
+  // code that must happen after the confirm is dismissed should be placed within the callback function 
+  // for this confirm.
   exports.confirm = function () {
     var options;
 
@@ -477,9 +455,7 @@ for this confirm.
       throw new Error('confirm requires a callback');
     }
 
-    /**
-     * overrides; undo anything the user tried to set they shouldn't have
-     */
+    // overrides; undo anything the user tried to set they shouldn't have
     options.buttons.cancel.callback = options.onEscape = function () {
       return options.callback.call(this, false);
     };
@@ -492,11 +468,9 @@ for this confirm.
   }
 
 
-  /*
-Helper function to simulate the native prompt() behavior. **NOTE**: This is non-blocking, so any
-code that must happen after the prompt is dismissed should be placed within the callback function 
-for this prompt.
-*/
+  // Helper function to simulate the native prompt() behavior. **NOTE**: This is non-blocking, so any
+  // code that must happen after the prompt is dismissed should be placed within the callback function 
+  // for this prompt.
   exports.prompt = function () {
 
     var options;
@@ -810,15 +784,13 @@ for this prompt.
   // INTERNAL FUNCTIONS
   // *************************************************************************************************************
 
-  /**
-   * map a flexible set of arguments into a single returned object
-   * if args.length is already one just return it, otherwise
-   * use the properties argument to map the unnamed args to
-   * object properties
-   * so in the latter case:
-   * mapArguments(["foo", $.noop], ["message", "callback"])
-   * -> { message: "foo", callback: $.noop }
-   */
+  // Map a flexible set of arguments into a single returned object
+  // If args.length is already one just return it, otherwise
+  // use the properties argument to map the unnamed args to
+  // object properties.
+  // So in the latter case:
+  //  mapArguments(["foo", $.noop], ["message", "callback"])
+  //  -> { message: "foo", callback: $.noop }
   function mapArguments(args, properties) {
     var argn = args.length;
     var options = {};
@@ -838,9 +810,7 @@ for this prompt.
   }
 
 
-  /**
-   * merge a set of default dialog options with user supplied arguments
-   */
+  //  Merge a set of default dialog options with user supplied arguments
   function mergeArguments(defaults, args, properties) {
     return $.extend(
       // deep merge
@@ -859,10 +829,8 @@ for this prompt.
   }
 
 
-  /**
-   * this entry-level method makes heavy use of composition to take a simple
-   * range of inputs and return valid options suitable for passing to bootbox.dialog
-   */
+  //  This entry-level method makes heavy use of composition to take a simple
+  //  range of inputs and return valid options suitable for passing to bootbox.dialog
   function mergeDialogOptions(className, labels, properties, args) {
     var hasLocale = false;
     if (args) {
@@ -879,7 +847,7 @@ for this prompt.
       buttons: createLabels(labels, hasLocale ? args[0].locale : defaults.locale)
     };
 
-    // ensure the buttons properties generated, *after* merging
+    // Ensure the buttons properties generated, *after* merging
     // with user args are still valid against the supplied labels
     return validateButtons(
       // merge the generated base properties with user supplied arguments
@@ -894,9 +862,8 @@ for this prompt.
   }
 
 
-  /* Checks each button object to see if key is valid. 
-  *  This function will only be called by the alert, confirm, and prompt helpers. 
-  */
+  //  Checks each button object to see if key is valid. 
+  //  This function will only be called by the alert, confirm, and prompt helpers. 
   function validateButtons(options, buttons) {
     var allowedButtons = {};
     each(buttons, function (key, value) {
@@ -913,11 +880,10 @@ for this prompt.
   }
 
 
-  /**
- * from a given list of arguments return a suitable object of button labels
- * all this does is normalise the given labels and translate them where possible
- * e.g. "ok", "confirm" -> { ok: "OK", cancel: "Annuleren" }
- */
+
+  //  From a given list of arguments, return a suitable object of button labels.
+  //  All this does is normalise the given labels and translate them where possible.
+  //  e.g. "ok", "confirm" -> { ok: "OK", cancel: "Annuleren" }
   function createLabels(labels, locale) {
     var buttons = {};
 
@@ -935,10 +901,9 @@ for this prompt.
   }
 
 
-  /**
- * Get localized text from a locale. Defaults to 'en' locale if no locale 
- * provided or a non-registered locale is requested
- */
+
+  //  Get localized text from a locale. Defaults to 'en' locale if no locale 
+  //  provided or a non-registered locale is requested
   function getText(key, locale) {
     var labels = locales[locale];
 
@@ -946,11 +911,10 @@ for this prompt.
   }
 
 
-  /**
- * Filter and tidy up any user supplied parameters to this dialog.
- * Also looks for any shorthands used and ensures that the options
- * which are returned are all normalized properly
- */
+
+  //  Filter and tidy up any user supplied parameters to this dialog.
+  //  Also looks for any shorthands used and ensures that the options
+  //  which are returned are all normalized properly
   function sanitize(options) {
     var buttons;
     var total;
@@ -1011,13 +975,13 @@ for this prompt.
   }
 
 
-  // Returns a count of the properties defined on the object
+  //  Returns a count of the properties defined on the object
   function getKeyLength(obj) {
     return Object.keys(obj).length;
   }
 
 
-  // tiny wrapper function around jQuery.each; just adds index as the third parameter
+  //  Tiny wrapper function around jQuery.each; just adds index as the third parameter
   function each(collection, iterator) {
     var index = 0;
     $.each(collection, function (key, value) {
@@ -1026,7 +990,7 @@ for this prompt.
   }
 
 
-  // Handle the invoked dialog callback
+  //  Handle the invoked dialog callback
   function processCallback(e, dialog, callback) {
     e.stopPropagation();
     e.preventDefault();
@@ -1045,7 +1009,7 @@ for this prompt.
   }
 
 
-  // Register the default locale
+  //  Register the default locale
   exports.addLocale('en', {
     OK: 'OK',
     CANCEL: 'Cancel',
@@ -1053,6 +1017,6 @@ for this prompt.
   });
 
 
-  // exposed public functions
+  //  The Bootbox object
   return exports;
 }));
