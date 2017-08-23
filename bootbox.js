@@ -160,7 +160,7 @@
 
   // Register localized strings for the OK, Confirm, and Cancel buttons
   exports.addLocale = function (name, values) {
-    $.each(['OK', 'CANCEL', 'CONFIRM'], function(_, v) {
+    $.each(['OK', 'CANCEL', 'CONFIRM'], function (_, v) {
       if (!values[v]) {
         throw new Error('Please supply a translation for "' + v + '"');
       }
@@ -303,7 +303,7 @@
       }
     }
 
-    
+
 
     /**
      * Bootstrap event listeners; these handle extra
@@ -312,12 +312,12 @@
      */
 
     // make sure we unbind any listeners once the dialog has definitively been dismissed
-    dialog.one("hide.bs.modal", function() {
+    dialog.one("hide.bs.modal", function () {
       dialog.off("escape.close.bb");
       dialog.off("click");
     });
 
-    dialog.one("hidden.bs.modal", function(e) {
+    dialog.one("hidden.bs.modal", function (e) {
       // ensure we don't accidentally intercept hidden events triggered
       // by children of the current dialog. We shouldn't anymore now BS
       // namespaces its events; but still worth doing
@@ -337,7 +337,7 @@
     });
     */
 
-    dialog.one('shown.bs.modal', function() {
+    dialog.one('shown.bs.modal', function () {
       dialog.find('.btn-primary:first').focus();
     });
 
@@ -355,7 +355,7 @@
       // this event (the .modal-backdrop swallows it)
       // However, we still want to sort of respect true
       // and invoke the escape mechanism instead
-      dialog.on('click.dismiss.bs.modal', function(e) {
+      dialog.on('click.dismiss.bs.modal', function (e) {
         // @NOTE: the target varies in >= 3.3.x releases since the modal backdrop
         // moved *inside* the outer dialog rather than *alongside* it
         if (dialog.children('.modal-backdrop').length) {
@@ -370,7 +370,7 @@
       });
     }
 
-    dialog.on('escape.close.bb', function(e) {
+    dialog.on('escape.close.bb', function (e) {
       // the if statement looks redundant but it isn't; without it
       // if we *didn't* have an onEscape handler then processCallback
       // would automatically dismiss the dialog
@@ -764,10 +764,15 @@ for this prompt.
       promptDialog.find('.btn-primary').click();
     });
 
-    // Add the form to whatever content the user may have added.
-    var message = options.message;
-    form.prepend(message);
-    options.message = form;
+    if (options.message) {
+      // Add the form to whatever content the user may have added.
+      var message = options.message;
+      form.prepend(message);
+      options.message = form;
+    }
+    else {
+      options.message = form;
+    }
 
     promptDialog = exports.dialog(options);
 
@@ -920,13 +925,13 @@ for this prompt.
 
 
   /**
- * Get localized text from a locale. Defaults to 'en' locale if no language 
- * indicated or a non-registered language is selected
+ * Get localized text from a locale. Defaults to 'en' locale if no locale 
+ * provided or a non-registered locale is requested
  */
-  function getText(key, lang) {
-    var locale = locales[lang];
+  function getText(key, locale) {
+    var labels = locales[locale];
 
-    return locale ? locale[key] : locales.en[key];
+    return labels ? labels[key] : locales.en[key];
   }
 
 
