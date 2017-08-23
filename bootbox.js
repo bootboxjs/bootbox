@@ -1006,12 +1006,7 @@ for this prompt.
           // always add a primary to the main option in a one or two-button dialog
           button.className = 'btn-primary';
         } else {
-          if (options.bootstrap > '3') {
-            button.className = 'btn-secondary';
-          }
-          else {
-            button.className = 'btn-default';
-          }
+          button.className = 'btn-secondary btn-default';
         }
       }
     });
