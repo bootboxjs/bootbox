@@ -511,6 +511,14 @@ for this prompt.
     // users can override more defaults
     options = mergeDialogOptions('prompt', ['cancel', 'confirm'], ['title', 'callback'], arguments);
 
+    if (!options.value) {
+      options.value = defaults.value;
+    }
+
+    if (!options.inputType) {
+      options.inputType = defaults.inputType;
+    }
+
     // capture the user's show value; we always set this to false before
     // spawning the dialog to give us a chance to attach some handlers to
     // it, but we need to make sure we respect a preference not to show it
