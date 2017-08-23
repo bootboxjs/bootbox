@@ -128,7 +128,7 @@ describe("bootbox.prompt", function() {
           return expect(this.dialog.find(".btn:last").hasClass("btn-primary")).to.be["true"];
         });
         it("adds the expected dialog title", function() {
-          return expect(this.text("h4")).to.equal("What is your name?");
+          return expect(this.text(".modal-title")).to.equal("What is your name?");
         });
         it("adds a close button", function() {
           return expect(this.dialog.find(".modal-header .close")).to.be.ok;
@@ -228,7 +228,7 @@ describe("bootbox.prompt", function() {
         return this.options.inputType = 'foobar';
       });
       return it("throws an error", function() {
-        return expect(this.create).to["throw"](/invalid prompt type/);
+        return expect(this.create).to["throw"]("Invalid prompt type");
       });
     });
     describe("setting inputType text", function() {

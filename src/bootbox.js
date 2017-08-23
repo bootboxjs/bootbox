@@ -137,11 +137,11 @@
     // show the dialog immediately by default
     show: true,
     // Bootstrap version - if blank, we'll try to detect the version from the modal plugin's VERSION property
-    bootstrap: '',
+    bootstrap: "",
     // dialog container
     container: 'body',
     // default value (used by the prompt helper)
-    value: '',
+    value: "",
     // default input type (used by the prompt helper)
     inputType: 'text'
   };
@@ -963,7 +963,7 @@ for this prompt.
       throw new Error('Please specify a message');
     }
 
-    if ($.trim(options.bootstrap) === '') {
+    if ($.trim(options.bootstrap) === "") {
       // Attempt to set the version number from the plugin itself.
       // At the moment, we only care about the major version
       options.bootstrap = $.fn.modal.Constructor.VERSION.substring(0, 1);
