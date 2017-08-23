@@ -242,7 +242,7 @@
         'for more details.'
       );
     }
-    
+
     options = sanitize(options);
 
     var dialog = $(templates.dialog);
@@ -258,18 +258,20 @@
 
     body.find('.bootbox-body').html(options.message);
 
-    each(buttons, function (key, b) {
+    if (buttons) {
+      each(buttons, function (key, b) {
 
-      var button = $(templates.button);
-      button.data('bb-handler', key);
-      button.addClass(b.className);
-      button.html(b.label);
-      footer.append(button);
+        var button = $(templates.button);
+        button.data('bb-handler', key);
+        button.addClass(b.className);
+        button.html(b.label);
+        footer.append(button);
 
-      callbacks[key] = b.callback;
-    });
+        callbacks[key] = b.callback;
+      });
 
-    body.after(footer);
+      body.after(footer);
+    }
 
     if (options.animate === true) {
       dialog.addClass('fade');
