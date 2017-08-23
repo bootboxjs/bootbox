@@ -21,7 +21,7 @@ module.exports = function(params) {
 
         ['tests/**/*.test.js']
       ),
-      exclude: ['locales.test.js'],
+      exclude: [],
       preprocessors: {
         'bootbox.js': ['coverage']
       },

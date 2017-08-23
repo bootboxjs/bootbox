@@ -147,12 +147,8 @@
   };
 
 
-
-
-  // *************************************************************************************************************
   // PUBLIC FUNCTIONS
   // *************************************************************************************************************
-
 
   // Return all currently registered locales, or a specific locale if `name` is defined
   exports.locales = function (name) {
@@ -224,11 +220,8 @@
   }
 
 
-
-  // *************************************************************************************************************
   // CORE HELPER FUNCTIONS
   // *************************************************************************************************************
-
 
   // Core dialog function
   exports.dialog = function (options) {
@@ -239,6 +232,13 @@
         'the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ ' +
         'for more details.'
       );
+    }
+
+    options.fullBootstrapVersion = $.fn.modal.Constructor.VERSION;
+    options.bootstrap = options.fullBootstrapVersion.substring(0, 1);
+
+    if (options.bootstrap < '3') {
+      throw new Error('Bootbox is only compatible with Bootstrap 3 or higher.');
     }
 
     options = sanitize(options);
@@ -256,6 +256,8 @@
 
     body.find('.bootbox-body').html(options.message);
 
+    // Only attempt to create buttons if at least one has 
+    // been defined in the options object
     if (getKeyLength(options.buttons) > 0) {
       each(buttons, function (key, b) {
 
@@ -279,11 +281,16 @@
       dialog.addClass(options.className);
     }
 
-    // Requires Bootstrap 3.3.1 or higher
-    if (options.size === 'large') {
-      innerDialog.addClass('modal-lg');
-    } else if (options.size === 'small') {
-      innerDialog.addClass('modal-sm');
+    // Requires Bootstrap 3.1.0 or higher
+    if (options.fullBootstrapVersion.substring(0, 3) >= '3.1') {
+      if (options.size === 'large') {
+        innerDialog.addClass('modal-lg');
+      } else if (options.size === 'small') {
+        innerDialog.addClass('modal-sm');
+      }
+    }
+    else {
+      console.warn('`size` requires Bootstrap 3.1.0 or higher. You are using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
     }
 
     if (options.title) {
@@ -563,7 +570,6 @@ for this prompt.
 
     // create the input based on the supplied type
     input = $(templates.inputs[options.inputType]);
-    console.log(input);
 
     switch (options.inputType) {
       case 'text':
@@ -757,11 +763,6 @@ for this prompt.
           throw new Error('`max` must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         }
       }
-
-      //TODO: add regex-based fallback for non-compliant browsers?
-      //if (options.inputType == 'date') {
-      //pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-      //}
     }
 
     // now place it in our form
@@ -776,7 +777,7 @@ for this prompt.
       promptDialog.find('.btn-primary').click();
     });
 
-    if (options.message) {
+    if ($.trim(options.message) !== '') {
       // Add the form to whatever content the user may have added.
       var message = options.message;
       form.prepend(message);
@@ -806,8 +807,6 @@ for this prompt.
   }
 
 
-
-  // *************************************************************************************************************
   // INTERNAL FUNCTIONS
   // *************************************************************************************************************
 
@@ -868,8 +867,8 @@ for this prompt.
     var hasLocale = false;
     if (args) {
       if (args.length > 0) {
-        if (args[0] != undefined) {
-          hasLocale = args[0].locale != undefined;
+        if (args[0] !== undefined) {
+          hasLocale = args[0].locale !== undefined;
         }
       }
     }
@@ -962,16 +961,6 @@ for this prompt.
 
     if (!options.message) {
       throw new Error('Please specify a message');
-    }
-
-    if ($.trim(options.bootstrap) === "") {
-      // Attempt to set the version number from the plugin itself.
-      // At the moment, we only care about the major version
-      options.bootstrap = $.fn.modal.Constructor.VERSION.substring(0, 1);
-    }
-
-    if (options.bootstrap < '3' || options.bootstrap > '4') {
-      throw new Error('Bootbox is only compatible with versions 3 and 4 of Bootstrap.');
     }
 
     // make sure any supplied options take precedence over defaults
