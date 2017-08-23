@@ -201,7 +201,7 @@ describe("bootbox.prompt", function() {
         };
       });
       return it("throws an error", function() {
-        return expect(this.create).to["throw"]("button key `prompt` is not allowed (options are cancel confirm)");
+        return expect(this.create).to["throw"]('button key "prompt" is not allowed (options are cancel confirm)');
       });
     });
     describe("setting show to false", function() {
@@ -435,7 +435,7 @@ describe("bootbox.prompt", function() {
           ];
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"]("each option needs a `value` and a `text` property");
+          return expect(this.create).to["throw"]('each option needs a "value" and a "text" property');
         });
       });
       describe("with a value but no text", function() {
@@ -448,7 +448,7 @@ describe("bootbox.prompt", function() {
           ];
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"]("each option needs a `value` and a `text` property");
+          return expect(this.create).to["throw"]('each option needs a "value" and a "text" property');
         });
       });
       describe("with an invalid second options", function() {
@@ -464,7 +464,7 @@ describe("bootbox.prompt", function() {
           ];
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"]("each option needs a `value` and a `text` property");
+          return expect(this.create).to["throw"]('each option needs a "value" and a "text" property');
         });
       });
       describe("with valid options", function() {
@@ -583,7 +583,7 @@ describe("bootbox.prompt", function() {
           ];
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"]("each option needs a `value` and a `text` property");
+          return expect(this.create).to["throw"]('each option needs a "value" and a "text" property');
         });
       });
       return describe("with options", function() {
@@ -757,7 +757,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           it("with the correct value", function() {
@@ -774,7 +774,7 @@ describe("bootbox.prompt", function() {
           it("invokes the callback with the correct value", function() {
             return expect(this.callback).to.have.been.calledWithExactly("");
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("should hide the modal", function() {
@@ -793,7 +793,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           it("with the correct value", function() {
@@ -810,7 +810,7 @@ describe("bootbox.prompt", function() {
           it("invokes the callback with the correct value", function() {
             return expect(this.callback).to.have.been.calledWithExactly("Test input");
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("should hide the modal", function() {
@@ -825,7 +825,7 @@ describe("bootbox.prompt", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -842,7 +842,7 @@ describe("bootbox.prompt", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -859,7 +859,7 @@ describe("bootbox.prompt", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -888,7 +888,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           it("with the correct value", function() {
@@ -910,7 +910,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           it("with the correct value", function() {
@@ -928,7 +928,7 @@ describe("bootbox.prompt", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -945,7 +945,7 @@ describe("bootbox.prompt", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -962,7 +962,7 @@ describe("bootbox.prompt", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -994,7 +994,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("with the correct value", function() {
@@ -1008,7 +1008,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("with the correct value", function() {
@@ -1027,7 +1027,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("with the correct value", function() {
@@ -1041,7 +1041,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("with the correct value", function() {
@@ -1104,7 +1104,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("with the correct value", function() {
@@ -1118,7 +1118,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("with the correct value", function() {
@@ -1165,7 +1165,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("with the correct value", function() {
@@ -1179,7 +1179,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("with the correct value", function() {
@@ -1218,7 +1218,7 @@ describe("bootbox.prompt", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           it("with the correct value", function() {
@@ -1250,7 +1250,7 @@ describe("bootbox.prompt", function() {
             it("should invoke the callback", function() {
               return expect(this.callback).to.have.been.called;
             });
-            it("should pass the dialog as `this`", function() {
+            it('should pass the dialog as "this"', function() {
               return expect(this.callback.thisValues[0]).to.equal(this.dialog);
             });
             return it("with the correct value", function() {

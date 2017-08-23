@@ -146,7 +146,7 @@
   // PUBLIC FUNCTIONS
   // *************************************************************************************************************
 
-  // Return all currently registered locales, or a specific locale if `name` is defined
+  // Return all currently registered locales, or a specific locale if "name" is defined
   exports.locales = function (name) {
     return name ? locales[name] : locales;
   }
@@ -156,7 +156,7 @@
   exports.addLocale = function (name, values) {
     $.each(['OK', 'CANCEL', 'CONFIRM'], function (_, v) {
       if (!values[v]) {
-        throw new Error('Please supply a translation for `' + v + '`');
+        throw new Error('Please supply a translation for "' + v + '"');
       }
     });
 
@@ -224,7 +224,7 @@
 
     if ($.fn.modal === undefined) {
       throw new Error(
-        '`$.fn.modal` is not defined; please double check you have included ' +
+        '"$.fn.modal" is not defined; please double check you have included ' +
         'the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ ' +
         'for more details.'
       );
@@ -291,7 +291,7 @@
       }
     }
     else {
-      console.warn('`size` requires Bootstrap 3.1.0 or higher. You are using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
+      console.warn('"size" requires Bootstrap 3.1.0 or higher. You are using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
     }
 
     if (options.title) {
@@ -345,7 +345,7 @@
       // should show a dialog the user can dismiss by clicking on
       // the background.
       // We always only ever pass static/false to the actual
-      // $.modal function because with `true` we can't trap
+      // $.modal function because with "true" we can't trap
       // this event (the .modal-backdrop swallows it)
       // However, we still want to sort of respect true
       // and invoke the escape mechanism instead
@@ -575,7 +575,7 @@
           var elem = input;
 
           if (option.value === undefined || option.text === undefined) {
-            throw new Error('each option needs a `value` and a `text` property');
+            throw new Error('each option needs a "value" and a "text" property');
           }
 
           // ... but override that element if this option sits in a group
@@ -612,7 +612,7 @@
         }
 
         if (!inputOptions[0].value || !inputOptions[0].text) {
-          throw new Error('each option needs a `value` and a `text` property');
+          throw new Error('each option needs a "value" and a "text" property');
         }
 
         // checkboxes have to nest within a containing element, so
@@ -647,7 +647,7 @@
         }
 
         if (!inputOptions[0].value || !inputOptions[0].text) {
-          throw new Error('each option needs a `value` and a `text` property');
+          throw new Error('each option needs a "value" and a "text" property');
         }
 
         // radiobuttons have to nest within a containing element, so
@@ -704,7 +704,7 @@
           input.attr('step', options.step);
         }
         else {
-          throw new Error('`step` must be a valid number or the value `any`. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
+          throw new Error('"step" must be a valid number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
         }
       }
 
@@ -715,11 +715,11 @@
             input.attr('min', options.min);
           }
           else {
-            throw new Error('`max` must be greater than `min`. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+            throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
           }
         }
         else {
-          throw new Error('`min` must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+          throw new Error('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
         }
       }
 
@@ -730,11 +730,11 @@
             input.attr('max', options.max);
           }
           else {
-            throw new Error('`max` must be greater than `min`. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+            throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
           }
         }
         else {
-          throw new Error('`max` must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+          throw new Error('"max" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         }
       }
     }
@@ -872,7 +872,7 @@
 
     each(options.buttons, function (key) {
       if (allowedButtons[key] === undefined) {
-        throw new Error('button key `' + key + '` is not allowed (options are ' + buttons.join(' ') + ')');
+        throw new Error('button key "' + key + '" is not allowed (options are ' + buttons.join(' ') + ')');
       }
     });
 
@@ -953,7 +953,7 @@
 
       // before any further checks make sure by now button is the correct type
       if ($.type(button) !== 'object') {
-        throw new Error('button with key `' + key + '` must be an object');
+        throw new Error('button with key "' + key + '" must be an object');
       }
 
       if (!button.label) {
