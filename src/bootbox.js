@@ -553,6 +553,7 @@
       case 'time':
       case 'number':
       case 'password':
+      case 'range':
         input.val(options.value);
         break;
 
