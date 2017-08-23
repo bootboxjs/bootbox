@@ -177,7 +177,7 @@ describe("bootbox.confirm", function() {
         };
       });
       return it("throws an error", function() {
-        return expect(this.create).to["throw"](/key is not allowed/);
+        return expect(this.create).to["throw"]("button key `Bad key` is not allowed (options are cancel confirm)");
       });
     });
   });

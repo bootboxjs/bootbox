@@ -168,8 +168,6 @@
       }
     });
 
-    name = name.toLowerCase();
-
     locales[name] = {
       OK: values.OK,
       CANCEL: values.CANCEL,
@@ -907,7 +905,7 @@ for this prompt.
 
     each(options.buttons, function (key) {
       if (allowedButtons[key] === undefined) {
-        throw new Error('button key `' + key + '` is not allowed (options are ' + buttons.join('\n') + ')');
+        throw new Error('button key ' + key + ' is not allowed (options are ' + buttons.join(' ') + ')');
       }
     });
 

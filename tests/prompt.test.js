@@ -201,7 +201,7 @@ describe("bootbox.prompt", function() {
         };
       });
       return it("throws an error", function() {
-        return expect(this.create).to["throw"](/key prompt is not allowed/);
+        return expect(this.create).to["throw"]("button key `prompt` is not allowed (options are cancel confirm)");
       });
     });
     describe("setting show to false", function() {
@@ -404,7 +404,7 @@ describe("bootbox.prompt", function() {
           return this.options.inputType = 'select';
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"](/prompt with select requires options/);
+          return expect(this.create).to["throw"](/prompt with select requires at least one option value/);
         });
       });
       describe("with invalid options", function() {
@@ -422,7 +422,7 @@ describe("bootbox.prompt", function() {
           return this.options.inputOptions = [];
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"](/prompt with select requires options/);
+          return expect(this.create).to["throw"](/prompt with select requires at least one option value/);
         });
       });
       describe("with options in the wrong format", function() {
