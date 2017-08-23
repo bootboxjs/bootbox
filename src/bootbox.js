@@ -234,14 +234,14 @@
       );
     }
 
+    options = sanitize(options);
+
     options.fullBootstrapVersion = $.fn.modal.Constructor.VERSION;
     options.bootstrap = options.fullBootstrapVersion.substring(0, 1);
 
     if (options.bootstrap < '3') {
       throw new Error('Bootbox is only compatible with Bootstrap 3 or higher.');
     }
-
-    options = sanitize(options);
 
     var dialog = $(templates.dialog);
     var innerDialog = dialog.find('.modal-dialog');
