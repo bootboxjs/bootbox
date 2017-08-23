@@ -258,7 +258,7 @@
 
     body.find('.bootbox-body').html(options.message);
 
-    if (buttons) {
+    if (getKeyLength(options.buttons) > 0) {
       each(buttons, function (key, b) {
 
         var button = $(templates.button);
@@ -970,7 +970,7 @@ for this prompt.
     // make sure any supplied options take precedence over defaults
     options = $.extend({}, defaults, options);
 
-    // no buttons is still a valid dialog but it's cleaner  toalways have
+    // no buttons is still a valid dialog but it's cleaner to always have
     // a buttons object to iterate over, even if it's empty
     if (!options.buttons) {
       options.buttons = {};
