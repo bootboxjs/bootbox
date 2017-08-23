@@ -11,6 +11,9 @@ describe("Bootbox", function() {
     expect(bootbox.confirm).to.be.a("function");
     expect(bootbox.dialog).to.be.a("function");
     expect(bootbox.setDefaults).to.be.a("function");
+    expect(bootbox.setLocale).to.be.a("function");
+    expect(bootbox.removeLocale).to.be.a("function");
+    expect(bootbox.locales).to.be.a("function");
     expect(bootbox.hideAll).to.be.a("function");
   });
 

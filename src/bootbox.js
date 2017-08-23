@@ -234,6 +234,15 @@
 
   // Core dialog function
   exports.dialog = function (options) {
+
+    if ($.fn.modal === undefined) {
+      throw new Error(
+        '`$.fn.modal` is not defined; please double check you have included ' +
+        'the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ ' +
+        'for more details.'
+      );
+    }
+    
     options = sanitize(options);
 
     var dialog = $(templates.dialog);
@@ -246,14 +255,6 @@
     var callbacks = {
       onEscape: options.onEscape
     };
-
-    if ($.fn.modal === undefined) {
-      throw new Error(
-        '`$.fn.modal` is not defined; please double check you have included ' +
-        'the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ ' +
-        'for more details.'
-      );
-    }
 
     body.find('.bootbox-body').html(options.message);
 
