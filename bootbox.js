@@ -7,6 +7,7 @@
  */
 
 (function (root, factory) {
+  'use strict';
   if (typeof define === 'function' && define.amd) {
     // AMD
     define(['jquery'], factory);
@@ -18,6 +19,7 @@
     root.bootbox = factory(root.jQuery);
   }
 }(this, function init($, undefined) {
+  'use strict';
 
   /*
   * Polyfills Object.keys, if necessary.
