@@ -709,10 +709,9 @@
         }
       }
 
-      if (options.min) {
-        input.attr('min', options.min);
+      if (options.min !== undefined) {
         if (!isNaN(options.min)) {
-          if (options.max > options.min) {
+          if (options.max === undefined || options.max > options.min) {
             input.attr('min', options.min);
           }
           else {
@@ -724,10 +723,9 @@
         }
       }
 
-      if (options.max) {
-        input.attr('max', options.max);
+      if (options.max !== undefined) {
         if (!isNaN(options.max)) {
-          if (options.max > options.min) {
+          if (options.min === undefined || options.max > options.min) {
             input.attr('max', options.max);
           }
           else {
