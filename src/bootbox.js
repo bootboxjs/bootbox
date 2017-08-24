@@ -699,20 +699,32 @@
 
     // These input types have extra attributes which affect their input validation.
     // Ignore these options for any other type.
+    // Warning: For most browsers, date inputs are buggy in their implementation of 'step', so 
+    // this attribute will have no effect - we don't set the attribute.
+    // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#Setting_maximum_and_minimum_dates
     if ($.inArray(options.inputType, ['date', 'number', 'range']) >= 0) {
-      if (options.step) {
-        if (options.step === 'any' || !isNaN(options.step)) {
-          input.attr('step', options.step);
-        }
-        else {
-          throw new Error('"step" must be a valid number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
+      if (options.inputType !== 'date') {
+        if (options.step) {
+          if (options.step === 'any' || !isNaN(options.step)) {
+            input.attr('step', options.step);
+          }
+          else {
+            throw new Error('"step" must be a valid number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
+          }
         }
       }
 
       if (options.min !== undefined) {
-        if (!isNaN(options.min)) {
+        if (options.inputType === 'date' || !isNaN(options.min)) {
           if (options.max === undefined || options.max > options.min) {
             input.attr('min', options.min);
+
+            if (options.inputType === 'date') {
+              if (!/(\d{4})-(\d{2})-(\d{2})/.test(options.min)) {
+                console.warn('Edge and Blink/Webkit-based browsers expect date values to be of the form "YYYY-mm-dd", including zero-padded numbers. '
+                  + 'Bootbox does not enfore this rule, but your minimum value may not be enforced.')
+              }
+            }
           }
           else {
             throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
@@ -724,9 +736,16 @@
       }
 
       if (options.max !== undefined) {
-        if (!isNaN(options.max)) {
+        if (options.inputType === 'date' || !isNaN(options.max)) {
           if (options.min === undefined || options.max > options.min) {
             input.attr('max', options.max);
+
+            if (options.inputType === 'date') {
+              if (!/(\d{4})-(\d{2})-(\d{2})/.test(options.max)) {
+                console.warn('Edge and Blink/Webkit-based browsers expect date values to be of the form "YYYY-mm-dd", including zero-padded numbers. '
+                  + 'Bootbox does not enfore this rule, but your maximum value may not be enforced.')
+              }
+            }
           }
           else {
             throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
