@@ -12,6 +12,8 @@ describe("bootbox.prompt", function() {
       return this.find(selector).length !== 0;
     };
   });
+
+  // basic tests
   describe("basic usage tests", function() {
     describe("with one argument", function() {
       describe("where the argument is not an object", function() {
@@ -145,6 +147,8 @@ describe("bootbox.prompt", function() {
       });
     });
   });
+
+  // options
   describe("configuration options tests", function() {
     beforeEach(function() {
       this.options = {
@@ -159,6 +163,8 @@ describe("bootbox.prompt", function() {
         };
       })(this);
     });
+
+    // custom cancel button
     describe("with a custom cancel button", function() {
       beforeEach(function() {
         this.options.buttons = {
@@ -175,6 +181,8 @@ describe("bootbox.prompt", function() {
         return expect(this.button.hasClass("btn-danger")).to.be["true"];
       });
     });
+
+    // custom confirm button
     describe("with a custom confirm button", function() {
       beforeEach(function() {
         this.options.buttons = {
@@ -191,6 +199,8 @@ describe("bootbox.prompt", function() {
         return expect(this.button.hasClass("btn-warning")).to.be["true"];
       });
     });
+
+    // unrecognised button key
     describe("with an unrecognised button key", function() {
       beforeEach(function() {
         return this.options.buttons = {
@@ -204,6 +214,8 @@ describe("bootbox.prompt", function() {
         return expect(this.create).to["throw"]('button key "prompt" is not allowed (options are cancel confirm)');
       });
     });
+
+    // manual show
     describe("setting show to false", function() {
       beforeEach(function() {
         this.options.show = false;
@@ -223,6 +235,8 @@ describe("bootbox.prompt", function() {
         return expect(this.shown).not.to.have.been.called;
       });
     });
+
+    // invalif prompt type
     describe("invalid prompt type", function() {
       beforeEach(function() {
         return this.options.inputType = 'foobar';
@@ -231,6 +245,8 @@ describe("bootbox.prompt", function() {
         return expect(this.create).to["throw"]("Invalid prompt type");
       });
     });
+
+    // text
     describe("setting inputType text", function() {
       beforeEach(function() {
         return this.options.inputType = "text";
@@ -284,6 +300,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // textarea
     describe("setting inputType textarea", function() {
       beforeEach(function() {
         return this.options.inputType = "textarea";
@@ -319,6 +337,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // email
     describe("setting inputType email", function() {
       beforeEach(function() {
         return this.options.inputType = "email";
@@ -363,6 +383,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // password
     describe("setting inputType password", function() {
       beforeEach(function() {
         return this.options.inputType = "password";
@@ -398,6 +420,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // select
     describe("setting inputType select", function() {
       describe("without options", function() {
         beforeEach(function() {
@@ -564,6 +588,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // checkbox
     describe("setting inputType checkbox", function() {
       describe("without options", function() {
         beforeEach(function() {
@@ -615,6 +641,61 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+    
+        // radio
+        describe("setting inputType radio", function() {
+          describe("without options", function() {
+            beforeEach(function() {
+              return this.options.inputType = 'radio';
+            });
+            return it("throws an error", function() {
+              return expect(this.create).to["throw"](/prompt with radio requires options/);
+            });
+          });
+          describe("with options in the wrong format", function() {
+            beforeEach(function() {
+              this.options.inputType = "radio";
+              return this.options.inputOptions = [
+                {
+                  foo: "bar"
+                }
+              ];
+            });
+            return it("throws an error", function() {
+              return expect(this.create).to["throw"]('each option needs a "value" and a "text" property');
+            });
+          });
+          return describe("with options", function() {
+            beforeEach(function() {
+              this.options.inputType = 'radio';
+              this.options.inputOptions = [
+                {
+                  value: 1,
+                  text: 'foo'
+                }, {
+                  value: 2,
+                  text: 'bar'
+                }, {
+                  value: 3,
+                  text: 'foobar'
+                }
+              ];
+              return this.create();
+            });
+            it("shows radio input", function() {
+              return expect(this.exists("input[type='radio']")).to.be.ok;
+            });
+            it("has proper class", function() {
+              expect(this.find("input[type='radio']").hasClass("bootbox-input")).to.be.ok;
+              return expect(this.find("input[type='radio']").hasClass("bootbox-input-radio")).to.be.ok;
+            });
+            return it("with three radios", function() {
+              return expect(this.find("input[type='radio']").length).to.equal(3);
+            });
+          });
+        });
+
+    // date
     describe("setting inputType date", function() {
       beforeEach(function() {
         return this.options.inputType = "date";
@@ -659,6 +740,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // time
     describe("setting inputType time", function() {
       beforeEach(function() {
         return this.options.inputType = "time";
@@ -703,6 +786,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // number
     return describe("setting inputType number", function() {
       beforeEach(function() {
         return this.options.inputType = "number";
@@ -739,7 +824,11 @@ describe("bootbox.prompt", function() {
       });
     });
   });
+
+
   return describe("callback tests", function() {
+
+    // simple callback
     describe("with a simple callback", function() {
       beforeEach(function() {
         this.callback = sinon.spy();
@@ -870,6 +959,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // callback which returns false
     describe("with a callback which returns false", function() {
       beforeEach(function() {
         this.callback = sinon.stub();
@@ -973,6 +1064,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // default value
     describe("with a default value", function() {
       beforeEach(function() {
         this.callback = sinon.spy();
@@ -1050,6 +1143,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // placeholder
     describe("with a placeholder", function() {
       beforeEach(function() {
         this.callback = sinon.spy();
@@ -1065,6 +1160,8 @@ describe("bootbox.prompt", function() {
         return expect(this.dialog.find(".bootbox-input").attr("placeholder")).to.equal("e.g. Bob Smith");
       });
     });
+
+    // select
     describe("with inputType select", function() {
       describe("without a default value", function() {
         beforeEach(function() {
@@ -1200,6 +1297,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // email
     describe("with inputType email", function() {
       describe("without a default value", function() {
         beforeEach(function() {
@@ -1335,6 +1434,8 @@ describe("bootbox.prompt", function() {
         });
       });
     });
+
+    // checkbox
     return describe("with input type checkbox", function() {
       describe("without a default value", function() {
         beforeEach(function() {
@@ -1550,6 +1651,139 @@ describe("bootbox.prompt", function() {
             });
             return it("with the correct value", function() {
               return expect(this.callback).to.have.been.calledWithExactly(["1", "4"]);
+            });
+          });
+        });
+      });
+    });
+
+    // radio
+    return describe("with input type radio", function() {
+      describe("without a default value", function() {
+        beforeEach(function() {
+          this.callback = sinon.spy();
+          this.dialog = bootbox.prompt({
+            title: "What is your IDE?",
+            inputType: 'radio',
+            inputOptions: [
+              {
+                value: 1,
+                text: 'Vim'
+              }, {
+                value: 2,
+                text: 'Sublime Text'
+              }, {
+                value: 3,
+                text: 'WebStorm/PhpStorm'
+              }, {
+                value: 4,
+                text: 'Komodo IDE'
+              }
+            ],
+            callback: this.callback
+          });
+          return this.hidden = sinon.spy(this.dialog, "modal");
+        });
+        describe("when dismissing the dialog by clicking OK", function() {
+          beforeEach(function() {
+            return this.dialog.find(".btn-primary").trigger("click");
+          });
+          it("should invoke the callback", function() {
+            return expect(this.callback).to.have.been.called;
+          });
+          it("with the first option value", function() {
+            return expect(this.callback).to.have.been.calledWithExactly(1);
+          });
+          return it("should hide the modal", function() {
+            return expect(this.hidden).to.have.been.calledWithExactly("hide");
+          });
+        });
+        return describe("when dismissing the dialog by clicking Cancel", function() {
+          beforeEach(function() {
+            return this.dialog.find(".btn-default").trigger("click");
+          });
+          it("should invoke the callback", function() {
+            return expect(this.callback).to.have.been.called;
+          });
+          return it("with the correct value", function() {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+      return describe("with default value", function() {
+        describe("one value checked", function() {
+          beforeEach(function() {
+            this.callback = sinon.spy();
+            this.dialog = bootbox.prompt({
+              title: "What is your IDE?",
+              callback: this.callback,
+              value: 2,
+              inputType: "radio",
+              inputOptions: [
+                {
+                  value: 1,
+                  text: 'Vim'
+                }, {
+                  value: 2,
+                  text: 'Sublime Text'
+                }, {
+                  value: 3,
+                  text: 'WebStorm/PhpStorm'
+                }, {
+                  value: 4,
+                  text: 'Komodo IDE'
+                }
+              ]
+            });
+            return this.hidden = sinon.spy(this.dialog, "modal");
+          });
+          it("specified radio is checked", function() {
+            return expect(this.dialog.find("input:radio:checked").val()).to.equal("2");
+          });
+          describe("when dismissing the dialog by clicking OK", function() {
+            beforeEach(function() {
+              return this.dialog.find(".btn-primary").trigger("click");
+            });
+            it("should invoke the callback", function() {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it("with the correct value", function() {
+              return expect(this.callback).to.have.been.calledWithExactly(2);
+            });
+          });
+          describe("when dismissing the dialog by clicking Cancel", function() {
+            beforeEach(function() {
+              return this.dialog.find(".btn-default").trigger("click");
+            });
+            it("should invoke the callback", function() {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it("with the correct value", function() {
+              return expect(this.callback).to.have.been.calledWithExactly(null);
+            });
+          });
+          describe("when changing the checked option and dismissing the dialog by clicking Cancel", function() {
+            beforeEach(function() {
+              this.dialog.find("input:radio[value=3]").prop('checked', true);
+              return this.dialog.find(".btn-default").trigger("click");
+            });
+            it("should invoke the callback", function() {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it("with the correct value", function() {
+              return expect(this.callback).to.have.been.calledWithExactly(null);
+            });
+          });
+          return describe("when changing the selected option and dismissing the dialog by clicking OK", function() {
+            beforeEach(function() {
+              this.dialog.find("input:radio[value=3]").prop('checked', true);
+              return this.dialog.find(".btn-primary").trigger("click");
+            });
+            it("should invoke the callback", function() {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it("with the correct value", function() {
+              return expect(this.callback).to.have.been.calledWithExactly(3);
             });
           });
         });
