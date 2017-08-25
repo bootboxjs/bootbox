@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">bootbox.js &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</a>
+            <a class="navbar-brand" href="/">bootbox<span class="text-danger">.js</span> &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar"
                 aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -99,7 +99,7 @@
                     before the input. In other words, you can use the <code>message</code> option just
                     like any of the other functions. We've also added <code>radio</code> and <code>range</code> as input
                     types, and added code to allow the <code>min</code>, <code>max</code>, and <code>step</code> values to
-                    be set on number, range, and date inputs.
+                    be set on number, range, time, and date inputs.
                 </p>
             </div>
         </div>
@@ -174,21 +174,33 @@
             });
 
             $('#show-prompt').on('click', function (e) {
+                // var p = bootbox.prompt({
+                //     locale: 'en',
+                //     title: 'Test',
+                //     value: '2',
+                //     inputType: 'radio',
+                //     inputOptions: [{ text: 'Eenie', value: '1' }, { text: 'Meenie', value: '2' }, { text: 'Minie', value: '3' }, { text: 'Moe', value: '4' }],
+                //     message: '<p>Choose one of the options below:</p>',
+                //     buttons: {
+                //         confirm: {
+                //             label: "Custom confirm",
+                //             className: "btn-warning"
+                //         }
+                //     },
+                //     callback: function (result) {
+                //         console.log(result);
+                //     }
+                // });
+
                 var p = bootbox.prompt({
-                    locale: 'en',
-                    title: 'Test',
-                    value: '2',
-                    inputType: 'radio',
-                    inputOptions: [{ text: 'Eenie', value: '1' }, { text: 'Meenie', value: '2' }, { text: 'Minie', value: '3' }, { text: 'Moe', value: '4' }],
-                    message: '<p>Choose one of the options below:</p>',
-                    buttons: {
-                        confirm: {
-                            label: "Custom confirm",
-                            className: "btn-warning"
-                        }
-                    },
-                    callback: function (result) {
+                    inputType: 'time',
+                    title: 'Time test',
+                    min: '08:00:00',
+                    max: '17:00:00',
+                    callback: function(result){
                         console.log(result);
+
+                        //return false;
                     }
                 });
             });
