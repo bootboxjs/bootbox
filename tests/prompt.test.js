@@ -785,6 +785,73 @@ describe("bootbox.prompt", function () {
           return expect(this.find("input[type='time']").prop("pattern")).to.equal("\d{1,2}/\d{1,2}/\d{4}");
         });
       });
+      return describe("with min value", function () {
+        beforeEach(function () {
+          this.options.min = '00:00:00';
+          return this.create();
+        });
+        return it("has correct min value", function () {
+          return expect(this.find("input[type='time']").prop("min")).to.equal('00:00:00');
+        });
+      });
+      return describe("with max value", function () {
+        beforeEach(function () {
+          this.options.max = '23:59:59';
+          return this.create();
+        });
+        return it("has correct max value", function () {
+          return expect(this.find("input[type='time']").prop("max")).to.equal('23:59:59');
+        });
+      });
+      return describe("with step value", function () {
+        beforeEach(function () {
+          this.options.step = 10;
+          return this.create();
+        });
+        return it("has correct step value", function () {
+          return expect(this.find("input[type='time']").prop("step")).to.equal(10);
+        });
+      });
+
+      return describe("with an invalid min value", function () {
+        beforeEach(function () {
+          this.options.min = 'a';
+          this.options.max = '18:00:00';
+          return this.create();
+        });
+        return it("throws an error", function () {
+          return expect(this.create).to["throw"]('"min" must be a valid time. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+        });
+      });
+      return describe("with an invalid max value", function () {
+        beforeEach(function () {
+          this.options.min = '08:00:00';
+          this.options.max = 'a';
+          return this.create();
+        });
+        return it("throws an error", function () {
+          return expect(this.create).to["throw"]('"max" must be a valid time. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+        });
+      });
+      return describe("with min value greater than max value", function () {
+        beforeEach(function () {
+          this.options.min = '16:00:00';
+          this.options.max = '12:00:00';
+          return this.create();
+        });
+        return it("throws an error", function () {
+          return expect(this.create).to["throw"]('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+        });
+      });
+      return describe("with an invalid step value", function () {
+        beforeEach(function () {
+          this.options.step = 'a';
+          return this.create();
+        });
+        return it("throws an error", function () {
+          return expect(this.create).to["throw"]('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
+        });
+      });
     });
 
     // number
@@ -886,7 +953,104 @@ describe("bootbox.prompt", function () {
           return this.create();
         });
         return it("throws an error", function () {
-          return expect(this.create).to["throw"]('"step" must be a valid number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
+          return expect(this.create).to["throw"]('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
+        });
+      });
+
+    });
+
+
+    // range
+    return describe("setting inputType range", function () {
+      beforeEach(function () {
+        return this.options.inputType = "range";
+      });
+      describe("without default value", function () {
+        beforeEach(function () {
+          return this.create();
+        });
+        it("shows range input ", function () {
+          return expect(this.exists("input[type='range']")).to.be.ok;
+        });
+        return it("has proper class", function () {
+          expect(this.find("input[type='range']").hasClass("bootbox-input")).to.be.ok;
+          return expect(this.find("input[type='range']").hasClass("bootbox-input-range")).to.be.ok;
+        });
+      });
+      describe("with default value", function () {
+        beforeEach(function () {
+          this.options.value = "300";
+          return this.create();
+        });
+        return it("has correct default value", function () {
+          return expect(this.find("input[type='range']").val()).to.equal("300");
+        });
+      });
+      return describe("with min value", function () {
+        beforeEach(function () {
+          this.options.min = 0;
+          return this.create();
+        });
+        return it("has correct min value", function () {
+          return expect(this.find("input[type='range']").prop("min")).to.equal(0);
+        });
+      });
+      return describe("with max value", function () {
+        beforeEach(function () {
+          this.options.max = 100;
+          return this.create();
+        });
+        return it("has correct max value", function () {
+          return expect(this.find("input[type='range']").prop("max")).to.equal(100);
+        });
+      });
+      return describe("with step value", function () {
+        beforeEach(function () {
+          this.options.step = 10;
+          return this.create();
+        });
+        return it("has correct step value", function () {
+          return expect(this.find("input[type='range']").prop("step")).to.equal(10);
+        });
+      });
+
+      return describe("with an invalid min value", function () {
+        beforeEach(function () {
+          this.options.min = 'a';
+          this.options.max = 50;
+          return this.create();
+        });
+        return it("throws an error", function () {
+          return expect(this.create).to["throw"]('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+        });
+      });
+      return describe("with an invalid max value", function () {
+        beforeEach(function () {
+          this.options.min = 0;
+          this.options.max = 'a';
+          return this.create();
+        });
+        return it("throws an error", function () {
+          return expect(this.create).to["throw"]('"max" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+        });
+      });
+      return describe("with min value greater than max value", function () {
+        beforeEach(function () {
+          this.options.min = 100;
+          this.options.max = 50;
+          return this.create();
+        });
+        return it("throws an error", function () {
+          return expect(this.create).to["throw"]('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+        });
+      });
+      return describe("with an invalid step value", function () {
+        beforeEach(function () {
+          this.options.step = 'a';
+          return this.create();
+        });
+        return it("throws an error", function () {
+          return expect(this.create).to["throw"]('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
         });
       });
 
