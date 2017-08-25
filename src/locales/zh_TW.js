@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
-// locale : Chinese (China / People's Republic of China)
-// author : ---
+// locale : Chinese (Taiwan / Republic of China)
+// author : Nick Payne
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -11,9 +11,9 @@
         factory(global.bootbox);
     }
 }(this, function (bootbox) {
-    bootbox.addLocale('zh-ch', {
+    bootbox.addLocale('zh_TW', {
         OK      : 'OK',
         CANCEL  : '取消',
-        CONFIRM : '确认'
+        CONFIRM : '確認'
     });
 }));

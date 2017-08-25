@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Russian
-// author : ---
+// author : ionian-wind
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

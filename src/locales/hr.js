@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Croatian
-// author : ---
+// author : Mario Bašić
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

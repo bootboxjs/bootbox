@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Persian
-// author : ---
+// author : Touhid Arastu
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

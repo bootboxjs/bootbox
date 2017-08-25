@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Latvian
-// author : ---
+// author : Dmitry Bogatykh, Lauris BH
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Ukrainian
-// author : ---
+// author : OlehBoiko
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

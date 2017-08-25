@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Indonesian
-// author : ---
+// author : Budi Irawan
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

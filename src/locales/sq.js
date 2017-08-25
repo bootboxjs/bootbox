@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Albanian
-// author : ---
+// author : Knut Hühne
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

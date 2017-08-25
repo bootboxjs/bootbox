@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Japanese
-// author : ---
+// author : ms183
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

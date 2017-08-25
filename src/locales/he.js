@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Hebrew
-// author : ---
+// author : Chen Alon
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

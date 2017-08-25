@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : German
-// author : ---
+// author : Nick Payne
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

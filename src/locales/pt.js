@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Portuguese
-// author : ---
+// author : Cláudio Medina
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Czech
-// author : ---
+// author : Lukáš Fryč
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

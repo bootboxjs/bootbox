@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Swedish
-// author : ---
+// author : Mattias Reichel
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

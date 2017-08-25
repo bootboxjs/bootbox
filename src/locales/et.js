@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Estonian
-// author : ---
+// author : Pavel Krõlov
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

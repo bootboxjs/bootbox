@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Lithuanian
-// author : ---
+// author : Tomas
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

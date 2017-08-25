@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Thai
-// author : ---
+// author : Ishmael๛
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

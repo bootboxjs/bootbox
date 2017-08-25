@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Slovak
-// author : ---
+// author : Stano Paška
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

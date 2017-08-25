@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
-// locale : Bulgarian
-// author : ---
+// locale : Chinese (China / People's Republic of China)
+// author : Nick Payne
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -11,9 +11,9 @@
         factory(global.bootbox);
     }
 }(this, function (bootbox) {
-    bootbox.addLocale('bg-bg', {
-        OK      : 'Ок',
-        CANCEL  : 'Отказ',
-        CONFIRM : 'Потвърждавам'
+    bootbox.addLocale('zh_CN', {
+        OK      : 'OK',
+        CANCEL  : '取消',
+        CONFIRM : '确认'
     });
 }));

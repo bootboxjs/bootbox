@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
-// locale : Chinese (Taiwan / Republic of China)
-// author : ---
+// locale : Bulgarian
+// author :  mraiur
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -11,9 +11,9 @@
         factory(global.bootbox);
     }
 }(this, function (bootbox) {
-    bootbox.addLocale('zh-tw', {
-        OK      : 'OK',
-        CANCEL  : '取消',
-        CONFIRM : '確認'
+    bootbox.addLocale('bg_BG', {
+        OK      : 'Ок',
+        CANCEL  : 'Отказ',
+        CONFIRM : 'Потвърждавам'
     });
 }));

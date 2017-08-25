@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Arabic
-// author : ---
+// author : Emad Omar
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

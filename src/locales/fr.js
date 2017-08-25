@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : French
-// author : ---
+// author : Nick Payne, Sebastien Andary
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

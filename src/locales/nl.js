@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Dutch
-// author : ---
+// author : Bas ter Vrugt
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

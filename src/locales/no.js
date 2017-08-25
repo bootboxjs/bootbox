@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Norwegian
-// author : ---
+// author : Nils Magnus Englund
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

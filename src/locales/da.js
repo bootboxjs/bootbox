@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Danish
-// author : ---
+// author : Frederik Alkærsig
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

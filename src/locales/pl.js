@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Polish
-// author : ---
+// author : Szczepan Cieślik
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Basque
-// author : ---
+// author : Iker Ibarguren
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

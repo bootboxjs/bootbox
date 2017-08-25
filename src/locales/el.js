@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Greek
-// author : ---
+// author : Tolis Emmanouilidis
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

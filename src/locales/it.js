@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Italian
-// author : ---
+// author : Mauro
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

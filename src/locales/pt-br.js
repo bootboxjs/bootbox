@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
-// locale : Portuguese (Brazil)
-// author : ---
+// locale : Portuguese (Brasil)
+// author : Nick Payne
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {

@@ -1,6 +1,6 @@
 // bootbox.js locale configuration
 // locale : Slovenian
-// author : ---
+// author : @metalcamp
 
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {
