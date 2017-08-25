@@ -700,7 +700,7 @@
     // These input types have extra attributes which affect their input validation.
     // Ignore these options for any other type.
     // Warning: For most browsers, date inputs are buggy in their implementation of 'step', so 
-    // this attribute will have no effect - we don't set the attribute.
+    // this attribute will have no effect. Therefore, we don't set the attribute for date inputs.
     // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#Setting_maximum_and_minimum_dates
     if ($.inArray(options.inputType, ['date', 'number', 'range', 'time']) >= 0) {
       if (options.inputType !== 'date') {
@@ -714,78 +714,9 @@
         }
       }
 
-      if (options.min !== undefined) {
-        if (options.inputType === 'date') {
-          input.attr('min', options.min);
+      input = validateMinOrMaxValue(input, options.inputType, 'min', options.min, options.max, options);
 
-          if (!/(\d{4})-(\d{2})-(\d{2})/.test(options.min)) {
-            console.warn('Edge and Blink/Webkit-based browsers expect date values to be of the form "YYYY-mm-dd", including zero-padded numbers. '
-              + 'Bootbox does not enforce this rule, but your minimum value may not be enforced by this browser.')
-          }
-        } else if (options.inputType === 'time') {
-          if (/([01][0-9]|2[0-3]):[0-5][0-9]?:[0-5][0-9]/.test(options.min)) {
-            if (options.max === undefined || options.max > options.min) {
-              input.attr('min', options.min);
-            }
-            else {
-              throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
-            }
-          }
-          else {
-            throw new Error('"min" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
-          }
-        }
-        else {
-          if (!isNaN(options.min)) {
-            if (options.max === undefined || options.max > options.min) {
-              input.attr('min', options.min);
-            }
-            else {
-              throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
-            }
-          }
-          else {
-            throw new Error('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
-          }
-        }
-      }
-
-      if (options.max !== undefined) {
-        if (options.inputType === 'date') {
-          input.attr('max', options.max);
-
-          if (!/(\d{4})-(\d{2})-(\d{2})/.test(options.max)) {
-            console.warn('Edge and Blink/Webkit-based browsers expect date values to be of the form "YYYY-mm-dd", including zero-padded numbers. '
-              + 'Bootbox does not enforce this rule, but your maximum value may not be enforced by this browser.')
-          }
-        }
-        else if (options.inputType === 'time') {
-          if (/([01][0-9]|2[0-3]):[0-5][0-9]?:[0-5][0-9]/.test(options.max)) {
-            if (options.min === undefined || options.max > options.min) {
-              input.attr('max', options.max);
-            }
-            else {
-              throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
-            }
-          }
-          else {
-            throw new Error('"max" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
-          }
-        }
-        else {
-          if (!isNaN(options.max)) {
-            if (options.min === undefined || options.max > options.min) {
-              input.attr('max', options.max);
-            }
-            else {
-              throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
-            }
-          }
-          else {
-            throw new Error('"max" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
-          }
-        }
-      }
+      input = validateMinOrMaxValue(input, options.inputType, 'max', options.max, options.min, options);
     }
 
     // now place it in our form
@@ -1055,6 +986,49 @@
     if (!preserveDialog) {
       dialog.modal('hide');
     }
+  }
+
+
+  // Helper function, since the logic for validating min and max attributes is almost identical
+  function validateMinOrMaxValue(input, type, name, value, compareValue, options) {
+    if (value !== undefined) {
+      if (type === 'date') {
+        input.attr(name, value);
+
+        if (!/(\d{4})-(\d{2})-(\d{2})/.test(value)) {
+          console.warn('Edge and Blink/Webkit-based browsers expect date values to be of the form "YYYY-mm-dd", including zero-padded numbers. '
+            + 'Bootbox does not enforce this rule, but your ' + name + ' value may not be enforced by this browser.')
+        }
+      }
+      else if (type === 'time') {
+        if (/([01][0-9]|2[0-3]):[0-5][0-9]?:[0-5][0-9]/.test(value)) {
+          if (compareValue === undefined || options.max > options.min) {
+            input.attr(name, value);
+          }
+          else {
+            throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-' + name + ' for more information.');
+          }
+        }
+        else {
+          throw new Error('"' + name + '" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
+        }
+      }
+      else {
+        if (!isNaN(value)) {
+          if (compareValue === undefined || options.max > options.min) {
+            input.attr(name, value);
+          }
+          else {
+            throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-' + name + ' for more information.');
+          }
+        }
+        else {
+          throw new Error('"' + name + '" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-' + name + ' for more information.');
+        }
+      }
+    }
+
+    return input;
   }
 
 
