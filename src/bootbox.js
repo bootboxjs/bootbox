@@ -501,7 +501,10 @@
     // capture the user's show value; we always set this to false before
     // spawning the dialog to give us a chance to attach some handlers to
     // it, but we need to make sure we respect a preference not to show it
-    shouldShow = (options.show === undefined) ? true : options.show;
+    shouldShow = (options.show === undefined) ? defaults.show : options.show;
+    // This is required prior to calling the dialog builder below - we need to 
+    // add an event handler just before the prompt is shown
+    options.show = false;
 
     // Handles the 'cancel' action
     options.buttons.cancel.callback = options.onEscape = function () {
@@ -526,8 +529,6 @@
 
       return options.callback.call(this, value);
     };
-
-    options.show = false;
 
     // prompt-specific validation
     if (!options.title) {
