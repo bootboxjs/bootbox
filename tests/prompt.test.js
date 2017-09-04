@@ -665,6 +665,15 @@ describe("bootbox.prompt", function () {
           return expect(this.create).to["throw"]('each option needs a "value" and a "text" property');
         });
       });
+      return describe("with an invalid value", function () {
+        beforeEach(function () {
+          this.options.value = [2,3];
+          return this.create();
+        });
+        return it("throws an error", function () {
+          return expect(this.create).to["throw"]('prompt with radio requires a single, non-array value for "value".');
+        });
+      });
       return describe("with options", function () {
         beforeEach(function () {
           this.options.inputType = 'radio';
