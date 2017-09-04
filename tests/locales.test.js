@@ -43,6 +43,20 @@ describe("bootbox locales", function() {
       return expect(this.labels.confirm).to.equal("تأكيد");
     });
   });
+  describe("Azerbaijani", function() {
+    beforeEach(function() {
+      return this.setLocale("az");
+    });
+    it("shows the correct OK translation", function() {
+      return expect(this.labels.ok).to.equal('OK');
+    });
+    it("shows the correct CANCEL translation", function() {
+      return expect(this.labels.cancel).to.equal('İmtina et');
+    });
+    return it("shows the correct CONFIRM translation", function() {
+      return expect(this.labels.confirm).to.equal('Təsdiq et');
+    });
+  });
   describe("English", function() {
     beforeEach(function() {
       return this.setLocale("en");
