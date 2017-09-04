@@ -45,7 +45,7 @@ describe("bootbox locales", function() {
   });
   describe("Azerbaijani", function() {
     beforeEach(function() {
-      return this.setLocale("ar");
+      return this.setLocale("az");
     });
     it("shows the correct OK translation", function() {
       return expect(this.labels.ok).to.equal('OK');
