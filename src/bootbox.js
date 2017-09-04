@@ -291,7 +291,7 @@
       }
     }
     else {
-      console.warn('"size" requires Bootstrap 3.1.0 or higher. You are using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
+      console.warn('"size" requires Bootstrap 3.1.0 or higher. You appear to be using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
     }
 
     if (options.title) {
@@ -572,7 +572,6 @@
         }
 
         each(inputOptions, function (_, option) {
-
           // assume the element to attach to is the input...
           var elem = input;
 
@@ -613,16 +612,16 @@
           throw new Error('prompt with checkbox requires options');
         }
 
-        if (!inputOptions[0].value || !inputOptions[0].text) {
-          throw new Error('each option needs a "value" and a "text" property');
-        }
-
         // checkboxes have to nest within a containing element, so
         // they break the rules a bit and we end up re-assigning
         // our 'input' element to this container instead
         input = $('<div/>');
 
         each(inputOptions, function (_, option) {
+          if (option.value === undefined || option.text === undefined) {
+            throw new Error('each option needs a "value" and a "text" property');
+          }
+
           var checkbox = $(templates.inputs[options.inputType]);
 
           checkbox.find('input').attr('value', option.value);
@@ -648,10 +647,6 @@
           throw new Error('prompt with radio requires options');
         }
 
-        if (!inputOptions[0].value || !inputOptions[0].text) {
-          throw new Error('each option needs a "value" and a "text" property');
-        }
-
         // radiobuttons have to nest within a containing element, so
         // they break the rules a bit and we end up re-assigning
         // our 'input' element to this container instead
@@ -662,6 +657,10 @@
         var checkFirstRadio = true;
 
         each(inputOptions, function (_, option) {
+          if (option.value === undefined || option.text === undefined) {
+            throw new Error('each option needs a "value" and a "text" property');
+          }
+
           var radio = $(templates.inputs[options.inputType]);
 
           radio.find('input').attr('value', option.value);
