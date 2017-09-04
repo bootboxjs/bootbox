@@ -566,6 +566,7 @@
       // need the closure here since input isn't
       // an object otherwise
       input.focus();
+      input[0].setSelectionRange(input[0].value.length, input[0].value.length);
     });
 
     if (shouldShow === true) {
@@ -736,9 +737,12 @@
       processCallback(e, dialog, callbacks.onEscape);
     });
 
-    dialog.on("keyup", function(e) {
-      if (e.which === 27) {
+    dialog.on("keydown", function(e) {
+      if (e.which === 27) { // escape
         dialog.trigger("escape.close.bb");
+      } else if (e.which == 13 && !e.shiftKey) { // enter
+        e.preventDefault();
+        processCallback(e, dialog, callbacks["confirm"]);
       }
     });
 
