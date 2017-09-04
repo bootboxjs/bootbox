@@ -27,17 +27,17 @@
     Object.keys = (function () {
       'use strict';
       var hasOwnProperty = Object.prototype.hasOwnProperty,
-        hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
-        dontEnums = [
-          'toString',
-          'toLocaleString',
-          'valueOf',
-          'hasOwnProperty',
-          'isPrototypeOf',
-          'propertyIsEnumerable',
-          'constructor'
-        ],
-        dontEnumsLength = dontEnums.length;
+          hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+          dontEnums = [
+            'toString',
+            'toLocaleString',
+            'valueOf',
+            'hasOwnProperty',
+            'isPrototypeOf',
+            'propertyIsEnumerable',
+            'constructor'
+          ],
+          dontEnumsLength = dontEnums.length;
 
       return function (obj) {
         if (typeof obj !== 'function' && (typeof obj !== 'object' || obj === null)) {
@@ -59,6 +59,7 @@
             }
           }
         }
+
         return result;
       };
     }());
@@ -73,50 +74,50 @@
 
   var templates = {
     dialog:
-    '<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="true">' +
-    '<div class="modal-dialog">' +
-    '<div class="modal-content">' +
-    '<div class="modal-body"><div class="bootbox-body"></div></div>' +
-    '</div>' +
-    '</div>' +
-    '</div>',
+      '<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="true">' +
+      '<div class="modal-dialog">' +
+      '<div class="modal-content">' +
+      '<div class="modal-body"><div class="bootbox-body"></div></div>' +
+      '</div>' +
+      '</div>' +
+      '</div>',
     header:
-    '<div class="modal-header">' +
-    '<h5 class="modal-title"></h5>' +
-    '</div>',
+      '<div class="modal-header">' +
+      '<h5 class="modal-title"></h5>' +
+      '</div>',
     footer:
-    '<div class="modal-footer"></div>',
+      '<div class="modal-footer"></div>',
     closeButton:
-    '<button type="button" class="bootbox-close-button close" aria-hidden="true">&times;</button>',
+      '<button type="button" class="bootbox-close-button close" aria-hidden="true">&times;</button>',
     form:
-    '<form class="bootbox-form"></form>',
+      '<form class="bootbox-form"></form>',
     button:
-    '<button type="button" class="btn"></button>',
+      '<button type="button" class="btn"></button>',
     option:
-    '<option></option>',
+      '<option></option>',
     inputs: {
       text:
-      '<input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" />',
+        '<input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" />',
       textarea:
-      '<textarea class="bootbox-input bootbox-input-textarea form-control"></textarea>',
+        '<textarea class="bootbox-input bootbox-input-textarea form-control"></textarea>',
       email:
-      '<input class="bootbox-input bootbox-input-email form-control" autocomplete="off" type="email" />',
+        '<input class="bootbox-input bootbox-input-email form-control" autocomplete="off" type="email" />',
       select:
-      '<select class="bootbox-input bootbox-input-select form-control"></select>',
+        '<select class="bootbox-input bootbox-input-select form-control"></select>',
       checkbox:
-      '<div class="form-check checkbox"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-checkbox" type="checkbox" /></label></div>',
+        '<div class="form-check checkbox"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-checkbox" type="checkbox" /></label></div>',
       radio:
-      '<div class="form-check radio"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-radio" type="radio" name="bootbox-radio" /></label></div>',
+        '<div class="form-check radio"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-radio" type="radio" name="bootbox-radio" /></label></div>',
       date:
-      '<input class="bootbox-input bootbox-input-date form-control" autocomplete="off" type="date" />',
+        '<input class="bootbox-input bootbox-input-date form-control" autocomplete="off" type="date" />',
       time:
-      '<input class="bootbox-input bootbox-input-time form-control" autocomplete="off" type="time" />',
+        '<input class="bootbox-input bootbox-input-time form-control" autocomplete="off" type="time" />',
       number:
-      '<input class="bootbox-input bootbox-input-number form-control" autocomplete="off" type="number" />',
+        '<input class="bootbox-input bootbox-input-number form-control" autocomplete="off" type="number" />',
       password:
-      '<input class="bootbox-input bootbox-input-password form-control" autocomplete="off" type="password" />',
+        '<input class="bootbox-input bootbox-input-password form-control" autocomplete="off" type="password" />',
       range:
-      '<input class="bootbox-input bootbox-input-range" autocomplete="off" type="range" />'
+        '<input class="bootbox-input bootbox-input-range" autocomplete="off" type="range" />'
     }
   };
 
@@ -172,7 +173,12 @@
 
   // Remove a previously-registered locale
   exports.removeLocale = function (name) {
-    delete locales[name];
+    if(name !== 'en') {
+      delete locales[name];
+    }
+    else {
+      throw new Error('"en" is used as the default and fallback locale and cannot be removed.');
+    }
 
     return exports;
   }
@@ -221,7 +227,6 @@
 
   // Core dialog function
   exports.dialog = function (options) {
-
     if ($.fn.modal === undefined) {
       throw new Error(
         '"$.fn.modal" is not defined; please double check you have included ' +
@@ -261,7 +266,6 @@
     // been defined in the options object
     if (getKeyLength(options.buttons) > 0) {
       each(buttons, function (key, b) {
-
         var button = $(templates.button);
         button.data('bb-handler', key);
         button.addClass(b.className);
@@ -472,7 +476,6 @@
   // code that must happen after the prompt is dismissed should be placed within the callback function 
   // for this prompt.
   exports.prompt = function () {
-
     var options;
     var promptDialog;
     var form;

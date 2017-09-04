@@ -15,6 +15,14 @@
       CONFIRM: 'تأكيد'
     });
   })();
+  
+  (function () {
+    bootbox.addLocale('az', {
+      OK: 'OK',
+      CANCEL: 'İmtina et',
+      CONFIRM: 'Təsdiq et'
+    });
+  })();
 
   (function () {
     bootbox.addLocale('bg_BG', {
