@@ -8,3 +8,4 @@ tests/coverage
 build/size.csv
 vendor
 composer.lock
+dist
