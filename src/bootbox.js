@@ -286,16 +286,17 @@
       dialog.addClass(options.className);
     }
 
-    // Requires Bootstrap 3.1.0 or higher
-    if (options.fullBootstrapVersion.substring(0, 3) >= '3.1') {
+    if(options.size){
+      // Requires Bootstrap 3.1.0 or higher
+      if (options.fullBootstrapVersion.substring(0, 3) < '3.1') {
+        console.warn('"size" requires Bootstrap 3.1.0 or higher. You appear to be using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
+      }
+      
       if (options.size === 'large') {
         innerDialog.addClass('modal-lg');
       } else if (options.size === 'small') {
         innerDialog.addClass('modal-sm');
       }
-    }
-    else {
-      console.warn('"size" requires Bootstrap 3.1.0 or higher. You appear to be using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
     }
 
     if (options.title) {
@@ -330,8 +331,8 @@
 
     dialog.one("hidden.bs.modal", function (e) {
       // ensure we don't accidentally intercept hidden events triggered
-      // by children of the current dialog. We shouldn't anymore now BS
-      // namespaces its events; but still worth doing
+      // by children of the current dialog. We shouldn't need to handle this anymore, 
+      // now that Bootstrap namespaces its events, but still worth doing.
       if (e.target === this) {
         dialog.remove();
       }
