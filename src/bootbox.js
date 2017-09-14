@@ -286,12 +286,12 @@
       dialog.addClass(options.className);
     }
 
-    if(options.size){
+    if (options.size) {
       // Requires Bootstrap 3.1.0 or higher
       if (options.fullBootstrapVersion.substring(0, 3) < '3.1') {
         console.warn('"size" requires Bootstrap 3.1.0 or higher. You appear to be using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
       }
-      
+
       if (options.size === 'large') {
         innerDialog.addClass('modal-lg');
       } else if (options.size === 'small') {
@@ -528,7 +528,12 @@
         value = input.find('input:checked').val();
       }
       else {
-        value = input.val();
+        if (input[0].checkValidity && !input[0].checkValidity()) {
+          // prevents button callback from being called
+          return false;
+        } else {
+          value = input.val();
+        }
       }
 
       return options.callback.call(this, value);
@@ -560,6 +565,11 @@
       case 'password':
       case 'range':
         input.val(options.value);
+
+        if (options.required) {
+          input.prop({ required: true });
+        }
+
         break;
 
 
@@ -605,6 +615,11 @@
 
         // safe to set a select's value as per a normal input
         input.val(options.value);
+
+        if (options.required) {
+          input.prop({ required: true });
+        }
+
         break;
 
 
@@ -733,6 +748,7 @@
       e.preventDefault();
       // Fix for SammyJS (or similar JS routing library) hijacking the form post.
       e.stopPropagation();
+
       // @TODO can we actually click *the* button object instead?
       // e.g. buttons.confirm.click() or similar
       promptDialog.find('.btn-primary').click();
