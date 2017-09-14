@@ -9,3 +9,4 @@ build/size.csv
 vendor
 composer.lock
 dist
+index.html
