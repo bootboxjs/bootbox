@@ -437,20 +437,20 @@ describe("bootbox locales", function() {
       return expect(this.labels.confirm).to.equal("تایید");
     });
   });
-   describe("Ukrainian", function() {
-        beforeEach(function() {
-            return this.setLocale("uk");
-        });
-        it("shows the correct OK translation", function() {
-            return expect(this.labels.ok).to.equal("OK");
-        });
-        it("shows the correct CANCEL translation", function() {
-            return expect(this.labels.cancel).to.equal("Відміна");
-        });
-        return it("shows the correct CONFIRM translation", function() {
-            return expect(this.labels.confirm).to.equal("Прийняти");
-        });
-    });
+  describe("Ukrainian", function() {
+      beforeEach(function() {
+          return this.setLocale("uk");
+      });
+      it("shows the correct OK translation", function() {
+          return expect(this.labels.ok).to.equal("OK");
+      });
+      it("shows the correct CANCEL translation", function() {
+          return expect(this.labels.cancel).to.equal("Відміна");
+      });
+      return it("shows the correct CONFIRM translation", function() {
+          return expect(this.labels.confirm).to.equal("Прийняти");
+      });
+  });
   return describe("Albanian", function() {
     beforeEach(function() {
       return this.setLocale("sq");

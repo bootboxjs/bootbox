@@ -11,6 +11,9 @@ describe("Bootbox", function() {
     expect(bootbox.confirm).to.be.a("function");
     expect(bootbox.dialog).to.be.a("function");
     expect(bootbox.setDefaults).to.be.a("function");
+    expect(bootbox.setLocale).to.be.a("function");
+    expect(bootbox.removeLocale).to.be.a("function");
+    expect(bootbox.locales).to.be.a("function");
     expect(bootbox.hideAll).to.be.a("function");
   });
 
@@ -90,7 +93,7 @@ describe("Bootbox", function() {
       });
 
       it("throws the correct error", function() {
-        expect(this.e.message).to.contain("$.fn.modal is not defined");
+        expect(this.e.message).to.contain('$.fn.modal" is not defined');
       });
     });
   });
@@ -110,11 +113,11 @@ describe("Bootbox", function() {
         });
 
         it("throws the expected error", function() {
-          expect(this.e.message).to.equal("Please supply a translation for 'CANCEL'");
+          expect(this.e.message).to.equal('Please supply a translation for "CANCEL"');
         });
       });
 
-      describe("with invalid values", function() {
+      describe("with valid values", function() {
         beforeEach(function() {
           bootbox
           .addLocale("xy", {
@@ -226,7 +229,7 @@ describe("Bootbox", function() {
             expect(this.callback).to.have.been.called;
           });
 
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
         });
@@ -263,7 +266,7 @@ describe("Bootbox", function() {
             expect(this.callback).to.have.been.called;
           });
 
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
         });

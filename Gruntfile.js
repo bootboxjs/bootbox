@@ -6,7 +6,8 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          "bootbox.min.js": ["bootbox.js"]
+          'bootbox.min.js': ['bootbox.js'],
+          'locales.min.js': ['locales.js']
         }
       }
     },
@@ -15,7 +16,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: ".jshintrc"
       },
-      all: ["bootbox.js"]
+      all: ['bootbox.js', 'locales.js']
     },
 
     karma: {

@@ -155,7 +155,7 @@ describe("bootbox.alert", function() {
       });
 
       it("throws an error", function() {
-        expect(this.create).to.throw("button key Another key is not allowed (options are ok)");
+        expect(this.create).to.throw('button key "Another key" is not allowed (options are ok)');
       });
     });
 
@@ -166,7 +166,7 @@ describe("bootbox.alert", function() {
       });
 
       it("shows the correct title", function() {
-        expect(this.text("h4")).to.equal("Hello?");
+        expect(this.text(".modal-title")).to.equal("Hello?");
       });
     });
   });
@@ -234,7 +234,7 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
 
@@ -252,7 +252,7 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
 
@@ -270,7 +270,7 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
 
@@ -302,7 +302,7 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
 
@@ -320,7 +320,7 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
 
@@ -338,7 +338,7 @@ describe("bootbox.alert", function() {
           expect(this.callback).to.have.been.called;
         });
 
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
 

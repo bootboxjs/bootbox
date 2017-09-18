@@ -177,7 +177,7 @@ describe("bootbox.confirm", function() {
         };
       });
       return it("throws an error", function() {
-        return expect(this.create).to["throw"](/key is not allowed/);
+        return expect(this.create).to["throw"]('button key "Bad key" is not allowed (options are cancel confirm)');
       });
     });
   });
@@ -198,7 +198,7 @@ describe("bootbox.confirm", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -215,7 +215,7 @@ describe("bootbox.confirm", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -232,7 +232,7 @@ describe("bootbox.confirm", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -260,7 +260,7 @@ describe("bootbox.confirm", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -277,7 +277,7 @@ describe("bootbox.confirm", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
@@ -294,7 +294,7 @@ describe("bootbox.confirm", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         it("with the correct value", function() {
