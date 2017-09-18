@@ -559,16 +559,64 @@
       case 'text':
       case 'textarea':
       case 'email':
-      case 'date':
-      case 'time':
-      case 'number':
       case 'password':
-      case 'range':
         input.val(options.value);
+        
+        if (options.placeholder) {
+          input.attr('placeholder', options.placeholder);
+        }
+    
+        if (options.pattern) {
+          input.attr('pattern', options.pattern);
+        }
+    
+        if (options.maxlength) {
+          input.attr('maxlength', options.maxlength);
+        }
 
         if (options.required) {
           input.prop({ required: true });
         }
+
+        break;
+
+
+      case 'date':
+      case 'time':
+      case 'number':
+      case 'range':
+        input.val(options.value);
+        
+        if (options.placeholder) {
+          input.attr('placeholder', options.placeholder);
+        }
+    
+        if (options.pattern) {
+          input.attr('pattern', options.pattern);
+        }
+
+        if (options.required) {
+          input.prop({ required: true });
+        }
+        
+        // These input types have extra attributes which affect their input validation.
+        // Warning: For most browsers, date inputs are buggy in their implementation of 'step', so 
+        // this attribute will have no effect. Therefore, we don't set the attribute for date inputs.
+        // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#Setting_maximum_and_minimum_dates
+        if (options.inputType !== 'date') {
+          if (options.step) {
+            if (options.step === 'any' || (!isNaN(options.step) && options.step > 0)) {
+              input.attr('step', options.step);
+            }
+            else {
+              throw new Error('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
+            }
+          }
+        }
+  
+        input = validateMinOrMaxValue(input, options.inputType, 'min', options.min, options.max, options);
+  
+        input = validateMinOrMaxValue(input, options.inputType, 'max', options.max, options.min, options);
 
         break;
 
@@ -585,6 +633,16 @@
           throw new Error('prompt with select requires at least one option value');
         }
 
+        // placeholder is not actually a valid attribute for select,
+        // but we'll allow it, assuming it might be used for a plugin
+        if (options.placeholder) {
+          input.attr('placeholder', options.placeholder);
+        }
+        
+        if (options.required) {
+          input.prop({ required: true });
+        }
+        
         each(inputOptions, function (_, option) {
           // assume the element to attach to is the input...
           var elem = input;
@@ -615,10 +673,6 @@
 
         // safe to set a select's value as per a normal input
         input.val(options.value);
-
-        if (options.required) {
-          input.prop({ required: true });
-        }
 
         break;
 
@@ -705,42 +759,6 @@
         break;
     }
 
-    // @TODO provide an attributes option instead
-    // and simply map that as keys: vals
-    if (options.placeholder) {
-      input.attr('placeholder', options.placeholder);
-    }
-
-    if (options.pattern) {
-      input.attr('pattern', options.pattern);
-    }
-
-    if (options.maxlength) {
-      input.attr('maxlength', options.maxlength);
-    }
-
-    // These input types have extra attributes which affect their input validation.
-    // Ignore these options for any other type.
-    // Warning: For most browsers, date inputs are buggy in their implementation of 'step', so 
-    // this attribute will have no effect. Therefore, we don't set the attribute for date inputs.
-    // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#Setting_maximum_and_minimum_dates
-    if ($.inArray(options.inputType, ['date', 'number', 'range', 'time']) >= 0) {
-      if (options.inputType !== 'date') {
-        if (options.step) {
-          if (options.step === 'any' || (!isNaN(options.step) && options.step > 0)) {
-            input.attr('step', options.step);
-          }
-          else {
-            throw new Error('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
-          }
-        }
-      }
-
-      input = validateMinOrMaxValue(input, options.inputType, 'min', options.min, options.max, options);
-
-      input = validateMinOrMaxValue(input, options.inputType, 'max', options.max, options.min, options);
-    }
-
     // now place it in our form
     form.append(input);
 
@@ -764,6 +782,7 @@
       options.message = form;
     }
 
+    // Generate the dialog
     promptDialog = exports.dialog(options);
 
     // clear the existing handler focusing the submit button...
