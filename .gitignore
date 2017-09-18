@@ -7,5 +7,4 @@ bootbox.min.js
 tests/reports
 tests/coverage
 build/size.csv
-vendor
 composer.lock
