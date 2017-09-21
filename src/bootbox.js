@@ -774,7 +774,7 @@
 
     if ($.trim(options.message) !== '') {
       // Add the form to whatever content the user may have added.
-      var message = options.message;
+      var message = $('<div class="bootbox-prompt-message"></div>').html(options.message);
       form.prepend(message);
       options.message = form;
     }
