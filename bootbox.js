@@ -403,7 +403,11 @@
     /**
      * overrides; undo anything the user tried to set they shouldn't have
      */
-    options.message = form;
+    if (options.message && options.message != '') {
+      options.message = $('<div>' + options.message + '</div>').add(form);  
+    } else {
+      options.message = form;
+    }
 
     options.buttons.cancel.callback = options.onEscape = function() {
       return options.callback.call(this, null);
