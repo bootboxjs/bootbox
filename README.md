@@ -47,7 +47,7 @@ internal code and introduced an entirely new public API. It has not re-implement
 some functionality from the 3.x series as of yet; this will be addressed in the
 form of new minor releases. Please feel free to add feedback and requests.
 
-There is no new major (e.g. 5.x) release on the roadmap at present.
+There is a [partial roadmap](https://github.com/makeusabrew/bootbox/issues/545) for the next major release (5.x). Subject to change at any time. The primary goal will be Bootstrap 4 compatibility, which is still a moving target at the moment.
 
 ### Latest Release: 4.4.0
 
