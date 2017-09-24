@@ -274,6 +274,15 @@ describe("bootbox.prompt", function() {
           return expect(this.find("input[type='text']").prop("pattern")).to.equal("\d{1,2}/\d{1,2}/\d{4}");
         });
       });
+      describe("with required", function() {
+        beforeEach(function() {
+          this.options.required = true;
+          return this.create();
+        });
+        return it("has correct required attribute", function() {
+          return expect(this.find("input[type='text']").prop("required")).to.be.true;
+        });
+      });
       return describe("with maxlength", function() {
         beforeEach(function() {
           this.options.maxlength = 5;
@@ -309,13 +318,22 @@ describe("bootbox.prompt", function() {
           return expect(this.find("textarea").val()).to.equal("Once upon a time...");
         });
       });
-      return describe("with placeholder", function() {
+      describe("with placeholder", function() {
         beforeEach(function() {
           this.options.placeholder = "enter your favorite fairy tale";
           return this.create();
         });
         return it("has correct placeholder value", function() {
           return expect(this.find("textarea").prop("placeholder")).to.equal("enter your favorite fairy tale");
+        });
+      });
+      return describe("with required", function() {
+        beforeEach(function() {
+          this.options.required = true;
+          return this.create();
+        });
+        return it("has correct required attribute", function() {
+          return expect(this.find("textarea").prop("required")).to.be.true;
         });
       });
     });
@@ -353,13 +371,22 @@ describe("bootbox.prompt", function() {
           return expect(this.find("input[type='email']").prop("placeholder")).to.equal("enter your email");
         });
       });
-      return describe("with pattern", function() {
+      describe("with pattern", function() {
         beforeEach(function() {
           this.options.pattern = "\d{1,2}/\d{1,2}/\d{4}";
           return this.create();
         });
         return it("has correct pattern value", function() {
           return expect(this.find("input[type='email']").prop("pattern")).to.equal("\d{1,2}/\d{1,2}/\d{4}");
+        });
+      });
+      return describe("with required", function() {
+        beforeEach(function() {
+          this.options.required = true;
+          return this.create();
+        });
+        return it("has correct required attribute", function() {
+          return expect(this.find("input[type='email']").prop("required")).to.be.true;
         });
       });
     });
@@ -388,13 +415,22 @@ describe("bootbox.prompt", function() {
           return expect(this.find("input[type='password']").val()).to.equal("qwerty");
         });
       });
-      return describe("with placeholder", function() {
+      describe("with placeholder", function() {
         beforeEach(function() {
           this.options.placeholder = "enter your password";
           return this.create();
         });
         return it("has correct placeholder value", function() {
           return expect(this.find("input[type='password']").prop("placeholder")).to.equal("enter your password");
+        });
+      });
+      return describe("with required", function() {
+        beforeEach(function() {
+          this.options.required = true;
+          return this.create();
+        });
+        return it("has correct required attribute", function() {
+          return expect(this.find("input[type='password']").prop("required")).to.be.true;
         });
       });
     });
@@ -649,13 +685,22 @@ describe("bootbox.prompt", function() {
           return expect(this.find("input[type='date']").prop("placeholder")).to.equal("enter the date");
         });
       });
-      return describe("with pattern", function() {
+      describe("with pattern", function() {
         beforeEach(function() {
           this.options.pattern = "\d{1,2}/\d{1,2}/\d{4}";
           return this.create();
         });
         return it("has correct pattern value", function() {
           return expect(this.find("input[type='date']").prop("pattern")).to.equal("\d{1,2}/\d{1,2}/\d{4}");
+        });
+      });
+      return describe("with required", function() {
+        beforeEach(function() {
+          this.options.required = true;
+          return this.create();
+        });
+        return it("has correct required attribute", function() {
+          return expect(this.find("input[type='date']").prop("required")).to.be.true;
         });
       });
     });
@@ -693,13 +738,22 @@ describe("bootbox.prompt", function() {
           return expect(this.find("input[type='time']").prop("placeholder")).to.equal("enter the time");
         });
       });
-      return describe("with pattern", function() {
+      describe("with pattern", function() {
         beforeEach(function() {
           this.options.pattern = "\d{1,2}/\d{1,2}/\d{4}";
           return this.create();
         });
         return it("has correct pattern value", function() {
           return expect(this.find("input[type='time']").prop("pattern")).to.equal("\d{1,2}/\d{1,2}/\d{4}");
+        });
+      });
+      return describe("with required", function() {
+        beforeEach(function() {
+          this.options.required = true;
+          return this.create();
+        });
+        return it("has correct required attribute", function() {
+          return expect(this.find("input[type='time']").prop("required")).to.be.true;
         });
       });
     });
@@ -728,13 +782,22 @@ describe("bootbox.prompt", function() {
           return expect(this.find("input[type='number']").val()).to.equal("300");
         });
       });
-      return describe("with placeholder", function() {
+      describe("with placeholder", function() {
         beforeEach(function() {
           this.options.placeholder = "enter the number";
           return this.create();
         });
         return it("has correct placeholder value", function() {
           return expect(this.find("input[type='number']").prop("placeholder")).to.equal("enter the number");
+        });
+      });
+      return describe("with required", function() {
+        beforeEach(function() {
+          this.options.required = true;
+          return this.create();
+        });
+        return it("has correct required attribute", function() {
+          return expect(this.find("input[type='number']").prop("required")).to.be.true;
         });
       });
     });
@@ -1063,6 +1126,78 @@ describe("bootbox.prompt", function() {
       });
       return it("populates the input with the placeholder attribute", function() {
         return expect(this.dialog.find(".bootbox-input").attr("placeholder")).to.equal("e.g. Bob Smith");
+      });
+    });
+    describe("with form validation", function() {
+      beforeEach(function() {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.prompt({
+          title: "What is your name?",
+          required: true,
+          callback: this.callback
+        });
+        return this.hidden = sinon.spy(this.dialog, "modal");
+      });
+      describe("when dismissing the dialog by clicking OK", function() {
+        beforeEach(function() {
+          return this.dialog.find(".btn-primary").trigger("click");
+        });
+        return it("should not invoke the callback", function() {
+          return expect(this.callback).to.have.not.been.called;
+        });
+      });
+      describe("when submitting the form", function() {
+        beforeEach(function() {
+          return $('<input type="submit">')
+            .appendTo(this.dialog.find("form"))
+            .click()
+            .remove();
+        });
+        return it("should not invoke the callback", function() {
+          return expect(this.callback).to.have.not.been.called;
+        });
+      });
+      return describe("when entering a value in the text input", function() {
+        beforeEach(function() {
+          return this.dialog.find(".bootbox-input").val("Test input");
+        });
+        describe("when dismissing the dialog by clicking OK", function() {
+          beforeEach(function() {
+            return this.dialog.find(".btn-primary").trigger("click");
+          });
+          it("should invoke the callback", function() {
+            return expect(this.callback).to.have.been.called;
+          });
+          it("should pass the dialog as `this`", function() {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          it("with the correct value", function() {
+            return expect(this.callback).to.have.been.calledWithExactly("Test input");
+          });
+          return it("should hide the modal", function() {
+            return expect(this.hidden).to.have.been.calledWithExactly("hide");
+          });
+        });
+        describe("when submitting the form", function() {
+          beforeEach(function() {
+            return $('<input type="submit">')
+              .appendTo(this.dialog.find("form"))
+              .click()
+              .remove();
+          });
+          it("should invoke the callback", function() {
+            return expect(this.callback).to.have.been.called;
+          });
+          it("should pass the dialog as `this`", function() {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          it("with the correct value", function() {
+            return expect(this.callback).to.have.been.calledWithExactly("Test input");
+          });
+          return it("should hide the modal", function() {
+            return expect(this.hidden).to.have.been.calledWithExactly("hide");
+          });
+        });
       });
     });
     describe("with inputType select", function() {
