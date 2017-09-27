@@ -6,5 +6,5 @@ module.exports = baseConfig({
     'tests/vendor/popper.min.js',
     'tests/vendor/bootstrap-4.0.0-beta.min.js'
   ],
-  src: ['src/bootbox.js', 'src/locales.js']
+  src: ['src/bootbox.js', 'src/bootstrap.locales.js']
 });

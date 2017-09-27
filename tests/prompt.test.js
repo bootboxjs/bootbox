@@ -87,7 +87,11 @@ describe("bootbox.prompt", function () {
           });
           return it("adds the correct button classes", function () {
             expect(this.dialog.find(".btn:first").hasClass("btn-default")).to.be["true"];
-            return expect(this.dialog.find(".btn:last").hasClass("btn-primary")).to.be["true"];
+            expect(this.dialog.find(".btn:first").hasClass("btn-secondary")).to.be["true"];
+            expect(this.dialog.find(".btn:first").hasClass("bootbox-cancel")).to.be["true"];
+  
+            expect(this.dialog.find(".btn:last").hasClass("btn-primary")).to.be["true"];
+            return expect(this.dialog.find(".btn:last").hasClass("bootbox-accept")).to.be["true"];
           });
         });
       });
@@ -127,7 +131,11 @@ describe("bootbox.prompt", function () {
         });
         it("adds the correct button classes", function () {
           expect(this.dialog.find(".btn:first").hasClass("btn-default")).to.be["true"];
-          return expect(this.dialog.find(".btn:last").hasClass("btn-primary")).to.be["true"];
+          expect(this.dialog.find(".btn:first").hasClass("btn-secondary")).to.be["true"];
+          expect(this.dialog.find(".btn:first").hasClass("bootbox-cancel")).to.be["true"];
+
+          expect(this.dialog.find(".btn:last").hasClass("btn-primary")).to.be["true"];
+          return expect(this.dialog.find(".btn:last").hasClass("bootbox-accept")).to.be["true"];
         });
         it("adds the expected dialog title", function () {
           return expect(this.text(".modal-title")).to.equal("What is your name?");
@@ -1095,7 +1103,7 @@ describe("bootbox.prompt", function () {
       describe("when entering no value in the text input", function () {
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1131,7 +1139,7 @@ describe("bootbox.prompt", function () {
         });
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1163,7 +1171,7 @@ describe("bootbox.prompt", function () {
       });
       describe("when dismissing the dialog by clicking Cancel", function () {
         beforeEach(function () {
-          return this.dialog.find(".btn-default").trigger("click");
+          return this.dialog.find(".bootbox-cancel").trigger("click");
         });
         it("should invoke the callback", function () {
           return expect(this.callback).to.have.been.called;
@@ -1228,7 +1236,7 @@ describe("bootbox.prompt", function () {
       describe("when entering no value in the text input", function () {
         return describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1250,7 +1258,7 @@ describe("bootbox.prompt", function () {
         });
         return describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1268,7 +1276,7 @@ describe("bootbox.prompt", function () {
       });
       describe("when dismissing the dialog by clicking Cancel", function () {
         beforeEach(function () {
-          return this.dialog.find(".btn-default").trigger("click");
+          return this.dialog.find(".bootbox-cancel").trigger("click");
         });
         it("should invoke the callback", function () {
           return expect(this.callback).to.have.been.called;
@@ -1336,7 +1344,7 @@ describe("bootbox.prompt", function () {
       describe("when entering no value in the text input", function () {
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1350,7 +1358,7 @@ describe("bootbox.prompt", function () {
         });
         return describe("when dismissing the dialog by clicking Cancel", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-default").trigger("click");
+            return this.dialog.find(".bootbox-cancel").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1369,7 +1377,7 @@ describe("bootbox.prompt", function () {
         });
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1383,7 +1391,7 @@ describe("bootbox.prompt", function () {
         });
         return describe("when dismissing the dialog by clicking Cancel", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-default").trigger("click");
+            return this.dialog.find(".bootbox-cancel").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1450,7 +1458,7 @@ describe("bootbox.prompt", function () {
         });
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1464,7 +1472,7 @@ describe("bootbox.prompt", function () {
         });
         return describe("when dismissing the dialog by clicking Cancel", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-default").trigger("click");
+            return this.dialog.find(".bootbox-cancel").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1511,7 +1519,7 @@ describe("bootbox.prompt", function () {
         });
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1525,7 +1533,7 @@ describe("bootbox.prompt", function () {
         });
         describe("when dismissing the dialog by clicking Cancel", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-default").trigger("click");
+            return this.dialog.find(".bootbox-cancel").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1540,7 +1548,7 @@ describe("bootbox.prompt", function () {
         return describe("when changing the selected option and dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
             this.dialog.find(".bootbox-input-select").val(3);
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1566,7 +1574,7 @@ describe("bootbox.prompt", function () {
         });
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1598,7 +1606,7 @@ describe("bootbox.prompt", function () {
           });
           describe("when dismissing the dialog by clicking OK", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-primary").trigger("click");
+              return this.dialog.find(".bootbox-accept").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1612,7 +1620,7 @@ describe("bootbox.prompt", function () {
           });
           return describe("when dismissing the dialog by clicking Cancel", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-default").trigger("click");
+              return this.dialog.find(".bootbox-cancel").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1636,7 +1644,7 @@ describe("bootbox.prompt", function () {
         });
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1665,7 +1673,7 @@ describe("bootbox.prompt", function () {
           });
           describe("when dismissing the dialog by clicking OK", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-primary").trigger("click");
+              return this.dialog.find(".bootbox-accept").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1676,7 +1684,7 @@ describe("bootbox.prompt", function () {
           });
           return describe("when dismissing the dialog by clicking Cancel", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-default").trigger("click");
+              return this.dialog.find(".bootbox-cancel").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1718,7 +1726,7 @@ describe("bootbox.prompt", function () {
         });
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1732,7 +1740,7 @@ describe("bootbox.prompt", function () {
         });
         return describe("when dismissing the dialog by clicking Cancel", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-default").trigger("click");
+            return this.dialog.find(".bootbox-cancel").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1774,7 +1782,7 @@ describe("bootbox.prompt", function () {
           });
           describe("when dismissing the dialog by clicking OK", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-primary").trigger("click");
+              return this.dialog.find(".bootbox-accept").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1785,7 +1793,7 @@ describe("bootbox.prompt", function () {
           });
           describe("when dismissing the dialog by clicking Cancel", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-default").trigger("click");
+              return this.dialog.find(".bootbox-cancel").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1798,7 +1806,7 @@ describe("bootbox.prompt", function () {
             beforeEach(function () {
               this.dialog.find("input:checkbox:checked").prop('checked', false);
               this.dialog.find("input:checkbox[value=3]").prop('checked', true);
-              return this.dialog.find(".btn-default").trigger("click");
+              return this.dialog.find(".bootbox-cancel").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1811,7 +1819,7 @@ describe("bootbox.prompt", function () {
             beforeEach(function () {
               this.dialog.find("input:checkbox:checked").prop('checked', false);
               this.dialog.find("input:checkbox[value=3]").prop('checked', true);
-              return this.dialog.find(".btn-primary").trigger("click");
+              return this.dialog.find(".bootbox-accept").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1859,7 +1867,7 @@ describe("bootbox.prompt", function () {
           });
           describe("when dismissing the dialog by clicking OK", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-primary").trigger("click");
+              return this.dialog.find(".bootbox-accept").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1870,7 +1878,7 @@ describe("bootbox.prompt", function () {
           });
           describe("when dismissing the dialog by clicking Cancel", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-default").trigger("click");
+              return this.dialog.find(".bootbox-cancel").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1884,7 +1892,7 @@ describe("bootbox.prompt", function () {
               this.dialog.find("input:checkbox:checked").prop('checked', false);
               this.dialog.find("input:checkbox[value=1]").prop('checked', true);
               this.dialog.find("input:checkbox[value=4]").prop('checked', true);
-              return this.dialog.find(".btn-default").trigger("click");
+              return this.dialog.find(".bootbox-cancel").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1898,7 +1906,7 @@ describe("bootbox.prompt", function () {
               this.dialog.find("input:checkbox:checked").prop('checked', false);
               this.dialog.find("input:checkbox[value=1]").prop('checked', true);
               this.dialog.find("input:checkbox[value=4]").prop('checked', true);
-              return this.dialog.find(".btn-primary").trigger("click");
+              return this.dialog.find(".bootbox-accept").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -1940,7 +1948,7 @@ describe("bootbox.prompt", function () {
         });
         describe("when dismissing the dialog by clicking OK", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-primary").trigger("click");
+            return this.dialog.find(".bootbox-accept").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1954,7 +1962,7 @@ describe("bootbox.prompt", function () {
         });
         return describe("when dismissing the dialog by clicking Cancel", function () {
           beforeEach(function () {
-            return this.dialog.find(".btn-default").trigger("click");
+            return this.dialog.find(".bootbox-cancel").trigger("click");
           });
           it("should invoke the callback", function () {
             return expect(this.callback).to.have.been.called;
@@ -1996,7 +2004,7 @@ describe("bootbox.prompt", function () {
           });
           describe("when dismissing the dialog by clicking OK", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-primary").trigger("click");
+              return this.dialog.find(".bootbox-accept").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -2007,7 +2015,7 @@ describe("bootbox.prompt", function () {
           });
           describe("when dismissing the dialog by clicking Cancel", function () {
             beforeEach(function () {
-              return this.dialog.find(".btn-default").trigger("click");
+              return this.dialog.find(".bootbox-cancel").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -2019,7 +2027,7 @@ describe("bootbox.prompt", function () {
           describe("when changing the checked option and dismissing the dialog by clicking Cancel", function () {
             beforeEach(function () {
               this.dialog.find("input:radio[value=3]").prop('checked', true);
-              return this.dialog.find(".btn-default").trigger("click");
+              return this.dialog.find(".bootbox-cancel").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;
@@ -2031,7 +2039,7 @@ describe("bootbox.prompt", function () {
           return describe("when changing the selected option and dismissing the dialog by clicking OK", function () {
             beforeEach(function () {
               this.dialog.find("input:radio[value=3]").prop('checked', true);
-              return this.dialog.find(".btn-primary").trigger("click");
+              return this.dialog.find(".bootbox-accept").trigger("click");
             });
             it("should invoke the callback", function () {
               return expect(this.callback).to.have.been.called;

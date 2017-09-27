@@ -53,6 +53,10 @@ describe("bootbox.alert", function() {
         it("applies the primary class to the button", function() {
           expect(this.find(".modal-footer button:first").hasClass("btn-primary")).to.be.true;
         });
+        
+        it("applies the bootbox-accept class to the button", function() {
+          expect(this.find(".modal-footer button:first").hasClass("bootbox-accept")).to.be.true;
+        });
 
         it("shows a close button inside the body", function() {
           expect(this.text(".modal-body button")).to.equal("×");
@@ -141,6 +145,7 @@ describe("bootbox.alert", function() {
       it("adds the correct ok button", function() {
         expect(this.button.text()).to.equal("Custom OK");
         expect(this.button.hasClass("btn-danger")).to.be.true;
+        expect(this.button.hasClass("bootbox-accept")).to.be.true;
       });
     });
 
@@ -184,7 +189,7 @@ describe("bootbox.alert", function() {
 
       describe("when dismissing the dialog by clicking OK", function() {
         beforeEach(function() {
-          this.dialog.find(".btn-primary").trigger("click");
+          this.dialog.find(".bootbox-accept").trigger("click");
         });
 
         it("should hide the modal", function() {
@@ -227,7 +232,7 @@ describe("bootbox.alert", function() {
 
       describe("when dismissing the dialog by clicking OK", function() {
         beforeEach(function() {
-          this.dialog.find(".btn-primary").trigger("click");
+          this.dialog.find(".bootbox-accept").trigger("click");
         });
 
         it("should invoke the callback", function() {
@@ -295,7 +300,7 @@ describe("bootbox.alert", function() {
 
       describe("when dismissing the dialog by clicking OK", function() {
         beforeEach(function() {
-          this.dialog.find(".btn-primary").trigger("click");
+          this.dialog.find(".bootbox-accept").trigger("click");
         });
 
         it("should invoke the callback", function() {
