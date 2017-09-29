@@ -270,7 +270,7 @@
         var button = $(templates.button);
         button.data('bb-handler', key);
         button.addClass(b.className);
-        
+
         switch(key)
         {
           case 'ok':
@@ -543,8 +543,6 @@
       }
       else {
         if (input[0].checkValidity && !input[0].checkValidity()) {
-          //todo: figure out how to display error message without having to trigger input submission
-
           // prevents button callback from being called
           return false;
         } else {
