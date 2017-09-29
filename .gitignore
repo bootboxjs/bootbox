@@ -2,10 +2,11 @@
 *.swp
 node_modules
 npm-debug.log
-bootbox.min.js
 .idea
 tests/reports
 tests/coverage
 build/size.csv
 vendor
 composer.lock
+dist
+index.html

@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/makeusabrew/bootbox.git"
+    "url": "git://github.com/tiesont/bootbox.git"
   },
   "author": "Nick Payne <nick@kurai.co.uk>",
   "license": "MIT",

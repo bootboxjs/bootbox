@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 5.0.0
+ * version: 5.0.0-beta
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -239,7 +239,8 @@
 
     if ($.fn.modal.Constructor.VERSION) {
       options.fullBootstrapVersion = $.fn.modal.Constructor.VERSION;
-      options.bootstrap = options.fullBootstrapVersion.substring(0, 1);
+      var i = options.fullBootstrapVersion.indexOf('.');
+      options.bootstrap = options.fullBootstrapVersion.substring(0, i);
     }
     else {
       // Assuming version 2.3.2, as that was the last "supported" 2.x version
@@ -269,6 +270,19 @@
         var button = $(templates.button);
         button.data('bb-handler', key);
         button.addClass(b.className);
+
+        switch(key)
+        {
+          case 'ok':
+          case 'confirm':
+            button.addClass('bootbox-accept');
+            break;
+
+          case 'cancel':
+            button.addClass('bootbox-cancel');
+            break;
+        }
+
         button.html(b.label);
         footer.append(button);
 
@@ -339,7 +353,7 @@
     });
 
     dialog.one('shown.bs.modal', function () {
-      dialog.find('.btn-primary:first').focus();
+      dialog.find('.bootbox-accept:first').focus();
     });
 
     // Bootbox event listeners; used to decouple some
@@ -769,12 +783,12 @@
 
       // @TODO can we actually click *the* button object instead?
       // e.g. buttons.confirm.click() or similar
-      promptDialog.find('.btn-primary').click();
+      promptDialog.find('.bootbox-accept').click();
     });
 
     if ($.trim(options.message) !== '') {
       // Add the form to whatever content the user may have added.
-      var message = options.message;
+      var message = $('<div class="bootbox-prompt-message"></div>').html(options.message);
       form.prepend(message);
       options.message = form;
     }

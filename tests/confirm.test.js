@@ -70,7 +70,11 @@ describe("bootbox.confirm", function() {
           });
           return it("adds the correct button classes", function() {
             expect(this.dialog.find(".btn:first").hasClass("btn-default")).to.be["true"];
-            return expect(this.dialog.find(".btn:last").hasClass("btn-primary")).to.be["true"];
+            expect(this.dialog.find(".btn:first").hasClass("btn-secondary")).to.be["true"];
+            expect(this.dialog.find(".btn:first").hasClass("bootbox-cancel")).to.be["true"];
+
+            expect(this.dialog.find(".btn:last").hasClass("btn-primary")).to.be["true"];
+            return expect(this.dialog.find(".btn:last").hasClass("bootbox-accept")).to.be["true"];
           });
         });
       });
@@ -113,7 +117,11 @@ describe("bootbox.confirm", function() {
         });
         it("adds the correct button classes", function() {
           expect(this.dialog.find(".btn:first").hasClass("btn-default")).to.be["true"];
-          return expect(this.dialog.find(".btn:last").hasClass("btn-primary")).to.be["true"];
+          expect(this.dialog.find(".btn:first").hasClass("btn-secondary")).to.be["true"];
+          expect(this.dialog.find(".btn:first").hasClass("bootbox-cancel")).to.be["true"];
+
+          expect(this.dialog.find(".btn:last").hasClass("btn-primary")).to.be["true"];
+          return expect(this.dialog.find(".btn:last").hasClass("bootbox-accept")).to.be["true"];
         });
         return it("shows the dialog", function() {
           return expect(this.dialog.is(":visible")).to.be["true"];
@@ -193,7 +201,7 @@ describe("bootbox.confirm", function() {
       });
       describe("when dismissing the dialog by clicking OK", function() {
         beforeEach(function() {
-          return this.dialog.find(".btn-primary").trigger("click");
+          return this.dialog.find(".bootbox-accept").trigger("click");
         });
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
@@ -210,7 +218,7 @@ describe("bootbox.confirm", function() {
       });
       describe("when dismissing the dialog by clicking Cancel", function() {
         beforeEach(function() {
-          return this.dialog.find(".btn-default").trigger("click");
+          return this.dialog.find(".bootbox-cancel").trigger("click");
         });
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
@@ -255,7 +263,7 @@ describe("bootbox.confirm", function() {
       });
       describe("when dismissing the dialog by clicking OK", function() {
         beforeEach(function() {
-          return this.dialog.find(".btn-primary").trigger("click");
+          return this.dialog.find(".bootbox-accept").trigger("click");
         });
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
@@ -272,7 +280,7 @@ describe("bootbox.confirm", function() {
       });
       describe("when dismissing the dialog by clicking Cancel", function() {
         beforeEach(function() {
-          return this.dialog.find(".btn-default").trigger("click");
+          return this.dialog.find(".bootbox-cancel").trigger("click");
         });
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
