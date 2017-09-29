@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 5.0.0
+ * version: 5.0.0-beta
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -543,6 +543,8 @@
       }
       else {
         if (input[0].checkValidity && !input[0].checkValidity()) {
+          //todo: figure out how to display error message without having to trigger input submission
+
           // prevents button callback from being called
           return false;
         } else {
