@@ -874,7 +874,7 @@
     var locale;
     if(args){
       locale = args[0].locale || defaults.locale;
-      let swapButtons = args[0].swapButtonOrder || defaults.swapButtonOrder;
+      var swapButtons = args[0].swapButtonOrder || defaults.swapButtonOrder;
 
       if(swapButtons){
         labels = labels.map((e, i, a)=> a[(a.length -1) -i]);
