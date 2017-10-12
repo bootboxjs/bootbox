@@ -1002,7 +1002,7 @@
       if (!button.className) {     
         var isPrimary = false;
         if(options.swapButtonOrder){
-          isPrimary = index == 0;
+          isPrimary = index === 0;
         }
         else{
           isPrimary = index === total-1;
