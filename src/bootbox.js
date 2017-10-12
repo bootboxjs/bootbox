@@ -872,7 +872,7 @@
   //  range of inputs and return valid options suitable for passing to bootbox.dialog
   function mergeDialogOptions(className, labels, properties, args) {
     var locale;
-    if(args){
+    if(args && args[0]){
       locale = args[0].locale || defaults.locale;
       var swapButtons = args[0].swapButtonOrder || defaults.swapButtonOrder;
 
