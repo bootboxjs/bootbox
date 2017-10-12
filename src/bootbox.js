@@ -273,17 +273,17 @@
         button.data('bb-handler', key);
         button.addClass(b.className);
 
-        switch(key)
-        {
-          case 'ok':
-          case 'confirm':
-            button.addClass('bootbox-accept');
-            break;
+        // switch(key)
+        // {
+        //   case 'ok':
+        //   case 'confirm':
+        //     button.addClass('bootbox-accept');
+        //     break;
 
-          case 'cancel':
-            button.addClass('bootbox-cancel');
-            break;
-        }
+        //   case 'cancel':
+        //     button.addClass('bootbox-cancel');
+        //     break;
+        // }
 
         button.html(b.label);
         footer.append(button);
