@@ -140,7 +140,9 @@
     // default value (used by the prompt helper)
     value: "",
     // default input type (used by the prompt helper)
-    inputType: 'text'
+    inputType: 'text',
+    // switch button order from cancel/confirm (default) to confirm/cancel
+    swapButtonOrder: false
   };
 
 
@@ -438,6 +440,7 @@
   // for this alert.
   exports.alert = function () {
     var options;
+
     options = mergeDialogOptions('alert', ['ok'], ['message', 'callback'], arguments);
 
     // @TODO: can this move inside exports.dialog when we're iterating over each
@@ -868,19 +871,20 @@
   //  This entry-level method makes heavy use of composition to take a simple
   //  range of inputs and return valid options suitable for passing to bootbox.dialog
   function mergeDialogOptions(className, labels, properties, args) {
-    var hasLocale = false;
-    if (args) {
-      if (args.length > 0) {
-        if (args[0] !== undefined) {
-          hasLocale = args[0].locale !== undefined;
-        }
+    var locale;
+    if(args && args[0]){
+      locale = args[0].locale || defaults.locale;
+      var swapButtons = args[0].swapButtonOrder || defaults.swapButtonOrder;
+
+      if(swapButtons){
+        labels = labels.reverse();
       }
     }
 
     //  build up a base set of dialog properties
     var baseOptions = {
       className: 'bootbox-' + className,
-      buttons: createLabels(labels, hasLocale ? args[0].locale : defaults.locale)
+      buttons: createLabels(labels, locale)
     };
 
     // Ensure the buttons properties generated, *after* merging
@@ -977,8 +981,6 @@
     total = getKeyLength(buttons);
 
     each(buttons, function (key, button, index) {
-      var isLast = index === total - 1;
-
       if ($.isFunction(button)) {
         // short form, assume value is our callback. Since button
         // isn't an object it isn't a reference either so re-assign it
@@ -997,8 +999,16 @@
         button.label = key;
       }
 
-      if (!button.className) {
-        if (total <= 2 && isLast) {
+      if (!button.className) {     
+        var isPrimary = false;
+        if(options.swapButtonOrder){
+          isPrimary = index === 0;
+        }
+        else{
+          isPrimary = index === total-1;
+        }
+
+        if (total <= 2 && isPrimary) {
           // always add a primary to the main option in a one or two-button dialog
           button.className = 'btn-primary';
         } else {
