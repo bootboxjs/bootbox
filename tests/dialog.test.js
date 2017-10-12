@@ -135,7 +135,7 @@ describe("bootbox.dialog", function() {
         return expect(this.text(".btn")).to.equal("My Label");
       });
       it("applies the correct button class", function() {
-        return expect(this["class"](".btn", ".btn-primary")).to.be["true"];
+        return expect(this["class"]("btn", "btn-primary")).to.be["true"];
       });
       describe("when triggering the escape event", function() {
         beforeEach(function() {
