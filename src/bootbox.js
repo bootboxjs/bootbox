@@ -999,8 +999,16 @@
         button.label = key;
       }
 
-      if (!button.className) {
-        if (total <= 2 && (key === 'ok' || key === 'confirm')) {
+      if (!button.className) {     
+        var isPrimary = false;
+        if(options.swapButtonOrder){
+          isPrimary = index == 0;
+        }
+        else{
+          isPrimary = index === total-1;
+        }
+
+        if (total <= 2 && isPrimary) {
           // always add a primary to the main option in a one or two-button dialog
           button.className = 'btn-primary';
         } else {
