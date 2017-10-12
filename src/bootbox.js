@@ -140,7 +140,9 @@
     // default value (used by the prompt helper)
     value: "",
     // default input type (used by the prompt helper)
-    inputType: 'text'
+    inputType: 'text',
+    // switch button order from cancel/confirm (default) to confirm/cancel
+    swapButtonOrder: false
   };
 
 
@@ -438,6 +440,7 @@
   // for this alert.
   exports.alert = function () {
     var options;
+
     options = mergeDialogOptions('alert', ['ok'], ['message', 'callback'], arguments);
 
     // @TODO: can this move inside exports.dialog when we're iterating over each
@@ -871,8 +874,9 @@
     var locale;
     if(args){
       locale = args[0].locale || defaults.locale;
+      let swapButtons = args[0].swapButtonOrder || defaults.swapButtonOrder;
 
-      if(args[0].reverse){
+      if(swapButtons){
         labels = labels.map((e, i, a)=> a[(a.length -1) -i]);
       }
     }
