@@ -142,7 +142,9 @@
     // default input type (used by the prompt helper)
     inputType: 'text',
     // switch button order from cancel/confirm (default) to confirm/cancel
-    swapButtonOrder: false
+    swapButtonOrder: false,
+    // center modal vertically in page
+    centerVertical: false
   };
 
 
@@ -333,6 +335,15 @@
       } else {
         closeButton.css('margin-top', '-2px').prependTo(body);
       }
+    }
+
+    if(options.centerVertical){
+      // Requires Bootstrap 4.0.0-beta.3 or higher
+      if (options.fullBootstrapVersion < '4.0.0-beta.3') {
+        console.warn('"centerVertical" requires Bootstrap 4.0.0-beta.3 or higher. You appear to be using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
+      }
+
+      dialog.addClass('modal-dialog-centered');
     }
 
     // Bootstrap event listeners; these handle extra
