@@ -54,7 +54,7 @@
       "<form class='bootbox-form'></form>",
     inputs: {
       text:
-        "<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type=text />",
+        "<input class='bootbox-input bootbox-input-text form-control' autocomplete=off type='text' />",
       textarea:
         "<textarea class='bootbox-input bootbox-input-textarea form-control'></textarea>",
       email:
@@ -795,6 +795,25 @@
     }
 
     $.extend(defaults, values);
+  };
+
+
+  exports.setTemplates = function () {
+    var values = {};
+
+    if (arguments.length === 3) {
+      // allow passing of {key1: {key2: value}} as setTemplates(key1, key2, value)...
+      values[arguments[0]] = {};
+      values[arguments[0]][arguments[1]] = arguments[2];
+    } else if (arguments.length === 2) {
+      // ...or allow passing of {key: value} as setTemplates(key, value)...
+      values[arguments[0]] = arguments[1];
+    } else {
+      // ... and as an object too setTemplates(value)
+      values = arguments[0];
+    }
+
+    $.extend(templates, values);
   };
 
   exports.hideAll = function() {
