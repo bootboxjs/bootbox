@@ -11,6 +11,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": ">= 3.0.0"
+    "bootstrap": "^3.0.0"
   }
 }
