@@ -914,6 +914,11 @@
       CANCEL  : "キャンセル",
       CONFIRM : "確認"
     },
+    ko : {
+      OK      : "OK",
+      CANCEL  : "취소",
+      CONFIRM : "확인"
+    },
     lt : {
       OK      : "Gerai",
       CANCEL  : "Atšaukti",
