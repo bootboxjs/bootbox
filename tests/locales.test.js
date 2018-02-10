@@ -493,4 +493,18 @@ describe("bootbox locales", function() {
       return expect(this.labels.confirm).to.equal("Potvrdiť");
     });
   });
+  return describe("Korean", function() {
+    beforeEach(function() {
+      return this.setLocale("ko");
+    });
+    it("shows the correct OK translation", function() {
+      return expect(this.labels.ok).to.equal("OK");
+    });
+    it("shows the correct CANCEL translation", function() {
+      return expect(this.labels.cancel).to.equal("취소");
+    });
+    return it("shows the correct CONFIRM translation", function() {
+      return expect(this.labels.confirm).to.equal("확인");
+    });
+  });
 });
