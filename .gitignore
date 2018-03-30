@@ -6,7 +6,6 @@ npm-debug.log
 tests/reports
 tests/coverage
 build/size.csv
-vendor
 composer.lock
 dist
 index.html

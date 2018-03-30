@@ -343,7 +343,7 @@
         console.warn('"centerVertical" requires Bootstrap 4.0.0-beta.3 or higher. You appear to be using ' + options.fullBootstrapVersion + '. Please upgrade to use this option.')
       }
 
-      dialog.addClass('modal-dialog-centered');
+      innerDialog.addClass('modal-dialog-centered');
     }
 
     // Bootstrap event listeners; these handle extra
