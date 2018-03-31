@@ -2,12 +2,14 @@ module.exports = function (grunt) {
     grunt.initConfig({
         uglify: {
             options: {
+                mangle: false,
                 banner: grunt.file.read('header.txt')
             },
-            build: {
+            my_target: {
                 files: {
-                    'bootbox.min.js': ['bootbox.js'],
-                    'locales.min.js': ['locales.js']
+                    'dist/bootbox.min.js': ['src/bootbox.js'],
+                    'dist/bootbox.locales.min.js': ['src/bootbox.locales.js'],
+                    'dist/bootbox.all.min.js': ['src/bootbox.js', 'src/bootbox.locales.js']
                 }
             }
         },
