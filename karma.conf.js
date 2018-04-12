@@ -4,7 +4,7 @@ module.exports = baseConfig({
   vendor: [
     'tests/vendor/jquery-3.3.1.slim.min.js',
     'tests/vendor/popper.min.js',
-    'tests/vendor/bootstrap-4.0.0.min.js'
+    'tests/vendor/bootstrap-4.1.0.min.js'
   ],
   src: ['src/bootbox.js', 'src/bootbox.locales.js']
 });

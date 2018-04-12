@@ -18,7 +18,7 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: '.jshintrc'
             },
-            all: ['bootbox.js', 'locales.js']
+            all: ['bootbox.js', 'bootbox.locales.js']
         },
 
         karma: {

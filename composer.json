@@ -16,7 +16,7 @@
     "component": {
       "scripts": [
         "bootbox.js",
-        "locales.js"
+        "bootbox.locales.js"
       ]
     }
   }
