@@ -117,7 +117,7 @@
       password:
       '<input class="bootbox-input bootbox-input-password form-control" autocomplete="off" type="password" />',
       range:
-      '<input class="bootbox-input bootbox-input-range" autocomplete="off" type="range" />'
+      '<input class="bootbox-input bootbox-input-range form-control-range" autocomplete="off" type="range" />'
     }
   };
 
