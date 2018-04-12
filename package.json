@@ -15,7 +15,7 @@
   "author": "Nick Payne <nick@kurai.co.uk>",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "main": "bootbox.js",
+  "main": "src/bootbox.js",
   "devDependencies": {
     "chai": "^3.5.0",
     "grunt": "~0.4.1",

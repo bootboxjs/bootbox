@@ -23,7 +23,7 @@ module.exports = function(params) {
       ),
       exclude: [],
       preprocessors: {
-        'bootbox.js': ['coverage']
+        'src/bootbox.js': ['coverage']
       },
       reporters: ['dots', 'coverage', 'junit'],
       port: 9876,
