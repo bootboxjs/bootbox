@@ -553,7 +553,7 @@
       e.stopPropagation();
       // @TODO can we actually click *the* button object instead?
       // e.g. buttons.confirm.click() or similar
-      dialog.find(".btn-primary").click();
+      dialog.find(".btn-primary").trigger("click");
     });
 
     dialog = exports.dialog(options);
@@ -565,7 +565,7 @@
     dialog.on("shown.bs.modal", function() {
       // need the closure here since input isn't
       // an object otherwise
-      input.focus();
+      input.trigger("focus");
     });
 
     if (shouldShow === true) {
@@ -677,7 +677,7 @@
     */
 
     dialog.one("shown.bs.modal", function() {
-      dialog.find(".btn-primary:first").focus();
+      dialog.find(".btn-primary:first").trigger("focus");
     });
 
     /**
@@ -913,6 +913,11 @@
       OK      : "OK",
       CANCEL  : "キャンセル",
       CONFIRM : "確認"
+    },
+    ko : {
+      OK      : "OK",
+      CANCEL  : "취소",
+      CONFIRM : "확인"
     },
     lt : {
       OK      : "Gerai",

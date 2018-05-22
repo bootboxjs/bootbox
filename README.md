@@ -47,7 +47,7 @@ internal code and introduced an entirely new public API. It has not re-implement
 some functionality from the 3.x series as of yet; this will be addressed in the
 form of new minor releases. Please feel free to add feedback and requests.
 
-There is a [partial roadmap](https://github.com/makeusabrew/bootbox/issues/545) for the next major release (5.x). Subject to change at any time. The primary goal will be Bootstrap 4 compatibility, which is still a moving target at the moment.
+There is a [partial roadmap](https://github.com/makeusabrew/bootbox/issues/545) for the next major release (5.x). Subject to change at any time. The primary goal will be Bootstrap 4 compatibility, which is still a moving target at the moment. If you would like to contribute to the next version of Bootbox, please work from the [v5.x](https://github.com/makeusabrew/bootbox/tree/v5.x) branch when forking the repository.
 
 ### Latest Release: 4.4.0
 
@@ -72,7 +72,7 @@ For a full list of releases and changes please see [the changelog](https://githu
 
 (The MIT License)
 
-Copyright (C) 2011-2017 by Nick Payne <nick@kurai.co.uk>
+Copyright (C) 2011-2018 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
