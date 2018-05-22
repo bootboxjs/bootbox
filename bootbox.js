@@ -88,7 +88,9 @@
     // show the dialog immediately by default
     show: true,
     // dialog container
-    container: "body"
+    container: "body",
+    // Whether we are using Bootstrap 4 or not
+    usingBootstrap4: false,
   };
 
   // our public object; augmented after our private API
@@ -628,7 +630,18 @@
       var closeButton = $(templates.closeButton);
 
       if (options.title) {
-        dialog.find(".modal-header").prepend(closeButton);
+        var _header = dialog.find(".modal-header");
+
+        // If we are using Bootstrap 4
+        // we need to append the close button
+        // instead of prepending, otherwise
+        // the close button will break the layout
+        // of the header
+        if(defaults.usingBootstrap4) {
+          _header.append(closeButton);
+        } else {
+          _header.prepend(closeButton);
+        }
       } else {
         closeButton.css("margin-top", "-2px").prependTo(body);
       }
