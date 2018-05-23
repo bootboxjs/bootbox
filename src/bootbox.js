@@ -351,7 +351,7 @@
     // modal has performed certain actions.
 
     // make sure we unbind any listeners once the dialog has definitively been dismissed
-      dialog.one("hide.bs.modal", function () {
+      dialog.one("hide.bs.modal", function (e) {
         if (e.target === this) {
           dialog.off("escape.close.bb");
           dialog.off("click");
