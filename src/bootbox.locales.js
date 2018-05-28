@@ -177,6 +177,14 @@
   })();
 
   (function () {
+    bootbox.addLocale('ko', {
+      OK: 'OK',
+      CANCEL: '취소',
+      CONFIRM: '확인'
+    });
+  })();
+
+  (function () {
     bootbox.addLocale('lt', {
       OK: 'Gerai',
       CANCEL: 'Atšaukti',
