@@ -628,7 +628,7 @@
       var closeButton = $(templates.closeButton);
 
       if (options.title) {
-        dialog.find(".modal-header").prepend(closeButton);
+        dialog.find(".modal-header").append(closeButton);
       } else {
         closeButton.css("margin-top", "-2px").prependTo(body);
       }
