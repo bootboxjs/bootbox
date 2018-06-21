@@ -400,11 +400,6 @@
     // it, but we need to make sure we respect a preference not to show it
     shouldShow = (options.show === undefined) ? true : options.show;
 
-    /**
-     * overrides; undo anything the user tried to set they shouldn't have
-     */
-    options.message = form;
-
     options.buttons.cancel.callback = options.onEscape = function() {
       return options.callback.call(this, null);
     };
@@ -556,6 +551,14 @@
       dialog.find(".btn-primary").click();
     });
 
+    // add the message before the form
+    if (options.message) {
+      form.prepend('<p>' + options.message + '</p>');
+    }
+
+    // now set the form as the modal message
+    options.message = form;
+    
     dialog = exports.dialog(options);
 
     // clear the existing handler focusing the submit button...
