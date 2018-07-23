@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bootbox.js &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</title>
+    <script src="./vendor/js/modernizr-custom.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="./vendor/css/google.prettify.min.css" />
+
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20517424-8']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- Universal Analytics; remove the above script and uncomment this after upgrading -->
+    <!--<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-20517424-8', 'auto');
+        ga('send', 'pageview');
+    </script>-->
+</head>
+<body class="bb-js">
+    <div class="bb-header">
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-bb-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-navicon"></span>
+                    </button>
+                    <a id=top class="navbar-brand navbar-brand-active" href="./">Bootbox.js</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-bb-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="./getting-started.html">Getting Started</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="./examples.html#bb-alert-dialog">Alert</a>
+                                </li>
+                                <li>
+                                    <a href="./examples.html#bb-confirm-dialog">Confirm</a>
+                                </li>
+                                <li>
+                                    <a href="./examples.html#bb-prompt-dialog">Prompt</a>
+                                </li>
+                                <li>
+                                    <a href="./examples.html#bb-custom-dialog">Custom Dialog</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="./examples.html">View all</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="./documentation.html#bb-alert-dialog">Alert</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-confirm-dialog">Confirm</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-prompt-dialog">Prompt</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-custom-dialog">Custom Dialog</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-options">Options</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-public-functions">Public Functions</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-notes">Notes</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="./documentation.html">View all</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="http://paynedigital.com/bootbox">Writeup</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/makeusabrew/bootbox">
+                                <i class="fa fa-github"></i>
+                                Github
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="bb-docs-header" tabindex="-1">
+            <div class="container text-center">
+                <div class="bb-masthead">
+                    <h1>Bootbox.js</h1>
+                    <p class="lead">
+                        Bootstrap modals made easy.
+                    </p>
+                    <p>
+                        <a href="https://github.com/makeusabrew/bootbox/releases/download/v4.4.0/bootbox.min.js" class="btn btn-lg btn-danger" style="width: 20em;">
+                            <i class="fa fa-download"></i>
+                            Download
+                        </a>
+                    </p>
+                </div>
+                <div class="bb-meta">
+                    <ul class="bb-meta-list">
+                        <li>
+                            <span>Version 4.4.0</span>
+                        </li>
+                        <li>
+                            <a href="https://github.com/makeusabrew/bootbox">
+                                <i class="fa fa-github"></i>
+                                Github
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./v3.x/">3.x docs</a>
+                            &middot;
+                            <a href="./v2.x/">2.x docs</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <section class="bb-section">
+            <div class="lead-top">
+                <p class="lead">
+                    <b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes using
+                    <a href="http://getbootstrap.com/javascript/#modals">Bootstrap modals</a>, without
+                    having to worry about creating, managing or removing any of the required DOM elements or JS event handlers. Here&rsquo;s the simplest possible
+                    example:
+                </p>
+                <div class="text-center">
+                    <p class="hidden-xs bb-code code-leader">
+                        <code>bootbox.alert(<span class="bb-code-string">"Hello&nbsp;world!"</span>);</code>
+                    </p>
+                    <p>
+                        <button type="button" class="bb-hello-world btn btn-primary btn-lg">Run example</button>
+                    </p>
+                </div>
+            </div>
+            <p>
+                <b>Compare that to the code you&rsquo;d have to write without Bootbox:</b>
+            </p>
+            <script src="https://gist.github.com/makeusabrew/6327194.js"></script>
+        </section>
+
+        <section id="getting-started" class="bb-section">
+            <h2 class="page-header">Overview</h2>
+            <p>
+                The library exposes three functions designed to mimic their native JavaScript equivalents. Their
+                exact function signatures are flexible as each can take various parameters to customise labels and specify defaults,
+                but they are most commonly called like so:
+            </p>
+            <div class="row">
+                <div class="col-xs-4">
+                    <h5>alert</h5>
+                    <pre class="prettyprint"><code>bootbox.alert(message, callback)</code></pre>
+                </div>
+                <div class="col-xs-4">
+                    <h5>prompt</h5>
+                    <pre class="prettyprint"><code>bootbox.prompt(message, callback)</code></pre>
+                </div>
+                <div class="col-xs-4">
+                    <h5>confirm</h5>
+                    <pre class="prettyprint"><code>bootbox.confirm(message, callback)</code></pre>
+                </div>
+            </div>
+            <p>
+                Each of these three functions calls a fourth public function which you too can use to create your
+                own custom dialogs:
+            </p>
+            <div>
+                <pre class="prettyprint"><code>bootbox.dialog(options)</code></pre>
+            </div>
+            <p>
+                <a href="./documentation.html">Documentation</a> is available for each of these functions, including the options available for each dialog. You can also
+                find examples for using each of these functions in the (appropriately named) <a href="./examples.html">Examples</a> page.
+            </p>
+            <p>
+                Visit the <a href="./getting-started.html">Getting Started</a> page for guidance on how to add Bootbox to your project.
+            </p>
+            <h4>Please note:</h4>
+            <p>
+                There are some caveats to using Bootbox dialogs in place of native dialogs. Please see the <a href="./documentation.html#bb-notes">Known Limitations</a>
+                section in the Documentation page to learn more.
+            </p>
+        </section>
+
+        <section class="bb-section">
+            <h2 class="page-header">About</h2>
+            <p>
+                Bootbox was <a href="http://paynedigital.com/bootbox">originally created in 2011</a>
+                with the sole purpose of wrapping JavaScript&rsquo;s low level dialog functions with Bootstrap&rsquo;s
+                high level modal functionality. As such it is a small library focussed on
+                providing basic programmatic dialogs with minimal fuss and overhead.
+            </p>
+            <p>
+                Bootbox is authored and maintained by <a href="http://paynedigital.com/about">Nick Payne</a>
+                (<a href="http://twitter.com/makeusabrew">@makeusabrew</a>). Thanks are also due to
+                <a href="https://github.com/makeusabrew/bootbox/graphs/contributors">the contributors</a>!
+            </p>
+        </section>
+
+        <section id="more" class="bb-section">
+            <h2 class="page-header">Get involved!</h2>
+            <p>
+                Bootbox is a free, open source project. As such you can help out in a number of ways
+                from simply <a href="https://github.com/makeusabrew/bootbox/issues">raising an issue</a>
+                to <a href="https://github.com/makeusabrew/bootbox/fork_select">forking the project</a>
+                and <a href="https://github.com/makeusabrew/bootbox/pulls">submitting a pull request</a>.
+            </p>
+            <p>
+                I&rsquo;m particularly keen to improve the <a href="examples.html">examples</a> and make
+                a proper start on the <a href="documentation.html">API docs</a>, so pull requests contributing towards
+                the <a href="https://github.com/makeusabrew/bootbox/tree/gh-pages">gh-pages</a> branch (which
+                you&rsquo;re looking at!) are extremely welcome.
+            </p>
+            <p>
+                Lastly &mdash; please just help spread the word!
+            </p>
+        </section>
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="pull-right">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bootboxjs.com" data-via="makeusabrew" data-related="makeusabrew" data-size="large">Tweet</a>
+                <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+            </div>
+            &copy; 2011-2018 <a href="http://twitter.com/makeusabrew">Nick Payne</a>.
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./bootbox.js"></script>
+
+    <script src="./vendor/js/prettify.min.js"></script>
+    <script src="./vendor/js/jquery.scrollUp.min.js"></script>
+    <script>
+      $(function () {
+
+        try {
+          window.prettyPrint && prettyPrint();
+
+          $('a.back-to-top').on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
+          });
+        }
+        catch (ex) {
+          console.log(ex.message);
+        }
+
+
+        try {
+          $.scrollUp && $.scrollUp({
+            scrollName: 'scroll-up-btn',
+            animationSpeed: '600',
+            scrollText: '<i class="fa fa-4x fa-arrow-circle-up"></i>'
+          });
+        }
+        catch (ex) {
+          console.log(ex.message);
+        }
+
+        $('.bb-hello-world').on('click', function (e) {
+          bootbox.alert("Hello world!");
+        });
+
+      });
+    </script>
+</body>
+</html>

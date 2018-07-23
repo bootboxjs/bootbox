@@ -7,3 +7,4 @@ tests/reports
 tests/coverage
 build/size.csv
 composer.lock
+.vs
