@@ -169,7 +169,7 @@ $(function () {
                     case 'prompt-checkbox':
                         bootbox.prompt({
                             title: "This is a prompt with a set of checkbox inputs!",
-                            value: [1, 3],
+                            value: ['1', '3'],
                             inputType: 'checkbox',
                             inputOptions: [
                                 {
