@@ -1,0 +1,396 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>Bootbox.js &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="./vendor/css/google.prettify.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+</head>
+
+<body class="bb-js bb-sidebar-sticky">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="./">bootbox<span class="text-light">.js</span> <span class="d-none d-lg-inline-block">&mdash; alert, confirm and flexible dialogs for the Bootstrap framework</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="navbar-nav ml-auto mr-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="./getting-started.html">Getting Started</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <div class="btn-group">
+                        <a href="./documentation.html" class="btn btn-link nav-link nav-link-split">Docs</a>
+                        <a href="#" class="btn btn-link nav-link dropdown-toggle dropdown-toggle-split d-none d-md-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="./documentation.html#bb-alert-dialog">Alert</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-confirm-dialog">Confirm</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-prompt-dialog">Prompt</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-custom-dialog">Custom</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="./documentation.html#bb-options">Options</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-available-locales">Locales</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-public-functions">Public Functions</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-notes">Notes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="./documentation.html">View All</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <div class="btn-group">
+                        <a href="./examples.html" class="btn btn-link nav-link nav-link-split">Examples</a>
+                        <a href="#" class="btn btn-link nav-link dropdown-toggle dropdown-toggle-split d-none d-md-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="./examples.html#bb-alert-dialog">Alert</a>
+                            <a class="dropdown-item" href="./examples.html#bb-confirm-dialog">Confirm</a>
+                            <a class="dropdown-item" href="./examples.html#bb-prompt-dialog">Prompt</a>
+                            <a class="dropdown-item" href="./examples.html#bb-custom-dialog">Custom</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="./examples.html">View All</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/tiesont/bootbox">
+                        <i class="fa fa-github"></i>
+                        Github
+                    </a>
+                </li>
+            </ul>
+            <div class="form-inline d-none d-lg-flex">
+                <a class="btn btn-light my-2 my-sm-0" href="#download" id="download-bootbox">
+                    <i class="fa fa-download"></i>
+                    Download
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-3 col-xl-2">
+                <div class="bb-sidebar">
+                    <button class="btn btn-block btn-link text-dark text-left px-0 my-2 bb-nav-toggle d-md-none" type="button" data-toggle="collapse" data-target="#bb-docs-nav" aria-controls="bb-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
+                        <i class="fa fa-navicon"></i>
+                        Menu
+                    </button>
+                    <nav id="bb-docs-nav" class="collapse d-md-block">
+                        <a class="h5 mb-3" href="./">Home</a>
+                        <a class="h5 mb-3" href="./getting-started.html">Getting Started</a>
+                        <div class="mb-3">
+                            <a class="h5" href="./documentation.html">Documentation</a>
+                            <div class="ml-3">
+                                <p class="h6">
+                                    Dialogs
+                                </p>
+                                <ul class="list-unstyled ml-3 mb-2">
+                                    <li>
+                                        <a href="./documentation.html#bb-alert-dialog">Alert</a>
+                                    </li>
+                                    <li>
+                                        <a href="./documentation.html#bb-confirm-dialog">Confirm</a>
+                                    </li>
+                                    <li>
+                                        <a href="./documentation.html#bb-prompt-dialog">Prompt</a>
+                                    </li>
+                                    <li>
+                                        <a href="./documentation.html#bb-custom-dialog">Custom</a>
+                                    </li>
+                                </ul>
+                                <a class="h6" href="./documentation.html#bb-options">Options</a>
+                                <a class="h6" href="./documentation.html#bb-locales">Locales</a>
+                                <a class="h6" href="./documentation.html#bb-public-functions">Public Functions</a>
+                                <a class="h6" href="./documentation.html#bb-notes">Notes</a>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <a class="h5" href="./examples.html">Examples</a>
+                            <div class="ml-3">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="./examples.html#bb-alert-dialog">Alert</a>
+                                    </li>
+                                    <li>
+                                        <a href="./examples.html#bb-confirm-dialog">Confirm</a>
+                                    </li>
+                                    <li>
+                                        <a href="./examples.html#bb-prompt-dialog">Prompt</a>
+                                    </li>
+                                    <li>
+                                        <a href="./examples.html#bb-custom-dialog">Custom</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-9 col-xl-8">
+                <main class="bb-main p-md-5 p-3">
+                    <div class="bb-header">
+                        <div id="content" class="jumbotron jumbotron-fluid" tabindex="-1">
+                            <div class="bb-masthead">
+                                <h1 class="marque">
+                                    Bootbox<span class="text-bb-alt text-thin">JS</span>
+                                </h1>
+                                <p class="lead">
+                                    Bootstrap modals made easy.
+                                </p>
+                                <div class="bb-meta">
+                                    <ul class="bb-meta-list float-md-right">
+                                        <li class="ml-auto"><span>Version 5.0.0</span></li>
+                                        <li>
+                                            <a href="https://github.com/tiesont/bootbox">
+                                                <i class="fa fa-github"></i>
+                                                Github
+                                            </a>
+                                        </li>
+                                        <li class="d-none d-lg-inline-block">
+                                            <a href="./v4.x/">4.x docs</a> &middot;
+                                            <a href="./v3.x/">3.x docs</a> &middot;
+                                            <a href="./v2.x/">2.x docs</a>
+                                        </li>
+                                    </ul>
+                                    <p>Compatible with Bootstrap <b>3</b> and <b>4</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bb-content">
+                        <section class="bb-section">
+                            <div class="lead-top">
+                                <p class="lead">
+                                    <b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes
+                                    using
+                                    <a href="https://getbootstrap.com/docs/4.0/components/modal/">Bootstrap modals</a>, without having to worry about
+                                    creating, managing or removing any of the required DOM elements or JS event handlers.
+                                </p>
+                                <p>
+                                    Here&rsquo;s the simplest possible example:
+                                </p>
+                                <div class="text-center">
+                                    <p class="hidden-xs bb-code code-leader">
+                                        <code>bootbox.alert(<span class="bb-code-string">"Hello&nbsp;world!"</span>);</code>
+                                    </p>
+                                    <p>
+                                        <button type="button" class="bb-hello-world btn btn-primary btn-lg">Run example</button>
+                                    </p>
+                                </div>
+                            </div>
+                            <p>
+                                <b>Compare that to the code you&rsquo;d have to write without Bootbox:</b>
+                            </p>
+                            <pre class="prettyprint linenums"><code>&lt;!-- set up the modal to start hidden and fade in and out --&gt;
+&lt;div id="myModal" class="modal fade"&gt;
+    &lt;div class="modal-dialog"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;!-- dialog body --&gt;
+            &lt;div class="modal-body"&gt;
+                &lt;button type="button" class="close" data-dismiss="modal"&gt;&amp;times;&lt;/button&gt;
+                Hello world!
+            &lt;/div&gt;
+            &lt;!-- dialog buttons --&gt;
+            &lt;div class="modal-footer"&gt;&lt;button type="button" class="btn btn-primary"&gt;OK&lt;/button&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        
+&lt;!-- sometime later, probably inside your on load event callback --&gt;
+&lt;script&gt;
+    $("#myModal").on("show", function() {    // wire up the OK button to dismiss the modal when shown
+        $("#myModal a.btn").on("click", function(e) {
+            console.log("button pressed");   // just as an example...
+            $("#myModal").modal('hide');     // dismiss the dialog
+        });
+    });
+        
+    $("#myModal").on("hide", function() {    // remove the event listeners when the dialog is dismissed
+        $("#myModal a.btn").off("click");
+    });
+            
+    $("#myModal").on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
+        $("#myModal").remove();
+    });
+            
+    $("#myModal").modal({                    // wire up the actual modal functionality and show the dialog
+        "backdrop"  : "static",
+        "keyboard"  : true,
+        "show"      : true                     // ensure the modal is shown immediately
+    });
+&lt;/script&gt;</code></pre>
+                        </section>
+
+                        <section id="getting-started" class="bb-section">
+                            <h2 class="page-header">Overview</h2>
+                            <p>
+                                Bootbox exposes three functions designed to mimic their native JavaScript equivalents<sup><a href="#note-1">1</a></sup>.
+                                Their exact function signatures are flexible, as each can take various parameters to customise labels and specify
+                                defaults, but they are most commonly called like so:
+                            </p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p><button type="button" class="bb-ex bb-alert-ex btn btn-dark">alert</button></p>
+                                    <p>
+                                        <code class="bb-code">bootbox.alert(<i class="bb-code-parameter">message</i>, <i class="bb-code-parameter">callback</i>);</code>
+                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p><button type="button" class="bb-ex bb-confirm-ex btn btn-dark">confirm</button></p>
+                                    <p>
+                                        <code class="bb-code">bootbox.confirm(<i class="bb-code-parameter">message</i>, <i class="bb-code-parameter">callback</i>)</code>
+                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p><button type="button" class="bb-ex bb-prompt-ex btn btn-dark">prompt</button></p>
+                                    <p>
+                                        <code class="bb-code">bootbox.prompt(<i class="bb-code-parameter">message</i>, <i class="bb-code-parameter">callback</i>)</code>
+                                    </p>
+                                </div>
+                            </div>
+                            <p>
+                                Each of these three functions calls a fourth public function, <a href="./documentation.html#bb-custom-dialog">dialog</a>,
+                                which you can use to create your own custom dialogs:
+                            </p>
+                            <div>
+                                <p><code class="bb-code">bootbox.dialog(<i class="bb-code-parameter">options</i>)</code></p>
+                            </div>
+                            <p>
+                                <a href="./documentation.html">Documentation</a> is available for each of these functions, including the
+                                options available for each dialog. You can also find examples for using each of these functions in the (appropriately
+                                named) <a href="./examples.html">Examples</a> page.
+                            </p>
+                            <p>
+                                Visit the <a href="./getting-started.html">Getting Started</a> page for guidance on how to add Bootbox to
+                                your project.
+                            </p>
+                            <div class="bs-callout bs-callout-danger">
+                                <h5 id="note-1" class="text-danger">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                    Please note:
+                                </h5>
+                                <p>
+                                    There are some caveats to using Bootbox dialogs in place of native dialogs. Please see the
+                                    <a href="./documentation.html#bb-notes">Known Limitations</a> section in the Documentation page to learn more.
+                                </p>
+                            </div>
+                        </section>
+
+                        <section class="bb-section">
+                            <h2 class="page-header">About</h2>
+                            <p>
+                                Bootbox was <a href="http://paynedigital.com/bootbox">originally created in 2011</a> with the sole purpose
+                                of wrapping JavaScript's low-level dialog functions with Bootstrap's high level modal functionality.
+                                As such it is a small library focused on providing basic programmatic dialogs with minimal fuss and overhead.
+                            </p>
+                            <p>
+                                Bootbox is authored and maintained by <a href="http://paynedigital.com/about">Nick Payne</a>
+                                (<a href="http://twitter.com/makeusabrew">@makeusabrew</a>). Thanks are also due to
+                                <a href="https://github.com/makeusabrew/bootbox/graphs/contributors">the contributors</a>!
+                            </p>
+                        </section>
+
+                        <section id="more" class="bb-section">
+                            <h2 class="page-header">Get involved!</h2>
+                            <p>
+                                Bootbox is a free, open source project. As such, you can help out in a number of ways, from simply
+                                <a href="https://github.com/makeusabrew/bootbox/issues">raising an issue</a>
+                                to <a href="https://github.com/makeusabrew/bootbox/fork_select">forking the project</a> and
+                                <a href="https://github.com/makeusabrew/bootbox/pulls">submitting a pull request</a>.
+                            </p>
+                            <p>
+                                I'm particularly keen to improve the <a href="examples.html">examples</a> and the <a href="documentation.html">API docs</a>,
+                                so pull requests contributing towards the <a href="https://github.com/makeusabrew/bootbox/tree/gh-pages">gh-pages</a>
+                                branch (which you're looking at!) are extremely welcome.
+                            </p>
+                            <p>
+                                Lastly &mdash; <b>please just help spread the word!</b>
+                            </p>
+                        </section>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2">
+                    <span class="d-block float-right">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bootboxjs.com" data-via="makeusabrew" data-related="makeusabrew" data-size="large">Tweet</a>
+                        <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
+                        <script>
+                            !function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) {
+                                    js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+                                }
+                            }(document, "script", "twitter-wjs");
+                        </script>
+                    </span>
+                    <span class="d-block">
+                        Copyright &copy; 2011-2018 <a href="http://twitter.com/makeusabrew">Nick Payne</a>.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="./js/bootbox.all.min.js"></script>
+
+    <script src="./vendor/js/prettify.min.js"></script>
+    <script src="./vendor/js/anchor.min.js"></script>
+    <script src="./js/docs.js"></script>
+    <script>
+        $(function () {
+            $('.bb-hello-world').on('click', function (e) {
+                bootbox.alert("Hello world!");
+            });
+
+            $('.bb-alert-ex').on('click', function (e) {
+                bootbox.alert("So long, and thanks for all the fish!");
+            });
+
+            $('.bb-confirm-ex').on('click', function (e) {
+                bootbox.confirm({
+                    message: "Did you bring your towel?",
+                    buttons: {
+                        cancel: {
+                            label: 'No'
+                        },
+                        confirm: {
+                            label: 'Yes'
+                        }
+                    },
+                    callback: function (result) { }
+                });
+            });
+
+            $('.bb-prompt-ex').on('click', function (e) {
+                bootbox.prompt({
+                    title: "What is <i>the</i> answer?",
+                    value: 42,
+                    callback: function (result) { }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

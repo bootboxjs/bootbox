@@ -2,7 +2,7 @@
 
 (The MIT License)
 
-Copyright (C) 2011-2014 by Nick Payne <nick@kurai.co.uk>
+Copyright (C) 2011-2018 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -121,6 +121,24 @@ describe("bootbox.setDefaults", function() {
       });
     });
   });
+  
+  describe("centerVertical", function() {
+    describe("when set to true", function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          centerVertical: true
+        });
+
+        this.dialog = bootbox.dialog({
+          message: "test"
+        });
+      });
+
+      it("adds the modal-dialog-centered class to the innerDialog", function() {
+        expect(this.dialog.children(".modal-dialog").hasClass("modal-dialog-centered")).to.be.true;
+      });
+    });
+  });
 
   describe("when passed two arguments", function() {
     beforeEach(function() {

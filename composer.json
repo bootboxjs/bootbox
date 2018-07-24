@@ -1,5 +1,5 @@
 {
-  "name": "makeusabrew/bootbox",
+  "name": "tiesont/bootbox",
   "type": "component",
   "description": "Wrappers for JavaScript alert(), confirm() and other flexible dialogs using the Bootstrap framework",
   "license": "MIT",
@@ -15,7 +15,8 @@
   "extra": {
     "component": {
       "scripts": [
-        "bootbox.js"
+        "src/bootbox.js",
+        "src/bootbox.locales.js"
       ]
     }
   }

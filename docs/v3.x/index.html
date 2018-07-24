@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <title>Bootbox.js&mdash;alert, confirm and flexible dialogs for the Bootstrap framework</title>
+
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" type="text/css" href="deps/bootstrap-2.2.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-20517424-8']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+</head>
+<body>
+    <div class="bb-alert alert alert-info" style="display:none;">
+        <span>The examples populate this alert with dummy content</span>
+    </div>
+
+    <div class="navbar navbar-static-top navbar-inverse">
+        <div class=navbar-inner>
+            <a id=top class="brand brand-active" href="http://bootboxjs.com">Bootbox.js</a>
+            <ul class=nav>
+                <li><a href="#about">About</a></li>
+                <li><a href="#api">Core Methods</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#dependencies">Dependencies</a></li>
+                <li><a href="#usage">Usage</a></li>
+                <li class=divider-vertical></li>
+                <li><a href="https://github.com/makeusabrew/bootbox">GitHub Repository</a></li>
+                <li><a href="http://paynedigital.com/bootbox">Read the writeup</a></li>
+                <li><a href="http://twitter.com/makeusabrew">Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container lead-top">
+
+        <p class=lead><b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes using
+        <a href="http://getbootstrap.com/javascript/#modals">Bootstrap modals</a>, without
+        having to worry about creating, managing or removing any of the required DOM elements or JS event handlers. Here&rsquo;s the simplest possible
+        example:</p>
+
+        <div class=row>
+            <div class=span10>
+                <script src="https://gist.github.com/1343123.js"> </script>
+            </div>
+            <div class=span2>
+                <p><a href="#" data-bb="alert" class="bb-trigger btn btn-large">Run example</a></p>
+            </div>
+        </div>
+
+        <p><b>Compare that to the code you&rsquo;d have to write without Bootbox:</b></p>
+
+        <script src="https://gist.github.com/3031607.js"></script>
+
+        <div class=page-header>
+            <h2 id=about>About</h2>
+        </div>
+
+        <p>Bootbox was <a href="http://paynedigital.com/bootbox">originally created in 2011</a>
+        with the sole purpose of wrapping JavaScript&rsquo;s low level dialog methods with Bootstrap&rsquo;s
+        high level modal functionality. As such it is a small library focussed on
+        providing basic programmatic dialogs with minimal fuss and overhead.</p>
+
+        <p>Bootbox is authored and maintained by <a href="http://paynedigital.com/about">Nick Payne</a>
+        (<a href="http://twitter.com/makeusabrew">@makeusabrew</a>). Thanks are also due to
+        <a href="https://github.com/makeusabrew/bootbox/graphs/contributors">the contributors</a>!</p>
+
+        <div class=page-header>
+            <h2 id=api>Core Methods <small>(<a href="documentation.html">Read the full API docs</a>)</small></h2>
+        </div>
+
+        <p>The library exposes three methods designed to mimic their native JavaScript equivalents. Their
+        exact method signatures are flexible as each can take various parameters to customise labels and specify defaults,
+        but they are most commonly called like so:</p>
+
+        <ul>
+            <li class=bb-code>bootbox.alert(message, callback)</li>
+            <li class=bb-code>bootbox.prompt(message, callback)</li>
+            <li class=bb-code>bootbox.confirm(message, callback)</li>
+        </ul>
+
+        <p>The only required argument is <b>message</b>, although you&rsquo;re
+        unlikely to want to ever call <span class=bb-code>confirm</span> or <span class=bb-code>prompt</span>
+        without a <b>callback</b> argument otherwise you&rsquo;ll have no way of
+        determining what the user&rsquo;s response was. Even when calling
+        <span class=bb-code>alert</span> a callback is useful to determine when the user
+        dismissed the dialog since our wrapper methods can&rsquo;t &amp; don&rsquo;t block
+        like their native counterparts: they are asynchronous rather than synchronous.</p>
+
+        <p>Each of these three methods calls a fourth public method which you too can use to create your
+        own custom dialogs:</p>
+
+        <ul>
+            <li class=bb-code>bootbox.dialog(message, buttons, options)</li>
+        </ul>
+
+        <p><a href="documentation.html">More API documentation &raquo;</a></p>
+
+        <div class=page-header>
+            <h2 id=examples>Basic Examples <small>(<a href="examples.html">See more examples</a>)</small></h2>
+        </div>
+
+        <p><b>Please note:</b> the &lsquo;Example&rsquo; object used in the following examples
+        simply displays a notification to help illustrate when each callback is invoked. It is nothing
+        to do with Bootbox itself, but you may <a href="js/example.js">view its source</a> if you&rsquo;re
+        interested in how it works.</p>
+
+        <div class=row>
+            <div class=span12>
+                <p class=lead>
+                    Alert
+                    <a href="#" data-bb="alert_callback" class="btn"><i class=icon-play></i></a>
+                </p>
+                <script src="https://gist.github.com/10a21523641a211529da.js"></script>
+            </div>
+        </div>
+        <div class=row>
+            <div class=span12>
+                <p class=lead>
+                    Confirm
+                    <a href="#" data-bb="confirm" class="btn"><i class=icon-play></i></a>
+                </p>
+                <script src="https://gist.github.com/f06984e4c5b37f121b85.js"></script>
+            </div>
+        </div>
+        <div class=row>
+            <div class=span12>
+                <p class=lead>
+                    Prompt
+                    <a href="#" data-bb="prompt" class="btn"><i class=icon-play></i></a>
+                </p>
+                <script src="https://gist.github.com/bb3fd1f1a2c5899ef17e.js"></script>
+            </div>
+        </div>
+        <div class=row>
+            <div class=span12>
+                <p class=lead>
+                    Custom Dialog
+                    <a href="#" data-bb="dialog" class="btn"><i class=icon-play></i></a>
+                </p>
+                <script src="https://gist.github.com/9c8e730237b903511fc8.js"></script>
+            </div>
+        </div>
+
+        <p><a href="examples.html">More examples &raquo;</a></p>
+
+        <div class=page-header>
+            <h2 id=download>Download <small>Version 3.3.0</small></h2>
+        </div>
+
+        <p>The latest stable version of Bootbox is <b>3.3.0</b>. You can download the minified library <a href="https://github.com/makeusabrew/bootbox/releases/v3.3.0/1141/bootbox.min.js">bootbox.min.js</a> for
+        use in production, or the uncompressed <a href="https://github.com/makeusabrew/bootbox/releases/v3.3.0/1140/bootbox.js">bootbox.js</a> for use in development. I wouldn&rsquo;t recommend hotlinking to
+        either file as Github does not serve the correct mime type which may cause security warnings to be triggered based on your browser&rsquo;s settings.</p>
+
+        <p>If you wish you may also <a href="https://github.com/makeusabrew/bootbox/releases">see a full list of releases</a>
+        or download the latest copy of the entire repository (including build files and tests)
+        in <a href="https://github.com/makeusabrew/bootbox/zipball/v3.3.0">zip</a> or
+        <a href="https://github.com/makeusabrew/bootbox/tarball/v3.3.0">tarball</a> format.
+        Realistically the only reason you should be using anything other than the 3.x.x series is if you
+        are restricted by the version of Bootstrap you&rsquo;re using&mdash;see the following
+        section for full details.</p>
+
+        <div class=page-header>
+            <h2 id=dependencies>Dependencies</h2>
+        </div>
+
+        <p>All versions of Bootbox stand on the shoulders of two great giants:
+        <a href="http://getbootstrap.com">Bootstrap</a> and
+        <a href="http://jquery.com">jQuery</a>. The
+        exact version of Bootstrap depends on the version of Bootbox
+        you&rsquo;re using. This has become slightly more complex than
+        I&rsquo;d like but hopefully this handy table will clear things
+        up (if it doesn&rsquo;t then please <a href="http://twitter.com/makeusabrew">tell me!</a>):</p>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Bootbox version</th>
+                    <th>Min. Bootstrap version</th>
+                    <th>Max. Bootstrap version</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4.x.x</td>
+                    <td>3.0.0 <small>(probably)</small></td>
+                    <td>-</td>
+                    <td>Neither of these versions exist, but this is the rough plan&hellip;</td>
+                </tr>
+                <tr class=success>
+                    <td>3.x.x <span class="label label-success">Latest</span></td>
+                    <td>2.2.2</td>
+                    <td>2.3.2</td>
+                    <td>Current release. Anything &gt; Bootstrap 2.3.2 is untested</td>
+                </tr>
+                <tr>
+                    <td>2.x.x</td>
+                    <td>2.0.0</td>
+                    <td>2.0.4</td>
+                    <td>As you can see, Bootstrap 2.1.x was never officially supported</td>
+                </tr>
+                <tr>
+                    <td>1.x.x</td>
+                    <td>1.3.0</td>
+                    <td>1.4.0</td>
+                    <td>Don&rsquo;t download this version of Bootbox&mdash;it&rsquo;s old</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>All versions of the library require at least jQuery <b>1.7.1</b>, though
+        <b>1.8.3</b> or above is recommended for the 3.x.x releases.</p>
+
+        <div class=page-header>
+            <h2 id=usage>Usage Instructions</h2>
+        </div>
+
+        <p>Once you&rsquo;ve got your <a href=#dependencies>dependencies</a> sorted, usage
+        is fairly straightforward and much like any other JavaScript library you&rsquo;ve
+        ever used. The library creates a single global instance of a <b>bootbox</b> object:</p>
+
+        <script src="https://gist.github.com/4332514.js"></script>
+
+        <p>When you&rsquo;re up and running check out some <a href="examples.html">examples</a>
+        or the <a href="documentation.html">documentation</a>.</p>
+
+        <div class=page-header>
+            <h2 id=more>Get involved!</h2>
+        </div>
+
+        <p>Bootbox is a free, open source project. As such you can help out in a number of ways
+        from simply <a href="https://github.com/makeusabrew/bootbox/issues">raising an issue</a>
+        to <a href="https://github.com/makeusabrew/bootbox/fork_select">forking the project</a>
+        and <a href="https://github.com/makeusabrew/bootbox/pulls">submitting a pull request</a>.</p>
+
+        <p>I&rsquo;m particularly keen to improve the <a href="examples.html">examples</a> and make
+        a proper start on the <a href="documentation.html">API docs</a>, so pull requests contributing towards
+        the <a href="https://github.com/makeusabrew/bootbox/tree/gh-pages">gh-pages</a> branch (which
+        you&rsquo;re looking at!) are extremely welcome.</p>
+
+        <p>Lastly&mdash;please just help spread the word!</p>
+
+    </div>
+    <div class='well container'>
+        <div style='float:right'>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://paynedigital.com/2011/11/bootbox-js-alert-confirm-dialogs-for-twitter-bootstrap" data-via="makeusabrew" data-related="makeusabrew" data-size="large">Tweet</a>
+            <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        &copy; 2011-2012 <a href="http://twitter.com/makeusabrew">Nick Payne</a>.
+        I run <a href="http://paynedigital.com">a small company</a>&mdash;why not see if you want to
+        <a href="http://paynedigital.com/contact">work with us</a>?
+    </div>
+
+    <!-- JS dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="deps/bootstrap-2.2.2/js/bootstrap.min.js"></script>
+    <script src="js/example.js"></script>
+    <script>
+        $(function() {
+            Example.init({
+                "selector": ".bb-alert"
+            });
+        });
+    </script>
+
+    <!-- bootbox code -->
+    <script src="bootbox.js"></script>
+
+    <!-- put all demo code in one place -->
+    <script src="js/demos.js"></script>
+</body>
+</html>

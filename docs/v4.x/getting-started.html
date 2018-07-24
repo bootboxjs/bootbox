@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+
+<html class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting Started | Bootbox.js &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</title>
+
+    <script src="./vendor/js/modernizr-custom.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="./vendor/css/google.prettify.min.css" />
+
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <script src="./js/scroll-fix.js"></script>
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20517424-8']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- Universal Analytics; remove the above script and uncomment this after upgrading -->
+    <!--<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-20517424-8', 'auto');
+        ga('send', 'pageview');
+    </script>-->
+
+</head>
+<body class="bb-js">
+    <div class="bb-header bb-header-fixed-navbar">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-bb-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-navicon"></span>
+                    </button>
+                    <a id=top class="navbar-brand navbar-brand-active" href="./">Bootbox.js</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-bb-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="./getting-started.html">Getting Started</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="./examples.html#bb-alert-dialog">Alert</a>
+                                </li>
+                                <li>
+                                    <a href="./examples.html#bb-confirm-dialog">Confirm</a>
+                                </li>
+                                <li>
+                                    <a href="./examples.html#bb-prompt-dialog">Prompt</a>
+                                </li>
+                                <li>
+                                    <a href="./examples.html#bb-custom-dialog">Custom Dialog</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="./examples.html">View all</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="./documentation.html#bb-alert-dialog">Alert</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-confirm-dialog">Confirm</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-prompt-dialog">Prompt</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-custom-dialog">Custom Dialog</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-options">Options</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-public-functions">Public Functions</a>
+                                </li>
+                                <li>
+                                    <a href="./documentation.html#bb-notes">Notes</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="./documentation.html">View all</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="http://paynedigital.com/bootbox">Writeup</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/makeusabrew/bootbox">
+                                <i class="fa fa-github"></i>
+                                Github
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="content" class="bb-docs-header" tabindex="-1">
+            <div class="container text-center">
+                <div class="bb-masthead">
+                    <h1>
+                        Getting Started
+                    </h1>
+                    <p class="lead">
+                        Bootbox.js is designed to make using Bootstrap modals easier! Follow the guide below, and you should be up and running in no time.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="docs-container">
+                <section id="download" class="bb-section">
+                    <h2 class="page-header">Download</h2>
+                    <p>
+                        Bootbox can be added to your project in two easy ways:
+                    </p>
+                    <div class="row text-center">
+                        <div class="col-xs-6">
+                            <h4>Via npm</h4>
+                            <p>
+                                Run the following command to add Bootbox to your project:
+                            </p>
+                            <p class="bb-code" style="padding: 1em; margin: 0 0 1.5em; background: #f5f5f5;">
+                                <span>npm install bootbox</span>
+                            </p>
+                        </div>
+                        <div class="col-xs-6">
+                            <h4>Direct download</h4>
+                            <p>
+                                If you're not using npm, you can manually add Bootbox:
+                            </p>
+                            <p class="bb-code" style="padding: 1em; margin: 0 0 1.5em; background: #f5f5f5;">
+                                <a href="https://github.com/makeusabrew/bootbox/releases/download/v4.4.0/bootbox.min.js">
+                                    <span>
+                                        <i class="fa fa-download"></i>
+                                        bootbox.min.js
+                                    </span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>CDN</h4>
+                        <p>
+                            You can also link to a CDN reference of Bootbox.js:
+                        </p>
+                        <div class="well well-sm text-center">
+                            <code>https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js</code>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section id="dependencies" class="bb-section">
+                    <h2 class="page-header">Dependencies</h2>
+                    <p>
+                        All versions of Bootbox stand on the shoulders of two great giants: <a href="http://getbootstrap.com">Bootstrap</a> and <a href="http://jquery.com">jQuery</a>. The
+                        exact version of Bootstrap depends on the version of Bootbox you&rsquo;re using. This has become slightly more complex than I&rsquo;d like, but hopefully this handy
+                        table will clear things up (if it doesn&rsquo;t then please <a href="http://twitter.com/makeusabrew">tell me!</a>):
+                    </p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Bootbox version</th>
+                                <th>Min. Bootstrap version</th>
+                                <th>Max. Bootstrap</th>
+                                <th>Min. jQuery</th>
+                                <th class="hidden-xs">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="success">
+                                <td>4.x.x <span class="label label-success">Latest</span></td>
+                                <td>3.0.0</td>
+                                <td>3.3.x</td>
+                                <td>1.9.1</td>
+                                <td class="hidden-xs">Current release. Entirely rewritten to support Bootstrap 3.0.0</td>
+                            </tr>
+                            <tr>
+                                <td>3.x.x</td>
+                                <td>2.2.2</td>
+                                <td>2.3.2</td>
+                                <td>1.8.3</td>
+                                <td class="hidden-xs">Last version to support Bootstrap 2</td>
+                            </tr>
+                            <tr>
+                                <td>2.x.x</td>
+                                <td>2.0.0</td>
+                                <td>2.0.4</td>
+                                <td>1.7.1</td>
+                                <td class="hidden-xs">As you can see, Bootstrap 2.1.x was never officially supported</td>
+                            </tr>
+                            <tr>
+                                <td>1.x.x</td>
+                                <td>1.3.0</td>
+                                <td>1.4.0</td>
+                                <td>1.7.1</td>
+                                <td class="hidden-xs">Don&rsquo;t download this version of Bootbox&mdash;it&rsquo;s old</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section id="usage" class="bb-section">
+                    <h2 class="page-header">Usage Instructions</h2>
+                    <p>
+                        Once you&rsquo;ve got your <a href="#dependencies">dependencies</a> sorted, usage
+                        is fairly straightforward and much like any other JavaScript library you&rsquo;ve
+                        ever used. The library creates a single global instance of a <b>bootbox</b> object:
+                    </p>
+                    <script src="https://gist.github.com/4332514.js"></script>
+                    <h4>Note the order of the script references</h4>
+                    <p>
+                        Since Bootbox is a wrapper around Bootstrap's modal functionality, you need to include the libraries in order:
+                    </p>
+                    <ol>
+                        <li>jQuery</li>
+                        <li>Bootstrap</li>
+                        <li>Bootbox</li>
+                    </ol>
+                    <p>
+                        When you&rsquo;re up and running, check out some <a href="examples.html">examples</a>
+                        or the <a href="documentation.html">documentation</a>.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="pull-right">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bootboxjs.com" data-via="makeusabrew" data-related="makeusabrew" data-size="large">Tweet</a>
+                <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+            </div>
+            &copy; 2011-2018 <a href="http://twitter.com/makeusabrew">Nick Payne</a>.
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./bootbox.js"></script>
+
+    <script src="./vendor/js/prettify.min.js"></script>
+    <script src="./vendor/js/jquery.scrollUp.min.js"></script>
+    <script>
+        $(function () {
+            try {
+                window.prettyPrint && prettyPrint();
+
+                $('a.back-to-top').on('click', function (e) {
+                    e.preventDefault();
+                    $('html, body').animate({ scrollTop: 0 }, 'slow');
+                });
+            }
+            catch (ex) {
+                console.log(ex.message);
+            }
+
+            try {
+                $.scrollUp && $.scrollUp({
+                    scrollName: 'scroll-up-btn',
+                    animationSpeed: '600',
+                    scrollText: '<i class="fa fa-4x fa-arrow-circle-up"></i>'
+                });
+            }
+            catch (ex) {
+                console.log(ex.message);
+            }
+
+            try {
+                var anchor = window.location.hash;
+                if (anchor != null && anchor != "") {
+                    $('#bb-nav-sidebar .collapse').collapse('hide')
+                    $('#bb-nav-sidebar a[href*="' + anchor + '"]').parents('.collapse').collapse('show');
+                }
+            }
+            catch (ex) {
+                console.log(ex.message);
+            }
+
+        });
+    </script>
+</body>
+</html>

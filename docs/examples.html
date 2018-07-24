@@ -1,0 +1,912 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Examples | Bootbox.js &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="./vendor/css/google.prettify.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+</head>
+<body class="bb-js bb-sidebar-sticky">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="./">bootbox<span class="text-light">.js</span> <span class="d-none d-lg-inline-block">&mdash; alert, confirm and flexible dialogs for the Bootstrap framework</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="navbar-nav ml-auto mr-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="./getting-started.html">Getting Started</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <div class="btn-group">
+                        <a href="./documentation.html" class="btn btn-link nav-link nav-link-split">Docs</a>
+                        <a href="#" class="btn btn-link nav-link dropdown-toggle dropdown-toggle-split d-none d-md-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="./documentation.html#bb-alert-dialog">Alert</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-confirm-dialog">Confirm</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-prompt-dialog">Prompt</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-custom-dialog">Custom</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="./documentation.html#bb-options">Options</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-available-locales">Locales</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-public-functions">Public Functions</a>
+                            <a class="dropdown-item" href="./documentation.html#bb-notes">Notes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="./documentation.html">View All</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <div class="btn-group">
+                        <a href="./examples.html" class="btn btn-link nav-link active nav-link-split">Examples</a>
+                        <a href="#" class="btn btn-link nav-link dropdown-toggle dropdown-toggle-split d-none d-md-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#bb-alert-dialog">Alert</a>
+                            <a class="dropdown-item" href="#bb-confirm-dialog">Confirm</a>
+                            <a class="dropdown-item" href="#bb-prompt-dialog">Prompt</a>
+                            <a class="dropdown-item" href="#bb-custom-dialog">Custom</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="./examples.html">View All</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/tiesont/bootbox">
+                        <i class="fa fa-github"></i>
+                        Github
+                    </a>
+                </li>
+            </ul>
+            <div class="form-inline d-none d-lg-flex">
+                <a class="btn btn-light my-2 my-sm-0" href="#" id="download-bootbox">
+                    <i class="fa fa-download"></i>
+                    Download
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-3 col-xl-2">
+                <div class="bb-sidebar">
+                    <button class="btn btn-block btn-link text-dark text-left px-0 my-2 bb-nav-toggle d-md-none" type="button" data-toggle="collapse" data-target="#bb-docs-nav" aria-controls="bb-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
+                        <i class="fa fa-navicon"></i>
+                        Menu
+                    </button>
+                    <nav id="bb-docs-nav" class="collapse d-md-block">
+                        <a class="h5 mb-3" href="./">Home</a>
+                        <a class="h5 mb-3" href="./getting-started.html">Getting Started</a>
+                        <div class="mb-3">
+                            <a class="h5" href="./documentation.html">Documentation</a>
+                            <div class="ml-3">
+                                <p class="h6">
+                                    Dialogs
+                                </p>
+                                <ul class="list-unstyled ml-3 mb-2">
+                                    <li>
+                                        <a href="./documentation.html#bb-alert-dialog">Alert</a>
+                                    </li>
+                                    <li>
+                                        <a href="./documentation.html#bb-confirm-dialog">Confirm</a>
+                                    </li>
+                                    <li>
+                                        <a href="./documentation.html#bb-prompt-dialog">Prompt</a>
+                                    </li>
+                                    <li>
+                                        <a href="./documentation.html#bb-custom-dialog">Custom</a>
+                                    </li>
+                                </ul>
+                                <a class="h6" href="./documentation.html#bb-options">Options</a>
+                                <a class="h6" href="./documentation.html#bb-locales">Locales</a>
+                                <a class="h6" href="./documentation.html#bb-public-functions">Public Functions</a>
+                                <a class="h6" href="./documentation.html#bb-notes">Notes</a>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <a class="h5" href="./examples.html">Examples</a>
+                            <div class="ml-3">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="./examples.html#bb-alert-dialog">Alert</a>
+                                    </li>
+                                    <li>
+                                        <a href="./examples.html#bb-confirm-dialog">Confirm</a>
+                                    </li>
+                                    <li>
+                                        <a href="./examples.html#bb-prompt-dialog">Prompt</a>
+                                    </li>
+                                    <li>
+                                        <a href="./examples.html#bb-custom-dialog">Custom</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-9 col-xl-8">
+                <main class="bb-main p-md-5 p-3">
+                    <div class="bb-header">
+                        <div id="content" class="jumbotron jumbotron-fluid" tabindex="-1">
+                            <div class="bb-masthead">
+                                <h2 class="marque">Examples</h2>
+                                <p class="lead">
+                                    Currently viewing examples for version 5.x.
+                                </p>
+                                <div class="bb-meta">
+                                    <ul class="bb-meta-list float-md-right">
+                                        <li class="ml-auto"><span>Version 5.0.0</span></li>
+                                        <li>
+                                            <a href="https://github.com/tiesont/bootbox">
+                                                <i class="fa fa-github"></i>
+                                                Github
+                                            </a>
+                                        </li>
+                                        <li class="d-none d-lg-inline-block">
+                                            <a href="./v4.x/">4.x docs</a> &middot;
+                                            <a href="./v3.x/">3.x docs</a> &middot;
+                                            <a href="./v2.x/">2.x docs</a>
+                                        </li>
+                                    </ul>
+                                    <p>Compatible with Bootstrap <b>3</b> and <b>4</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bb-content">
+                        <section class="intro">
+                            <p>
+                                The examples below attempt to demonstrate the myriad ways in which you can use Bootbox.js. Where functionality amongst the dialogs is nearly identical,
+                                the example will indicate to which functions the example applies.
+                            </p>
+                            <p>
+                                Have an example you'd like to add? <a href="https://github.com/makeusabrew/bootbox/issues">Open a new issue</a>, or add a pull-request with your example 
+                                added to this page.
+                            </p>
+                            <div class="collapse">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <nav class="nav flex-column">
+                                            <h4 class="nav-header">Alert</h4>
+                                            <a class="nav-link active" href="#">Basic</a>
+                                            <h6 class="nav-header">Advanced Usage</h6>
+                                            <a class="nav-link" href="#">Custom class</a>
+                                            <a class="nav-link" href="#">Dismiss On Overlay Click</a>
+                                            <a class="nav-link" href="#">Using Locales</a>
+                                            <a class="nav-link" href="#">Sizes</a>
+                                        </nav>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <nav class="nav flex-column">
+                                            <h4 class="nav-header">Confirm</h4>
+                                            <a class="nav-link" href="#">Basic</a>
+                                            <h6 class="nav-header">Advanced Usage</h6>
+                                            <a class="nav-link" href="#">Alternate Text or Colors</a>
+                                            <a class="nav-link" href="#">Buttons with Icons</a>
+                                            <a class="nav-link" href="#">Using Locales</a>
+                                        </nav>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <nav class="nav flex-column">
+                                            <h4 class="nav-header">Prompt</h4>
+                                            <a class="nav-link" href="#">Basic</a>
+                                            <h6 class="nav-header">Advanced Usage - Input Type</h6>
+                                            <a class="nav-link" href="#">Using Checkboxes</a>
+                                            <a class="nav-link" href="#">Using Date</a>
+                                            <a class="nav-link" href="#">Using Email</a>
+                                            <a class="nav-link" href="#">Using Number</a>
+                                            <a class="nav-link" href="#">Using Password</a>
+                                            <a class="nav-link" href="#">Using Radiobuttons</a>
+                                            <a class="nav-link" href="#">Using Range</a>
+                                            <a class="nav-link" href="#">Using Select</a>
+                                            <a class="nav-link" href="#">Using Textarea</a>
+                                            <a class="nav-link" href="#">Using Time</a>
+                                            <h6 class="nav-header">Advanced Usage - Validation</h6>
+                                            <a class="nav-link" href="#">Using Maxlength</a>
+                                            <a class="nav-link" href="#">Using Pattern</a>
+                                            <a class="nav-link" href="#">Using Required</a>
+                                        </nav>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <nav class="nav flex-column">
+                                            <h4 class="nav-header">Dialog</h4>
+                                            <a class="nav-link" href="#">Basic Usage</a>
+                                            <a class="nav-link" href="#">Using init function</a>
+                                            <a class="nav-link" href="#">Using as "loading" overlay</a>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+
+                        <section id="bb-alert-dialog" class="bb-section">
+                            <div class="bb-section-header">
+                                <div class="float-right">
+                                    <a href="./documentation.html#bb-alert-dialog" class="btn btn-link">Documentation</a>
+                                    |
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#bb-alert-examples" aria-expanded="false" aria-controls="bb-alert-examples">
+                                        Show / Hide
+                                    </button>
+                                </div>
+                                <h2 class="page-header">
+                                    Alert
+                                </h2>
+                            </div>
+                            <div id="bb-alert-examples" class="collapse show">
+                                <div>
+                                    <ul class="bb-examples-list">
+                                        <li class="bb-example">
+                                            <h5 id="bb-alert-basic" class="bb-anchor">Basic usage</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-default">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.alert("This is the default alert!");</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="alert-basic-callback" class="bb-anchor">Basic usage, with callback</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-callback">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.alert("This is an alert with a callback!", function(){ console.log('This was logged in the callback!'); });</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="alert-basic-options" class="bb-anchor">Basic usage, using options object</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-options">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.alert({
+    message: "This is an alert with a callback!",
+    callback: function () {
+        console.log('This was logged in the callback!');
+    }
+})</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="alert-small-size" class="bb-anchor">
+                                                Small dialog
+                                            </h5>
+                                            <p class="text-sm">
+                                                Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-small">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.alert({
+    message: "This is the small alert!",
+    size: 'small'
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-danger"></i> Requires Bootstrap <b>3.1.0</b> or newer.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="alert-large-size" class="bb-anchor">
+                                                Large dialog
+                                            </h5>
+                                            <p class="text-sm">
+                                                Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-large">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.alert({
+    message: "This is the large alert!",
+    size: 'large'
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-danger"></i> Requires Bootstrap <b>3.1.0</b> or newer.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="alert-custom-class" class="bb-anchor">
+                                                Custom CSS class (using <a href="https://daneden.github.io/animate.css/">Animate.css</a>)
+                                            </h5>
+                                            <p class="text-sm">
+                                                Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-custom-class">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.alert({
+    message: "This is an alert with additional classes!",
+    className: 'rubberBand animated'
+});</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="alert-dismiss-on-click" class="bb-anchor">
+                                                Dismiss with overlay click
+                                            </h5>
+                                            <p class="text-sm">
+                                                Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-overlay-click">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.alert({
+    message: "This alert can be dismissed by clicking on the background!",
+    backdrop: true
+});</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="alert-locale" class="bb-anchor">
+                                                Using a locale
+                                            </h5>
+                                            <p class="text-sm">
+                                                Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-locale">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.alert({
+    message: "This alert uses the Arabic locale!",
+    locale: 'ar'
+});</code></pre>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="bb-confirm-dialog" class="bb-section">
+                            <div class="bb-section-header">
+                                <div class="float-right">
+                                    <a href="./documentation.html#bb-confirm-dialog" class="btn btn-link">Documentation</a>
+                                    |
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#bb-confirm-examples" aria-expanded="false" aria-controls="bb-confirm-examples">
+                                        Show / Hide
+                                    </button>
+                                </div>
+                                <h2 class="page-header">Confirm</h2>
+                            </div>
+                            <div id="bb-confirm-examples" class="collapse show">
+                                <div>
+                                    <ul class="bb-examples-list">
+                                        <li class="bb-example">
+                                            <h5 id="confirm-basic" class="bb-anchor">Basic usage</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-default">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.confirm("This is the default confirm!", function(result){ console.log('This was logged in the callback: ' + result); });</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="confirm-alternate-text-color" class="bb-anchor">
+                                                With alternate button text and color
+                                            </h5>
+                                            <p class="text-sm">
+                                                Also applies to: <b>Alert</b>, <b>Prompt</b>, <b>Custom</b>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-options">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.confirm({
+    message: "This is a confirm with custom button text and color! Do you like it?",
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="confirm-buttons-with-icon-text" class="bb-anchor">
+                                                With icon and button text
+                                            </h5>
+                                            <p class="text-sm">
+                                                Also applies to: <b>Alert</b>, <b>Prompt</b>, <b>Custom</b>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-button-text">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.confirm({
+    title: "Destroy planet?",
+    message: "Do you want to activate the Deathstar now? This cannot be undone.",
+    buttons: {
+        cancel: {
+            label: '&lt;i class="fa fa-times"&gt;&lt;/i&gt; Cancel'
+        },
+        confirm: {
+            label: '&lt;i class="fa fa-check"&gt;&lt;/i&gt; Confirm'
+        }
+    },
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="confirm-all-locales-demo" class="bb-anchor">
+                                                Demoing all locales
+                                            </h5>
+                                            <p class="text-sm">
+                                                Also applies to: <b>Alert</b>, <b>Prompt</b>, <b>Custom</b>
+                                            </p>
+                                            <div class="form-group">
+                                                <label>Choose a locale: </label>
+                                                <select id="locales" class="custom-select" style="max-width: 200px;"></select>
+                                            </div>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-locale">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>var locale = $('#locales').val();
+            
+bootbox.confirm({
+    message: "This confirm uses the selected locale. Were the labels what you expected?",
+    locale: locale,
+    callback: function (result) {
+        Example.show('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="bb-prompt-dialog" class="bb-section">
+                            <div class="bb-section-header">
+                                <div class="float-right">
+                                    <a href="./documentation.html#bb-prompt-dialog" class="btn btn-link">Documentation</a>
+                                    |
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#bb-prompt-examples" aria-expanded="false" aria-controls="bb-prompt-examples">
+                                        Show / Hide
+                                    </button>
+                                </div>
+                                <h2 class="page-header">Prompt</h2>
+                            </div>
+                            <div id="bb-prompt-examples" class="collapse show">
+                                <div>
+                                    <p>
+                                        <b>Please note:</b> prompt requires the <code>title</code> option (when using the options object). You may use the <code>message</code> option,
+                                        but the prompt result will <b>not</b> include any form inputs from your message.
+                                    </p>
+                                    <ul class="bb-examples-list">
+                                        <li class="bb-example">
+                                            <h5 id="prompt-basic" class="bb-anchor">Basic usage</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-default">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt("This is the default prompt!", function(result){ console.log(result); });</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                If you want to style the input, you can target the <code>.bootbox-input-text</code> class.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-custom-locale" class="bb-anchor">With a custom locale</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-custom-locale">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>var locale = {
+    OK: 'I Suppose',
+    CONFIRM: 'Go Ahead',
+    CANCEL: 'Maybe Not'
+};
+            
+bootbox.addLocale('custom', locale);
+            
+bootbox.prompt({ 
+    title: "This is a prompt with a custom locale! What do you think?", 
+    locale: 'custom',
+    callback: function (result) {
+        Example.show('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-checkbox" class="bb-anchor">Prompt with checkbox</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-checkbox">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with a set of checkbox inputs!",
+    value: ['1', '3'],
+    inputType: 'checkbox',
+    inputOptions: [{
+        text: 'Choice One',
+        value: '1',
+    },
+    {
+        text: 'Choice Two',
+        value: '2',
+    },
+    {
+        text: 'Choice Three',
+        value: '3',
+    }],
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                Checkboxes are nested in an element with the class <code>.bootbox-checkbox-list</code>.
+                                                If you want to style the individual checkbox inputs, you can target the <code>.bootbox-input-checkbox</code> class.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-radios-message" class="bb-anchor">Prompt with radio buttons and a <code>message</code> value</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-radio">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with a set of radio inputs!",
+    message: '&lt;p&gt;Please select an option below:&lt;/p&gt;',
+    inputType: 'radio',
+    inputOptions: [
+    {
+        text: 'Choice One',
+        value: '1',
+    },
+    {
+        text: 'Choice Two',
+        value: '2',
+    },
+    {
+        text: 'Choice Three',
+        value: '3',
+    }
+    ],
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                Radio buttons are nested in an element with the class <code>.bootbox-radiobutton-list</code>.
+                                                If you want to style the individual radio inputs, you can target the <code>.bootbox-input-radio</code> class.
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i> When using the <code>radio</code> option, the first radio button
+                                                will be checked if <code>value</code> is missing or does not match an <code>inputOptions</code> value.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-date" class="bb-anchor">
+                                                Prompt with date
+                                            </h5>
+                                            <p class="text-sm text-danger">
+                                                Requires browser support: <a href="http://caniuse.com/#feat=input-datetime">http://caniuse.com/#feat=input-datetime</a>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-date">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with a date input!",
+    inputType: 'date',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                If you want to style the input, you can target the <code>.bootbox-input-date</code> class.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-email" class="bb-anchor">
+                                                Prompt with email
+                                            </h5>
+                                            <p class="text-sm text-danger">
+                                                Requires browser support: <a href="http://caniuse.com/#feat=email">http://caniuse.com/#feat=email</a>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-email">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with an email input!",
+    inputType: 'email',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                If you want to style the input, you can target the <code>.bootbox-input-email</code> class.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-number" class="bb-anchor">
+                                                Prompt with number
+                                            </h5>
+                                            <p class="text-sm text-danger">
+                                                Requires browser support: <a href="http://caniuse.com/#feat=input-number">http://caniuse.com/#feat=input-number</a>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-number">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with a number input!",
+    inputType: 'number',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                If you want to style the input, you can target the <code>.bootbox-input-number</code> class.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-password" class="bb-anchor">Prompt with password</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-password">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with a password input!",
+    inputType: 'password',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                If you want to style the input, you can target the <code>.bootbox-input-password</code> class.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-select" class="bb-anchor">Prompt with select</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-select">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with select!",
+    inputType: 'select',
+    inputOptions: [
+    {
+        text: 'Choose one...',
+        value: '',
+    },
+    {
+        text: 'Choice One',
+        value: '1',
+    },
+    {
+        text: 'Choice Two',
+        value: '2',
+    },
+    {
+        text: 'Choice Three',
+        value: '3',
+    }
+    ],
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                If you want to style the select, you can target the <code>.bootbox-input-select</code> class.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-textarea" class="bb-anchor">Prompt with textarea</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-textarea">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with a textarea!",
+    inputType: 'textarea',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                If you want to style the textarea, you can target the <code>.bootbox-input-textarea</code> class.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-time" class="bb-anchor">
+                                                Prompt with time
+                                            </h5>
+                                            <p class="text-sm text-danger">
+                                                Requires browser support: <a href="http://caniuse.com/#feat=input-datetime">http://caniuse.com/#feat=input-datetime</a>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-time">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with a time input!",
+    inputType: 'time',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                If you want to style the input, you can target the <code>.bootbox-input-time</code> class.
+                                            </p>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="prompt-with-range" class="bb-anchor">
+                                                Prompt with range
+                                            </h5>
+                                            <p class="text-sm text-danger">
+                                                Requires browser support: <a href="http://caniuse.com/#feat=input-datetime">http://caniuse.com/#feat=input-range</a>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-range">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>bootbox.prompt({
+    title: "This is a prompt with a range input!",
+    inputType: 'range',
+    min: 0,
+    max: 100,
+    step: 5,
+    value: 35,
+    callback: function (result) {
+        Example.show('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                                            <p>
+                                                <i class="fa fa-info-circle text-info"></i>
+                                                If you want to style the input, you can target the <code>.bootbox-input-range</code> class.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="bb-custom-dialog" class="bb-section">
+                            <div class="bb-section-header">
+                                <div class="float-right">
+                                    <a href="./documentation.html#bb-custom-dialog" class="btn btn-link">Documentation</a>
+                                    |
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#bb-custom-examples" aria-expanded="false" aria-controls="bb-custom-examples">
+                                        Show / Hide
+                                    </button>
+                                </div>
+                                <h2 class="page-header">Custom Dialogs</h2>
+                            </div>
+                            <div id="bb-custom-examples" class="collapse show">
+                                <div>
+                                    <p>
+                                        <b>Please note:</b> Custom dialogs accept only one argument: an options object. The only <b>required</b> property of the options object is <code>message</code>.
+                                    </p>
+                                    <ul class="bb-examples-list">
+                                        <li class="bb-example">
+                                            <h5 id="custom-dialog-as-overlay" class="bb-anchor">Custom dialog as "loading" overlay</h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="custom-dialog-as-overlay">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>var dialog = bootbox.dialog({
+    message: '&lt;p class="text-center mb-0"&gt;&lt;i class="fa fa-spin fa-cog"&gt;&lt;/i&gt; Please wait while we do something...&lt;/p&gt;',
+    closeButton: false
+});
+            
+// do something in the background
+dialog.modal('hide');</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="custom-dialog-init" class="bb-anchor">
+                                                Custom dialog, using init
+                                            </h5>
+                                            <p class="text-sm">
+                                                Also applies to: <b>Alert</b>, <b>Confirm</b>, <b>Prompt</b>
+                                            </p>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="custom-dialog-init">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>var dialog = bootbox.dialog({
+    title: 'A custom dialog with init',
+    message: '&lt;p&gt;&lt;i class="fa fa-spin fa-spinner"&gt;&lt;/i&gt; Loading...&lt;/p&gt;'
+});
+            
+dialog.init(function(){
+    setTimeout(function(){
+        dialog.find('.bootbox-body').html('I was loaded after the dialog was shown!');
+    }, 3000);
+});</code></pre>
+                                        </li>
+                                        <li class="bb-example">
+                                            <h5 id="custom-dialog-with-buttons" class="bb-anchor">
+                                                Custom dialog, with buttons and callbacks
+                                            </h5>
+                                            <p>
+                                                <button type="button" class="btn btn-primary example-button" data-bb-example-key="custom-dialog-with-buttons">Run example</button>
+                                            </p>
+                                            <pre class="prettyprint linenums"><code>var dialog = bootbox.dialog({
+    title: 'A custom dialog with buttons and callbacks',
+    message: "&lt;p&gt;This dialog has buttons. Each button has it's own callback function.&lt;/p&gt;",
+    size: 'large',
+    buttons: {
+        cancel: {
+            label: "I'm a cancel button!",
+            className: 'btn-danger',
+            callback: function(){
+                Example.show('Custom cancel clicked');
+            }
+        },
+        noclose: {
+            label: "I don't close the modal!",
+            className: 'btn-warning',
+            callback: function(){
+                Example.show('Custom button clicked');
+                return false;
+            }
+        },
+        ok: {
+            label: "I'm an OK button!",
+            className: 'btn-info',
+            callback: function(){
+                Example.show('Custom OK clicked');
+            }
+        }
+    }
+});</code></pre>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2">
+                    <span class="d-block float-right">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bootboxjs.com" data-via="makeusabrew" data-related="makeusabrew" data-size="large">Tweet</a>
+                        <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
+                        <script>
+                            !function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) {
+                                    js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+                                }
+                            }(document, "script", "twitter-wjs");
+                        </script>
+                    </span>
+                    <span class="d-block">
+                        Copyright &copy; 2011-2018 <a href="http://twitter.com/makeusabrew">Nick Payne</a>.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bb-alert alert alert-info" style="display:none;">
+        <span>The examples populate this alert with dummy content</span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="./js/bootbox.all.min.js"></script>
+
+    <script src="./vendor/js/prettify.min.js"></script>
+    <script src="./vendor/js/anchor.min.js"></script>
+
+    <script src="./js/docs.js"></script>
+    <script src="./js/example.js"></script>
+    <script src="./js/demos.js"></script>
+</body>
+</html>

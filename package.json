@@ -1,6 +1,6 @@
 {
   "name": "bootbox",
-  "version": "4.4.0",
+  "version": "5.0.0",
   "description": "Wrappers for JavaScript alert(), confirm() and other flexible dialogs using the Bootstrap framework",
   "directories": {
     "test": "tests"
@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/makeusabrew/bootbox.git"
+    "url": "git://github.com/tiesont/bootbox.git"
   },
   "author": "Nick Payne <nick@kurai.co.uk>",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "main": "bootbox.js",
+  "main": "src/bootbox.js",
   "devDependencies": {
     "chai": "^3.5.0",
     "grunt": "~0.4.1",

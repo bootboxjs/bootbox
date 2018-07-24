@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootbox.js&mdash;alert, confirm and flexible dialogs for Twitter's Bootstrap framework</title>
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" type="text/css" href="deps/css/bootstrap-2.0.0.css">
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-20517424-8']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+</head>
+<body>
+    <a href="https://github.com/makeusabrew/bootbox"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+    <div class="container">
+        <div class='navbar'>
+            <div class='navbar-inner'>
+                <div class='container'>
+                    <a class=brand href="https://github.com/makeusabrew/bootbox">Bootbox.js</a></li>
+                    <ul class='nav'>
+                        <li class="active"><a href="#about">About</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                        <li><a href="#download">Download</a></li>
+                        <li><a href="#usage">Usage</a></li>
+                        <li class=divider-vertical></li>
+                        <li><a href="https://github.com/makeusabrew/bootbox">GitHub Repository</a></li>
+                        <li><a href="http://paynedigital.com/bootbox">Read the writeup</a></li>
+                        <li><a href="http://twitter.com/makeusabrew">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h1 style='font-size:24px;' id=about>Bootbox.js&mdash;alert, confirm and flexible dialogs for Twitter's Bootstrap framework</h1>
+
+        <p><b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes using
+        <a href="http://twitter.github.com/bootstrap/javascript.html#modals">Twitter's Bootstrap modals</a>, without
+        having to worry about creating, managing or removing any of the required DOM elements or JS event handlers. Here's the simplest possible
+        example:</p>
+
+        <div class=row>
+            <div class=span10>
+                <script src="https://gist.github.com/1343123.js"> </script>
+            </div>
+            <div class=span2>
+                <p><a href="#" class="bs-alert btn"><i class="icon-play"></i> Run example</a></p>
+            </div>
+        </div>
+
+        <p>Compare that to the code you'd have to write without Bootbox:</p>
+
+        <script src="https://gist.github.com/3031607.js"> </script>
+
+        <p>The library exposes three methods designed to mimic their native JavaScript equivalents:
+        <ul>
+            <li><b>alert</b></li>
+            <li><b>confirm</b></li>
+            <li><b>prompt</b></li>
+        </ul>
+
+        <p>These methods all invoke a fourth method, <b>dialog</b>, which allows you to create your own modals with any
+        number of buttons and event handlers.</p>
+
+        <p>For a lot more information, head over to <a href="http://paynedigital.com/bootbox">the tutorial</a> and
+        <a href="http://paynedigital.com/2012/02/bootbox-two">subsequent update</a> for Bootstrap 2.x.x releases.</p>
+
+        <h2 id=examples>Examples</h2>
+
+        <p><strong>Please Note</strong> that these demos are extremely crude&mdash;please
+        feel free to fork the project and improve them. You can
+        <a href="https://github.com/makeusabrew/bootbox/blob/gh-pages/index.html">view the source for this demo page</a>
+        to get a better understanding of the minimal code required to show each dialog.</p>
+        <p>Very few of the buttons will appear to do anything other than dismiss the dialog&mdash;be sure to view
+        your browser's console output for some useful debug information.</p>
+
+        <div class="well" style="padding:8px 0">
+            <ul class="nav nav-list">
+                <li class="nav-header">Basic usage</li>
+                <li><a href="#" class="bs-alert" title="Simple Alert">Alert</a></li>
+                <li><a href="#" class="confirm">Confirm</a></li>
+                <li><a href="#" class="bs-prompt">Prompt</a></li>
+                <li class="nav-header">Advanced usage</li>
+                <li><a href="#" class="dialog">Custom Dialog</a></li>
+                <li><a href="#" class="multiple">Multiple Dialogs</a></li>
+                <li><a href="#" class="dialog-close">Programmatic Close</a></li>
+                <li><a href="#" class="generic-modal">Generic Modal</a></li>
+                <li><a href="#" class="dynamic">Dynamic Content</a></li>
+                <li><a href="#" class="icons-explicit">Iconified buttons (explicit)</a></li>
+                <li><a href="#" class="icons-override">Override alert and confirm icons (programmatic)</a></li>
+                <li><a href="#" class="no-close-button">Don&rsquo;t close if callback returns false</a></li>
+                <li><a href="#" class="prompt-default">Prompt with default value</a></li>
+                <li class="nav-header">Custom options</li>
+                <li><a href="#" class="onescape">options.onEscape &rarr; function</a></li>
+                <li><a href="#" class="nofade">options.animate &rarr; false</a></li>
+                <li><a href="#" class="nobackdrop">options.backdrop &rarr; false</a></li>
+            </ul>
+        </div>
+
+        <h2 id="download">Download</h2>
+
+        <p>The latest stable version of bootbox is <b>v2.5.1</b>. You can download the minified library <a href="https://raw.github.com/makeusabrew/bootbox/v2.5.1/bootbox.min.js">bootbox.min.js</a> for
+        use in production, or the uncompressed <a href="https://raw.github.com/makeusabrew/bootbox/v2.5.1/bootbox.js">bootbox.js</a> for use in development. I wouldn&rsquo;t recommend hotlinking to
+        either file as Github does not serve the correct mime type which may cause unexpected issues.</p>
+
+        <p>If you wish you may also <a href="https://github.com/makeusabrew/bootbox/tags">see a full list of available downloads</a>
+        or download the latest copy of the entire repository (including build files and tests)
+        in <a href="https://github.com/makeusabrew/bootbox/zipball/v2.5.1">zip</a> or
+        <a href="https://github.com/makeusabrew/bootbox/tarball/v2.5.1">tarball</a> format.</p>
+
+        <h2 id=usage>Usage</h2>
+
+        <p>In rough DOM order:</p>
+        <ol>
+            <li>Include bootstrap.css <strong>&gt;= 2.0.0</strong></li>
+            <li>Include jquery.js <strong>&gt;= 1.7.1</strong></li>
+            <li>Include bootstrap.js <strong>&gt;= 2.0.0</strong></li>
+            <li>Include bootbox.min.js</li>
+        </ol>
+        <script src="https://gist.github.com/3772170.js"> </script>
+
+        <h2>What else?</h2>
+
+        <ul>
+            <li>Check out the <a href="https://github.com/makeusabrew/bootbox/blob/gh-pages/index.html">source for this page</a></li>
+            <li>View the bootbox.js <a href="https://github.com/makeusabrew/bootbox">repository</a></li>
+            <li><a href="http://paynedigital.com/bootbox">Read the full tutorial</a>&hellip;</li>
+            <li>&hellip;and the <a href="http://paynedigital.com/2012/02/bootbox-two">updated one for v2.x.x releases</a></li>
+        </ul>
+    </div>
+    <br />
+    <div class='well container'>
+        <div style='float:right'>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://paynedigital.com/2011/11/bootbox-js-alert-confirm-dialogs-for-twitter-bootstrap" data-via="makeusabrew" data-related="makeusabrew" data-size="large">Tweet</a>
+            <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        Made by <a href="http://twitter.com/makeusabrew">@makeusabrew</a>.
+        Licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.
+    </div>
+
+    <!-- JS dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="deps/js/bootstrap-modal-2.0.0.js"></script>
+    <script type="text/javascript" src="deps/js/bootstrap-transition-2.0.0.js"></script>
+
+    <!-- IE still hasn't joined the modern world, so let's stub the console.log method -->
+    <script>
+        if (typeof console == 'undefined') {
+            var console = {
+                log: function() {}
+            };
+        }
+    </script>
+
+    <!-- bootbox code -->
+    <script type="text/javascript" src="bootbox.min.js"></script>
+    <script>
+        $(function() {
+            $("a.bs-alert").click(function(e) {
+                e.preventDefault();
+                bootbox.alert("Hello world!", function() {
+                    console.log("Alert Callback");
+                });
+            });
+
+            $("a.confirm").click(function(e) {
+                e.preventDefault();
+                bootbox.confirm("Are you sure?", function(confirmed) {
+                    console.log("Confirmed: "+confirmed);
+                });
+            });
+
+            $("a.bs-prompt").click(function(e) {
+                e.preventDefault();
+                bootbox.prompt("What is your name?", function(result) {
+                    console.log("Result: "+result);
+                });
+            });
+
+            $("a.prompt-default").click(function(e) {
+                e.preventDefault();
+                bootbox.prompt("What is your favourite JS library?", "Cancel", "OK", function(result) {
+                    console.log("Result: "+result);
+                }, "Bootbox.js");
+            });
+
+            $("a.dialog").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("I am a custom dialog", [{
+                    "label" : "Success!",
+                    "class" : "btn-success",
+                    "callback": function() {
+                        console.log("great success");
+                    }
+                }, {
+                    "label" : "Danger!",
+                    "class" : "btn-danger",
+                    "callback": function() {
+                        console.log("uh oh, look out!");
+                    }
+                }, {
+                    "label" : "Click ME!",
+                    "class" : "btn-primary",
+                    "callback": function() {
+                        console.log("Primary button");
+                    }
+                }, {
+                    "label" : "Just a button..."
+                }, {
+                    "Condensed format": function() {
+                        console.log("condensed");
+                    }
+                }]);
+            });
+
+            $("a.multiple").click(function(e) {
+                e.preventDefault();
+
+                bootbox.alert("Prepare for multiboxes...", "Argh!");
+
+                setTimeout(function() {
+                    bootbox.confirm("Are you having fun?", "No :(", "Yeah!", function(result) {
+                        if (result) {
+                            bootbox.alert("Glad to hear it!");
+                        } else {
+                            bootbox.alert("Aww boo. Click the button below to get rid of all these popups", function() {
+                                bootbox.hideAll();
+                            });
+                        }
+                    });
+                }, 1000);
+            });
+
+            $("a.dialog-close").click(function(e) {
+                e.preventDefault();
+                var box = bootbox.alert("This dialog will close in two seconds");
+                setTimeout(function() {
+                    box.modal('hide');
+                }, 2000);
+            });
+
+            $("a.generic-modal").click(function(e) {
+                e.preventDefault();
+                bootbox.modal('<img src="http://dummyimage.com/600x400/000/fff" alt=""/>', 'Modal popup!');
+            });
+
+            $("a.dynamic").click(function(e) {
+                e.preventDefault();
+                var str = $("<p>This content is actually a jQuery object, which will change in 3 seconds...</p>");
+                bootbox.alert(str);
+                setTimeout(function() {
+                    str.html("See?");
+                }, 3000);
+            });
+
+            $("a.onescape").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("Dismiss this dialog with the escape key...", {
+                    "label" : "Press Escape!",
+                    "class" : "btn-danger",
+                    "callback": function() {
+                        console.log("Oi! Press escape!");
+                    }
+                }, {
+                    "onEscape": function() {
+                        bootbox.alert("This alert was triggered by the onEscape callback of the previous dialog", "Dismiss");
+                    }
+                });
+            });
+
+            $("a.nofade").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("This dialog does not fade in or out, and thus does not depend on <strong>bootstrap-transitions.js</strong>.",
+                {
+                    "OK": function() {}
+                }, {
+                    "animate": false
+                });
+            });
+
+            $("a.nobackdrop").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("This dialog does not have a backdrop element",
+                {
+                    "OK": function() {}
+                }, {
+                    "backdrop": false
+                });
+            });
+
+            $("a.icons-explicit").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("Custom dialog with icons being passed explicitly into <b>bootbox.dialog</b>.", [{
+                    "label" : "Success!",
+                    "class" : "btn-success",
+                    "icon"  : "icon-ok-sign icon-white"
+                }, {
+                    "label" : "Danger!",
+                    "class" : "btn-danger",
+                    "icon"  : "icon-warning-sign icon-white"
+                }, {
+                    "label" : "Click ME!",
+                    "class" : "btn-primary",
+                    "icon"  : "icon-ok icon-white"
+                }, {
+                    "label" : "Just a button...",
+                    "icon"  : "icon-picture"
+                }]);
+            });
+
+            $("a.icons-override").click(function(e) {
+                e.preventDefault();
+                bootbox.setIcons({
+                    "OK"      : "icon-ok icon-white",
+                    "CANCEL"  : "icon-ban-circle",
+                    "CONFIRM" : "icon-ok-sign icon-white"
+                });
+
+                bootbox.confirm("This dialog invokes <b>bootbox.setIcons()</b> to set icons for the standard three labels of OK, CANCEL and CONFIRM, before calling a normal <b>bootbox.confirm</b>", function(result) {
+                    bootbox.alert("This dialog is just a standard <b>bootbox.alert()</b>. <b>bootbox.setIcons()</b> only needs to be set once to affect all subsequent calls", function() {
+                        bootbox.setIcons(null);
+                    });
+                });
+            });
+
+            $("a.no-close-button").click(function(e) {
+                e.preventDefault();
+                bootbox.dialog("If a button's handler now explicitly returns <b>false</b>, the dialog will not be closed. Note that if anything <b>!== false</b> - e.g. nothing, true, null etc - is returned, the dialog will close.", [{
+                    "I'll close on click": function() {
+                        console.log("close on click");
+                        return true;
+                    },
+                }, {
+                    "I won't!": function() {
+                        console.log("returning false...");
+                        return false;
+                    }
+                }]);
+            });
+        });
+    </script>
+</body>
