@@ -613,6 +613,10 @@
     if (options.className) {
       dialog.addClass(options.className);
     }
+    
+    if (options.dialogClassName) {
+      innerDialog.addClass(options.dialogClassName);
+    }
 
     if (options.size === "large") {
       innerDialog.addClass("modal-lg");
