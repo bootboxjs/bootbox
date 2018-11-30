@@ -166,7 +166,7 @@ describe("bootbox locales", function() {
       return expect(this.labels.cancel).to.equal("Отмена");
     });
     return it("shows the correct CONFIRM translation", function() {
-      return expect(this.labels.confirm).to.equal("Применить");
+      return expect(this.labels.confirm).to.equal("Подтвердить");
     });
   });
   describe("Indonesian", function() {
