@@ -66,7 +66,7 @@ describe("bootbox.dialog", function() {
           };
         });
         return it("throws an error", function() {
-          return expect(this.create).to["throw"](/button with key ok must be an object/);
+          return expect(this.create).to["throw"](/button with key "ok" must be an object/);
         });
       });
     });
@@ -176,7 +176,7 @@ describe("bootbox.dialog", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         return it("should hide the modal", function() {
@@ -264,7 +264,7 @@ describe("bootbox.dialog", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          return it("should pass the dialog as `this`", function() {
+          return it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
         });
@@ -280,7 +280,7 @@ describe("bootbox.dialog", function() {
           })(this);
         });
         return it("throws an error", function() {
-          return expect(this.badCreate).to["throw"](/button with key Short form must be an object/);
+          return expect(this.badCreate).to["throw"](/button with key "Short form" must be an object/);
         });
       });
     });
@@ -364,7 +364,7 @@ describe("bootbox.dialog", function() {
           it("should invoke the callback", function() {
             return expect(this.callback).to.have.been.called;
           });
-          it("should pass the dialog as `this`", function() {
+          it('should pass the dialog as "this"', function() {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it("should hide the modal", function() {
@@ -389,7 +389,7 @@ describe("bootbox.dialog", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         return it("should not hide the modal", function() {
@@ -403,7 +403,7 @@ describe("bootbox.dialog", function() {
         it("should invoke the callback", function() {
           return expect(this.callback).to.have.been.called;
         });
-        it("should pass the dialog as `this`", function() {
+        it('should pass the dialog as "this"', function() {
           return expect(this.callback.thisValues[0]).to.equal(this.dialog);
         });
         return it("should not hide the modal", function() {

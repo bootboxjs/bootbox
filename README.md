@@ -25,46 +25,39 @@ The project is also hosted on [Travis CI](https://travis-ci.org/makeusabrew/boot
 pull requests **please** ensure your tests pass as failing requests will be rejected. See the
 [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for more information.
 
-## Building a minified release
-
-The repository no longer contains a minified bootbox.min.js file - this is now only generated
-[for releases](https://github.com/makeusabrew/bootbox/releases). To build your own minified copy
-for use in development simply run ```npm install``` if you haven't already, followed by ```grunt uglify```.
-This will generate a bootbox.min.js file in your working directory.
-
 ## A note on Bootstrap dependencies
+
+Bootbox **5.0.0** is the first release to support Bootstrap 4.0.0.
 
 Bootbox **4.0.0** is the first release to support Bootstrap 3.0.0.
 
 Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
-Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/#dependencies).
+Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-### Roadmap
+### Latest Release: 5.0.0
 
-The latest major release of Bootbox - 4.0.0 - involved a total rewrite of the
-internal code and introduced an entirely new public API. It has not re-implemented
-some functionality from the 3.x series as of yet; this will be addressed in the
-form of new minor releases. Please feel free to add feedback and requests.
+- Updates Bootbox to be compatible with both Bootstrap 4 and Bootstrap 3.
+- Pulls button locale options to separate file
+- Various bugfixes
 
-There is a [partial roadmap](https://github.com/makeusabrew/bootbox/issues/545) for the next major release (5.x). Subject to change at any time. The primary goal will be Bootstrap 4 compatibility, which is still a moving target at the moment. If you would like to contribute to the next version of Bootbox, please work from the [v5.x](https://github.com/makeusabrew/bootbox/tree/v5.x) branch when forking the repository.
+#### Prompt
 
-### Latest Release: 4.4.0
+- Adds new input types for prompt:
+  - radio
+  - range
+- Adds prompt input constraints for `min`, `max`, `step`, `maxlength`, `pattern`, and `required`
+- Adds `pattern` option for prompt inputs
+- Allows `message` option for prompt
+- Refactors prompt function to use the same dialog factory as alert and confirm.
 
-* Allow `backdrop` options of `true` and `false` to dismiss modals
-* Pass dialog as `this` value in callbacks
-* Bootstrap 3.3.2 compatibility
-* jQuery 1.11.2 compatibility
-* Add support for `maxlength` prompt input attribute
-* Gracefully detect lack of Bootstrap library rather than crashing
-* Expose `addLocale` and `removeLocale` for custom locale settings
-* Expose `setLocale` helper to select a locale rather than using `setDefaults("locale", ...)`
-* Add Hungarian locale
-* Add Croatian locale
-* Add Bulgarian locale
-* Add Thai locale
-* Add Persian locale
-* Add Albanian locale
+#### Dialog options
+
+- Adds `locale` option - allows locale to be set on a dialog-by-dialog basis
+- Adds `swapButtonOrder` option to allow reversing the default button order
+- Adds `centerVertical` option - adds support for vertically-centered dialogs (requires Bootstrap 4)
+
+
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 

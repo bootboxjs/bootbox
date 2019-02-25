@@ -1,4 +1,26 @@
-### Latest Release: 4.4.0
+### Latest Release: 5.0.0
+
+- Updates Bootbox to be compatible with both Bootstrap 4 and Bootstrap 3.
+- Pulls button locale options to separate file
+- Various bugfixes
+
+#### Prompt
+
+- Adds new input types for prompt:
+  - radio
+  - range
+- Adds prompt input constraints for `min`, `max`, `step`, `maxlength`, `pattern`, and `required`
+- Adds `pattern` option for prompt inputs
+- Allows `message` option for prompt
+- Refactors prompt function to use the same dialog factory as alert and confirm.
+
+#### Dialog options
+
+- Adds `locale` option - allows locale to be set on a dialog-by-dialog basis
+- Adds `swapButtonOrder` option to allow reversing the default button order
+- Adds `centerVertical` option - adds support for vertically-centered dialogs (requires Bootstrap 4)
+
+### 4.4.0
 
 * Allow `backdrop` options of `true` and `false` to dismiss modals
 * Pass dialog as `this` value in callbacks
