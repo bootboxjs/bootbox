@@ -1,3 +1,10 @@
+/*! @preserve
+ * bootbox.locales.js
+ * version: 5.0.0
+ * author: Nick Payne <nick@kurai.co.uk>
+ * license: MIT
+ * http://bootboxjs.com/
+ */
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['bootbox'], factory);
@@ -236,7 +243,7 @@
     bootbox.addLocale('ru', {
       OK: 'OK',
       CANCEL: 'Отмена',
-      CONFIRM: 'Применить'
+      CONFIRM: 'Подтвердить'
     });
   })();
 

@@ -8,3 +8,4 @@ tests/coverage
 build/size.csv
 composer.lock
 .vs
+.vscode

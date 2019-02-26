@@ -1,18 +1,21 @@
-### Latest Release: 5.0.0
+## 5.0.0 (Latest Release)
 
 - Updates Bootbox to be compatible with both Bootstrap 4 and Bootstrap 3.
 - Pulls button locale options to separate file
+- Corrects Russion locale
+- Changes default button trigger to target the button with the `bootbox-accept` class; this corrects instances where no button has the `btn-primary` class.
 - Various bugfixes
 
 #### Prompt
 
+- Refactors prompt function to use the same dialog factory as alert and confirm
 - Adds new input types for prompt:
-  - radio
-  - range
+  - `radio`
+  - `range`
 - Adds prompt input constraints for `min`, `max`, `step`, `maxlength`, `pattern`, and `required`
 - Adds `pattern` option for prompt inputs
 - Allows `message` option for prompt
-- Refactors prompt function to use the same dialog factory as alert and confirm.
+- Allows `multiple` option for prompt when used with `inputType` set to `select`
 
 #### Dialog options
 
@@ -20,7 +23,7 @@
 - Adds `swapButtonOrder` option to allow reversing the default button order
 - Adds `centerVertical` option - adds support for vertically-centered dialogs (requires Bootstrap 4)
 
-### 4.4.0
+## 4.4.0
 
 * Allow `backdrop` options of `true` and `false` to dismiss modals
 * Pass dialog as `this` value in callbacks
@@ -37,9 +40,9 @@
 * Add Persian locale
 * Add Albanian locale
 
-## 4.3.0
+### 4.3.0
 
-* Add `size` option (large, small)
+* Add `size` option (`large`, `small`)
 * Stop propagation on form submit
 * Return bootbox object from `hideAll`
 * Add Portuguese locale
@@ -84,7 +87,7 @@
 * Fix ```backdrop: true``` not firing close handler (GH-77)
 * Replace various configuration methods with one ```setDefaults```
 
-### 3.3.0
+## 3.3.0
 
 * Add Polish translation (GH-93)
 * Add Danish translation (GH-96)
@@ -118,7 +121,7 @@
 * use ```.on``` instead of ```.bind```
 * commentify code a bit more
 
-### 2.5.1
+## 2.5.1
 
 **This was the last version of the library to support Bootstrap 2.0.x**
 
@@ -195,7 +198,7 @@
 * Added ```bootbox.animate(bool)``` option to set default animation preference
 * Animated dialogs now rely on ```bootstrap-transitions.js``` as required by Bootstrap 2.0
 
-### 1.1.2
+## 1.1.2
 
 * Added licensing information to README
 

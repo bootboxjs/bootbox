@@ -6,7 +6,7 @@
     "newcap": true,
     "strict": true,
     "trailing": true,
-    "quotmark": "double",
+    "quotmark": "single",
     "browser": true,
 
     "globals": {
@@ -19,6 +19,7 @@
       "require": true,
       "expect": true,
       "bootbox": true,
-      "sinon": true
+      "sinon": true,
+      "$": false
     }
 }
