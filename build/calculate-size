@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-SRC="bootbox.js"
+SRC="src/bootbox.js"
 MIN="/tmp/bootbox.min.js"
 
 uglifyjs $SRC -c -m > $MIN

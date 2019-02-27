@@ -3,6 +3,7 @@ describe('bootbox.confirm', function() {
   'use strict';
   describe('basic usage tests', function() {
     describe('with one argument', function() {
+
       describe('where the argument is not an object', function() {
         beforeEach(function() {
           return this.create = function() {
@@ -10,10 +11,12 @@ describe('bootbox.confirm', function() {
           };
         });
         return it('throws an error', function() {
-          return expect(this.create).throw(/confirm requires a callback/);
+          return expect(this.create).throw('confirm requires a callback');
         });
       });
-      return describe('where the argument is an object', function() {
+
+
+      describe('where the argument is an object', function() {
         beforeEach(function() {
           this.options = {};
           return this.create = (function(_this) {
@@ -22,6 +25,8 @@ describe('bootbox.confirm', function() {
             };
           })(this);
         });
+
+
         describe('with a message property', function() {
           beforeEach(function() {
             return this.options.message = 'Are you sure?';
@@ -30,6 +35,8 @@ describe('bootbox.confirm', function() {
             return expect(this.create).throw(/confirm requires a callback/);
           });
         });
+
+
         describe('with a callback property', function() {
           describe('where the callback is not a function', function() {
             beforeEach(function() {
@@ -39,26 +46,35 @@ describe('bootbox.confirm', function() {
               return expect(this.create).throw(/confirm requires a callback/);
             });
           });
-          return describe('where the callback is a function', function() {
+          
+          describe('where the callback is a function', function() {
             beforeEach(function() {
               return this.options.callback = function() {
                 return true;
               };
             });
             return it('throws an error requiring a message', function() {
-              return expect(this.create).to.throw(/Please specify a message/);
+              return expect(this.create).to.throw(/"message" option must not be null or an empty string./);
             });
           });
         });
-        return describe('with a message and a callback', function() {
+
+        
+        describe('with a message and a callback', function() {
           beforeEach(function() {
-            return this.options = {
+            var _this = this;
+            this.options = {
               callback: function() {
                 return true;
               },
               message: 'Are you sure?'
             };
+        
+            return this.create = function() {
+              _this.dialog = bootbox.confirm(_this.options);
+            };
           });
+
           it('does not throw an error', function() {
             return expect(this.create).not.throw(Error);
           });
@@ -70,17 +86,19 @@ describe('bootbox.confirm', function() {
             return expect(this.dialog.find('.btn:last').text()).to.equal('OK');
           });
           return it('adds the correct button classes', function() {
-            expect(this.dialog.find('.btn:first').hasClass('btn-default')).to.be.true();
-            expect(this.dialog.find('.btn:first').hasClass('btn-secondary')).to.true();
-            expect(this.dialog.find('.btn:first').hasClass('bootbox-cancel')).to.true();
+            expect(this.dialog.find('.btn:first').hasClass('btn-default')).to.be.true;
+            expect(this.dialog.find('.btn:first').hasClass('btn-secondary')).to.true;
+            expect(this.dialog.find('.btn:first').hasClass('bootbox-cancel')).to.true;
 
-            expect(this.dialog.find('.btn:last').hasClass('btn-primary')).to.true();
-            return expect(this.dialog.find('.btn:last').hasClass('bootbox-accept')).to.true();
+            expect(this.dialog.find('.btn:last').hasClass('btn-primary')).to.true;
+            return expect(this.dialog.find('.btn:last').hasClass('bootbox-accept')).to.true;
           });
         });
       });
     });
-    return describe('with two arguments', function() {
+
+
+    describe('with two arguments', function() {
       describe('where the second argument is not a function', function() {
         beforeEach(function() {
           return this.create = (function(_this) {
@@ -93,7 +111,8 @@ describe('bootbox.confirm', function() {
           return expect(this.create).throw(/confirm requires a callback/);
         });
       });
-      return describe('where the second argument is a function', function() {
+      
+      describe('where the second argument is a function', function() {
         beforeEach(function() {
           return this.create = (function(_this) {
             return function() {
@@ -110,26 +129,29 @@ describe('bootbox.confirm', function() {
           return expect(this.dialog).to.be.an('object');
         });
         it('applies the bootbox-confirm class to the dialog', function() {
-          return expect(this.dialog.hasClass('bootbox-confirm')).to.true();
+          return expect(this.dialog.hasClass('bootbox-confirm')).to.true;
         });
         it('adds the correct button labels', function() {
           expect(this.dialog.find('.btn:first').text()).to.equal('Cancel');
           return expect(this.dialog.find('.btn:last').text()).to.equal('OK');
         });
         it('adds the correct button classes', function() {
-          expect(this.dialog.find('.btn:first').hasClass('btn-default')).to.true();
-          expect(this.dialog.find('.btn:first').hasClass('btn-secondary')).to.true();
-          expect(this.dialog.find('.btn:first').hasClass('bootbox-cancel')).to.true();
+          expect(this.dialog.find('.btn:first').hasClass('btn-default')).to.true;
+          expect(this.dialog.find('.btn:first').hasClass('btn-secondary')).to.true;
+          expect(this.dialog.find('.btn:first').hasClass('bootbox-cancel')).to.true;
 
-          expect(this.dialog.find('.btn:last').hasClass('btn-primary')).to.true();
-          return expect(this.dialog.find('.btn:last').hasClass('bootbox-accept')).to.true();
+          expect(this.dialog.find('.btn:last').hasClass('btn-primary')).to.true;
+          return expect(this.dialog.find('.btn:last').hasClass('bootbox-accept')).to.true;
         });
         return it('shows the dialog', function() {
-          return expect(this.dialog.is(':visible')).to.true();
+          return expect(this.dialog.is(':visible')).to.true;
         });
       });
+
     });
   });
+
+
   describe('configuration options tests', function() {
     beforeEach(function() {
       this.options = {
@@ -144,6 +166,7 @@ describe('bootbox.confirm', function() {
         };
       })(this);
     });
+
     describe('with a custom cancel button', function() {
       beforeEach(function() {
         this.options.buttons = {
@@ -157,9 +180,10 @@ describe('bootbox.confirm', function() {
       });
       return it('adds the correct cancel button', function() {
         expect(this.button.text()).to.equal('Custom cancel');
-        return expect(this.button.hasClass('btn-danger')).to.true();
+        return expect(this.button.hasClass('btn-danger')).to.true;
       });
     });
+
     describe('with a custom confirm button', function() {
       beforeEach(function() {
         this.options.buttons = {
@@ -173,10 +197,11 @@ describe('bootbox.confirm', function() {
       });
       return it('adds the correct confirm button', function() {
         expect(this.button.text()).to.equal('Custom confirm');
-        return expect(this.button.hasClass('btn-warning')).to.true();
+        return expect(this.button.hasClass('btn-warning')).to.true;
       });
     });
-    return describe('with an unrecognised button key', function() {
+
+    describe('with an unrecognised button key', function() {
       beforeEach(function() {
         return this.options.buttons = {
           'Bad key': {
@@ -190,7 +215,9 @@ describe('bootbox.confirm', function() {
       });
     });
   });
-  return describe('callback tests', function() {
+
+
+  describe('callback tests', function() {
     describe('with a simple callback', function() {
       beforeEach(function() {
         this.callback = sinon.spy();
@@ -200,6 +227,7 @@ describe('bootbox.confirm', function() {
         });
         return this.hidden = sinon.spy(this.dialog, 'modal');
       });
+
       describe('when dismissing the dialog by clicking OK', function() {
         beforeEach(function() {
           return this.dialog.find('.bootbox-accept').trigger('click');
@@ -217,6 +245,7 @@ describe('bootbox.confirm', function() {
           return expect(this.hidden).to.have.been.calledWithExactly('hide');
         });
       });
+
       describe('when dismissing the dialog by clicking Cancel', function() {
         beforeEach(function() {
           return this.dialog.find('.bootbox-cancel').trigger('click');
@@ -234,7 +263,8 @@ describe('bootbox.confirm', function() {
           return expect(this.hidden).to.have.been.calledWithExactly('hide');
         });
       });
-      return describe('when triggering the escape event', function() {
+      
+      describe('when triggering the escape event', function() {
         beforeEach(function() {
           return this.dialog.trigger('escape.close.bb');
         });
@@ -252,7 +282,9 @@ describe('bootbox.confirm', function() {
         });
       });
     });
-    return describe('with a callback which returns false', function() {
+    
+    
+    describe('with a callback which returns false', function() {
       beforeEach(function() {
         this.callback = sinon.stub();
         this.callback.returns(false);
@@ -262,6 +294,7 @@ describe('bootbox.confirm', function() {
         });
         return this.hidden = sinon.spy(this.dialog, 'modal');
       });
+
       describe('when dismissing the dialog by clicking OK', function() {
         beforeEach(function() {
           return this.dialog.find('.bootbox-accept').trigger('click');
@@ -279,6 +312,7 @@ describe('bootbox.confirm', function() {
           return expect(this.hidden).not.to.have.been.called;
         });
       });
+      
       describe('when dismissing the dialog by clicking Cancel', function() {
         beforeEach(function() {
           return this.dialog.find('.bootbox-cancel').trigger('click');
@@ -296,7 +330,8 @@ describe('bootbox.confirm', function() {
           return expect(this.hidden).not.to.have.been.called;
         });
       });
-      return describe('when triggering the escape event', function() {
+      
+      describe('when triggering the escape event', function() {
         beforeEach(function() {
           return this.dialog.trigger('escape.close.bb');
         });
@@ -313,6 +348,7 @@ describe('bootbox.confirm', function() {
           return expect(this.hidden).not.to.have.been.called;
         });
       });
+
     });
   });
 });

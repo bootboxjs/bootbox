@@ -1,9 +1,5 @@
 module.exports = function(params) {
-
   'use strict';
-
-  console.log('Vendor files: ' + params.vendor.join(', '));
-
   return function(config) {
 
     return config.set({
@@ -17,14 +13,11 @@ module.exports = function(params) {
 
         params.vendor,
 
-        params.src || 'bootbox.js',
+        params.src || 'src/bootbox.js',
 
         ['tests/**/*.test.js']
       ),
       exclude: [],
-      preprocessors: {
-        'src/bootbox.js': ['coverage']
-      },
       reporters: ['dots', 'coverage', 'junit'],
       port: 9876,
       colors: true,

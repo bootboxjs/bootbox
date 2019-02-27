@@ -49,6 +49,7 @@ Much more dependency information can be found [on the Bootbox website](http://bo
 - Adds prompt input constraints for `min`, `max`, `step`, `maxlength`, `pattern`, and `required`
 - Adds `pattern` option for prompt inputs
 - Allows `message` option for prompt
+- Allows `multiple` option for prompt (when using the `select` input type)
 - Refactors prompt function to use the same dialog factory as alert and confirm.
 
 #### Dialog options
@@ -65,7 +66,7 @@ For a full list of releases and changes please see [the changelog](https://githu
 
 (The MIT License)
 
-Copyright (C) 2011-2018 by Nick Payne <nick@kurai.co.uk>
+Copyright (C) 2011-2019 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

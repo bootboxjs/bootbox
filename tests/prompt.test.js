@@ -24,10 +24,10 @@ describe('bootbox.prompt', function () {
           };
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw(/prompt requires a callback/);
+          return expect(this.create).to.throw('prompt requires a callback');
         });
       });
-      return describe('where the argument is an object', function () {
+      describe('where the argument is an object', function () {
         beforeEach(function () {
           this.options = {};
           return this.create = (function (_this) {
@@ -36,24 +36,29 @@ describe('bootbox.prompt', function () {
             };
           })(this);
         });
+        
         describe('with a title property', function () {
           beforeEach(function () {
             return this.options.title = 'What is your name?';
           });
+
           it('throws an error requiring a callback', function () {
-            return expect(this.create).to.throw(/prompt requires a callback/);
+            return expect(this.create).to.throw('prompt requires a callback');
           });
-          return describe('and a callback property', function () {
-            return describe('where the callback is not a function', function () {
+          
+          describe('and a callback property', function () {
+            describe('where the callback is not a function', function () {
               beforeEach(function () {
                 return this.options.callback = 'Not a function';
               });
               return it('throws an error requiring a callback', function () {
-                return expect(this.create).to.throw(/prompt requires a callback/);
+                return expect(this.create).to.throw('prompt requires a callback');
               });
             });
           });
         });
+
+
         describe('with a callback function', function () {
           beforeEach(function () {
             return this.options.callback = function () {
@@ -61,18 +66,26 @@ describe('bootbox.prompt', function () {
             };
           });
           return it('throws an error requiring a title', function () {
-            return expect(this.create).to.throw(/prompt requires a title/);
+            return expect(this.create).to.throw('prompt requires a title');
           });
         });
-        return describe('with a title and a callback', function () {
+
+
+        describe('with a title and a callback', function () {
           beforeEach(function () {
-            return this.options = {
+            var _this = this;
+            this.options = {
               callback: function () {
                 return true;
               },
               title: 'What is your name?'
             };
+            
+            return this.create = function() {
+              _this.dialog = bootbox.prompt(_this.options);
+            };
           });
+
           it('does not throw an error', function () {
             return expect(this.create).not.to.throw(Error);
           });
@@ -80,24 +93,26 @@ describe('bootbox.prompt', function () {
             return expect(this.dialog).to.be.an('object');
           });
           it('applies the bootbox-prompt class to the dialog', function () {
-            return expect(this.dialog.hasClass('bootbox-prompt')).to.be.true();
+            return expect(this.dialog.hasClass('bootbox-prompt')).to.be.true;
           });
           it('adds the correct button labels', function () {
             expect(this.dialog.find('.btn:first').text()).to.equal('Cancel');
             return expect(this.dialog.find('.btn:last').text()).to.equal('OK');
           });
           return it('adds the correct button classes', function () {
-            expect(this.dialog.find('.btn:first').hasClass('btn-default')).to.be.true();
-            expect(this.dialog.find('.btn:first').hasClass('btn-secondary')).to.be.true();
-            expect(this.dialog.find('.btn:first').hasClass('bootbox-cancel')).to.be.true();
+            expect(this.dialog.find('.btn:first').hasClass('btn-default')).to.be.true;
+            expect(this.dialog.find('.btn:first').hasClass('btn-secondary')).to.be.true;
+            expect(this.dialog.find('.btn:first').hasClass('bootbox-cancel')).to.be.true;
   
-            expect(this.dialog.find('.btn:last').hasClass('btn-primary')).to.be.true();
-            return expect(this.dialog.find('.btn:last').hasClass('bootbox-accept')).to.be.true();
+            expect(this.dialog.find('.btn:last').hasClass('btn-primary')).to.be.true;
+            return expect(this.dialog.find('.btn:last').hasClass('bootbox-accept')).to.be.true;
           });
         });
       });
     });
-    return describe('with two arguments', function () {
+
+
+    describe('with two arguments', function () {
       describe('where the second argument is not a function', function () {
         beforeEach(function () {
           return this.create = (function (_this) {
@@ -107,10 +122,11 @@ describe('bootbox.prompt', function () {
           })(this);
         });
         return it('throws an error requiring a callback', function () {
-          return expect(this.create).to.throw(/prompt requires a callback/);
+          return expect(this.create).to.throw('prompt requires a callback');
         });
       });
-      return describe('where the second argument is a function', function () {
+
+      describe('where the second argument is a function', function () {
         beforeEach(function () {
           return this.create = (function (_this) {
             return function () {
@@ -120,6 +136,7 @@ describe('bootbox.prompt', function () {
             };
           })(this);
         });
+
         it('does not throw an error', function () {
           return expect(this.create).not.to.throw(Error);
         });
@@ -131,27 +148,27 @@ describe('bootbox.prompt', function () {
           return expect(this.text('.btn:last')).to.equal('OK');
         });
         it('adds the correct button classes', function () {
-          expect(this.dialog.find('.btn:first').hasClass('btn-default')).to.be.true();
-          expect(this.dialog.find('.btn:first').hasClass('btn-secondary')).to.be.true();
-          expect(this.dialog.find('.btn:first').hasClass('bootbox-cancel')).to.be.true();
+          expect(this.dialog.find('.btn:first').hasClass('btn-default')).to.be.true;
+          expect(this.dialog.find('.btn:first').hasClass('btn-secondary')).to.be.true;
+          expect(this.dialog.find('.btn:first').hasClass('bootbox-cancel')).to.be.true;
 
-          expect(this.dialog.find('.btn:last').hasClass('btn-primary')).to.be.true();
-          return expect(this.dialog.find('.btn:last').hasClass('bootbox-accept')).to.be.true();
+          expect(this.dialog.find('.btn:last').hasClass('btn-primary')).to.be.true;
+          return expect(this.dialog.find('.btn:last').hasClass('bootbox-accept')).to.be.true;
         });
         it('adds the expected dialog title', function () {
           return expect(this.text('.modal-title')).to.equal('What is your name?');
         });
         it('adds a close button', function () {
-          return expect(this.dialog.find('.modal-header .close')).to.be.true();
+          return expect(this.dialog.find('.modal-header .close')).to.be.ok;
         });
         it('creates a form with a text input', function () {
-          return expect(this.dialog.find('form input[type=text]')).to.be.true();
+          return expect(this.dialog.find('form input[type=text]')).to.be.ok;
         });
         it('with no default value', function () {
           return expect(this.dialog.find('form input[type="text"]').val()).to.equal('');
         });
         return it('shows the dialog', function () {
-          return expect(this.dialog.is(':visible')).to.be.true();
+          return expect(this.dialog.is(':visible')).to.be.true;
         });
       });
     });
@@ -187,7 +204,7 @@ describe('bootbox.prompt', function () {
       });
       return it('adds the correct cancel button', function () {
         expect(this.button.text()).to.equal('Custom cancel');
-        return expect(this.button.hasClass('btn-danger')).to.be.true();
+        return expect(this.button.hasClass('btn-danger')).to.be.true;
       });
     });
 
@@ -205,7 +222,7 @@ describe('bootbox.prompt', function () {
       });
       return it('adds the correct confirm button', function () {
         expect(this.button.text()).to.equal('Custom confirm');
-        return expect(this.button.hasClass('btn-warning')).to.be.true();
+        return expect(this.button.hasClass('btn-warning')).to.be.true;
       });
     });
 
@@ -265,11 +282,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows text input ', function () {
-          return expect(this.exists('input[type="text"]')).to.be.true();
+          return expect(this.exists('input[type="text"]')).to.be.true;
         });
         return it('has proper class', function () {
-          expect(this.find('input[type="text"]').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('input[type="text"]').hasClass('bootbox-input-text')).to.be.true();
+          expect(this.find('input[type="text"]').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('input[type="text"]').hasClass('bootbox-input-text')).to.be.true;
         });
       });
       describe('with default value', function () {
@@ -287,7 +304,7 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct placeholder value', function () {
-          return expect(this.find('input[type="text"]').prop('placeholder')).to.equal('enter your name');
+          return expect(this.find('input[type="text"]').attr('placeholder')).to.equal('enter your name');
         });
       });
       describe('with pattern', function () {
@@ -296,16 +313,16 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct pattern value', function () {
-          return expect(this.find('input[type="text"]').prop('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
+          return expect(this.find('input[type="text"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
         });
       });
-      return describe('with maxlength', function () {
+      describe('with maxlength', function () {
         beforeEach(function () {
           this.options.maxlength = 5;
           return this.create();
         });
         return it('has correct maxlength value', function () {
-          return expect(this.find('input[type="text"]').prop('maxlength')).to.equal(5);
+          return expect(this.find('input[type="text"]').attr('maxlength')).to.equal('5');
         });
       });
     });
@@ -320,11 +337,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows text input', function () {
-          return expect(this.exists('textarea')).to.be.true();
+          return expect(this.exists('textarea')).to.be.true;
         });
         return it('has proper class', function () {
-          expect(this.find('textarea').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('textarea').hasClass('bootbox-input-textarea')).to.be.true();
+          expect(this.find('textarea').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('textarea').hasClass('bootbox-input-textarea')).to.be.true;
         });
       });
       describe('with default value', function () {
@@ -336,13 +353,13 @@ describe('bootbox.prompt', function () {
           return expect(this.find('textarea').val()).to.equal('Once upon a time...');
         });
       });
-      return describe('with placeholder', function () {
+      describe('with placeholder', function () {
         beforeEach(function () {
           this.options.placeholder = 'enter your favorite fairy tale';
           return this.create();
         });
         return it('has correct placeholder value', function () {
-          return expect(this.find('textarea').prop('placeholder')).to.equal('enter your favorite fairy tale');
+          return expect(this.find('textarea').attr('placeholder')).to.equal('enter your favorite fairy tale');
         });
       });
     });
@@ -357,11 +374,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows email input', function () {
-          return expect(this.exists('input[type="email"]')).to.be.true();
+          return expect(this.exists('input[type="email"]')).to.be.true;
         });
         return it('has proper class', function () {
-          expect(this.find('input[type="email"]').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('input[type="email"]').hasClass('bootbox-input-email')).to.be.true();
+          expect(this.find('input[type="email"]').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('input[type="email"]').hasClass('bootbox-input-email')).to.be.true;
         });
       });
       describe('with default value', function () {
@@ -379,16 +396,16 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct placeholder value', function () {
-          return expect(this.find('input[type="email"]').prop('placeholder')).to.equal('enter your email');
+          return expect(this.find('input[type="email"]').attr('placeholder')).to.equal('enter your email');
         });
       });
-      return describe('with pattern', function () {
+      describe('with pattern', function () {
         beforeEach(function () {
           this.options.pattern = '\d{1,2}/\d{1,2}/\d{4}';
           return this.create();
         });
         return it('has correct pattern value', function () {
-          return expect(this.find('input[type="email"]').prop('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
+          return expect(this.find('input[type="email"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
         });
       });
     });
@@ -403,11 +420,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows password input', function () {
-          return expect(this.exists('input[type="password"]')).to.be.true();
+          return expect(this.exists('input[type="password"]')).to.be.true;
         });
         return it('has proper class', function () {
-          expect(this.find('input[type="password"]').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('input[type="password"]').hasClass('bootbox-input-password')).to.be.true();
+          expect(this.find('input[type="password"]').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('input[type="password"]').hasClass('bootbox-input-password')).to.be.true;
         });
       });
       describe('with default value', function () {
@@ -419,13 +436,13 @@ describe('bootbox.prompt', function () {
           return expect(this.find('input[type="password"]').val()).to.equal('qwerty');
         });
       });
-      return describe('with placeholder', function () {
+      describe('with placeholder', function () {
         beforeEach(function () {
           this.options.placeholder = 'enter your password';
           return this.create();
         });
         return it('has correct placeholder value', function () {
-          return expect(this.find('input[type="password"]').prop('placeholder')).to.equal('enter your password');
+          return expect(this.find('input[type="password"]').attr('placeholder')).to.equal('enter your password');
         });
       });
     });
@@ -437,7 +454,7 @@ describe('bootbox.prompt', function () {
           return this.options.inputType = 'select';
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw(/prompt with select requires at least one option value/);
+          return expect(this.create).to.throw('prompt with "inputType" set to "select" requires at least one option');
         });
       });
       describe('with invalid options', function () {
@@ -455,7 +472,7 @@ describe('bootbox.prompt', function () {
           return this.options.inputOptions = [];
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw(/prompt with "inputType" set to "select" requires at least one option value/);
+          return expect(this.create).to.throw('prompt with "inputType" set to "select" requires at least one option');
         });
       });
       describe('with options in the wrong format', function () {
@@ -518,11 +535,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows select input', function () {
-          return expect(this.exists('select')).to.be.true();
+          return expect(this.exists('select')).to.be.true;
         });
         it('has proper class', function () {
-          expect(this.find('select').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('select').hasClass('bootbox-input-select')).to.be.true();
+          expect(this.find('select').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('select').hasClass('bootbox-input-select')).to.be.true;
         });
         return it('with three options', function () {
           return expect(this.find('option').length).to.equal(3);
@@ -540,7 +557,7 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('shows the select input', function () {
-          return expect(this.exists('select')).to.be.true();
+          return expect(this.exists('select')).to.be.true;
         });
       });
       describe('with false as the first option', function () {
@@ -555,10 +572,10 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('shows the select input', function () {
-          return expect(this.exists('select')).to.be.true();
+          return expect(this.exists('select')).to.be.true;
         });
       });
-      return describe('with option groups', function () {
+      describe('with option groups', function () {
         beforeEach(function () {
           this.options.inputType = 'select';
           this.options.inputOptions = [
@@ -583,11 +600,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows select input', function () {
-          return expect(this.exists('select')).to.be.true();
+          return expect(this.exists('select')).to.be.true;
         });
         it('has proper class', function () {
-          expect(this.find('select').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('select').hasClass('bootbox-input-select')).to.be.true();
+          expect(this.find('select').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('select').hasClass('bootbox-input-select')).to.be.true;
         });
         it('with two option group', function () {
           return expect(this.find('optgroup').length).to.equal(2);
@@ -605,7 +622,7 @@ describe('bootbox.prompt', function () {
           return this.options.inputType = 'checkbox';
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw(/prompt with "inputType" set to "checkbox" requires at least one option/);
+          return expect(this.create).to.throw('prompt with "inputType" set to "checkbox" requires at least one option');
         });
       });
       describe('with options in the wrong format', function () {
@@ -621,7 +638,7 @@ describe('bootbox.prompt', function () {
           return expect(this.create).to.throw('each option needs a "value" property and a "text" property');
         });
       });
-      return describe('with options', function () {
+      describe('with options', function () {
         beforeEach(function () {
           this.options.inputType = 'checkbox';
           this.options.inputOptions = [
@@ -639,11 +656,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows checkbox input', function () {
-          return expect(this.exists('input[type="checkbox"]')).to.be.true();
+          return expect(this.exists('input[type="checkbox"]')).to.be.true;
         });
         it('has proper class', function () {
-          expect(this.find('input[type="checkbox"]').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('input[type="checkbox"]').hasClass('bootbox-input-checkbox')).to.be.true();
+          expect(this.find('input[type="checkbox"]').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('input[type="checkbox"]').hasClass('bootbox-input-checkbox')).to.be.true;
         });
         return it('with three checkboxes', function () {
           return expect(this.find('input[type="checkbox"]').length).to.equal(3);
@@ -658,7 +675,7 @@ describe('bootbox.prompt', function () {
           return this.options.inputType = 'radio';
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw(/prompt with "inputType" set to "radio" requires at least one option/);
+          return expect(this.create).to.throw('prompt with "inputType" set to "radio" requires at least one option');
         });
       });
       describe('with options in the wrong format', function () {
@@ -692,17 +709,17 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows radio input', function () {
-          return expect(this.exists('input[type="radio"]')).to.be.true();
+          return expect(this.exists('input[type="radio"]')).to.be.true;
         });
         it('has proper class', function () {
-          expect(this.find('input[type="radio"]').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('input[type="radio"]').hasClass('bootbox-input-radio')).to.be.true();
+          expect(this.find('input[type="radio"]').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('input[type="radio"]').hasClass('bootbox-input-radio')).to.be.true;
         });
         return it('with three radios', function () {
           return expect(this.find('input[type="radio"]').length).to.equal(3);
         });
       });
-      return describe('with an invalid value', function () {
+      describe('with an invalid value', function () {
         beforeEach(function () {
           this.options.inputType = 'radio';
           this.options.inputOptions = [
@@ -718,10 +735,9 @@ describe('bootbox.prompt', function () {
             }
           ];
           this.options.value = [2,3];
-          return this.create();
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw('prompt with "inputType" set to "radio" requires a single, non-array value for "value".');
+          return expect(this.create).to.throw('prompt with "inputType" set to "radio" requires a single, non-array value for "value"');
         });
       });
     });
@@ -736,11 +752,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows date input ', function () {
-          return expect(this.exists('input[type="date"]')).to.be.true();
+          return expect(this.exists('input[type="date"]')).to.be.true;
         });
         return it('has proper class', function () {
-          expect(this.find('input[type="date"]').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('input[type="date"]').hasClass('bootbox-input-date')).to.be.true();
+          expect(this.find('input[type="date"]').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('input[type="date"]').hasClass('bootbox-input-date')).to.be.true;
         });
       });
       describe('with default value', function () {
@@ -758,16 +774,16 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct placeholder value', function () {
-          return expect(this.find('input[type="date"]').prop('placeholder')).to.equal('enter the date');
+          return expect(this.find('input[type="date"]').attr('placeholder')).to.equal('enter the date');
         });
       });
-      return describe('with pattern', function () {
+      describe('with pattern', function () {
         beforeEach(function () {
           this.options.pattern = '\d{1,2}/\d{1,2}/\d{4}';
           return this.create();
         });
         return it('has correct pattern value', function () {
-          return expect(this.find('input[type="date"]').prop('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
+          return expect(this.find('input[type="date"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
         });
       });
     });
@@ -782,11 +798,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows time input', function () {
-          return expect(this.exists('input[type="time"]')).to.be.true();
+          return expect(this.exists('input[type="time"]')).to.be.true;
         });
         return it('has proper class', function () {
-          expect(this.find('input[type="time"]').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('input[type="time"]').hasClass('bootbox-input-time')).to.be.true();
+          expect(this.find('input[type="time"]').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('input[type="time"]').hasClass('bootbox-input-time')).to.be.true;
         });
       });
       describe('with default value', function () {
@@ -804,7 +820,7 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct placeholder value', function () {
-          return expect(this.find('input[type="time"]').prop('placeholder')).to.equal('enter the time');
+          return expect(this.find('input[type="time"]').attr('placeholder')).to.equal('enter the time');
         });
       });
       describe('with pattern', function () {
@@ -813,7 +829,7 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct pattern value', function () {
-          return expect(this.find('input[type="time"]').prop('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
+          return expect(this.find('input[type="time"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
         });
       });
       describe('with min value', function () {
@@ -822,7 +838,7 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct min value', function () {
-          return expect(this.find('input[type="time"]').prop('min')).to.equal('00:00:00');
+          return expect(this.find('input[type="time"]').attr('min')).to.equal('00:00:00');
         });
       });
       describe('with max value', function () {
@@ -831,52 +847,48 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct max value', function () {
-          return expect(this.find('input[type="time"]').prop('max')).to.equal('23:59:59');
+          return expect(this.find('input[type="time"]').attr('max')).to.equal('23:59:59');
         });
       });
       describe('with step value', function () {
         beforeEach(function () {
-          this.options.step = 10;
+          this.options.step = '10';
           return this.create();
         });
         return it('has correct step value', function () {
-          return expect(this.find('input[type="time"]').prop('step')).to.equal(10);
+          return expect(this.find('input[type="time"]').attr('step')).to.equal('10');
         });
       });
       describe('with an invalid min value', function () {
         beforeEach(function () {
           this.options.min = 'a';
           this.options.max = '18:00:00';
-          return this.create();
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw('"min" must be a valid time. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+          return expect(this.create).to.throw('"min" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
         });
       });
       describe('with an invalid max value', function () {
         beforeEach(function () {
           this.options.min = '08:00:00';
           this.options.max = 'a';
-          return this.create();
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw('"max" must be a valid time. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+          return expect(this.create).to.throw('"max" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
         });
       });
       describe('with min value greater than max value', function () {
         beforeEach(function () {
           this.options.min = '16:00:00';
           this.options.max = '12:00:00';
-          return this.create();
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+          return expect(this.create).to.throw('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         });
       });
-      return describe('with an invalid step value', function () {
+      describe('with an invalid step value', function () {
         beforeEach(function () {
           this.options.step = 'a';
-          return this.create();
         });
         return it('throws an error', function () {
           return expect(this.create).to.throw('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
@@ -894,11 +906,11 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         it('shows number input ', function () {
-          return expect(this.exists('input[type="number"]')).to.be.true();
+          return expect(this.exists('input[type="number"]')).to.be.true;
         });
         return it('has proper class', function () {
-          expect(this.find('input[type="number"]').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('input[type="number"]').hasClass('bootbox-input-number')).to.be.true();
+          expect(this.find('input[type="number"]').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('input[type="number"]').hasClass('bootbox-input-number')).to.be.true;
         });
       });
       describe('with default value', function () {
@@ -916,7 +928,7 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct placeholder value', function () {
-          return expect(this.find('input[type="number"]').prop('placeholder')).to.equal('enter the number');
+          return expect(this.find('input[type="number"]').attr('placeholder')).to.equal('enter the number');
         });
       });
       describe('with min value', function () {
@@ -925,7 +937,7 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct min value', function () {
-          return expect(this.find('input[type="number"]').prop('min')).to.equal(0);
+          return expect(this.find('input[type="number"]').attr('min')).to.equal('0');
         });
       });
       describe('with max value', function () {
@@ -934,7 +946,7 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct max value', function () {
-          return expect(this.find('input[type="number"]').prop('max')).to.equal(100);
+          return expect(this.find('input[type="number"]').attr('max')).to.equal('100');
         });
       });
       describe('with step value', function () {
@@ -943,14 +955,13 @@ describe('bootbox.prompt', function () {
           return this.create();
         });
         return it('has correct step value', function () {
-          return expect(this.find('input[type="number"]').prop('step')).to.equal(10);
+          return expect(this.find('input[type="number"]').attr('step')).to.equal('10');
         });
       });
       describe('with an invalid min value', function () {
         beforeEach(function () {
           this.options.min = 'a';
           this.options.max = 50;
-          return this.create();
         });
         return it('throws an error', function () {
           return expect(this.create).to.throw('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
@@ -960,7 +971,6 @@ describe('bootbox.prompt', function () {
         beforeEach(function () {
           this.options.min = 0;
           this.options.max = 'a';
-          return this.create();
         });
         return it('throws an error', function () {
           return expect(this.create).to.throw('"max" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
@@ -970,16 +980,14 @@ describe('bootbox.prompt', function () {
         beforeEach(function () {
           this.options.min = 100;
           this.options.max = 50;
-          return this.create();
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+          return expect(this.create).to.throw('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         });
       });
       describe('with an invalid step value', function () {
         beforeEach(function () {
           this.options.step = 'a';
-          return this.create();
         });
         return it('throws an error', function () {
           return expect(this.create).to.throw('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
@@ -994,88 +1002,96 @@ describe('bootbox.prompt', function () {
       beforeEach(function () {
         return this.options.inputType = 'range';
       });
+
       describe('without default value', function () {
         beforeEach(function () {
           return this.create();
         });
+
         it('shows range input ', function () {
-          return expect(this.exists('input[type="range"]')).to.be.true();
+          return expect(this.exists('input[type="range"]')).to.be.true;
         });
         return it('has proper class', function () {
-          expect(this.find('input[type="range"]').hasClass('bootbox-input')).to.be.true();
-          return expect(this.find('input[type="range"]').hasClass('bootbox-input-range')).to.be.true();
+          expect(this.find('input[type="range"]').hasClass('bootbox-input')).to.be.true;
+          return expect(this.find('input[type="range"]').hasClass('bootbox-input-range')).to.be.true;
         });
       });
+
       describe('with default value', function () {
         beforeEach(function () {
-          this.options.value = '300';
+          // Default max value of a range is 100, so anything less works as an initial value. 
+          // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#Specifying_the_minimum_and_maximum
+          this.options.value = 50;
           return this.create();
         });
         return it('has correct default value', function () {
-          return expect(this.find('input[type="range"]').val()).to.equal('300');
+          return expect(this.find('input[type="range"]').val()).to.equal('50');
         });
       });
+
       describe('with min value', function () {
         beforeEach(function () {
           this.options.min = 0;
           return this.create();
         });
         return it('has correct min value', function () {
-          return expect(this.find('input[type="range"]').prop('min')).to.equal(0);
+          return expect(this.find('input[type="range"]').attr('min')).to.equal('0');
         });
       });
+
       describe('with max value', function () {
         beforeEach(function () {
           this.options.max = 100;
           return this.create();
         });
         return it('has correct max value', function () {
-          return expect(this.find('input[type="range"]').prop('max')).to.equal(100);
+          return expect(this.find('input[type="range"]').attr('max')).to.equal('100');
         });
       });
+
       describe('with step value', function () {
         beforeEach(function () {
           this.options.step = 10;
           return this.create();
         });
         return it('has correct step value', function () {
-          return expect(this.find('input[type="range"]').prop('step')).to.equal(10);
+          return expect(this.find('input[type="range"]').attr('step')).to.equal('10');
         });
       });
+
       describe('with an invalid min value', function () {
         beforeEach(function () {
           this.options.min = 'a';
           this.options.max = 50;
-          return this.create();
         });
         return it('throws an error', function () {
           return expect(this.create).to.throw('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
         });
       });
+
       describe('with an invalid max value', function () {
         beforeEach(function () {
           this.options.min = 0;
           this.options.max = 'a';
-          return this.create();
         });
         return it('throws an error', function () {
           return expect(this.create).to.throw('"max" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         });
       });
+
       describe('with min value greater than max value', function () {
         beforeEach(function () {
           this.options.min = 100;
           this.options.max = 50;
-          return this.create();
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+          return expect(this.create).to.throw('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         });
       });
-      return describe('with an invalid step value', function () {
+
+      describe('with an invalid step value', function () {
         beforeEach(function () {
           this.options.step = 'a';
-          return this.create();
         });
         return it('throws an error', function () {
           return expect(this.create).to.throw('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
@@ -1115,7 +1131,7 @@ describe('bootbox.prompt', function () {
             return expect(this.hidden).to.have.been.calledWithExactly('hide');
           });
         });
-        return describe('when submitting the form', function () {
+        describe('when submitting the form', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-form').trigger('submit');
           });
@@ -1151,7 +1167,7 @@ describe('bootbox.prompt', function () {
             return expect(this.hidden).to.have.been.calledWithExactly('hide');
           });
         });
-        return describe('when submitting the form', function () {
+        describe('when submitting the form', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-form').trigger('submit');
           });
@@ -1200,7 +1216,7 @@ describe('bootbox.prompt', function () {
           return expect(this.hidden).to.have.been.calledWithExactly('hide');
         });
       });
-      return describe('when dismissing the dialog by clicking the close button', function () {
+      describe('when dismissing the dialog by clicking the close button', function () {
         beforeEach(function () {
           return this.dialog.find('.close').trigger('click');
         });
@@ -1305,7 +1321,7 @@ describe('bootbox.prompt', function () {
           return expect(this.hidden).not.to.have.been.called;
         });
       });
-      return describe('when dismissing the dialog by clicking the close button', function () {
+      describe('when dismissing the dialog by clicking the close button', function () {
         beforeEach(function () {
           return this.dialog.find('.close').trigger('click');
         });
@@ -1353,7 +1369,7 @@ describe('bootbox.prompt', function () {
             return expect(this.callback).to.have.been.calledWithExactly('Bob');
           });
         });
-        return describe('when dismissing the dialog by clicking Cancel', function () {
+        describe('when dismissing the dialog by clicking Cancel', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-cancel').trigger('click');
           });
@@ -1368,7 +1384,7 @@ describe('bootbox.prompt', function () {
           });
         });
       });
-      return describe('when entering a value in the text input', function () {
+      describe('when entering a value in the text input', function () {
         beforeEach(function () {
           return this.dialog.find('.bootbox-input').val('Alice');
         });
@@ -1386,7 +1402,7 @@ describe('bootbox.prompt', function () {
             return expect(this.callback).to.have.been.calledWithExactly('Alice');
           });
         });
-        return describe('when dismissing the dialog by clicking Cancel', function () {
+        describe('when dismissing the dialog by clicking Cancel', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-cancel').trigger('click');
           });
@@ -1467,7 +1483,7 @@ describe('bootbox.prompt', function () {
             return expect(this.callback).to.have.been.calledWithExactly('#');
           });
         });
-        return describe('when dismissing the dialog by clicking Cancel', function () {
+        describe('when dismissing the dialog by clicking Cancel', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-cancel').trigger('click');
           });
@@ -1482,7 +1498,7 @@ describe('bootbox.prompt', function () {
           });
         });
       });
-      return describe('with a default value', function () {
+      describe('with a default value', function () {
         beforeEach(function () {
           this.callback = sinon.spy();
           this.dialog = bootbox.prompt({
@@ -1542,7 +1558,7 @@ describe('bootbox.prompt', function () {
             return expect(this.callback).to.have.been.calledWithExactly(null);
           });
         });
-        return describe('when changing the selected option and dismissing the dialog by clicking OK', function () {
+        describe('when changing the selected option and dismissing the dialog by clicking OK', function () {
           beforeEach(function () {
             this.dialog.find('.bootbox-input-select').val(3);
             return this.dialog.find('.bootbox-accept').trigger('click');
@@ -1597,7 +1613,7 @@ describe('bootbox.prompt', function () {
             return expect(this.hidden).to.have.been.calledWithExactly('hide');
           });
         });
-        return describe('when entering a value in the email input', function () {
+        describe('when entering a value in the email input', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-input-email').val('john@smith.com');
           });
@@ -1615,7 +1631,7 @@ describe('bootbox.prompt', function () {
               return expect(this.callback).to.have.been.calledWithExactly('john@smith.com');
             });
           });
-          return describe('when dismissing the dialog by clicking Cancel', function () {
+          describe('when dismissing the dialog by clicking Cancel', function () {
             beforeEach(function () {
               return this.dialog.find('.bootbox-cancel').trigger('click');
             });
@@ -1628,7 +1644,7 @@ describe('bootbox.prompt', function () {
           });
         });
       });
-      return describe('with a default value', function () {
+      describe('with a default value', function () {
         beforeEach(function () {
           this.callback = sinon.spy();
           this.dialog = bootbox.prompt({
@@ -1664,7 +1680,7 @@ describe('bootbox.prompt', function () {
             return expect(this.hidden).to.have.been.calledWithExactly('hide');
           });
         });
-        return describe('when changing a value in the email input', function () {
+        describe('when changing a value in the email input', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-input-email').val('smith@john.com');
           });
@@ -1679,7 +1695,7 @@ describe('bootbox.prompt', function () {
               return expect(this.callback).to.have.been.calledWithExactly('smith@john.com');
             });
           });
-          return describe('when dismissing the dialog by clicking Cancel', function () {
+          describe('when dismissing the dialog by clicking Cancel', function () {
             beforeEach(function () {
               return this.dialog.find('.bootbox-cancel').trigger('click');
             });
@@ -1735,7 +1751,7 @@ describe('bootbox.prompt', function () {
             return expect(this.hidden).to.have.been.calledWithExactly('hide');
           });
         });
-        return describe('when dismissing the dialog by clicking Cancel', function () {
+        describe('when dismissing the dialog by clicking Cancel', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-cancel').trigger('click');
           });
@@ -1747,7 +1763,7 @@ describe('bootbox.prompt', function () {
           });
         });
       });
-      return describe('with default value', function () {
+      describe('with default value', function () {
         describe('one value checked', function () {
           beforeEach(function () {
             this.callback = sinon.spy();
@@ -1812,7 +1828,7 @@ describe('bootbox.prompt', function () {
               return expect(this.callback).to.have.been.calledWithExactly(null);
             });
           });
-          return describe('when changing the selected option and dismissing the dialog by clicking OK', function () {
+          describe('when changing the selected option and dismissing the dialog by clicking OK', function () {
             beforeEach(function () {
               this.dialog.find('input:checkbox:checked').prop('checked', false);
               this.dialog.find('input:checkbox[value=3]').prop('checked', true);
@@ -1826,7 +1842,7 @@ describe('bootbox.prompt', function () {
             });
           });
         });
-        return describe('multiple value checked', function () {
+        describe('multiple value checked', function () {
           beforeEach(function () {
             this.callback = sinon.spy();
             this.dialog = bootbox.prompt({
@@ -1898,7 +1914,7 @@ describe('bootbox.prompt', function () {
               return expect(this.callback).to.have.been.calledWithExactly(null);
             });
           });
-          return describe('when changing the checked options and dismissing the dialog by clicking OK', function () {
+          describe('when changing the checked options and dismissing the dialog by clicking OK', function () {
             beforeEach(function () {
               this.dialog.find('input:checkbox:checked').prop('checked', false);
               this.dialog.find('input:checkbox[value=1]').prop('checked', true);
@@ -1951,13 +1967,13 @@ describe('bootbox.prompt', function () {
             return expect(this.callback).to.have.been.called;
           });
           it('with the first option value', function () {
-            return expect(this.callback).to.have.been.calledWithExactly(1);
+            return expect(this.callback).to.have.been.calledWithExactly('1');
           });
           return it('should hide the modal', function () {
             return expect(this.hidden).to.have.been.calledWithExactly('hide');
           });
         });
-        return describe('when dismissing the dialog by clicking Cancel', function () {
+        describe('when dismissing the dialog by clicking Cancel', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-cancel').trigger('click');
           });
@@ -1969,7 +1985,7 @@ describe('bootbox.prompt', function () {
           });
         });
       });
-      return describe('with default value', function () {
+      describe('with default value', function () {
         describe('one value checked', function () {
           beforeEach(function () {
             this.callback = sinon.spy();
@@ -1997,7 +2013,7 @@ describe('bootbox.prompt', function () {
             return this.hidden = sinon.spy(this.dialog, 'modal');
           });
           it('specified radio is checked', function () {
-            return expect(this.dialog.find('input:radio:checked').val()).to.equal('2');
+            return expect(this.dialog.find('input:checked').val()).to.equal('2');
           });
           describe('when dismissing the dialog by clicking OK', function () {
             beforeEach(function () {
@@ -2007,7 +2023,7 @@ describe('bootbox.prompt', function () {
               return expect(this.callback).to.have.been.called;
             });
             return it('with the correct value', function () {
-              return expect(this.callback).to.have.been.calledWithExactly(2);
+              return expect(this.callback).to.have.been.calledWithExactly('2');
             });
           });
           describe('when dismissing the dialog by clicking Cancel', function () {
@@ -2033,7 +2049,7 @@ describe('bootbox.prompt', function () {
               return expect(this.callback).to.have.been.calledWithExactly(null);
             });
           });
-          return describe('when changing the selected option and dismissing the dialog by clicking OK', function () {
+          describe('when changing the selected option and dismissing the dialog by clicking OK', function () {
             beforeEach(function () {
               this.dialog.find('input:radio[value=3]').prop('checked', true);
               return this.dialog.find('.bootbox-accept').trigger('click');
@@ -2042,7 +2058,7 @@ describe('bootbox.prompt', function () {
               return expect(this.callback).to.have.been.called;
             });
             return it('with the correct value', function () {
-              return expect(this.callback).to.have.been.calledWithExactly(3);
+              return expect(this.callback).to.have.been.calledWithExactly('3');
             });
           });
         });

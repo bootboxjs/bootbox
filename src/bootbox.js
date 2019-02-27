@@ -24,7 +24,6 @@
   //  @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
   if (!Object.keys) {
     Object.keys = (function () {
-      'use strict';
       var hasOwnProperty = Object.prototype.hasOwnProperty,
         hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
         dontEnums = [
@@ -644,7 +643,7 @@
         // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#Setting_maximum_and_minimum_dates
         if (options.inputType !== 'date') {
           if (options.step) {
-            if (options.step === 'any' || (!isNaN(options.step) && options.step > 0)) {
+            if (options.step === 'any' || (!isNaN(options.step) && parseInt(options.step) > 0)) {
               input.attr('step', options.step);
             }
             else {
@@ -652,10 +651,15 @@
             }
           }
         }
-  
-        input = validateMinOrMaxValue(input, options.inputType, 'min', options.min, options.max, options);
-  
-        input = validateMinOrMaxValue(input, options.inputType, 'max', options.max, options.min, options);
+
+        if(minAndMaxAreValid(options.inputType, options.min, options.max)){
+          if(options.min !== undefined){
+            input.attr('min', options.min);
+          }
+          if(options.max !== undefined){
+            input.attr('max', options.max);
+          }
+        }
 
         break;
 
@@ -758,7 +762,7 @@
       case 'radio':
         // Make sure that value is not an array (only a single radio can ever be checked)
         if (options.value !== undefined && $.isArray(options.value)) {
-          throw new Error('prompt with "inputType" set to "radio" requires a single, non-array value for "value".');
+          throw new Error('prompt with "inputType" set to "radio" requires a single, non-array value for "value"');
         }
 
         inputOptions = options.inputOptions || [];
@@ -1080,47 +1084,57 @@
       dialog.modal('hide');
     }
   }
+  
+  // Validate `min` and `max` values based on the current `inputType` value
+  function minAndMaxAreValid(type, min, max){
+    var result = false;
+    var minValid = true;
+    var maxValid = true;
 
-
-  // Helper function, since the logic for validating min and max attributes is almost identical
-  function validateMinOrMaxValue(input, type, name, value, compareValue, options) {
-    if (value !== undefined) {
-      if (type === 'date') {
-        input.attr(name, value);
-
-        if (!/(\d{4})-(\d{2})-(\d{2})/.test(value)) {
-          console.warn('Browsers which natively support the "date" input type expect date values to be of the form "YYYY-MM-DD" (see ISO-8601 https://www.iso.org/iso-8601-date-and-time-format.html). Bootbox does not enforce this rule, but your ' + name + ' value may not be enforced by this browser.');
-        }
+    if (type === 'date') {
+      if (min !== undefined && !(minValid = dateIsValid(min))) {
+        console.warn('Browsers which natively support the "date" input type expect date values to be of the form "YYYY-MM-DD" (see ISO-8601 https://www.iso.org/iso-8601-date-and-time-format.html). Bootbox does not enforce this rule, but your min value may not be enforced by this browser.');
       }
-      else if (type === 'time') {
-        if (/([01][0-9]|2[0-3]):[0-5][0-9]?:[0-5][0-9]/.test(value)) {
-          if (compareValue === undefined || options.max > options.min) {
-            input.attr(name, value);
-          }
-          else {
-            throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-' + name + ' for more information.');
-          }
-        }
-        else {
-          throw new Error('"' + name + '" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
-        }
+      else if (max !== undefined && !(maxValid = dateIsValid(max))) {
+        console.warn('Browsers which natively support the "date" input type expect date values to be of the form "YYYY-MM-DD" (see ISO-8601 https://www.iso.org/iso-8601-date-and-time-format.html). Bootbox does not enforce this rule, but your max value may not be enforced by this browser.');
       }
-      else {
-        if (!isNaN(value)) {
-          if (compareValue === undefined || options.max > options.min) {
-            input.attr(name, value);
-          }
-          else {
-            throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-' + name + ' for more information.');
-          }
-        }
-        else {
-          throw new Error('"' + name + '" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-' + name + ' for more information.');
-        }
+    }
+    else if (type === 'time') {
+      if (min !== undefined && !(minValid = timeIsValid(min))) {
+        throw new Error('"min" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
+      }
+      else if (max !== undefined && !(maxValid = timeIsValid(max))) {
+        throw new Error('"max" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
+      }
+    }
+    else {
+      if (min !== undefined && isNaN(min)) {
+        throw new Error('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
+      }
+
+      if (max !== undefined && isNaN(max)) {
+        throw new Error('"max" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+      }
+    }
+    
+    if(minValid && maxValid){
+      if(max <= min){
+        throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+      }
+      else{
+        result = true;
       }
     }
 
-    return input;
+    return result;
+  }
+
+  function timeIsValid(value){
+    return /([01][0-9]|2[0-3]):[0-5][0-9]?:[0-5][0-9]/.test(value);
+  }
+
+  function dateIsValid(value){
+    return /(\d{4})-(\d{2})-(\d{2})/.test(value);
   }
 
 

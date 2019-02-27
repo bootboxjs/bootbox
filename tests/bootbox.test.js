@@ -1,5 +1,4 @@
 describe('Bootbox', function() {
-
   'use strict';
 
   it('is attached to the window object', function() {
@@ -57,7 +56,7 @@ describe('Bootbox', function() {
         });
 
         it('does not remove the dialog', function() {
-          expect(this.removed).not.to.have.been.called();
+          expect(this.removed).not.to.have.been.called;
         });
       });
 
@@ -67,7 +66,7 @@ describe('Bootbox', function() {
         });
 
         it('removes the dialog', function() {
-          expect(this.removed).to.have.been.called();
+          expect(this.removed).to.have.been.called;
         });
       });
     });
@@ -194,7 +193,7 @@ describe('Bootbox', function() {
         });
 
         it('does not invoke the callback', function() {
-          expect(this.callback).not.to.have.been.called();
+          expect(this.callback).not.to.have.been.called;
         });
       });
     });
@@ -216,7 +215,7 @@ describe('Bootbox', function() {
           });
 
           it('does not invoke the callback', function() {
-            expect(this.callback).not.to.have.been.called();
+            expect(this.callback).not.to.have.been.called;
           });
         });
 
@@ -226,7 +225,7 @@ describe('Bootbox', function() {
           });
 
           it('invokes the callback', function() {
-            expect(this.callback).to.have.been.called();
+            expect(this.callback).to.have.been.called;
           });
 
           it('should pass the dialog as "this"', function() {
@@ -253,7 +252,7 @@ describe('Bootbox', function() {
           });
 
           it('does not invoke the callback', function() {
-            expect(this.callback).not.to.have.been.called();
+            expect(this.callback).not.to.have.been.called;
           });
         });
 
@@ -263,7 +262,7 @@ describe('Bootbox', function() {
           });
 
           it('invokes the callback', function() {
-            expect(this.callback).to.have.been.called();
+            expect(this.callback).to.have.been.called;
           });
 
           it('should pass the dialog as "this"', function() {

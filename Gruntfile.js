@@ -1,9 +1,14 @@
 module.exports = function (grunt) {
+    'use strict';
     grunt.initConfig({
         uglify: {
             options: {
-                mangle: false,
-                banner: grunt.file.read('header.txt')
+                compress: true,
+                mangle: true,
+                banner: grunt.file.read('header.txt'),
+                output:{
+                    quote_style: 3
+                }
             },
             my_target: {
                 files: {
@@ -16,7 +21,8 @@ module.exports = function (grunt) {
 
         jshint: {
             options: {
-                jshintrc: '.jshintrc'
+                jshintrc: '.jshintrc',
+                force: true
             },
             all: ['src/bootbox.js']
         },
@@ -32,5 +38,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['jshint', 'karma']);
+    grunt.registerTask('default', ['uglify', 'jshint', 'karma']);
 };  

@@ -29,7 +29,7 @@ describe('bootbox.dialog', function() {
         };
       });
       return it('throws an error', function() {
-        return expect(this.create).to['throw'](/supply an object/);
+        return expect(this.create).to.throw(/supply an object/);
       });
     });
     return describe('with one argument', function() {
@@ -40,7 +40,7 @@ describe('bootbox.dialog', function() {
           };
         });
         return it('throws an error', function() {
-          return expect(this.create).to['throw'](/supply an object/);
+          return expect(this.create).to.throw(/supply an object/);
         });
       });
       describe('where the argument has no message property', function() {
@@ -52,7 +52,7 @@ describe('bootbox.dialog', function() {
           };
         });
         return it('throws an error', function() {
-          return expect(this.create).to['throw'](/specify a message/);
+          return expect(this.create).to.throw('"message" option must not be null or an empty string.');
         });
       });
       return describe('where the argument has a button with an invalid value', function() {
@@ -67,7 +67,7 @@ describe('bootbox.dialog', function() {
           };
         });
         return it('throws an error', function() {
-          return expect(this.create).to['throw'](/button with key "ok" must be an object/);
+          return expect(this.create).to.throw('button with key "ok" must be an object');
         });
       });
     });
@@ -79,13 +79,13 @@ describe('bootbox.dialog', function() {
       });
     });
     it('adds the bootbox class to the dialog', function() {
-      return expect(this.dialog.hasClass('bootbox')).to.be.true();
+      return expect(this.dialog.hasClass('bootbox')).to.be.true;
     });
     it('adds the bootstrap modal class to the dialog', function() {
-      return expect(this.dialog.hasClass('modal')).to.be.true();
+      return expect(this.dialog.hasClass('modal')).to.be.true;
     });
     it('adds the fade class to the dialog', function() {
-      return expect(this.dialog.hasClass('fade')).to.be.true();
+      return expect(this.dialog.hasClass('fade')).to.be.true;
     });
     it('shows the expected message', function() {
       return expect(this.text('.bootbox-body')).to.equal('test');
@@ -98,9 +98,6 @@ describe('bootbox.dialog', function() {
     });
     it('does not have a footer', function() {
       return expect(this.exists('.modal-footer')).not.to.be.ok;
-    });
-    it('has a backdrop', function() {
-      return expect(this.dialog.children('.modal-backdrop').length).to.equal(1);
     });
   });
   describe('when creating a dialog with a button', function() {
@@ -136,7 +133,7 @@ describe('bootbox.dialog', function() {
         return expect(this.text('.btn')).to.equal('My Label');
       });
       it('applies the correct button class', function() {
-        return expect(this['class']('.btn', 'btn-primary')).to.be.true();
+        return expect(this['class']('.btn', 'btn-primary')).to.be.true;
       });
       describe('when triggering the escape event', function() {
         beforeEach(function() {
@@ -218,7 +215,7 @@ describe('bootbox.dialog', function() {
         return expect(this.text('.btn')).to.equal('Test Label');
       });
       return it('adds the custom class to the button', function() {
-        return expect(this['class']('.btn', 'btn-custom')).to.be.true();
+        return expect(this['class']('.btn', 'btn-custom')).to.be.true;
       });
     });
     return describe('when the button has no explicit label', function() {
@@ -245,7 +242,7 @@ describe('bootbox.dialog', function() {
           return expect(this.text('.btn')).to.equal('Short form');
         });
         return it('adds the custom class to the button', function() {
-          return expect(this['class']('.btn', 'btn-custom')).to.be.true();
+          return expect(this['class']('.btn', 'btn-custom')).to.be.true;
         });
       });
       describe('when its value is a function', function() {
@@ -281,7 +278,7 @@ describe('bootbox.dialog', function() {
           })(this);
         });
         return it('throws an error', function() {
-          return expect(this.badCreate).to['throw'](/button with key 'Short form' must be an object/);
+          return expect(this.badCreate).to.throw('button with key "Short form" must be an object');
         });
       });
     });
@@ -422,7 +419,7 @@ describe('bootbox.dialog', function() {
         });
       });
       return it('adds the large class to the innerDialog', function() {
-        return expect(this.dialog.children('.modal-dialog').hasClass('modal-lg')).to.be.true();
+        return expect(this.dialog.children('.modal-dialog').hasClass('modal-lg')).to.be.true;
       });
     });
     return describe('when the size option is set to small', function() {
@@ -433,7 +430,7 @@ describe('bootbox.dialog', function() {
         });
       });
       return it('adds the large class to the innerDialog', function() {
-        return expect(this.dialog.children('.modal-dialog').hasClass('modal-sm')).to.be.true();
+        return expect(this.dialog.children('.modal-dialog').hasClass('modal-sm')).to.be.true;
       });
     });
   });

@@ -8,7 +8,7 @@
     "trailing": true,
     "quotmark": "single",
     "browser": true,
-
+    "node": true,
     "globals": {
       "beforeEach": true,
       "afterEach": true,
