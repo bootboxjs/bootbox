@@ -9,3 +9,4 @@ build/size.csv
 composer.lock
 .vs
 .vscode
+dist/bootbox.zip
