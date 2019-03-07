@@ -401,317 +401,306 @@
                                 Prompt dialogs are (by default) single-line text inputs. You can modify the type of prompt Bootbox generates using the prompt-only
                                 options below.
                             </p>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <colgroup>
-                                        <col class="col-name" />
-                                        <col class="col-type" />
-                                        <col class="col-description" />
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><span id="prompt-option-value" class="bb-anchor">value</span></td>
-                                            <td>String | Number | Array</td>
-                                            <td>
-                                                <p>
-                                                    You can set the initial value of the prompt using the <code>value</code> option.
-                                                </p>
-                                                <p>
-                                                    <i class="fa fa-info-circle text-info"></i>
-                                                    To pre-select more than one value (when using the checkbox or multiple select type), use an array 
-                                                    for the <code>value</code> option. Note that the type of each item should match the type 
-                                                    from <code>inputOptions</code>.
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span id="prompt-option-input-type" class="bb-anchor">inputType</span></td>
-                                            <td>
-                                                <p>String</p>
-                                            </td>
-                                            <td>
-                                                <p>
-                                                    Changes the type of input generated for the prompt dialog.
-                                                </p>
-                                                <p>
-                                                    Valid values, with their class selectors:
-                                                    <table class="table table-sm">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Name</th>
-                                                                <th>Class</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td><code>text</code> (default)</td>
-                                                                <td><code>bootbox-input-text</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>password</code></td>
-                                                                <td><code>bootbox-input-password</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>textarea</code></td>
-                                                                <td><code>bootbox-input-textarea</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>email</code></td>
-                                                                <td><code>bootbox-input-email</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>select</code></td>
-                                                                <td><code>bootbox-input-select</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>checkbox</code></td>
-                                                                <td><code>bootbox-input-checkbox</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>radio</code></td>
-                                                                <td><code>bootbox-input-radio</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>date</code></td>
-                                                                <td><code>bootbox-input-date</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>time</code></td>
-                                                                <td><code>bootbox-input-time</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>number</code></td>
-                                                                <td><code>bootbox-input-number</code></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><code>range</code></td>
-                                                                <td><code>bootbox-input-range</code></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                <p>
-                                                    Additionally, checkbox and radiobuttons are wrapped in a parent element, <code>bootbox-checkbox-list</code>
-                                                    and <code>bootbox-radiobutton-list</code>, respectively.
-                                                </p>
-                                                <p>
-                                                    <code>email</code>, <code>date</code>, <code>time</code>, <code>number</code>, and <code>range</code>
-                                                    all require browser support to function properly. You may want to consult <a href="http://caniuse.com">caniuse.com</a>
-                                                    to determine if your target browsers support the input types you are intending to use.
-                                                </p>
-                                                <h5>Date input type and browser support</h5>
-                                                <p>
-                                                    At the time this is written, every major browser which supports the <code>date</code> input type will only
-                                                    accept date values in the ISO 8601 format, which (for a complete date) is <code>YYYY-MM-DD</code>, where
-                                                </p>
-                                                <pre>
+
+                            <dl class="options-list">
+                                <dt><span id="prompt-option-value" class="bb-anchor h4">value</span></dt>
+                                <dd>
+                                    <p class="mb-1">Type: <code>String</code> | <code>Number</code> | <code>Array</code></p>
+                                    <p>
+                                        You can set the initial value of the prompt using the <code>value</code> option.
+                                    </p>
+                                    <p>
+                                        <i class="fa fa-info-circle text-info"></i>
+                                        To pre-select more than one value (when using the checkbox or multiple select type), use an array
+                                        for the <code>value</code> option. Note that the type of each item should match the type
+                                        from <code>inputOptions</code>.
+                                    </p>
+                                    <p>
+                                        Default: <code>null</code>
+                                    </p>
+                                </dd>
+
+                                <dt><span id="prompt-option-input-type" class="bb-anchor h4">inputType</span></dt>
+                                <dd>
+                                    <p class="mb-1">Type: <code>String</code></p>
+                                    <p>
+                                        Changes the type of input generated for the prompt dialog.
+                                    </p>
+                                    <p>
+                                        <i class="fa fa-info-circle text-info"></i>
+                                        To pre-select more than one value (when using the checkbox or multiple select type), use an array
+                                        for the <code>value</code> option. Note that the type of each item should match the type
+                                        from <code>inputOptions</code>.
+                                    </p>
+                                    <p>
+                                        Valid values, with their class selectors:
+                                    </p>
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Class</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><code>text</code> (default)</td>
+                                                <td><code>bootbox-input-text</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>password</code></td>
+                                                <td><code>bootbox-input-password</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>textarea</code></td>
+                                                <td><code>bootbox-input-textarea</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>email</code></td>
+                                                <td><code>bootbox-input-email</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>select</code></td>
+                                                <td><code>bootbox-input-select</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>checkbox</code></td>
+                                                <td><code>bootbox-input-checkbox</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>radio</code></td>
+                                                <td><code>bootbox-input-radio</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>date</code></td>
+                                                <td><code>bootbox-input-date</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>time</code></td>
+                                                <td><code>bootbox-input-time</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>number</code></td>
+                                                <td><code>bootbox-input-number</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>range</code></td>
+                                                <td><code>bootbox-input-range</code></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p>
+                                        Additionally, checkbox and radiobuttons are wrapped in a parent element, <code>bootbox-checkbox-list</code>
+                                        and <code>bootbox-radiobutton-list</code>, respectively.
+                                    </p>
+                                    <p>
+                                        <code>email</code>, <code>date</code>, <code>time</code>, <code>number</code>, and <code>range</code>
+                                        all require browser support to function properly. You may want to consult <a href="http://caniuse.com">caniuse.com</a>
+                                        to determine if your target browsers support the input types you are intending to use.
+                                    </p>
+                                    <h5>Date input type and browser support</h5>
+                                    <p>
+                                        At the time this is written, every major browser which supports the <code>date</code> input type will only
+                                        accept date values in the ISO 8601 format, which (for a complete date) is <code>YYYY-MM-DD</code>, where
+                                    </p>
+                                    <pre>
 YYYY = four-digit year
 MM   = two-digit month (01=January, etc.)
 DD   = two-digit day of month (01 through 31)
 </pre>
-                                                <p>
-                                                    See <a href="https://en.wikipedia.org/wiki/ISO_8601">https://en.wikipedia.org/wiki/ISO_8601</a>
-                                                </p>
-                                                <h5>Range input and default value</h5>
-                                                <p>
-                                                    Please note that, when using the <code>range</code> input type, the default <code>min</code> value 
-                                                    is <code>0</code> and the default <code>max</code> value is <code>100</code> (see 
-                                                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#Specifying_the_minimum_and_maximum">MDN</a>). 
-                                                    If you attempt to set the default value to something outside the min or max values, the input will default to the 
-                                                    respective value.
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span id="prompt-option-input-options" class="bb-anchor">inputOptions</span></td>
-                                            <td>Array</td>
-                                            <td>
-                                                <p>
-                                                    If you specify <code>select</code>, <code>checkbox</code>, or <code>radio</code> as the
-                                                    input type, you must also supply an array of valid values in the format of:
-                                                </p>
-                                                <pre class="language-js line-numbers"><code>{
+                                    <p>
+                                        See <a href="https://en.wikipedia.org/wiki/ISO_8601">https://en.wikipedia.org/wiki/ISO_8601</a>
+                                    </p>
+                                    <h5>Range input and default value</h5>
+                                    <p>
+                                        Please note that, when using the <code>range</code> input type, the default <code>min</code> value
+                                        is <code>0</code> and the default <code>max</code> value is <code>100</code> (see
+                                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#Specifying_the_minimum_and_maximum">MDN</a>).
+                                        If you attempt to set the default value to something outside the min or max values, the input will default to the
+                                        respective value.
+                                    </p>
+                                    <p>
+                                        Default: <code>text</code>
+                                    </p>
+                                </dd>
+
+                                <dt><span id="prompt-option-input-options" class="bb-anchor h4">inputOptions</span></dt>
+                                <dd>
+                                    <p class="mb-1">Type: <code>Array</code></p>
+                                    <p>
+                                        If you specify <code>select</code>, <code>checkbox</code>, or <code>radio</code> as the
+                                        input type, you must also supply an array of valid values in the format of:
+                                    </p>
+                                    <pre class="language-js line-numbers"><code>{
     text: '',
     value: '',
     group: ''
 }</code></pre>
-                                                <p>
-                                                    <code>group</code> is an optional property for populating the <code>&lt;select&gt;</code>;
-                                                    if specified, <code>&lt;optgroup&gt;</code> elements will be generated for each group
-                                                    value found in the <code>inputOptions</code> array.
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span id="prompt-option-min-max" class="bb-anchor">min, max</span></td>
-                                            <td>String | Number | Date string | Time string</td>
-                                            <td>
-                                                <p>
-                                                    The <code>min</code> or <code>max</code> value for the <code>&lt;input&gt;</code> element.
-                                                    Only valid for <code>date</code>,
-                                                    <code>time</code>, <code>number</code>, and <code>range</code> types.
-                                                </p>
-                                                <p>
-                                                    For <code>range</code> and <code>number</code>, min/max must be
-                                                    a numeric value.
-                                                </p>
-                                                <p>
-                                                    For <code>time</code>, min/max must a valid partial time value,
-                                                    in the form of <code>HH:MM:SS</code>, where <code>HH</code> can be any zero-padded value
-                                                    between <code>00</code> and <code>23</code> and
-                                                    <code>MM</code> and <code>SS</code> can be any zero-padded number between <code>00</code> and <code>59</code>.
-                                                </p>
-                                                <p>
-                                                    For <code>date</code>, min/max must a date value in the form
-                                                    of <code>YYYY-MM-DD</code>, where <code>YYYY</code> can be any zero-padded value greater
-                                                    than <code>0000</code>,
-                                                    <code>MM</code> can be any zero-padded number between <code>01</code> and <code>12</code>,
-                                                    and
-                                                    <code>DD</code> can be any zero-padded number between <code>01</code> and <code>31</code>.
-                                                </p>
-                                                <p>
-                                                    See the MDN article for
-                                                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min">min</a> or
-                                                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max">max</a> for more information.
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span id="prompt-option-step" class="bb-anchor">step</span></td>
-                                            <td>String | Number</td>
-                                            <td>
-                                                <p>
-                                                    The <code>step</code> value for the <code>&lt;input&gt;</code> element. Only valid for
-                                                    <code>time</code>,
-                                                    <code>number</code>, and <code>range</code> types.
-                                                </p>
-                                                <p>
-                                                    Can be the string value <code>'any'</code> (the browser default), or a positive, non-zero
-                                                    numeric value. See
-                                                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step">the MDN article for <code>&lt;input&gt;</code></a>
-                                                    for more information.
-                                                </p>
-                                                <p>
-                                                    <b>Warning:</b> For most browsers, date inputs are buggy in their implementation of <code>step</code>,
-                                                    so this attribute would likely have no effect. Therefore, we don't set the step attribute
-                                                    for date inputs.
-                                                </p>
-                                                <p>
-                                                    See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#Setting_maximum_and_minimum_dates">the MDN article</a>
-                                                    for more information.
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span id="prompt-option-maxlength" class="bb-anchor">maxlength</span></td>
-                                            <td>Number</td>
-                                            <td>
-                                                <p>
-                                                    Set the <code>maxlength</code> option to limit the number of characters entered into a
-                                                    text-based input. Must be a positive, non-zero numeric value.
-                                                </p>
-                                                <p>
-                                                    Valid for <code>text</code>, <code>textarea</code>, <code>email</code>, and <code>password</code>
-                                                </p>
-                                                <p>
-                                                    Default: <code>null</code>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span id="prompt-option-pattern" class="bb-anchor">pattern</span></td>
-                                            <td>String</td>
-                                            <td>
-                                                <p>
-                                                    Set the <code>pattern</code> option to require the input value to follow a specific format.
-                                                    If <code>pattern</code> is set and a value has been entered by your user, the prompt will not
-                                                    close if the input value fails pattern validation.
-                                                </p>
-                                                <p>
-                                                    Can be added for any input type, but generally only used for <code>text</code> inputs,
-                                                    normally as a fallback for <code>email</code>, <code>time</code>, <code>date</code>, <code>number</code>
-                                                    or <code>range</code> inputs where native browser support for those types is lacking.
-                                                </p>
-                                                <p>
-                                                    Default: <code>null</code>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span id="prompt-option-placeholder" class="bb-anchor">placeholder</span></td>
-                                            <td>String</td>
-                                            <td>
-                                                <p>
-                                                    Set the <code>placeholder</code> option to provide a small amount of "helper" text
-                                                    within a text-based input.
-                                                </p>
-                                                <p>
-                                                    There is no real limit on the amount of text you may use for your placeholder, but
-                                                    keep in mind that the placeholder disappears when the input either has focus (depending on
-                                                    the browser) or has a value. Use the <code>message</code> option to provide help text
-                                                    which you want to always be visible or that is important.
-                                                </p>
-                                                <p>
-                                                    Valid for <code>text</code>, <code>textarea</code>, <code>email</code>, and <code>password</code>.
-                                                </p>
-                                                <p>
-                                                    If specified for <code>time</code>, <code>date</code>, <code>number</code>, or <code>range</code> inputs,
-                                                    your users will normally only see the placeholder where native browser support for those types is lacking.
-                                                </p>
-                                                <p>
-                                                    Default: <code>null</code>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span id="prompt-option-required" class="bb-anchor">required</span></td>
-                                            <td>Boolean</td>
-                                            <td>
-                                                <p>
-                                                    Set the <code>required</code> option to <code>true</code> to require an input value.
-                                                    When <code>true</code>, the prompt will not close if the input value is <code>null</code>,
-                                                    an empty string, or fails the input type's built-in validation constraints.
-                                                </p>
-                                                <p>
-                                                    Valid for <code>text</code>, <code>textarea</code>, <code>email</code>, <code>password</code>,
-                                                    <code>select</code>,
-                                                    <code>time</code>, <code>date</code>, <code>number</code>, and <code>range</code> types.
-                                                </p>
-                                                <p>
-                                                    Default: <code>null</code>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span id="prompt-option-multiple" class="bb-anchor">multiple</span></td>
-                                            <td>Boolean</td>
-                                            <td>
-                                                <p>
-                                                    Set the <code>multiple</code> option to <code>true</code> to allow users to 
-                                                    select more than one option when using the <code>select</code> input type.
-                                                </p>
-                                                <p>
-                                                    <i class="fa fa-info-circle text-info"></i>
-                                                    To pre-select more than one value, use an array for the <code>value</code> option. Note that the type
-                                                    of each item should match the type from <code>inputOptions</code>.
-                                                </p>
-                                                <p>
-                                                    Valid only for the <code>select</code> type.
-                                                </p>
-                                                <p>
-                                                    Default: <code>false</code>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <p>
+                                        <code>group</code> is an optional property for populating the <code>&lt;select&gt;</code>;
+                                        if specified, <code>&lt;optgroup&gt;</code> elements will be generated for each group
+                                        value found in the <code>inputOptions</code> array.
+                                    </p>
+                                    <p>
+                                        Default: <code>null</code>
+                                    </p>
+                                </dd>
+
+                                <dt><span id="prompt-option-input-min-max" class="bb-anchor h4">min, max</span></dt>
+                                <dd>
+                                    <p class="mb-1">
+                                        Type: <code>String</code> | <code>Number</code> | <code>Date String</code> | <code>Time string</code>
+                                    </p>
+                                    <p>
+                                        The <code>min</code> or <code>max</code> value for the <code>&lt;input&gt;</code> element.
+                                        Only valid for <code>date</code>,
+                                        <code>time</code>, <code>number</code>, and <code>range</code> types.
+                                    </p>
+                                    <p>
+                                        For <code>range</code> and <code>number</code>, min/max must be
+                                        a numeric value.
+                                    </p>
+                                    <p>
+                                        For <code>time</code>, min/max must a valid partial time value,
+                                        in the form of <code>HH:MM:SS</code>, where <code>HH</code> can be any zero-padded value
+                                        between <code>00</code> and <code>23</code> and
+                                        <code>MM</code> and <code>SS</code> can be any zero-padded number between <code>00</code> and <code>59</code>.
+                                    </p>
+                                    <p>
+                                        For <code>date</code>, min/max must a date value in the form
+                                        of <code>YYYY-MM-DD</code>, where <code>YYYY</code> can be any zero-padded value greater
+                                        than <code>0000</code>,
+                                        <code>MM</code> can be any zero-padded number between <code>01</code> and <code>12</code>,
+                                        and
+                                        <code>DD</code> can be any zero-padded number between <code>01</code> and <code>31</code>.
+                                    </p>
+                                    <p>
+                                        See the MDN article for
+                                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min">min</a> or
+                                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max">max</a> for more information.
+                                    </p>
+                                </dd>
+
+                                <dt><span id="prompt-option-input-step" class="bb-anchor h4">step</span></dt>
+                                <dd>
+                                    <p class="mb-1">
+                                        Type: <code>String</code> | <code>Number</code>
+                                    </p>
+                                    <p>
+                                        The <code>step</code> value for the <code>&lt;input&gt;</code> element. Only valid for
+                                        <code>time</code>,
+                                        <code>number</code>, and <code>range</code> types.
+                                    </p>
+                                    <p>
+                                        Can be the string value <code>'any'</code> (the browser default), or a positive, non-zero
+                                        numeric value. See
+                                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step">the MDN article for <code>&lt;input&gt;</code></a>
+                                        for more information.
+                                    </p>
+                                    <p>
+                                        <b>Warning:</b> For most browsers, date inputs are buggy in their implementation of <code>step</code>,
+                                        so this attribute would likely have no effect. Therefore, we don't set the step attribute
+                                        for date inputs.
+                                    </p>
+                                    <p>
+                                        See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#Setting_maximum_and_minimum_dates">the MDN article</a>
+                                        for more information.
+                                    </p>
+                                </dd>
+
+                                <dt><span id="prompt-option-input-maxlength" class="bb-anchor h4">maxlength</span></dt>
+                                <dd>
+                                    <p class="mb-1">
+                                        Type: <code>Number</code>
+                                    </p>
+                                    <p>
+                                        Set the <code>maxlength</code> option to limit the number of characters entered into a
+                                        text-based input. Must be a positive, non-zero numeric value.
+                                    </p>
+                                    <p>
+                                        Valid for <code>text</code>, <code>textarea</code>, <code>email</code>, and <code>password</code>
+                                    </p>
+                                </dd>
+
+                                <dt><span id="prompt-option-input-pattern" class="bb-anchor h4">pattern</span></dt>
+                                <dd>
+                                    <p class="mb-1">
+                                        Type: <code>String</code>
+                                    </p>
+                                    <p>
+                                        Set the <code>pattern</code> option to require the input value to follow a specific format.
+                                        If <code>pattern</code> is set and a value has been entered by your user, the prompt will not
+                                        close if the input value fails pattern validation.
+                                    </p>
+                                    <p>
+                                        Can be added for any input type, but generally only used for <code>text</code> inputs,
+                                        normally as a fallback for <code>email</code>, <code>time</code>, <code>date</code>, <code>number</code>
+                                        or <code>range</code> inputs where native browser support for those types is lacking.
+                                    </p>
+                                </dd>
+
+                                <dt><span id="prompt-option-input-placeholder" class="bb-anchor h4">placeholder</span></dt>
+                                <dd>
+                                    <p class="mb-1">
+                                        Type: <code>String</code>
+                                    </p>
+                                    <p>
+                                        Set the <code>placeholder</code> option to provide a small amount of "helper" text
+                                        within a text-based input.
+                                    </p>
+                                    <p>
+                                        There is no real limit on the amount of text you may use for your placeholder, but
+                                        keep in mind that the placeholder disappears when the input either has focus (depending on
+                                        the browser) or has a value. Use the <code>message</code> option to provide help text
+                                        which you want to always be visible or that is important.
+                                    </p>
+                                    <p>
+                                        Valid for <code>text</code>, <code>textarea</code>, <code>email</code>, and <code>password</code>.
+                                    </p>
+                                    <p>
+                                        If specified for <code>time</code>, <code>date</code>, <code>number</code>, or <code>range</code> inputs,
+                                        your users will normally only see the placeholder where native browser support for those types is lacking.
+                                    </p>
+                                </dd>
+
+                                <dt><span id="prompt-option-input-required" class="bb-anchor h4">required</span></dt>
+                                <dd>
+                                    <p class="mb-1">
+                                        Type: <code>Boolean</code>
+                                    </p>
+                                    <p>
+                                        Set the <code>required</code> option to <code>true</code> to require an input value.
+                                        When <code>true</code>, the prompt will not close if the input value is <code>null</code>,
+                                        an empty string, or fails the input type's built-in validation constraints.
+                                    </p>
+                                    <p>
+                                        Valid for <code>text</code>, <code>textarea</code>, <code>email</code>, <code>password</code>,
+                                        <code>select</code>,
+                                        <code>time</code>, <code>date</code>, <code>number</code>, and <code>range</code> types.
+                                    </p>
+                                </dd>
+
+                                <dt><span id="prompt-option-input-multiple" class="bb-anchor h4">multiple</span></dt>
+                                <dd>
+                                    <p class="mb-1">
+                                        Type: <code>Boolean</code>
+                                    </p>
+                                    <p>
+                                        Set the <code>multiple</code> option to <code>true</code> to allow users to
+                                        select more than one option when using the <code>select</code> input type.
+                                    </p>
+                                    <p>
+                                        <i class="fa fa-info-circle text-info"></i>
+                                        To pre-select more than one value, use an array for the <code>value</code> option. Note that the type
+                                        of each item should match the type from <code>inputOptions</code>.
+                                    </p>
+                                    <p>
+                                        Valid only for the <code>select</code> type.
+                                    </p>
+                                </dd>
+                            </dl>
+
+
                             <p>
                                 Please see the <a href="./examples.html#bb-prompt">Examples page</a> for more examples of prompt
                                 dialogs.
