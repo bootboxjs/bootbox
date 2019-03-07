@@ -1,6 +1,6 @@
 {
   "name": "bootbox",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Wrappers for JavaScript alert(), confirm() and other flexible dialogs using the Bootstrap framework",
   "directories": {
     "test": "tests"
@@ -15,7 +15,12 @@
   "author": "Nick Payne <nick@kurai.co.uk>",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "main": "src/bootbox.js",
+  "main": "dist/bootbox.all.min.js",
+  "files": [
+	"dist/*.js",
+	"src/*.js",
+	"src/*/*.js"
+	],
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^5.14.1",
@@ -40,9 +45,7 @@
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
-    "braces": "^2.3.2",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.7",
-    "bootstrap": "^4.3.1"
+    "jquery": ">=1.9.1",
+    "bootstrap": ">=3.0.0"
   }
 }
