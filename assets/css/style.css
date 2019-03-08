@@ -125,6 +125,21 @@ a.text-3wm-brand
     top: 15px;
 }
 
+    .bb-example figcaption a
+    {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 100%;
+        opacity: 0;
+        padding-right: 2px;
+    }
+
+    .bb-example figcaption:hover a
+    {
+        opacity: 1;
+    }
+
     .bb-example figcaption b
     {
         font-weight: 700;
@@ -259,8 +274,8 @@ dd.bb-example
 }
 
 
-.options-list{
-
+.options-list
+{
 }
 
     .options-list dd

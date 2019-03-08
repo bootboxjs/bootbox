@@ -102,7 +102,10 @@
 
                 <div class="col-md-9 col-xl-9 ml-md-auto py-9">
                     <p class="lead">
-                        Currently viewing documentation for version 5.0.
+                        Currently viewing documentation for version <b>5.0.0</b>. Other versions: <a href="./v4.x/documentation.html">4.x</a> &middot; <a href="./v3.x/documentation.html">3.x</a>
+                    </p>
+                    <p>
+                        <b>*</b> indicates options added in 5.0.
                     </p>
                     <div class="bs-callout bs-callout-danger">
                         <h5 class="callout-heading">
@@ -468,7 +471,7 @@
                                                 <td><code>bootbox-input-checkbox</code></td>
                                             </tr>
                                             <tr>
-                                                <td><code>radio</code></td>
+                                                <td><code>radio</code> <b>*</b></td>
                                                 <td><code>bootbox-input-radio</code></td>
                                             </tr>
                                             <tr>
@@ -484,7 +487,7 @@
                                                 <td><code>bootbox-input-number</code></td>
                                             </tr>
                                             <tr>
-                                                <td><code>range</code></td>
+                                                <td><code>range</code> <b>*</b></td>
                                                 <td><code>bootbox-input-range</code></td>
                                             </tr>
                                         </tbody>
@@ -498,7 +501,7 @@
                                         all require browser support to function properly. You may want to consult <a href="http://caniuse.com">caniuse.com</a>
                                         to determine if your target browsers support the input types you are intending to use.
                                     </p>
-                                    <h5>Date input type and browser support</h5>
+                                    <h5 id="note-date-time-input">Date input type and browser support</h5>
                                     <p>
                                         At the time this is written, every major browser which supports the <code>date</code> input type will only
                                         accept date values in the ISO 8601 format, which (for a complete date) is <code>YYYY-MM-DD</code>, where
@@ -511,10 +514,10 @@ DD   = two-digit day of month (01 through 31)
                                     <p>
                                         See <a href="https://en.wikipedia.org/wiki/ISO_8601">https://en.wikipedia.org/wiki/ISO_8601</a>
                                     </p>
-                                    <h5>Range input and default value</h5>
+                                    <h5 id="note-range-min-max">Range input and default value</h5>
                                     <p>
-                                        Please note that, when using the <code>range</code> input type, the default <code>min</code> value
-                                        is <code>0</code> and the default <code>max</code> value is <code>100</code> (see
+                                        Please note that, when using the <code>range</code> input type, the default <b>min</b> value
+                                        is <b>0</b> and the default <b>max</b> value is <b>100</b> (see
                                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#Specifying_the_minimum_and_maximum">MDN</a>).
                                         If you attempt to set the default value to something outside the min or max values, the input will default to the
                                         respective value.
@@ -546,7 +549,7 @@ DD   = two-digit day of month (01 through 31)
                                     </p>
                                 </dd>
 
-                                <dt><span id="prompt-option-input-min-max" class="bb-anchor h4">min, max</span></dt>
+                                <dt><span id="prompt-option-input-min-max" class="bb-anchor h4">min, max</span> <b>*</b></dt>
                                 <dd>
                                     <p class="mb-1">
                                         Type: <code>String</code> | <code>Number</code> | <code>Date String</code> | <code>Time string</code>
@@ -562,18 +565,22 @@ DD   = two-digit day of month (01 through 31)
                                     </p>
                                     <p>
                                         For <code>time</code>, min/max must a valid partial time value,
-                                        in the form of <code>HH:MM:SS</code>, where <code>HH</code> can be any zero-padded value
-                                        between <code>00</code> and <code>23</code> and
-                                        <code>MM</code> and <code>SS</code> can be any zero-padded number between <code>00</code> and <code>59</code>.
+                                        in the form of <code>HH:MM:SS</code>, where
                                     </p>
+                                    <pre>
+HH = any zero-padded value between <code>00</code> and <code>23</code>
+MM = any zero-padded value between <code>00</code> and <code>59</code>
+SS = any zero-padded value between <code>00</code> and <code>59</code>
+</pre>
                                     <p>
                                         For <code>date</code>, min/max must a date value in the form
-                                        of <code>YYYY-MM-DD</code>, where <code>YYYY</code> can be any zero-padded value greater
-                                        than <code>0000</code>,
-                                        <code>MM</code> can be any zero-padded number between <code>01</code> and <code>12</code>,
-                                        and
-                                        <code>DD</code> can be any zero-padded number between <code>01</code> and <code>31</code>.
+                                        of <code>YYYY-MM-DD</code>, where
                                     </p>
+                                    <pre>
+YYYY = four-digit year
+MM   = two-digit month (01=January, etc.)
+DD   = two-digit day of month (01 through 31)
+</pre>
                                     <p>
                                         See the MDN article for
                                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min">min</a> or
@@ -581,7 +588,7 @@ DD   = two-digit day of month (01 through 31)
                                     </p>
                                 </dd>
 
-                                <dt><span id="prompt-option-input-step" class="bb-anchor h4">step</span></dt>
+                                <dt><span id="prompt-option-input-step" class="bb-anchor h4">step</span> <b>*</b></dt>
                                 <dd>
                                     <p class="mb-1">
                                         Type: <code>String</code> | <code>Number</code>
@@ -592,7 +599,7 @@ DD   = two-digit day of month (01 through 31)
                                         <code>number</code>, and <code>range</code> types.
                                     </p>
                                     <p>
-                                        Can be the string value <code>'any'</code> (the browser default), or a positive, non-zero
+                                        Can be the string value <code>any</code> (the browser default), or a positive, non-zero
                                         numeric value. See
                                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step">the MDN article for <code>&lt;input&gt;</code></a>
                                         for more information.
@@ -650,7 +657,7 @@ DD   = two-digit day of month (01 through 31)
                                     </p>
                                     <p>
                                         There is no real limit on the amount of text you may use for your placeholder, but
-                                        keep in mind that the placeholder disappears when the input either has focus (depending on
+                                        keep in mind that the placeholder disappears when the input has focus (depending on
                                         the browser) or has a value. Use the <code>message</code> option to provide help text
                                         which you want to always be visible or that is important.
                                     </p>
@@ -663,7 +670,7 @@ DD   = two-digit day of month (01 through 31)
                                     </p>
                                 </dd>
 
-                                <dt><span id="prompt-option-input-required" class="bb-anchor h4">required</span></dt>
+                                <dt><span id="prompt-option-input-required" class="bb-anchor h4">required</span> <b>*</b></dt>
                                 <dd>
                                     <p class="mb-1">
                                         Type: <code>Boolean</code>
@@ -680,7 +687,7 @@ DD   = two-digit day of month (01 through 31)
                                     </p>
                                 </dd>
 
-                                <dt><span id="prompt-option-input-multiple" class="bb-anchor h4">multiple</span></dt>
+                                <dt><span id="prompt-option-input-multiple" class="bb-anchor h4">multiple</span> <b>*</b></dt>
                                 <dd>
                                     <p class="mb-1">
                                         Type: <code>Boolean</code>
@@ -1034,7 +1041,7 @@ DD   = two-digit day of month (01 through 31)
                             </dd>
 
 
-                            <dt><span id="bb-option-locale" class="bb-anchor h4">locale</span></dt>
+                            <dt><span id="bb-option-locale" class="bb-anchor h4">locale</span> <b>*</b></dt>
                             <dd>
                                 <p class="mb-1">Type: <code>String</code></p>
                                 <p>
@@ -1122,7 +1129,7 @@ DD   = two-digit day of month (01 through 31)
                             </dd>
 
 
-                            <dt><span id="bb-option-show" class="bb-anchor h4">swapButtonOrder</span></dt>
+                            <dt><span id="bb-option-show" class="bb-anchor h4">swapButtonOrder</span> <b>*</b></dt>
                             <dd>
                                 <p class="mb-1">Type: <code>Boolean</code></p>
                                 <p>
@@ -1132,7 +1139,7 @@ DD   = two-digit day of month (01 through 31)
                             </dd>
 
 
-                            <dt><span id="bb-option-show" class="bb-anchor h4">centerVertical</span></dt>
+                            <dt><span id="bb-option-show" class="bb-anchor h4">centerVertical</span> <b>*</b></dt>
                             <dd>
                                 <p class="mb-1">Type: <code>Boolean</code></p>
                                 <p>
@@ -1150,7 +1157,13 @@ DD   = two-digit day of month (01 through 31)
 
                     <section id="bb-available-locales" class="bb-section">
                         <h2 id="bb-locales" class="page-header bb-anchor">Available Locales</h2>
-                        <p>The following locales are available:</p>
+                        <p>
+                            Locales are used to provide a translation for each of the built-in command buttons (OK, CANCEL, and CONFIRM).
+                        </p>
+                        <p>
+                            The following locales are available (see the table below). You can find each of these locales rendered on the 
+                            <a href="http://localhost:51873/examples.html#confirm-all-locales-demo">Examples</a> page.
+                        </p>
                         <div class="table-responsive">
                             <table class="table table-sm table-striped table-bordered">
                                 <thead>
@@ -1417,40 +1430,42 @@ dialog.init(function(){
                         <p>
                             Using Bootbox has some caveats, as noted below.
                         </p>
-                        <dl class="bb-notes-list">
-                            <dt class="text-danger bb-anchor" id="bb-note-nonblocking">
+                        <div class="bb-notes-list">
+                            <h4 class="text-danger bb-anchor" id="bb-note-nonblocking">
                                 Dialog code does not block code execution
-                            </dt>
-                            <dd>
+                            </h4>
+                            <div>
                                 <p>
                                     <b>All</b> Bootstrap modals (and therefore Bootbox modals), unlike native alerts, confirms, or prompts,
                                     are
                                     <a href="https://getbootstrap.com/docs/4.2/components/modal/#methods">asynchronous</a>; meaning,
-                                    the events which Bootstrap generates are <b>non-blocking</b> events. <b>Because of this limitation,
-                                    code that should not be evaluated until a user has dismissed your dialog must be called within the
-                                    callback function of the dialog.</b>
+                                    the events which Bootstrap generates are <b>non-blocking</b> events. <b>
+                                        Because of this limitation,
+                                        code that should not be evaluated until a user has dismissed your dialog must be called within the
+                                        callback function of the dialog.
+                                    </b>
                                 </p>
-                            </dd>
-                            <dt class="text-danger bb-anchor" id="bb-note-multiplemodals">
+                            </div>
+                            <h4 class="text-danger bb-anchor" id="bb-note-multiplemodals">
                                 Multiple open modals are not supported
-                            </dt>
-                            <dd>
+                            </h4>
+                            <div>
                                 <p>
                                     This is a limitation of the Bootstrap modal plugin, as noted in the
                                     <a href="https://getbootstrap.com/docs/4.2/components/modal/#how-it-works">official Bootstrap documentation</a>.
                                     While it <em>is</em> functionally possible to trigger multiple modals, custom CSS and/or JavaScript
                                     code is required for each layer of modal to display properly.
                                 </p>
-                            </dd>
-                            <dt class="text-danger bb-anchor" id="bb-note-input-values">
+                            </div>
+                            <h4 class="text-danger bb-anchor" id="bb-note-input-values">
                                 Prompt values are not sanitized
-                            </dt>
-                            <dd>
+                            </h4>
+                            <div>
                                 <p>
-                                    The value(s) returned by a Bootbox prompt are not sanitized in any way.
+                                    The value(s) returned by a Bootbox prompt are <b>not</b> sanitized in any way.
                                 </p>
-                            </dd>
-                        </dl>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>

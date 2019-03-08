@@ -128,7 +128,7 @@
                         <div id="bb-alert-examples" class="collapse show">
                             <div>
                                 <dl class="bb-examples-list">
-                                    <dt id="bb-alert-basic" class="bb-anchor">Basic usage</dt>
+                                    <dt id="bb-alert-basic" class="bb-anchor h5">Basic usage</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-default">Run example</button>
@@ -136,7 +136,7 @@
                                         <pre class="language-js line-numbers"><code>bootbox.alert("This is the default alert!");</code></pre>
                                     </dd>
 
-                                    <dt id="alert-basic-callback" class="bb-anchor">Basic usage, with callback</dt>
+                                    <dt id="alert-basic-callback" class="bb-anchor h5">Basic usage, with callback</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-callback">Run example</button>
@@ -146,7 +146,7 @@
 });</code></pre>
                                     </dd>
 
-                                    <dt id="alert-basic-options" class="bb-anchor">Basic usage, using options object</dt>
+                                    <dt id="alert-basic-options" class="bb-anchor h5">Basic usage, using options object</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-options">Run example</button>
@@ -159,7 +159,7 @@
 })</code></pre>
                                     </dd>
 
-                                    <dt id="alert-small-size" class="bb-anchor">Small dialog</dt>
+                                    <dt id="alert-small-size" class="bb-anchor h5">Small dialog</dt>
                                     <dd class="bb-example">
                                         <p class="text-sm">
                                             Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
@@ -176,7 +176,7 @@
                                         </p>
                                     </dd>
 
-                                    <dt id="alert-large-size" class="bb-anchor">Large dialog</dt>
+                                    <dt id="alert-large-size" class="bb-anchor h5">Large dialog</dt>
                                     <dd class="bb-example">
                                         <p class="text-sm">
                                             Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
@@ -193,7 +193,7 @@
                                         </p>
                                     </dd>
 
-                                    <dt id="alert-custom-class" class="bb-anchor">
+                                    <dt id="alert-custom-class" class="bb-anchor h5">
                                         Custom CSS class (using <a href="https://daneden.github.io/animate.css/">Animate.css</a>)
                                     </dt>
                                     <dd class="bb-example">
@@ -209,7 +209,7 @@
 });</code></pre>
                                     </dd>
 
-                                    <dt id="alert-dismiss-on-click" class="bb-anchor">
+                                    <dt id="alert-dismiss-on-click" class="bb-anchor h5">
                                         Dismiss with overlay click
                                     </dt>
                                     <dd class="bb-example">
@@ -225,7 +225,7 @@
 });</code></pre>
                                     </dd>
 
-                                    <dt id="alert-locale" class="bb-anchor">
+                                    <dt id="alert-locale" class="bb-anchor h5">
                                         Using a locale
                                     </dt>
                                     <dd class="bb-example">
@@ -261,7 +261,7 @@
                         <div id="bb-confirm-examples" class="collapse show">
                             <div>
                                 <dl class="bb-examples-list">
-                                    <dt id="confirm-basic" class="bb-anchor">Basic usage</dt>
+                                    <dt id="confirm-basic" class="bb-anchor h5">Basic usage</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-default">Run example</button>
@@ -271,7 +271,7 @@
 });</code></pre>
                                     </dd>
 
-                                    <dt id="confirm-alternate-text-color" class="bb-anchor">
+                                    <dt id="confirm-alternate-text-color" class="bb-anchor h5">
                                         With alternate button text and color
                                     </dt>
                                     <dd class="bb-example">
@@ -299,7 +299,7 @@
 });</code></pre>
                                     </dd>
 
-                                    <dt id="confirm-buttons-with-icon-text" class="bb-anchor">
+                                    <dt id="confirm-buttons-with-icon-text" class="bb-anchor h5">
                                         With icon and button text
                                     </dt>
                                     <dd class="bb-example">
@@ -326,7 +326,7 @@
 });</code></pre>
                                     </dd>
 
-                                    <dt id="confirm-all-locales-demo" class="bb-anchor">
+                                    <dt id="confirm-all-locales-demo" class="bb-anchor h5">
                                         Demoing all locales
                                     </dt>
                                     <dd class="bb-example">
@@ -346,7 +346,7 @@ bootbox.confirm({
     message: "This confirm uses the selected locale. Were the labels what you expected?",
     locale: locale,
     callback: function (result) {
-        Example.show('This was logged in the callback: ' + result);
+        console.log('This was logged in the callback: ' + result);
     }
 });</code></pre>
                                     </dd>
@@ -375,7 +375,7 @@ bootbox.confirm({
                                     but the prompt result will <b>not</b> include any form inputs from your message.
                                 </p>
                                 <dl class="bb-examples-list">
-                                    <dt id="prompt-basic" class="bb-anchor">Basic usage</dt>
+                                    <dt id="prompt-basic" class="bb-anchor h5">Basic usage</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-default">Run example</button>
@@ -389,7 +389,7 @@ bootbox.confirm({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-custom-locale" class="bb-anchor">With a custom locale</dt>
+                                    <dt id="prompt-with-custom-locale" class="bb-anchor h5">With a custom locale</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-custom-locale">Run example</button>
@@ -406,12 +406,12 @@ bootbox.prompt({
     title: "This is a prompt with a custom locale! What do you think?", 
     locale: 'custom',
     callback: function (result) {
-        Example.show('This was logged in the callback: ' + result);
+        console.log('This was logged in the callback: ' + result);
     }
 });</code></pre>
                                     </dd>
 
-                                    <dt id="prompt-with-checkbox" class="bb-anchor">Prompt with checkbox</dt>
+                                    <dt id="prompt-with-checkbox" class="bb-anchor h5">Prompt with checkbox</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-checkbox">Run example</button>
@@ -443,7 +443,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-radios-message" class="bb-anchor">Prompt with radio buttons and a <code>message</code> value</dt>
+                                    <dt id="prompt-with-radios-message" class="bb-anchor h5">Prompt with radio buttons and a <code>message</code> value</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-radio">Run example</button>
@@ -481,7 +481,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-date" class="bb-anchor">
+                                    <dt id="prompt-with-date" class="bb-anchor h5">
                                         Prompt with date
                                     </dt>
                                     <dd class="bb-example">
@@ -504,7 +504,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-email" class="bb-anchor">
+                                    <dt id="prompt-with-email" class="bb-anchor h5">
                                         Prompt with email
                                     </dt>
                                     <dd class="bb-example">
@@ -527,7 +527,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-number" class="bb-anchor">
+                                    <dt id="prompt-with-number" class="bb-anchor h5">
                                         Prompt with number
                                     </dt>
                                     <dd class="bb-example">
@@ -550,7 +550,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-password" class="bb-anchor">Prompt with password</dt>
+                                    <dt id="prompt-with-password" class="bb-anchor h5">Prompt with password</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-password">Run example</button>
@@ -568,7 +568,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-select" class="bb-anchor">Prompt with select</dt>
+                                    <dt id="prompt-with-select" class="bb-anchor h5">Prompt with select</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-select">Run example</button>
@@ -604,7 +604,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-select-multiple" class="bb-anchor">Prompt with select &amp; multiple</dt>
+                                    <dt id="prompt-with-select-multiple" class="bb-anchor h5">Prompt with select &amp; multiple</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-select-multiple">Run example</button>
@@ -642,7 +642,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-textarea" class="bb-anchor">Prompt with textarea</dt>
+                                    <dt id="prompt-with-textarea" class="bb-anchor h5">Prompt with textarea</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-textarea">Run example</button>
@@ -660,7 +660,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-time" class="bb-anchor">
+                                    <dt id="prompt-with-time" class="bb-anchor h5">
                                         Prompt with time
                                     </dt>
                                     <dd class="bb-example">
@@ -683,7 +683,7 @@ bootbox.prompt({
                                         </p>
                                     </dd>
 
-                                    <dt id="prompt-with-range" class="bb-anchor">
+                                    <dt id="prompt-with-range" class="bb-anchor h5">
                                         Prompt with range
                                     </dt>
                                     <dd class="bb-example">
@@ -701,7 +701,7 @@ bootbox.prompt({
     step: 5,
     value: 35,
     callback: function (result) {
-        Example.show('This was logged in the callback: ' + result);
+        console.log('This was logged in the callback: ' + result);
     }
 });</code></pre>
                                         <p>
@@ -733,7 +733,7 @@ bootbox.prompt({
                                     <b>Please note:</b> Custom dialogs accept only one argument: an options object. The only <b>required</b> property of the options object is <code>message</code>.
                                 </p>
                                 <dl class="bb-examples-list">
-                                    <dt id="custom-dialog-as-overlay" class="bb-anchor">Custom dialog as "loading" overlay</dt>
+                                    <dt id="custom-dialog-as-overlay" class="bb-anchor h5">Custom dialog as "loading" overlay</dt>
                                     <dd class="bb-example">
                                         <p>
                                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="custom-dialog-as-overlay">Run example</button>
@@ -747,7 +747,7 @@ bootbox.prompt({
 dialog.modal('hide');</code></pre>
                                     </dd>
 
-                                    <dt id="custom-dialog-init" class="bb-anchor">
+                                    <dt id="custom-dialog-init" class="bb-anchor h5">
                                         Custom dialog, using init
                                     </dt>
                                     <dd class="bb-example">
@@ -769,7 +769,7 @@ dialog.init(function(){
 });</code></pre>
                                     </dd>
 
-                                    <dt id="custom-dialog-with-buttons" class="bb-anchor">
+                                    <dt id="custom-dialog-with-buttons" class="bb-anchor h5">
                                         Custom dialog, with buttons and callbacks
                                     </dt>
                                     <dd class="bb-example">
@@ -785,14 +785,14 @@ dialog.init(function(){
             label: "I'm a cancel button!",
             className: 'btn-danger',
             callback: function(){
-                Example.show('Custom cancel clicked');
+                console.log('Custom cancel clicked');
             }
         },
         noclose: {
             label: "I don't close the modal!",
             className: 'btn-warning',
             callback: function(){
-                Example.show('Custom button clicked');
+                console.log('Custom button clicked');
                 return false;
             }
         },
@@ -800,7 +800,7 @@ dialog.init(function(){
             label: "I'm an OK button!",
             className: 'btn-info',
             callback: function(){
-                Example.show('Custom OK clicked');
+                console.log('Custom OK clicked');
             }
         }
     }

@@ -131,7 +131,7 @@ $(function () {
           case 'confirm-locale':
             var locale = $('#locales').val();
             bootbox.confirm({
-              message: "This confirm uses the selected locale. Were the labels what you expected?",
+              message: "This confirm uses the selected locale, <b>" + locale + "</b>. Were the labels what you expected?",
               locale: locale,
               callback: function (result) {
                 Example.show('This was logged in the callback: ' + result);
