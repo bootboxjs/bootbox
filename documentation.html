@@ -42,7 +42,7 @@
                     </a>
                 </nav>
             </section>
-            <a class="btn btn-light" href="https://github.com/makeusabrew/bootbox/releases/download/v5.0.0/bootbox.zip" id="download-bootbox">
+            <a class="btn btn-light" href="https://github.com/makeusabrew/bootbox/releases/download/v5.0.1/bootbox.zip" id="download-bootbox">
                 <i class="fa fa-download"></i>
                 Download
             </a>
@@ -102,7 +102,7 @@
 
                 <div class="col-md-9 col-xl-9 ml-md-auto py-9">
                     <p class="lead">
-                        Currently viewing documentation for version <b>5.0.0</b>. Other versions: <a href="./v4.x/documentation.html">4.x</a> &middot; <a href="./v3.x/documentation.html">3.x</a>
+                        Currently viewing documentation for version <b>5.0.1</b>. Other versions: <a href="./v4.x/documentation.html">4.x</a> &middot; <a href="./v3.x/documentation.html">3.x</a>
                     </p>
                     <p>
                         <b>*</b> indicates options added in 5.0.
@@ -148,7 +148,7 @@
                                 </figure>
                             </div>
 
-                            <p>Your message can also contain HTML.</p>
+                            <p>Your message can also contain HTML. <sup><a href="#bb-note-html"><i class="fa fa-exclamation-triangle text-danger"></i></a></sup></p>
                             <div class="bb-example bb-example-modal">
                                 <pre class="language-js line-numbers"><code>bootbox.alert("Your message &lt;b&gt;here&hellip;&lt;/b&gt;")</code></pre>
                                 <figure>
@@ -848,7 +848,8 @@ DD   = two-digit day of month (01 through 31)
                                     </span>
                                 </p>
                                 <p>
-                                    Text (or markup) displayed in the dialog.
+                                    Text (or markup <sup><a href="#bb-note-html"><i class="fa fa-exclamation-triangle text-danger"></i></a></sup>) 
+                                    displayed in the dialog.
                                 </p>
                             </dd>
 
@@ -860,7 +861,9 @@ DD   = two-digit day of month (01 through 31)
                                     <span class="badge badge-danger">Required for prompt</span>
                                 </p>
                                 <p>
-                                    Adds a header to the dialog and places this text (or markup) in an <code>&lt;h5&gt;</code> element.
+                                    Adds a header to the dialog and places this text 
+                                    (or markup <sup><a href="#bb-note-html"><i class="fa fa-exclamation-triangle text-danger"></i></a></sup>) 
+                                    in an <code>&lt;h5&gt;</code> element.
                                 </p>
                             </dd>
 
@@ -1104,7 +1107,9 @@ DD   = two-digit day of month (01 through 31)
                                     </table>
                                 </div>
                                 <p>
-                                    Each of the available button options can be overridden to use custom content (text or HTML) and CSS styles. For example:
+                                    Each of the available button options can be overridden to use custom content 
+                                    (text or HTML <sup><a href="#bb-note-html"><i class="fa fa-exclamation-triangle text-danger"></i></a></sup>) 
+                                    and CSS styles. For example:
                                 </p>
                                 <pre class="language-js line-numbers"><code>bootbox.confirm({
     message: "This is a confirm with custom button text and color! Do you like it?",
@@ -1274,20 +1279,26 @@ DD   = two-digit day of month (01 through 31)
                                     <tr>
                                         <td><code>sv</code></td>
                                         <td>Swedish</td>
+                                        <td><code>ta</code></td>
+                                        <td>Tamil</td>
+                                    </tr>
+                                    <tr>
                                         <td><code>th</code></td>
                                         <td>Thai</td>
-                                    </tr>
-                                    <tr>
                                         <td><code>tr</code></td>
                                         <td>Turkish</td>
-                                        <td><code>uk</code></td>
-                                        <td>Ukrainian</td>
                                     </tr>
                                     <tr>
+                                        <td><code>uk</code></td>
+                                        <td>Ukrainian</td>
                                         <td><code>zh_CN</code></td>
                                         <td>Chinese (People's Republic of China)</td>
+                                    </tr>
+                                    <tr>
                                         <td><code>zh_TW</code></td>
                                         <td>Chinese (Taiwan / Republic of China)</td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1463,6 +1474,17 @@ dialog.init(function(){
                             <div>
                                 <p>
                                     The value(s) returned by a Bootbox prompt are <b>not</b> sanitized in any way.
+                                </p>
+                            </div>
+                            <h4 class="text-danger bb-anchor" id="bb-note-html">
+                                Content strings are not sanitized
+                            </h4>
+                            <div>
+                                <p>
+                                    You can use either plain text or HTML for pretty much any Bootbox option which sets a display aspect of 
+                                    the rendered modal, such as the title, message, and button labels. Bootbox <b>does not</b> sanitize any of 
+                                    these values. Since we use jQuery's <a href="http://api.jquery.com/html/">.html()</a> function to build 
+                                    the dialog, this is a possible XSS vector. It is <em>your</em> responsibility to sanitize your content.
                                 </p>
                             </div>
                         </div>
