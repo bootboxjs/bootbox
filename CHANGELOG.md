@@ -1,4 +1,8 @@
-## 5.0.0 (Latest Release)
+## 5.0.1 (Latest Release)
+
+- Adds Tamil locale
+
+### 5.0.0
 
 - Updates Bootbox to be compatible with both Bootstrap 4 and Bootstrap 3.
 - Pulls button locale options to separate file
