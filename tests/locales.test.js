@@ -494,4 +494,18 @@ describe('bootbox locales', function() {
       return expect(this.labels.confirm).to.equal('Potvrdiť');
     });
   });
+  describe('Tamil', function() {
+    beforeEach(function() {
+      return this.setLocale('ta');
+    });
+    it('shows the correct OK translation', function() {
+      return expect(this.labels.ok).to.equal('சரி');
+    });
+    it('shows the correct CANCEL translation', function() {
+      return expect(this.labels.cancel).to.equal('ரத்து செய்');
+    });
+    return it('shows the correct CONFIRM translation', function() {
+      return expect(this.labels.confirm).to.equal('உறுதி செய்');
+    });
+  });
 });

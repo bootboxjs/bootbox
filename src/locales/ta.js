@@ -1,8 +1,8 @@
 // bootbox.js locale configuration
-// locale : Lithuanian
-// author : Tomas
+// locale : Tamil
+// author : Kolappan Nathan
 
-(function (global, factory) {
+(function (global, factory) {  
     'use strict';
     if (typeof define === 'function' && define.amd) {
         define(['../bootbox'], factory);
@@ -13,9 +13,9 @@
     }
 }(this, function (bootbox) {
     'use strict';
-    bootbox.addLocale('lt', {
-        OK      : 'Gerai',
-        CANCEL  : 'Atšaukti',
-        CONFIRM : 'Patvirtinti'
+    bootbox.addLocale('ta', {
+        OK      : 'சரி',
+        CANCEL  : 'ரத்து செய்',
+        CONFIRM : 'உறுதி செய்'
     });
 }));
