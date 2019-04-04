@@ -72,6 +72,37 @@ describe('bootbox.setDefaults', function() {
   });
 
   describe('size', function() {
+    describe('when set to extra-large', function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          size: 'extra-large'
+        });
+
+        this.dialog = bootbox.dialog({
+          message: 'test'
+        });
+      });
+
+      it('adds the extra-large class to the innerDialog', function() {
+        expect(this.dialog.children('.modal-dialog').hasClass('modal-xl')).to.be.true;
+      });
+    });
+    describe('when set to xl', function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          size: 'xl'
+        });
+
+        this.dialog = bootbox.dialog({
+          message: 'test'
+        });
+      });
+
+      it('adds the extra-large class to the innerDialog', function() {
+        expect(this.dialog.children('.modal-dialog').hasClass('modal-xl')).to.be.true;
+      });
+    });
+
     describe('when set to large', function() {
       beforeEach(function() {
         bootbox.setDefaults({
@@ -87,10 +118,41 @@ describe('bootbox.setDefaults', function() {
         expect(this.dialog.children('.modal-dialog').hasClass('modal-lg')).to.be.true;
       });
     });
+    describe('when set to lg', function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          size: 'lg'
+        });
+
+        this.dialog = bootbox.dialog({
+          message: 'test'
+        });
+      });
+
+      it('adds the large class to the innerDialog', function() {
+        expect(this.dialog.children('.modal-dialog').hasClass('modal-lg')).to.be.true;
+      });
+    });
+
     describe('when set to small', function() {
       beforeEach(function() {
         bootbox.setDefaults({
           size: 'small'
+        });
+
+        this.dialog = bootbox.dialog({
+          message: 'test'
+        });
+      });
+
+      it('adds the small class to the innerDialog', function() {
+        expect(this.dialog.children('.modal-dialog').hasClass('modal-sm')).to.be.true;
+      });
+    });
+    describe('when set to sm', function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          size: 'sm'
         });
 
         this.dialog = bootbox.dialog({
@@ -136,6 +198,24 @@ describe('bootbox.setDefaults', function() {
 
       it('adds the modal-dialog-centered class to the innerDialog', function() {
         expect(this.dialog.children('.modal-dialog').hasClass('modal-dialog-centered')).to.be.true;
+      });
+    });
+  });
+  
+  describe('scrollable', function() {
+    describe('when set to true', function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          scrollable: true
+        });
+
+        this.dialog = bootbox.dialog({
+          message: 'test'
+        });
+      });
+
+      it('adds the modal-dialog-scrollable class to the innerDialog', function() {
+        expect(this.dialog.children('.modal-dialog').hasClass('modal-dialog-scrollable')).to.be.true;
       });
     });
   });

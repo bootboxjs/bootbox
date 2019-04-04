@@ -35,10 +35,22 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-### Latest Release: 5.0.0
+### 5.1.0 (Latest Release)
+
+- Adds `scrollable` option, which enables the scrollable modal content added in Bootstrap 4.3
+- Adds `extra-large` as a size option
+- Adds aliased/alternative keys for all size options: `sm`, `lg`, `xl`
+
+#### 5.0.1
+
+- Adds Tamil locale
+
+#### 5.0.0
 
 - Updates Bootbox to be compatible with both Bootstrap 4 and Bootstrap 3.
 - Pulls button locale options to separate file
+- Corrects Russion locale
+- Changes default button trigger to target the button with the `bootbox-accept` class; this corrects instances where no button has the `btn-primary` class.
 - Various bugfixes
 
 #### Prompt

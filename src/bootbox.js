@@ -146,7 +146,9 @@
     // center modal vertically in page
     centerVertical: false,
     // Append "multiple" property to the select when using the "prompt" helper
-    multiple: false
+    multiple: false,
+    // Automatically scroll modal content when height exceeds viewport height
+    scrollable: false
   };
 
 

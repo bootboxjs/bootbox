@@ -1,4 +1,10 @@
-## 5.0.1 (Latest Release)
+## 5.1.0 (Latest Release)
+
+- Adds `scrollable` option, which enables the scrollable modal content added in Bootstrap 4.3
+- Adds `extra-large` as a size option
+- Adds aliased/alternative keys for all size options: `sm`, `lg`, `xl`
+
+### 5.0.1
 
 - Adds Tamil locale
 
