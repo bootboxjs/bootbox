@@ -7,8 +7,8 @@
 
     <title>Documentation | Bootbox.js &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</title>
 
-    <link href="assets/css/page.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="./assets/css/page.css" rel="stylesheet" />
+    <link href="./assets/css/style.css" rel="stylesheet" />
 
     <script>
         var _gaq = _gaq || [];
@@ -42,7 +42,7 @@
                     </a>
                 </nav>
             </section>
-            <a class="btn btn-light" href="https://github.com/makeusabrew/bootbox/releases/download/v5.0.1/bootbox.zip" id="download-bootbox">
+            <a class="btn btn-light" href="https://github.com/makeusabrew/bootbox/releases/download/v5.1.0/bootbox.zip" id="download-bootbox">
                 <i class="fa fa-download"></i>
                 Download
             </a>
@@ -498,7 +498,7 @@
                                     </p>
                                     <p>
                                         <code>email</code>, <code>date</code>, <code>time</code>, <code>number</code>, and <code>range</code>
-                                        all require browser support to function properly. You may want to consult <a href="http://caniuse.com">caniuse.com</a>
+                                        all require browser support to function properly. You may want to consult <a href="https://caniuse.com">caniuse.com</a>
                                         to determine if your target browsers support the input types you are intending to use.
                                     </p>
                                     <h5 id="note-date-time-input">Date input type and browser support</h5>
@@ -1014,7 +1014,7 @@ DD   = two-digit day of month (01 through 31)
                             <dd>
                                 <p class="mb-1">Type: <code>Boolean</code></p>
                                 <p>
-                                    Animate the dialog in and out (requires a browser which <a href="http://caniuse.com/#search=css-animation">supports CSS animations</a>).
+                                    Animate the dialog in and out (requires a browser which <a href="https://caniuse.com/#search=css-animation">supports CSS animations</a>).
                                 </p>
                                 <p>Default: <code>true</code></p>
                             </dd>
@@ -1034,11 +1034,24 @@ DD   = two-digit day of month (01 through 31)
                             <dd>
                                 <p class="mb-1">Type: <code>String</code></p>
                                 <p>
-                                    Adds the relevant Bootstrap modal size class to the dialog wrapper. Valid values are
-                                    <code>'large'</code> and <code>'small'</code>
+                                    Adds the relevant Bootstrap modal size class to the dialog wrapper. Valid values are:
                                 </p>
+                                <table class="table">
+                                    <tr>
+                                        <td style="width: 10rem;">Small</td>
+                                        <td><code>'small'</code>, <code>'sm'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Large</td>
+                                        <td><code>'large'</code>, <code>'lg'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Extra large</td>
+                                        <td><code>'extra-large'</code>, <code>'xl'</code></td>
+                                    </tr>
+                                </table>
                                 <p>
-                                    <b>Requires Bootstrap 3.1.0 or newer</b>.
+                                    <b>Requires Bootstrap 3.1.0 or newer</b>. Extra-large requires Bootstrap 4.2.0 or newer.
                                 </p>
                                 <p>Default: <code>null</code></p>
                             </dd>
@@ -1148,7 +1161,7 @@ DD   = two-digit day of month (01 through 31)
                             <dd>
                                 <p class="mb-1">Type: <code>Boolean</code></p>
                                 <p>
-                                    If <code>true</code>, the <a href="http://getbootstrap.com/docs/4.1/components/modal/#vertically-centered">modal-dialog-centered</a>
+                                    If <code>true</code>, the <a href="https://getbootstrap.com/docs/4.3/components/modal/#vertically-centered">modal-dialog-centered</a>
                                     class will be added to the dialog wrapper.
                                 </p>
                                 <p>
@@ -1157,6 +1170,19 @@ DD   = two-digit day of month (01 through 31)
                                 <p>Default: <code>false</code></p>
                             </dd>
 
+
+                            <dt><span id="bb-option-scrollable" class="bb-anchor h4">scrollable</span></dt>
+                            <dd>
+                                <p class="mb-1">Type: <code>Boolean</code></p>
+                                <p>
+                                    If <code>true</code>, the <a href="https://getbootstrap.com/docs/4.3/components/modal/#scrolling-long-content">modal-dialog-centered</a> 
+                                    class to the dialog wrapper. Enable this option to have the content of long modals automatically scroll.
+                                </p>
+                                <p>
+                                    <b>Requires Bootstrap 4.3.0 or newer</b>.
+                                </p>
+                                <p>Default: <code>false</code></p>
+                            </dd>
                         </dl>
                     </section>
 
@@ -1167,7 +1193,7 @@ DD   = two-digit day of month (01 through 31)
                         </p>
                         <p>
                             The following locales are available (see the table below). You can find each of these locales rendered on the 
-                            <a href="http://localhost:51873/examples.html#confirm-all-locales-demo">Examples</a> page.
+                            <a href="./examples.html#confirm-all-locales-demo">Examples</a> page.
                         </p>
                         <div class="table-responsive">
                             <table class="table table-sm table-striped table-bordered">
@@ -1333,7 +1359,7 @@ DD   = two-digit day of month (01 through 31)
                             <p id="jquery-functions" class="bb-anchor">
                                 The Bootbox object returned from each of the dialog functions is a jQuery object. As such, you can chain most jQuery functions
                                 onto the result of a Bootbox dialog. Here's an example showing how to handle Bootstrap's <code>shown.bs.modal</code>
-                                event, using <a href="http://api.jquery.com/on/">.on()</a>:
+                                event, using <a href="https://api.jquery.com/on/">.on()</a>:
                             </p>
                             <pre class="language-js line-numbers"><code>var dialog = bootbox.dialog({
     /* Your options... */
@@ -1344,7 +1370,7 @@ dialog.on('shown.bs.modal', function(e){
 });</code></pre>
                             <p>
                                 If you set the <code>show</code> option to <code>false</code>, you can also use Bootstrap's
-                                <a href="http://getbootstrap.com/docs/4.0/components/modal/">modal()</a> function to show and hide your
+                                <a href="https://getbootstrap.com/docs/4.3/components/modal/">modal()</a> function to show and hide your
                                 dialog manually:
                             </p>
                             <pre class="language-js line-numbers"><code>var dialog = bootbox.dialog({
@@ -1449,7 +1475,7 @@ dialog.init(function(){
                                 <p>
                                     <b>All</b> Bootstrap modals (and therefore Bootbox modals), unlike native alerts, confirms, or prompts,
                                     are
-                                    <a href="https://getbootstrap.com/docs/4.2/components/modal/#methods">asynchronous</a>; meaning,
+                                    <a href="https://getbootstrap.com/docs/4.3/components/modal/#methods">asynchronous</a>; meaning,
                                     the events which Bootstrap generates are <b>non-blocking</b> events. <b>
                                         Because of this limitation,
                                         code that should not be evaluated until a user has dismissed your dialog must be called within the
@@ -1463,7 +1489,7 @@ dialog.init(function(){
                             <div>
                                 <p>
                                     This is a limitation of the Bootstrap modal plugin, as noted in the
-                                    <a href="https://getbootstrap.com/docs/4.2/components/modal/#how-it-works">official Bootstrap documentation</a>.
+                                    <a href="https://getbootstrap.com/docs/4.3/components/modal/#how-it-works">official Bootstrap documentation</a>.
                                     While it <em>is</em> functionally possible to trigger multiple modals, custom CSS and/or JavaScript
                                     code is required for each layer of modal to display properly.
                                 </p>
@@ -1483,7 +1509,7 @@ dialog.init(function(){
                                 <p>
                                     You can use either plain text or HTML for pretty much any Bootbox option which sets a display aspect of 
                                     the rendered modal, such as the title, message, and button labels. Bootbox <b>does not</b> sanitize any of 
-                                    these values. Since we use jQuery's <a href="http://api.jquery.com/html/">.html()</a> function to build 
+                                    these values. Since we use jQuery's <a href="https://api.jquery.com/html/">.html()</a> function to build 
                                     the dialog, this is a possible XSS vector. It is <em>your</em> responsibility to sanitize your content.
                                 </p>
                             </div>
@@ -1507,8 +1533,8 @@ dialog.init(function(){
     <button class="btn btn-circle btn-primary scroll-top"><i class="fa fa-angle-up"></i></button>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="assets/js/page.js"></script>
-    <script src="assets/js/bootbox.all.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="./assets/js/page.js"></script>
+    <script src="./assets/js/bootbox.all.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
