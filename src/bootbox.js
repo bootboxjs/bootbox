@@ -268,7 +268,7 @@
       onEscape: options.onEscape
     };
 
-    body.find('.bootbox-body').html(options.message);
+    safeAppend(body.find('.bootbox-body'), options.message);
 
     // Only attempt to create buttons if at least one has 
     // been defined in the options object
@@ -290,7 +290,7 @@
             break;
         }
 
-        button.html(b.label);
+        safeAppend(button, b.label);
         footer.append(button);
 
         callbacks[key] = b.callback;
@@ -347,7 +347,7 @@
 
     if (options.title) {
       body.before(header);
-      dialog.find('.modal-title').html(options.title);
+      safeAppend(dialog.find('.modal-title'), options.title);
     }
 
     if (options.closeButton) {
@@ -848,7 +848,7 @@
 
     if ($.trim(options.message) !== '') {
       // Add the form to whatever content the user may have added.
-      var message = $(templates.promptMessage).html(options.message);
+      var message = safeAppend($(templates.promptMessage), options.message);
       form.prepend(message);
       options.message = form;
     }
@@ -895,7 +895,7 @@
       throw new Error('Invalid argument length');
     }
 
-    if (argn === 2 || typeof args[0] === 'string') {
+    if (argn === 2 || typeof args[0] === 'string' || args[0] instanceof $) {
       options[properties[0]] = args[0];
       options[properties[1]] = args[1];
     } else {
@@ -1007,6 +1007,15 @@
     return labels ? labels[key] : locales.en[key];
   }
 
+  // Append child to node
+  // Make sure child is an jQuery element otherwise add it as text node
+  function safeAppend (el, child) {
+    if (child instanceof $) {
+      el.append(child);
+    } else {
+      el.text(child);
+    }
+  }
 
 
   //  Filter and tidy up any user supplied parameters to this dialog.

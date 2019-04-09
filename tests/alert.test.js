@@ -9,6 +9,10 @@ describe('bootbox.alert', function() {
       return this.find(selector).text();
     };
 
+    this.html = function(selector) {
+      return this.find(selector).html();
+    };
+
     this.find = function(selector) {
       return this.dialog.find(selector);
     };
@@ -67,6 +71,27 @@ describe('bootbox.alert', function() {
 
         it('applies the correct class to the body', function() {
           expect($('body').hasClass('modal-open')).to.be.true;
+        });
+      });
+
+      describe('where the argument is string containing html', function () {
+        beforeEach(function() {
+          this.dialog = bootbox.alert('<b>Hello world!</b>');
+        });
+
+        it('shows the expected body parsing html to text', function() {
+          expect(this.text('.bootbox-body')).to.equal('<b>Hello world!</b>');
+        });
+      });
+
+      describe('where the argument containes jQuery node', function () {
+        beforeEach(function() {
+          this.dialog = bootbox.alert($('<b>Hello world!</b>'));
+        });
+
+        it('shows the expected body parsing the html to nodes', function() {
+          expect(this.text('.bootbox-body')).to.equal('Hello world!');
+          expect(this.html('.bootbox-body')).to.equal('<b>Hello world!</b>');
         });
       });
     });
@@ -143,6 +168,45 @@ describe('bootbox.alert', function() {
         });
       });
 
+      describe('with a custom ok button containing string html', function() {
+        beforeEach(function() {
+          this.options.buttons = {
+            ok: {
+              label: '<b>Custom OK</b>',
+              className: 'btn-danger'
+            }
+          };
+
+          this.create();
+
+          this.button = this.dialog.find('.btn:first');
+        });
+
+        it('adds the correct ok button', function() {
+          expect(this.button.text()).to.equal('<b>Custom OK</b>');
+        });
+      });
+
+      describe('with a custom ok button containing jQuery node', function() {
+        beforeEach(function() {
+          this.options.buttons = {
+            ok: {
+              label: $('<b>Custom OK</b>'),
+              className: 'btn-danger'
+            }
+          };
+
+          this.create();
+
+          this.button = this.dialog.find('.btn:first');
+        });
+
+        it('adds the correct ok button', function() {
+          expect(this.button.text()).to.equal('Custom OK');
+          expect(this.button.html()).to.equal('<b>Custom OK</b>');
+        });
+      });
+
       describe('with an unrecognised button key', function() {
         beforeEach(function() {
           this.options.buttons = {
@@ -166,6 +230,29 @@ describe('bootbox.alert', function() {
 
         it('shows the correct title', function() {
           expect(this.text('.modal-title')).to.equal('Hello?');
+        });
+      });
+
+      describe('with a custom string title containing html', function() {
+        beforeEach(function() {
+          this.options.title = '<b>Hello?</b>';
+          this.create();
+        });
+
+        it('shows the correct title', function() {
+          expect(this.text('.modal-title')).to.equal('<b>Hello?</b>');
+        });
+      });
+
+      describe('with a custom jQuery node title', function() {
+        beforeEach(function() {
+          this.options.title = $('<b>Hello?</b>');
+          this.create();
+        });
+
+        it('shows the correct title', function() {
+          expect(this.text('.modal-title')).to.equal('Hello?');
+          expect(this.html('.modal-title')).to.equal('<b>Hello?</b>');
         });
       });
     });
