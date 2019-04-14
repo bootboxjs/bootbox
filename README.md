@@ -35,7 +35,11 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-### 5.1.0 (Latest Release)
+### 5.1.1 (Latest Release)
+
+- Adds `rows` as a prompt option when setting `inputType` to `textarea`.
+
+#### 5.1.0
 
 - Adds `scrollable` option, which enables the scrollable modal content added in Bootstrap 4.3
 - Adds `extra-large` as a size option

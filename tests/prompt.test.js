@@ -27,6 +27,8 @@ describe('bootbox.prompt', function () {
           return expect(this.create).to.throw('prompt requires a callback');
         });
       });
+
+
       describe('where the argument is an object', function () {
         beforeEach(function () {
           this.options = {};
@@ -262,7 +264,7 @@ describe('bootbox.prompt', function () {
       });
     });
 
-    // invalif prompt type
+    // invalid prompt type
     describe('invalid prompt type', function () {
       beforeEach(function () {
         return this.options.inputType = 'foobar';
@@ -289,6 +291,7 @@ describe('bootbox.prompt', function () {
           return expect(this.find('input[type="text"]').hasClass('bootbox-input-text')).to.be.true;
         });
       });
+
       describe('with default value', function () {
         beforeEach(function () {
           this.options.value = 'John Smith';
@@ -298,6 +301,7 @@ describe('bootbox.prompt', function () {
           return expect(this.find('input[type="text"]').val()).to.equal('John Smith');
         });
       });
+
       describe('with placeholder', function () {
         beforeEach(function () {
           this.options.placeholder = 'enter your name';
@@ -307,6 +311,7 @@ describe('bootbox.prompt', function () {
           return expect(this.find('input[type="text"]').attr('placeholder')).to.equal('enter your name');
         });
       });
+
       describe('with pattern', function () {
         beforeEach(function () {
           this.options.pattern = '\d{1,2}/\d{1,2}/\d{4}';
@@ -316,6 +321,7 @@ describe('bootbox.prompt', function () {
           return expect(this.find('input[type="text"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
         });
       });
+
       describe('with maxlength', function () {
         beforeEach(function () {
           this.options.maxlength = 5;
@@ -344,6 +350,7 @@ describe('bootbox.prompt', function () {
           return expect(this.find('textarea').hasClass('bootbox-input-textarea')).to.be.true;
         });
       });
+
       describe('with default value', function () {
         beforeEach(function () {
           this.options.value = 'Once upon a time...';
@@ -353,6 +360,7 @@ describe('bootbox.prompt', function () {
           return expect(this.find('textarea').val()).to.equal('Once upon a time...');
         });
       });
+
       describe('with placeholder', function () {
         beforeEach(function () {
           this.options.placeholder = 'enter your favorite fairy tale';
@@ -360,6 +368,16 @@ describe('bootbox.prompt', function () {
         });
         return it('has correct placeholder value', function () {
           return expect(this.find('textarea').attr('placeholder')).to.equal('enter your favorite fairy tale');
+        });
+      });
+      
+      describe('with rows', function () {
+        beforeEach(function () {
+          this.options.rows = 6;
+          return this.create();
+        });
+        return it('has correct rows value', function () {
+          return expect(this.find('textarea').attr('rows')).to.equal('6');
         });
       });
     });

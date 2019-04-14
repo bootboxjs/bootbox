@@ -642,6 +642,12 @@
         if (options.required) {
           input.prop({ 'required': true });
         }
+        
+        if (options.rows && !isNaN(parseInt(options.rows))) {
+          if(options.inputType === 'textarea'){
+            input.attr({ 'rows': options.rows });
+          }
+        }
 
         break;
 
