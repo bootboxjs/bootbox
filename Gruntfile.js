@@ -14,7 +14,7 @@ module.exports = function (grunt) {
                 files: {
                     'dist/bootbox.min.js': ['src/bootbox.js'],
                     'dist/bootbox.locales.min.js': ['src/bootbox.locales.js'],
-                    'dist/bootbox.all.min.js': ['src/bootbox.js', 'src/bootbox.locales.js']
+                    'dist/bootbox.all.min.js': ['src/bootbox.all.js']
                 }
             }
         },
