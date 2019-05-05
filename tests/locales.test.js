@@ -508,4 +508,18 @@ describe('bootbox locales', function() {
       return expect(this.labels.confirm).to.equal('உறுதி செய்');
     });
   });
+  describe('Swahili', function() {
+    beforeEach(function() {
+      return this.setLocale('sw');
+    });
+    it('shows the correct OK translation', function() {
+      return expect(this.labels.ok).to.equal('Sawa');
+    });
+    it('shows the correct CANCEL translation', function() {
+      return expect(this.labels.cancel).to.equal('Ghairi');
+    });
+    return it('shows the correct CONFIRM translation', function() {
+      return expect(this.labels.confirm).to.equal('Thibitisha');
+    });
+  });
 });

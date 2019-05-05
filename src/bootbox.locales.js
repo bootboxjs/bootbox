@@ -281,6 +281,14 @@
   })();
 
   (function () {
+    bootbox.addLocale('sw', {
+      OK: 'Sawa',
+      CANCEL: 'Ghairi',
+      CONFIRM: 'Thibitisha'
+    });
+  })();
+
+  (function () {
     bootbox.addLocale('ta', {
       OK      : 'சரி',
       CANCEL  : 'ரத்து செய்',
