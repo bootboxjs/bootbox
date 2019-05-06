@@ -210,19 +210,24 @@
           CONFIRM : "Potvrdiť"
         },
         sl : {
-          OK : "OK",
-          CANCEL : "Prekliči",
+          OK      : "OK",
+          CANCEL  : "Prekliči",
           CONFIRM : "Potrdi"
         },
         sq : {
-          OK : "OK",
-          CANCEL : "Anulo",
+          OK      : "OK",
+          CANCEL  : "Anulo",
           CONFIRM : "Prano"
         },
         sv : {
           OK      : "OK",
           CANCEL  : "Avbryt",
           CONFIRM : "OK"
+        },
+        sw: {
+          OK      : 'Sawa',
+          CANCEL  : 'Ghairi',
+          CONFIRM: 'Thibitisha'
         },
         ta:{
           OK      : 'சரி',
