@@ -35,46 +35,9 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-### 5.1.1 (Latest Release)
+## 5.1.3 (Latest Release)
 
-- Adds `rows` as a prompt option when setting `inputType` to `textarea`.
-
-#### 5.1.0
-
-- Adds `scrollable` option, which enables the scrollable modal content added in Bootstrap 4.3
-- Adds `extra-large` as a size option
-- Adds aliased/alternative keys for all size options: `sm`, `lg`, `xl`
-
-#### 5.0.1
-
-- Adds Tamil locale
-
-#### 5.0.0
-
-- Updates Bootbox to be compatible with both Bootstrap 4 and Bootstrap 3.
-- Pulls button locale options to separate file
-- Corrects Russion locale
-- Changes default button trigger to target the button with the `bootbox-accept` class; this corrects instances where no button has the `btn-primary` class.
-- Various bugfixes
-
-#### Prompt
-
-- Adds new input types for prompt:
-  - radio
-  - range
-- Adds prompt input constraints for `min`, `max`, `step`, `maxlength`, `pattern`, and `required`
-- Adds `pattern` option for prompt inputs
-- Allows `message` option for prompt
-- Allows `multiple` option for prompt (when using the `select` input type)
-- Refactors prompt function to use the same dialog factory as alert and confirm.
-
-#### Dialog options
-
-- Adds `locale` option - allows locale to be set on a dialog-by-dialog basis
-- Adds `swapButtonOrder` option to allow reversing the default button order
-- Adds `centerVertical` option - adds support for vertically-centered dialogs (requires Bootstrap 4)
-
-
+- Adds Swahili locale.
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 

@@ -1,4 +1,12 @@
-## 5.1.1 (Latest Release)
+## 5.1.3 (Latest Release)
+
+- Adds Swahili locale.
+
+### 5.1.2
+
+- Adds `bootbox.all.js` to `src` directory as a temporary work-around for incorrectly-built concatenated file
+
+### 5.1.1
 
 - Adds `rows` as a prompt option when setting `inputType` to `textarea`.
 
