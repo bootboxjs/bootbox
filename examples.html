@@ -389,6 +389,20 @@ bootbox.confirm({
                                         </p>
                                     </dd>
 
+                                    <dt id="prompt-centerVertical" class="bb-anchor h5">Vertically Centered</dt>
+                                    <dd class="bb-example">
+                                        <p>
+                                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-default">Run example</button>
+                                        </p>
+                                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt, vertically centered!", 
+    centerVertical: true,
+    callback: function(result){ 
+        console.log(result); 
+    }
+});</code></pre>
+                                    </dd>
+
                                     <dt id="prompt-with-custom-locale" class="bb-anchor h5">With a custom locale</dt>
                                     <dd class="bb-example">
                                         <p>

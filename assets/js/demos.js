@@ -148,6 +148,16 @@ $(function () {
             });
             break;
 
+          case 'prompt-centerVertical':
+            bootbox.prompt({
+              title: "This is a prompt, vertically centered!", 
+              centerVertical: true,
+              callback: function(result){ 
+                Example.show('This was logged in the callback: ' + result);
+              }
+            });
+            break;
+
           case 'prompt-custom-locale':
             var locale = {
               OK: 'I Suppose',
