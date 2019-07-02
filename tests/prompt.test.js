@@ -192,6 +192,30 @@ describe('bootbox.prompt', function () {
       })(this);
     });
 
+    // centerVertical option set to true
+    describe('with `centerVertical` set to `true`', function () {
+      beforeEach(function () {
+        this.options.centerVertical = true;
+
+        this.create();
+      });
+      return it('adds the modal-dialog-centered class to the innerDialog of the prompt', function() {
+        return expect(this.dialog.children('.modal-dialog').hasClass('modal-dialog-centered')).to.be.true;
+      });
+    });
+
+    // centerVertical option set to false
+    describe('with `centerVertical` set to `false`', function () {
+      beforeEach(function () {
+        this.options.centerVertical = false;
+
+        this.create();
+      });
+      return it('does not add the modal-dialog-centered class to the innerDialog of the prompt', function() {
+        return expect(this.dialog.children('.modal-dialog').hasClass('modal-dialog-centered')).to.be.false;
+      });
+    });
+
     // custom cancel button
     describe('with a custom cancel button', function () {
       beforeEach(function () {
