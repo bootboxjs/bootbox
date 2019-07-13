@@ -1,4 +1,8 @@
-## 5.1.3 (Latest Release)
+## 5.2.0 (Latest Release)
+
+- Modifies dialog to only process button callback if it has been defined; see https://github.com/makeusabrew/bootbox/issues/705
+
+### 5.1.3
 
 - Adds Swahili locale.
 

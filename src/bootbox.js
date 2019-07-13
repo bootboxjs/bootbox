@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 5.1.1
+ * version: 5.2.0
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -439,7 +439,10 @@
     dialog.on('click', '.modal-footer button:not(.disabled)', function (e) {
       var callbackKey = $(this).data('bb-handler');
 
-      processCallback(e, dialog, callbacks[callbackKey]);
+      if (callbackKey !== undefined) {
+        // Only process callbacks for buttons we recognize:
+        processCallback(e, dialog, callbacks[callbackKey]);
+     }
     });
 
     dialog.on('click', '.bootbox-close-button', function (e) {

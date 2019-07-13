@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.locales.js
- * version: 5.1.1
+ * version: 5.2.0
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/

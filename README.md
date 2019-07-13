@@ -35,9 +35,9 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 5.1.3 (Latest Release)
+## 5.2.0 (Latest Release)
 
-- Adds Swahili locale.
+- Modifies dialog to only process button callback if it has been defined; see https://github.com/makeusabrew/bootbox/issues/705
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 
