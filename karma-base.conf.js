@@ -13,7 +13,7 @@ module.exports = function(params) {
 
         params.vendor,
 
-        params.src || 'src/bootbox.js',
+        params.src || 'bootbox.js',
 
         ['tests/**/*.test.js']
       ),

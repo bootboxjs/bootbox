@@ -12,9 +12,9 @@ module.exports = function (grunt) {
             },
             my_target: {
                 files: {
-                    'dist/bootbox.min.js': ['src/bootbox.js'],
-                    'dist/bootbox.locales.min.js': ['src/bootbox.locales.js'],
-                    'dist/bootbox.all.min.js': ['src/bootbox.all.js']
+                    'dist/bootbox.min.js': ['bootbox.js'],
+                    'dist/bootbox.locales.min.js': ['bootbox.locales.js'],
+                    'dist/bootbox.all.min.js': ['bootbox.all.js']
                 }
             }
         },
@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc',
                 force: true
             },
-            all: ['src/bootbox.js', 'src/bootbox.locales.js']
+            all: ['bootbox.js', 'bootbox.locales.js', 'bootbox.all.js']
         },
 
         karma: {
