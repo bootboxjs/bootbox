@@ -49,17 +49,5 @@
     "jquery": ">=1.12.0",
     "popper.js": ">=1.12.9",
     "bootstrap": ">=3.0.0"
-  },
-  "npmName":"bootbox",
-  "npmFileMap":[
-	{
-      "basePath": "",
-      "files": [
-        "bootbox.js",
-        "bootbox.locales.js",
-        "bootbox.all.js",
-        "dist/*.js"
-      ]
-    }
-  ]
+  }
 }
