@@ -522,4 +522,18 @@ describe('bootbox locales', function() {
       return expect(this.labels.confirm).to.equal('Thibitisha');
     });
   });
+  describe('Georgian', function() {
+    beforeEach(function() {
+      return this.setLocale('ka');
+    });
+    it('shows the correct OK translation', function() {
+      return expect(this.labels.ok).to.equal('OK');
+    });
+    it('shows the correct CANCEL translation', function() {
+      return expect(this.labels.cancel).to.equal('გაუქმება');
+    });
+    return it('shows the correct CONFIRM translation', function() {
+      return expect(this.labels.confirm).to.equal('დადასტურება');
+    });
+  });
 });

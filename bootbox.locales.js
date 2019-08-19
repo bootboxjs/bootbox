@@ -335,4 +335,12 @@
       CONFIRM: '確認'
     });
   })();
+
+  (function () {
+    bootbox.addLocale('ka', {
+      OK: 'OK',
+      CANCEL: 'გაუქმება',
+      CONFIRM: 'დადასტურება'
+    });
+  })();
 }));
