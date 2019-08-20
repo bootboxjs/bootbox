@@ -169,6 +169,16 @@
         CANCEL  : 'キャンセル',
         CONFIRM : '確認'
       },
+      ka : {
+        OK: 'OK',
+        CANCEL: 'გაუქმება',
+        CONFIRM: 'დადასტურება'
+      },
+      ko : {
+        OK: 'OK',
+        CANCEL: '취소',
+        CONFIRM: '확인'
+      },
       lt : {
         OK      : 'Gerai',
         CANCEL  : 'Atšaukti',

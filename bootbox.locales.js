@@ -185,6 +185,14 @@
   })();
 
   (function () {
+    bootbox.addLocale('ka', {
+      OK: 'OK',
+      CANCEL: 'გაუქმება',
+      CONFIRM: 'დადასტურება'
+    });
+  })();
+
+  (function () {
     bootbox.addLocale('ko', {
       OK: 'OK',
       CANCEL: '취소',
@@ -333,14 +341,6 @@
       OK: 'OK',
       CANCEL: '取消',
       CONFIRM: '確認'
-    });
-  })();
-
-  (function () {
-    bootbox.addLocale('ka', {
-      OK: 'OK',
-      CANCEL: 'გაუქმება',
-      CONFIRM: 'დადასტურება'
     });
   })();
 }));
