@@ -1,10 +1,18 @@
-## 5.2.0 (Latest Release)
+## 5.3.2 (Latest Release)
+
+- Adds Georgian (ka) locale.
+
+### 5.3.0
+
+- Moves development (unminified) versions of Bootbox files back to repository root (to simplify getting CDNjs updated).
+
+### 5.2.0
 
 - Modifies dialog to only process button callback if it has been defined; see https://github.com/makeusabrew/bootbox/issues/705
 
 ### 5.1.3
 
-- Adds Swahili locale.
+- Adds Swahili (sw) locale.
 
 ### 5.1.2
 
@@ -22,7 +30,7 @@
 
 ### 5.0.1
 
-- Adds Tamil locale
+- Adds Tamil (ta) locale
 
 ### 5.0.0
 

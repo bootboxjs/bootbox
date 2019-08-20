@@ -35,9 +35,9 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 5.3.0 (Latest Release)
+## 5.3.2 (Latest Release)
 
-- Moves development (unminified) versions of Bootbox files back to repository root (to simplify getting CDNjs updated).
+- Adds Georgian (ka) locale.
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 
