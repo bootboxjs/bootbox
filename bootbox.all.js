@@ -279,7 +279,8 @@
     '<div class="modal-body"><div class="bootbox-body"></div></div>' +
     '</div>' +
     '</div>' +
-    '</div>',
+    '</div>' + 
+    '<div class="minmaxCon"></div>',
     header:
     '<div class="modal-header">' +
     '<h5 class="modal-title"></h5>' +
@@ -288,6 +289,8 @@
     '<div class="modal-footer"></div>',
     closeButton:
     '<button type="button" class="bootbox-close-button close" aria-hidden="true">&times;</button>',
+  	minimizeButton:
+		'<button type="button" class="modalMinimize" aria-hidden="true"><i class="fa fa-window-minimize"></i></button>',
     form:
     '<form class="bootbox-form"></form>',
     button:
@@ -566,6 +569,23 @@
       }
     }
 
+    if (options.minimizeButton) {
+      var minimizeButton = $(templates.minimizeButton);
+      dialog.closest(".bootbox").attr("id", "bootboxModal");
+
+      if (options.title) {
+        if (options.bootstrap > 3) {
+          dialog.find('.modal-header').append(minimizeButton);
+        }
+        else {
+          dialog.find('.modal-header').prepend(minimizeButton);
+        }
+      } else {
+        minimizeButton.prependTo(body);
+      }
+    }
+
+
     if(options.centerVertical){
       // Requires Bootstrap 4.0.0-beta.3 or higher
       if (options.fullBootstrapVersion < '4.0.0') {
@@ -652,6 +672,50 @@
       // have to close the dialog, callback or not
       processCallback(e, dialog, callbacks.onEscape);
     });
+
+    dialog.on('click', '.close', function (e) {
+      $(this).find(".minmaxCon").remove();
+    });
+    dialog.on('click', '.modalMinimize', function (e) {
+      var $content, $modal, $apnData, $modalCon
+      $content = $(".min");
+  
+      $modalCon = $(this).closest(".bootbox").attr("id");
+  
+      $apnData = $(this).closest(".bootbox");
+  
+      $modal = "#" + $modalCon;
+  
+      $($modal).addClass("display-none");
+  
+      $($modal).toggleClass("min");
+  
+      if ($($modal).hasClass("min")) {
+  
+        $(".minmaxCon").append($apnData);
+  
+        $(this).find("i").toggleClass('fa-window-minimize').toggleClass('fa-window-restore');
+  
+        $($modal).focus();
+  
+      }
+      else {
+  
+        $(".container").append($apnData);
+  
+        $(this).find("i").toggleClass('fa-window-restore').toggleClass('fa-window-minimize');
+  
+      };
+    });
+  
+    dialog.on('click', 'button[data-dismiss="modal"]', function (e) {
+      $(this).closest(".bootbox").removeClass("min");
+  
+      $(".container").removeClass($apnData);
+  
+      $(this).next('.modalMinimize').find("i").removeClass('fa fa-window-restore').addClass('fa fa-window-minimize');
+    });
+  
 
     dialog.on('keyup', function (e) {
       if (e.which === 27) {
