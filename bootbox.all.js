@@ -290,7 +290,7 @@
     closeButton:
     '<button type="button" class="bootbox-close-button close" aria-hidden="true">&times;</button>',
   	minimizeButton:
-		'<button type="button" class="modalMinimize" aria-hidden="true"><i class="fa fa-window-minimize"></i></button>',
+		'<button type="button" class="bootbox-minimize-button" aria-hidden="true"><i class="fa fa-window-minimize"></i></button>',
     form:
     '<form class="bootbox-form"></form>',
     button:
@@ -670,13 +670,12 @@
       // onEscape might be falsy but that's fine; the fact is
       // if the user has managed to click the close button we
       // have to close the dialog, callback or not
+      $(this).find(".minmaxCon").remove();
       processCallback(e, dialog, callbacks.onEscape);
     });
 
-    dialog.on('click', '.close', function (e) {
-      $(this).find(".minmaxCon").remove();
-    });
-    dialog.on('click', '.modalMinimize', function (e) {
+   
+    dialog.on('click', '.bootbox-minimize-button', function (e) {
       var $content, $modal, $apnData, $modalCon
       $content = $(".min");
   
