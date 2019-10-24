@@ -1532,6 +1532,11 @@ dialog.init(function(){
                                     these values. Since we use jQuery's <a href="https://api.jquery.com/html/">.html()</a> function to build 
                                     the dialog, this is a possible XSS vector. It is <em>your</em> responsibility to sanitize your content.
                                 </p>
+                                <p>
+                                    We heartily recommend reviewing the <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md">OWASP Guidelines for preventing XSS</a>. 
+                                    For library recommendations, skip to 
+                                    <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md#rule-6---sanitize-html-markup-with-a-library-designed-for-the-job">Rule 6 - Sanitize HTML Markup with a Library Designed for the Job</a>.
+                                </p>
                             </div>
                         </div>
                     </section>

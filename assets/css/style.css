@@ -24,6 +24,10 @@ a.text-3wm-brand
     background: #333 url(../img/bg-dark.png) repeat repeat 0 0;
 }
 
+.bg-bb-brand
+{
+    background-color: rgb(180, 14, 77);
+}
 
 .bb-section
 {
