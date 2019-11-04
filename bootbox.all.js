@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 5.3.2
+ * version: 5.3.3
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -880,7 +880,7 @@
         // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#Setting_maximum_and_minimum_dates
         if (options.inputType !== 'date') {
           if (options.step) {
-            if (options.step === 'any' || (!isNaN(options.step) && parseInt(options.step) > 0)) {
+            if (options.step === 'any' || (!isNaN(options.step) && parseFloat(options.step) > 0)) {
               input.attr('step', options.step);
             }
             else {
@@ -1346,10 +1346,12 @@
     }
     else {
       if (min !== undefined && isNaN(min)) {
+        minValid = false;
         throw new Error('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
       }
 
       if (max !== undefined && isNaN(max)) {
+        maxValid = false;
         throw new Error('"max" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
       }
     }
@@ -1373,15 +1375,6 @@
   function dateIsValid(value){
     return /(\d{4})-(\d{2})-(\d{2})/.test(value);
   }
-
-
-  //  Register the default locale
-  exports.addLocale('en', {
-    OK: 'OK',
-    CANCEL: 'Cancel',
-    CONFIRM: 'OK'
-  });
-
 
   //  The Bootbox object
   return exports;

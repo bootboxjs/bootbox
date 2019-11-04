@@ -973,7 +973,7 @@ describe('bootbox.prompt', function () {
           return expect(this.find('input[type="number"]').attr('placeholder')).to.equal('enter the number');
         });
       });
-      describe('with min value', function () {
+      describe('with min int value', function () {
         beforeEach(function () {
           this.options.min = 0;
           return this.create();
@@ -982,7 +982,16 @@ describe('bootbox.prompt', function () {
           return expect(this.find('input[type="number"]').attr('min')).to.equal('0');
         });
       });
-      describe('with max value', function () {
+      describe('with min decimal value', function () {
+        beforeEach(function () {
+          this.options.min = -99.99;
+          return this.create();
+        });
+        return it('has correct min value', function () {
+          return expect(this.find('input[type="number"]').attr('min')).to.equal('-99.99');
+        });
+      });
+      describe('with max int value', function () {
         beforeEach(function () {
           this.options.max = 100;
           return this.create();
@@ -991,13 +1000,31 @@ describe('bootbox.prompt', function () {
           return expect(this.find('input[type="number"]').attr('max')).to.equal('100');
         });
       });
-      describe('with step value', function () {
+      describe('with max decimal value', function () {
+        beforeEach(function () {
+          this.options.max = 99.99;
+          return this.create();
+        });
+        return it('has correct max value', function () {
+          return expect(this.find('input[type="number"]').attr('max')).to.equal('99.99');
+        });
+      });
+      describe('with step int value', function () {
         beforeEach(function () {
           this.options.step = 10;
           return this.create();
         });
         return it('has correct step value', function () {
           return expect(this.find('input[type="number"]').attr('step')).to.equal('10');
+        });
+      });
+      describe('with step decimal value', function () {
+        beforeEach(function () {
+          this.options.step = 0.01;
+          return this.create();
+        });
+        return it('has correct step value', function () {
+          return expect(this.find('input[type="number"]').attr('step')).to.equal('0.01');
         });
       });
       describe('with an invalid min value', function () {
@@ -1030,6 +1057,14 @@ describe('bootbox.prompt', function () {
       describe('with an invalid step value', function () {
         beforeEach(function () {
           this.options.step = 'a';
+        });
+        return it('throws an error', function () {
+          return expect(this.create).to.throw('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
+        });
+      });
+      describe('with an invalid negative step value', function () {
+        beforeEach(function () {
+          this.options.step = -1;
         });
         return it('throws an error', function () {
           return expect(this.create).to.throw('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
