@@ -1,4 +1,12 @@
-## 5.3.2 (Latest Release)
+## 5.3.4 (Latest Release)
+
+- Removes `':first'` selector from default button binding
+
+### 5.3.3
+
+- Fixes incorrect value validation for the `step` option when setting `inputType` to `number` for a prompt.
+
+### 5.3.2
 
 - Adds Georgian (ka) locale.
 

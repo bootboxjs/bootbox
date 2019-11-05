@@ -1,6 +1,6 @@
 {
   "name": "bootbox",
-  "version": "5.3.3",
+  "version": "5.3.4",
   "description": "Wrappers for JavaScript alert(), confirm(), prompt(), and other flexible dialogs using the Bootstrap framework",
   "directories": {
     "test": "tests"
@@ -30,20 +30,20 @@
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "uglify-js": "^3.1.4",
-    "grunt": "^1.0.3",
+    "grunt": "^1.0.4",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^4.0.0",
     "grunt-karma": "^3.0.1",
-    "karma": "^4.0.0",
+    "karma": "^4.4.1",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^1.1.1",
     "karma-junit-reporter": "^1.1.0",
     "karma-mocha": "^1.1.1",
     "karma-phantomjs-launcher": "^1.0.4",
-    "mocha": "^6.0.0",
+    "mocha": "^6.2.2",
     "sinon": "^1.7.3",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "uglify-js": "^3.1.4"
   },
   "dependencies": {
     "jquery": ">=1.12.0",

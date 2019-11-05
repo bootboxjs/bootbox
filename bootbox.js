@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 5.3.3
+ * version: 5.3.4
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -396,7 +396,7 @@
     });
 
     dialog.one('shown.bs.modal', function () {
-      dialog.find('.bootbox-accept:first').trigger('focus');
+      dialog.find('.bootbox-accept').first().trigger('focus');
     });
 
     // Bootbox event listeners; used to decouple some
