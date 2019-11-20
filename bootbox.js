@@ -278,8 +278,7 @@
         button.data('bb-handler', key);
         button.addClass(b.className);
 
-        switch(key)
-        {
+        switch(key) {
           case 'ok':
           case 'confirm':
             button.addClass('bootbox-accept');
@@ -379,25 +378,43 @@
     // modal has performed certain actions.
 
     // make sure we unbind any listeners once the dialog has definitively been dismissed
-      dialog.one('hide.bs.modal', function (e) {
-        if (e.target === this) {
-          dialog.off('escape.close.bb');
-          dialog.off('click');
-        }
-    });
-
-    dialog.one('hidden.bs.modal', function (e) {
-      // ensure we don't accidentally intercept hidden events triggered
-      // by children of the current dialog. We shouldn't need to handle this anymore, 
-      // now that Bootstrap namespaces its events, but still worth doing.
+    dialog.one('hide.bs.modal', function (e) {
       if (e.target === this) {
-        dialog.remove();
+        dialog.off('escape.close.bb');
+        dialog.off('click');
       }
     });
 
-    dialog.one('shown.bs.modal', function () {
-      dialog.find('.bootbox-accept').first().trigger('focus');
-    });
+    if(options.onHide) {
+      if($.isFunction(options.onHide)) {
+        dialog.on('hide.bs.modal', options.onHide);
+      }
+      else {
+        throw new Error('Argument supplied to "onHide" must be a function');
+      }
+    }
+
+    dialog.one('hidden.bs.modal', { dialog: dialog }, destroyModal);
+
+    if(options.onHidden) {
+      if($.isFunction(options.onHidden)) {
+        dialog.on('hidden.bs.modal', options.onHidden);
+      }
+      else {
+        throw new Error('Argument supplied to "onHidden" must be a function');
+      }
+    }
+
+    dialog.one('shown.bs.modal', { dialog: dialog }, focusPrimaryButton);
+    
+    if(options.onShown) {
+      if($.isFunction(options.onShown)) {
+        dialog.on('shown.bs.modal', options.onShown);
+      }
+      else {
+        throw new Error('Argument supplied to "onShown" must be a function');
+      }
+    }
 
     // Bootbox event listeners; used to decouple some
     // behaviours from their respective triggers
@@ -409,7 +426,7 @@
       // We always only ever pass static/false to the actual
       // $.modal function because with "true" we can't trap
       // this event (the .modal-backdrop swallows it)
-      // However, we still want to sort of respect true
+      // However, we still want to sort-of respect true
       // and invoke the escape mechanism instead
       dialog.on('click.dismiss.bs.modal', function (e) {
         // @NOTE: the target varies in >= 3.3.x releases since the modal backdrop
@@ -869,7 +886,7 @@
     promptDialog = exports.dialog(options);
 
     // clear the existing handler focusing the submit button...
-    promptDialog.off('shown.bs.modal');
+    promptDialog.off('shown.bs.modal', focusPrimaryButton);
 
     // ...and replace it with one focusing our input, if possible
     promptDialog.on('shown.bs.modal', function () {
@@ -1100,6 +1117,21 @@
     $.each(collection, function (key, value) {
       iterator(key, value, index++);
     });
+  }
+
+
+  function focusPrimaryButton(e) {
+      e.data.dialog.find('.bootbox-accept').first().trigger('focus');
+  }
+
+
+  function destroyModal(e) {
+    // ensure we don't accidentally intercept hidden events triggered
+    // by children of the current dialog. We shouldn't need to handle this anymore, 
+    // now that Bootstrap namespaces its events, but still worth doing.
+    if (e.target === e.data.dialog) {
+      e.data.dialog.remove();
+    }
   }
 
 
