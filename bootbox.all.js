@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 5.3.4
+ * version: 5.4.0
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
