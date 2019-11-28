@@ -4,13 +4,8 @@ module.exports = function(params) {
 
     return config.set({
       basePath: '',
-      frameworks: ['mocha', 'chai'],
-      files: Array.prototype.concat([
-        'node_modules/sinon/lib/sinon.js',
-        'node_modules/sinon/lib/sinon/spy.js',
-        'node_modules/sinon/lib/sinon/stub.js',
-        'node_modules/sinon-chai/lib/sinon-chai.js'],
-
+      frameworks: ['mocha', 'sinon-chai'],
+      files: Array.prototype.concat(
         params.vendor,
 
         params.src || 'bootbox.js',
