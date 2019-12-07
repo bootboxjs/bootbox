@@ -1,4 +1,8 @@
-## 5.3.4 (Latest Release)
+## 5.4.0 (Latest Release)
+
+- Adds function hooks for `onShow`, `onShown`, `onHide`, and `onHidden` events, which map to their Bootstrap modal equivalents.
+
+### 5.3.4
 
 - Removes `':first'` selector from default button binding
 

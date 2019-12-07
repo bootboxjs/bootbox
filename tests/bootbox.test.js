@@ -72,6 +72,80 @@ describe('Bootbox', function() {
     });
   });
 
+  describe('onHide option', function() {
+    describe('hide.bs.modal', function() {
+      beforeEach(function() {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.alert({ 
+          message: 'hi',
+          onHide: this.callback
+        });
+
+        this.e = function(target) {
+          $(this.dialog).trigger($.Event('hide.bs.modal', {
+            target: target
+          }));
+        };
+      });
+
+      describe('when triggered with the correct target', function() {
+        beforeEach(function() {
+          this.e(this.dialog.get(0));
+        });
+
+        it('has triggered onHide function', function() {
+          expect(this.callback).to.have.been.called;
+        });
+      });
+    });
+  });
+
+  describe('onHidden option', function() {
+    describe('hidden.bs.modal', function() {
+      beforeEach(function() {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.alert({ 
+          message: 'hi',
+          onHidden: this.callback
+        });
+
+        this.e = function(target) {
+          $(this.dialog).trigger($.Event('hidden.bs.modal', {
+            target: target
+          }));
+        };
+      });
+
+      describe('when triggered with the correct target', function() {
+        beforeEach(function() {
+          this.e(this.dialog.get(0));
+        });
+
+        it('has triggered onHidden function', function() {
+          expect(this.callback).to.have.been.called;
+        });
+      });
+    });
+  });
+
+  describe('onShow option', function() {
+    describe('show.bs.modal', function() {
+      beforeEach(function() {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.alert({ 
+          message: 'hi',
+          onShow: this.callback
+        });
+      });
+
+      describe('when triggered with the correct target', function() {
+        it('has triggered onShow function', function() {
+          expect(this.callback).to.have.been.called;
+        });
+      });
+    });
+  });
+
   describe('If $.fn.modal is undefined', function() {
     beforeEach(function() {
       this.oldModal = window.jQuery.fn.modal;
