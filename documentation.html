@@ -974,6 +974,90 @@ DD   = two-digit day of month (01 through 31)
                             </dd>
 
 
+                            <dt><span id="bb-option-onShow" class="bb-anchor h4">onShow</span></dt>
+                            <dd>
+                                <p class="mb-1">Type: <code>Function</code></p>
+                                <p>
+                                    Use <code>onShow</code> to bind a callback function to the <code>show.bs.modal</code> event, which is 
+                                    called just <em>before</em> the modal is shown. See the 
+                                    <a href="https://getbootstrap.com/docs/4.4/getting-started/javascript/#events">Bootstrap docs</a> for more information.
+                                </p>
+                                <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    message: "I'm an alert!", 
+    onShow: function(e) {
+        /* e is the show.bs.modal event */
+    } 
+})</code></pre>
+                                <p>
+                                    <b>Requires Bootbox 5.4.0 or newer</b>.
+                                </p>
+                                <p>Default: <code>null</code></p>
+                            </dd>
+
+
+                            <dt><span id="bb-option-onShown" class="bb-anchor h4">onShown</span></dt>
+                            <dd>
+                                <p class="mb-1">Type: <code>Function</code></p>
+                                <p>
+                                    Use <code>onShown</code> to bind a callback function to the <code>shown.bs.modal</code> event, which is 
+                                    called just <em>after</em> the modal is shown. See the 
+                                    <a href="https://getbootstrap.com/docs/4.4/getting-started/javascript/#events">Bootstrap docs</a> for more information.
+                                </p>
+                                <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    message: "I'm an alert!", 
+    onShown: function(e) {
+        /* e is the shown.bs.modal event */
+    } 
+})</code></pre>
+                                <p>
+                                    <b>Requires Bootbox 5.4.0 or newer</b>.
+                                </p>
+                                <p>Default: <code>null</code></p>
+                            </dd>
+
+
+                            <dt><span id="bb-option-onHide" class="bb-anchor h4">onHide</span></dt>
+                            <dd>
+                                <p class="mb-1">Type: <code>Function</code></p>
+                                <p>
+                                    Use <code>onHide</code> to bind a callback function to the <code>hide.bs.modal</code> event, which is 
+                                    called just <em>before</em> the modal is hidden. See the 
+                                    <a href="https://getbootstrap.com/docs/4.4/getting-started/javascript/#events">Bootstrap docs</a> for more information.
+                                </p>
+                                <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    message: "I'm an alert!", 
+    onHide: function(e) {
+        /* e is the hide.bs.modal event */
+    } 
+})</code></pre>
+                                <p>
+                                    <b>Requires Bootbox 5.4.0 or newer</b>.
+                                </p>
+                                <p>Default: <code>null</code></p>
+                            </dd>
+
+
+                            <dt><span id="bb-option-onHidden" class="bb-anchor h4">onHidden</span></dt>
+                            <dd>
+                                <p class="mb-1">Type: <code>Function</code></p>
+                                <p>
+                                    Use <code>onHidden</code> to bind a callback function to the <code>hidden.bs.modal</code> event, which is 
+                                    called just <em>after</em> the modal is hidden. See the 
+                                    <a href="https://getbootstrap.com/docs/4.4/getting-started/javascript/#events">Bootstrap docs</a> for more information.
+                                </p>
+                                <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    message: "I'm an alert!", 
+    onHidden: function(e) {
+        /* e is the hidden.bs.modal event */
+    } 
+})</code></pre>
+                                <p>
+                                    <b>Requires Bootbox 5.4.0 or newer</b>.
+                                </p>
+                                <p>Default: <code>null</code></p>
+                            </dd>
+
+
                             <dt><span id="bb-option-show" class="bb-anchor h4">show</span></dt>
                             <dd>
                                 <p class="mb-1">Type: <code>Boolean</code></p>
