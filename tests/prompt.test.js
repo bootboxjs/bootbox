@@ -270,17 +270,9 @@ describe('bootbox.prompt', function () {
     // manual show
     describe('setting show to false', function () {
       beforeEach(function () {
-        this.options.show = false;
         this.shown = sinon.spy();
-        sinon.stub(bootbox, 'dialog', (function (_this) {
-          return function () {
-            return {
-              on: function () { },
-              off: function () { },
-              modal: _this.shown
-            };
-          };
-        })(this));
+        this.options.show = false;
+        this.options.onShow = this.shown;
         return this.create();
       });
       return it('does not show the dialog', function () {
