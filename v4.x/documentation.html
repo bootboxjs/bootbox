@@ -643,7 +643,7 @@
                                 </tr>
                                 <tr id="bb-option-backdrop">
                                     <td>backdrop</td>
-                                    <td>Boolean</td>
+                                    <td>Boolean|String</td>
                                     <td>
                                         <p>
                                             Whether the dialog should be have a backdrop or not. Also determines whether clicking on the
@@ -656,7 +656,7 @@
                                                 <col />
                                             </colgroup>
                                             <tr>
-                                                <td>Undefined (<code>null</code>)</td>
+                                                <td><code>"static"</code></td>
                                                 <td>The backdrop is displayed, but clicking on it has no effect.</td>
                                             </tr>
                                             <tr>
@@ -668,7 +668,7 @@
                                                 <td>The backdrop is not displayed.</td>
                                             </tr>
                                         </table>
-                                        <p>Default: <code>null</code></p>
+                                        <p>Default: <code>"static"</code></p>
 										<p class="bg-info" style="padding: 5px;">
 											<b>*</b> When this value is set to <code>true</code>, the dialog will only dismiss when <code>onEscape</code> 
 											is also set to <code>true</code> or some callback function.
