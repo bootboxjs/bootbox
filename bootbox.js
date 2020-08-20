@@ -429,7 +429,7 @@
     // Bootbox event listeners; used to decouple some
     // behaviours from their respective triggers
 
-    if (options.backdrop !== 'static') {
+    if (options.backdrop === true) {
       // A boolean true/false according to the Bootstrap docs
       // should show a dialog the user can dismiss by clicking on
       // the background.
@@ -493,7 +493,7 @@
     $(options.container).append(dialog);
 
     dialog.modal({
-      backdrop: options.backdrop ? 'static' : false,
+      backdrop: options.backdrop,
       keyboard: false,
       show: false
     });
@@ -1069,7 +1069,21 @@
     if (!options.buttons) {
       options.buttons = {};
     }
-
+    //make sure backdrop is either true/false/static
+    if (!options.backdrop) {
+      if (options.backdrop === false || options.backdrop === 0) { //false values
+        options.backdrop = false;
+      } else { //null values
+        options.backdrop = 'static';
+      }
+    } else {
+      if (typeof options.backdrop === 'string' && options.backdrop.toLowerCase() === 'static') { //static string
+        options.backdrop = 'static';
+      } else {  //Anything true
+        options.backdrop = true;
+      }
+    } 
+    
     buttons = options.buttons;
 
     total = getKeyLength(buttons);
