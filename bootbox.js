@@ -1071,17 +1071,9 @@
     }
     //make sure backdrop is either true/false/static
     if (!options.backdrop) {
-      if (options.backdrop === false || options.backdrop === 0) { //false values
-        options.backdrop = false;
-      } else { //null values
-        options.backdrop = 'static';
-      }
+      options.backdrop ? (options.backdrop === false || options.backdrop === 0) ? false : static;
     } else {
-      if (typeof options.backdrop === 'string' && options.backdrop.toLowerCase() === 'static') { //static string
-        options.backdrop = 'static';
-      } else {  //Anything true
-        options.backdrop = true;
-      }
+      options.backdrop = typeof options.backdrop === 'string' && options.backdrop.toLowerCase() === 'static' ? 'static' : true;
     } 
     
     buttons = options.buttons;
