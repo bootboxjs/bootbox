@@ -299,11 +299,7 @@ describe('Bootbox', function() {
           });
 
           it('invokes the callback', function() {
-            expect(this.callback).to.have.been.called;
-          });
-
-          it('should pass the dialog as "this"', function() {
-            expect(this.callback.thisValues[0]).to.equal(this.dialog);
+            expect(this.callback).not.to.have.been.called;
           });
         });
       });

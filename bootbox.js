@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 5.4.0
+ * version: 5.4.1
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -1064,17 +1064,18 @@
     // make sure any supplied options take precedence over defaults
     options = $.extend({}, defaults, options);
 
-    // no buttons is still a valid dialog but it's cleaner to always have
-    // a buttons object to iterate over, even if it's empty
-    if (!options.buttons) {
-      options.buttons = {};
-    }
-    //make sure backdrop is either true/false/static
+    //make sure backdrop is either true, false, or 'static'
     if (!options.backdrop) {
       options.backdrop = (options.backdrop === false || options.backdrop === 0) ? false : 'static';
     } else {
       options.backdrop = typeof options.backdrop === 'string' && options.backdrop.toLowerCase() === 'static' ? 'static' : true;
     } 
+
+    // no buttons is still a valid dialog but it's cleaner to always have
+    // a buttons object to iterate over, even if it's empty
+    if (!options.buttons) {
+      options.buttons = {};
+    }
     
     buttons = options.buttons;
 

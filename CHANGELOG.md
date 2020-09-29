@@ -1,4 +1,8 @@
-## 5.4.0 (Latest Release)
+## 5.4.1 (Latest Release)
+
+- Updates to how backdrop is handled. Fixes #766.
+
+### 5.4.0
 
 - Adds function hooks for `onShow`, `onShown`, `onHide`, and `onHidden` events, which map to their Bootstrap modal equivalents.
 
