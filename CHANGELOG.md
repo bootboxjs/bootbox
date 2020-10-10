@@ -1,4 +1,8 @@
-## 5.4.1 (Latest Release)
+## 5.5.0 (Latest Release)
+
+- Adds `reusable` option, which allows an instance of a Bootbox modal to be reused.
+
+### 5.4.1
 
 - Updates to how backdrop is handled. Fixes #766.
 
