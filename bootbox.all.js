@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 5.4.0
+ * version: 5.5.1
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -65,210 +65,210 @@
 
   var exports = {};
 
-  var VERSION = '5.0.0';
+  var VERSION = '5.5.1';
   exports.VERSION = VERSION;
 
   var locales = {
-      ar : {
-        OK      : 'موافق',
-        CANCEL  : 'الغاء',
-        CONFIRM : 'تأكيد'
-      },
-      bg_BG : {
-        OK      : 'Ок',
-        CANCEL  : 'Отказ',
-        CONFIRM : 'Потвърждавам'
-      },
-      br : {
-        OK      : 'OK',
-        CANCEL  : 'Cancelar',
-        CONFIRM : 'Sim'
-      },
-      cs : {
-        OK      : 'OK',
-        CANCEL  : 'Zrušit',
-        CONFIRM : 'Potvrdit'
-      },
-      da : {
-        OK      : 'OK',
-        CANCEL  : 'Annuller',
-        CONFIRM : 'Accepter'
-      },
-      de : {
-        OK      : 'OK',
-        CANCEL  : 'Abbrechen',
-        CONFIRM : 'Akzeptieren'
-      },
-      el : {
-        OK      : 'Εντάξει',
-        CANCEL  : 'Ακύρωση',
-        CONFIRM : 'Επιβεβαίωση'
-      },
-      en : {
-        OK      : 'OK',
-        CANCEL  : 'Cancel',
-        CONFIRM : 'OK'
-      },
-      es : {
-        OK      : 'OK',
-        CANCEL  : 'Cancelar',
-        CONFIRM : 'Aceptar'
-      },
-      eu : {
-        OK      : 'OK',
-        CANCEL  : 'Ezeztatu',
-        CONFIRM : 'Onartu'
-      },
-      et : {
-        OK      : 'OK',
-        CANCEL  : 'Katkesta',
-        CONFIRM : 'OK'
-      },
-      fa : {
-        OK      : 'قبول',
-        CANCEL  : 'لغو',
-        CONFIRM : 'تایید'
-      },
-      fi : {
-        OK      : 'OK',
-        CANCEL  : 'Peruuta',
-        CONFIRM : 'OK'
-      },
-      fr : {
-        OK      : 'OK',
-        CANCEL  : 'Annuler',
-        CONFIRM : 'Confirmer'
-      },
-      he : {
-        OK      : 'אישור',
-        CANCEL  : 'ביטול',
-        CONFIRM : 'אישור'
-      },
-      hu : {
-        OK      : 'OK',
-        CANCEL  : 'Mégsem',
-        CONFIRM : 'Megerősít'
-      },
-      hr : {
-        OK      : 'OK',
-        CANCEL  : 'Odustani',
-        CONFIRM : 'Potvrdi'
-      },
-      id : {
-        OK      : 'OK',
-        CANCEL  : 'Batal',
-        CONFIRM : 'OK'
-      },
-      it : {
-        OK      : 'OK',
-        CANCEL  : 'Annulla',
-        CONFIRM : 'Conferma'
-      },
-      ja : {
-        OK      : 'OK',
-        CANCEL  : 'キャンセル',
-        CONFIRM : '確認'
-      },
-      ka : {
-        OK: 'OK',
-        CANCEL: 'გაუქმება',
-        CONFIRM: 'დადასტურება'
-      },
-      ko : {
-        OK: 'OK',
-        CANCEL: '취소',
-        CONFIRM: '확인'
-      },
-      lt : {
-        OK      : 'Gerai',
-        CANCEL  : 'Atšaukti',
-        CONFIRM : 'Patvirtinti'
-      },
-      lv : {
-        OK      : 'Labi',
-        CANCEL  : 'Atcelt',
-        CONFIRM : 'Apstiprināt'
-      },
-      nl : {
-        OK      : 'OK',
-        CANCEL  : 'Annuleren',
-        CONFIRM : 'Accepteren'
-      },
-      no : {
-        OK      : 'OK',
-        CANCEL  : 'Avbryt',
-        CONFIRM : 'OK'
-      },
-      pl : {
-        OK      : 'OK',
-        CANCEL  : 'Anuluj',
-        CONFIRM : 'Potwierdź'
-      },
-      pt : {
-        OK      : 'OK',
-        CANCEL  : 'Cancelar',
-        CONFIRM : 'Confirmar'
-      },
-      ru : {
-        OK      : 'OK',
-        CANCEL  : 'Отмена',
-        CONFIRM : 'Применить'
-      },
-      sk : {
-        OK      : 'OK',
-        CANCEL  : 'Zrušiť',
-        CONFIRM : 'Potvrdiť'
-      },
-      sl : {
-        OK      : 'OK',
-        CANCEL  : 'Prekliči',
-        CONFIRM : 'Potrdi'
-      },
-      sq : {
-        OK      : 'OK',
-        CANCEL  : 'Anulo',
-        CONFIRM : 'Prano'
-      },
-      sv : {
-        OK      : 'OK',
-        CANCEL  : 'Avbryt',
-        CONFIRM : 'OK'
-      },
-      sw: {
-        OK      : 'Sawa',
-        CANCEL  : 'Ghairi',
-        CONFIRM: 'Thibitisha'
-      },
-      ta:{
-        OK      : 'சரி',
-        CANCEL  : 'ரத்து செய்',
-        CONFIRM : 'உறுதி செய்'
-      },
-      th : {
-        OK      : 'ตกลง',
-        CANCEL  : 'ยกเลิก',
-        CONFIRM : 'ยืนยัน'
-      },
-      tr : {
-        OK      : 'Tamam',
-        CANCEL  : 'İptal',
-        CONFIRM : 'Onayla'
-      },
-      uk : {
-        OK      : 'OK',
-        CANCEL  : 'Відміна',
-        CONFIRM : 'Прийняти'
-      },
-      zh_CN : {
-        OK      : 'OK',
-        CANCEL  : '取消',
-        CONFIRM : '确认'
-      },
-      zh_TW : {
-        OK      : 'OK',
-        CANCEL  : '取消',
-        CONFIRM : '確認'
-      }
+    ar : {
+      OK      : 'موافق',
+      CANCEL  : 'الغاء',
+      CONFIRM : 'تأكيد'
+    },
+    bg_BG : {
+      OK      : 'Ок',
+      CANCEL  : 'Отказ',
+      CONFIRM : 'Потвърждавам'
+    },
+    br : {
+      OK      : 'OK',
+      CANCEL  : 'Cancelar',
+      CONFIRM : 'Sim'
+    },
+    cs : {
+      OK      : 'OK',
+      CANCEL  : 'Zrušit',
+      CONFIRM : 'Potvrdit'
+    },
+    da : {
+      OK      : 'OK',
+      CANCEL  : 'Annuller',
+      CONFIRM : 'Accepter'
+    },
+    de : {
+      OK      : 'OK',
+      CANCEL  : 'Abbrechen',
+      CONFIRM : 'Akzeptieren'
+    },
+    el : {
+      OK      : 'Εντάξει',
+      CANCEL  : 'Ακύρωση',
+      CONFIRM : 'Επιβεβαίωση'
+    },
+    en : {
+      OK      : 'OK',
+      CANCEL  : 'Cancel',
+      CONFIRM : 'OK'
+    },
+    es : {
+      OK      : 'OK',
+      CANCEL  : 'Cancelar',
+      CONFIRM : 'Aceptar'
+    },
+    eu : {
+      OK      : 'OK',
+      CANCEL  : 'Ezeztatu',
+      CONFIRM : 'Onartu'
+    },
+    et : {
+      OK      : 'OK',
+      CANCEL  : 'Katkesta',
+      CONFIRM : 'OK'
+    },
+    fa : {
+      OK      : 'قبول',
+      CANCEL  : 'لغو',
+      CONFIRM : 'تایید'
+    },
+    fi : {
+      OK      : 'OK',
+      CANCEL  : 'Peruuta',
+      CONFIRM : 'OK'
+    },
+    fr : {
+      OK      : 'OK',
+      CANCEL  : 'Annuler',
+      CONFIRM : 'Confirmer'
+    },
+    he : {
+      OK      : 'אישור',
+      CANCEL  : 'ביטול',
+      CONFIRM : 'אישור'
+    },
+    hu : {
+      OK      : 'OK',
+      CANCEL  : 'Mégsem',
+      CONFIRM : 'Megerősít'
+    },
+    hr : {
+      OK      : 'OK',
+      CANCEL  : 'Odustani',
+      CONFIRM : 'Potvrdi'
+    },
+    id : {
+      OK      : 'OK',
+      CANCEL  : 'Batal',
+      CONFIRM : 'OK'
+    },
+    it : {
+      OK      : 'OK',
+      CANCEL  : 'Annulla',
+      CONFIRM : 'Conferma'
+    },
+    ja : {
+      OK      : 'OK',
+      CANCEL  : 'キャンセル',
+      CONFIRM : '確認'
+    },
+    ka : {
+      OK: 'OK',
+      CANCEL: 'გაუქმება',
+      CONFIRM: 'დადასტურება'
+    },
+    ko : {
+      OK: 'OK',
+      CANCEL: '취소',
+      CONFIRM: '확인'
+    },
+    lt : {
+      OK      : 'Gerai',
+      CANCEL  : 'Atšaukti',
+      CONFIRM : 'Patvirtinti'
+    },
+    lv : {
+      OK      : 'Labi',
+      CANCEL  : 'Atcelt',
+      CONFIRM : 'Apstiprināt'
+    },
+    nl : {
+      OK      : 'OK',
+      CANCEL  : 'Annuleren',
+      CONFIRM : 'Accepteren'
+    },
+    no : {
+      OK      : 'OK',
+      CANCEL  : 'Avbryt',
+      CONFIRM : 'OK'
+    },
+    pl : {
+      OK      : 'OK',
+      CANCEL  : 'Anuluj',
+      CONFIRM : 'Potwierdź'
+    },
+    pt : {
+      OK      : 'OK',
+      CANCEL  : 'Cancelar',
+      CONFIRM : 'Confirmar'
+    },
+    ru : {
+      OK      : 'OK',
+      CANCEL  : 'Отмена',
+      CONFIRM : 'Применить'
+    },
+    sk : {
+      OK      : 'OK',
+      CANCEL  : 'Zrušiť',
+      CONFIRM : 'Potvrdiť'
+    },
+    sl : {
+      OK      : 'OK',
+      CANCEL  : 'Prekliči',
+      CONFIRM : 'Potrdi'
+    },
+    sq : {
+      OK      : 'OK',
+      CANCEL  : 'Anulo',
+      CONFIRM : 'Prano'
+    },
+    sv : {
+      OK      : 'OK',
+      CANCEL  : 'Avbryt',
+      CONFIRM : 'OK'
+    },
+    sw: {
+      OK      : 'Sawa',
+      CANCEL  : 'Ghairi',
+      CONFIRM: 'Thibitisha'
+    },
+    ta:{
+      OK      : 'சரி',
+      CANCEL  : 'ரத்து செய்',
+      CONFIRM : 'உறுதி செய்'
+    },
+    th : {
+      OK      : 'ตกลง',
+      CANCEL  : 'ยกเลิก',
+      CONFIRM : 'ยืนยัน'
+    },
+    tr : {
+      OK      : 'Tamam',
+      CANCEL  : 'İptal',
+      CONFIRM : 'Onayla'
+    },
+    uk : {
+      OK      : 'OK',
+      CANCEL  : 'Відміна',
+      CONFIRM : 'Прийняти'
+    },
+    zh_CN : {
+      OK      : 'OK',
+      CANCEL  : '取消',
+      CONFIRM : '确认'
+    },
+    zh_TW : {
+      OK      : 'OK',
+      CANCEL  : '取消',
+      CONFIRM : '確認'
+    }
   };
 
   var templates = {
@@ -349,7 +349,9 @@
     // Append "multiple" property to the select when using the "prompt" helper
     multiple: false,
     // Automatically scroll modal content when height exceeds viewport height
-    scrollable: false
+    scrollable: false,
+    // whether or not to destroy the modal on hide
+    reusable: false
   };
 
 
@@ -439,7 +441,7 @@
     if ($.fn.modal === undefined) {
       throw new Error(
         '"$.fn.modal" is not defined; please double check you have included ' +
-        'the Bootstrap JavaScript library. See http://getbootstrap.com/javascript/ ' +
+        'the Bootstrap JavaScript library. See https://getbootstrap.com/docs/4.4/getting-started/javascript/ ' +
         'for more details.'
       );
     }
@@ -578,8 +580,10 @@
     // setup & teardown required after the underlying
     // modal has performed certain actions.
 
-    // make sure we unbind any listeners once the dialog has definitively been dismissed
-    dialog.one('hide.bs.modal', { dialog: dialog }, unbindModal);
+    if(!options.reusable) {
+      // make sure we unbind any listeners once the dialog has definitively been dismissed
+      dialog.one('hide.bs.modal', { dialog: dialog }, unbindModal);
+    }
 
     if (options.onHide) {
       if ($.isFunction(options.onHide)) {
@@ -590,7 +594,9 @@
       }
     }
 
-    dialog.one('hidden.bs.modal', { dialog: dialog }, destroyModal);
+    if(!options.reusable) {
+      dialog.one('hidden.bs.modal', { dialog: dialog }, destroyModal);
+    }
 
     if (options.onHidden) {
       if ($.isFunction(options.onHidden)) {
@@ -624,7 +630,7 @@
     // Bootbox event listeners; used to decouple some
     // behaviours from their respective triggers
 
-    if (options.backdrop !== 'static') {
+    if (options.backdrop === true) {
       // A boolean true/false according to the Bootstrap docs
       // should show a dialog the user can dismiss by clicking on
       // the background.
@@ -688,7 +694,7 @@
     $(options.container).append(dialog);
 
     dialog.modal({
-      backdrop: options.backdrop ? 'static' : false,
+      backdrop: options.backdrop,
       keyboard: false,
       show: false
     });
@@ -1259,12 +1265,19 @@
     // make sure any supplied options take precedence over defaults
     options = $.extend({}, defaults, options);
 
+    //make sure backdrop is either true, false, or 'static'
+    if (!options.backdrop) {
+      options.backdrop = (options.backdrop === false || options.backdrop === 0) ? false : 'static';
+    } else {
+      options.backdrop = typeof options.backdrop === 'string' && options.backdrop.toLowerCase() === 'static' ? 'static' : true;
+    } 
+
     // no buttons is still a valid dialog but it's cleaner to always have
     // a buttons object to iterate over, even if it's empty
     if (!options.buttons) {
       options.buttons = {};
     }
-
+    
     buttons = options.buttons;
 
     total = getKeyLength(buttons);

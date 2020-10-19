@@ -299,11 +299,7 @@ describe('Bootbox', function() {
           });
 
           it('invokes the callback', function() {
-            expect(this.callback).to.have.been.called;
-          });
-
-          it('should pass the dialog as "this"', function() {
-            expect(this.callback.thisValues[0]).to.equal(this.dialog);
+            expect(this.callback).not.to.have.been.called;
           });
         });
       });
@@ -342,6 +338,96 @@ describe('Bootbox', function() {
           it('should pass the dialog as "this"', function() {
             expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
+        });
+      });
+    });
+  });
+
+  describe('resuable: true dialog', function() {
+    describe('hidden.bs.modal', function() {
+      beforeEach(function() {
+        this.dialog = bootbox.alert({ message: 'hi', reusable: true });
+
+        this.removed = sinon.stub(this.dialog, 'remove');
+
+        this.e = function(target) {
+          $(this.dialog).trigger($.Event('hidden.bs.modal', {
+            target: target
+          }));
+        };
+      });
+
+      afterEach(function() {
+        this.removed.restore();
+      });
+
+      describe('when triggered with `reusable: true`', function() {
+        beforeEach(function() {
+          this.e({an: 'object'});
+        });
+
+        it('does not remove the dialog', function() {
+          expect(this.removed).not.to.have.been.called;
+        });
+      });
+    });
+  });
+
+  describe('resuable: false dialog', function() {
+    describe('hidden.bs.modal', function() {
+      beforeEach(function() {
+        this.dialog = bootbox.alert({ message: 'hi', reusable: false });
+
+        this.removed = sinon.stub(this.dialog, 'remove');
+
+        this.e = function(target) {
+          $(this.dialog).trigger($.Event('hidden.bs.modal', {
+            target: target
+          }));
+        };
+      });
+
+      afterEach(function() {
+        this.removed.restore();
+      });
+
+      describe('when triggered with `reusable: false`', function() {
+        beforeEach(function() {
+          this.e(this.dialog.get(0));
+        });
+
+        it('removes the dialog', function() {
+          expect(this.removed).to.have.been.called;
+        });
+      });
+    });
+  });
+
+  describe('resuable not set dialog', function() {
+    describe('hidden.bs.modal', function() {
+      beforeEach(function() {
+        this.dialog = bootbox.alert({ message: 'hi' });
+
+        this.removed = sinon.stub(this.dialog, 'remove');
+
+        this.e = function(target) {
+          $(this.dialog).trigger($.Event('hidden.bs.modal', {
+            target: target
+          }));
+        };
+      });
+
+      afterEach(function() {
+        this.removed.restore();
+      });
+
+      describe('when triggered with `reusable` not set', function() {
+        beforeEach(function() {
+          this.e(this.dialog.get(0));
+        });
+
+        it('removes the dialog', function() {
+          expect(this.removed).to.have.been.called;
         });
       });
     });
