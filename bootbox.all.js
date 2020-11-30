@@ -259,6 +259,11 @@
         CANCEL  : 'Відміна',
         CONFIRM : 'Прийняти'
       },
+      vi : {
+        OK      : 'OK',
+        CANCEL  : 'Hủy bỏ',
+        CONFIRM : 'Xác nhận'
+      },
       zh_CN : {
         OK      : 'OK',
         CANCEL  : '取消',

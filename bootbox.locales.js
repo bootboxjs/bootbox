@@ -329,6 +329,14 @@
   })();
 
   (function () {
+    bootbox.addLocale('vi', {
+      OK: 'OK',
+      CANCEL: 'Hủy bỏ',
+      CONFIRM: 'Xác nhận'
+    });
+  })();
+
+  (function () {
     bootbox.addLocale('zh_CN', {
       OK: 'OK',
       CANCEL: '取消',
