@@ -1,5 +1,5 @@
 /**
- * bootbox.js 5.5.1
+ * bootbox.js 5.5.2
  *
  * http://bootboxjs.com/license.txt
  */

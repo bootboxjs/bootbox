@@ -1,4 +1,8 @@
-## 5.5.0 (Latest Release)
+## 5.5.2 (Latest Release)
+
+- Adds Vietnamese locale
+
+### 5.5.0
 
 - Adds `reusable` option, which allows an instance of a Bootbox modal to be reused.
 

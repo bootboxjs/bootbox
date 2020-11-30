@@ -35,9 +35,9 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 5.5.0 (Latest Release)
+## 5.5.2 (Latest Release)
 
-- Adds `reusable` option, which allows an instance of a Bootbox modal to be reused.
+- Adds Vietnamese locale
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 
