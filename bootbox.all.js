@@ -69,206 +69,211 @@
   exports.VERSION = VERSION;
 
   var locales = {
-    ar : {
-      OK      : 'موافق',
-      CANCEL  : 'الغاء',
-      CONFIRM : 'تأكيد'
-    },
-    bg_BG : {
-      OK      : 'Ок',
-      CANCEL  : 'Отказ',
-      CONFIRM : 'Потвърждавам'
-    },
-    br : {
-      OK      : 'OK',
-      CANCEL  : 'Cancelar',
-      CONFIRM : 'Sim'
-    },
-    cs : {
-      OK      : 'OK',
-      CANCEL  : 'Zrušit',
-      CONFIRM : 'Potvrdit'
-    },
-    da : {
-      OK      : 'OK',
-      CANCEL  : 'Annuller',
-      CONFIRM : 'Accepter'
-    },
-    de : {
-      OK      : 'OK',
-      CANCEL  : 'Abbrechen',
-      CONFIRM : 'Akzeptieren'
-    },
-    el : {
-      OK      : 'Εντάξει',
-      CANCEL  : 'Ακύρωση',
-      CONFIRM : 'Επιβεβαίωση'
-    },
-    en : {
-      OK      : 'OK',
-      CANCEL  : 'Cancel',
-      CONFIRM : 'OK'
-    },
-    es : {
-      OK      : 'OK',
-      CANCEL  : 'Cancelar',
-      CONFIRM : 'Aceptar'
-    },
-    eu : {
-      OK      : 'OK',
-      CANCEL  : 'Ezeztatu',
-      CONFIRM : 'Onartu'
-    },
-    et : {
-      OK      : 'OK',
-      CANCEL  : 'Katkesta',
-      CONFIRM : 'OK'
-    },
-    fa : {
-      OK      : 'قبول',
-      CANCEL  : 'لغو',
-      CONFIRM : 'تایید'
-    },
-    fi : {
-      OK      : 'OK',
-      CANCEL  : 'Peruuta',
-      CONFIRM : 'OK'
-    },
-    fr : {
-      OK      : 'OK',
-      CANCEL  : 'Annuler',
-      CONFIRM : 'Confirmer'
-    },
-    he : {
-      OK      : 'אישור',
-      CANCEL  : 'ביטול',
-      CONFIRM : 'אישור'
-    },
-    hu : {
-      OK      : 'OK',
-      CANCEL  : 'Mégsem',
-      CONFIRM : 'Megerősít'
-    },
-    hr : {
-      OK      : 'OK',
-      CANCEL  : 'Odustani',
-      CONFIRM : 'Potvrdi'
-    },
-    id : {
-      OK      : 'OK',
-      CANCEL  : 'Batal',
-      CONFIRM : 'OK'
-    },
-    it : {
-      OK      : 'OK',
-      CANCEL  : 'Annulla',
-      CONFIRM : 'Conferma'
-    },
-    ja : {
-      OK      : 'OK',
-      CANCEL  : 'キャンセル',
-      CONFIRM : '確認'
-    },
-    ka : {
-      OK: 'OK',
-      CANCEL: 'გაუქმება',
-      CONFIRM: 'დადასტურება'
-    },
-    ko : {
-      OK: 'OK',
-      CANCEL: '취소',
-      CONFIRM: '확인'
-    },
-    lt : {
-      OK      : 'Gerai',
-      CANCEL  : 'Atšaukti',
-      CONFIRM : 'Patvirtinti'
-    },
-    lv : {
-      OK      : 'Labi',
-      CANCEL  : 'Atcelt',
-      CONFIRM : 'Apstiprināt'
-    },
-    nl : {
-      OK      : 'OK',
-      CANCEL  : 'Annuleren',
-      CONFIRM : 'Accepteren'
-    },
-    no : {
-      OK      : 'OK',
-      CANCEL  : 'Avbryt',
-      CONFIRM : 'OK'
-    },
-    pl : {
-      OK      : 'OK',
-      CANCEL  : 'Anuluj',
-      CONFIRM : 'Potwierdź'
-    },
-    pt : {
-      OK      : 'OK',
-      CANCEL  : 'Cancelar',
-      CONFIRM : 'Confirmar'
-    },
-    ru : {
-      OK      : 'OK',
-      CANCEL  : 'Отмена',
-      CONFIRM : 'Применить'
-    },
-    sk : {
-      OK      : 'OK',
-      CANCEL  : 'Zrušiť',
-      CONFIRM : 'Potvrdiť'
-    },
-    sl : {
-      OK      : 'OK',
-      CANCEL  : 'Prekliči',
-      CONFIRM : 'Potrdi'
-    },
-    sq : {
-      OK      : 'OK',
-      CANCEL  : 'Anulo',
-      CONFIRM : 'Prano'
-    },
-    sv : {
-      OK      : 'OK',
-      CANCEL  : 'Avbryt',
-      CONFIRM : 'OK'
-    },
-    sw: {
-      OK      : 'Sawa',
-      CANCEL  : 'Ghairi',
-      CONFIRM: 'Thibitisha'
-    },
-    ta:{
-      OK      : 'சரி',
-      CANCEL  : 'ரத்து செய்',
-      CONFIRM : 'உறுதி செய்'
-    },
-    th : {
-      OK      : 'ตกลง',
-      CANCEL  : 'ยกเลิก',
-      CONFIRM : 'ยืนยัน'
-    },
-    tr : {
-      OK      : 'Tamam',
-      CANCEL  : 'İptal',
-      CONFIRM : 'Onayla'
-    },
-    uk : {
-      OK      : 'OK',
-      CANCEL  : 'Відміна',
-      CONFIRM : 'Прийняти'
-    },
-    zh_CN : {
-      OK      : 'OK',
-      CANCEL  : '取消',
-      CONFIRM : '确认'
-    },
-    zh_TW : {
-      OK      : 'OK',
-      CANCEL  : '取消',
-      CONFIRM : '確認'
-    }
+      ar : {
+        OK      : 'موافق',
+        CANCEL  : 'الغاء',
+        CONFIRM : 'تأكيد'
+      },
+      bg_BG : {
+        OK      : 'Ок',
+        CANCEL  : 'Отказ',
+        CONFIRM : 'Потвърждавам'
+      },
+      br : {
+        OK      : 'OK',
+        CANCEL  : 'Cancelar',
+        CONFIRM : 'Sim'
+      },
+      cs : {
+        OK      : 'OK',
+        CANCEL  : 'Zrušit',
+        CONFIRM : 'Potvrdit'
+      },
+      da : {
+        OK      : 'OK',
+        CANCEL  : 'Annuller',
+        CONFIRM : 'Accepter'
+      },
+      de : {
+        OK      : 'OK',
+        CANCEL  : 'Abbrechen',
+        CONFIRM : 'Akzeptieren'
+      },
+      el : {
+        OK      : 'Εντάξει',
+        CANCEL  : 'Ακύρωση',
+        CONFIRM : 'Επιβεβαίωση'
+      },
+      en : {
+        OK      : 'OK',
+        CANCEL  : 'Cancel',
+        CONFIRM : 'OK'
+      },
+      es : {
+        OK      : 'OK',
+        CANCEL  : 'Cancelar',
+        CONFIRM : 'Aceptar'
+      },
+      eu : {
+        OK      : 'OK',
+        CANCEL  : 'Ezeztatu',
+        CONFIRM : 'Onartu'
+      },
+      et : {
+        OK      : 'OK',
+        CANCEL  : 'Katkesta',
+        CONFIRM : 'OK'
+      },
+      fa : {
+        OK      : 'قبول',
+        CANCEL  : 'لغو',
+        CONFIRM : 'تایید'
+      },
+      fi : {
+        OK      : 'OK',
+        CANCEL  : 'Peruuta',
+        CONFIRM : 'OK'
+      },
+      fr : {
+        OK      : 'OK',
+        CANCEL  : 'Annuler',
+        CONFIRM : 'Confirmer'
+      },
+      he : {
+        OK      : 'אישור',
+        CANCEL  : 'ביטול',
+        CONFIRM : 'אישור'
+      },
+      hu : {
+        OK      : 'OK',
+        CANCEL  : 'Mégsem',
+        CONFIRM : 'Megerősít'
+      },
+      hr : {
+        OK      : 'OK',
+        CANCEL  : 'Odustani',
+        CONFIRM : 'Potvrdi'
+      },
+      id : {
+        OK      : 'OK',
+        CANCEL  : 'Batal',
+        CONFIRM : 'OK'
+      },
+      it : {
+        OK      : 'OK',
+        CANCEL  : 'Annulla',
+        CONFIRM : 'Conferma'
+      },
+      ja : {
+        OK      : 'OK',
+        CANCEL  : 'キャンセル',
+        CONFIRM : '確認'
+      },
+      ka : {
+        OK: 'OK',
+        CANCEL: 'გაუქმება',
+        CONFIRM: 'დადასტურება'
+      },
+      ko : {
+        OK: 'OK',
+        CANCEL: '취소',
+        CONFIRM: '확인'
+      },
+      lt : {
+        OK      : 'Gerai',
+        CANCEL  : 'Atšaukti',
+        CONFIRM : 'Patvirtinti'
+      },
+      lv : {
+        OK      : 'Labi',
+        CANCEL  : 'Atcelt',
+        CONFIRM : 'Apstiprināt'
+      },
+      nl : {
+        OK      : 'OK',
+        CANCEL  : 'Annuleren',
+        CONFIRM : 'Accepteren'
+      },
+      no : {
+        OK      : 'OK',
+        CANCEL  : 'Avbryt',
+        CONFIRM : 'OK'
+      },
+      pl : {
+        OK      : 'OK',
+        CANCEL  : 'Anuluj',
+        CONFIRM : 'Potwierdź'
+      },
+      pt : {
+        OK      : 'OK',
+        CANCEL  : 'Cancelar',
+        CONFIRM : 'Confirmar'
+      },
+      ru : {
+        OK      : 'OK',
+        CANCEL  : 'Отмена',
+        CONFIRM : 'Применить'
+      },
+      sk : {
+        OK      : 'OK',
+        CANCEL  : 'Zrušiť',
+        CONFIRM : 'Potvrdiť'
+      },
+      sl : {
+        OK      : 'OK',
+        CANCEL  : 'Prekliči',
+        CONFIRM : 'Potrdi'
+      },
+      sq : {
+        OK      : 'OK',
+        CANCEL  : 'Anulo',
+        CONFIRM : 'Prano'
+      },
+      sv : {
+        OK      : 'OK',
+        CANCEL  : 'Avbryt',
+        CONFIRM : 'OK'
+      },
+      sw: {
+        OK      : 'Sawa',
+        CANCEL  : 'Ghairi',
+        CONFIRM: 'Thibitisha'
+      },
+      ta:{
+        OK      : 'சரி',
+        CANCEL  : 'ரத்து செய்',
+        CONFIRM : 'உறுதி செய்'
+      },
+      th : {
+        OK      : 'ตกลง',
+        CANCEL  : 'ยกเลิก',
+        CONFIRM : 'ยืนยัน'
+      },
+      tr : {
+        OK      : 'Tamam',
+        CANCEL  : 'İptal',
+        CONFIRM : 'Onayla'
+      },
+      uk : {
+        OK      : 'OK',
+        CANCEL  : 'Відміна',
+        CONFIRM : 'Прийняти'
+      },
+      vi : {
+        OK      : 'OK',
+        CANCEL  : 'Hủy bỏ',
+        CONFIRM : 'Xác nhận'
+      },
+      zh_CN : {
+        OK      : 'OK',
+        CANCEL  : '取消',
+        CONFIRM : '确认'
+      },
+      zh_TW : {
+        OK      : 'OK',
+        CANCEL  : '取消',
+        CONFIRM : '確認'
+      }
   };
 
   var templates = {
