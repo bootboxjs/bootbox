@@ -49,8 +49,8 @@
     "uglify-js": "^3.7.0",
     "webpack": "^4.41.2"
   },
-  "dependencies": {
-    "bootstrap": "^4.4.0",
+  "peerDependencies": {
+    "bootstrap": "^3.1.0 || ^4.4.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.0"
   }
