@@ -10,3 +10,4 @@ composer.lock
 .vs
 .vscode
 dist/bootbox.zip
+*.tgz
