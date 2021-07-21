@@ -92,7 +92,7 @@
     footer:
     '<div class="modal-footer"></div>',
     closeButton:
-    '<button type="button" class="bootbox-close-button close" aria-hidden="true">&times;</button>',
+    '<button type="button" class="bootbox-close-button btn-close float-end" aria-hidden="true"></button>', 
     form:
     '<form class="bootbox-form"></form>',
     button:
