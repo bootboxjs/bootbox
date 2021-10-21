@@ -789,7 +789,9 @@
         });
 
         // safe to set a select's value as per a normal input
-        input.val(options.value);
+        if(options.value) {
+          input.val(options.value);
+        }
 
         break;
 

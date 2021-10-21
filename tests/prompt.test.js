@@ -795,11 +795,11 @@ describe('bootbox.prompt', function () {
       });
       describe('with default value', function () {
         beforeEach(function () {
-          this.options.value = '17/08/2005';
+          this.options.value = '2005-08-17';
           return this.create();
         });
         return it('has correct default value', function () {
-          return expect(this.find('input[type="date"]').val()).to.equal('17/08/2005');
+          return expect(this.find('input[type="date"]').val()).to.equal('2005-08-17');
         });
       });
       describe('with placeholder', function () {
@@ -1517,7 +1517,7 @@ describe('bootbox.prompt', function () {
             inputOptions: [
               {
                 value: '#',
-                text: 'Choose one'
+                text: 'Choose one',
               }, {
                 value: 1,
                 text: 'Vim'
