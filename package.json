@@ -38,6 +38,11 @@
     "karma": "^6.3.5",
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^4.0.1",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^2.0.3",
+    "karma-junit-reporter": "^2.0.1",
+    "karma-mocha": "^2.0.1",
+    "karma-sinon-chai": "^2.0.2",
     "lolex": "5.1.1",
     "mocha": "^6.2.2",
     "sinon": "^7.5.0",
@@ -49,12 +54,5 @@
     "@popperjs/core": "^2.0.0",
     "bootstrap": "^3.1.0 || ^4.4.0",
     "jquery": "^3.5.1"
-  },
-  "dependencies": {
-    "karma-chai": "^0.1.0",
-    "karma-coverage": "^2.0.3",
-    "karma-junit-reporter": "^2.0.1",
-    "karma-mocha": "^2.0.1",
-    "karma-sinon-chai": "^2.0.2"
   }
 }
