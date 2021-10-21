@@ -3,6 +3,11 @@ describe('bootbox.prompt', function () {
   'use strict';
   beforeEach(function () {
     window.bootbox = bootbox.init();
+    this.bootstrapVersion = function() {
+      var fullVersion = $.fn.modal.Constructor.VERSION;
+      var i = fullVersion.indexOf('.');
+      return fullVersion.substring(0, i);
+    };
     this.find = function (selector) {
       return this.dialog.find(selector);
     };
@@ -1287,7 +1292,11 @@ describe('bootbox.prompt', function () {
       });
       describe('when dismissing the dialog by clicking the close button', function () {
         beforeEach(function () {
-          return this.dialog.find('.close').trigger('click');
+          if(this.bootstrapVersion() >=  5) {
+            return this.dialog.find('.btn-close').trigger('click');
+          } else {
+            return this.dialog.find('.close').trigger('click');
+          }
         });
         it('should invoke the callback', function () {
           return expect(this.callback).to.have.been.called;
@@ -1392,7 +1401,11 @@ describe('bootbox.prompt', function () {
       });
       describe('when dismissing the dialog by clicking the close button', function () {
         beforeEach(function () {
-          return this.dialog.find('.close').trigger('click');
+          if(this.bootstrapVersion() >=  5) {
+            return this.dialog.find('.btn-close').trigger('click');
+          } else {
+            return this.dialog.find('.close').trigger('click');
+          }
         });
         it('should invoke the callback', function () {
           return expect(this.callback).to.have.been.called;

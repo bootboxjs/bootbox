@@ -1,6 +1,11 @@
 describe('bootbox.setDefaults', function() {
   'use strict';
   beforeEach(function() {
+    this.bootstrapVersion = function() {
+      var fullVersion = $.fn.modal.Constructor.VERSION;
+      var i = fullVersion.indexOf('.');
+      return fullVersion.substring(0, i);
+    };
     this.find = function(selector) {
       return this.dialog.find(selector);
     };
@@ -27,7 +32,11 @@ describe('bootbox.setDefaults', function() {
 
       describe('when clicking the close button', function() {
         beforeEach(function() {
-          this.dialog.find('.close').trigger('click');
+          if(this.bootstrapVersion() >=  5) {
+            this.dialog.find('.btn-close').trigger('click');
+          } else {
+            this.dialog.find('.close').trigger('click');
+          }
         });
 
         it('removes the modal-open class from the body', function() {
