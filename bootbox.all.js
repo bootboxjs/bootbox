@@ -292,6 +292,8 @@
     footer:
     '<div class="modal-footer"></div>',
     closeButton:
+    '<button type="button" class="bootbox-close-button btn-close" data-bs-dismiss="modal" aria-label="Close"></button>',
+    closeButton_bs_3_4:
     '<button type="button" class="bootbox-close-button close" aria-hidden="true">&times;</button>',
     form:
     '<form class="bootbox-form"></form>',
@@ -558,7 +560,7 @@
     }
 
     if (options.closeButton) {
-      var closeButton = $(templates.closeButton);
+      var closeButton = $(options.bootstrap >= 5 ? templates.closeButton : templates.closeButton_bs_3_4);
 
       if (options.title) {
         if (options.bootstrap > 3) {
@@ -568,6 +570,7 @@
           dialog.find('.modal-header').prepend(closeButton);
         }
       } else {
+        closeButton.addClass('float-end');
         closeButton.prependTo(body);
       }
     }

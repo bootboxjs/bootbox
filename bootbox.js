@@ -370,6 +370,7 @@
           dialog.find('.modal-header').prepend(closeButton);
         }
       } else {
+        closeButton.addClass('float-end');
         closeButton.prependTo(body);
       }
     }
