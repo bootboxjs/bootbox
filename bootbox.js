@@ -226,7 +226,7 @@
 
   // Hides all currently active Bootbox modals
   exports.hideAll = function (closeTransitioning=false) {
-    if(closeTransitioning){$('.bootbox').on('shown.bs.modal', (event) => { $(event.target).modal('hide'); })}
+    if(closeTransitioning){$('.bootbox').one('shown.bs.modal', (event) => { $(event.target).modal('hide'); })}
     $('.bootbox').modal('hide');
 
     return exports;
