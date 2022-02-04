@@ -161,7 +161,7 @@ describe('bootbox.prompt', function () {
           return expect(this.text('.modal-title')).to.equal('What is your name?');
         });
         it('adds a close button', function () {
-          return expect(this.dialog.find('.modal-header .close')).to.be.ok;
+          return expect(this.dialog.find('.modal-header .btn-close')).to.be.ok;
         });
         it('creates a form with a text input', function () {
           return expect(this.dialog.find('form input[type=text]')).to.be.ok;
@@ -1287,7 +1287,7 @@ describe('bootbox.prompt', function () {
       });
       describe('when dismissing the dialog by clicking the close button', function () {
         beforeEach(function () {
-          return this.dialog.find('.close').trigger('click');
+          return this.dialog.find('.btn-close').trigger('click');
         });
         it('should invoke the callback', function () {
           return expect(this.callback).to.have.been.called;
@@ -1392,7 +1392,7 @@ describe('bootbox.prompt', function () {
       });
       describe('when dismissing the dialog by clicking the close button', function () {
         beforeEach(function () {
-          return this.dialog.find('.close').trigger('click');
+          return this.dialog.find('.btn-close').trigger('click');
         });
         it('should invoke the callback', function () {
           return expect(this.callback).to.have.been.called;

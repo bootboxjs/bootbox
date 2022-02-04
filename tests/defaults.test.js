@@ -27,7 +27,7 @@ describe('bootbox.setDefaults', function() {
 
       describe('when clicking the close button', function() {
         beforeEach(function() {
-          this.dialog.find('.close').trigger('click');
+          this.dialog.find('.btn-close').trigger('click');
         });
 
         it('removes the modal-open class from the body', function() {
