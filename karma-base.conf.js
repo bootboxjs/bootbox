@@ -1,3 +1,6 @@
+const puppeteer = require('puppeteer');
+process.env.CHROME_BIN = puppeteer.executablePath();
+
 module.exports = function(params) {
   'use strict';
   return function(config) {
@@ -18,7 +21,7 @@ module.exports = function(params) {
       colors: true,
       logLevel: config.LOG_INFO,
       autoWatch: true,
-      browsers: ['PhantomJS'],
+      browsers: ['ChromeHeadless'],
       captureTimeout: 60000,
       singleRun: true,
 

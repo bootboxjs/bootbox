@@ -795,11 +795,11 @@ describe('bootbox.prompt', function () {
       });
       describe('with default value', function () {
         beforeEach(function () {
-          this.options.value = '17/08/2005';
+          this.options.value = '2005-08-17';// This must be an ISO-8601 date
           return this.create();
         });
         return it('has correct default value', function () {
-          return expect(this.find('input[type="date"]').val()).to.equal('17/08/2005');
+          return expect(this.find('input[type="date"]').val()).to.equal('2005-08-17');
         });
       });
       describe('with placeholder', function () {
@@ -1516,7 +1516,7 @@ describe('bootbox.prompt', function () {
             inputType: 'select',
             inputOptions: [
               {
-                value: '#',
+                value: '',
                 text: 'Choose one'
               }, {
                 value: 1,
@@ -1549,7 +1549,7 @@ describe('bootbox.prompt', function () {
             return expect(this.callback.thisValues[0]).to.equal(this.dialog);
           });
           return it('with the correct value', function () {
-            return expect(this.callback).to.have.been.calledWithExactly('#');
+            return expect(this.callback).to.have.been.calledWithExactly('');
           });
         });
         describe('when dismissing the dialog by clicking Cancel', function () {
@@ -1577,7 +1577,7 @@ describe('bootbox.prompt', function () {
             inputType: 'select',
             inputOptions: [
               {
-                value: '#',
+                value: '',
                 text: 'Choose one'
               }, {
                 value: 1,
