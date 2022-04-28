@@ -146,6 +146,43 @@ describe('Bootbox', function() {
     });
   });
 
+  describe('relatedTarget option', function() {
+    describe('show.bs.modal', function() {
+      var options;
+
+      beforeEach(function() {
+        this.callback = sinon.spy();
+        options = {
+          message: 'hi',
+          onShow: this.callback
+        };
+      });
+
+      describe('when triggered with no related target', function() {
+        it('has passed no related target to the callback', function() {
+          bootbox.dialog(options);
+          expect(this.callback.args[0][0].relatedTarget).to.equal(null);
+        });
+      });
+
+      describe('when triggered with an invalid related target', function() {
+        it('has passed an invalid related target to the callback', function() {
+          options.relatedTarget = false;
+          bootbox.dialog(options);
+          expect(this.callback.args[0][0].relatedTarget).to.equal(false);
+        });
+      });
+
+      describe('when triggered with a valid related target', function() {
+        it('has passed the valid related target to the callback', function() {
+          options.relatedTarget = $('<button id="trigger"></button>').get(0);
+          bootbox.dialog(options);
+          expect(this.callback.args[0][0].relatedTarget.id).to.equal('trigger');
+        });
+      });
+    });
+  });
+
   describe('If $.fn.modal is undefined', function() {
     beforeEach(function() {
       this.oldModal = window.jQuery.fn.modal;

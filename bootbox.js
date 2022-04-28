@@ -129,7 +129,9 @@
     // Automatically scroll modal content when height exceeds viewport height
     scrollable: false,
     // whether or not to destroy the modal on hide
-    reusable: false
+    reusable: false,
+    // the element that triggered the dialog opening
+    relatedTarget: null
   };
 
 
@@ -478,7 +480,7 @@
     });
 
     if (options.show) {
-      dialog.modal('show');
+      dialog.modal('show', options.relatedTarget);
     }
 
     return dialog;
