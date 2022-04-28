@@ -15,12 +15,11 @@
   "author": "Nick Payne <nick@kurai.co.uk>",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "main": "bootbox.all.js",
+  "main": "bootbox.js",
   "files": [
     "dist/*.js",
     "bootbox.js",
-    "bootbox.locales.js",
-    "bootbox.all.js"
+    "bootbox.locales.js"
   ],
   "devDependencies": {
     "chai": "^4.2.0",

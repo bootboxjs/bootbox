@@ -24,7 +24,7 @@
   //  @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
   if (!Object.keys) {
     Object.keys = (function () {
-      var hasOwnProperty = Object.prototype.hasOwnProperty,
+      let hasOwnProperty = Object.prototype.hasOwnProperty,
         hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
         dontEnums = [
           'toString',
@@ -42,7 +42,7 @@
           throw new TypeError('Object.keys called on non-object');
         }
 
-        var result = [], prop, i;
+        let result = [], prop, i;
 
         for (prop in obj) {
           if (hasOwnProperty.call(obj, prop)) {
@@ -63,12 +63,12 @@
     }());
   }
 
-  var exports = {};
+  let exports = {};
 
-  var VERSION = '6.0.0-wip';
+  let VERSION = '6.0.0-wip';
   exports.VERSION = VERSION;
 
-  var locales = {
+  let locales = {
     en : {
       OK      : 'OK',
       CANCEL  : 'Cancel',
@@ -76,14 +76,14 @@
     }
   };
 
-  var templates = {
+  let templates = {
     dialog:         '<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="bootbox-body"></div></div></div></div></div>',
     header:         '<div class="modal-header"><h5 class="modal-title"></h5></div>',
     footer:         '<div class="modal-footer"></div>',
     closeButton:    '<button type="button" class="bootbox-close-button close btn-close" aria-hidden="true"></button>',
     form:           '<form class="bootbox-form"></form>',
     button:         '<button type="button" class="btn"></button>',
-    option:         '<option></option>',
+    option:         '<option value=""></option>',
     promptMessage:  '<div class="bootbox-prompt-message"></div>',
     inputs: {
       text:         '<input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" />',
@@ -101,7 +101,7 @@
   };
 
 
-  var defaults = {
+  let defaults = {
     // default language
     locale: 'en',
     // show backdrop or not. Default to static so user has to interact with dialog
@@ -183,7 +183,7 @@
 
   // Override default value(s) of Bootbox.
   exports.setDefaults = function () {
-    var values = {};
+    let values = {};
 
     if (arguments.length === 2) {
       // allow passing of single key/value...
@@ -230,7 +230,7 @@
 
     if ($.fn.modal.Constructor.VERSION) {
       options.fullBootstrapVersion = $.fn.modal.Constructor.VERSION;
-      var i = options.fullBootstrapVersion.indexOf('.');
+      let i = options.fullBootstrapVersion.indexOf('.');
       options.bootstrap = options.fullBootstrapVersion.substring(0, i);
     }
     else {
@@ -240,14 +240,14 @@
       console.warn('Bootbox will *mostly* work with Bootstrap 2, but we do not officially support it. Please upgrade, if possible.');
     }
 
-    var dialog = $(templates.dialog);
-    var innerDialog = dialog.find('.modal-dialog');
-    var body = dialog.find('.modal-body');
-    var header = $(templates.header);
-    var footer = $(templates.footer);
-    var buttons = options.buttons;
+    let dialog = $(templates.dialog);
+    let innerDialog = dialog.find('.modal-dialog');
+    let body = dialog.find('.modal-body');
+    let header = $(templates.header);
+    let footer = $(templates.footer);
+    let buttons = options.buttons;
 
-    var callbacks = {
+    let callbacks = {
       onEscape: options.onEscape
     };
 
@@ -257,7 +257,7 @@
     // been defined in the options object
     if (getKeyLength(options.buttons) > 0) {
       each(buttons, function (key, b) {
-        var button = $(templates.button);
+        let button = $(templates.button);
         button.data('bb-handler', key);
         button.addClass(b.className);
 
@@ -273,6 +273,15 @@
         }
 
         button.html(b.label);
+
+        if (b.id) {
+          button.attr({ 'id': b.id });
+        }
+
+        if (b.disabled === true) {
+          button.prop({ disabled: true });
+        }
+
         footer.append(button);
 
         callbacks[key] = b.callback;
@@ -333,7 +342,7 @@
     }
 
     if (options.closeButton) {
-      var closeButton = $(templates.closeButton);
+      let closeButton = $(templates.closeButton);
 
       if (options.title) {
         if (options.bootstrap > 3) {
@@ -445,7 +454,7 @@
 
 
     dialog.on('click', '.modal-footer button:not(.disabled)', function (e) {
-      var callbackKey = $(this).data('bb-handler');
+      let callbackKey = $(this).data('bb-handler');
 
       if (callbackKey !== undefined) {
         // Only process callbacks for buttons we recognize:
@@ -491,7 +500,7 @@
   // code that must happen after the alert is dismissed should be placed within the callback function 
   // for this alert.
   exports.alert = function () {
-    var options;
+    let options;
 
     options = mergeDialogOptions('alert', ['ok'], ['message', 'callback'], arguments);
 
@@ -519,7 +528,7 @@
   // code that must happen after the confirm is dismissed should be placed within the callback function 
   // for this confirm.
   exports.confirm = function () {
-    var options;
+    let options;
 
     options = mergeDialogOptions('confirm', ['cancel', 'confirm'], ['message', 'callback'], arguments);
 
@@ -546,12 +555,12 @@
   // code that must happen after the prompt is dismissed should be placed within the callback function 
   // for this prompt.
   exports.prompt = function () {
-    var options;
-    var promptDialog;
-    var form;
-    var input;
-    var shouldShow;
-    var inputOptions;
+    let options;
+    let promptDialog;
+    let form;
+    let input;
+    let shouldShow;
+    let inputOptions;
 
     // we have to create our form first otherwise
     // its value is undefined when gearing up our options
@@ -588,7 +597,7 @@
     // Prompt submitted - extract the prompt value. This requires a bit of work, 
     // given the different input types available.
     options.buttons.confirm.callback = function () {
-      var value;
+      let value;
 
       if (options.inputType === 'checkbox') {
         value = input.find('input:checked').map(function () {
@@ -710,7 +719,7 @@
 
 
       case 'select':
-        var groups = {};
+        let groups = {};
         inputOptions = options.inputOptions || [];
 
         if (!$.isArray(inputOptions)) {
@@ -737,7 +746,7 @@
 
         each(inputOptions, function (_, option) {
           // assume the element to attach to is the input...
-          var elem = input;
+          let elem = input;
 
           if (option.value === undefined || option.text === undefined) {
             throw new Error('each option needs a "value" property and a "text" property');
@@ -754,7 +763,7 @@
             elem = groups[option.group];
           }
 
-          var o = $(templates.option);
+          let o = $(templates.option);
           o.attr('value', option.value).text(option.text);
           elem.append(o);
         });
@@ -770,7 +779,7 @@
 
 
       case 'checkbox':
-        var checkboxValues = $.isArray(options.value) ? options.value : [options.value];
+        let checkboxValues = $.isArray(options.value) ? options.value : [options.value];
         inputOptions = options.inputOptions || [];
 
         if (!inputOptions.length) {
@@ -787,7 +796,7 @@
             throw new Error('each option needs a "value" property and a "text" property');
           }
 
-          var checkbox = $(templates.inputs[options.inputType]);
+          let checkbox = $(templates.inputs[options.inputType]);
 
           checkbox.find('input').attr('value', option.value);
           checkbox.find('label').append('\n' + option.text);
@@ -823,14 +832,14 @@
 
         // Radiobuttons should always have an initial checked input checked in a "group".
         // If value is undefined or doesn't match an input option, select the first radiobutton
-        var checkFirstRadio = true;
+        let checkFirstRadio = true;
 
         each(inputOptions, function (_, option) {
           if (option.value === undefined || option.text === undefined) {
             throw new Error('each option needs a "value" property and a "text" property');
           }
 
-          var radio = $(templates.inputs[options.inputType]);
+          let radio = $(templates.inputs[options.inputType]);
 
           radio.find('input').attr('value', option.value);
           radio.find('label').append('\n' + option.text);
@@ -866,7 +875,7 @@
 
     if ($.trim(options.message) !== '') {
       // Add the form to whatever content the user may have added.
-      var message = $(templates.promptMessage).html(options.message);
+      let message = $(templates.promptMessage).html(options.message);
       form.prepend(message);
       options.message = form;
     }
@@ -906,8 +915,8 @@
   //  mapArguments(["foo", $.noop], ["message", "callback"])
   //  -> { message: "foo", callback: $.noop }
   function mapArguments(args, properties) {
-    var argn = args.length;
-    var options = {};
+    let argn = args.length;
+    let options = {};
 
     if (argn < 1 || argn > 2) {
       throw new Error('Invalid argument length');
@@ -946,10 +955,10 @@
   //  This entry-level method makes heavy use of composition to take a simple
   //  range of inputs and return valid options suitable for passing to bootbox.dialog
   function mergeDialogOptions(className, labels, properties, args) {
-    var locale;
+    let locale;
     if (args && args[0]) {
       locale = args[0].locale || defaults.locale;
-      var swapButtons = args[0].swapButtonOrder || defaults.swapButtonOrder;
+      let swapButtons = args[0].swapButtonOrder || defaults.swapButtonOrder;
 
       if (swapButtons) {
         labels = labels.reverse();
@@ -957,7 +966,7 @@
     }
 
     //  build up a base set of dialog properties
-    var baseOptions = {
+    let baseOptions = {
       className: 'bootbox-' + className,
       buttons: createLabels(labels, locale)
     };
@@ -980,7 +989,7 @@
   //  Checks each button object to see if key is valid. 
   //  This function will only be called by the alert, confirm, and prompt helpers. 
   function validateButtons(options, buttons) {
-    var allowedButtons = {};
+    let allowedButtons = {};
     each(buttons, function (key, value) {
       allowedButtons[value] = true;
     });
@@ -1000,12 +1009,12 @@
   //  All this does is normalise the given labels and translate them where possible.
   //  e.g. "ok", "confirm" -> { ok: "OK", cancel: "Annuleren" }
   function createLabels(labels, locale) {
-    var buttons = {};
+    let buttons = {};
 
-    for (var i = 0, j = labels.length; i < j; i++) {
-      var argument = labels[i];
-      var key = argument.toLowerCase();
-      var value = argument.toUpperCase();
+    for (let i = 0, j = labels.length; i < j; i++) {
+      let argument = labels[i];
+      let key = argument.toLowerCase();
+      let value = argument.toUpperCase();
 
       buttons[key] = {
         label: getText(value, locale)
@@ -1020,7 +1029,7 @@
   //  Get localized text from a locale. Defaults to 'en' locale if no locale 
   //  provided or a non-registered locale is requested
   function getText(key, locale) {
-    var labels = locales[locale];
+    let labels = locales[locale];
 
     return labels ? labels[key] : locales.en[key];
   }
@@ -1031,8 +1040,8 @@
   //  Also looks for any shorthands used and ensures that the options
   //  which are returned are all normalized properly
   function sanitize(options) {
-    var buttons;
-    var total;
+    let buttons;
+    let total;
 
     if (typeof options !== 'object') {
       throw new Error('Please supply an object of options');
@@ -1082,7 +1091,7 @@
       }
 
       if (!button.className) {
-        var isPrimary = false;
+        let isPrimary = false;
         if (options.swapButtonOrder) {
           isPrimary = index === 0;
         }
@@ -1112,7 +1121,7 @@
 
   //  Tiny wrapper function around jQuery.each; just adds index as the third parameter
   function each(collection, iterator) {
-    var index = 0;
+    let index = 0;
     $.each(collection, function (key, value) {
       iterator(key, value, index++);
     });
@@ -1152,7 +1161,7 @@
 
     // so, if the callback can be invoked and it *explicitly returns false*
     // then we'll set a flag to keep the dialog active...
-    var preserveDialog = $.isFunction(callback) && callback.call(dialog, e) === false;
+    let preserveDialog = $.isFunction(callback) && callback.call(dialog, e) === false;
 
     // ... otherwise we'll bin it
     if (!preserveDialog) {
@@ -1162,9 +1171,9 @@
 
   // Validate `min` and `max` values based on the current `inputType` value
   function minAndMaxAreValid(type, min, max) {
-    var result = false;
-    var minValid = true;
-    var maxValid = true;
+    let result = false;
+    let minValid = true;
+    let maxValid = true;
 
     if (type === 'date') {
       if (min !== undefined && !(minValid = dateIsValid(min))) {
