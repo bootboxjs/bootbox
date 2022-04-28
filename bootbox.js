@@ -138,13 +138,22 @@
   // PUBLIC FUNCTIONS
   // *************************************************************************************************************
 
-  // Return all currently registered locales, or a specific locale if "name" is defined
+  /**
+   * Return all currently registered locales, or a specific locale if "name" is defined
+   * @param {*} name 
+   * @returns {object[]|object} An array of the available locale objects, or a single locale object if {name} is not null
+   */
   exports.locales = function (name) {
     return name ? locales[name] : locales;
   };
 
 
-  // Register localized strings for the OK, CONFIRM, and CANCEL buttons
+  /**
+   * Register localized strings for the OK, CONFIRM, and CANCEL buttons
+   * @param {*} name The key used to identify the new locale in the locales array
+   * @param {*} values An object containing the localized string for each of the OK, CANCEL, and CONFIRM properties of a locale
+   * @returns The updated bootbox object
+   */
   exports.addLocale = function (name, values) {
     $.each(['OK', 'CANCEL', 'CONFIRM'], function (_, v) {
       if (!values[v]) {
@@ -161,8 +170,12 @@
     return exports;
   };
 
-
-  // Remove a previously-registered locale
+ 
+  /**
+   * Remove a previously-registered locale
+   * @param {*} name The key identifying the locale to remove
+   * @returns The updated bootbox object
+   */
   exports.removeLocale = function (name) {
     if (name !== 'en') {
       delete locales[name];
@@ -175,13 +188,20 @@
   };
 
 
-  // Set the default locale
+  /**
+   * Set the default locale
+   * @param {*} name The key identifying the locale to set as the default locale for all future bootbox calls 
+   * @returns The updated bootbox object
+   */
   exports.setLocale = function (name) {
     return exports.setDefaults('locale', name);
   };
 
 
-  // Override default value(s) of Bootbox.
+  /**
+   * Override default value(s) of Bootbox.
+   * @returns The updated bootbox object
+   */
   exports.setDefaults = function () {
     let values = {};
 
@@ -199,15 +219,22 @@
   };
 
 
-  // Hides all currently active Bootbox modals
+  /**
+   * Hides all currently active Bootbox modals
+   * @returns The current bootbox object
+   */
   exports.hideAll = function () {
     $('.bootbox').modal('hide');
 
     return exports;
   };
 
-
-  // Allows the base init() function to be overridden
+ 
+  /**
+   * Allows the base init() function to be overridden
+   * @param {*} _$ A function to be called when the bootbox instance is created
+   * @returns The current bootbox object
+   */
   exports.init = function (_$) {
     return init(_$ || $);
   };
@@ -216,13 +243,15 @@
   // CORE HELPER FUNCTIONS
   // *************************************************************************************************************
 
-  // Core dialog function
+  /**
+   * The core dialog helper function, which can be used to create any custom Bootstrap modal. 
+   * @param {*} options An object used to configure the various properties which define a Bootbox dialog
+   * @returns A jQuery object upon which Bootstrap's modal function has been called
+   */
   exports.dialog = function (options) {
     if ($.fn.modal === undefined) {
       throw new Error(
-        '"$.fn.modal" is not defined; please double check you have included ' +
-        'the Bootstrap JavaScript library. See https://getbootstrap.com/docs/4.4/getting-started/javascript/ ' +
-        'for more details.'
+        '"$.fn.modal" is not defined; please double check you have included the Bootstrap JavaScript library. See https://getbootstrap.com/docs/4.6/getting-started/introduction/ for more details.'
       );
     }
 
@@ -336,23 +365,24 @@
       }
     }
 
+    // 6.0.0: Always append a modal header
+    body.before(header);
+
     if (options.title) {
-      body.before(header);
       dialog.find('.modal-title').html(options.title);
     }
 
     if (options.closeButton) {
-      let closeButton = $(templates.closeButton);
+      let closeButton = $(templates.closeButton);      
+      if (options.fullBootstrapVersion < '5.0.0') {
+        closeButton.html('&times;');
+      }
 
-      if (options.title) {
-        if (options.bootstrap > 3) {
-          dialog.find('.modal-header').append(closeButton);
-        }
-        else {
-          dialog.find('.modal-header').prepend(closeButton);
-        }
-      } else {
-        closeButton.prependTo(body);
+      if (options.bootstrap > 3) {
+        dialog.find('.modal-header').append(closeButton);
+      }
+      else {
+        dialog.find('.modal-header').prepend(closeButton);
       }
     }
 
@@ -372,6 +402,7 @@
     if(!options.reusable) {
       // make sure we unbind any listeners once the dialog has definitively been dismissed
       dialog.one('hide.bs.modal', { dialog: dialog }, unbindModal);
+      dialog.one('hidden.bs.modal', { dialog: dialog }, destroyModal);
     }
 
     if (options.onHide) {
@@ -381,10 +412,6 @@
       else {
         throw new Error('Argument supplied to "onHide" must be a function');
       }
-    }
-
-    if(!options.reusable) {
-      dialog.one('hidden.bs.modal', { dialog: dialog }, destroyModal);
     }
 
     if (options.onHidden) {
@@ -496,9 +523,10 @@
   };
 
 
-  // Helper function to simulate the native alert() behavior. **NOTE**: This is non-blocking, so any
-  // code that must happen after the alert is dismissed should be placed within the callback function 
-  // for this alert.
+  /**
+   * Helper function to simulate the native alert() behavior. **NOTE**: This is non-blocking, so any code that must happen after the alert is dismissed should be placed within the callback function for this alert.
+   * @returns  A jQuery object upon which Bootstrap's modal function has been called
+   */
   exports.alert = function () {
     let options;
 
@@ -524,9 +552,10 @@
   };
 
 
-  // Helper function to simulate the native confirm() behavior. **NOTE**: This is non-blocking, so any
-  // code that must happen after the confirm is dismissed should be placed within the callback function 
-  // for this confirm.
+  /**
+   * Helper function to simulate the native confirm() behavior. **NOTE**: This is non-blocking, so any code that must happen after the confirm is dismissed should be placed within the callback function for this confirm.
+   * @returns A jQuery object upon which Bootstrap's modal function has been called
+   */
   exports.confirm = function () {
     let options;
 
@@ -551,9 +580,10 @@
   };
 
 
-  // Helper function to simulate the native prompt() behavior. **NOTE**: This is non-blocking, so any
-  // code that must happen after the prompt is dismissed should be placed within the callback function 
-  // for this prompt.
+  /**
+   * Helper function to simulate the native prompt() behavior. **NOTE**: This is non-blocking, so any code that must happen after the prompt is dismissed should be placed within the callback function for this prompt.
+   * @returns A jQuery object upon which Bootstrap's modal function has been called
+   */
   exports.prompt = function () {
     let options;
     let promptDialog;
@@ -568,8 +598,7 @@
     // be a function instead...
     form = $(templates.form);
 
-    // prompt defaults are more complex than others in that
-    // users can override more defaults
+    // prompt defaults are more complex than others in that users can override more defaults
     options = mergeDialogOptions('prompt', ['cancel', 'confirm'], ['title', 'callback'], arguments);
 
     if (!options.value) {
@@ -669,9 +698,7 @@
             input.attr({ 'rows': options.rows });
           }
         }
-
         break;
-
 
       case 'date':
       case 'time':
@@ -714,9 +741,7 @@
             input.attr('max', options.max);
           }
         }
-
         break;
-
 
       case 'select':
         let groups = {};
@@ -774,9 +799,7 @@
 
         // safe to set a select's value as per a normal input
         input.val(options.value);
-
         break;
-
 
       case 'checkbox':
         let checkboxValues = $.isArray(options.value) ? options.value : [options.value];
@@ -811,7 +834,6 @@
           input.append(checkbox);
         });
         break;
-
 
       case 'radio':
         // Make sure that value is not an array (only a single radio can ever be checked)

@@ -90,11 +90,11 @@ describe('bootbox.dialog', function() {
     it('shows the expected message', function() {
       return expect(this.text('.bootbox-body')).to.equal('test');
     });
-    it('does not have a header', function() {
-      return expect(this.exists('.modal-header')).not.to.be.ok;
+    it('has a header', function() {
+      return expect(this.exists('.modal-header')).to.be.ok;
     });
-    it('has a close button inside the body', function() {
-      return expect(this.exists('.modal-body .close')).to.be.ok;
+    it('has a close button inside the header', function() {
+      return expect(this.exists('.modal-header .close')).to.be.ok;
     });
     it('does not have a footer', function() {
       return expect(this.exists('.modal-footer')).not.to.be.ok;
