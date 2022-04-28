@@ -17,9 +17,6 @@ Please see the [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master
 
 Tests are run using [Karma](http://karma-runner.github.io/0.8/index.html) using the Mocha test adapter.
 To run the tests yourself, simply run ```npm install``` within the project followed by ```npm test```.
-Please note that this will require [PhantomJS](http://phantomjs.org/) being installed and in your path - if
-it is not, you may run the tests and capture browsers manually by running ```karma start``` from the root
-of the project.
 
 The project is also hosted on [Travis CI](https://travis-ci.org/makeusabrew/bootbox) - when submitting
 pull requests **please** ensure your tests pass as failing requests will be rejected. See the
@@ -35,9 +32,10 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 5.5.2 (Latest Release)
+## 5.5.3 (Latest Release)
 
-- Adds Vietnamese locale
+- Adds `relatedTarget` option. Allows the caller to determine which element, if any, triggered the modal
+- Various bugfixes and package updates
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 
@@ -45,7 +43,7 @@ For a full list of releases and changes please see [the changelog](https://githu
 
 (The MIT License)
 
-Copyright (C) 2011-2020 by Nick Payne <nick@kurai.co.uk>
+Copyright (C) 2011-2022 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

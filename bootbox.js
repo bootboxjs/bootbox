@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 5.5.2
+ * version: 5.5.3
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -65,7 +65,7 @@
 
   var exports = {};
 
-  var VERSION = '5.5.2';
+  var VERSION = '5.5.3';
   exports.VERSION = VERSION;
 
   var locales = {
