@@ -364,24 +364,25 @@
       }
     }
 
-    // 6.0.0: Always append a modal header to the dialog template
-    body.before(header);
+    if(options.title || options.closeButton){
+      body.before(header);
 
-    if (options.title) {
-      dialog.find('.modal-title').html(options.title);
-    }
-
-    if (options.closeButton) {
-      let closeButton = $(templates.closeButton);      
-      if (options.fullBootstrapVersion < '5.0.0') {
-        closeButton.html('&times;');
+      if (options.title) {
+        dialog.find('.modal-title').html(options.title);
       }
 
-      if (options.bootstrap > 3) {
-        dialog.find('.modal-header').append(closeButton);
-      }
-      else {
-        dialog.find('.modal-header').prepend(closeButton);
+      if (options.closeButton) {
+        let closeButton = $(templates.closeButton);      
+        if (options.fullBootstrapVersion < '5.0.0') {
+          closeButton.html('&times;');
+        }
+
+        if (options.bootstrap > 3) {
+          dialog.find('.modal-header').append(closeButton);
+        }
+        else {
+          dialog.find('.modal-header').prepend(closeButton);
+        }
       }
     }
 
@@ -466,7 +467,6 @@
         processCallback(e, dialog, callbacks.onEscape);
       }
     });
-
 
     dialog.on('click', '.modal-footer button:not(.disabled)', function (e) {
       let callbackKey = $(this).data('bb-handler');
