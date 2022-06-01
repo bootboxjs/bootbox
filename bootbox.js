@@ -120,6 +120,8 @@
     value: '',
     // Default input type (used by the prompt helper)
     inputType: 'text',
+    // Custom error message to report if prompt fails validation
+    errorMessage: null,
     // Switch button order from cancel/confirm (default) to confirm/cancel
     swapButtonOrder: false,
     // Center modal vertically in page
@@ -613,7 +615,21 @@
         value = input.find('input:checked').val();
       }
       else {
-        if (input[0].checkValidity && !input[0].checkValidity()) {
+        let el = input[0];
+        
+        // Clear any previous custom error message
+        if(options.errorMessage){
+          el.setCustomValidity('');
+        }
+
+        if (el.checkValidity && !el.checkValidity()) {
+          // If a custom error message was provided, add it now
+          if(options.errorMessage){
+            el.setCustomValidity(options.errorMessage);
+          }
+          
+          el.reportValidity && el.reportValidity();
+
           // prevents button callback from being called
           return false;
         } else {
