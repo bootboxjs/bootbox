@@ -80,7 +80,7 @@
     dialog:         '<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="bootbox-body"></div></div></div></div></div>',
     header:         '<div class="modal-header"><h5 class="modal-title"></h5></div>',
     footer:         '<div class="modal-footer"></div>',
-    closeButton:    '<button type="button" class="bootbox-close-button close btn-close" aria-hidden="true"></button>',
+    closeButton:    '<button type="button" class="bootbox-close-button close btn-close" aria-hidden="true" aria-label="Close"></button>',
     form:           '<form class="bootbox-form"></form>',
     button:         '<button type="button" class="btn"></button>',
     option:         '<option value=""></option>',
@@ -379,11 +379,15 @@
           closeButton.html('&times;');
         }
 
-        if (options.bootstrap > 3) {
-          dialog.find('.modal-header').append(closeButton);
-        }
-        else {
-          dialog.find('.modal-header').prepend(closeButton);
+        /* Note: the close button for Bootstrap 5+ does not contain content */
+        if(options.bootstrap < 5){
+          if (options.bootstrap == 4) {
+            dialog.find('.modal-header').append(closeButton);
+          }
+          else {
+            /* Bootstrap 3 and under */
+            dialog.find('.modal-header').prepend(closeButton);
+          }
         }
       }
     }
