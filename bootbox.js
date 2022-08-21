@@ -347,7 +347,7 @@
       }
 
       /* Note: the close button for Bootstrap 5+ does not contain content */
-      if(options.bootstrap < 4){
+      if(options.bootstrap > 3){
         dialog.find('.modal-header').append(clsbtn);
       }
       else {
