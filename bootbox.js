@@ -20,49 +20,6 @@
 }(this, function init($, undefined) {
   'use strict';
 
-  //  Polyfills Object.keys, if necessary.
-  //  @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
-  if (!Object.keys) {
-    Object.keys = (function () {
-      let hasOwnProperty = Object.prototype.hasOwnProperty,
-        hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
-        dontEnums = [
-          'toString',
-          'toLocaleString',
-          'valueOf',
-          'hasOwnProperty',
-          'isPrototypeOf',
-          'propertyIsEnumerable',
-          'constructor'
-        ],
-        dontEnumsLength = dontEnums.length;
-
-      return function (obj) {
-        if (typeof obj !== 'function' && (typeof obj !== 'object' || obj === null)) {
-          throw new TypeError('Object.keys called on non-object');
-        }
-
-        let result = [], prop, i;
-
-        for (prop in obj) {
-          if (hasOwnProperty.call(obj, prop)) {
-            result.push(prop);
-          }
-        }
-
-        if (hasDontEnumBug) {
-          for (i = 0; i < dontEnumsLength; i++) {
-            if (hasOwnProperty.call(obj, dontEnums[i])) {
-              result.push(dontEnums[i]);
-            }
-          }
-        }
-
-        return result;
-      };
-    }());
-  }
-
   let exports = {};
 
   let VERSION = '6.0.0-wip';
@@ -257,7 +214,7 @@
   exports.dialog = function (options) {
     if ($.fn.modal === undefined) {
       throw new Error(
-        '"$.fn.modal" is not defined; please double check you have included the Bootstrap JavaScript library. See https://getbootstrap.com/docs/4.6/getting-started/introduction/ for more details.'
+        '"$.fn.modal" is not defined; please double check you have included the Bootstrap JavaScript library. See https://getbootstrap.com/docs/5.1/getting-started/introduction/ for more details.'
       );
     }
 
@@ -384,27 +341,18 @@
     body.before(header);
 
     if (options.closeButton) {
-      let closeButton = $(templates.closeButton);      
+      let clsbtn = $(templates.closeButton);      
       if (options.fullBootstrapVersion < '5.0.0') {
-        closeButton.html('&times;');
+        clsbtn.html('&times;');
       }
 
-      if (options.closeButton) {
-        let closeButton = $(templates.closeButton);      
-        if (options.fullBootstrapVersion < '5.0.0') {
-          closeButton.html('&times;');
-        }
-
-        /* Note: the close button for Bootstrap 5+ does not contain content */
-        if(options.bootstrap < 5){
-          if (options.bootstrap == 4) {
-            dialog.find('.modal-header').append(closeButton);
-          }
-          else {
-            /* Bootstrap 3 and under */
-            dialog.find('.modal-header').prepend(closeButton);
-          }
-        }
+      /* Note: the close button for Bootstrap 5+ does not contain content */
+      if(options.bootstrap < 4){
+        dialog.find('.modal-header').append(clsbtn);
+      }
+      else {
+        /* Bootstrap 3 and under */
+        dialog.find('.modal-header').prepend(clsbtn);
       }
     }
 
@@ -648,7 +596,9 @@
             el.setCustomValidity(options.errorMessage);
           }
           
-          el.reportValidity && el.reportValidity();
+          if(el.reportValidity) { 
+            el.reportValidity();
+          }
 
           // prevents button callback from being called
           return false;
@@ -765,11 +715,6 @@
 
         if (!inputOptions.length) {
           throw new Error('prompt with "inputType" set to "select" requires at least one option');
-        }
-
-        // Note: 'placeholder' is not actually a valid attribute for a select element, but we'll allow it, assuming it might be used for a plugin
-        if (options.placeholder) {
-          input.attr('placeholder', options.placeholder);
         }
 
         if (options.required) {
@@ -1029,7 +974,6 @@
   }
 
 
-
   // From a given list of arguments, return a suitable object of button labels.
   // All this does is normalise the given labels and translate them where possible.
   // e.g. "ok", "confirm" -> { ok: "OK", cancel: "Annuleren" }
@@ -1050,14 +994,12 @@
   }
 
 
-
   // Get localized text from a locale. Defaults to 'en' locale if no locale provided or a non-registered locale is requested
   function getText(key, locale) {
     let labels = locales[locale];
 
     return labels ? labels[key] : locales.en[key];
   }
-
 
 
   // Filter and tidy up any user supplied parameters to this dialog.
@@ -1124,7 +1066,7 @@
           // always add a primary to the main option in a one or two-button dialog
           button.className = 'btn-primary';
         } else {
-          // adding both classes allows us to target both BS3 and BS4 without needing to check the version
+          // adding both classes allows us to target both BS3 and BS4+ without needing to check the version
           button.className = 'btn-secondary btn-default';
         }
       }
