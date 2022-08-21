@@ -80,7 +80,7 @@
     dialog:         '<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="bootbox-body"></div></div></div></div></div>',
     header:         '<div class="modal-header"><h5 class="modal-title"></h5></div>',
     footer:         '<div class="modal-footer"></div>',
-    closeButton:    '<button type="button" class="bootbox-close-button close btn-close" aria-hidden="true" aria-label="Close"></button>',
+    closeButton:    '<button type="button" class="bootbox-close-button close btn-close" aria-hidden="true"></button>',
     form:           '<form class="bootbox-form"></form>',
     button:         '<button type="button" class="btn"></button>',
     option:         '<option value=""></option>',
@@ -120,8 +120,6 @@
     value: '',
     // Default input type (used by the prompt helper)
     inputType: 'text',
-    // Custom error message to report if prompt fails validation
-    errorMessage: null,
     // Switch button order from cancel/confirm (default) to confirm/cancel
     swapButtonOrder: false,
     // Center modal vertically in page
@@ -389,22 +387,11 @@
         closeButton.html('&times;');
       }
 
-      if (options.closeButton) {
-        let closeButton = $(templates.closeButton);      
-        if (options.fullBootstrapVersion < '5.0.0') {
-          closeButton.html('&times;');
-        }
-
-        /* Note: the close button for Bootstrap 5+ does not contain content */
-        if(options.bootstrap < 5){
-          if (options.bootstrap == 4) {
-            dialog.find('.modal-header').append(closeButton);
-          }
-          else {
-            /* Bootstrap 3 and under */
-            dialog.find('.modal-header').prepend(closeButton);
-          }
-        }
+      if (options.bootstrap > 3) {
+        dialog.find('.modal-header').append(closeButton);
+      }
+      else {
+        dialog.find('.modal-header').prepend(closeButton);
       }
     }
 
@@ -635,21 +622,7 @@
         value = input.find('input:checked').val();
       }
       else {
-        let el = input[0];
-        
-        // Clear any previous custom error message
-        if(options.errorMessage){
-          el.setCustomValidity('');
-        }
-
-        if (el.checkValidity && !el.checkValidity()) {
-          // If a custom error message was provided, add it now
-          if(options.errorMessage){
-            el.setCustomValidity(options.errorMessage);
-          }
-          
-          el.reportValidity && el.reportValidity();
-
+        if (input[0].checkValidity && !input[0].checkValidity()) {
           // prevents button callback from being called
           return false;
         } else {
@@ -1243,4 +1216,358 @@
 
   //  The Bootbox object
   return exports;
+}));
+;/*! @preserve
+ * bootbox.locales.js
+ * version: 5.5.2
+ * author: Nick Payne <nick@kurai.co.uk>
+ * license: MIT
+ * http://bootboxjs.com/
+ */
+(function (global, factory) {  
+  'use strict';
+  if (typeof define === 'function' && define.amd) {
+    define(['bootbox'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    factory(require('./bootbox'));
+  } else {
+    factory(global.bootbox);
+  }
+}(this, function (bootbox) {
+  'use strict';
+  (function () {
+    bootbox.addLocale('ar', {
+      OK: 'موافق',
+      CANCEL: 'الغاء',
+      CONFIRM: 'تأكيد'
+    });
+  })();
+  
+  (function () {
+    bootbox.addLocale('az', {
+      OK: 'OK',
+      CANCEL: 'İmtina et',
+      CONFIRM: 'Təsdiq et'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('bg_BG', {
+      OK: 'Ок',
+      CANCEL: 'Отказ',
+      CONFIRM: 'Потвърждавам'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('br', {
+      OK: 'OK',
+      CANCEL: 'Cancelar',
+      CONFIRM: 'Sim'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('cs', {
+      OK: 'OK',
+      CANCEL: 'Zrušit',
+      CONFIRM: 'Potvrdit'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('da', {
+      OK: 'OK',
+      CANCEL: 'Annuller',
+      CONFIRM: 'Accepter'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('de', {
+      OK: 'OK',
+      CANCEL: 'Abbrechen',
+      CONFIRM: 'Akzeptieren'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('el', {
+      OK: 'Εντάξει',
+      CANCEL: 'Ακύρωση',
+      CONFIRM: 'Επιβεβαίωση'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('en', {
+      OK: 'OK',
+      CANCEL: 'Cancel',
+      CONFIRM: 'OK'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('es', {
+      OK: 'OK',
+      CANCEL: 'Cancelar',
+      CONFIRM: 'Aceptar'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('eu', {
+      OK: 'OK',
+      CANCEL: 'Ezeztatu',
+      CONFIRM: 'Onartu'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('et', {
+      OK: 'OK',
+      CANCEL: 'Katkesta',
+      CONFIRM: 'OK'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('fa', {
+      OK: 'قبول',
+      CANCEL: 'لغو',
+      CONFIRM: 'تایید'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('fi', {
+      OK: 'OK',
+      CANCEL: 'Peruuta',
+      CONFIRM: 'OK'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('fr', {
+      OK: 'OK',
+      CANCEL: 'Annuler',
+      CONFIRM: 'Confirmer'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('he', {
+      OK: 'אישור',
+      CANCEL: 'ביטול',
+      CONFIRM: 'אישור'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('hu', {
+      OK: 'OK',
+      CANCEL: 'Mégsem',
+      CONFIRM: 'Megerősít'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('hr', {
+      OK: 'OK',
+      CANCEL: 'Odustani',
+      CONFIRM: 'Potvrdi'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('id', {
+      OK: 'OK',
+      CANCEL: 'Batal',
+      CONFIRM: 'OK'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('it', {
+      OK: 'OK',
+      CANCEL: 'Annulla',
+      CONFIRM: 'Conferma'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('ja', {
+      OK: 'OK',
+      CANCEL: 'キャンセル',
+      CONFIRM: '確認'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('ka', {
+      OK: 'OK',
+      CANCEL: 'გაუქმება',
+      CONFIRM: 'დადასტურება'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('ko', {
+      OK: 'OK',
+      CANCEL: '취소',
+      CONFIRM: '확인'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('lt', {
+      OK: 'Gerai',
+      CANCEL: 'Atšaukti',
+      CONFIRM: 'Patvirtinti'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('lv', {
+      OK: 'Labi',
+      CANCEL: 'Atcelt',
+      CONFIRM: 'Apstiprināt'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('nl', {
+      OK: 'OK',
+      CANCEL: 'Annuleren',
+      CONFIRM: 'Accepteren'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('no', {
+      OK: 'OK',
+      CANCEL: 'Avbryt',
+      CONFIRM: 'OK'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('pl', {
+      OK: 'OK',
+      CANCEL: 'Anuluj',
+      CONFIRM: 'Potwierdź'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('pt', {
+      OK: 'OK',
+      CANCEL: 'Cancelar',
+      CONFIRM: 'Confirmar'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('ru', {
+      OK: 'OK',
+      CANCEL: 'Отмена',
+      CONFIRM: 'Подтвердить'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('sk', {
+      OK: 'OK',
+      CANCEL: 'Zrušiť',
+      CONFIRM: 'Potvrdiť'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('sl', {
+      OK: 'OK',
+      CANCEL: 'Prekliči',
+      CONFIRM: 'Potrdi'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('sq', {
+      OK: 'OK',
+      CANCEL: 'Anulo',
+      CONFIRM: 'Prano'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('sv', {
+      OK: 'OK',
+      CANCEL: 'Avbryt',
+      CONFIRM: 'OK'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('sw', {
+      OK: 'Sawa',
+      CANCEL: 'Ghairi',
+      CONFIRM: 'Thibitisha'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('ta', {
+      OK      : 'சரி',
+      CANCEL  : 'ரத்து செய்',
+      CONFIRM : 'உறுதி செய்'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('th', {
+      OK: 'ตกลง',
+      CANCEL: 'ยกเลิก',
+      CONFIRM: 'ยืนยัน'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('tr', {
+      OK: 'Tamam',
+      CANCEL: 'İptal',
+      CONFIRM: 'Onayla'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('uk', {
+      OK: 'OK',
+      CANCEL: 'Відміна',
+      CONFIRM: 'Прийняти'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('vi', {
+      OK: 'OK',
+      CANCEL: 'Hủy bỏ',
+      CONFIRM: 'Xác nhận'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('zh_CN', {
+      OK: 'OK',
+      CANCEL: '取消',
+      CONFIRM: '确认'
+    });
+  })();
+
+  (function () {
+    bootbox.addLocale('zh_TW', {
+      OK: 'OK',
+      CANCEL: '取消',
+      CONFIRM: '確認'
+    });
+  })();
 }));
