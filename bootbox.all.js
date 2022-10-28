@@ -46,7 +46,7 @@
       text:         '<input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" />',
       textarea:     '<textarea class="bootbox-input bootbox-input-textarea form-control"></textarea>',
       email:        '<input class="bootbox-input bootbox-input-email form-control" autocomplete="off" type="email" />',
-      select:       '<select class="bootbox-input bootbox-input-select form-control"></select>',
+      select:       '<select class="bootbox-input bootbox-input-select form-select"></select>',
       checkbox:     '<div class="form-check checkbox"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-checkbox" type="checkbox" /></label></div>',
       radio:        '<div class="form-check radio"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-radio" type="radio" name="bootbox-radio" /></label></div>',
       date:         '<input class="bootbox-input bootbox-input-date form-control" autocomplete="off" type="date" />',
@@ -331,29 +331,28 @@
       }
     }
 
-    if(options.title){
-      header.find('.modal-title').html(options.title);
-    } 
-    else {
-      header.addClass('pb-0 border-0');
-    }
-
-    body.before(header);
-
-    if (options.closeButton) {
-      let clsbtn = $(templates.closeButton);      
-      if (options.fullBootstrapVersion < '5.0.0') {
-        clsbtn.html('&times;');
+    if(options.title || options.closeButton){
+      if (options.title) {
+        header.find('.modal-title').html(options.title);
       }
 
-      /* Note: the close button for Bootstrap 5+ does not contain content */
-      if(options.bootstrap < 4){
-        dialog.find('.modal-header').append(clsbtn);
+      if (options.closeButton) {
+        let closeButton = $(templates.closeButton);      
+        if (options.bootstrap < 5) {
+          closeButton.html('&times;');
+        }
+
+        /* Note: the close button for Bootstrap 5+ does not contain content */
+        if(options.bootstrap < 4){
+          /* Bootstrap 3 and under */
+          header.prepend(closeButton);
+        }
+        else {
+          header.append(closeButton);
+        }
       }
-      else {
-        /* Bootstrap 3 and under */
-        dialog.find('.modal-header').prepend(clsbtn);
-      }
+
+      body.before(header);
     }
 
     if (options.centerVertical) {
@@ -755,6 +754,9 @@
 
         // Safe to set a select's value as per a normal input
         input.val(options.value);
+        if (options.bootstrap < 5) {
+          input.removeClass('form-select').addClass('form-control');
+        }
         break;
 
       case 'checkbox':
