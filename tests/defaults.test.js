@@ -103,6 +103,37 @@ describe('bootbox.setDefaults', function() {
       });
     });
 
+    describe('when set to extra-large', function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          size: 'extra-large'
+        });
+
+        this.dialog = bootbox.dialog({
+          message: 'test'
+        });
+      });
+
+      it('adds the extra-large class to the innerDialog', function() {
+        expect(this.dialog.children('.modal-dialog').hasClass('modal-xl')).to.be.true;
+      });
+    });
+    describe('when set to xl', function() {
+      beforeEach(function() {
+        bootbox.setDefaults({
+          size: 'xl'
+        });
+
+        this.dialog = bootbox.dialog({
+          message: 'test'
+        });
+      });
+
+      it('adds the extra-large class to the innerDialog', function() {
+        expect(this.dialog.children('.modal-dialog').hasClass('modal-xl')).to.be.true;
+      });
+    });
+
     describe('when set to large', function() {
       beforeEach(function() {
         bootbox.setDefaults({

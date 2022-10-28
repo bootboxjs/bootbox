@@ -1,5 +1,5 @@
 /**
- * bootbox.js 5.5.3
+ * bootbox.js 6.0.0-wip
  *
  * http://bootboxjs.com/license.txt
  */

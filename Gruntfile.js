@@ -1,6 +1,16 @@
 module.exports = function (grunt) {
     'use strict';
     grunt.initConfig({
+        concat: {
+            options: {
+                separator: ';',
+            },
+            dist: {
+                src: ['bootbox.js', 'bootbox.locales.js'],
+                dest: 'bootbox.all.js',
+            }
+        },
+          
         uglify: {
             options: {
                 compress: true,
@@ -24,19 +34,20 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc',
                 force: true
             },
-            all: ['bootbox.js', 'bootbox.locales.js', 'bootbox.all.js']
+            all: ['bootbox.js', 'bootbox.locales.js']
         },
 
         karma: {
             unit: {
                 configFile: 'karma.conf.js'
             }
-        }
+        },
     });
 
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['uglify', 'jshint', 'karma']);
+    grunt.registerTask('default', ['concat', 'uglify', 'jshint', 'karma']);
 };  
