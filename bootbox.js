@@ -26,7 +26,7 @@
   exports.VERSION = VERSION;
 
   let locales = {
-    en : {
+    'en' : {
       OK      : 'OK',
       CANCEL  : 'Cancel',
       CONFIRM : 'OK'
@@ -413,16 +413,25 @@
     // Bootbox event listeners; used to decouple some behaviours from their respective triggers
 
     if (options.backdrop === true) {
+      let startedOnBody = false;
+
+      // Prevents the event from propagating to the backdrop, when something inside the dialog is clicked
+      dialog.on('mousedown', '.modal-content', function(e){
+        e.stopPropagation();
+
+        startedOnBody = true;
+      });
+
       // A boolean true/false according to the Bootstrap docs should show a dialog the user can dismiss by clicking on the background.
       // We always only ever pass static/false to the actual $.modal function because with "true" we can't trap this event (the .modal-backdrop swallows it).
       // However, we still want to sort-of respect true and invoke the escape mechanism instead
       dialog.on('click.dismiss.bs.modal', function (e) {
-        // @NOTE: the target varies in >= 3.3.x releases since the modal backdrop moved *inside* the outer dialog rather than *alongside* it
-        if (dialog.children('.modal-backdrop').length) {
-          e.currentTarget = dialog.children('.modal-backdrop').get(0);
-        }
+        // // @NOTE: the target varies in >= 3.3.x releases since the modal backdrop moved *inside* the outer dialog rather than *alongside* it
+        // if (dialog.children('.modal-backdrop').length) {
+        //   e.currentTarget = dialog.children('.modal-backdrop').get(0);
+        // }
 
-        if (e.target !== e.currentTarget) {
+        if (startedOnBody || e.target !== e.currentTarget) {
           return;
         }
 

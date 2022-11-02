@@ -2,12 +2,19 @@ module.exports = function (grunt) {
     'use strict';
     grunt.initConfig({
         concat: {
-            options: {
-                separator: ';',
+            locales: {
+                src: ['templates/umd-header.txt', 'locales/**/*.js', 'templates/umd-footer.txt'],
+                dest: 'dist/bootbox.locales.js'
             },
-            dist: {
-                src: ['bootbox.js', 'bootbox.locales.js'],
-                dest: 'bootbox.all.js',
+
+            all : {
+                options: {
+                    separator: ';'
+                },
+                dist: {
+                    src: ['bootbox.js', 'dist/bootbox.locales.js'],
+                    dest: 'dist/bootbox.all.js',
+                }
             }
         },
           
@@ -23,8 +30,8 @@ module.exports = function (grunt) {
             my_target: {
                 files: {
                     'dist/bootbox.min.js': ['bootbox.js'],
-                    'dist/bootbox.locales.min.js': ['bootbox.locales.js'],
-                    'dist/bootbox.all.min.js': ['bootbox.all.js']
+                    'dist/bootbox.locales.min.js': ['dist/bootbox.locales.js'],
+                    'dist/bootbox.all.min.js': ['dist/bootbox.all.js']
                 }
             }
         },
@@ -34,7 +41,7 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc',
                 force: true
             },
-            all: ['bootbox.js', 'bootbox.locales.js']
+            all: ['bootbox.js', 'dist/bootbox.locales.js']
         },
 
         karma: {
