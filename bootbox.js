@@ -335,6 +335,9 @@
       if (options.title) {
         header.find('.modal-title').html(options.title);
       }
+      else {
+        header.addClass('border-0');
+      }
 
       if (options.closeButton) {
         let closeButton = $(templates.closeButton);      

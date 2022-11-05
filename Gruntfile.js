@@ -8,13 +8,8 @@ module.exports = function (grunt) {
             },
 
             all : {
-                options: {
-                    separator: ';'
-                },
-                dist: {
-                    src: ['bootbox.js', 'dist/bootbox.locales.js'],
-                    dest: 'dist/bootbox.all.js',
-                }
+                src: ['bootbox.js', 'dist/bootbox.locales.js'],
+                dest: 'dist/bootbox.all.js'
             }
         },
 
