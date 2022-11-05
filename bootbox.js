@@ -426,11 +426,6 @@
       // We always only ever pass static/false to the actual $.modal function because with "true" we can't trap this event (the .modal-backdrop swallows it).
       // However, we still want to sort-of respect true and invoke the escape mechanism instead
       dialog.on('click.dismiss.bs.modal', function (e) {
-        // // @NOTE: the target varies in >= 3.3.x releases since the modal backdrop moved *inside* the outer dialog rather than *alongside* it
-        // if (dialog.children('.modal-backdrop').length) {
-        //   e.currentTarget = dialog.children('.modal-backdrop').get(0);
-        // }
-
         if (startedOnBody || e.target !== e.currentTarget) {
           return;
         }

@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         concat: {
             locales: {
-                src: ['templates/umd-header.txt', 'locales/**/*.js', 'templates/umd-footer.txt'],
+                src: ['templates/umd-header-locales.txt', 'locales/**/*.js', 'templates/umd-footer.txt'],
                 dest: 'dist/bootbox.locales.js'
             },
 
@@ -14,6 +14,15 @@ module.exports = function (grunt) {
                 dist: {
                     src: ['bootbox.js', 'dist/bootbox.locales.js'],
                     dest: 'dist/bootbox.all.js',
+                }
+            }
+        },
+
+        jsbeautifier : {
+            src : ['dist/bootbox.locales.js','dist/bootbox.all.js'],
+            options:{
+                js: {
+                    indentSize: 2
                 }
             }
         },
@@ -45,16 +54,20 @@ module.exports = function (grunt) {
         },
 
         karma: {
-            unit: {
+            current: {
                 configFile: 'karma.conf.js'
+            },
+            legacy: {
+                configFile: 'karma.conf.legacy.js'
             }
         },
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks("grunt-jsbeautifier");
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['concat', 'uglify', 'jshint', 'karma']);
+    grunt.registerTask('default', ['concat', 'jsbeautifier', 'uglify', 'jshint', 'karma']);
 };  

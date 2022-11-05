@@ -5,7 +5,7 @@
  * license: MIT
  * http://bootboxjs.com/
  */
-(function (root, factory) {
+(function(root, factory) {
   'use strict';
   if (typeof define === 'function' && define.amd) {
     // AMD
@@ -26,34 +26,34 @@
   exports.VERSION = VERSION;
 
   let locales = {
-    'en' : {
-      OK      : 'OK',
-      CANCEL  : 'Cancel',
-      CONFIRM : 'OK'
+    'en': {
+      OK: 'OK',
+      CANCEL: 'Cancel',
+      CONFIRM: 'OK'
     }
   };
 
   let templates = {
-    dialog:         '<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="bootbox-body"></div></div></div></div></div>',
-    header:         '<div class="modal-header"><h5 class="modal-title"></h5></div>',
-    footer:         '<div class="modal-footer"></div>',
-    closeButton:    '<button type="button" class="bootbox-close-button close btn-close" aria-hidden="true" aria-label="Close"></button>',
-    form:           '<form class="bootbox-form"></form>',
-    button:         '<button type="button" class="btn"></button>',
-    option:         '<option value=""></option>',
-    promptMessage:  '<div class="bootbox-prompt-message"></div>',
+    dialog: '<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="bootbox-body"></div></div></div></div></div>',
+    header: '<div class="modal-header"><h5 class="modal-title"></h5></div>',
+    footer: '<div class="modal-footer"></div>',
+    closeButton: '<button type="button" class="bootbox-close-button close btn-close" aria-hidden="true" aria-label="Close"></button>',
+    form: '<form class="bootbox-form"></form>',
+    button: '<button type="button" class="btn"></button>',
+    option: '<option value=""></option>',
+    promptMessage: '<div class="bootbox-prompt-message"></div>',
     inputs: {
-      text:         '<input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" />',
-      textarea:     '<textarea class="bootbox-input bootbox-input-textarea form-control"></textarea>',
-      email:        '<input class="bootbox-input bootbox-input-email form-control" autocomplete="off" type="email" />',
-      select:       '<select class="bootbox-input bootbox-input-select form-select"></select>',
-      checkbox:     '<div class="form-check checkbox"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-checkbox" type="checkbox" /></label></div>',
-      radio:        '<div class="form-check radio"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-radio" type="radio" name="bootbox-radio" /></label></div>',
-      date:         '<input class="bootbox-input bootbox-input-date form-control" autocomplete="off" type="date" />',
-      time:         '<input class="bootbox-input bootbox-input-time form-control" autocomplete="off" type="time" />',
-      number:       '<input class="bootbox-input bootbox-input-number form-control" autocomplete="off" type="number" />',
-      password:     '<input class="bootbox-input bootbox-input-password form-control" autocomplete="off" type="password" />',
-      range:        '<input class="bootbox-input bootbox-input-range form-control-range" autocomplete="off" type="range" />'
+      text: '<input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" />',
+      textarea: '<textarea class="bootbox-input bootbox-input-textarea form-control"></textarea>',
+      email: '<input class="bootbox-input bootbox-input-email form-control" autocomplete="off" type="email" />',
+      select: '<select class="bootbox-input bootbox-input-select form-select"></select>',
+      checkbox: '<div class="form-check checkbox"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-checkbox" type="checkbox" /></label></div>',
+      radio: '<div class="form-check radio"><label class="form-check-label"><input class="form-check-input bootbox-input bootbox-input-radio" type="radio" name="bootbox-radio" /></label></div>',
+      date: '<input class="bootbox-input bootbox-input-date form-control" autocomplete="off" type="date" />',
+      time: '<input class="bootbox-input bootbox-input-time form-control" autocomplete="off" type="time" />',
+      number: '<input class="bootbox-input bootbox-input-number form-control" autocomplete="off" type="number" />',
+      password: '<input class="bootbox-input bootbox-input-password form-control" autocomplete="off" type="password" />',
+      range: '<input class="bootbox-input bootbox-input-range form-control-range" autocomplete="off" type="range" />'
     }
   };
 
@@ -106,7 +106,7 @@
    * @param {*} name 
    * @returns {object[]|object} An array of the available locale objects, or a single locale object if {name} is not null
    */
-  exports.locales = function (name) {
+  exports.locales = function(name) {
     return name ? locales[name] : locales;
   };
 
@@ -117,8 +117,8 @@
    * @param {*} values An object containing the localized string for each of the OK, CANCEL, and CONFIRM properties of a locale
    * @returns The updated bootbox object
    */
-  exports.addLocale = function (name, values) {
-    $.each(['OK', 'CANCEL', 'CONFIRM'], function (_, v) {
+  exports.addLocale = function(name, values) {
+    $.each(['OK', 'CANCEL', 'CONFIRM'], function(_, v) {
       if (!values[v]) {
         throw new Error('Please supply a translation for "' + v + '"');
       }
@@ -133,17 +133,16 @@
     return exports;
   };
 
- 
+
   /**
    * Remove a previously-registered locale
    * @param {*} name The key identifying the locale to remove
    * @returns The updated bootbox object
    */
-  exports.removeLocale = function (name) {
+  exports.removeLocale = function(name) {
     if (name !== 'en') {
       delete locales[name];
-    }
-    else {
+    } else {
       throw new Error('"en" is used as the default and fallback locale and cannot be removed.');
     }
 
@@ -156,7 +155,7 @@
    * @param {*} name The key identifying the locale to set as the default locale for all future bootbox calls 
    * @returns The updated bootbox object
    */
-  exports.setLocale = function (name) {
+  exports.setLocale = function(name) {
     return exports.setDefaults('locale', name);
   };
 
@@ -165,7 +164,7 @@
    * Override default value(s) of Bootbox.
    * @returns The updated bootbox object
    */
-  exports.setDefaults = function () {
+  exports.setDefaults = function() {
     let values = {};
 
     if (arguments.length === 2) {
@@ -186,19 +185,19 @@
    * Hides all currently active Bootbox modals
    * @returns The current bootbox object
    */
-  exports.hideAll = function () {
+  exports.hideAll = function() {
     $('.bootbox').modal('hide');
 
     return exports;
   };
 
- 
+
   /**
    * Allows the base init() function to be overridden
    * @param {*} _$ A function to be called when the bootbox instance is created
    * @returns The current bootbox object
    */
-  exports.init = function (_$) {
+  exports.init = function(_$) {
     return init(_$ || $);
   };
 
@@ -211,7 +210,7 @@
    * @param {*} options An object used to configure the various properties which define a Bootbox dialog
    * @returns A jQuery object upon which Bootstrap's modal function has been called
    */
-  exports.dialog = function (options) {
+  exports.dialog = function(options) {
     if ($.fn.modal === undefined) {
       throw new Error(
         '"$.fn.modal" is not defined; please double check you have included the Bootstrap JavaScript library. See https://getbootstrap.com/docs/5.1/getting-started/introduction/ for more details.'
@@ -224,8 +223,7 @@
       options.fullBootstrapVersion = $.fn.modal.Constructor.VERSION;
       let i = options.fullBootstrapVersion.indexOf('.');
       options.bootstrap = options.fullBootstrapVersion.substring(0, i);
-    }
-    else {
+    } else {
       // Assuming version 2.3.2, as that was the last "supported" 2.x version
       options.bootstrap = '2';
       options.fullBootstrapVersion = '2.3.2';
@@ -247,7 +245,7 @@
 
     // Only attempt to create buttons if at least one has been defined in the options object
     if (getKeyLength(options.buttons) > 0) {
-      each(buttons, function (key, b) {
+      each(buttons, function(key, b) {
         let button = $(templates.button);
         button.data('bb-handler', key);
         button.addClass(b.className);
@@ -266,11 +264,15 @@
         button.html(b.label);
 
         if (b.id) {
-          button.attr({ 'id': b.id });
+          button.attr({
+            'id': b.id
+          });
         }
 
         if (b.disabled === true) {
-          button.prop({ disabled: true });
+          button.prop({
+            disabled: true
+          });
         }
 
         footer.append(button);
@@ -290,7 +292,9 @@
     }
 
     if (options.id) {
-      dialog.attr({ 'id': options.id });
+      dialog.attr({
+        'id': options.id
+      });
     }
 
     if (options.size) {
@@ -331,23 +335,22 @@
       }
     }
 
-    if(options.title || options.closeButton){
+    if (options.title || options.closeButton) {
       if (options.title) {
         header.find('.modal-title').html(options.title);
       }
 
       if (options.closeButton) {
-        let closeButton = $(templates.closeButton);      
+        let closeButton = $(templates.closeButton);
         if (options.bootstrap < 5) {
           closeButton.html('&times;');
         }
 
         /* Note: the close button for Bootstrap 5+ does not contain content */
-        if(options.bootstrap < 4){
+        if (options.bootstrap < 4) {
           /* Bootstrap 3 and under */
           header.prepend(closeButton);
-        }
-        else {
+        } else {
           header.append(closeButton);
         }
       }
@@ -366,17 +369,20 @@
 
     // Bootstrap event listeners; these handle extra setup & teardown required after the underlying modal has performed certain actions.
 
-    if(!options.reusable) {
+    if (!options.reusable) {
       // make sure we unbind any listeners once the dialog has definitively been dismissed
-      dialog.one('hide.bs.modal', { dialog: dialog }, unbindModal);
-      dialog.one('hidden.bs.modal', { dialog: dialog }, destroyModal);
+      dialog.one('hide.bs.modal', {
+        dialog: dialog
+      }, unbindModal);
+      dialog.one('hidden.bs.modal', {
+        dialog: dialog
+      }, destroyModal);
     }
 
     if (options.onHide) {
       if ($.isFunction(options.onHide)) {
         dialog.on('hide.bs.modal', options.onHide);
-      }
-      else {
+      } else {
         throw new Error('Argument supplied to "onHide" must be a function');
       }
     }
@@ -384,8 +390,7 @@
     if (options.onHidden) {
       if ($.isFunction(options.onHidden)) {
         dialog.on('hidden.bs.modal', options.onHidden);
-      }
-      else {
+      } else {
         throw new Error('Argument supplied to "onHidden" must be a function');
       }
     }
@@ -393,19 +398,19 @@
     if (options.onShow) {
       if ($.isFunction(options.onShow)) {
         dialog.on('show.bs.modal', options.onShow);
-      }
-      else {
+      } else {
         throw new Error('Argument supplied to "onShow" must be a function');
       }
     }
 
-    dialog.one('shown.bs.modal', { dialog: dialog }, focusPrimaryButton);
+    dialog.one('shown.bs.modal', {
+      dialog: dialog
+    }, focusPrimaryButton);
 
     if (options.onShown) {
       if ($.isFunction(options.onShown)) {
         dialog.on('shown.bs.modal', options.onShown);
-      }
-      else {
+      } else {
         throw new Error('Argument supplied to "onShown" must be a function');
       }
     }
@@ -416,7 +421,7 @@
       let startedOnBody = false;
 
       // Prevents the event from propagating to the backdrop, when something inside the dialog is clicked
-      dialog.on('mousedown', '.modal-content', function(e){
+      dialog.on('mousedown', '.modal-content', function(e) {
         e.stopPropagation();
 
         startedOnBody = true;
@@ -425,7 +430,7 @@
       // A boolean true/false according to the Bootstrap docs should show a dialog the user can dismiss by clicking on the background.
       // We always only ever pass static/false to the actual $.modal function because with "true" we can't trap this event (the .modal-backdrop swallows it).
       // However, we still want to sort-of respect true and invoke the escape mechanism instead
-      dialog.on('click.dismiss.bs.modal', function (e) {
+      dialog.on('click.dismiss.bs.modal', function(e) {
         // // @NOTE: the target varies in >= 3.3.x releases since the modal backdrop moved *inside* the outer dialog rather than *alongside* it
         // if (dialog.children('.modal-backdrop').length) {
         //   e.currentTarget = dialog.children('.modal-backdrop').get(0);
@@ -439,14 +444,14 @@
       });
     }
 
-    dialog.on('escape.close.bb', function (e) {
+    dialog.on('escape.close.bb', function(e) {
       // The if() statement looks redundant but it isn't; without it, if we *didn't* have an onEscape handler then processCallback would automatically dismiss the dialog
       if (callbacks.onEscape) {
         processCallback(e, dialog, callbacks.onEscape);
       }
     });
 
-    dialog.on('click', '.modal-footer button:not(.disabled)', function (e) {
+    dialog.on('click', '.modal-footer button:not(.disabled)', function(e) {
       let callbackKey = $(this).data('bb-handler');
 
       if (callbackKey !== undefined) {
@@ -455,12 +460,12 @@
       }
     });
 
-    dialog.on('click', '.bootbox-close-button', function (e) {
+    dialog.on('click', '.bootbox-close-button', function(e) {
       // onEscape might be falsy, but that's fine; the fact is if the user has managed to click the close button we have to close the dialog, callback or not
       processCallback(e, dialog, callbacks.onEscape);
     });
 
-    dialog.on('keyup', function (e) {
+    dialog.on('keyup', function(e) {
       if (e.which === 27) {
         dialog.trigger('escape.close.bb');
       }
@@ -491,7 +496,7 @@
    * Helper function to simulate the native alert() behavior. **NOTE**: This is non-blocking, so any code that must happen after the alert is dismissed should be placed within the callback function for this alert.
    * @returns  A jQuery object upon which Bootstrap's modal function has been called
    */
-  exports.alert = function () {
+  exports.alert = function() {
     let options;
 
     options = mergeDialogOptions('alert', ['ok'], ['message', 'callback'], arguments);
@@ -502,7 +507,7 @@
     }
 
     // Override the ok and escape callback to make sure they just invoke the single user-supplied one (if provided)
-    options.buttons.ok.callback = options.onEscape = function () {
+    options.buttons.ok.callback = options.onEscape = function() {
       if ($.isFunction(options.callback)) {
         return options.callback.call(this);
       }
@@ -518,7 +523,7 @@
    * Helper function to simulate the native confirm() behavior. **NOTE**: This is non-blocking, so any code that must happen after the confirm is dismissed should be placed within the callback function for this confirm.
    * @returns A jQuery object upon which Bootstrap's modal function has been called
    */
-  exports.confirm = function () {
+  exports.confirm = function() {
     let options;
 
     options = mergeDialogOptions('confirm', ['cancel', 'confirm'], ['message', 'callback'], arguments);
@@ -529,11 +534,11 @@
     }
 
     // Overrides; undo anything the user tried to set they shouldn't have
-    options.buttons.cancel.callback = options.onEscape = function () {
+    options.buttons.cancel.callback = options.onEscape = function() {
       return options.callback.call(this, false);
     };
 
-    options.buttons.confirm.callback = function () {
+    options.buttons.confirm.callback = function() {
       return options.callback.call(this, true);
     };
 
@@ -545,7 +550,7 @@
    * Helper function to simulate the native prompt() behavior. **NOTE**: This is non-blocking, so any code that must happen after the prompt is dismissed should be placed within the callback function for this prompt.
    * @returns A jQuery object upon which Bootstrap's modal function has been called
    */
-  exports.prompt = function () {
+  exports.prompt = function() {
     let options;
     let promptDialog;
     let form;
@@ -575,36 +580,35 @@
     options.show = false;
 
     // Handles the 'cancel' action
-    options.buttons.cancel.callback = options.onEscape = function () {
+    options.buttons.cancel.callback = options.onEscape = function() {
       return options.callback.call(this, null);
     };
 
     // Prompt submitted - extract the prompt value. This requires a bit of work, given the different input types available.
-    options.buttons.confirm.callback = function () {
+    options.buttons.confirm.callback = function() {
       let value;
 
       if (options.inputType === 'checkbox') {
-        value = input.find('input:checked').map(function () {
+        value = input.find('input:checked').map(function() {
           return $(this).val();
         }).get();
       } else if (options.inputType === 'radio') {
         value = input.find('input:checked').val();
-      }
-      else {
+      } else {
         let el = input[0];
-        
+
         // Clear any previous custom error message
-        if(options.errorMessage){
+        if (options.errorMessage) {
           el.setCustomValidity('');
         }
 
         if (el.checkValidity && !el.checkValidity()) {
           // If a custom error message was provided, add it now
-          if(options.errorMessage){
+          if (options.errorMessage) {
             el.setCustomValidity(options.errorMessage);
           }
-          
-          if(el.reportValidity) { 
+
+          if (el.reportValidity) {
             el.reportValidity();
           }
 
@@ -612,11 +616,10 @@
           return false;
         } else {
           if (options.inputType === 'select' && options.multiple === true) {
-            value = input.find('option:selected').map(function () {
+            value = input.find('option:selected').map(function() {
               return $(this).val();
             }).get();
-          }
-          else {
+          } else {
             value = input.val();
           }
         }
@@ -661,12 +664,16 @@
         }
 
         if (options.required) {
-          input.prop({ 'required': true });
+          input.prop({
+            'required': true
+          });
         }
 
         if (options.rows && !isNaN(parseInt(options.rows))) {
           if (options.inputType === 'textarea') {
-            input.attr({ 'rows': options.rows });
+            input.attr({
+              'rows': options.rows
+            });
           }
         }
         break;
@@ -686,7 +693,9 @@
         }
 
         if (options.required) {
-          input.prop({ 'required': true });
+          input.prop({
+            'required': true
+          });
         }
 
         // These input types have extra attributes which affect their input validation.
@@ -696,8 +705,7 @@
           if (options.step) {
             if (options.step === 'any' || (!isNaN(options.step) && parseFloat(options.step) > 0)) {
               input.attr('step', options.step);
-            }
-            else {
+            } else {
               throw new Error('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
             }
           }
@@ -726,14 +734,18 @@
         }
 
         if (options.required) {
-          input.prop({ 'required': true });
+          input.prop({
+            'required': true
+          });
         }
 
         if (options.multiple) {
-          input.prop({ 'multiple': true });
+          input.prop({
+            'multiple': true
+          });
         }
 
-        each(inputOptions, function (_, option) {
+        each(inputOptions, function(_, option) {
           // Assume the element to attach to is the input...
           let elem = input;
 
@@ -757,7 +769,7 @@
           elem.append(o);
         });
 
-        each(groups, function (_, group) {
+        each(groups, function(_, group) {
           input.append(group);
         });
 
@@ -779,7 +791,7 @@
         // Checkboxes have to nest within a containing element, so they break the rules a bit and we end up re-assigning our 'input' element to this container instead
         input = $('<div class="bootbox-checkbox-list"></div>');
 
-        each(inputOptions, function (_, option) {
+        each(inputOptions, function(_, option) {
           if (option.value === undefined || option.text === undefined) {
             throw new Error('each option needs a "value" property and a "text" property');
           }
@@ -790,7 +802,7 @@
           checkbox.find('label').append('\n' + option.text);
 
           // We've ensured values is an array, so we can always iterate over it
-          each(checkboxValues, function (_, value) {
+          each(checkboxValues, function(_, value) {
             if (value === option.value) {
               checkbox.find('input').prop('checked', true);
             }
@@ -819,7 +831,7 @@
         // If value is undefined or doesn't match an input option, select the first radiobutton
         let checkFirstRadio = true;
 
-        each(inputOptions, function (_, option) {
+        each(inputOptions, function(_, option) {
           if (option.value === undefined || option.text === undefined) {
             throw new Error('each option needs a "value" property and a "text" property');
           }
@@ -848,7 +860,7 @@
     // Now place it in our form
     form.append(input);
 
-    form.on('submit', function (e) {
+    form.on('submit', function(e) {
       e.preventDefault();
       // Fix for SammyJS (or similar JS routing library) hijacking the form post.
       e.stopPropagation();
@@ -863,8 +875,7 @@
       let message = $(templates.promptMessage).html(options.message);
       form.prepend(message);
       options.message = form;
-    }
-    else {
+    } else {
       options.message = form;
     }
 
@@ -875,7 +886,7 @@
     promptDialog.off('shown.bs.modal', focusPrimaryButton);
 
     // ...and replace it with one focusing our input, if possible
-    promptDialog.on('shown.bs.modal', function () {
+    promptDialog.on('shown.bs.modal', function() {
       // Need the closure here since input isn'tcan object otherwise
       input.focus();
     });
@@ -971,11 +982,11 @@
   // This function will only be called by the alert, confirm, and prompt helpers. 
   function validateButtons(options, buttons) {
     let allowedButtons = {};
-    each(buttons, function (key, value) {
+    each(buttons, function(key, value) {
       allowedButtons[value] = true;
     });
 
-    each(options.buttons, function (key) {
+    each(options.buttons, function(key) {
       if (allowedButtons[key] === undefined) {
         throw new Error('button key "' + key + '" is not allowed (options are ' + buttons.join(' ') + ')');
       }
@@ -1035,18 +1046,18 @@
       options.backdrop = (options.backdrop === false || options.backdrop === 0) ? false : 'static';
     } else {
       options.backdrop = typeof options.backdrop === 'string' && options.backdrop.toLowerCase() === 'static' ? 'static' : true;
-    } 
+    }
 
     // No buttons is still a valid dialog but it's cleaner to always have a buttons object to iterate over, even if it's empty
     if (!options.buttons) {
       options.buttons = {};
     }
-    
+
     buttons = options.buttons;
 
     total = getKeyLength(buttons);
 
-    each(buttons, function (key, button, index) {
+    each(buttons, function(key, button, index) {
       if ($.isFunction(button)) {
         // Short form, assume value is our callback. Since button isn't an object it isn't a reference either so re-assign it
         button = buttons[key] = {
@@ -1068,8 +1079,7 @@
         let isPrimary = false;
         if (options.swapButtonOrder) {
           isPrimary = index === 0;
-        }
-        else {
+        } else {
           isPrimary = index === total - 1;
         }
 
@@ -1096,7 +1106,7 @@
   // Tiny wrapper function around jQuery.each; just adds index as the third parameter
   function each(collection, iterator) {
     let index = 0;
-    $.each(collection, function (key, value) {
+    $.each(collection, function(key, value) {
       iterator(key, value, index++);
     });
   }
@@ -1149,20 +1159,16 @@
     if (type === 'date') {
       if (min !== undefined && !(minValid = dateIsValid(min))) {
         console.warn('Browsers which natively support the "date" input type expect date values to be of the form "YYYY-MM-DD" (see ISO-8601 https://www.iso.org/iso-8601-date-and-time-format.html). Bootbox does not enforce this rule, but your min value may not be enforced by this browser.');
-      }
-      else if (max !== undefined && !(maxValid = dateIsValid(max))) {
+      } else if (max !== undefined && !(maxValid = dateIsValid(max))) {
         console.warn('Browsers which natively support the "date" input type expect date values to be of the form "YYYY-MM-DD" (see ISO-8601 https://www.iso.org/iso-8601-date-and-time-format.html). Bootbox does not enforce this rule, but your max value may not be enforced by this browser.');
       }
-    }
-    else if (type === 'time') {
+    } else if (type === 'time') {
       if (min !== undefined && !(minValid = timeIsValid(min))) {
         throw new Error('"min" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
-      }
-      else if (max !== undefined && !(maxValid = timeIsValid(max))) {
+      } else if (max !== undefined && !(maxValid = timeIsValid(max))) {
         throw new Error('"max" is not a valid time. See https://www.w3.org/TR/2012/WD-html-markup-20120315/datatypes.html#form.data.time for more information.');
       }
-    }
-    else {
+    } else {
       if (min !== undefined && isNaN(min)) {
         minValid = false;
         throw new Error('"min" must be a valid number. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min for more information.');
@@ -1177,8 +1183,7 @@
     if (minValid && maxValid) {
       if (max <= min) {
         throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
-      }
-      else {
+      } else {
         result = true;
       }
     }
@@ -1196,15 +1201,15 @@
 
   //  The Bootbox object
   return exports;
-}));
-;/*! @preserve
+}));;
+/*! @preserve
  * bootbox.locales.js
  * version: 5.5.2
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
  */
-(function (global, factory) {  
+(function(global, factory) {
   'use strict';
   if (typeof define === 'function' && define.amd) {
     define(['bootbox'], factory);
@@ -1213,258 +1218,258 @@
   } else {
     factory(global.bootbox);
   }
-}(this, function (bootbox) {
+}(this, function(bootbox) {
   'use strict';
 
-    bootbox.addLocale('ar', {
-      OK: 'موافق',
-      CANCEL: 'الغاء',
-      CONFIRM: 'تأكيد'
-    });
+  bootbox.addLocale('ar', {
+    OK: 'موافق',
+    CANCEL: 'الغاء',
+    CONFIRM: 'تأكيد'
+  });
 
-    bootbox.addLocale('az', {
-      OK: 'OK',
-      CANCEL: 'İmtina et',
-      CONFIRM: 'Təsdiq et'
-    });
+  bootbox.addLocale('az', {
+    OK: 'OK',
+    CANCEL: 'İmtina et',
+    CONFIRM: 'Təsdiq et'
+  });
 
-    bootbox.addLocale('bg_BG', {
-      OK: 'Ок',
-      CANCEL: 'Отказ',
-      CONFIRM: 'Потвърждавам'
-    });
+  bootbox.addLocale('bg_BG', {
+    OK: 'Ок',
+    CANCEL: 'Отказ',
+    CONFIRM: 'Потвърждавам'
+  });
 
-    bootbox.addLocale('br', {
-      OK: 'OK',
-      CANCEL: 'Cancelar',
-      CONFIRM: 'Sim'
-    });
+  bootbox.addLocale('br', {
+    OK: 'OK',
+    CANCEL: 'Cancelar',
+    CONFIRM: 'Sim'
+  });
 
-    bootbox.addLocale('cs', {
-      OK: 'OK',
-      CANCEL: 'Zrušit',
-      CONFIRM: 'Potvrdit'
-    });
+  bootbox.addLocale('cs', {
+    OK: 'OK',
+    CANCEL: 'Zrušit',
+    CONFIRM: 'Potvrdit'
+  });
 
-    bootbox.addLocale('da', {
-      OK: 'OK',
-      CANCEL: 'Annuller',
-      CONFIRM: 'Accepter'
-    });
+  bootbox.addLocale('da', {
+    OK: 'OK',
+    CANCEL: 'Annuller',
+    CONFIRM: 'Accepter'
+  });
 
-    bootbox.addLocale('de', {
-      OK: 'OK',
-      CANCEL: 'Abbrechen',
-      CONFIRM: 'Akzeptieren'
-    });
+  bootbox.addLocale('de', {
+    OK: 'OK',
+    CANCEL: 'Abbrechen',
+    CONFIRM: 'Akzeptieren'
+  });
 
-    bootbox.addLocale('el', {
-      OK: 'Εντάξει',
-      CANCEL: 'Ακύρωση',
-      CONFIRM: 'Επιβεβαίωση'
-    });
+  bootbox.addLocale('el', {
+    OK: 'Εντάξει',
+    CANCEL: 'Ακύρωση',
+    CONFIRM: 'Επιβεβαίωση'
+  });
 
-    bootbox.addLocale('en', {
-      OK: 'OK',
-      CANCEL: 'Cancel',
-      CONFIRM: 'OK'
-    });
+  bootbox.addLocale('en', {
+    OK: 'OK',
+    CANCEL: 'Cancel',
+    CONFIRM: 'OK'
+  });
 
-    bootbox.addLocale('es', {
-      OK: 'OK',
-      CANCEL: 'Cancelar',
-      CONFIRM: 'Aceptar'
-    });
+  bootbox.addLocale('es', {
+    OK: 'OK',
+    CANCEL: 'Cancelar',
+    CONFIRM: 'Aceptar'
+  });
 
-    bootbox.addLocale('eu', {
-      OK: 'OK',
-      CANCEL: 'Ezeztatu',
-      CONFIRM: 'Onartu'
-    });
+  bootbox.addLocale('eu', {
+    OK: 'OK',
+    CANCEL: 'Ezeztatu',
+    CONFIRM: 'Onartu'
+  });
 
-    bootbox.addLocale('et', {
-      OK: 'OK',
-      CANCEL: 'Katkesta',
-      CONFIRM: 'OK'
-    });
+  bootbox.addLocale('et', {
+    OK: 'OK',
+    CANCEL: 'Katkesta',
+    CONFIRM: 'OK'
+  });
 
-    bootbox.addLocale('fa', {
-      OK: 'قبول',
-      CANCEL: 'لغو',
-      CONFIRM: 'تایید'
-    });
+  bootbox.addLocale('fa', {
+    OK: 'قبول',
+    CANCEL: 'لغو',
+    CONFIRM: 'تایید'
+  });
 
-    bootbox.addLocale('fi', {
-      OK: 'OK',
-      CANCEL: 'Peruuta',
-      CONFIRM: 'OK'
-    });
+  bootbox.addLocale('fi', {
+    OK: 'OK',
+    CANCEL: 'Peruuta',
+    CONFIRM: 'OK'
+  });
 
-    bootbox.addLocale('fr', {
-      OK: 'OK',
-      CANCEL: 'Annuler',
-      CONFIRM: 'Confirmer'
-    });
+  bootbox.addLocale('fr', {
+    OK: 'OK',
+    CANCEL: 'Annuler',
+    CONFIRM: 'Confirmer'
+  });
 
-    bootbox.addLocale('he', {
-      OK: 'אישור',
-      CANCEL: 'ביטול',
-      CONFIRM: 'אישור'
-    });
+  bootbox.addLocale('he', {
+    OK: 'אישור',
+    CANCEL: 'ביטול',
+    CONFIRM: 'אישור'
+  });
 
-    bootbox.addLocale('hu', {
-      OK: 'OK',
-      CANCEL: 'Mégsem',
-      CONFIRM: 'Megerősít'
-    });
+  bootbox.addLocale('hu', {
+    OK: 'OK',
+    CANCEL: 'Mégsem',
+    CONFIRM: 'Megerősít'
+  });
 
-    bootbox.addLocale('hr', {
-      OK: 'OK',
-      CANCEL: 'Odustani',
-      CONFIRM: 'Potvrdi'
-    });
+  bootbox.addLocale('hr', {
+    OK: 'OK',
+    CANCEL: 'Odustani',
+    CONFIRM: 'Potvrdi'
+  });
 
-    bootbox.addLocale('id', {
-      OK: 'OK',
-      CANCEL: 'Batal',
-      CONFIRM: 'OK'
-    });
+  bootbox.addLocale('id', {
+    OK: 'OK',
+    CANCEL: 'Batal',
+    CONFIRM: 'OK'
+  });
 
-    bootbox.addLocale('it', {
-      OK: 'OK',
-      CANCEL: 'Annulla',
-      CONFIRM: 'Conferma'
-    });
+  bootbox.addLocale('it', {
+    OK: 'OK',
+    CANCEL: 'Annulla',
+    CONFIRM: 'Conferma'
+  });
 
-    bootbox.addLocale('ja', {
-      OK: 'OK',
-      CANCEL: 'キャンセル',
-      CONFIRM: '確認'
-    });
+  bootbox.addLocale('ja', {
+    OK: 'OK',
+    CANCEL: 'キャンセル',
+    CONFIRM: '確認'
+  });
 
-    bootbox.addLocale('ka', {
-      OK: 'OK',
-      CANCEL: 'გაუქმება',
-      CONFIRM: 'დადასტურება'
-    });
+  bootbox.addLocale('ka', {
+    OK: 'OK',
+    CANCEL: 'გაუქმება',
+    CONFIRM: 'დადასტურება'
+  });
 
-    bootbox.addLocale('ko', {
-      OK: 'OK',
-      CANCEL: '취소',
-      CONFIRM: '확인'
-    });
+  bootbox.addLocale('ko', {
+    OK: 'OK',
+    CANCEL: '취소',
+    CONFIRM: '확인'
+  });
 
-    bootbox.addLocale('lt', {
-      OK: 'Gerai',
-      CANCEL: 'Atšaukti',
-      CONFIRM: 'Patvirtinti'
-    });
+  bootbox.addLocale('lt', {
+    OK: 'Gerai',
+    CANCEL: 'Atšaukti',
+    CONFIRM: 'Patvirtinti'
+  });
 
-    bootbox.addLocale('lv', {
-      OK: 'Labi',
-      CANCEL: 'Atcelt',
-      CONFIRM: 'Apstiprināt'
-    });
+  bootbox.addLocale('lv', {
+    OK: 'Labi',
+    CANCEL: 'Atcelt',
+    CONFIRM: 'Apstiprināt'
+  });
 
-    bootbox.addLocale('nl', {
-      OK: 'OK',
-      CANCEL: 'Annuleren',
-      CONFIRM: 'Accepteren'
-    });
+  bootbox.addLocale('nl', {
+    OK: 'OK',
+    CANCEL: 'Annuleren',
+    CONFIRM: 'Accepteren'
+  });
 
-    bootbox.addLocale('no', {
-      OK: 'OK',
-      CANCEL: 'Avbryt',
-      CONFIRM: 'OK'
-    });
+  bootbox.addLocale('no', {
+    OK: 'OK',
+    CANCEL: 'Avbryt',
+    CONFIRM: 'OK'
+  });
 
-    bootbox.addLocale('pl', {
-      OK: 'OK',
-      CANCEL: 'Anuluj',
-      CONFIRM: 'Potwierdź'
-    });
+  bootbox.addLocale('pl', {
+    OK: 'OK',
+    CANCEL: 'Anuluj',
+    CONFIRM: 'Potwierdź'
+  });
 
-    bootbox.addLocale('pt', {
-      OK: 'OK',
-      CANCEL: 'Cancelar',
-      CONFIRM: 'Confirmar'
-    });
+  bootbox.addLocale('pt', {
+    OK: 'OK',
+    CANCEL: 'Cancelar',
+    CONFIRM: 'Confirmar'
+  });
 
-    bootbox.addLocale('ru', {
-      OK: 'OK',
-      CANCEL: 'Отмена',
-      CONFIRM: 'Подтвердить'
-    });
+  bootbox.addLocale('ru', {
+    OK: 'OK',
+    CANCEL: 'Отмена',
+    CONFIRM: 'Подтвердить'
+  });
 
-    bootbox.addLocale('sk', {
-      OK: 'OK',
-      CANCEL: 'Zrušiť',
-      CONFIRM: 'Potvrdiť'
-    });
+  bootbox.addLocale('sk', {
+    OK: 'OK',
+    CANCEL: 'Zrušiť',
+    CONFIRM: 'Potvrdiť'
+  });
 
-    bootbox.addLocale('sl', {
-      OK: 'OK',
-      CANCEL: 'Prekliči',
-      CONFIRM: 'Potrdi'
-    });
+  bootbox.addLocale('sl', {
+    OK: 'OK',
+    CANCEL: 'Prekliči',
+    CONFIRM: 'Potrdi'
+  });
 
-    bootbox.addLocale('sq', {
-      OK: 'OK',
-      CANCEL: 'Anulo',
-      CONFIRM: 'Prano'
-    });
+  bootbox.addLocale('sq', {
+    OK: 'OK',
+    CANCEL: 'Anulo',
+    CONFIRM: 'Prano'
+  });
 
-    bootbox.addLocale('sv', {
-      OK: 'OK',
-      CANCEL: 'Avbryt',
-      CONFIRM: 'OK'
-    });
+  bootbox.addLocale('sv', {
+    OK: 'OK',
+    CANCEL: 'Avbryt',
+    CONFIRM: 'OK'
+  });
 
-    bootbox.addLocale('sw', {
-      OK: 'Sawa',
-      CANCEL: 'Ghairi',
-      CONFIRM: 'Thibitisha'
-    });
+  bootbox.addLocale('sw', {
+    OK: 'Sawa',
+    CANCEL: 'Ghairi',
+    CONFIRM: 'Thibitisha'
+  });
 
-    bootbox.addLocale('ta', {
-      OK      : 'சரி',
-      CANCEL  : 'ரத்து செய்',
-      CONFIRM : 'உறுதி செய்'
-    });
+  bootbox.addLocale('ta', {
+    OK: 'சரி',
+    CANCEL: 'ரத்து செய்',
+    CONFIRM: 'உறுதி செய்'
+  });
 
-    bootbox.addLocale('th', {
-      OK: 'ตกลง',
-      CANCEL: 'ยกเลิก',
-      CONFIRM: 'ยืนยัน'
-    });
+  bootbox.addLocale('th', {
+    OK: 'ตกลง',
+    CANCEL: 'ยกเลิก',
+    CONFIRM: 'ยืนยัน'
+  });
 
-    bootbox.addLocale('tr', {
-      OK: 'Tamam',
-      CANCEL: 'İptal',
-      CONFIRM: 'Onayla'
-    });
+  bootbox.addLocale('tr', {
+    OK: 'Tamam',
+    CANCEL: 'İptal',
+    CONFIRM: 'Onayla'
+  });
 
-    bootbox.addLocale('uk', {
-      OK: 'OK',
-      CANCEL: 'Відміна',
-      CONFIRM: 'Прийняти'
-    });
+  bootbox.addLocale('uk', {
+    OK: 'OK',
+    CANCEL: 'Відміна',
+    CONFIRM: 'Прийняти'
+  });
 
-    bootbox.addLocale('vi', {
-      OK: 'OK',
-      CANCEL: 'Hủy bỏ',
-      CONFIRM: 'Xác nhận'
-    });
+  bootbox.addLocale('vi', {
+    OK: 'OK',
+    CANCEL: 'Hủy bỏ',
+    CONFIRM: 'Xác nhận'
+  });
 
-    bootbox.addLocale('zh_CN', {
-      OK: 'OK',
-      CANCEL: '取消',
-      CONFIRM: '确认'
-    });
+  bootbox.addLocale('zh_CN', {
+    OK: 'OK',
+    CANCEL: '取消',
+    CONFIRM: '确认'
+  });
 
-    bootbox.addLocale('zh_TW', {
-      OK: 'OK',
-      CANCEL: '取消',
-      CONFIRM: '確認'
-    });
+  bootbox.addLocale('zh_TW', {
+    OK: 'OK',
+    CANCEL: '取消',
+    CONFIRM: '確認'
+  });
 }));
