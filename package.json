@@ -1,6 +1,6 @@
 {
   "name": "bootbox",
-  "version": "6.0.0-wip",
+  "version": "6.0.0",
   "description": "Wrappers for JavaScript alert(), confirm(), prompt(), and other flexible dialogs using the Bootstrap framework",
   "directories": {
     "test": "tests"
@@ -18,8 +18,7 @@
   "main": "bootbox.js",
   "files": [
     "dist/*.js",
-    "bootbox.js",
-    "bootbox.locales.js"
+    "bootbox.js"
   ],
   "devDependencies": {
     "@sinonjs/fake-timers": "6.0.0",

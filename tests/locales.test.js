@@ -243,7 +243,7 @@ describe('bootbox locales', function() {
   describe('Chinese', function() {
     describe('Taiwan', function() {
       beforeEach(function() {
-        return this.setLocale('zh_TW');
+        return this.setLocale('zh-TW');
       });
       it('shows the correct OK translation', function() {
         return expect(this.labels.ok).to.equal('OK');

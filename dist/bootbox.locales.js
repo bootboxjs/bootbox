@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.locales.js
- * version: 6.0.0-wip
+ * version: 6.0.0
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -306,7 +306,7 @@
   });
   // locale : Chinese (Taiwan / Republic of China)
   // author : Nick Payne
-  bootbox.addLocale('zh_TW', {
+  bootbox.addLocale('zh-TW', {
     OK: 'OK',
     CANCEL: '取消',
     CONFIRM: '確認'

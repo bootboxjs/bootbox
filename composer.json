@@ -16,7 +16,7 @@
     "component": {
       "scripts": [
         "bootbox.js",
-        "bootbox.locales.js"
+        "dist/bootbox.locales.js"
       ]
     }
   }

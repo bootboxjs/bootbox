@@ -1,19 +1,22 @@
 /*! @preserve
  * bootbox.js
- * version: 6.0.0-wip
+ * version: 6.0.0
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
  */
-(function (global, factory) {  
+(function (root, factory) {
   'use strict';
   if (typeof define === 'function' && define.amd) {
-    define(['bootbox'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    factory(require('./bootbox'));
+    // AMD
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    // Node, CommonJS-like
+    module.exports = factory(require('jquery'));
   } else {
-    factory(global.bootbox);
+    // Browser globals (root is window)
+    root.bootbox = factory(root.jQuery);
   }
-}(this, function (bootbox) {
+}(this, function init($, undefined) {
   'use strict';
   

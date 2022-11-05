@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 6.0.0-wip
+ * version: 6.0.0
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -22,7 +22,7 @@
 
   let exports = {};
 
-  let VERSION = '6.0.0-wip';
+  let VERSION = '6.0.0';
   exports.VERSION = VERSION;
 
   let locales = {
@@ -103,8 +103,8 @@
 
   /**
    * Return all currently registered locales, or a specific locale if "name" is defined
-   * @param {*} name 
-   * @returns {object[]|object} An array of the available locale objects, or a single locale object if {name} is not null
+   * @param {string} [name]
+   * @returns {(Object|Object[])} An array of the available locale objects, or a single locale object if {name} is not null
    */
   exports.locales = function (name) {
     return name ? locales[name] : locales;
@@ -113,8 +113,8 @@
 
   /**
    * Register localized strings for the OK, CONFIRM, and CANCEL buttons
-   * @param {*} name The key used to identify the new locale in the locales array
-   * @param {*} values An object containing the localized string for each of the OK, CANCEL, and CONFIRM properties of a locale
+   * @param {string} name - The key used to identify the new locale in the locales array
+   * @param {Object} values - An object containing the localized string for each of the OK, CANCEL, and CONFIRM properties of a locale
    * @returns The updated bootbox object
    */
   exports.addLocale = function (name, values) {
@@ -136,7 +136,7 @@
  
   /**
    * Remove a previously-registered locale
-   * @param {*} name The key identifying the locale to remove
+   * @param {string} name - The key identifying the locale to remove
    * @returns The updated bootbox object
    */
   exports.removeLocale = function (name) {
@@ -153,7 +153,7 @@
 
   /**
    * Set the default locale
-   * @param {*} name The key identifying the locale to set as the default locale for all future bootbox calls 
+   * @param {string} name - The key identifying the locale to set as the default locale for all future bootbox calls 
    * @returns The updated bootbox object
    */
   exports.setLocale = function (name) {
@@ -195,7 +195,7 @@
  
   /**
    * Allows the base init() function to be overridden
-   * @param {*} _$ A function to be called when the bootbox instance is created
+   * @param {function} _$ - A function to be called when the bootbox instance is created
    * @returns The current bootbox object
    */
   exports.init = function (_$) {
@@ -208,7 +208,7 @@
 
   /**
    * The core dialog helper function, which can be used to create any custom Bootstrap modal. 
-   * @param {*} options An object used to configure the various properties which define a Bootbox dialog
+   * @param {Object} options - An object used to configure the various properties which define a Bootbox dialog
    * @returns A jQuery object upon which Bootstrap's modal function has been called
    */
   exports.dialog = function (options) {
@@ -331,7 +331,7 @@
       }
     }
 
-    if(options.title || options.closeButton){
+    if(options.title || options.closeButton) {
       if (options.title) {
         header.find('.modal-title').html(options.title);
       }
@@ -343,7 +343,7 @@
         }
 
         /* Note: the close button for Bootstrap 5+ does not contain content */
-        if(options.bootstrap < 4){
+        if(options.bootstrap < 4) {
           /* Bootstrap 3 and under */
           header.prepend(closeButton);
         }
@@ -416,7 +416,7 @@
       let startedOnBody = false;
 
       // Prevents the event from propagating to the backdrop, when something inside the dialog is clicked
-      dialog.on('mousedown', '.modal-content', function(e){
+      dialog.on('mousedown', '.modal-content', function(e) {
         e.stopPropagation();
 
         startedOnBody = true;
@@ -589,7 +589,7 @@
         let el = input[0];
         
         // Clear any previous custom error message
-        if(options.errorMessage){
+        if(options.errorMessage) {
           el.setCustomValidity('');
         }
 
@@ -1071,7 +1071,8 @@
         if (total <= 2 && isPrimary) {
           // always add a primary to the main option in a one or two-button dialog
           button.className = 'btn-primary';
-        } else {
+        } 
+        else {
           // adding both classes allows us to target both BS3 and BS4+ without needing to check the version
           button.className = 'btn-secondary btn-default';
         }
