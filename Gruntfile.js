@@ -2,6 +2,11 @@ module.exports = function (grunt) {
     'use strict';
     grunt.initConfig({
         concat: {
+            copy : {
+                src: ['bootbox.js'],
+                dest: 'dist/bootbox.js'
+            },
+
             locales: {
                 src: ['templates/umd-header-locales.txt', 'locales/**/*.js', 'templates/umd-footer.txt'],
                 dest: 'dist/bootbox.locales.js'

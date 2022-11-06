@@ -17,11 +17,15 @@ Please see the [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master
 
 Tests are run using [Karma](http://karma-runner.github.io/0.8/index.html) using the Mocha test adapter. To run the tests yourself, simply run 
 
-```npm install``` 
+```
+npm install
+``` 
 
 within the project followed by 
 
-```npm test```
+```
+npm test
+```
 
 When submitting pull requests, ensure your tests pass. **Pull-requests with failing tests will be rejected.** See the
 [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for more information.
@@ -38,7 +42,7 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 56.0.0 (Latest Release)
+## 6.0.0 (Latest Release)
 
 - Removes various IE polyfills
 - Replaces `var` with `let`
