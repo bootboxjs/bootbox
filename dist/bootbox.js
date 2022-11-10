@@ -682,6 +682,16 @@
         if (options.pattern) {
           input.attr('pattern', options.pattern);
         }
+        else {
+          if(options.inputType === 'date') {
+            // Add the ISO-8601 short date format as a fallback for browsers without native type="date" support
+            input.attr('pattern', '\d{4}-\d{2}-\d{2}');
+          }
+          else if(options.inputType === 'time') {
+            // Add an HH:MM pattern as a fallback for browsers without native type="time" support
+            input.attr('pattern', '\d{2}:\d{2}');
+          }
+        }
 
         if (options.required) {
           input.prop({ 'required': true });
