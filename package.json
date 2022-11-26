@@ -17,8 +17,7 @@
   "readmeFilename": "README.md",
   "main": "bootbox.js",
   "files": [
-    "dist/*.js",
-    "bootbox.js"
+    "dist/*.js"
   ],
   "devDependencies": {
     "@sinonjs/fake-timers": "6.0.0",
