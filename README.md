@@ -13,16 +13,26 @@ The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/mak
 
 Please see the [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for guidelines.
 
-## Running Tests [![Build Status](https://api.travis-ci.org/makeusabrew/bootbox.svg)](http://travis-ci.org/makeusabrew/bootbox)
+## Running Tests
 
-Tests are run using [Karma](http://karma-runner.github.io/0.8/index.html) using the Mocha test adapter.
-To run the tests yourself, simply run ```npm install``` within the project followed by ```npm test```.
+Tests are run using [Karma](http://karma-runner.github.io/0.8/index.html) using the Mocha test adapter. To run the tests yourself, simply run 
 
-The project is also hosted on [Travis CI](https://travis-ci.org/makeusabrew/bootbox) - when submitting
-pull requests **please** ensure your tests pass as failing requests will be rejected. See the
+```
+npm install
+``` 
+
+within the project followed by 
+
+```
+npm test
+```
+
+When submitting pull requests, ensure your tests pass. **Pull-requests with failing tests will be rejected.** See the
 [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for more information.
 
 ## A note on Bootstrap dependencies
+
+Bootbox **6.0.0** is the first release to support Bootstrap 5.0.0.
 
 Bootbox **5.0.0** is the first release to support Bootstrap 4.0.0.
 
@@ -32,10 +42,19 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 5.5.3 (Latest Release)
+## 6.0.0 (Latest Release)
 
-- Adds `relatedTarget` option. Allows the caller to determine which element, if any, triggered the modal
-- Various bugfixes and package updates
+- Removes various IE polyfills
+- Replaces `var` with `let`
+- JSDoc cleanup
+- Adds code to handle cases when click starts on the modal body and ends on the backdrop and `backdrop` is set to `true`
+- `bootbox.locale.js` and `bootbox.all.js` are now generated files and will be found in the `/dist` directory
+- Simplify locale file structure
+- Changed a few locale identifiers to match IANA specifications:
+  - `bg_BG` -> `bg-BG`
+  - `pt-br` -> `pt-BR`
+  - `zh_CN` -> `zh-CN`
+  - `zh_TW` -> `zh-CW`
 
 For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
 

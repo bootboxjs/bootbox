@@ -1,4 +1,18 @@
-## 5.5.2 (Latest Release)
+## 6.0.0 (Latest Release)
+
+- Removes various IE polyfills
+- Replaces `var` with `let`
+- JSDoc cleanup
+- Adds code to handle cases when click starts on the modal body and ends on the backdrop and `backdrop` is set to `true`
+- `bootbox.locale.js` and `bootbox.all.js` are now generated files and will be found in the `/dist` directory
+- Simplify locale file structure
+- Changed a few locale identifiers to match IANA specifications:
+  - `bg_BG` -> `bg-BG`
+  - `pt-br` -> `pt-BR`
+  - `zh_CN` -> `zh-CN`
+  - `zh_TW` -> `zh-CW`
+
+### 5.5.2
 
 - Adds Vietnamese locale
 

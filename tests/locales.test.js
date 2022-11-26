@@ -130,7 +130,21 @@ describe('bootbox locales', function() {
   });
   describe('Portuguese', function() {
     beforeEach(function() {
-      return this.setLocale('br');
+      return this.setLocale('pt');
+    });
+    it('shows the correct OK translation', function() {
+      return expect(this.labels.ok).to.equal('OK');
+    });
+    it('shows the correct CANCEL translation', function() {
+      return expect(this.labels.cancel).to.equal('Cancelar');
+    });
+    return it('shows the correct CONFIRM translation', function() {
+      return expect(this.labels.confirm).to.equal('Confirmar');
+    });
+  });
+  describe('Portuguese (Brasil)', function() {
+    beforeEach(function() {
+      return this.setLocale('pt-BR');
     });
     it('shows the correct OK translation', function() {
       return expect(this.labels.ok).to.equal('OK');
@@ -167,7 +181,7 @@ describe('bootbox locales', function() {
       return expect(this.labels.cancel).to.equal('Отмена');
     });
     return it('shows the correct CONFIRM translation', function() {
-      return expect(this.labels.confirm).to.equal('Подтвердить');
+      return expect(this.labels.confirm).to.equal('Применить');
     });
   });
   describe('Indonesian', function() {
@@ -229,7 +243,7 @@ describe('bootbox locales', function() {
   describe('Chinese', function() {
     describe('Taiwan', function() {
       beforeEach(function() {
-        return this.setLocale('zh_TW');
+        return this.setLocale('zh-TW');
       });
       it('shows the correct OK translation', function() {
         return expect(this.labels.ok).to.equal('OK');
@@ -243,7 +257,7 @@ describe('bootbox locales', function() {
     });
     return describe('China', function() {
       beforeEach(function() {
-        return this.setLocale('zh_CN');
+        return this.setLocale('zh-CN');
       });
       it('shows the correct OK translation', function() {
         return expect(this.labels.ok).to.equal('OK');
@@ -398,7 +412,7 @@ describe('bootbox locales', function() {
   });
   describe('Bulgarian', function() {
     beforeEach(function() {
-      return this.setLocale('bg_BG');
+      return this.setLocale('bg-BG');
     });
     it('shows the correct OK translation', function() {
       return expect(this.labels.ok).to.equal('Ок');

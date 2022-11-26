@@ -4,7 +4,6 @@ process.env.CHROME_BIN = puppeteer.executablePath();
 module.exports = function(params) {
   'use strict';
   return function(config) {
-
     return config.set({
       basePath: '',
       frameworks: ['mocha', 'sinon-chai'],
@@ -34,7 +33,5 @@ module.exports = function(params) {
         outputDir: 'tests/reports'
       }
     });
-
   };
-
 };

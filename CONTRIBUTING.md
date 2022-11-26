@@ -5,10 +5,8 @@
 * Please rebase your branch against the current master
 * Run ```npm install``` to make sure your development dependencies are up-to-date
 * [grunt-cli](https://github.com/gruntjs/grunt-cli) >= 0.4.0 is required to sanity check your contribution
-* Please ensure that the test suite passes **and** that bootbox.js is lint free before submitting a PR by running:
- * ```grunt```
-* If you've added new functionality, **please** include tests which validate its behaviour
- * **this includes pull requests which _only_ add new locales!**
+* Please ensure that the test suite passes **and** that bootbox.js is lint free before submitting a PR by running ```grunt```
+* If you've added new functionality, **please** include tests which validate its behaviour -- **this includes pull requests which _only_ add new locales!**
 
 ## Submitting bug reports
 

@@ -9,6 +9,7 @@
     "quotmark": "single",
     "browser": true,
     "node": true,
+    "esversion": 6,
     "globals": {
       "beforeEach": true,
       "afterEach": true,
