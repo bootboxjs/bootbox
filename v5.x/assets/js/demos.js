@@ -1,12 +1,12 @@
 $(function () {
   try {
-    let locales = Object.keys(bootbox.locales());
-    for (let i = 0; i < locales.length; i++) {
-      let option = $('<option value=""></option>');
+    var locales = Object.keys(bootbox.locales());
+    for (var i = 0; i < locales.length; i++) {
+      var option = $('<option value=""></option>');
       option.attr('value', locales[i]);
       option.html(locales[i]);
 
-      $('#choose-locale').append(option);
+      $('#locales').append(option);
     }
 
     Example.init({
@@ -16,7 +16,7 @@ $(function () {
     $('.example-button').on('click', function (e) {
       e.preventDefault();
 
-      let key = $(this).data('bb-example-key');
+      var key = $(this).data('bb-example-key');
       if ($.trim(key) != "") {
         switch (key) {
 
@@ -25,13 +25,6 @@ $(function () {
           case 'alert-default':
             bootbox.alert("This is the default alert!");
             Example.show('Default alert');
-            break;
-
-          case 'alert-html-callback':
-            let template = $('#alert-message-template');
-            bootbox.alert(template, function () {
-              Example.show('This was logged in the callback!');
-            });
             break;
 
           case 'alert-callback':
@@ -63,14 +56,6 @@ $(function () {
               size: 'large'
             });
             Example.show('Large alert shown');
-            break;
-
-          case 'alert-extra-large':
-            bootbox.alert({
-              message: "This is the extra-large alert!",
-              size: 'extra-large'
-            });
-            Example.show('Extra-large alert shown');
             break;
 
           case 'alert-custom-class':
@@ -144,10 +129,10 @@ $(function () {
             break;
 
           case 'confirm-locale':
-            let confirmLocale = $('#choose-locale').val();
+            var locale = $('#locales').val();
             bootbox.confirm({
-              message: "This confirm uses the selected locale, <b>" + confirmLocale + "</b>. Were the labels what you expected?",
-              locale: confirmLocale,
+              message: "This confirm uses the selected locale, <b>" + locale + "</b>. Were the labels what you expected?",
+              locale: locale,
               callback: function (result) {
                 Example.show('This was logged in the callback: ' + result);
               }
@@ -174,13 +159,13 @@ $(function () {
             break;
 
           case 'prompt-custom-locale':
-            let customLocale = {
+            var locale = {
               OK: 'I Suppose',
               CONFIRM: 'Go Ahead',
               CANCEL: 'Maybe Not'
             };
 
-            bootbox.addLocale('custom', customLocale);
+            bootbox.addLocale('custom', locale);
 
             bootbox.prompt({
               title: "This is a prompt with a custom locale! What do you think?",
@@ -376,34 +361,34 @@ $(function () {
           /* Custom dialogs */
 
           case 'custom-dialog-as-overlay':
-            let timeout = 3000; // 3 seconds
-            let dialogAsOverlay = bootbox.dialog({
-              message: '<p class="text-center mb-0"><i class="fas fa-spin fa-cog"></i> Please wait while we do something...</p>',
+            var timeout = 3000; // 3 seconds
+            var dialog = bootbox.dialog({
+              message: '<p class="text-center mb-0">Please wait while we do something...</p>',
               closeButton: false
             });
 
             setTimeout(function () {
-              dialogAsOverlay.modal('hide');
+              dialog.modal('hide');
             }, timeout);
 
             break;
 
           case 'custom-dialog-init':
-            let dialogWithInit = bootbox.dialog({
+            var dialog = bootbox.dialog({
               title: 'A custom dialog with init',
-              message: '<p><i class="fas fa-spin fa-spinner"></i> Loading...</p>'
+              message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
             });
 
-            dialogWithInit.init(function () {
+            dialog.init(function () {
               setTimeout(function () {
-                dialogWithInit.find('.bootbox-body').html('I was loaded after the dialog was shown!');
+                dialog.find('.bootbox-body').html('I was loaded after the dialog was shown!');
               }, 3000);
             });
 
             break;
 
           case 'custom-dialog-with-buttons':
-            let dialogWithButtons = bootbox.dialog({
+            var dialog = bootbox.dialog({
               title: 'A custom dialog with buttons and callbacks',
               message: "<p>This dialog has buttons. Each button has it's own callback function.</p>",
               size: 'large',
