@@ -12,28 +12,31 @@
     "type": "git",
     "url": "git://github.com/makeusabrew/bootbox.git"
   },
+  "bugs": {
+    "url": "https://github.com/makeusabrew/bootbox/issues"
+  },
   "author": "Nick Payne <nick@kurai.co.uk>",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "main": "bootbox.js",
+  "main": "dist/bootbox.js",
   "files": [
     "dist/*.js"
   ],
   "devDependencies": {
-    "@sinonjs/fake-timers": "6.0.0",
-    "chai": "^4.3.6",
-    "eslint": "^8.17.0",
+    "@sinonjs/fake-timers": "^10.0.2",
+    "chai": "^4.3.7",
+    "eslint": "^8.31.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-promise": "^6.1.1",
     "grunt": "^1.0.4",
     "grunt-contrib-concat": "^2.1.0",
     "grunt-contrib-jshint": "^3.2.0",
     "grunt-contrib-uglify": "^5.2.1",
     "grunt-jsbeautifier": "^0.2.13",
     "grunt-karma": "^4.0.2",
-    "karma": "^6.4.0",
+    "karma": "^6.4.1",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^3.1.1",
     "karma-coverage": "^2.2.0",
@@ -41,12 +44,12 @@
     "karma-mocha": "^2.0.1",
     "karma-sinon-chai": "^2.0.2",
     "karma-webpack": "^5.0.0",
-    "mocha": "^10.0.0",
-    "puppeteer": "^14.4.0",
-    "sinon": "^14.0.0",
+    "mocha": "^10.2.0",
+    "puppeteer": "^19.4.1",
+    "sinon": "^15.0.1",
     "sinon-chai": "^3.7.0",
-    "uglify-js": "^3.16.0",
-    "webpack": "^5.73.0"
+    "uglify-js": "^3.17.4",
+    "webpack": "^5.75.0"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.0.0",

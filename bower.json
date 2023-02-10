@@ -1,6 +1,6 @@
 {
   "name": "bootbox.js",
-  "main": "./bootbox.js",
+  "main": "./dist/bootbox.js",
   "license": "MIT",
   "ignore": [
     "CHANGELOG.md",

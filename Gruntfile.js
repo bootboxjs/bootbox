@@ -38,7 +38,7 @@ module.exports = function (grunt) {
             },
             my_target: {
                 files: {
-                    'dist/bootbox.min.js': ['bootbox.js'],
+                    'dist/bootbox.min.js': ['dist/bootbox.js'],
                     'dist/bootbox.locales.min.js': ['dist/bootbox.locales.js'],
                     'dist/bootbox.all.min.js': ['dist/bootbox.all.js']
                 }
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc',
                 force: true
             },
-            all: ['bootbox.js', 'dist/bootbox.locales.js']
+            all: ['dist/bootbox.js', 'dist/bootbox.locales.js']
         },
 
         karma: {

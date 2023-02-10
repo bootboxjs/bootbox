@@ -5,5 +5,5 @@ module.exports = baseConfig({
     'tests/vendor/jquery-3.3.1.slim.min.js',
     'tests/vendor/bootstrap-5.1.3.bundle.min.js'
   ],
-  src: ['bootbox.js', 'dist/bootbox.locales.js']
+  src: ['dist/bootbox.js', 'dist/bootbox.locales.js']
 });
