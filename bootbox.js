@@ -866,7 +866,7 @@
       promptDialog.find('.bootbox-accept').trigger('click');
     });
 
-    if ($.trim(options.message) !== '') {
+    if (options.message.trim() !== '') {
       // Add the form to whatever content the user may have added.
       let message = $(templates.promptMessage).html(options.message);
       form.prepend(message);
