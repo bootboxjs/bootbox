@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/makeusabrew/bootbox.git"
+    "url": "git://github.com/bootboxjs/bootbox.git"
   },
   "bugs": {
-    "url": "https://github.com/makeusabrew/bootbox/issues"
+    "url": "https://github.com/bootboxjs/bootbox/issues"
   },
   "author": "Nick Payne <nick@kurai.co.uk>",
   "license": "MIT",
