@@ -11,7 +11,7 @@ The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/mak
 
 ## Contributing
 
-Please see the [CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for guidelines.
+Please see the [CONTRIBUTING](https://github.com/bootboxjs/bootbox/blob/master/CONTRIBUTING.md) file for guidelines.
 
 ## Running Tests
 
@@ -28,7 +28,7 @@ npm test
 ```
 
 When submitting pull requests, ensure your tests pass. **Pull-requests with failing tests will be rejected.** See the
-[CONTRIBUTING](https://github.com/makeusabrew/bootbox/blob/master/CONTRIBUTING.md) file for more information.
+[CONTRIBUTING](https://github.com/bootboxjs/bootbox/blob/master/CONTRIBUTING.md) file for more information.
 
 ## A note on Bootstrap dependencies
 
@@ -56,13 +56,13 @@ Much more dependency information can be found [on the Bootbox website](http://bo
   - `zh_CN` -> `zh-CN`
   - `zh_TW` -> `zh-CW`
 
-For a full list of releases and changes please see [the changelog](https://github.com/makeusabrew/bootbox/blob/master/CHANGELOG.md).
+For a full list of releases and changes please see [the changelog](https://github.com/bootboxjs/bootbox/blob/master/CHANGELOG.md).
 
 ## License
 
 (The MIT License)
 
-Copyright (C) 2011-2022 by Nick Payne <nick@kurai.co.uk>
+Copyright (C) 2011-2023 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
