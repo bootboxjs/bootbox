@@ -45,7 +45,7 @@
     "karma-sinon-chai": "^2.0.2",
     "karma-webpack": "^5.0.0",
     "mocha": "^10.2.0",
-    "puppeteer": "^19.4.1",
+    "puppeteer": "^23.2.1",
     "sinon": "^15.0.1",
     "sinon-chai": "^3.7.0",
     "uglify-js": "^3.17.4",
