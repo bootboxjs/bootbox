@@ -1,604 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-    content="Bootbox.js - alert, confirm, prompt, and flexible dialogs for the Bootstrap framework" />
-  <meta name="keywords" content="bootbox,Bootstrap,modal" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Bootbox.js - alert, confirm, prompt, and flexible dialogs for the Bootstrap framework" />
+    <meta name="keywords" content="bootbox,Bootstrap,modal" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
-  <link rel="manifest" href="./site.webmanifest" />
-
-  <title>Getting Started &mdash; Bootbox.js &mdash; alert, confirm, prompt, and flexible dialogs for the Bootstrap
-    framework</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Bree+Serif&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/css/prism.css" />
-  <link rel="stylesheet" href="./assets/css/main.css" />
-  <link rel="stylesheet" href="./assets/css/fontawesome.css" />
-
-  <script>
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-20517424-8']);
-    _gaq.push(['_trackPageview']);
-    (function () {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+    
+    <title>Getting Started &mdash; Bootbox.js &mdash; alert, confirm, prompt, and flexible dialogs for the Bootstrap framework</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Bree+Serif&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/prism.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/fontawesome.css" />
+    
 </head>
-
 <body>
-  <div class="page-wrapper">
-    <nav class="d-flex flex-row align-items-center p-2 border-bottom bg-white sticky-top">
-      <div class="">
+    <div class="page-wrapper">
+        <nav class="d-flex flex-row align-items-center p-2 border-bottom bg-white sticky-top">
+    <div class="">
         <a id="toggle-sidebar" class="btn rounded-0 p-3" href="#">
-          <i class="fas fa-bars"></i>
+            <i class="fas fa-bars"></i>
         </a>
-      </div>
-      <div class="flex-fill">
+    </div>
+    <div class="flex-fill">
         <nav aria-label="breadcrumb" class="align-items-center">
-          <a href="./" class="text-no-decoration"><b class="text-brand">Bootbox</b><span
-              class="text-bb-alt text-thin">.js</span></a> &mdash; alert, confirm, prompt, and flexible dialogs for the
-          Bootstrap framework
+            <a href="./" class="text-no-decoration"><b class="text-brand">Bootbox.js</b></a> &mdash; alert, confirm, prompt, and flexible dialogs for the Bootstrap framework
         </nav>
-      </div>
-      <div class="text-right text-nowrap me-2">
+    </div>
+    <div class="text-right text-nowrap mr-2">          
         <nav class="nav nav-navbar">
-          <a class="nav-item nav-link border-start border-end" href="./getting-started.html">
-            Getting Started
-          </a>
-          <a class="nav-item nav-link border-end" href="./examples.html">
-            Examples
-          </a>
-          <a class="nav-item nav-link border-end" href="./documentation.html">
-            Docs
-          </a>
-          <a class="nav-item nav-link border-end" href="./faq.html">
-            FAQs
-          </a>
-          <div class="nav-item dropdown border-end">
-            <a class="nav-link dropdown-toggle" href="#" id="revisions" role="button" data-bs-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="true">
-              v6.0.0
+            <a class="nav-item nav-link border-left border-right" href="./getting-started.html">
+                Getting Started
             </a>
-            <div class="dropdown-menu" aria-labelledby="revisions">
-              <a class="dropdown-item active" href="./documentation.html">v6.0.0</a>
-
-              <a class="dropdown-item" href="v5.x/documentation.html">v5.x</a>
-
-              <a class="dropdown-item" href="v4.x/documentation.html">v4.x</a>
-
-              <a class="dropdown-item" href="v3.x/documentation.html">v3.x</a>
-
+            <a class="nav-item nav-link border-right" href="./examples.html">
+                Examples
+            </a>
+            <a class="nav-item nav-link border-right" href="./documentation.html">
+                Docs
+            </a>
+            <a class="nav-item nav-link border-right" href="./faq.html">
+                FAQs
+            </a>
+            <div class="nav-item dropdown border-right">
+                <a class="nav-link dropdown-toggle" href="#" id="revisions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    v6.0.0
+                </a>
+                <div class="dropdown-menu" aria-labelledby="revisions">
+                    <a class="dropdown-item active" href="./documentation.html">v6.0.0</a>
+                    
+                    <a class="dropdown-item" href="v5.x/documentation.html">v5.x</a>
+                    
+                    <a class="dropdown-item" href="v4.x/documentation.html">v4.x</a>
+                    
+                    <a class="dropdown-item" href="v3.x/documentation.html">v3.x</a>
+                    
+                </div>
+              </div>
+            <a class="nav-item nav-link text-dark border-right mr-3" href="https://github.com/makeusabrew/bootbox">
+                <i class="fab fa-github"></i>
+                GitHub
+            </a>
+            <div class="form-inline">
+                <a class="btn btn-brand" href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.zip" id="download-bootbox">
+                    <i class="fas fa-download"></i>
+                    Download
+                </a>
             </div>
-          </div>
-          <a class="nav-item nav-link text-dark border-right me-3" href="https://github.com/makeusabrew/bootbox">
-            <i class="fab fa-github"></i>
-            GitHub
-          </a>
-          <div class="form-inline">
-            <a class="btn btn-brand" href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.zip"
-              id="download-bootbox">
-              <i class="fas fa-download"></i>
-              Download
-            </a>
-          </div>
         </nav>
-      </div>
-    </nav>
+    </div>
+</nav>
 
-    <main class="page-content">
-      <div class="container-fluid">
-        <div class="d-flex flex-row py-3 align-items-stretch">
-          <article class="main-content px-4 mx-auto">
-            <div class="main-content-inner">
-              <h2 id="intro" class="my-3">Getting Started</h2>
-              <p class="lead">
-                Bootbox.js is designed to make using Bootstrap modals easier! Follow the guide below, and you should be
-                up and running in no time.
-              </p>
+        <main class="page-content">            
+            <div class="container-fluid">                
+                <div class="d-flex flex-row py-3 align-items-stretch">
+                    <article class="main-content px-4 mx-auto">
+                        <div class="main-content-inner">
+                            <h2 id="intro" class="my-3">Getting Started</h2>
+<p class="lead">
+    Bootbox.js is designed to make using Bootstrap modals easier! Follow the guide below, and you should be up and running in no time.
+</p>
 
-              <div class="bg-white rounded p-5">
-                <section class="page-section">
-                  <!-- heading -->
-                  <h3 id="install" class="page-section-header page-anchor">
-                    Install
-                  </h3>
-                  <div class="page-section-content">
-                    <p>Bootbox can be added to your project in two easy ways:</p>
-                    <div class="row mb-3">
-                      <div class="col">
-                        <h4><a href="https://www.npmjs.com/package/bootbox">npm</a></h4>
-                        <pre><code class="language-bash">npm i bootbox</code></pre>
-                      </div>
-                      <div class="col">
-                        <h4><a href="https://cdnjs.com/libraries/bootbox.js">cdnjs</a></h4>
-                        <pre><code
-                            class="language-http">https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.all.min.js</code>
-                        </pre>
-                      </div>
-                    </div>
-                    <p>Or, serve the files yourself:</p>
-                    <div class="mb-2">
-                      <h5 class="text-left">
-                        Direct download
-                        <small>(via <a href="https://github.com/makeusabrew/bootbox">GitHub</a> &mdash; please do not
-                          link to these files directly)</small>
-                      </h5>
-                      <table class="table table-bordered w-75">
-                        <thead>
-                          <tr>
+<div class="bg-white rounded p-5">
+    <section class="page-section">
+        <!-- heading -->
+        <h3 id="install" class="page-section-header page-anchor">
+            Install
+        </h3>
+        <div class="page-section-content">
+            <p>Bootbox can be added to your project in two easy ways:</p>
+            <div class="row mb-3">
+                <div class="col">
+                    <h4><a href="https://www.npmjs.com/package/bootbox">npm</a></h4>
+                    <pre><code class="language-bash">npm i bootbox</code></pre>
+                </div>
+                <div class="col">
+                    <h4><a href="https://cdnjs.com/libraries/bootbox.js">cdnjs</a></h4>
+                    <pre><code class="language-http">https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js</code></pre>
+                </div>
+            </div>
+            <p>Or, serve the files yourself:</p>
+            <div class="mb-2">
+                <h5 class="text-left">
+                    Direct download
+                    <small>(via <a href="https://github.com/makeusabrew/bootbox">GitHub</a> &mdash; please do not link to these files directly)</small>
+                </h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
                             <th>File</th>
                             <th style="width: 50%;">Production:</th>
                             <th>Development:</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
                             <td>
-                              Core
-                              <p>
-                                <small class="d-block">bootbox + default locale (<samp>en</samp>) only.</small>
-                              </p>
-                            </td>
-                            <td>
-                              <a href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.js">
-                                bootbox.js
-                              </a>
+                                Core
+                                <p>
+                                    <small class="d-block">bootbox + default locale (<samp>en</samp>) only.</small>
+                                </p>
                             </td>
                             <td>
-                              <a href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.min.js">
-                                bootbox.min.js
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Locales
-                              <p>
-                                <small class="d-block">Contains only locales.</small>
-                              </p>
+                                <a href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.js">
+                                    bootbox.js
+                                </a>                                
                             </td>
                             <td>
-                              <a
-                                href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.locales.js">
-                                bootbox.locales.js
-                              </a>
+                                <a href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.min.js">
+                                    bootbox.min.js
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Locales
+                                <p>
+                                    <small class="d-block">Contains only locales.</small>
+                                </p>
                             </td>
                             <td>
-                              <a
-                                href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.locales.min.js">
-                                bootbox.locales.min.js
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Bundled
-                              <p>
-                                <small class="d-block">Includes bootbox + all locales.</small>
-                              </p>
+                                <a href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.locales.js">
+                                    bootbox.locales.js
+                                </a>
                             </td>
                             <td>
-                              <a href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.all.js">
-                                bootbox.all.js
-                              </a>
+                                <a href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.locales.min.js">
+                                    bootbox.locales.min.js
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Bundled
+                                <p>
+                                    <small class="d-block">Includes bootbox + all locales.</small>
+                                </p>
                             </td>
                             <td>
-                              <a
-                                href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.all.min.js">
-                                bootbox.all.min.js
-                              </a>
+                                <a href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.all.js">
+                                    bootbox.all.js
+                                </a>
                             </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <p>
-                      Once you've downloaded Bootbox, skip down to the <a href="#usage-instructions">Usage
-                        Instructions</a> for help setting up the library.
-                    </p>
-                  </div>
-                </section>
-
-                <hr class="section-divider" />
-
-                <section class="page-section">
-                  <h3 id="dependencies" class="page-section-header page-anchor">
-                    Dependencies
-                  </h3>
-                  <div class="page-section-content">
-                    <p>
-                      All versions of Bootbox stand on the shoulders of two great giants: <a
-                        href="https://getbootstrap.com">Bootstrap</a> and <a href="https://jquery.com">jQuery</a>.
-                      The exact version of Bootstrap depends on the version of Bootbox you're using. This has become
-                      slightly more complex than we'd like, but hopefully this handy
-                      table will clear things up:
-                    </p>
-                    <div class="table-responsive">
-                      <table class="table table-bordered">
-                        <thead>
-                          <tr>
-                            <th>Bootbox version</th>
-                            <th>Min. Bootstrap version</th>
-                            <th>Max. Bootstrap</th>
-                            <th>Min. jQuery</th>
-                            <th>Supported?</th>
-                            <th class="hidden-xs">Notes</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr class="table-success">
-                            <td>6.x.x <span class="badge bg-success">Latest</span></td>
-                            <td>4.6.1</td>
-                            <td>5.x.x</td>
-                            <td>3.5.x <b class="text-danger">**</b></td>
-                            <td class="text-center"><i class="fas fa-check text-success"></i></td>
-                            <td class="hidden-xs">Current release. Updated to support Bootstrap 5. Retains compatibility
-                              with Bootstrap 4.</td>
-                          </tr>
-                          <tr>
-                            <td>5.x.x</td>
-                            <td>3.0.0 <b class="text-danger">*</b></td>
-                            <td>4.x.x</td>
-                            <td>1.9.1</td>
-                            <td class="text-center"><i class="fas fa-times text-danger"></i></td>
-                            <td class="hidden-xs">Support for Bootstrap 4. Retains compatibility with Bootstrap 3.</td>
-                          </tr>
-                          <tr>
-                            <td>4.x.x</td>
-                            <td>3.0.0</td>
-                            <td>3.4.x</td>
-                            <td>1.9.1</td>
-                            <td class="text-center"><i class="fas fa-times text-danger"></i></td>
-                            <td class="hidden-xs">Entirely rewritten to support Bootstrap 3.0.0.</td>
-                          </tr>
-                          <tr>
-                            <td>3.x.x</td>
-                            <td>2.2.2</td>
-                            <td>2.3.2</td>
-                            <td>1.8.3</td>
-                            <td class="text-center"><i class="fas fa-times text-danger"></i></td>
-                            <td class="hidden-xs">Last version to support Bootstrap 2.</td>
-                          </tr>
-                          <tr>
-                            <td>2.x.x</td>
-                            <td>2.0.0</td>
-                            <td>2.0.4</td>
-                            <td>1.7.1</td>
-                            <td class="text-center"><i class="fas fa-times text-danger"></i></td>
-                            <td class="hidden-xs">As you can see, Bootstrap 2.1.x was never officially supported.</td>
-                          </tr>
-                          <tr>
-                            <td>1.x.x</td>
-                            <td>1.3.0</td>
-                            <td>1.4.0</td>
-                            <td>1.7.1</td>
-                            <td class="text-center"><i class="fas fa-times text-danger"></i></td>
-                            <td class="hidden-xs">Don't download this version of Bootbox &mdash; it's old.</td>
-                          </tr>
-                        </tbody>
-                        <tfoot>
-                          <tr>
-                            <td colspan="6">
-                              <p>
-                                <b class="text-danger">*</b> Some options, like <samp>size</samp>, require Bootstrap
-                                3.1.0 or higher.
-                              </p>
-                              <p>
-                                <b class="text-danger">**</b> npm package requires jQuery 3.5.1 or higher. If loading
-                                manually, any currently
-                                supported version of jQuery will work. See <a
-                                  href="https://releases.jquery.com/">https://releases.jquery.com/</a>
-                              </p>
+                            <td>
+                                <a href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.0/bootbox.all.min.js">
+                                    bootbox.all.min.js
+                                </a>
                             </td>
-                          </tr>
-                        </tfoot>
-                      </table>
-                    </div>
-                    <p>
-                      If you are using Bootstrap 4 or newer, you <b>must</b> also include <a
-                        href="https://popper.js.org/">Popper.js</a>. Bootstrap
-                      currently includes a bootstrap.bundle.min.js file in the pre-compiled version, if you prefer,
-                      which combines Popper.js with
-                      the bootstrap.js source file.
-                    </p>
-                  </div>
-                </section>
-
-                <hr class="section-divider" />
-
-                <section class="page-section">
-                  <h3 id="usage-instructions" class="page-section-header page-anchor">
-                    Usage Instructions
-                  </h3>
-                  <div class="page-section-content">
-                    <p>
-                      Once you've got your <a href="#dependencies">dependencies</a> sorted, usage
-                      is fairly straightforward and much like any other JavaScript library you've
-                      ever used. The library creates a single global instance of a <samp>bootbox</samp> object:
-                    </p>
-                    <pre class="language-html line-numbers mb-4"><code>&lt;!DOCTYPE html&gt;
-                        &lt;html&gt;
-                        &lt;head&gt;
-                        &lt;meta charset="utf-8"&gt;
-                        &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
-                        &lt;title&gt;My page&lt;/title&gt;
-
-                        &lt;!-- CSS dependencies --&gt;
-                        &lt;link rel="stylesheet" type="text/css" href="bootstrap.min.css"&gt;
-                        &lt;/head&gt;
-                        &lt;body&gt;
-                        &lt;p&gt;Content here. &lt;a class="show-alert" href="#"&gt;Alert!&lt;/a&gt;&lt;/p&gt;
-
-                        &lt;!-- JS dependencies --&gt;
-                        &lt;script
-                        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"&gt;&lt;/script&gt;
-                        &lt;!-- Bootstrap 4+ dependency --&gt;
-                        &lt;script src="popper.min.js"&gt;&lt;/script&gt;
-                        &lt;script src="bootstrap.min.js"&gt;&lt;/script&gt;
-
-                        &lt;!-- bootbox code --&gt;
-                        &lt;script src="bootbox.all.min.js"&gt;&lt;/script&gt;
-                        &lt;script&gt;
-                        $(document).on('click', '.show-alert', function(e) {
-                        bootbox.alert('Hello world!', function() {
-                        console.log('Alert Callback');
-                        });
-                        });
-                        &lt;/script&gt;
-                        &lt;/body&gt;
-                        &lt;/html&gt;</code></pre>
-                    <h4 id="note-script-order" class="page-anchor">
-                      <i class="fas fa-info-circle text-danger"></i>
-                      Note the order of the script references
-                    </h4>
-                    <p>
-                      Since Bootbox is a wrapper around Bootstrap's modal functionality, you need to include the
-                      libraries in order:
-                    </p>
-                    <ol>
-                      <li>jQuery</li>
-                      <li>Popper.js</li>
-                      <li>Bootstrap</li>
-                      <li>Bootbox</li>
-                    </ol>
-                    <p>
-                      When you're up and running, check out some <a href="./examples.html">examples</a>
-                      or the <a href="./documentation.html">documentation</a>.
-                    </p>
-                  </div>
-                </section>
-
-                <footer class="page-footer">
-                  <div class="row">
-                    <div class="col">
-                      <a href="./index.html" class="btn btn-outline-info"><i class="fas fa-angle-double-left"></i>
-                        Home</a>
-                    </div>
-                    <div class="col">
-                      <a class="btn btn-outline-secondary disabled">
-                        Getting Started
-                      </a>
-                    </div>
-                    <div class="col">
-                      <a href="./examples.html" class="btn btn-outline-info">Examples <i
-                          class="fas fa-angle-double-right"></i></a>
-                    </div>
-                  </div>
-                </footer>
-              </div>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-          </article>
+            <p>
+                Once you've downloaded Bootbox, skip down to the <a href="#usage-instructions">Usage Instructions</a> for help setting up the library.
+            </p>
         </div>
-      </div>
-    </main>
+    </section>
 
-    <footer class="page-content">
-      <div class="text-center container-fluid">
-        <div class="p-2">
-          Bootbox.js &copy; 2011-2023 <a href="https://stronglytyped.uk">Nick Payne</a> supported by <a
-            href="https://github.com/bootboxjs/bootbox/graphs/contributors">awesome contributors</a>.
-          Syntax highlighting by <a href="https://prismjs.com/">Prism.js</a>
-          using <a href="https://andrewlock.net">Andrew Lock</a>'s Visual Studio theme.
+    <hr class="section-divider" />
+
+    <section class="page-section">
+        <h3 id="dependencies" class="page-section-header page-anchor">
+            Dependencies
+        </h3>
+        <div class="page-section-content">
+        <p>
+            All versions of Bootbox stand on the shoulders of two great giants: <a href="https://getbootstrap.com">Bootstrap</a> and <a href="https://jquery.com">jQuery</a>.
+            The exact version of Bootstrap depends on the version of Bootbox you're using. This has become slightly more complex than we'd like, but hopefully this handy
+            table will clear things up:
+        </p>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Bootbox version</th>
+                        <th>Min. Bootstrap version</th>
+                        <th>Max. Bootstrap</th>
+                        <th>Min. jQuery</th>
+                        <th>Supported?</th>
+                        <th class="hidden-xs">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-success">
+                        <td>6.x.x <span class="badge bg-success">Latest</span></td>
+                        <td>4.6.1</td>
+                        <td>5.x.x</td>
+                        <td>1.9.1</td>
+                        <td class="text-center"><i class="fas fa-check text-success"></i></td>
+                        <td class="hidden-xs">Current release. Updated to support Bootstrap 5. Retains compatibility with Bootstrap 4.</td>
+                    </tr>
+                    <tr>
+                        <td>5.x.x</td>
+                        <td>3.0.0 <b class="text-danger">*</b></td>
+                        <td>4.x.x</td>
+                        <td>1.9.1</td>
+                        <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                        <td class="hidden-xs">Support for Bootstrap 4. Retains compatibility with Bootstrap 3.</td>
+                    </tr>
+                    <tr>
+                        <td>4.x.x</td>
+                        <td>3.0.0</td>
+                        <td>3.4.x</td>
+                        <td>1.9.1</td>
+                        <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                        <td class="hidden-xs">Entirely rewritten to support Bootstrap 3.0.0.</td>
+                    </tr>
+                    <tr>
+                        <td>3.x.x</td>
+                        <td>2.2.2</td>
+                        <td>2.3.2</td>
+                        <td>1.8.3</td>
+                        <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                        <td class="hidden-xs">Last version to support Bootstrap 2.</td>
+                    </tr>
+                    <tr>
+                        <td>2.x.x</td>
+                        <td>2.0.0</td>
+                        <td>2.0.4</td>
+                        <td>1.7.1</td>
+                        <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                        <td class="hidden-xs">As you can see, Bootstrap 2.1.x was never officially supported.</td>
+                    </tr>
+                    <tr>
+                        <td>1.x.x</td>
+                        <td>1.3.0</td>
+                        <td>1.4.0</td>
+                        <td>1.7.1</td>
+                        <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                        <td class="hidden-xs">Don't download this version of Bootbox &mdash; it's old.</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6"><b class="text-danger">*</b> Some options, like <samp>size</samp>, require Bootstrap 3.1.0 or higher.</td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
-        <div class="pt-2 pb-4">
-          If there&rsquo;s something not quite right on this page, please
-          <a href="https://www.feedbackrocket.io" data-fr-widget
-            data-fr-placeholder="Let us know what's wrong and we'll try to look at it as soon as possible. Thanks!">let
-            us
-            know</a>.
+        <p>
+            If you are using Bootstrap 4 or newer, you <b>must</b> also include <a href="https://popper.js.org/">Popper.js</a>. Bootstrap
+            currently includes a bootstrap.bundle.min.js file in the pre-compiled version, if you prefer, which combines Popper.js with
+            the bootstrap.js source file.
+        </p>
         </div>
-      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section class="page-section">
+        <h3 id="usage-instructions" class="page-section-header page-anchor">
+            Usage Instructions
+        </h3>
+        <div class="page-section-content">
+            <p>
+                Once you've got your <a href="#dependencies">dependencies</a> sorted, usage
+                is fairly straightforward and much like any other JavaScript library you've
+                ever used. The library creates a single global instance of a <samp>bootbox</samp> object:
+            </p>
+            <pre class="language-html line-numbers mb-4"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;title&gt;My page&lt;/title&gt;
+
+    &lt;!-- CSS dependencies --&gt;
+    &lt;link rel="stylesheet" type="text/css" href="bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;p&gt;Content here. &lt;a class="show-alert" href="#"&gt;Alert!&lt;/a&gt;&lt;/p&gt;
+
+    &lt;!-- JS dependencies --&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;!-- Bootstrap 4 dependency --&gt;
+    &lt;script src="popper.min.js"&gt;&lt;/script&gt;
+    &lt;script src="bootstrap.min.js"&gt;&lt;/script&gt;
+
+    &lt;!-- bootbox code --&gt;
+    &lt;script src="bootbox.min.js"&gt;&lt;/script&gt;
+    &lt;script src="bootbox.locales.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(document).on("click", ".show-alert", function(e) {
+            bootbox.alert("Hello world!", function() {
+                console.log("Alert Callback");
+            });
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <h4 id="note-script-order" class="page-anchor">
+                <i class="fas fa-info-circle text-danger"></i>
+                Note the order of the script references
+            </h4>
+            <p>
+                Since Bootbox is a wrapper around Bootstrap's modal functionality, you need to include the libraries in order:
+            </p>
+            <ol>
+                <li>jQuery</li>
+                <li>Popper.js</li>
+                <li>Bootstrap</li>
+                <li>Bootbox</li>
+                <li>Bootbox Locales (optional - omit if you only need the default English locale)</li>
+            </ol>
+            <p>
+                When you're up and running, check out some <a href="./examples.html">examples</a>
+                or the <a href="./documentation.html">documentation</a>.
+            </p>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        <div class="row">
+            <div class="col">
+                <a href="./index.html" class="btn btn-outline-info"><i class="fas fa-angle-double-left"></i> Home</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-outline-secondary disabled">
+                    Getting Started
+                </a>
+            </div>
+            <div class="col">
+                <a href="./examples.html" class="btn btn-outline-info">Examples <i class="fas fa-angle-double-right"></i></a>
+            </div>
+        </div>
     </footer>
-  </div>
-  <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-      <!-- sidebar-search  -->
-      <div class="sidebar-search">
-        <form id="search-form">
-          <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search..." id="lunrsearch" name="q"
-              maxlength="255" />
-            <div class="input-group-append">
-              <button class="btn btn-light" type="submit" id="search-go">
-                <i class="fas fa-search" aria-hidden="true"></i>
-              </button>
+</div>
+                        </div>
+                    </article>
+                </div>
             </div>
-          </div>
-          <p class="mb-0 powered-by"><small>Powered by <a href="https://lunrjs.com/" class="text-warning"
-                target="_blank">lunr.js</a></small></p>
-        </form>
-        <div id="lunrsearchresults"></div>
-      </div>
-      <!-- sidebar-menu  -->
-      <div class="sidebar-item sidebar-menu">
-        <ul>
-          <li class="nav-item ">
-            <a href="./">
-              <i class="fas fa-home"></i>
-              <span class="menu-text">Home</span>
-            </a>
-          </li>
-          <li class="nav-item sidebar-dropdown active open">
-            <a href="#">
-              <i class="fas fa-code"></i>
-              <span class="menu-text">Getting Started</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul class="nav-items">
-                <li>
-                  <a class="nav-link" href="./getting-started.html">Introduction</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./getting-started.html#download">Download / Install</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./getting-started.html#dependencies">Dependencies</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./getting-started.html#usage-instructions">Usage
-                    Instructions</a>
-                </li>
-              </ul>
+        </main>
+
+        <footer class="page-content">
+            <div class="text-center container-fluid">
+                <div class="p-4">
+                    Bootbox.js &copy; 2011 - 2024 <a href="http://paynedigital.com/about" class="text-bb-brand">Nick Payne</a>. 
+                    Syntax highlighting by <a href="https://prismjs.com/" class="text-bb-brand">Prism.js</a> 
+                    using <a href="https://andrewlock.net" class="text-bb-brand">Andrew Lock</a>'s Visual Studio theme.
+                </div>
             </div>
-          </li>
-          <li class="nav-item sidebar-dropdown ">
-            <a href="#">
-              <i class="far fa-file-code"></i>
-              <span class="menu-text">Examples</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul class="nav-items">
-                <li>
-                  <a class="nav-link" href="./examples.html">Overview</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./examples.html#alert">Alert</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./examples.html#confirm">Confirm</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./examples.html#prompt">Prompt</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./examples.html#dialog">Dialog</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item sidebar-dropdown ">
-            <a href="#">
-              <i class="far fa-file-alt"></i>
-              <span class="menu-text">Documentation</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul class="nav-items">
-                <li>
-                  <a class="nav-link" href="./documentation.html">Overview</a>
-                </li>
-              </ul>
-              <h5 class="header-menu">
-                <span>Dialogs</span>
-              </h5>
-              <ul class="nav-items">
-                <li>
-                  <a class="nav-link" href="./documentation.html#alert">Alert</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./documentation.html#confirm">Confirm</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./documentation.html#prompt">Prompt</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./documentation.html#dialog">Dialog</a>
-                </li>
-              </ul>
-              <h5 class="header-menu">
-                <span>Configuration</span>
-              </h5>
-              <ul class="nav-items">
-                <li>
-                  <a class="nav-link" href="./documentation.html#dialog-options">Options</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./documentation.html#locales">Locales</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./documentation.html#jquery-functions">Chaining jQuery
-                    Functions</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./documentation.html#instance-functions">Instance
-                    Functions</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./documentation.html#global-functions">Global Functions</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./documentation.html#notes">Notes</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item ">
-            <a href="./faq.html">
-              <i class="fas fa-question-circle"></i>
-              <span class="menu-text">FAQ / Issues</span>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a href="https://www.feedbackrocket.io" data-fr-widget data-fr-theme="dark">
-              <i class="fas fa-comment"></i>
-              <span class="menu-text">Page feedback</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- sidebar-menu  -->
+        </footer>
     </div>
-  </nav>
-  <div class="bb-scroll-widget">
-    <a href="#" class="back-to-top">
-      <span class="fa-stack">
-        <i class="fas fa-square fa-stack-2x"></i>
-        <i class="fas fa-arrow-up fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-    integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js"
-    integrity="sha256-E4RlfxwyJVmkkk0szw7LYJxuPlp6evtPSBDlWHsYYL8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
-  <script src="./assets/js/bootbox.all.min.js"></script>
-  <script src="./assets/js/prism.js"></script>
-  <script src="./assets/js/main.js"></script>
+    <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+        <!-- sidebar-search  -->
+        <div class="sidebar-search">
+            <form id="search-form">
+                <div class="input-group">
+                    <input type="text" class="form-control search-menu" placeholder="Search..." id="lunrsearch" name="q" maxlength="255" />
+                    <div class="input-group-append">
+                        <button class="btn btn-light" type="submit" id="search-go">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <p class="mb-0 powered-by"><small>Powered by <a href="https://lunrjs.com/" class="text-warning" target="_blank">lunr.js</a></small></p>
+            </form>
+            <div id="lunrsearchresults"></div>
+        </div>   
+        <!-- sidebar-menu  -->
+        <div class="sidebar-item sidebar-menu">
+            <ul>
+                <li class="nav-item ">
+                    <a href="./">
+                        <i class="fas fa-home"></i>
+                        <span class="menu-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-dropdown active open">
+                    <a href="#">
+                        <i class="fas fa-code"></i>
+                        <span class="menu-text">Getting Started</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./getting-started.html">Introduction</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./getting-started.html#download">Download / Install</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./getting-started.html#dependencies">Dependencies</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./getting-started.html#usage-instructions">Usage
+                                    Instructions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item sidebar-dropdown ">
+                    <a href="#">
+                        <i class="far fa-file-code"></i>
+                        <span class="menu-text">Examples</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./examples.html">Overview</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./examples.html#alert">Alert</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./examples.html#confirm">Confirm</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./examples.html#prompt">Prompt</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./examples.html#dialog">Dialog</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item sidebar-dropdown ">
+                    <a href="#">
+                        <i class="far fa-file-alt"></i>
+                        <span class="menu-text">Documentation</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./documentation.html">Overview</a>
+                            </li>
+                        </ul>
+                        <h5 class="header-menu">
+                            <span>Dialogs</span>
+                        </h5>
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./documentation.html#alert">Alert</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation.html#confirm">Confirm</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation.html#prompt">Prompt</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation.html#dialog">Dialog</a>
+                            </li>
+                        </ul>
+                        <h5 class="header-menu">
+                            <span>Configuration</span>
+                        </h5>
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./documentation.html#dialog-options">Options</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation.html#locales">Locales</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation.html#jquery-functions">Chaining jQuery
+                                    Functions</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation.html#instance-functions">Instance
+                                    Functions</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation.html#global-functions">Global Functions</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation.html#notes">Notes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item ">
+                    <a href="./faq.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="menu-text">FAQ / Issues</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- sidebar-menu  -->
+    </div>
+</nav>
+    <div class="bb-scroll-widget">
+        <a href="#" class="back-to-top">
+            <span class="fa-stack">
+                <i class="fas fa-square fa-stack-2x"></i>
+                <i class="fas fa-arrow-up fa-stack-1x fa-inverse"></i>
+            </span>
+        </a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha256-E4RlfxwyJVmkkk0szw7LYJxuPlp6evtPSBDlWHsYYL8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+    <script src="./assets/js/bootbox.all.min.js"></script>
+    <script src="./assets/js/prism.js"></script>
+    <script src="./assets/js/main.js"></script>
+      
+    <script src="./assets/js/lunr.js"></script>
+<script src="./assets/js/jquery.mark.js"></script>
 
-  <script src="./assets/js/lunr.js"></script>
-  <script src="./assets/js/jquery.mark.js"></script>
-
-  <script src="./assets/js/search.js"></script>
-
-  <script async src="https://www.feedbackrocket.io/sdk/v1.0.0.js" data-fr-id="HlTKsrkOS2F49y3o2tJPS"
-    data-fr-theme="light"></script>
+<script src="./assets/js/search.js"></script>
 </body>
 
 </html>
