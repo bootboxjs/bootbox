@@ -328,16 +328,6 @@ describe('bootbox.prompt', function () {
         });
       });
 
-      describe('with pattern', function () {
-        beforeEach(function () {
-          this.options.pattern = '\d{1,2}/\d{1,2}/\d{4}';
-          return this.create();
-        });
-        return it('has correct pattern value', function () {
-          return expect(this.find('input[type="text"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
-        });
-      });
-
       describe('with maxlength', function () {
         beforeEach(function () {
           this.options.maxlength = 5;
@@ -435,11 +425,11 @@ describe('bootbox.prompt', function () {
       });
       describe('with pattern', function () {
         beforeEach(function () {
-          this.options.pattern = '\d{1,2}/\d{1,2}/\d{4}';
+          this.options.pattern = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/";
           return this.create();
         });
         return it('has correct pattern value', function () {
-          return expect(this.find('input[type="email"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
+          return expect(this.find('input[type="email"]').attr('pattern')).to.equal("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/");
         });
       });
     });
@@ -859,11 +849,11 @@ describe('bootbox.prompt', function () {
       });
       describe('with pattern', function () {
         beforeEach(function () {
-          this.options.pattern = '\d{1,2}/\d{1,2}/\d{4}';
+          this.options.pattern = "(?!00:00)(24:00|([0-1]\d|2[0-3]):[0-5]\d)";
           return this.create();
         });
         return it('has correct pattern value', function () {
-          return expect(this.find('input[type="time"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
+          return expect(this.find('input[type="time"]').attr('pattern')).to.equal("(?!00:00)(24:00|([0-1]\d|2[0-3]):[0-5]\d)");
         });
       });
       describe('with min value', function () {
@@ -1062,7 +1052,6 @@ describe('bootbox.prompt', function () {
           return expect(this.create).to.throw('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
         });
       });
-
     });
 
 
