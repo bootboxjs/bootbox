@@ -15,7 +15,7 @@ module.exports = function(params) {
         ['tests/**/*.test.js']
       ),
       exclude: [],
-      reporters: ['dots', 'coverage', 'junit'],
+      reporters: ['dots', 'coverage', 'junit', 'progress', 'html'],
       port: 9876,
       colors: true,
       logLevel: config.LOG_INFO,
@@ -31,6 +31,18 @@ module.exports = function(params) {
 
       junitReporter: {
         outputDir: 'tests/reports'
+      },
+
+      htmlReporter: {
+        outputFile: 'tests/units.html',
+        
+        // Optional
+        pageTitle: 'Bootbox',
+        subPageTitle: 'Unit test results, Grouped',
+        groupSuites: true,
+        useCompactStyle: true,
+        useLegacyStyle: false,
+        showOnlyFailed: false
       }
     });
   };

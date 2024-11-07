@@ -3,12 +3,6 @@
 Please see http://bootboxjs.com for full usage instructions, or head over to http://paynedigital.com/bootbox for
 the original writeup about the project.
 
-## Contact
-
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/makeusabrew/bootbox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-The easiest thing is to [find me on twitter @makeusabrew](http://twitter.com/makeusabrew).
-
 ## Contributing
 
 Please see the [CONTRIBUTING](https://github.com/bootboxjs/bootbox/blob/master/CONTRIBUTING.md) file for guidelines.
@@ -42,19 +36,13 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 6.0.0 (Latest Release)
+## 6.0.1 (Latest Release)
 
-- Removes various IE polyfills
-- Replaces `var` with `let`
-- JSDoc cleanup
-- Adds code to handle cases when click starts on the modal body and ends on the backdrop and `backdrop` is set to `true`
-- `bootbox.locale.js` and `bootbox.all.js` are now generated files and will be found in the `/dist` directory
-- Simplify locale file structure
-- Changed a few locale identifiers to match IANA specifications:
-  - `bg_BG` -> `bg-BG`
-  - `pt-br` -> `pt-BR`
-  - `zh_CN` -> `zh-CN`
-  - `zh_TW` -> `zh-CW`
+- Updates prompt callback to return false from callback if `inputType` is 'checkbox', `required` option is `true`, and no checkbox has been checked
+- Updates unit tests
+  - Adds tests for required option
+  - Cleanup up pattern tests
+  - Adds HTML output runner
 
 For a full list of releases and changes please see [the changelog](https://github.com/bootboxjs/bootbox/blob/master/CHANGELOG.md).
 
@@ -62,7 +50,7 @@ For a full list of releases and changes please see [the changelog](https://githu
 
 (The MIT License)
 
-Copyright (C) 2011-2023 by Nick Payne <nick@kurai.co.uk>
+Copyright (C) 2011-2024 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
