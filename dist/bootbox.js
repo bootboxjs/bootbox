@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 6.0.0
+ * version: 6.0.1
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -22,7 +22,7 @@
 
   let exports = {};
 
-  let VERSION = '6.0.0';
+  let VERSION = '6.0.1';
   exports.VERSION = VERSION;
 
   let locales = {
