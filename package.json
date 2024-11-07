@@ -40,6 +40,7 @@
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^3.1.1",
     "karma-coverage": "^2.2.0",
+    "karma-htmlfile-reporter": "^0.3.8",
     "karma-junit-reporter": "^2.0.1",
     "karma-mocha": "^2.0.1",
     "karma-sinon-chai": "^2.0.2",
