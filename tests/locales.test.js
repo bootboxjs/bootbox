@@ -379,7 +379,7 @@ describe('bootbox locales', function() {
       return expect(this.labels.cancel).to.equal('キャンセル');
     });
     return it('shows the correct CONFIRM translation', function() {
-      return expect(this.labels.confirm).to.equal('確認');
+      return expect(this.labels.confirm).to.equal('OK');
     });
   });
   describe('Hungarian', function() {
