@@ -1365,8 +1365,9 @@
   bootbox.addLocale('ja', {
     OK: 'OK',
     CANCEL: 'キャンセル',
-    CONFIRM: '確認'
+    CONFIRM: 'OK'
   });
+
   // locale : Georgian
   // author : Avtandil Kikabidze aka LONGMAN (@akalongman)
   bootbox.addLocale('ka', {

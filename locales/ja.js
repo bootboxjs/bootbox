@@ -3,5 +3,5 @@
 bootbox.addLocale('ja', {
     OK      : 'OK',
     CANCEL  : 'キャンセル',
-    CONFIRM : '確認'
+    CONFIRM : 'OK'
 });
