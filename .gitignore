@@ -5,6 +5,7 @@ npm-debug.log
 .idea
 tests/reports
 tests/coverage
+tests/unit-test-reports
 build/size.csv
 composer.lock
 .vs

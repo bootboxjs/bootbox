@@ -24,6 +24,13 @@ module.exports = function(params) {
       captureTimeout: 60000,
       singleRun: true,
 
+      customLaunchers: {
+        ChromeHeadlessNoSandbox: {
+          base: 'ChromeHeadless',
+          flags: ['--no-sandbox']
+        }
+      },
+
       coverageReporter: {
         type: 'html',
         dir: 'tests/coverage'
@@ -34,7 +41,7 @@ module.exports = function(params) {
       },
 
       htmlReporter: {
-        outputFile: 'tests/units.html',
+        outputFile: 'tests/unit-test-reports/units.html',
         
         // Optional
         pageTitle: 'Bootbox',
