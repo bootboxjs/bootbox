@@ -15,7 +15,12 @@ module.exports = function (grunt) {
             all : {
                 src: ['bootbox.js', 'dist/bootbox.locales.js'],
                 dest: 'dist/bootbox.all.js'
-            }
+            },
+			
+            license : {
+                src: ['LICENSE.md'],
+                dest: 'dist/LICENSE.md'
+            },
         },
 
         jsbeautifier : {

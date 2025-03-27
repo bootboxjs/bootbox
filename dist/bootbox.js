@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 6.0.0
+ * version: 6.0.1
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -22,7 +22,7 @@
 
   let exports = {};
 
-  let VERSION = '6.0.0';
+  let VERSION = '6.0.1';
   exports.VERSION = VERSION;
 
   let locales = {
@@ -582,20 +582,28 @@
       let value;
 
       if (options.inputType === 'checkbox') {
-        value = input.find('input:checked').map(function () {
-          return $(this).val();
-        }).get();
+        if(options.required === true) {
+          if(input.find('input:checked').length > 0) {         
+            value = input.find('input:checked').map(function () {
+              return $(this).val();
+            }).get();
+          } 
+          else {
+            // prevents button callback from being called if no checkboxes have been checked
+            return false;
+          }
+        }
+        else {
+          value = input.find('input:checked').map(function () {
+            return $(this).val();
+          }).get();
+        }
       } else if (options.inputType === 'radio') {
         value = input.find('input:checked').val();
       }
       else {
         let el = input[0];
         
-        // Clear any previous custom error message
-        if(options.errorMessage) {
-          el.setCustomValidity('');
-        }
-
         if (el.checkValidity && !el.checkValidity()) {
           // If a custom error message was provided, add it now
           if(options.errorMessage){

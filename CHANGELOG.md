@@ -1,4 +1,12 @@
-## 6.0.0 (Latest Release)
+## 6.0.1 (Latest Release)
+
+- Updates prompt callback to return false from callback if `inputType` is 'checkbox', `required` option is `true`, and no checkbox has been checked
+- Updates unit tests
+  - Adds tests for required option
+  - Cleanup up pattern tests
+  - Adds HTML output runner
+
+### 6.0.0
 
 - Removes various IE polyfills
 - Replaces `var` with `let`
