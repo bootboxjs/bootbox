@@ -20,7 +20,7 @@ module.exports = function(params) {
       colors: true,
       logLevel: config.LOG_INFO,
       autoWatch: true,
-      browsers: ['ChromeHeadless'],
+      browsers: ['ChromeHeadlessNoSandbox'],
       captureTimeout: 60000,
       singleRun: true,
 
