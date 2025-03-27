@@ -328,16 +328,6 @@ describe('bootbox.prompt', function () {
         });
       });
 
-      describe('with pattern', function () {
-        beforeEach(function () {
-          this.options.pattern = '\d{1,2}/\d{1,2}/\d{4}';
-          return this.create();
-        });
-        return it('has correct pattern value', function () {
-          return expect(this.find('input[type="text"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
-        });
-      });
-
       describe('with maxlength', function () {
         beforeEach(function () {
           this.options.maxlength = 5;
@@ -435,11 +425,11 @@ describe('bootbox.prompt', function () {
       });
       describe('with pattern', function () {
         beforeEach(function () {
-          this.options.pattern = '\d{1,2}/\d{1,2}/\d{4}';
+          this.options.pattern = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/";
           return this.create();
         });
         return it('has correct pattern value', function () {
-          return expect(this.find('input[type="email"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
+          return expect(this.find('input[type="email"]').attr('pattern')).to.equal("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/");
         });
       });
     });
@@ -859,11 +849,11 @@ describe('bootbox.prompt', function () {
       });
       describe('with pattern', function () {
         beforeEach(function () {
-          this.options.pattern = '\d{1,2}/\d{1,2}/\d{4}';
+          this.options.pattern = "(?!00:00)(24:00|([0-1]\d|2[0-3]):[0-5]\d)";
           return this.create();
         });
         return it('has correct pattern value', function () {
-          return expect(this.find('input[type="time"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
+          return expect(this.find('input[type="time"]').attr('pattern')).to.equal("(?!00:00)(24:00|([0-1]\d|2[0-3]):[0-5]\d)");
         });
       });
       describe('with min value', function () {
@@ -1062,7 +1052,6 @@ describe('bootbox.prompt', function () {
           return expect(this.create).to.throw('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
         });
       });
-
     });
 
 
@@ -1505,6 +1494,523 @@ describe('bootbox.prompt', function () {
       });
     });
 
+    // required value
+    describe('with required: true and default input type', function () {
+      beforeEach(function () {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.prompt({
+          title: 'What is your name?',
+          required: true,
+          callback: this.callback
+        });
+        return this.hidden = sinon.spy(this.dialog, 'modal');
+      });
+      it('populates the input with the required property', function () {
+        return expect(this.dialog.find('.bootbox-input').prop('required')).to.equal(true);
+      });
+      describe('when entering no value in the text input', function () {
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+      describe('when entering a value in the text input', function () {
+        beforeEach(function () {
+          return this.dialog.find('.bootbox-input').val('Alice');
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('Alice');
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+    });
+
+    // required & text
+    describe('with required: true and `text` input type', function () {
+      beforeEach(function () {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.prompt({
+          title: 'What is your name?',
+          required: true,
+          inputType: 'text',
+          callback: this.callback
+        });
+        return this.hidden = sinon.spy(this.dialog, 'modal');
+      });
+      it('populates the input with the required property', function () {
+        return expect(this.dialog.find('.bootbox-input').prop('required')).to.equal(true);
+      });
+      describe('when entering no value in the text input', function () {
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+      describe('when entering a value in the text input', function () {
+        beforeEach(function () {
+          return this.dialog.find('.bootbox-input').val('Alice');
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('Alice');
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+    });
+
+    // required & password
+    describe('with required: true and `password` input type', function () {
+      beforeEach(function () {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.prompt({
+          title: 'What is your password?',
+          required: true,
+          inputType: 'password',
+          callback: this.callback
+        });
+        return this.hidden = sinon.spy(this.dialog, 'modal');
+      });
+      it('populates the input with the required property', function () {
+        return expect(this.dialog.find('.bootbox-input').prop('required')).to.equal(true);
+      });
+      describe('when entering no value in the text input', function () {
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+      describe('when entering a value in the text input', function () {
+        beforeEach(function () {
+          return this.dialog.find('.bootbox-input').val('WeAreAllMadHere');
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('WeAreAllMadHere');
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+    });
+
+    // required & number
+    describe('with required: true and `number` input type', function () {
+      beforeEach(function () {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.prompt({
+          title: 'What is your favorite number?',
+          required: true,
+          inputType: 'number',
+          callback: this.callback
+        });
+        return this.hidden = sinon.spy(this.dialog, 'modal');
+      });
+      it('populates the input with the required property', function () {
+        return expect(this.dialog.find('.bootbox-input').prop('required')).to.equal(true);
+      });
+      describe('when entering no value in the text input', function () {
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+      describe('when entering a value in the text input', function () {
+        beforeEach(function () {
+          return this.dialog.find('.bootbox-input').val(42);
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('42');
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+    });
+
+    // required & date
+    describe('with required: true and `date` input type', function () {
+      beforeEach(function () {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.prompt({
+          title: 'What is your date of birth?',
+          required: true,
+          inputType: 'date',
+          callback: this.callback
+        });
+        return this.hidden = sinon.spy(this.dialog, 'modal');
+      });
+      it('populates the input with the required property', function () {
+        return expect(this.dialog.find('.bootbox-input').prop('required')).to.equal(true);
+      });
+      describe('when entering no value in the text input', function () {
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+      describe('when entering a value in the text input', function () {
+        beforeEach(function () {
+          return this.dialog.find('.bootbox-input').val('1970-01-01');
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('1970-01-01');
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+    });
+
+    // required & time
+    describe('with required: true and `time` input type', function () {
+      beforeEach(function () {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.prompt({
+          title: 'What is the time right now?',
+          required: true,
+          inputType: 'time',
+          callback: this.callback
+        });
+        return this.hidden = sinon.spy(this.dialog, 'modal');
+      });
+      it('populates the input with the required property', function () {
+        return expect(this.dialog.find('.bootbox-input').prop('required')).to.equal(true);
+      });
+      describe('when entering no value in the text input', function () {
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+      describe('when entering a value in the text input', function () {
+        beforeEach(function () {
+          return this.dialog.find('.bootbox-input').val('12:12');
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('12:12');
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+    });
+
+    // required & textarea
+    describe('with required: true and `textarea` input type', function () {
+      beforeEach(function () {
+        this.callback = sinon.spy();
+        this.dialog = bootbox.prompt({
+          title: 'What is your favorite book, and why?',
+          required: true,
+          inputType: 'textarea',
+          callback: this.callback
+        });
+        return this.hidden = sinon.spy(this.dialog, 'modal');
+      });
+      it('populates the input with the required property', function () {
+        return expect(this.dialog.find('.bootbox-input').prop('required')).to.equal(true);
+      });
+      describe('when entering no value in the text input', function () {
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+      describe('when entering a value in the text input', function () {
+        beforeEach(function () {
+          return this.dialog.find('.bootbox-input').val("I like Hitchhiker's Guide to the Galaxy. Because... it's the Hitchhicker's Guide to the Galaxy");
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly("I like Hitchhiker's Guide to the Galaxy. Because... it's the Hitchhicker's Guide to the Galaxy");
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+      });
+    });
+
     // select
     describe('with inputType select', function () {
       describe('without a default value', function () {
@@ -1567,6 +2073,7 @@ describe('bootbox.prompt', function () {
           });
         });
       });
+
       describe('with a default value', function () {
         beforeEach(function () {
           this.callback = sinon.spy();
@@ -1640,6 +2147,151 @@ describe('bootbox.prompt', function () {
           });
         });
       });
+
+      describe('with required: true and option selected', function () {
+        beforeEach(function () {
+          this.callback = sinon.spy();
+          this.dialog = bootbox.prompt({
+            title: 'What is your IDE?',
+            callback: this.callback,
+            required: true,
+            inputType: 'select',
+            inputOptions: [
+              {
+                value: '',
+                text: 'Choose one'
+              }, {
+                value: 1,
+                text: 'Vim'
+              }, {
+                value: 2,
+                text: 'Sublime Text'
+              }, {
+                value: 3,
+                text: 'WebStorm/PhpStorm'
+              }, {
+                value: 4,
+                text: 'Komodo IDE'
+              }
+            ]
+          });
+          return this.hidden = sinon.spy(this.dialog, 'modal');
+        });
+        it('specified option is selected', function () {
+          this.dialog.find('.bootbox-input-select').val(1);
+          return expect(this.dialog.find('.bootbox-input-select').val()).to.equal('1');
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            this.dialog.find('.bootbox-input-select').val(1);
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('1');
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+        describe('when changing the selected option and dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            this.dialog.find('.bootbox-input-select').val(3);
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('3');
+          });
+        });
+      });
+
+      describe('with required: true and no option selected', function () {
+        beforeEach(function () {
+          this.callback = sinon.spy();
+          this.dialog = bootbox.prompt({
+            title: 'What is your IDE?',
+            callback: this.callback,
+            required: true,
+            inputType: 'select',
+            inputOptions: [
+              {
+                value: '',
+                text: 'Choose one'
+              }, {
+                value: 1,
+                text: 'Vim'
+              }, {
+                value: 2,
+                text: 'Sublime Text'
+              }, {
+                value: 3,
+                text: 'WebStorm/PhpStorm'
+              }, {
+                value: 4,
+                text: 'Komodo IDE'
+              }
+            ]
+          });
+          return this.hidden = sinon.spy(this.dialog, 'modal');
+        });
+        it('no option is selected', function () {
+          return expect(this.dialog.find('.bootbox-input-select').val()).to.equal('');
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when dismissing the dialog by clicking Cancel', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-cancel').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('should pass the dialog as "this"', function () {
+            return expect(this.callback.thisValues[0]).to.equal(this.dialog);
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly(null);
+          });
+        });
+        describe('when changing the selected option and dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            this.dialog.find('.bootbox-input-select').val(3);
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          return it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('3');
+          });
+        });
+      });
+
     });
 
     // email
@@ -1713,6 +2365,7 @@ describe('bootbox.prompt', function () {
           });
         });
       });
+
       describe('with a default value', function () {
         beforeEach(function () {
           this.callback = sinon.spy();
@@ -1777,6 +2430,129 @@ describe('bootbox.prompt', function () {
           });
         });
       });
+
+      describe('with required: true and a default value', function () {
+        beforeEach(function () {
+          this.callback = sinon.spy();
+          this.dialog = bootbox.prompt({
+            title: 'What is your email?',
+            inputType: 'email',
+            required: true,
+            value: 'john@smith.com',
+            callback: this.callback
+          });
+          return this.hidden = sinon.spy(this.dialog, 'modal');
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should invoke the callback', function () {
+            return expect(this.callback).to.have.been.called;
+          });
+          it('with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('john@smith.com');
+          });
+          return it('should hide the modal', function () {
+            return expect(this.hidden).to.have.been.calledWithExactly('hide');
+          });
+        });
+        describe('when submitting the form', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-form').trigger('submit');
+          });
+          it('invokes the callback with the correct value', function () {
+            return expect(this.callback).to.have.been.calledWithExactly('john@smith.com');
+          });
+          return it('should hide the modal', function () {
+            return expect(this.hidden).to.have.been.calledWithExactly('hide');
+          });
+        });
+        describe('when changing a value in the email input', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-input-email').val('smith@john.com');
+          });
+          describe('when dismissing the dialog by clicking OK', function () {
+            beforeEach(function () {
+              return this.dialog.find('.bootbox-accept').trigger('click');
+            });
+            it('should invoke the callback', function () {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it('with the correct value', function () {
+              return expect(this.callback).to.have.been.calledWithExactly('smith@john.com');
+            });
+          });
+          describe('when dismissing the dialog by clicking Cancel', function () {
+            beforeEach(function () {
+              return this.dialog.find('.bootbox-cancel').trigger('click');
+            });
+            it('should invoke the callback', function () {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it('with the correct value', function () {
+              return expect(this.callback).to.have.been.calledWithExactly(null);
+            });
+          });
+        });
+      });
+
+      describe('with required: true and no default value', function () {
+        beforeEach(function () {
+          this.callback = sinon.spy();
+          this.dialog = bootbox.prompt({
+            title: 'What is your email?',
+            inputType: 'email',
+            required: true,
+            callback: this.callback
+          });
+          return this.hidden = sinon.spy(this.dialog, 'modal');
+        });
+        describe('when dismissing the dialog by clicking OK', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when submitting the form', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-form').trigger('submit');
+          });
+          return it('should not invoke the callback', function () {
+            return expect(this.callback).to.not.have.been.called;
+          });
+        });
+        describe('when changing a value in the email input', function () {
+          beforeEach(function () {
+            return this.dialog.find('.bootbox-input-email').val('smith@john.com');
+          });
+          describe('when dismissing the dialog by clicking OK', function () {
+            beforeEach(function () {
+              return this.dialog.find('.bootbox-accept').trigger('click');
+            });
+            it('should invoke the callback', function () {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it('with the correct value', function () {
+              return expect(this.callback).to.have.been.calledWithExactly('smith@john.com');
+            });
+          });
+          describe('when dismissing the dialog by clicking Cancel', function () {
+            beforeEach(function () {
+              return this.dialog.find('.bootbox-cancel').trigger('click');
+            });
+            it('should invoke the callback', function () {
+              return expect(this.callback).to.have.been.called;
+            });
+            return it('with the correct value', function () {
+              return expect(this.callback).to.have.been.calledWithExactly(null);
+            });
+          });
+        });
+      });
+
     });
 
     // checkbox
@@ -2133,5 +2909,6 @@ describe('bootbox.prompt', function () {
         });
       });
     });
+
   });
 });

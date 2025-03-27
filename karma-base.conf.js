@@ -15,14 +15,21 @@ module.exports = function(params) {
         ['tests/**/*.test.js']
       ),
       exclude: [],
-      reporters: ['dots', 'coverage', 'junit'],
+      reporters: ['dots', 'coverage', 'junit', 'progress', 'html'],
       port: 9876,
       colors: true,
       logLevel: config.LOG_INFO,
       autoWatch: true,
-      browsers: ['ChromeHeadless'],
+      browsers: ['ChromeHeadlessNoSandbox'],
       captureTimeout: 60000,
       singleRun: true,
+
+      customLaunchers: {
+        ChromeHeadlessNoSandbox: {
+          base: 'ChromeHeadless',
+          flags: ['--no-sandbox']
+        }
+      },
 
       coverageReporter: {
         type: 'html',
@@ -31,6 +38,18 @@ module.exports = function(params) {
 
       junitReporter: {
         outputDir: 'tests/reports'
+      },
+
+      htmlReporter: {
+        outputFile: 'tests/unit-test-reports/units.html',
+        
+        // Optional
+        pageTitle: 'Bootbox',
+        subPageTitle: 'Unit test results, Grouped',
+        groupSuites: true,
+        useCompactStyle: true,
+        useLegacyStyle: false,
+        showOnlyFailed: false
       }
     });
   };
