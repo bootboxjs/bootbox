@@ -36,13 +36,9 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 6.0.1 (Latest Release)
+## 6.0.2 (Latest Release)
 
-- Updates prompt callback to return false from callback if `inputType` is 'checkbox', `required` option is `true`, and no checkbox has been checked
-- Updates unit tests
-  - Adds tests for required option
-  - Cleanup up pattern tests
-  - Adds HTML output runner
+- Updates `OK` text Japanese locale
 
 For a full list of releases and changes please see [the changelog](https://github.com/bootboxjs/bootbox/blob/master/CHANGELOG.md).
 
@@ -50,7 +46,7 @@ For a full list of releases and changes please see [the changelog](https://githu
 
 (The MIT License)
 
-Copyright (C) 2011-2024 by Nick Payne <nick@kurai.co.uk>
+Copyright (C) 2011-2025 by Nick Payne <nick@kurai.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
