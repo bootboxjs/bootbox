@@ -586,19 +586,12 @@
       let value;
 
       if (options.inputType === 'checkbox') {
-        if (options.required === true) {
-          if (input.find('input:checked').length > 0) {
-            value = input.find('input:checked').map(function() {
-              return $(this).val();
-            }).get();
-          } else {
-            // prevents button callback from being called if no checkboxes have been checked
-            return false;
-          }
-        } else {
-          value = input.find('input:checked').map(function() {
-            return $(this).val();
-          }).get();
+        value = input.find('input:checked').map(function() {
+          return $(this).val();
+        }).get();
+        if (value.length === 0 && options.required === true) {
+          // prevents button callback from being called if no checkboxes have been checked
+          return false;
         }
       } else if (options.inputType === 'radio') {
         value = input.find('input:checked').val();
