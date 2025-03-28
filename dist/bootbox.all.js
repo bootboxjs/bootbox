@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 6.0.1
+ * version: 6.0.2
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -22,7 +22,7 @@
 
   let exports = {};
 
-  let VERSION = '6.0.1';
+  let VERSION = '6.0.2';
   exports.VERSION = VERSION;
 
   let locales = {
@@ -1364,8 +1364,9 @@
   bootbox.addLocale('ja', {
     OK: 'OK',
     CANCEL: 'キャンセル',
-    CONFIRM: '確認'
+    CONFIRM: 'OK'
   });
+
   // locale : Georgian
   // author : Avtandil Kikabidze aka LONGMAN (@akalongman)
   bootbox.addLocale('ka', {
