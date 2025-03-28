@@ -1,6 +1,6 @@
 ## 6.0.2 (Latest Release)
 
-- Updates Japanese locale
+- Updates `OK` text for Japanese locale
 
 ### 6.0.1
 

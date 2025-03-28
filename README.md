@@ -21,6 +21,12 @@ within the project followed by
 npm test
 ```
 
+Tests are run against the generated files contained in the `/dist` directory - regenerate those files and run the Karma tests by simply running Grunt:
+
+```
+grunt
+```
+
 When submitting pull requests, ensure your tests pass. **Pull-requests with failing tests will be rejected.** See the
 [CONTRIBUTING](https://github.com/bootboxjs/bootbox/blob/master/CONTRIBUTING.md) file for more information.
 
@@ -38,7 +44,7 @@ Much more dependency information can be found [on the Bootbox website](http://bo
 
 ## 6.0.2 (Latest Release)
 
-- Updates `OK` text Japanese locale
+- Updates `OK` text for Japanese locale
 
 For a full list of releases and changes please see [the changelog](https://github.com/bootboxjs/bootbox/blob/master/CHANGELOG.md).
 
