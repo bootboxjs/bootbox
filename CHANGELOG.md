@@ -1,4 +1,8 @@
-## 6.0.1 (Latest Release)
+## 6.0.2 (Latest Release)
+
+- Updates Japanese locale
+
+### 6.0.1
 
 - Updates prompt callback to return false from callback if `inputType` is 'checkbox', `required` option is `true`, and no checkbox has been checked
 - Updates unit tests
