@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 6.0.2
+ * version: 6.0.3
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -22,7 +22,7 @@
 
   let exports = {};
 
-  let VERSION = '6.0.2';
+  let VERSION = '6.0.3';
   exports.VERSION = VERSION;
 
   let locales = {
@@ -1185,8 +1185,8 @@
     }
 
     if (minValid && maxValid) {
-      if (max <= min) {
-        throw new Error('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+      if (max < min) {
+        throw new Error('"max" must be greater than or equal to "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
       } else {
         result = true;
       }
@@ -1209,7 +1209,7 @@
 
 /*! @preserve
  * bootbox.locales.js
- * version: 6.0.2
+ * version: 6.0.3
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/

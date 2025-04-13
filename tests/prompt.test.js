@@ -907,7 +907,7 @@ describe('bootbox.prompt', function () {
           this.options.max = '12:00:00';
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+          return expect(this.create).to.throw('"max" must be greater than or equal to "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         });
       });
       describe('with an invalid step value', function () {
@@ -1033,7 +1033,7 @@ describe('bootbox.prompt', function () {
           this.options.max = 50;
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+          return expect(this.create).to.throw('"max" must be greater than or equal to "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         });
       });
       describe('with an invalid step value', function () {
@@ -1107,6 +1107,28 @@ describe('bootbox.prompt', function () {
         });
       });
 
+      describe('with min and max value', function () {
+        beforeEach(function () {
+          this.options.min = 10;
+          this.options.max = 100;
+          return this.create();
+        });
+        return it('has correct min and max values', function () {
+          return expect(this.find('input[type="range"]').attr('min')).to.equal('10') && expect(this.find('input[type="range"]').attr('max')).to.equal('100');
+        });
+      });
+
+      describe('with min and max value equal', function () {
+        beforeEach(function () {
+          this.options.min = 10;
+          this.options.max = 10;
+          return this.create();
+        });
+        return it('has correct min and max values', function () {
+          return expect(this.find('input[type="range"]').attr('min')).to.equal('10') && expect(this.find('input[type="range"]').attr('max')).to.equal('10');
+        });
+      });
+
       describe('with step value', function () {
         beforeEach(function () {
           this.options.step = 10;
@@ -1143,7 +1165,7 @@ describe('bootbox.prompt', function () {
           this.options.max = 50;
         });
         return it('throws an error', function () {
-          return expect(this.create).to.throw('"max" must be greater than "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
+          return expect(this.create).to.throw('"max" must be greater than or equal to "min". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max for more information.');
         });
       });
 
