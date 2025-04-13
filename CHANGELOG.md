@@ -1,4 +1,8 @@
-## 6.0.2 (Latest Release)
+## 6.0.3 (Latest Release)
+
+-Updates `min` and `max` validation for the `number` input type to allow min and max to be equal
+
+### 6.0.2
 
 - Updates `OK` text for Japanese locale
 

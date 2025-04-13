@@ -42,9 +42,9 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 6.0.2 (Latest Release)
+## 6.0.3 (Latest Release)
 
-- Updates `OK` text for Japanese locale
+- Updates `min` and `max` validation for the `number` input type to allow min and max to be equal
 
 For a full list of releases and changes please see [the changelog](https://github.com/bootboxjs/bootbox/blob/master/CHANGELOG.md).
 
