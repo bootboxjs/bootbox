@@ -1,0 +1,424 @@
+<article class="topic">
+    <div class="topic-content">
+        <h3 id="prompt-options" class="topic-subsection-header topic-anchor">Prompt Dialog Options</h3>
+        <div class="topic-subsection-content">
+            <p>
+                Prompt dialogs are (by default) single-line text inputs. You can modify the type of prompt Bootbox generates using the prompt-only
+                options below.
+            </p>
+            <dl class="options-list">
+                <dt id="prompt-option-value" class="topic-anchor topic-subsection-header h4">value</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>String</code><code>Number</code><code>Array</code></span>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p>
+                        You can set the initial value of the prompt using the <samp>value</samp> option.
+                    </p>
+                    <p>
+                        <i class="fas fa-info-circle text-info"></i>
+                        To pre-select more than one value (when using the checkbox or multiple select type), use an array
+                        for the <samp>value</samp> option. Note that the type of each item should match the type
+                        from <samp>inputOptions</samp>.
+                    </p>
+                </dd>
+
+                <dt id="prompt-option-input-type" class="topic-anchor topic-subsection-header h4">inputType</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>String</code></span>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Default:</span>
+                        <code>text</code>
+                    </p>
+                    <p>
+                        Changes the type of input generated for the prompt dialog.
+                    </p>
+                    <p>
+                        <i class="fas fa-info-circle text-info"></i>
+                        To pre-select more than one value (when using the checkbox or multiple select type), use an array
+                        for the <samp>value</samp> option. Note that the type of each item should match the type
+                        from <samp>inputOptions</samp>.
+                    </p>
+                    <p>
+                        Valid values, with their class selectors:
+                    </p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Class</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>text</code> (default)</td>
+                                <td><code>bootbox-input-text</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>password</code></td>
+                                <td><code>bootbox-input-password</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>textarea</code></td>
+                                <td><code>bootbox-input-textarea</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>email</code></td>
+                                <td><code>bootbox-input-email</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>select</code></td>
+                                <td><code>bootbox-input-select</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>checkbox</code></td>
+                                <td><code>bootbox-input-checkbox</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>radio</code></td>
+                                <td><code>bootbox-input-radio</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>date</code></td>
+                                <td><code>bootbox-input-date</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>time</code></td>
+                                <td><code>bootbox-input-time</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>number</code></td>
+                                <td><code>bootbox-input-number</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>range</code></td>
+                                <td><code>bootbox-input-range</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        Additionally, checkbox and radiobuttons are wrapped in a parent element, <samp>bootbox-checkbox-list</samp>
+                        and <samp>bootbox-radiobutton-list</samp>, respectively.
+                    </p>
+                    <p>
+                        <samp>email</samp>, <samp>date</samp>, <samp>time</samp>, <samp>number</samp>, and <samp>range</samp>
+                        all require browser support to function properly. You may want to consult <a href="https://caniuse.com">caniuse.com</a>
+                        to determine if your target browsers support the input types you are intending to use.
+                    </p>
+                    <h5 id="note-date-time-input">Date input type and browser support</h5>
+                    <p>
+                        At the time this is written, every major browser which supports the <samp>date</samp> input type will only
+                        accept date values in the ISO 8601 format, which (for a short date) is <samp>YYYY-MM-DD</samp>, where
+                    </p>
+                    <pre>YYYY = four-digit year
+MM   = two-digit month (01 = January, etc.)
+DD   = two-digit day of month (01 through 31)
+</pre>
+                    <p>
+                        See <a href="https://en.wikipedia.org/wiki/ISO_8601">https://en.wikipedia.org/wiki/ISO_8601</a>
+                    </p>
+                    <h5 id="note-range-min-max">Range input and default value</h5>
+                    <p>
+                        Please note that, when using the <samp>range</samp> input type, the default <samp>min</samp> value
+                        is <samp>0</samp> and the default <samp>max</samp> value is <samp>100</samp> (see
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#Specifying_the_minimum_and_maximum">MDN</a>).
+                        If you attempt to set the default value of the input to something less than your min value or greater than your max value, 
+                        the input will default to the respective value.
+                    </p>
+                </dd>
+
+                <dt id="prompt-option-input-options" class="topic-anchor topic-subsection-header h4">inputOptions</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>Array</code></span>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p>
+                        If you specify <samp>select</samp>, <samp>checkbox</samp>, or <samp>radio</samp> as the
+                        input type, you must also supply an array of valid values in the format of:
+                    </p>
+                    <pre class="language-js line-numbers"><code>{
+    text: '',
+    value: '',
+    group: ''
+}</code></pre>
+                    <p>
+                        <samp>group</samp> is an optional property for populating the <samp>&lt;select&gt;</samp>;
+                        if specified, <samp>&lt;optgroup&gt;</samp> elements will be generated for each group
+                        value found in the <samp>inputOptions</samp> array.
+                    </p>
+                </dd>
+
+                <dt id="prompt-option-input-min-max" class="topic-anchor topic-subsection-header h4">min, max</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>String</code><code>Number</code><code>Date String</code><code>Time string</code></span>
+                    </p>
+                    <p class="mb-1">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Types:</span>
+                        <span>
+                            <code>date</code>,
+                            <code>time</code>, 
+                            <code>number</code>, 
+                            <code>range</code>
+                        </span>
+                    </p>
+                    <p>
+                        The <samp>min</samp> or <samp>max</samp> value for the <samp>&lt;input&gt;</samp> element.
+                    </p>
+                    <p>
+                        For <samp>range</samp> and <samp>number</samp>, min/max must be
+                        a numeric value.
+                    </p>
+                    <p>
+                        For <samp>time</samp>, min/max must a valid partial time value,
+                        in the form of <samp>HH:MM:SS</samp>, where
+                    </p>
+                    <pre>HH = any zero-padded value between <samp>00</samp> and <samp>23</samp>
+MM = any zero-padded value between <samp>00</samp> and <samp>59</samp>
+SS = any zero-padded value between <samp>00</samp> and <samp>59</samp>
+</pre>
+                    <p>
+                        For <samp>date</samp>, min/max must a date value in the form
+                        of <samp>YYYY-MM-DD</samp>, where
+                    </p>
+                    <pre>YYYY = four-digit year
+MM   = two-digit month (01 = January, etc.)
+DD   = two-digit day of month (01 through 31)
+</pre>
+                    <p>
+                        See the MDN article for
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min">min</a> or
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max">max</a> for more information.
+                    </p>
+                    <h5 id="note-number-min-max">Number input and min/max values</h5>
+                    <p>
+                        When using the <samp>number</samp> input type, note that a value may be manually entered which is less than your min or greater than 
+                        your max (<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number#Specifying_minimum_and_maximum_values">MDN</a>). 
+                        The input will, however, report that it is invalid, which can be used in conjunction with the <a href="prompt-option-required">required</a> 
+                        option to prevent the value from being accepted.
+                    </p>
+                </dd>
+
+                <dt id="prompt-option-input-step" class="topic-anchor topic-subsection-header h4">step</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>String</code><code>Number</code></span>
+                    </p>
+                    <p class="mb-1">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Types:</span>
+                        <span>
+                            <code>date</code>,
+                            <code>time</code>, 
+                            <code>number</code>, 
+                            <code>range</code>
+                        </span>
+                    </p>
+                    <p>
+                        The <samp>step</samp> value for the <samp>&lt;input&gt;</samp> element.
+                    </p>
+                    <p>
+                        Can be the string value <samp>any</samp> (the browser default), or a positive, non-zero
+                        numeric value. See
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step">the MDN article for <samp>&lt;input&gt;</samp></a>
+                        for more information.
+                    </p>
+                    <p>
+                        The default <samp>step</samp> value for <samp>number</samp> inputs is <samp>1</samp> 
+                        (<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number#attr-step">MDN</a>).
+                    </p>
+                    <div class="bs-callout bs-callout-info">
+                        <p>
+                            When specifying a step value for <samp>date</samp> inputs, the value represents the number of days to advance the date value. 
+                            See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date#step">the MDN article</a>
+                            for more information.
+                        </p>
+                    </div>
+                </dd>
+
+                <dt id="prompt-option-input-maxlength" class="topic-anchor topic-subsection-header h4">maxlength</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>Number</code></span>
+                    </p>
+                    <p class="mb-1">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Types:</span>
+                        <span>
+                            <code>text</code>,
+                            <code>textarea</code>, 
+                            <code>email</code>, 
+                            <code>password</code>
+                        </span>
+                    </p>
+                    <p>
+                        Set the <samp>maxlength</samp> option to limit the number of characters entered into a
+                        text-based input. Must be a positive, non-zero numeric value.
+                    </p>
+                </dd>
+
+                <dt id="prompt-option-input-pattern" class="topic-anchor topic-subsection-header h4">pattern</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>String</code></span>
+                    </p>
+                    <p class="mb-1">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Types:</span>
+                        <span>
+                            All, except
+                            <code>select</code>, 
+                            <code>radio</code>,
+                            <code>checkbox</code>
+                        </span>
+                    </p>
+                    <p>
+                        Set the <samp>pattern</samp> option to require the input value to follow a specific format.
+                        If <samp>pattern</samp> is set and a value has been entered by your user, the prompt will not
+                        close if the input value fails pattern validation.
+                    </p>
+                    <p>
+                        Can be added as a fallback for <samp>email</samp>, <samp>time</samp>, <samp>date</samp>, <samp>number</samp>
+                        or <samp>range</samp> inputs where native browser support for those types is lacking.
+                    </p>
+                </dd>
+
+                <dt id="prompt-option-input-placeholder" class="topic-anchor topic-subsection-header h4">placeholder</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>String</code></span>
+                    </p>
+                    <p class="mb-1">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Types:</span>
+                        <span>
+                            All <sup class="text-muted">*</i>
+                        </span>
+                    </p>
+                    <p>
+                        Set the <samp>placeholder</samp> option to provide a small amount of "helper" text
+                        within a text-based input.
+                    </p>
+                    <p>
+                        There is no real limit on the amount of text you may use for your placeholder, but
+                        keep in mind that the placeholder disappears when the input has focus (depending on
+                        the browser) or has a value. Use the <samp>message</samp> option to provide help text
+                        which you want to always be visible or that is important.
+                    </p>
+                    <p>
+                        <b>*</b> If specified for <samp>time</samp>, <samp>date</samp>, <samp>number</samp>, or <samp>range</samp> inputs,
+                        your users will normally only see the placeholder where native browser support for those types is lacking. We also 
+                        will set the placeholder attribute on a <samp>select</samp>, although that's not a valid/supported attribute.
+                    </p>
+                </dd>
+
+                <dt id="prompt-option-input-required" class="topic-anchor topic-subsection-header h4">required</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>Boolean</code></span>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p>
+                        Set the <samp>required</samp> option to <samp>true</samp> to require an input value.
+                        When <samp>true</samp>, the prompt will not close if the input value is <samp>null</samp>,
+                        an empty string, or fails the input type's built-in validation constraints.
+                    </p>
+                    <p>
+                        <i class="fas fa-info-circle text-info"></i>
+                        If used with the <samp>checkbox</samp> inputType, each checkbox must be checked for the prompt to be valid.
+                    </p>
+                </dd>
+
+                <dt id="prompt-option-input-multiple" class="topic-anchor topic-subsection-header h4">multiple</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>Boolean</code></span>
+                    </p>
+                    <p class="mb-1">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Types:</span>
+                        <code>select</code>
+                    </p>
+                    <p>
+                        Set the <samp>multiple</samp> option to <samp>true</samp> to allow users to
+                        select more than one option when using the <samp>select</samp> input type.
+                    </p>
+                    <p>
+                        <i class="fas fa-info-circle text-info"></i>
+                        To pre-select more than one value, use an array for the <samp>value</samp> option. Note that the type
+                        of each item should match the type from <samp>inputOptions</samp>.
+                    </p>
+                </dd>
+
+                <dt id="prompt-option-input-rows" class="topic-anchor topic-subsection-header h4">rows</dt>
+                <dd class="topic-subsection-content">
+                    <p class="mb-1">
+                        <span class="meta-info">Type:</span>
+                        <span class="meta-types"><code>Number</code></span>
+                    </p>
+                    <p class="mb-1">
+                        <span class="meta-info">Default:</span>
+                        <code>null</code>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Types:</span>
+                        <code>textarea</code>
+                    </p>
+                    <p>
+                        Set the <samp>rows</samp> option to a non-zero number to set the <samp>rows</samp> attribute
+                        when using the <samp>textarea</samp> input type. If omitted, the <samp>rows</samp> attribute is
+                        not set and the textarea will render with the browser's default number of rows.
+                    </p>
+                </dd>
+            </dl>
+            <p>
+                Please see the <a href="./examples#prompt">Examples page</a> for more examples of prompt
+                dialogs.
+            </p>
+        </div>
+    </div>
+</article>
+
+<hr class="section-divider" />

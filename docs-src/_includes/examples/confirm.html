@@ -1,0 +1,111 @@
+<article class="topic">           
+    <header class="topic-header">
+        <h2 id="confirm" class="topic-anchor">
+            Confirm
+        </h2>
+        <p class="mb-3 py-2 content-toggle d-flex flex-row">
+            <span>
+                <a href="./documentation#confirm">Documentation</a>
+            </span>
+            <span>
+                <a href="#" data-bs-toggle="collapse" data-bs-target="#confirm-examples" aria-expanded="false" aria-controls="confirm-examples">Show / Hide</a>
+            </span>
+        </p> 
+    </header>
+    <div class="topic-content">
+        <div id="confirm-examples" class="collapse show">
+            <div>
+                <dl class="bb-examples-list">
+                    <dt id="confirm-basic" class="bb-anchor h5">Basic usage</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-default">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.confirm("This is the default confirm!", function(result){ 
+    console.log('This was logged in the callback: ' + result); 
+});</code></pre>
+                    </dd>
+                    <dt id="confirm-alternate-text-color" class="bb-anchor h5">
+                        With alternate button text and color
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Alert</b>, <b>Prompt</b>, <b>Custom</b>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-options">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.confirm({
+    message: "This is a confirm with custom button text and color! Do you like it?",
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                    </dd>
+                    <dt id="confirm-buttons-with-icon-text" class="bb-anchor h5">
+                        With icon and button text
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Alert</b>, <b>Prompt</b>, <b>Custom</b>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-button-text">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.confirm({
+    title: "Destroy planet?",
+    message: "Do you want to activate the Deathstar now? This cannot be undone.",
+    buttons: {
+        cancel: {
+            label: '&lt;i class="fa fa-times"&gt;&lt;/i&gt; Cancel'
+        },
+        confirm: {
+            label: '&lt;i class="fa fa-check"&gt;&lt;/i&gt; Confirm'
+        }
+    },
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                    </dd>
+                    <dt id="confirm-all-locales-demo" class="bb-anchor h5">
+                        Demoing all locales
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Alert</b>, <b>Prompt</b>, <b>Custom</b>
+                        </p>
+                        <div class="form-group mb-2">
+                            <label>Choose a locale: </label>
+                            <select id="choose-locale" class="form-select" style="max-width: 200px;"></select>
+                        </div>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-locale">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>let locale = $('#choose-locale').val();
+    
+bootbox.confirm({
+    message: "This confirm uses the selected locale. Were the labels what you expected?",
+    locale: locale,
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="section-divider" />

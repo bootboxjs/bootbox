@@ -1,0 +1,47 @@
+---
+layout: default
+title: Examples
+pageKey: examples
+permalink: /examples
+searchable: true
+---
+
+<h2 id="intro" class="my-3">Examples</h2>
+<p class="lead">
+    The examples below attempt to demonstrate the myriad ways in which you can use Bootbox.
+</p>
+<p>
+    Have an example you'd like to add? <a href="https://github.com/makeusabrew/bootbox/issues">Open a new issue</a>, or 
+    add a <a href="https://github.com/makeusabrew/bootbox/pulls">pull-request</a> with your example added to this page.
+</p>
+<div class="bg-white rounded p-5">
+    {% include examples/alert.html %}
+
+    {% include examples/confirm.html %}
+
+    {% include examples/prompt.html %}
+
+    {% include examples/dialog.html %}
+
+    <footer class="page-footer">
+        <div class="row">
+            <div class="col">
+                <a href="./getting-started" class="btn btn-outline-info"><i class="fas fa-angle-double-left"></i> Getting Started</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-outline-secondary disabled">
+                    Examples
+                </a>
+            </div>
+            <div class="col">
+                <a href="./documentation" class="btn btn-outline-info">Documentation <i class="fas fa-angle-double-right"></i></a>
+            </div>
+        </div>
+    </footer>
+</div>
+<div id="bb-growl" class="bb-alert alert alert-info" style="display:none;">
+    <span>The examples populate this alert with dummy content</span>
+</div>
+<div class="d-none">
+    <div id="alert-message-template">Your message <b>here…</b></div>
+</div>

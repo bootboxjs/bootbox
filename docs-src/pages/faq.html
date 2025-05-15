@@ -1,0 +1,38 @@
+---
+layout: default
+title: Frequently Asked Questions
+pageKey: faq
+permalink: /faq
+searchable: true
+---
+
+<h2 id="intro" class="my-3">FAQ / Troubleshooting</h2>
+<p class="lead">
+    Bootbox.js is designed to be relatively easy to use, but there are some known issues and frequently asked questions, as noted here.
+</p>
+<div class="bg-white rounded p-5">
+    {% include faq/non-blocking.html %}
+
+    {% include faq/prevent-page-submit.html %}
+
+    {% include faq/prompt-require-value.html %}
+
+    {% include faq/adding-locales.html %}
+
+    {% include faq/layout-issues.html %}
+
+    {% include faq/package-warnings.html %}
+
+    <footer class="page-footer">
+        <div class="row">
+            <div class="col">
+                <a href="./documentation" class="btn btn-outline-info"><i class="fas fa-angle-double-left"></i> Documentation</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-outline-secondary disabled">
+                    FAQs
+                </a>
+            </div>
+        </div>
+    </footer>
+</div>

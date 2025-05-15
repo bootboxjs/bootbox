@@ -1,0 +1,47 @@
+<article class="topic">
+    <header class="topic-header">        
+        <h4 id="prompt-required" class="font-weight-bold topic-anchor mb-4">
+            <b class="text-primary">Q3:</b> How do I require a non-empty value when I use <samp>bootbox.prompt()</samp>?
+        </h4>
+    </header>
+    <div class="topic-content">
+        <p>
+            <b class="text-brand font-weight-bold h4">A:</b> To require a value to be entered / selected, set the <samp>required</samp>
+            option to <samp>true</samp>. This will tell Bootbox to add the <samp>required</samp> property to the generated form control,
+            and to trigger the browser's built-in validation when the dialog is submitted.
+        </p>
+        <div class="bb-example bb-example-modal">
+            <pre class="language-js line-numbers"><code>bootbox.prompt({ 
+    required: true,
+    title: 'What is your name?',
+    callback: function(result){ 
+        /* result = String containing user input if OK clicked or null if close button clicked */ 
+    }
+});</code></pre>
+            <figure>
+                <figcaption id="example-bb-3" class="topic-anchor">Example <b>bb.3</b></figcaption>
+                <div class="bb-modal-dialog">
+                    <div class="bb-modal-content">
+                        <div class="bb-modal-header">
+                            <h5 class="bb-modal-title" style="margin: 0; padding: 0;">What is your name?</h5>
+                            <button class="bootbox-close-button close btn-close" type="button"></button>
+                        </div>
+                        <div class="bb-modal-body">
+                            <div class="bootbox-body">
+                                <form class="bootbox-form">
+                                    <input type="text" autocomplete="off" class="bootbox-input bootbox-input-text form-control" required />
+                                </form>
+                            </div>
+                        </div>
+                        <div class="bb-modal-footer">
+                            <button class="btn btn-secondary" type="button">Cancel</button>
+                            <button class="btn btn-primary" type="button">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<hr class="topic-divider" />

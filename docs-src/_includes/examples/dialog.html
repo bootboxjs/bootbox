@@ -1,0 +1,97 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="dialog" class="topic-anchor">
+            Custom Dialogs
+        </h2>
+        <div class="mb-3 py-2 content-toggle d-flex flex-row">
+            <span>
+                <a href="./documentation#dialog">Documentation</a>
+            </span>
+            <span>
+                <a href="#" data-bs-toggle="collapse" data-bs-target="#custom-examples" aria-expanded="false" aria-controls="custom-examples">Show / Hide</a>
+            </span>
+        </div> 
+    </header>
+    <div class="topic-content">
+        <div id="custom-examples" class="collapse show">
+            <div>
+                <p>
+                    <b>Please note:</b> Custom dialogs accept only one argument: an options object. The only <b>required</b> property of the options object is <samp>message</samp>.
+                </p>
+                <dl class="bb-examples-list">
+                    <dt id="custom-dialog-as-overlay" class="bb-anchor h5">Custom dialog as "loading" overlay</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="custom-dialog-as-overlay">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>let dialog = bootbox.dialog({
+    message: '&lt;p class="text-center mb-0"&gt;&lt;i class="fas fa-spin fa-cog"&gt;&lt;/i&gt; Please wait while we do something...&lt;/p&gt;',
+    closeButton: false
+});
+
+// do something in the background
+dialog.modal('hide');</code></pre>
+                    </dd>
+                    <dt id="custom-dialog-init" class="bb-anchor h5">
+                        Custom dialog, using init
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Alert</b>, <b>Confirm</b>, <b>Prompt</b>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="custom-dialog-init">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>let dialog = bootbox.dialog({
+    title: 'A custom dialog with init',
+    message: '&lt;p&gt;&lt;i class="fas fa-spin fa-spinner"&gt;&lt;/i&gt; Loading...&lt;/p&gt;'
+});
+
+dialog.init(function(){
+    setTimeout(function(){
+        dialog.find('.bootbox-body').html('I was loaded after the dialog was shown!');
+    }, 3000);
+});</code></pre>
+                    </dd>
+                    <dt id="custom-dialog-with-buttons" class="bb-anchor h5">
+                        Custom dialog, with buttons and callbacks
+                    </dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="custom-dialog-with-buttons">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>let dialog = bootbox.dialog({
+    title: 'A custom dialog with buttons and callbacks',
+    message: "&lt;p&gt;This dialog has buttons. Each button has it's own callback function.&lt;/p&gt;",
+    size: 'large',
+    buttons: {
+        cancel: {
+            label: "I'm a cancel button!",
+            className: 'btn-danger',
+            callback: function(){
+                console.log('Custom cancel clicked');
+            }
+        },
+        noclose: {
+            label: "I don't close the modal!",
+            className: 'btn-warning',
+            callback: function(){
+                console.log('Custom button clicked');
+                return false;
+            }
+        },
+        ok: {
+            label: "I'm an OK button!",
+            className: 'btn-info',
+            callback: function(){
+                console.log('Custom OK clicked');
+            }
+        }
+    }
+});</code></pre>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</article>

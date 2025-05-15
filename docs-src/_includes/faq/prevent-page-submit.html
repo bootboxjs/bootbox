@@ -1,0 +1,58 @@
+<article class="topic">
+    <header class="topic-header">
+        <h4 id="confirm-block" class="topic-anchor font-weight-bold mb-4">
+            <b class="text-primary">Q2:</b> How do I keep my page from submitting when I use <samp>bootbox.confirm()</samp>?
+        </h4>
+    </header>
+    <div class="topic-content">
+        <p>
+            <b class="text-brand font-weight-bold h4">A:</b> See <a href="#non-blocking"><i>Native dialogs block the execution thread. Why doesn't Bootbox?</i></a>
+        </p>
+        <p>
+            To reiterate, Bootbox modals are just positioned <samp>&lt;div&gt;</samp> elements. The modals are shown and hidden using asynchronous JavaScript functions, so
+            (unlike the native confirm() function) the thread of your code is not blocked when you call <samp>bootbox.confirm()</samp>. To get around this,
+            Bootbox uses the callback pattern with our alert, confirm, and prompt functions. To respond to a user's input, you can either define an
+            inline callback function, like so&hellip;
+        </p>
+    <pre class="language-js line-numbers"><code>bootbox.confirm({
+    message: "Are you sure?",
+    callback: function(result){ 
+        /* result = true if OK clicked, false otherwise  */
+    }
+});</code></pre>
+        <p>
+            &hellip;or pass a reference to an external function:
+        </p>
+    <pre class="language-js line-numbers"><code>bootbox.confirm({
+    message: "Are you sure?",
+    callback: handleConfirm
+});
+
+function handleConfirm(result){ 
+    /* result = true if OK clicked, false otherwise */
+}</code></pre>
+        <p>
+            Any process which depends on your user's response <b>must</b> be placed in the callback. If you're handling something like the <samp>onSubmit</samp>
+            event of a <samp>&lt;form&gt;</samp>, you'll need to cancel the event in order to prevent the event from proceeding:
+        </p>
+    <pre class="language-js line-numbers"><code>let form = $('form');
+form.on('submit', function(e) {
+    bootbox.confirm({
+        message: "Are you sure?",
+        callback: handleConfirm
+    });
+
+    // Or use e.preventDefault();
+    return false; // prevents form submission
+});
+
+function handleConfirm(result){ 
+    /* result = true if OK clicked, false otherwise 
+}</code></pre>
+        <p>
+            The same advice applies to <samp>bootbox.alert()</samp> and <samp>bootbox.prompt()</samp>.
+        </p>
+    </div>
+</article>
+
+<hr class="topic-divider" />

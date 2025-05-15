@@ -1,0 +1,39 @@
+<section class="topic">
+    <header class="topic-header">
+        <h2 id="jquery-functions" class="topic-anchor">Using jQuery Functions with Bootbox</h2>
+    </header>
+    <div class="topic-content">
+        <div class="bb-function topic-subsection">
+            <h3 id="jquery-functions-usage" class="topic-subsection-header topic-anchor d-none">Basic Usage</h3>
+            <div class="topic-subsection-content">
+                <p>
+                    The object returned from each of the dialog functions is a jQuery object. As such, you can chain most jQuery functions
+                    onto the result of a Bootbox dialog. Here's an example showing how to handle Bootstrap's <samp>shown.bs.modal</samp>
+                    event, using <a href="https://api.jquery.com/on/">.on()</a>:
+                </p>
+                <pre class="language-js line-numbers"><code>let dialog = bootbox.dialog({
+    /* Your options... */
+});
+
+dialog.on('shown.bs.modal', function(e){
+    // Do something with the dialog just after it has been shown to the user...
+});</code></pre>
+            <p>
+                If you set the <samp>show</samp> option to <samp>false</samp>, you can also use Bootstrap's
+                <a href="https://getbootstrap.com/docs/5.3/components/modal/">modal()</a> function to show and hide your
+                dialog manually:
+            </p>
+            <pre class="language-js line-numbers"><code>let dialog = bootbox.dialog({
+    show: false,
+    /* Your options... */
+});
+
+dialog.modal('show');
+
+dialog.modal('hide');</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="section-divider" />
