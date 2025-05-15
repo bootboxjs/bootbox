@@ -1,6 +1,6 @@
 {
   "name": "bootbox",
-  "version": "6.0.3",
+  "version": "6.0.4",
   "description": "Wrappers for JavaScript alert(), confirm(), prompt(), and other flexible dialogs using the Bootstrap framework",
   "directories": {
     "test": "tests"

@@ -810,6 +810,41 @@ describe('bootbox.prompt', function () {
           return expect(this.find('input[type="date"]').attr('pattern')).to.equal('\d{1,2}/\d{1,2}/\d{4}');
         });
       });
+      describe('with min value', function () {
+        beforeEach(function () {
+          this.options.min = '2015-08-17';// This must be an ISO-8601 date
+          return this.create();
+        });
+        return it('has correct min value', function () {
+          return expect(this.find('input[type="date"]').attr('min')).to.equal('2015-08-17');
+        });
+      });
+      describe('with max value', function () {
+        beforeEach(function () {
+          this.options.max = '2015-08-17';// This must be an ISO-8601 date
+          return this.create();
+        });
+        return it('has correct max value', function () {
+          return expect(this.find('input[type="date"]').attr('max')).to.equal('2015-08-17');
+        });
+      });
+      describe('with step value', function () {
+        beforeEach(function () {
+          this.options.step = 7;// This must be a number
+          return this.create();
+        });
+        return it('has correct step value', function () {
+          return expect(this.find('input[type="date"]').attr('step')).to.equal('7');
+        });
+      });
+      describe('with an invalid step value', function () {
+        beforeEach(function () {
+          this.options.step = 'a';
+        });
+        return it('throws an error', function () {
+          return expect(this.create).to.throw('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
+        });
+      });
     });
 
     // time
