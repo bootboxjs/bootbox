@@ -1,0 +1,52 @@
+---
+layout: default
+title: Documentation
+pageKey: documentation
+permalink: /documentation
+searchable: true
+---
+
+<h2 id="intro" class="my-3">Documentation</h2>
+<p class="lead">
+    Currently viewing documentation for version <b>{{site.version}}</b>. Other versions: <a href="./v4.x/documentation.html">4.x</a> &middot; <a href="./v3.x/documentation.html">3.x</a>
+</p>
+
+<div class="bg-white rounded p-5">
+    {% include documentation/alert.html %}
+
+    {% include documentation/confirm.html %}
+
+    {% include documentation/prompt.html %}
+
+    {% include documentation/prompt-options.html %}
+
+    {% include documentation/dialog.html %}
+
+    {% include documentation/options.html %}
+
+    {% include documentation/locales.html %}
+
+    {% include documentation/jquery-functions.html %}
+
+    {% include documentation/instance-functions.html %}
+
+    {% include documentation/public-functions.html %}
+
+    {% include documentation/notes.html %}
+
+    <footer class="page-footer">
+        <div class="row">
+            <div class="col">
+                <a href="./examples" class="btn btn-outline-info"><i class="fas fa-angle-double-left"></i> Examples</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-outline-secondary disabled">
+                    Documentation
+                </a>
+            </div>
+            <div class="col">
+                <a href="./faq" class="btn btn-outline-info">FAQs <i class="fas fa-angle-double-right"></i></a>
+            </div>
+        </div>
+    </footer>
+</div>

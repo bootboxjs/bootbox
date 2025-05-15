@@ -1,0 +1,117 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="prompt" class="topic-anchor">Prompt</h2>
+        <pre class="h5 py-3 px-4 mb-2 border bg-light"><code>bootbox.prompt(<span class="text-primary">string|element</span> <b>title</b>, <span class="text-info">function</span> <b>callback</b>);</code></pre>
+    </header>
+    <div class="topic-content">
+        <p class="mb-2">
+            A dialog which prompts for user input. Pressing the <kbd>ESC</kbd> key or clicking close (<i class="fas fa-times"></i>) dismisses the dialog
+            and invokes the callback as if the user had clicked the Cancel button.
+        </p>
+        <p class="bs-callout bs-callout-danger mb-4">
+            <i class="fas fa-exclamation-triangle"></i> Prompt dialogs require a callback function.
+        </p>
+    
+        <div class="topic-subsection">
+            <h3 id="prompt-basic-usage" class="topic-subsection-header topic-anchor">Basic Usage</h3>
+            <div class="topic-subsection-content">
+                <p>
+                    The simplest usage of the <samp>bootbox.prompt()</samp> dialog requires the text of the message you wish to show
+                    and a callback to handle the user's input. The value entered will be <samp>null</samp> if the user cancelled
+                    or dismissed the dialog; otherwise it is passed the value of the text input.
+                </p>
+                <div class="bb-example bb-example-modal">
+                    <pre class="language-js line-numbers"><code>bootbox.prompt('What is your name?', function(result){
+    /* your callback code */ 
+});</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-6" class="topic-anchor">Example <b>bb.6</b></figcaption>
+                        <div class="bb-modal-dialog">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-header">
+                                    <h5 class="bb-modal-title" style="margin: 0; padding: 0;">What is your name?</h5>
+                                    <button class="bootbox-close-button close btn-close" type="button"></button>
+                                </div>
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">
+                                        <form class="bootbox-form">
+                                            <input type="text" autocomplete="off" class="bootbox-input bootbox-input-text form-control" />
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="bb-modal-footer">
+                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="button">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <div class="bs-callout bs-callout-danger">
+                    <h5 id="prompt-callout-callback" class="topic-anchor callout-heading"><i class="fas fa-exclamation-triangle"></i> Please note:</h5>
+                    <p>
+                        <b>All</b> Bootstrap modals, unlike native alerts, confirms, or prompts, are <a href="#note-non-blocking"><b>non-blocking</b></a>.
+                        Keep that in mind when using the <samp>bootbox.prompt()</samp> dialog, as it is <b>not</b> a drop-in replacement for native prompt dialogs.
+                        Any code that depends on the user's input <b>must</b> be placed in the callback function.
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="topic-subsection">
+            <h3 id="prompt-advanced-usage" class="topic-subsection-header topic-anchor">Advanced Usage</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 border bg-light"><code>bootbox.prompt(<span class="text-primary">object</span> <b>options</b>);</code></pre>
+                <p class="mb-2">
+                    Prompt dialogs can also be customized, using the <a href="#prompt-options">options described below</a>. Here's an example of a 
+                    small prompt, using <samp>size</samp>:
+                </p>
+                <div class="bb-example bb-example-modal">
+                    <pre class="language-js line-numbers"><code>bootbox.prompt({ 
+    size: 'small',
+    title: 'What is your name?',
+    callback: function(result){ 
+        /* result = String containing user input if OK clicked or null if Cancel clicked */ 
+    }
+});</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-7" class="topic-anchor">Example <b>bb.7</b></figcaption>
+                        <div class="bb-modal-dialog bb-modal-sm">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-header">
+                                    <h5 class="bb-modal-title" style="margin: 0; padding: 0;">What is your name?</h5>
+                                    <button class="bootbox-close-button close btn-close" type="button"></button>
+                                </div>
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">
+                                        <form class="bootbox-form">
+                                            <input type="text" autocomplete="off" class="bootbox-input bootbox-input-text form-control" />
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="bb-modal-footer">
+                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="button">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <p>
+                    <b>Requires Bootstrap 3.1.0 or newer</b>.
+                </p>
+                <div class="bs-callout bs-callout-info mb-4">
+                    <h5 id="prompt-callout-title" class="topic-anchor callout-heading">
+                        <i class="fas fa-info-circle"></i> Please note:
+                    </h5>
+                    <p>
+                        Prompt <b>requires</b> the <samp>title</samp> option (when using the options object). You may use the <samp>message</samp>
+                        option, but the prompt result will <b>not</b> include any form values from your message.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="section-divider" />

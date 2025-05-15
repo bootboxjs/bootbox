@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "jekyll"
+
+gem "logger"
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+gem "json"
+gem "nokogiri"
+gem "loofah"
+gem "commonmarker"

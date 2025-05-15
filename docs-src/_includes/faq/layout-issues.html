@@ -1,0 +1,43 @@
+<article class="topic">
+    <header class="topic-header">
+        <h4 id="malformed-header" class="topic-anchor font-weight-bold mb-4">
+            <b class="text-primary">Q5:</b> When I use Bootbox, the header's all messed up. What gives?
+        </h4>
+    </header>
+    <div class="topic-content">
+        <p>
+            <b class="text-brand font-weight-bold h4">A:</b> <b>Bootbox 6</b> is intended to work with any currently-supported version of Bootstrap &mdash; meaning you can use it with
+            Bootstrap 3.4.1 and newer. If you're seeing something similar to this&hellip;
+        </p>
+        <div class="bb-example bb-example-modal">
+            <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    title: 'My title',
+    message: "Your message here&hellip;" 
+});</code></pre>
+            <figure>
+                <figcaption id="example-bb-4" class="topic-anchor">Example <b>bb.4</b></figcaption>
+                <div class="bb-modal-dialog" role="document">
+                    <div class="bb-modal-content">
+                        <div class="bb-modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">My title</h4>
+                        </div>
+                        <div class="bb-modal-body">
+                            <p>Your message here&hellip;</p>
+                        </div>
+                        <div class="bb-modal-footer">
+                            <button type="button" class="btn btn-primary">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </figure>
+        </div>
+        <p>
+            &hellip; then you're probably using Bootstrap 4 or newer and <b>Bootbox 4</b>. The markup structure and CSS rules for Bootstrap 4+ are not
+            compatible with the markup used in Bootstrap 3 modals, which is what Bootbox 4 generates. At the moment, there are no plans to
+            update Bootbox 4, so please upgrade to Bootbox 5 or newer if you are able.
+        </p>
+    </div>
+</article>
+
+<hr class="topic-divider" />

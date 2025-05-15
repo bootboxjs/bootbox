@@ -1,0 +1,29 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="instance-functions" class="topic-anchor">Instance Functions</h2>
+    </header>
+    <div class="topic-content">
+        <p>
+            The following functions can be called on an instance of a Bootbox object.
+        </p>
+        <div class="bb-function topic-subsection">
+            <h3 id="function-init" class="topic-subsection-header topic-anchor">init()</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 bg-light border"><code>.init(<span class="text-info">function</span> <b>handler</b>);</code></pre>
+                <p>
+                    Allows the user to supply a function to be called when the dialog gets initialized.
+                </p>
+                <pre class="language-js line-numbers"><code>let dialog = bootbox.dialog({
+    /* Your options... */
+});
+
+dialog.init(function(){
+    // Do something with the dialog...
+});</code></pre>
+                <p><samp>init()</samp> can be called on any of the wrapper functions, as they all return a jQuery object.</p>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="topic-divider" />

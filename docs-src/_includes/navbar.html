@@ -1,0 +1,49 @@
+<nav class="d-flex flex-row align-items-center p-2 border-bottom bg-white sticky-top">
+    <div class="">
+        <a id="toggle-sidebar" class="btn rounded-0 p-3" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+    </div>
+    <div class="flex-fill">
+        <nav aria-label="breadcrumb" class="align-items-center">
+            <a href="./" class="text-no-decoration"><b class="text-brand">Bootbox.js</b></a> &mdash; alert, confirm, prompt, and flexible dialogs for the Bootstrap framework
+        </nav>
+    </div>
+    <div class="ms-auto text-nowrap me-2">          
+        <nav class="nav nav-navbar">
+            <a class="nav-item nav-link border-start border-end" href="./getting-started">
+                Getting Started
+            </a>
+            <a class="nav-item nav-link border-end" href="./examples">
+                Examples
+            </a>
+            <a class="nav-item nav-link border-end" href="./documentation">
+                Docs
+            </a>
+            <a class="nav-item nav-link border-end" href="./faq">
+                FAQs
+            </a>
+            <div class="nav-item dropdown border-end">
+                <a class="nav-link dropdown-toggle" href="#" id="revisions" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    v{{site.version}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="revisions">
+                    <a class="dropdown-item active" href="./documentation">v{{site.version}}</a>
+                    {% for link in site.versions %}
+                    <a class="dropdown-item" href="{{link}}/documentation.html">{{link}}</a>
+                    {% endfor %}
+                </div>
+              </div>
+            <a class="nav-item nav-link text-dark border-end me-3" href="https://github.com/makeusabrew/bootbox">
+                <i class="fab fa-github"></i>
+                GitHub
+            </a>
+            <div class="form-inline">
+                <a class="btn btn-brand" href="https://github.com/makeusabrew/bootbox/releases/download/v{{site.version}}/bootbox.zip" id="download-bootbox">
+                    <i class="fas fa-download"></i>
+                    Download
+                </a>
+            </div>
+        </nav>
+    </div>
+</nav>

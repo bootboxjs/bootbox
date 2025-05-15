@@ -1,0 +1,127 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="global-functions" class="topic-anchor">Global Functions</h2>
+        <p>
+            The following functions are called statically, using the <samp>bootbox</samp> global.
+        </p>
+    </header>
+    <div class="topic-content">
+        <div class="bb-function topic-subsection">
+            <h3 id="function-setDefaults" class="topic-subsection-header topic-anchor">setDefaults()</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 bg-light border"><code>bootbox.setDefaults(<span class="text-primary">object</span> <b>options</b>);</code></pre>
+                <p>
+                    This method allows the user to set many of the default options shown in the dialog example. Many of these options are also
+                    applied to the basic wrapper methods and can be overridden whenever the wrapper methods are invoked with
+                    a single options argument:
+                </p>
+                <pre><code class="language-js line-numbers">bootbox.setDefaults({
+    /**
+    * @optional String
+    * @default: en
+    * which locale settings to use to translate the three
+    * standard button labels: OK, CONFIRM, CANCEL
+    */
+    locale: 'fr',
+    
+    /**
+    * @optional Boolean
+    * @default: true
+    * whether the dialog should be shown immediately
+    */
+    show: true,
+    
+    /**
+    * @optional Boolean
+    * @default: true
+    * whether the dialog should be have a backdrop or not
+    */
+    backdrop: true,
+    
+    /**
+    * @optional Boolean
+    * @default: true
+    * show a close button
+    */
+    closeButton: true,
+    
+    /**
+    * @optional Boolean
+    * @default: true
+    * animate the dialog in and out (not supported in < IE 10)
+    */
+    animate: true,
+    
+    /**
+    * @optional String
+    * @default: null
+    * an additional class to apply to the dialog wrapper
+    */
+    className: 'my-modal'
+    
+});</code></pre>
+            </div>
+        </div>
+        <div class="bb-function topic-subsection">
+            <h3 id="function-setLocale" class="topic-subsection-header topic-anchor">setLocale()</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 bg-light border"><code>bootbox.setLocale(<span class="text-primary">String</span> <b>name</b>);</code></pre>
+                <p>
+                    Allows the user to select a locale rather than using <samp>setDefaults('locale', ...)</samp>.
+                </p>
+                <p>
+                    The locale settings are used to translate the three standard button labels: OK, CONFIRM, CANCEL
+                </p>
+                <p>
+                    Default: <code>en</code>
+                </p>
+            </div>
+        </div>
+        <div class="bb-function topic-subsection">
+            <h3 id="function-addLocale" class="topic-subsection-header topic-anchor">addLocale()</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 bg-light border"><code>bootbox.addLocale(<span class="text-primary">String</span> <b>name</b>, <span class="text-primary">object</span> <b>values</b>);</code></pre>
+                <p>
+                    Allows the user to add a custom translation for each of the built-in command buttons. The <samp>values</samp>
+                    object must be in this format:
+                </p>
+                <pre class="language-js line-numbers"><code>{
+    OK : '',
+    CANCEL : '',
+    CONFIRM : ''
+}</code></pre>
+            </div>
+        </div>
+        <div class="bb-function topic-subsection">
+            <h3 id="function-removeLocale" class="topic-subsection-header topic-anchor">removeLocale()</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 bg-light border"><code>bootbox.removeLocale(<span class="text-primary">String</span> <b>name</b>);</code></pre>
+                <p>
+                    Allows the user to remove a locale from the available locale settings.
+                </p>
+            </div>
+        </div>
+        <div class="bb-function topic-subsection">
+            <h3 id="function-locales" class="topic-subsection-header topic-anchor">locales()</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 bg-light border"><code>bootbox.locales([<span class="text-primary">String</span> <b>name</b>]);</code></pre>
+                <p>
+                    Allows the user to get a locale object from the available locale settings. If <samp>name</samp> is null or empty,
+                    all locales will be returned.
+                </p>
+            </div>
+        </div>
+        <div class="bb-function topic-subsection">
+            <h3 id="function-hideAll" class="topic-subsection-header topic-anchor">hideAll()</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 bg-light border"><code>bootbox.hideAll();</code></pre>
+                <p>
+                    Hide all currently active Bootbox dialogs. Individual dialogs can be closed as per normal Bootstrap dialogs:
+                </p>
+                <pre class="language-js line-numbers"><code>dialog.modal('hide');</code></pre>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="topic-divider" />

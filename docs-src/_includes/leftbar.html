@@ -1,0 +1,138 @@
+<nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+        <!-- sidebar-search  -->
+        <div class="sidebar-search">
+            <form id="search-form">
+                <div class="input-group">
+                    <input type="text" class="form-control search-menu" placeholder="Search..." id="lunrsearch" name="q" maxlength="255" />
+                    <button class="btn btn-light" type="submit" id="search-go">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <p class="mb-0 powered-by"><small>Powered by <a href="https://lunrjs.com/" class="text-warning" target="_blank">lunr.js</a></small></p>
+            </form>
+            <div id="lunrsearchresults"></div>
+        </div>   
+        <!-- sidebar-menu  -->
+        <div class="sidebar-item sidebar-menu">
+            <ul>
+                <li class="nav-item {% if page.pageKey == 'index' %}active{% endif %}">
+                    <a href="./">
+                        <i class="fas fa-home"></i>
+                        <span class="menu-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-dropdown {% if page.pageKey == 'gettingStarted' %}active open{% endif %}">
+                    <a href="#">
+                        <i class="fas fa-code"></i>
+                        <span class="menu-text">Getting Started</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./getting-started">Introduction</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./getting-started#download">Download / Install</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./getting-started#dependencies">Dependencies</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./getting-started#usage-instructions">Usage
+                                    Instructions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item sidebar-dropdown {% if page.pageKey == 'examples' %}active open{% endif %}">
+                    <a href="#">
+                        <i class="far fa-file-code"></i>
+                        <span class="menu-text">Examples</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./examples">Overview</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./examples#alert">Alert</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./examples#confirm">Confirm</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./examples#prompt">Prompt</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./examples#dialog">Dialog</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item sidebar-dropdown {% if page.pageKey == 'documentation' %}active open{% endif %}">
+                    <a href="#">
+                        <i class="far fa-file-alt"></i>
+                        <span class="menu-text">Documentation</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./documentation">Overview</a>
+                            </li>
+                        </ul>
+                        <h5 class="header-menu">
+                            <span>Dialogs</span>
+                        </h5>
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./documentation#alert">Alert</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation#confirm">Confirm</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation#prompt">Prompt</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation#dialog">Dialog</a>
+                            </li>
+                        </ul>
+                        <h5 class="header-menu">
+                            <span>Configuration</span>
+                        </h5>
+                        <ul class="nav-items">
+                            <li>
+                                <a class="nav-link" href="./documentation#dialog-options">Options</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation#locales">Locales</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation#jquery-functions">Chaining jQuery
+                                    Functions</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation#instance-functions">Instance
+                                    Functions</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation#global-functions">Global Functions</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./documentation#notes">Notes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item {% if page.pageKey == 'faq' %}active{% endif %}">
+                    <a href="./faq">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="menu-text">FAQ / Issues</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- sidebar-menu  -->
+    </div>
+</nav>

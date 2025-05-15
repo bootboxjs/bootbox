@@ -1,0 +1,131 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="dialog" class="topic-anchor">Custom Dialog</h2>
+        <pre class="h5 py-3 px-4 mb-2 bg-light border"><code>bootbox.dialog(<span class="text-primary">object</span> <b>options</b>);</code></pre>
+    </header>
+    <div class="topic-content">
+        <p class="mb-2">
+            A completely customisable dialog method which takes a single argument - an options object.
+        </p>
+        
+        <div class="topic-subsection">
+            <h3 id="dialog-note" class="topic-subsection-header topic-anchor d-none">Note: onEscape</h3>
+            <div class="topic-subsection-content">
+                <p>
+                    <b>Custom dialogs do not close automatically when the <kbd>ESC</kbd> key is pressed;</b> you must implement
+                    this behavior yourself using the <a href="#option-onEscape"><samp>onEscape</samp></a> option.
+                </p>
+            </div>
+        </div>
+    
+        <div class="topic-subsection">
+            <h3 id="dialog-basic-usage" class="topic-subsection-header topic-anchor">Basic Usage</h3>
+            <div class="topic-subsection-content">
+                <p>
+                    The minimum required to create a custom dialog is the <samp>message</samp> option.
+                </p>
+                <p>
+                    Here's an example using <samp>message</samp> and <samp>closeButton: false</samp>, which will create
+                    a non-dismissable dialog (useful as a "loading" overlay).
+                </p>
+                <div class="bb-example bb-example-modal">
+                    <pre class="language-js line-numbers"><code>bootbox.dialog({ 
+    message: '&lt;div class="text-center"&gt;&lt;i class="fas fa-spin fa-spinner"&gt;&lt;/i&gt; Loading...&lt;/div&gt;', 
+    closeButton: false 
+});</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-8" class="topic-anchor">Example <b>bb.8</b></figcaption>
+                        <div class="bb-modal-dialog">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">
+                                        <div class="text-center"><i class="fas fa-spin fa-spinner"></i> Loading...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    
+        <div class="topic-subsection">
+            <h3 id="dialog-advanced-usage" class="topic-subsection-header topic-anchor">Advanced Usage</h3>
+            <div class="topic-subsection-content">
+                <p>
+                    As noted above, the only required option for a custom dialog is <samp>message</samp>. Also,
+                    <b>custom dialogs do not utilize a global callback</b>;
+                    each button you add should have it's own callback function. Here's an example with many of
+                    the options utilized:
+                </p>
+                <div class="bb-example bb-example-modal bb-example-modal-advanced">
+                    <pre class="language-js line-numbers"><code>bootbox.dialog({ 
+    title: 'Custom Dialog Example',
+    message: '&lt;p&gt;This dialog demonstrates many of the options available when using the Bootbox library&lt;/p&gt;',
+    size: 'large',
+    onEscape: true,
+    backdrop: true,
+    buttons: {
+        fee: {
+            label: 'Fee',
+            className: 'btn-primary',
+            callback: function(){
+                
+            }
+        },
+        fie: {
+            label: 'Fie',
+            className: 'btn-info',
+            callback: function(){
+                
+            }
+        },
+        foe: {
+            label: 'Foe',
+            className: 'btn-success',
+            callback: function(){
+                
+            }
+        },
+        fum: {
+            label: 'Fum',
+            className: 'btn-danger',
+            callback: function(){
+                
+            }
+        }
+    }
+});</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-9" class="topic-anchor">Example <b>bb.9</b></figcaption>
+                        <div class="bb-modal-dialog bb-modal-lg">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-header">
+                                    <h5 class="bb-modal-title">Custom Dialog Example</h5>
+                                    <button class="bootbox-close-button close btn-close" type="button"></button>
+                                </div>
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">
+                                        <p>This dialog demonstrates many of the options available when using the Bootbox library</p>
+                                    </div>
+                                </div>
+                                <div class="bb-modal-footer">
+                                    <button type="button" class="btn btn-primary">Fee</button>
+                                    <button type="button" class="btn btn-info">Fie</button>
+                                    <button type="button" class="btn btn-success">Foe</button>
+                                    <button type="button" class="btn btn-danger">Fum</button>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <p>
+                    Please see the <a href="./examples#dialog">Examples page</a> for more examples of custom
+                    dialogs.
+                </p>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="section-divider" />

@@ -1,0 +1,358 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="prompt" class="page-anchor">
+            Prompt
+        </h2>
+        <p class="mb-3 py-2 content-toggle d-flex flex-row">
+            <span>
+                <a href="./documentation#prompt">Documentation</a>
+            </span>
+            <span>
+                <a href="#" data-bs-toggle="collapse" data-bs-target="#prompt-examples" aria-expanded="false" aria-controls="prompt-examples">Show / Hide</a>
+            </span>
+        </p>
+    </header>
+    <div class="topic-content">
+        <div id="prompt-examples" class="collapse show">
+            <div>
+                <p>
+                    <b>Please note:</b> prompt requires the <samp>title</samp> option (when using the options object). You may use the <samp>message</samp> option,
+                    but the prompt result will <b>not</b> include any form inputs from your message.
+                </p>
+                <dl class="bb-examples-list">
+                    <dt id="prompt-basic" class="bb-anchor h5">Basic usage</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-default">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt("This is the default prompt!", function(result){ 
+    console.log(result); 
+});</code></pre>
+                        <p>
+                            <i class="fa fa-info-circle text-info"></i>
+                            If you want to style the input, you can target the <samp>.bootbox-input-text</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-centerVertical" class="bb-anchor h5">Vertically Centered</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-centerVertical">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt, vertically centered!", 
+    centerVertical: true,
+    callback: function(result){ 
+        console.log(result); 
+    }
+});</code></pre>
+                    </dd>
+                    <dt id="prompt-with-custom-locale" class="bb-anchor h5">With a custom locale</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-custom-locale">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>let locale = {
+    OK: 'I Suppose',
+    CONFIRM: 'Go Ahead',
+    CANCEL: 'Maybe Not'
+};
+
+bootbox.addLocale('custom', locale);
+
+bootbox.prompt({ 
+    title: "This is a prompt with a custom locale! What do you think?", 
+    locale: 'custom',
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                    </dd>
+                    <dt id="prompt-with-checkbox" class="bb-anchor h5">Prompt with checkbox</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-checkbox">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with a set of checkbox inputs!",
+    value: ['1', '3'],
+    inputType: 'checkbox',
+    inputOptions: [{
+        text: 'Choice One',
+        value: '1'
+    },
+    {
+        text: 'Choice Two',
+        value: '2'
+    },
+    {
+        text: 'Choice Three',
+        value: '3'
+    }],
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i>
+                            Checkboxes are nested in an element with the class <samp>.bootbox-checkbox-list</samp>.
+                            If you want to style the individual checkbox inputs, you can target the <samp>.bootbox-input-checkbox</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-radios-message" class="bb-anchor h5">Prompt with radio buttons and a <samp>message</samp> value</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-radio">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with a set of radio inputs!",
+    message: '&lt;p&gt;Please select an option below:&lt;/p&gt;',
+    inputType: 'radio',
+    inputOptions: [{
+        text: 'Choice One',
+        value: '1'
+    },
+    {
+        text: 'Choice Two',
+        value: '2'
+    },
+    {
+        text: 'Choice Three',
+        value: '3'
+    }],
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i>
+                            Radio buttons are nested in an element with the class <samp>.bootbox-radiobutton-list</samp>.
+                            If you want to style the individual radio inputs, you can target the <samp>.bootbox-input-radio</samp> class.
+                        </p>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i> When using the <samp>radio</samp> option, the first radio button
+                            will be checked if <samp>value</samp> is missing or does not match an <samp>inputOptions</samp> value.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-date" class="bb-anchor h5">
+                        Prompt with date
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm text-danger">
+                            Requires browser support: <a href="https://caniuse.com/input-datetime">https://caniuse.com/input-datetime</a>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-date">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with a date input!",
+    inputType: 'date',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i>
+                            If you want to style the input, you can target the <samp>.bootbox-input-date</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-email" class="bb-anchor h5">
+                        Prompt with email
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm text-danger">
+                            Requires browser support: <a href="https://caniuse.com/mdn-html_elements_input_type_email">https://caniuse.com/mdn-html_elements_input_type_email</a>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-email">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with an email input!",
+    inputType: 'email',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i>
+                            If you want to style the input, you can target the <samp>.bootbox-input-email</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-number" class="bb-anchor h5">
+                        Prompt with number
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm text-danger">
+                            Requires browser support: <a href="https://caniuse.com/input-number">https://caniuse.com/input-number</a>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-number">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with a number input!",
+    inputType: 'number',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i>
+                            If you want to style the input, you can target the <samp>.bootbox-input-number</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-password" class="bb-anchor h5">Prompt with password</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-password">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with a password input!",
+    inputType: 'password',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i>
+                            If you want to style the input, you can target the <samp>.bootbox-input-password</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-select" class="bb-anchor h5">Prompt with select</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-select">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with select!",
+    inputType: 'select',
+    inputOptions: [{
+        text: 'Choose one...',
+        value: ''
+    },
+    {
+        text: 'Choice One',
+        value: '1'
+    },
+    {
+        text: 'Choice Two',
+        value: '2'
+    },
+    {
+        text: 'Choice Three',
+        value: '3'
+    }],
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i>
+                            If you want to style the select, you can target the <samp>.bootbox-input-select</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-select-multiple" class="bb-anchor h5">Prompt with select &amp; multiple</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-select-multiple">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with a multi-select!",
+    inputType: 'select',
+    multiple: true,
+    value: ['1','3'],
+    inputOptions: [{
+        text: 'Choose one...',
+        value: ''
+    },
+    {
+        text: 'Choice One',
+        value: '1'
+    },
+    {
+        text: 'Choice Two',
+        value: '2'
+    },
+    {
+        text: 'Choice Three',
+        value: '3'
+    }],
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fa fa-info-circle text-info"></i>
+                            If you want to style the select, you can target the <samp>.bootbox-input-select</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-textarea" class="bb-anchor h5">Prompt with textarea</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-textarea">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with a textarea!",
+    inputType: 'textarea',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i>
+                            If you want to style the textarea, you can target the <samp>.bootbox-input-textarea</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-time" class="bb-anchor h5">
+                        Prompt with time
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm text-danger">
+                            Requires browser support: <a href="https://caniuse.com/input-datetime">https://caniuse.com/input-datetime</a>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-time">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with a time input!",
+    inputType: 'time',
+    callback: function (result) {
+        console.log(result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fa fa-info-circle text-info"></i>
+                            If you want to style the input, you can target the <samp>.bootbox-input-time</samp> class.
+                        </p>
+                    </dd>
+                    <dt id="prompt-with-range" class="bb-anchor h5">
+                        Prompt with range
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm text-danger">
+                            Requires browser support: <a href="https://caniuse.com/input-range">https://caniuse.com/input-range</a>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-range">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.prompt({
+    title: "This is a prompt with a range input!",
+    inputType: 'range',
+    min: 0,
+    max: 100,
+    step: 5,
+    value: 35,
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});</code></pre>
+                        <p>
+                            <i class="fas fa-info-circle text-info"></i>
+                            If you want to style the input, you can target the <samp>.bootbox-input-range</samp> class.
+                        </p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="section-divider" />

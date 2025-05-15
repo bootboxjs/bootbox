@@ -1,0 +1,66 @@
+<article class="topic">
+    <header class="topic-header">        
+      <h4 id="missing-locales" class="topic-anchor font-weight-bold mb-4">
+          <b class="text-primary">Q4:</b> I don't see my native language as a locale option. Why not? How do I add it?
+      </h4>
+    </header>
+    <div class="topic-content">
+        <p>
+            <b class="text-brand font-weight-bold h4">A:</b> Most localizations have been submitted by the community. If you don't see the locale
+            you're looking for, then it likely hasn't been submitted yet.
+        </p>
+        <p>
+            To add a new locale:
+        </p>
+        <ol>
+            <li><a href="https://github.com/makeusabrew/bootbox/fork">Fork</a> the Bootbox repository.</li>
+            <li>Navigate to the <samp>/locales/</samp> directory.</li>
+            <li>Within the <samp>/locales/</samp> directory, create a new JavaScript file named with the IANA code for your language (e.g. 'en-US', 'pt-BR').</li>
+            <li>
+                Copy the template, below, into your new file. Values denoted with brackets (i.e. <samp>{% raw %}{{IANA code}}{% endraw %}</samp>) represent the values you will fill
+                in for this locale.
+            </li>
+        </ol>
+{% raw %}
+<pre class="language-js line-numbers"><code>// locale : {{name of locale / language}}
+// author : {{your name (optional)}}
+bootbox.addLocale('{{IANA code}}', {
+  OK      : '{{OK text}}',
+  CANCEL  : '{{Cancel text}}',
+  CONFIRM : '{{Confirm text}}'
+});</code></pre>
+{% endraw %}
+        <p>
+            <b>Add a unit test for your new locale.</b> Locales without tests are rarely pulled in. To add your test:
+        </p>
+        <ol>
+            <li>Navigate to the <samp>/tests/</samp> directory.</li>
+            <li>Within the <samp>/tests/</samp> directory, locate the JavaScript file named <samp>locales.test.js</samp>.</li>
+            <li>
+                Just before the closing <samp>});</samp>, copy the following template, inserting the correct values for your locale:
+            </li>
+        </ol>
+{% raw %}
+<pre class="language-js line-numbers"><code>describe('{{locale name}}', function() {
+  beforeEach(function() {
+    return this.setLocale('{{IANA code}}');
+  });
+  it('shows the correct OK translation', function() {
+    return expect(this.labels.ok).to.equal('{{OK text}}');
+  });
+  it('shows the correct CANCEL translation', function() {
+    return expect(this.labels.cancel).to.equal('{{Cancel text}}');
+  });
+  return it('shows the correct CONFIRM translation', function() {
+    return expect(this.labels.confirm).to.equal('{{Confirm text}}');
+  });
+});</code></pre>
+{% endraw %}
+        <p>
+          Run <samp>grunt</samp>. This will regenerate the bootbox.locales.js and bootbox.all.js files and run the test suite. If all tests pass, 
+          submit a pull-request; please include a meaningful commit message.
+        </p>
+    </div>
+  </article>
+
+<hr class="topic-divider" />

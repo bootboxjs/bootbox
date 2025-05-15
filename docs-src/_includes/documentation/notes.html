@@ -1,0 +1,77 @@
+<article id="notes" class="topic">
+    <header class="topic-header">
+        <h2 id="known-limitations" class="topic-anchor">Known Limitations</h2>
+    </header>
+    <div class="topic-content">
+        <p>
+            Using Bootbox has some caveats, as noted below.
+        </p>
+        <div class="topic-notes-list">
+            <div class="topic-subsection">
+                <h3 class="text-danger topic-subsection-header topic-anchor" id="note-non-blocking">
+                    <i class="fas fa-code text-muted"></i>
+                    Dialog code does not block code execution
+                </h3>
+                <div class="topic-subsection-content">
+                    <p>
+                        <b>All</b> Bootstrap modals (and therefore Bootbox modals), unlike native alerts, confirms, or prompts,
+                        are
+                        <a href="https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions">asynchronous</a>; meaning,
+                        the events which Bootstrap generates are <b>non-blocking</b> events. 
+                        <b>
+                            Because of this limitation, code that should not be evaluated until a user has dismissed your dialog 
+                            must be called within the callback function of the dialog.
+                        </b>
+                    </p>
+                </div>
+            </div>
+    
+            <div class="topic-subsection">
+                <h3 class="text-danger topic-subsection-header topic-anchor" id="note-multiple-modals">
+                    <i class="fas fa-window-restore text-muted"></i>
+                    Multiple open modals are not officially supported
+                </h3>
+                <div class="topic-subsection-content">
+                    <p>
+                        This is a limitation of the Bootstrap modal plugin, as noted in the
+                        <a href="https://getbootstrap.com/docs/5.3/components/modal/#how-it-works">official Bootstrap documentation</a>.
+                        While it <em>is</em> functionally possible to trigger multiple modals, custom CSS and/or JavaScript
+                        code might be required for each layer of modal to display properly.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="topic-subsection">
+                <h3 class="text-danger topic-subsection-header topic-anchor" id="note-input-values">
+                    <i class="fas fa-skull-crossbones text-muted"></i>
+                    Prompt values are not sanitized
+                </h3>
+                <div class="topic-subsection-content">
+                    <p>
+                        The value(s) returned by a Bootbox prompt are <b>not</b> sanitized in any way.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="topic-subsection">
+                <h3 class="text-danger topic-subsection-header topic-anchor" id="note-html">
+                    <i class="fas fa-skull-crossbones text-muted"></i>
+                    Content strings are not sanitized
+                </h3>
+                <div class="topic-subsection-content">
+                    <p>
+                        You can use either plain text or HTML for pretty much any Bootbox option which sets a display aspect of
+                        the rendered modal, such as the title, message, and button labels. Bootbox <b>does not</b> sanitize any of
+                        these values. Since we use jQuery's <a href="https://api.jquery.com/html/">.html()</a> function to build
+                        the dialog, this is a possible XSS vector. It is <em>your</em> responsibility to sanitize your content.
+                    </p>
+                    <p>
+                        We heartily recommend reviewing the <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md">OWASP Guidelines for preventing XSS</a>.
+                        For library recommendations, skip to
+                        <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md#rule-6---sanitize-html-markup-with-a-library-designed-for-the-job">Rule 6 - Sanitize HTML Markup with a Library Designed for the Job</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>  
