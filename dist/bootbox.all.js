@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 6.0.3
+ * version: 6.0.4
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -22,7 +22,7 @@
 
   let exports = {};
 
-  let VERSION = '6.0.3';
+  let VERSION = '6.0.4';
   exports.VERSION = VERSION;
 
   let locales = {
@@ -93,7 +93,7 @@
     relatedTarget: null,
     // The size of the modal to generate
     size: null,
-    // A unique indentifier for this modal
+    // A unique identifier for this modal
     id: null
   };
 
@@ -213,7 +213,7 @@
   exports.dialog = function(options) {
     if ($.fn.modal === undefined) {
       throw new Error(
-        '"$.fn.modal" is not defined; please double check you have included the Bootstrap JavaScript library. See https://getbootstrap.com/docs/5.1/getting-started/introduction/ for more details.'
+        '"$.fn.modal" is not defined; please double check you have included the Bootstrap JavaScript library. See https://getbootstrap.com/docs/5.3/getting-started/introduction/ for more details.'
       );
     }
 
@@ -702,16 +702,11 @@
           });
         }
 
-        // These input types have extra attributes which affect their input validation.
-        // Warning: For most browsers, date inputs are buggy in their implementation of 'step', so this attribute will have no effect. Therefore, we don't set the attribute for date inputs.
-        // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date#Setting_maximum_and_minimum_dates
-        if (options.inputType !== 'date') {
-          if (options.step) {
-            if (options.step === 'any' || (!isNaN(options.step) && parseFloat(options.step) > 0)) {
-              input.attr('step', options.step);
-            } else {
-              throw new Error('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
-            }
+        if (options.step) {
+          if (options.step === 'any' || (!isNaN(options.step) && parseFloat(options.step) > 0)) {
+            input.attr('step', options.step);
+          } else {
+            throw new Error('"step" must be a valid positive number or the value "any". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step for more information.');
           }
         }
 
@@ -891,7 +886,7 @@
 
     // ...and replace it with one focusing our input, if possible
     promptDialog.on('shown.bs.modal', function() {
-      // Need the closure here since input isn'tcan object otherwise
+      // Need the closure here since input isn't an object otherwise
       input.focus();
     });
 
@@ -1209,7 +1204,7 @@
 
 /*! @preserve
  * bootbox.locales.js
- * version: 6.0.3
+ * version: 6.0.4
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/

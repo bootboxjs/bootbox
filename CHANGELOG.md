@@ -1,4 +1,8 @@
-## 6.0.3 (Latest Release)
+## 6.0.4 (Latest Release)
+
+- Updates `step` to allow setting value for date inputs
+
+### 6.0.3
 
 -Updates `min` and `max` validation for the `number` input type to allow min and max to be equal
 
