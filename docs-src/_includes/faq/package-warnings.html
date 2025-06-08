@@ -1,0 +1,28 @@
+<article class="topic">
+    <header class="topic-header">
+        <h4 id="package-warnings" class="font-weight-bold topic-anchor mb-4">
+            <b class="text-primary">Q6:</b> Help! My package manager is telling me that Bootbox is insecure!
+        </h4>
+    </header>
+    <div class="topic-content">
+        <p>
+            <b class="text-brand font-weight-bold h4">A:</b> That&apos;s&hellip; unfortunate.
+        </p>
+        <p>
+            We&apos;re aware of at least one notice (via a <a href="https://hackerone.com/reports/508446">HackerOne issue</a>) on the npm package. 
+            Here&apos;s the gist: we use jQuery&apos;s <a href="https://api.jquery.com/html/"><samp>.html()</samp></a> as part of the construction 
+            of our modals. Because that process (in part) includes the values passed in via the <samp>title</samp> and <samp>message</samp> options, 
+            there&apos;s a possible XSS vector there, as we <b>do not</b> sanitize the content you pass in for those options. That&apos;s how Bootbox 
+            has always worked, and it&apos;s how we allow formatted messages in our dialogs, and is a key part of the custom <samp>dialog</samp>
+            function.
+        </p>
+        <p>
+            Sanitizing HTML properly is not a trivial enterprise. It&apos;s also out of scope for Bootbox. If you&apos;re using a UI framework, it 
+            probably has a pretty good sanitizer tool built in. If not, there are a lot of existing libraries that you can pipeline into the
+            process of using Bootbox.
+        </p>
+        <p>
+            In summary: if you&apos;re using user-submitted content, <b>sanitize that content before passing it to Bootbox.</b>
+        </p>
+    </div>
+</article>

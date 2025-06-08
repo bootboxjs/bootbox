@@ -1,0 +1,189 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="locales" class="topic-anchor">
+            Available Locales
+        </h2>
+    </header>
+    <div class="topic-content">
+        <p>
+            Locales are used to provide a translation for each of the built-in command buttons (OK, CANCEL, and CONFIRM).
+        </p>
+        <div class="topic-subsection">
+            <h3 id="locales-listing" class="topic-subsection-header topic-anchor d-none">Locales Index</h3>
+            <div class="topic-subsection-content">
+                <p>
+                    The following locales are available (see the table below). You can find each of these locales rendered on the
+                    <a href="{{ 'examples' | absolute_url }}#confirm-all-locales-demo">Examples</a> page.
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 4rem;">Key</th>
+                                <th>Name</th>
+                                <th style="width: 4rem;">Key</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>ar</code></td>
+                                <td>Arabic</td>
+                                <td><code>az</code></td>
+                                <td>Azerbaijani</td>
+                            </tr>
+                            <tr>
+                                <td><code>bg-BG</code></td>
+                                <td>Bulgarian</td>
+                                <td><code>pt-BR</code></td>
+                                <td>Portuguese - Brasil</td>
+                            </tr>
+                            <tr>
+                                <td><code>cs</code></td>
+                                <td>Czech</td>
+                                <td><code>da</code></td>
+                                <td>Danish</td>
+                            </tr>
+                            <tr>
+                                <td><code>de</code></td>
+                                <td>German</td>
+                                <td><code>el</code></td>
+                                <td>Greek</td>
+                            </tr>
+                            <tr>
+                                <td><code>en</code></td>
+                                <td>English</td>
+                                <td><code>es</code></td>
+                                <td>Spanish / Español</td>
+                            </tr>
+                            <tr>
+                                <td><code>et</code></td>
+                                <td>Estonian</td>
+                                <td><code>eu</code></td>
+                                <td>Basque</td>
+                            </tr>
+                            <tr>
+                                <td><code>fa</code></td>
+                                <td>Farsi / Persian</td>
+                                <td><code>fi</code></td>
+                                <td>Finnish</td>
+                            </tr>
+                            <tr>
+                                <td><code>fr</code></td>
+                                <td>French / Français</td>
+                                <td><code>he</code></td>
+                                <td>Hebrew</td>
+                            </tr>
+                            <tr>
+                                <td><code>hr</code></td>
+                                <td>Croatian</td>
+                                <td><code>hu</code></td>
+                                <td>Hungarian</td>
+                            </tr>
+                            <tr>
+                                <td><code>id</code></td>
+                                <td>Indonesian</td>
+                                <td><code>it</code></td>
+                                <td>Italian</td>
+                            </tr>
+                            <tr>
+                                <td><code>ja</code></td>
+                                <td>Japanese</td>
+                                <td><code>ka</code></td>
+                                <td>Georgian</td>
+                            </tr>
+                            <tr>
+                                <td><code>ko</code></td>
+                                <td>Korean</td>
+                                <td><code>lt</code></td>
+                                <td>Lithuanian</td>
+                            </tr>
+                            <tr>
+                                <td><code>lv</code></td>
+                                <td>Latvian</td>
+                                <td><code>nl</code></td>
+                                <td>Dutch</td>
+                            </tr>
+                            <tr>
+                                <td><code>no</code></td>
+                                <td>Norwegian</td>
+                                <td><code>pl</code></td>
+                                <td>Polish</td>
+                            </tr>
+                            <tr>
+                                <td><code>pt</code></td>
+                                <td>Portuguese</td>
+                                <td><code>ru</code></td>
+                                <td>Russian</td>
+                            </tr>
+                            <tr>
+                                <td><code>sk</code></td>
+                                <td>Slovak</td>
+                                <td><code>sl</code></td>
+                                <td>Slovenian</td>
+                            </tr>
+                            <tr>
+                                <td><code>sq</code></td>
+                                <td>Albanian</td>
+                                <td><code>sv</code></td>
+                                <td>Swedish</td>
+                            </tr>
+                            <tr>
+                                <td><code>sw</code></td>
+                                <td>Swahili</td>
+                                <td><code>ta</code></td>
+                                <td>Tamil</td>
+                            </tr>
+                            <tr>
+                                <td><code>th</code></td>
+                                <td>Thai</td>
+                                <td><code>tr</code></td>
+                                <td>Turkish</td>
+                            </tr>
+                            <tr>
+                                <td><code>uk</code></td>
+                                <td>Ukrainian</td>
+                                <td colspan="2"</td>
+                            </tr>
+                            <tr>
+                                <td><code>zh-CN</code></td>
+                                <td>Chinese (People's Republic of China)</td>
+                                <td><code>zh-TW</code></td>
+                                <td>Chinese (Taiwan / Republic of China)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="topic-subsection">
+            <h3 id="using-locales" class="topic-subsection-header topic-anchor d-none">Using Locales</h3>
+            <div class="topic-subsection-content">    
+                <div class="bs-callout bs-callout-danger">
+                    <h5 id="locales-note" class="topic-anchor callout-heading">
+                        <i class="fas fa-exclamation-triangle"></i> Please note:
+                    </h5>
+                    <p>
+                        To use any locale other than <samp>en</samp>, you must do one of the following:
+                    </p>
+                    <ul>
+                        <li>
+                            Use the <samp>bootbox.all.js</samp> or <samp>bootbox.all.min.js</samp> file, which includes all locales.
+                        </li>
+                        <li>
+                            Add a reference to <samp>bootbox.locales.js</samp> or <samp>bootbox.locales.min.js</samp> after <samp>bootbox.js</samp>.
+                        </li>
+                        <li>
+                            Add a reference to the target locale file (<samp>fr.js</samp> to use the French locale, for example), found in the <samp>src/locales</samp> directory.
+                        </li>
+                        <li>
+                            Add the locale manually, using the <a href="#function-addLocale">addLocale</a> function.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="section-divider" />

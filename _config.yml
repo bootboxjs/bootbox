@@ -1,0 +1,9 @@
+version: 6.0.4
+versions:
+  - v5.x
+  - v4.x
+  - v3.x
+  - v2.x
+
+source:      ./docs-src
+destination: ./docs

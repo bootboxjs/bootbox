@@ -1,0 +1,289 @@
+---
+layout: page
+title: Getting Started
+pageKey: getting-started
+permalink: /getting-started
+searchable: true
+---
+<div class="row">
+    {% include leftbar.html %}
+    
+    <div class="col-md-9 col-xl-9 ms-md-auto py-5">
+        <h1 id="intro" class="mb-3">Getting Started</h1>
+        <p class="lead mb-4">
+            Bootbox.js is designed to make using Bootstrap modals easier! Follow the guide below, and you should be up and running in no time.
+        </p>
+
+        <div class="page-content">
+            <div class="page-section">
+                <h3 id="install" class="page-section-header page-anchor">
+                    Install
+                </h3>
+                <div class="page-section-content">
+                    <p>Bootbox can be added to your project in two easy ways:</p>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <h4><a href="https://www.npmjs.com/package/bootbox">npm</a></h4>
+                            <pre><code class="language-bash">npm i bootbox</code></pre>
+                        </div>
+                        <div class="col">
+                            <h4><a href="https://cdnjs.com/libraries/bootbox.js">cdnjs</a></h4>
+                            <pre><code class="language-http">https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/{{site.version}}/bootbox.min.js</code></pre>
+                        </div>
+                    </div>
+                    <p>Or, serve the files yourself:</p>
+                    <div class="mb-2">
+                        <h5 class="text-left">
+                            Direct download
+                            <small>(via <a href="https://github.com/bootboxjs/bootbox">GitHub</a> &mdash; please do not link to these files directly)</small>
+                        </h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>File</th>
+                                    <th style="width: 50%;">Production:</th>
+                                    <th>Development:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Core
+                                        <p>
+                                            <small class="d-block">bootbox + default locale (<samp>en</samp>) only.</small>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a href="https://github.com/bootboxjs/bootbox/releases/download/v{{site.version}}/bootbox.js">
+                                            bootbox.js
+                                        </a>                                
+                                    </td>
+                                    <td>
+                                        <a href="https://github.com/bootboxjs/bootbox/releases/download/v{{site.version}}/bootbox.min.js">
+                                            bootbox.min.js
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Locales
+                                        <p>
+                                            <small class="d-block">Contains only locales.</small>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a href="https://github.com/bootboxjs/bootbox/releases/download/v{{site.version}}/bootbox.locales.js">
+                                            bootbox.locales.js
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="https://github.com/bootboxjs/bootbox/releases/download/v{{site.version}}/bootbox.locales.min.js">
+                                            bootbox.locales.min.js
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Bundled
+                                        <p>
+                                            <small class="d-block">Includes bootbox + all locales.</small>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a href="https://github.com/bootboxjs/bootbox/releases/download/v{{site.version}}/bootbox.all.js">
+                                            bootbox.all.js
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="https://github.com/bootboxjs/bootbox/releases/download/v{{site.version}}/bootbox.all.min.js">
+                                            bootbox.all.min.js
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Once you&apos;ve downloaded Bootbox, skip down to the <a href="#usage-instructions">Usage Instructions</a> for help setting up the library.
+                    </p>
+                </div>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="page-section">
+                <h3 id="dependencies" class="page-section-header page-anchor">
+                    Dependencies
+                </h3>
+                <div class="page-section-content">
+                <p>
+                    All versions of Bootbox stand on the shoulders of two great giants: <a href="https://getbootstrap.com">Bootstrap</a> and <a href="https://jquery.com">jQuery</a>.
+                    The exact version of Bootstrap depends on the version of Bootbox you&apos;re using. This has become slightly more complex than we&apos;d like, but hopefully 
+                    this handy table will clear things up:
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Bootbox version</th>
+                                <th>Min. Bootstrap version</th>
+                                <th>Max. Bootstrap</th>
+                                <th>Min. jQuery</th>
+                                <th>Supported?</th>
+                                <th class="hidden-xs">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-success">
+                                <td>6.x.x <span class="badge bg-success">Latest</span></td>
+                                <td>4.6.1</td>
+                                <td>5.x.x</td>
+                                <td>1.9.1</td>
+                                <td class="text-center"><i class="fas fa-check text-success"></i></td>
+                                <td class="hidden-xs"><b>Current release.</b> Updated to support Bootstrap 5. Retains compatibility with Bootstrap 4.</td>
+                            </tr>
+                            <tr>
+                                <td>5.x.x</td>
+                                <td>3.0.0 <b class="text-danger">*</b></td>
+                                <td>4.x.x</td>
+                                <td>1.9.1</td>
+                                <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                                <td class="hidden-xs">Support for Bootstrap 4. Retains compatibility with Bootstrap 3.</td>
+                            </tr>
+                            <tr>
+                                <td>4.x.x</td>
+                                <td>3.0.0</td>
+                                <td>3.4.x</td>
+                                <td>1.9.1</td>
+                                <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                                <td class="hidden-xs">Entirely rewritten to support Bootstrap 3.0.0.</td>
+                            </tr>
+                            <tr>
+                                <td>3.x.x</td>
+                                <td>2.2.2</td>
+                                <td>2.3.2</td>
+                                <td>1.8.3</td>
+                                <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                                <td class="hidden-xs">Last version to support Bootstrap 2.</td>
+                            </tr>
+                            <tr>
+                                <td>2.x.x</td>
+                                <td>2.0.0</td>
+                                <td>2.0.4</td>
+                                <td>1.7.1</td>
+                                <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                                <td class="hidden-xs">As you can see, Bootstrap 2.1.x was never officially supported.</td>
+                            </tr>
+                            <tr>
+                                <td>1.x.x</td>
+                                <td>1.3.0</td>
+                                <td>1.4.0</td>
+                                <td>1.7.1</td>
+                                <td class="text-center"><i class="fas fa-times text-danger"></i></td>
+                                <td class="hidden-xs">Don&apos;t download this version of Bootbox &mdash; it&apos;s old.</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6"><b class="text-danger">*</b> Some options, like <samp>size</samp>, require Bootstrap 3.1.0 or higher.</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <p>
+                    If you are using Bootstrap 4 or newer, you <b>must</b> also include <a href="https://popper.js.org/">Popper.js</a>. Bootstrap
+                    currently includes a bootstrap.bundle.min.js file in the pre-compiled version, if you prefer, which combines Popper.js with
+                    the bootstrap.js source file.
+                </p>
+                </div>
+            </div>
+
+            <hr class="section-divider" />
+
+            <div class="page-section">
+                <h3 id="usage-instructions" class="page-section-header page-anchor">
+                    Usage Instructions
+                </h3>
+                <div class="page-section-content">
+                    <p>
+                        Once you&apos;ve got your <a href="#dependencies">dependencies</a> sorted, usage
+                        is fairly straightforward and much like any other JavaScript library you&apos;ve
+                        ever used. The library creates a single global instance of a <samp>bootbox</samp> object:
+                    </p>
+                    <pre class="language-html line-numbers mb-4"><code>&lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset="utf-8"&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+            &lt;title&gt;My page&lt;/title&gt;
+
+            &lt;!-- CSS dependencies --&gt;
+            &lt;link rel="stylesheet" type="text/css" href="bootstrap.min.css"&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+
+            &lt;p&gt;Content here. &lt;a class="show-alert" href="#"&gt;Alert!&lt;/a&gt;&lt;/p&gt;
+
+            &lt;!-- JS dependencies --&gt;
+            &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"&gt;&lt;/script&gt;
+            &lt;!-- Bootstrap 4 dependency --&gt;
+            &lt;script src="popper.min.js"&gt;&lt;/script&gt;
+            &lt;script src="bootstrap.min.js"&gt;&lt;/script&gt;
+
+            &lt;!-- bootbox code --&gt;
+            &lt;script src="bootbox.min.js"&gt;&lt;/script&gt;
+            &lt;script src="bootbox.locales.min.js"&gt;&lt;/script&gt;
+            &lt;script&gt;
+                $(document).on('click', '.show-alert', function(e) {
+                    bootbox.alert('Hello world!', function() {
+                        console.log('Alert Callback');
+                    });
+                });
+            &lt;/script&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;</code></pre>
+                    <h4 id="note-script-order" class="page-anchor">
+                        <i class="fas fa-info-circle text-danger"></i>
+                        Note the order of the script references
+                    </h4>
+                    <p>
+                        Since Bootbox is a wrapper around Bootstrap&apos;s modal functionality, you need to include the libraries in order:
+                    </p>
+                    <ol>
+                        <li>jQuery</li>
+                        <li>Popper.js</li>
+                        <li>Bootstrap</li>
+                        <li>Bootbox</li>
+                        <li>Bootbox Locales (optional - omit if you only need the default English locale)</li>
+                    </ol>
+                    <p>
+                        When you&apos;re up and running, check out some <a href="{{ 'examples' | absolute_url }}">examples</a>
+                        or the review the <a href="{{ 'documentation' | absolute_url }}">documentation</a> to learn about the available options.
+                    </p>
+                </div>
+            </div>
+
+            <footer class="page-footer">
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ '/' | absolute_url }}" class="btn btn-outline-info">
+                            <i class="fas fa-angle-double-left"></i> 
+                            Home
+                        </a>
+                    </div>
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-outline-secondary" disabled>
+                            Getting Started
+                        </button>
+                    </div>
+                    <div class="col text-end">
+                        <a href="{{ 'examples' | absolute_url }}" class="btn btn-outline-info">
+                            Examples 
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>

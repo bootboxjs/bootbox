@@ -1,0 +1,542 @@
+@import "variables";
+
+@import "animation";
+
+$darker-light: darken($light, 20%);
+
+body
+{
+    color: #333;
+    font-weight: 300;
+    font-size: 1.125rem;
+}
+
+.container
+{
+    max-width: 1080px;
+}
+
+#main-navigation .navbar-brand,
+.text-bb-brand,
+a.text-bb-brand,
+.sidebar-menu .nav-item > .nav-link.active
+{
+    color: rgb(180, 14, 77);
+}
+
+.navbar-brand
+{
+    font-weight: 500;
+}
+
+#footer
+{
+    font-size: 0.85rem;
+    margin: 1rem 0;
+}
+
+.lunr-btn
+{
+    color:#1a29b1;
+}
+
+.lunr-search-result
+{
+    font-weight: 500;
+
+    .lunr-search-result-anchor
+    {
+        display: block;
+        text-decoration: none;
+        margin-bottom: 0.25rem;
+        
+        span
+        {
+            display: block;
+
+            &.lunr-search-result-excerpt,
+            &.lunr-search-result-link
+            {
+                font-size: 0.85rem;
+            }
+            
+            &.lunr-search-result-excerpt
+            {
+                font-style: italic;
+                color: #888;
+            }
+            
+            &.lunr-search-result-link
+            {
+                color: #555;
+            }
+        }
+    }
+
+    .lunr-search-result-score
+    {
+        height: 2px;
+    }
+}
+
+
+.text-3wm-brand,
+a.text-3wm-brand
+{
+    color: #57c1bb;
+}
+
+b, strong, .text-bold, .fw-bold
+{
+    font-weight: 700;
+}
+
+samp
+{
+    font-weight: 600;
+}
+
+.content-header
+{
+    padding-top: 6rem;
+    padding-bottom: 5rem;
+}
+
+.bg-bb-brand
+{
+    background-color: rgb(180, 14, 77);
+}
+
+.bb-section
+{
+    margin-bottom: 4rem;
+}
+
+
+.bb-scroll-widget
+{
+    color: rgb(180, 14, 77);
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+
+    a
+    {
+        color: rgb(180, 14, 77);
+        font-size: 1.5rem;
+    }
+}
+
+
+.bs-callout
+{
+    border-color: #eee;
+    border-image: none;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 0 0 0 5px;
+    margin: 1rem 0;
+    padding: 1rem;
+    font-size: 1rem;
+
+    h4,
+    .callout-heading
+    {
+        margin-bottom: 5px;
+        margin-top: 0;
+    }
+
+    p:last-child
+    {
+        margin-bottom: 0;
+    }
+
+    code
+    {
+        border-radius: 3px;
+    }
+
+    & + .bs-callout
+    {
+        margin-top: -5px;
+    }
+
+    &.bs-callout-danger
+    {
+        border-left-color: #ce4844;
+
+        .callout-heading
+        {
+            color: #ce4844;
+        }
+    }
+
+    &.bs-callout-warning
+    {
+        border-left-color: #aa6708;
+
+        .callout-heading
+        {
+            color: #aa6708;
+        }
+    }
+
+    &.bs-callout-info
+    {
+        border-left-color: #1b809e;
+
+        .callout-heading
+        {
+            color: #1b809e;
+        }
+    }
+}
+
+.bb-example {
+    figure
+    {
+        background-color: #F7F7F9;
+        border-radius: 4px;
+        border-color: #e5e5e5 #eee #eee;
+        border-style: solid;
+        border-width: 1px 0;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05) inset;
+        margin: 0 0 15px;
+        padding: 45px 0 15px;
+        position: relative;
+    }
+
+    pre
+    {
+        margin-bottom: 5px;
+    }
+
+    figcaption
+    {
+        color: #959595;
+        font-size: 14px;
+        font-weight: 500;
+        left: 15px;
+        letter-spacing: 1px;
+        position: absolute;
+        text-transform: uppercase;
+        top: 15px;
+
+        a
+        {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            right: 100%;
+            opacity: 0;
+            padding-right: 2px;
+        }
+
+        &:hover a
+        {
+            opacity: 1;
+        }
+
+        b
+        {
+            font-weight: 700;
+        }
+    }
+
+    p:last-child
+    {
+        margin-bottom: 0;
+    }
+
+}
+
+
+dd.bb-example
+{
+    margin-bottom: 2rem;
+}
+
+
+#bb-growl
+{
+    position: fixed;
+    bottom: 25%;
+    right: 0;
+    margin-bottom: 0;
+    font-size: 1.2em;
+    padding: 1em 1.3em;
+    z-index: 2000;
+}
+
+
+.bb-modal-content
+{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+}
+
+.bb-modal-header
+{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+
+    .bb-modal-header .close
+    {
+        padding: 1rem;
+        margin: -1rem -1rem -1rem auto;
+    }
+
+.bb-modal-title
+{
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.bb-modal-body
+{
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.bb-modal-footer
+{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+    .bb-modal-footer > :not(:first-child)
+    {
+        margin-left: .25rem;
+    }
+
+    .bb-modal-footer > :not(:last-child)
+    {
+        margin-right: .25rem;
+    }
+
+@media (min-width: 576px)
+{
+    .bb-modal-dialog
+    {
+        max-width: 500px;
+        margin: 1.75rem auto;
+    }
+
+    .bb-modal-dialog-centered
+    {
+        min-height: calc(100% - (1.75rem * 2));
+    }
+
+        .bb-modal-dialog-centered::before
+        {
+            height: calc(100vh - (1.75rem * 2));
+        }
+
+    .bb-modal-sm
+    {
+        max-width: 300px;
+    }
+}
+
+@media (min-width: 992px)
+{
+    .bb-modal-lg
+    {
+        max-width: 800px;
+    }
+}
+
+
+.options-list
+{ 
+    dd
+    {
+        margin-bottom: 1rem;
+        border-bottom: dotted 1px #ccc;
+    }
+}
+
+
+.sidebar-menu
+{
+    font-size: 1rem;
+
+    > .nav
+    {
+        > .nav-item
+        {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .page-link
+    {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .sidebar-dropdown.active .page-link
+    {
+        color: rgb(180, 14, 77);
+    }
+
+    .menu-text
+    {
+        color: #444;
+    }
+
+    .sidebar-dropdown.active .page-link .menu-text
+    {
+        color: rgb(180, 14, 77);
+        font-weight: 600;
+    }
+
+    .nav-link
+    {
+        padding: 0;
+    }
+
+    .sidebar-submenu
+    {
+        margin-left: 1.5rem;
+
+        .header-menu
+        {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            color: #444;
+        }
+
+        .nav-link
+        {
+            color: #777;
+            margin: 0.25rem 0;
+        }
+    } 
+}
+
+#main-navigation,
+.content-header
+{
+    background: #222 url(/images/bg-dark.png) repeat repeat 0 0;
+}
+
+
+#main-navigation
+{
+    padding: 0;
+
+    .nav-link
+    {
+        color: #fff;
+        padding: 1.25rem .85rem;
+
+        &.active
+        {
+            color: #fff;
+            background-color:$brand-primary;
+        }
+    }
+
+
+}
+
+.btn
+{
+    &.btn-resource-link
+    {
+        color: #fff;
+        background-color:$brand-primary;
+        font-family: monospace;
+    }
+}
+
+
+h1
+{
+    font-family: 'Bree Serif', 'Open Sans', sans-serif;
+}
+
+
+.lead-2 
+{
+  font-size: 1.17188rem !important; 
+
+  a
+  {
+    color:#add8e6;
+  }
+}
+
+
+.page-section
+{
+    .page-section-header
+    {
+        margin-top: 2.5rem;
+        margin-bottom: .5rem;
+    }
+}
+
+.page-footer
+{
+    margin: 2rem 0;
+}
+
+
+.topic
+{
+    margin-bottom: 4rem;
+
+    .topic-header
+    {
+        h2
+        {
+            font-weight: 600;
+        }
+    }
+
+    .topic-subsection
+    {
+        margin-bottom: 2rem;
+
+        .topic-subsection-header
+        {
+            margin-top: 2rem;
+            color: #666;
+        }
+    }
+}
+
+.section-divider,
+.topic-divider
+{
+    display: none;
+}

@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Bootbox.js - alert, confirm, prompt, and flexible dialogs for the Bootstrap framework" />
+    <meta name="keywords" content="Bootstrap,bootbox,modal" />
+
+    <title>Bootbox.js &mdash; alert, confirm and flexible dialogs for the Bootstrap framework</title>
+
+    <link href="./assets/css/page.css" rel="stylesheet" />
+    <link href="./assets/css/style.css" rel="stylesheet" />
+
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20517424-8']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+<body>
+    <nav id="main-navigation" class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
+        <div class="container">
+            <div class="navbar-left">
+                <button class="navbar-toggler" type="button">&#9776;</button>
+                <a class="navbar-brand" href="./">
+                    bootbox<span class="text-white">.js</span>
+                </a>
+            </div>
+            <section class="navbar-mobile">
+                <span class="navbar-divider d-mobile-none"></span>
+                <nav class="nav nav-navbar">
+                    <a class="nav-link" href="./getting-started.html">Getting Started</a>
+                    <a class="nav-link" href="./examples.html">Examples</a>
+                    <a class="nav-link" href="./documentation.html">Documentation</a>
+                    <a class="nav-link" href="https://github.com/makeusabrew/bootbox">
+                        <i class="fa fa-github"></i>
+                        GitHub
+                    </a>
+                </nav>
+            </section>
+            <a class="btn btn-light" href="https://github.com/makeusabrew/bootbox/releases/download/v5.5.2/bootbox.zip" id="download-bootbox">
+                <i class="fa fa-download"></i>
+                Download
+            </a>
+        </div>
+    </nav>
+
+    <header class="header text-white pt-12 pb-10">
+        <div class="container text-center">
+            <h1 class="display-4">
+                <span class="text-bb-brand">Bootbox</span><span class="text-bb-alt text-thin">JS</span> <small>&mdash; Bootstrap modals made easy.</small>
+            </h1>
+            <p class="lead-2 mt-6">
+                <b>Bootbox.js</b> is a small JavaScript library which allows you to create programmatic dialog boxes
+                using
+                <a href="https://getbootstrap.com/docs/4.3/components/modal/">Bootstrap modals</a>, without having to worry about
+                creating, managing, or removing any of the required DOM elements or JavaScript event handlers.
+            </p>            
+            <p>
+                <a href="https://www.npmjs.com/package/bootbox">
+                    <samp class="text-white bg-bb-brand p-2">npm i bootbox</samp>
+                </a>
+                <span class="mx-2">&bull;</span>
+                <a href="https://cdnjs.com/libraries/bootbox.js">
+                    <samp class="text-white bg-bb-brand p-2">cdnjs</samp>
+                </a>                
+            </p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <article class="">
+                        <section class="bb-section">
+                            <header class="section-header my-5">
+                                <h2>Flexible Bootstrap-style dialogs</h2>
+                            </header>
+                            <div class="">
+                                <p>
+                                    Bootbox provides three functions, <code>alert</code>, <code>confirm</code>, and <code>prompt</code>, whose aim is to
+                                    mimic their native JavaScript equivalents. Here&rsquo;s the simplest possible example:
+                                </p>
+                                <pre class="language-js line-numbers"><code>bootbox.alert(<span class="bb-code-string">"Hello&nbsp;world!"</span>);</code></pre>
+                                <p>
+                                    <button type="button" class="bb-hello-world btn btn-primary btn-lg">Run example</button>
+                                </p>
+                            </div>
+                            <p>
+                                <b>Compare that to the code you&rsquo;d have to write without Bootbox:</b>
+                            </p>
+                            <pre class="language-html line-numbers"><code>&lt;!-- set up the modal to start hidden and fade in and out --&gt;
+&lt;div id="myModal" class="modal fade"&gt;
+    &lt;div class="modal-dialog"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;!-- dialog body --&gt;
+            &lt;div class="modal-body"&gt;
+                &lt;button type="button" class="close" data-dismiss="modal"&gt;&amp;times;&lt;/button&gt;
+                Hello world!
+            &lt;/div&gt;
+            &lt;!-- dialog buttons --&gt;
+            &lt;div class="modal-footer"&gt;&lt;button type="button" class="btn btn-primary"&gt;OK&lt;/button&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        
+&lt;!-- sometime later, probably inside your on load event callback --&gt;
+&lt;script&gt;
+    $("#myModal").on("show", function() {    // wire up the OK button to dismiss the modal when shown
+        $("#myModal a.btn").on("click", function(e) {
+            console.log("button pressed");   // just as an example...
+            $("#myModal").modal('hide');     // dismiss the dialog
+        });
+    });
+        
+    $("#myModal").on("hide", function() {    // remove the event listeners when the dialog is dismissed
+        $("#myModal a.btn").off("click");
+    });
+            
+    $("#myModal").on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
+        $("#myModal").remove();
+    });
+            
+    $("#myModal").modal({                    // wire up the actual modal functionality and show the dialog
+        "backdrop"  : "static",
+        "keyboard"  : true,
+        "show"      : true                     // ensure the modal is shown immediately
+    });
+&lt;/script&gt;</code></pre>
+                            <p>
+                                Each Bootbox function calls a fourth public function, <code>dialog</code>,
+                                which you can use to create your own custom dialogs. See the <a href="./documentation.html">Documentation</a>
+                                for usage and to learn which options are available for each function.
+                            </p>
+                        </section>
+
+                        <section class="bb-section">
+                            <header class="section-header my-5">
+                                <h2>Ready To Get Started?</h2>
+                            </header>
+                            <p>
+                                Head on over to the <a href="./getting-started.html">Getting Started</a> page, where you'll find the information
+                                you need to start using Bootbox, including the versions of Bootstrap we support and options for adding
+                                Bootbox to your project.
+                            </p>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="text-center">
+                Bootbox.js &copy; 2011 - 2019 <a href="http://paynedigital.com/about" class="text-bb-brand">Nick Payne</a>. 
+                Syntax highlighting by <a href="https://prismjs.com/" class="text-bb-brand">Prism.js</a>.
+                Site theme: <a href="https://themes.3rdwavemedia.com/demo/prettydocs/" class="text-3wm-brand">PrettyDocs</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="btn btn-circle btn-primary scroll-top"><i class="fa fa-angle-up"></i></button>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="./assets/js/page.js"></script>
+    <script src="./assets/js/bootbox.all.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

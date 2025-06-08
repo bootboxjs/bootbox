@@ -1,0 +1,100 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="confirm" class="topic-anchor">Confirm</h2>
+        <pre class="h5 py-3 px-4 mb-2 bg-light border"><code>bootbox.confirm(<span class="text-primary">string|element</span> <b>message</b>, <span class="text-info">function</span> <b>callback</b>);</code></pre>
+    </header>
+    <div class="topic-content">
+        <p class="mb-2">
+            A confirm dialog with a cancel and a confirm button. Pressing the <kbd>ESC</kbd> key or clicking close (<i class="fas fa-times"></i>) dismisses
+            the dialog and invokes the callback as if the user had clicked the Cancel button.
+        </p>
+        <p class="bs-callout bs-callout-danger mb-4">
+            <i class="fas fa-exclamation-triangle"></i> Confirm dialogs require a callback function.
+        </p>
+    
+        <div class="topic-subsection">
+            <h3 id="confirm-basic-usage" class="topic-subsection-header topic-anchor">Basic Usage</h3>
+            <div class="topic-subsection-content">
+                <p>
+                    The simplest method of using the <samp>bootbox.confirm()</samp> dialog requires the text of the message you wish
+                    to show and a callback to handle the user's selection. The callback function is passed a value of <samp>true</samp>
+                    or <samp>false</samp>, depending on which button the user pressed.
+                </p>
+                <div class="bb-example bb-example-modal">
+                    <pre class="language-js line-numbers"><code>bootbox.confirm('Are you sure?', function (result) {
+    /* your callback code */ 
+});</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-4" class="topic-anchor">Example <b>bb.4</b></figcaption>
+                        <div class="bb-modal-dialog">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-header border-0">
+                                    <h5 class="bb-modal-title"></h5>
+                                    <button class="bootbox-close-button close btn-close" type="button"></button>
+                                </div>
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">Are you sure?</div>
+                                </div>
+                                <div class="bb-modal-footer">
+                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="button">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <div class="bs-callout bs-callout-danger mb-4">
+                    <h5 id="confirm-callout-callback" class="topic-anchor callout-heading"><i class="fas fa-exclamation-triangle"></i> Please note:</h5>
+                    <p>
+                        <b>All</b> Bootstrap modals, unlike native alerts, confirms, or prompts, are <a href="#note-non-blocking"><b>non-blocking</b></a>.
+                        Keep that in mind when using the <samp>bootbox.confirm()</samp> dialog, as it is <b>not</b> a drop-in replacement for native confirm dialogs.
+                        Any code that depends on the user&apos;s selection <b>must</b> be placed in the callback function.
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="topic-subsection">
+            <h3 id="confirm-advanced-usage" class="topic-subsection-header topic-anchor">Advanced Usage</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 bg-light border"><code>bootbox.confirm(<span class="text-primary">object</span> <b>options</b>);</code></pre>
+                <p class="mb-2">
+                    Confirm dialogs can be customized, using the <a href="#dialog-options">options described below</a>. Here&apos;s an example of a small 
+                    confirm, using <samp>size</samp>:
+                </p>
+                <div class="bb-example bb-example-modal">
+                    <pre class="language-js line-numbers"><code>bootbox.confirm({ 
+    size: 'small',
+    message: 'Are you sure?',
+    callback: function (result) { 
+        /* result is a boolean; true = OK, false = Cancel*/ 
+    }
+});</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-5" class="topic-anchor">Example <b>bb.5</b></figcaption>
+                        <div class="bb-modal-dialog bb-modal-sm">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-header border-0">
+                                    <h5 class="bb-modal-title"></h5>
+                                    <button class="bootbox-close-button close btn-close" type="button"></button>
+                                </div>
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">Are you sure?</div>
+                                </div>
+                                <div class="bb-modal-footer">
+                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="button">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <p>
+                    <b>Requires Bootstrap 3.1.0 or newer</b>.
+                </p>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="section-divider" />

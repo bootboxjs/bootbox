@@ -1,0 +1,29 @@
+<article class="topic">
+    <header class="topic-header">   
+        <h4 id="non-blocking" class="topic-anchor font-weight-bold mb-4">
+            <b class="text-primary">Q1:</b> Native dialogs block the execution thread. Why doesn&apos;t Bootbox?
+        </h4>
+    </header>
+    <div class="topic-content">
+        <p>
+            <b class="text-brand font-weight-bold h4">A:</b> The simplest answer is: <em>because Bootstrap modals don't</em>.
+        </p>
+        <p>
+            Bootbox is primarily an engine for generating dynamic markup on which Bootstrap&apos;s <samp>modal()</samp> function can be 
+            called. <b>Keep this is mind:</b> Bootstrap modals are really just positioned <samp>&lt;div&gt;</samp> elements.
+        </p>
+        <p>
+            Additionally, the <samp>modal()</samp> function is an asynchronous function, since JavaScript didn&apos;t really provide 
+            <q class="font-italic">wait until this thing is done</q> functionality in versions prior to ES7 (with async/await). 
+            As of version 5, Bootstrap doesn&apos;t use async/await (nor does Bootbox) or Promises, so Bootbox uses a "callback" pattern 
+            to setup code to execute when the modal has been dismissed.
+        </p>
+        <p>
+            There is a (relatively) new element, <samp>&lt;dialog&gt;</samp> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog" target="_blank">(MDN)</a>,
+            which <em>is</em> able to thread-block; it&apos;s basically a standardized version of an interactive modal element which can be styled.
+            Until Bootstrap makes the switch (if ever), remember to use callbacks with your modals.
+        </p>
+    </div>
+</article>
+
+<hr class="topic-divider" />

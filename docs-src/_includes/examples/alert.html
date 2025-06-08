@@ -1,0 +1,157 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="alert" class="topic-anchor">
+            Alert
+        </h2>
+        <p class="mb-3 py-2 content-toggle d-flex flex-row">
+            <span>
+                <a href="{{ 'documentation' | absolute_url }}#alert">Documentation</a>
+            </span>
+            <span>
+                <a href="#" data-bs-toggle="collapse" data-bs-target="#alert-examples" aria-expanded="false" aria-controls="alert-examples">Show / Hide</a>
+            </span>
+        </p>
+    </header>
+    <div class="topic-content">
+        <div id="alert-examples" class="collapse show">
+            <div>
+                <dl class="bb-examples-list">
+                    <dt id="alert-basic" class="bb-anchor h5">Basic usage</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-default">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.alert('This is the default alert!');</code></pre>
+                    </dd>
+                    <dt id="alert-basic-callback" class="bb-anchor h5">Basic usage, with callback</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-callback">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.alert('This is an alert with a callback!', function (){ 
+    console.log('This was logged in the callback!'); 
+});</code></pre>
+                    </dd>
+                    <dt id="alert-html-callback" class="bb-anchor h5">Basic usage, using HTML element, with callback</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-html-callback">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>let template = $('#alert-message-template');
+                            
+bootbox.alert(template, function () {
+    console.log('This was logged in the callback!');
+});</code></pre>
+                    </dd>
+                    <dt id="alert-basic-options" class="bb-anchor h5">Basic usage, using options object</dt>
+                    <dd class="bb-example">
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-options">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.alert({
+    message: 'This is an alert with a callback!',
+    callback: function () {
+        console.log('This was logged in the callback!');
+    }
+});</code></pre>
+                    </dd>
+                    <dt id="alert-small-size" class="bb-anchor h5">Small dialog</dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-small">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.alert({
+    message: 'This is the small alert!',
+    size: 'small' /* or 'sm' */
+});</code></pre>
+                        <p>
+                            <i class="fa fa-info-circle text-danger"></i> Requires Bootstrap <b>3.1.0</b> or newer.
+                        </p>
+                    </dd>
+                    <dt id="alert-large-size" class="bb-anchor h5">Large dialog</dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-large">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.alert({
+    message: 'This is the large alert!',
+    size: 'large' /* or 'lg' */
+});</code></pre>
+                        <p>
+                            <i class="fa fa-info-circle text-danger"></i> Requires Bootstrap <b>3.1.0</b> or newer.
+                        </p>
+                    </dd>
+                    <dt id="alert-extra-large-size" class="bb-anchor h5">Extra-large dialog</dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-extra-large">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.alert({
+    message: 'This is the extra-large alert!',
+    size: 'extra-large' /* or 'xl' */
+});</code></pre>
+                        <p>
+                            <i class="fa fa-info-circle text-danger"></i> Requires Bootstrap <b>4.2.0</b> or newer.
+                        </p>
+                    </dd>
+                    <dt id="alert-custom-class" class="bb-anchor h5">
+                        Custom CSS class (using <a href="https://daneden.github.io/animate.css/">Animate.css</a>)
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-custom-class">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.alert({
+    message: 'This is an alert with Animation.css classes!',
+    className: 'rubberBand animated'
+});</code></pre>
+                    </dd>
+                    <dt id="alert-dismiss-on-click" class="bb-anchor h5">
+                        Dismiss with overlay click
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-overlay-click">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.alert({
+    message: 'This alert can be dismissed by clicking on the background!',
+    backdrop: true
+});</code></pre>
+                    </dd>
+                    <dt id="alert-locale" class="bb-anchor h5">
+                        Using a locale
+                    </dt>
+                    <dd class="bb-example">
+                        <p class="text-sm">
+                            Also applies to: <b>Confirm</b>, <b>Prompt</b>, <b>Custom</b>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-locale">Run example</button>
+                        </p>
+                        <pre class="language-js line-numbers"><code>bootbox.alert({
+    message: 'This alert uses the Arabic locale!',
+    locale: 'ar'
+});</code></pre>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="section-divider" />

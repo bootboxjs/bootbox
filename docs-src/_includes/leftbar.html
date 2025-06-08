@@ -1,0 +1,135 @@
+<div class="col-md-3 col-xl-3 d-none d-sm-block">
+    <nav id="sidebar" class="sidebar-wrapper py-5">
+        <div class="sidebar-content">
+            <!-- sidebar-search  -->
+            <div class="sidebar-search mb-4">
+                <form id="search-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control search-menu" placeholder="Search..." id="lunr-search" name="q" maxlength="255" />
+                    </div>
+                    <p class="mb-0 powered-by"><small>Powered by <a href="https://lunrjs.com/" class="lunr-btn" target="_blank">lunr.js</a></small></p>
+                </form>
+            </div>   
+            <!-- sidebar-menu  -->
+            <div class="sidebar-item sidebar-menu">
+                <ul class="nav flex-column">
+                    <li class="nav-item {% if page.pageKey == 'index' %}active{% endif %}">
+                        <a href="{{ '/' | absolute_url }}" class="nav-link page-link">
+                            <i class="fas fa-fw fa-home"></i>
+                            <span class="menu-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item sidebar-dropdown {% if page.pageKey == 'getting-started' %}active open{% endif %}">
+                        <a href="{{ 'getting-started' | absolute_url }}" class="nav-link page-link">
+                            <i class="fas fa-fw fa-code"></i>
+                            <span class="menu-text">Getting Started</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'getting-started' | absolute_url }}">Introduction</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'getting-started' | absolute_url }}#download">Download / Install</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'getting-started' | absolute_url }}#dependencies">Dependencies</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'getting-started' | absolute_url }}#usage-instructions">Usage Instructions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item sidebar-dropdown {% if page.pageKey == 'examples' %}active open{% endif %}">
+                        <a href="{{ 'examples' | absolute_url }}" class="nav-link page-link">
+                            <i class="far fa-fw fa-file-code"></i>
+                            <span class="menu-text">Examples</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'examples' | absolute_url }}">Overview</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'examples' | absolute_url }}#alert">Alert</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'examples' | absolute_url }}#confirm">Confirm</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'examples' | absolute_url }}#prompt">Prompt</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'examples' | absolute_url }}#dialog">Dialog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item sidebar-dropdown {% if page.pageKey == 'documentation' %}active open{% endif %}">
+                        <a href="{{ 'documentation' | absolute_url }}" class="nav-link page-link">
+                            <i class="far fa-fw fa-file-alt"></i>
+                            <span class="menu-text">Documentation</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}">Overview</a>
+                                </li>
+                            </ul>
+                            <h5 class="header-menu">
+                                <span>Dialogs</span>
+                            </h5>
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#alert">Alert</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#confirm">Confirm</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#prompt">Prompt</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#dialog">Dialog</a>
+                                </li>
+                            </ul>
+                            <h5 class="header-menu">
+                                <span>Configuration</span>
+                            </h5>
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#dialog-options">Options</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#locales">Locales</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#jquery-functions">Chaining jQuery
+                                        Functions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#instance-functions">Instance
+                                        Functions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#global-functions">Global Functions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ 'documentation' | absolute_url }}#notes">Notes</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item {% if page.pageKey == 'faq' %}active{% endif %}">
+                        <a href="{{ 'faq' | absolute_url }}" class="nav-link page-link">
+                            <i class="fas fa-fw fa-question-circle"></i>
+                            <span class="menu-text">FAQ / Issues</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- sidebar-menu  -->
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,138 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="alert" class="topic-anchor">Alert</h2>
+        <pre class="h5 py-3 px-4 mb-4 border bg-light"><code>bootbox.alert(<span class="text-primary">string|element</span> <b>message</b>, [<span class="text-info">function</span> <b>callback</b>]);</code></pre>
+    </header>
+    <div class="topic-content">
+        <p class="mb-2">
+            A simple alert dialog with a single button. Pressing the <kbd aria-label="escape">ESC</kbd> key or clicking
+            the close button (<i class="fas fa-times"></i>) dismisses the dialog.
+        </p>
+    
+        <div class="topic-subsection">
+            <h3 id="alert-basic-usage" class="topic-subsection-header topic-anchor">Basic Usage</h3>
+            <div class="topic-subsection-content">
+                <p>
+                    This is the simplest usage of Bootbox, requiring only the text of the message you wish to show.
+                </p>
+                <div class="bb-example bb-example-modal">
+                    <pre class="language-js line-numbers"><code>bootbox.alert('Your message here&hellip;');</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-1" class="topic-anchor">Example <b>bb.1</b></figcaption>
+                        <div class="bb-modal-dialog">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-header border-0">
+                                    <h5 class="bb-modal-title"></h5>
+                                    <button class="bootbox-close-button close btn-close" type="button"></button>
+                                </div>
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">Your message here&hellip;</div>
+                                </div>
+                                <div class="bb-modal-footer">
+                                    <button class="btn btn-primary" type="button">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <p>
+                    If you have code that should not be evaluated until the user has dismissed the alert
+                    (see <a href="#note-non-blocking">Bootbox Limitations</a> below), call it within the callback function:
+                </p>
+                <pre class="language-js line-numbers mb-4"><code>bootbox.alert('Your message here&hellip;', function () {
+    /* your callback code */ 
+});</code></pre>
+                <h4 id="alert-formatted-text" class="topic-anchor">Formatted text</h4>
+                <p>Your message can also contain HTML. <sup><a href="#note-html"><i class="fas fa-exclamation-triangle text-danger"></i></a></sup></p>
+                <div class="bb-example bb-example-modal">
+                    <pre class="language-js line-numbers"><code>bootbox.alert('Your message &lt;b&gt;here&hellip;&lt;/b&gt;');</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-2" class="topic-anchor">Example <b>bb.2</b></figcaption>
+                        <div class="bb-modal-dialog">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-header border-0">
+                                    <h5 class="bb-modal-title"></h5>
+                                    <button class="bootbox-close-button close btn-close" type="button"></button>
+                                </div>
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">Your message <b>here&hellip;</b></div>
+                                </div>
+                                <div class="bb-modal-footer">
+                                    <button class="btn btn-primary" type="button">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <p>You can also pass a reference to a jQuery-selected element. <sup><a href="#note-html"><i class="fas fa-exclamation-triangle text-danger"></i></a></sup></p>
+                <div class="bb-example bb-example-modal">
+                    <pre class="language-html line-numbers"><code>&lt;div id="message-template"&gt;Your message &lt;b&gt;here…&lt;/b&gt;&lt;/div&gt;
+&lt;script&gt;
+    let template = $('#message-template');
+    bootbox.alert(template);
+&lt;/script&gt</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-2b" class="topic-anchor">Example <b>bb.2b</b></figcaption>
+                        <div class="bb-modal-dialog">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-header border-0">
+                                    <h5 class="bb-modal-title"></h5>
+                                    <button class="bootbox-close-button close btn-close" type="button"></button>
+                                </div>
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">Your message <b>here&hellip;</b></div>
+                                </div>
+                                <div class="bb-modal-footer">
+                                    <button class="btn btn-primary" type="button">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    
+        <div class="topic-subsection">
+            <h3 id="alert-advanced-usage" class="topic-subsection-header topic-anchor">Advanced Usage</h3>
+            <div class="topic-subsection-content">
+                <pre class="h5 py-3 px-4 mb-4 border bg-light"><code>bootbox.alert(<span class="text-primary">object</span> <b>options</b>);</code></pre>
+                <p class="mb-2">
+                    Alerts can be customized, using the <a href="#dialog-options">options described below</a>. Here&apos;s an example of 
+                    a small alert, using <samp>size</samp>:
+                </p>
+                <div class="bb-example bb-example-modal">
+                    <pre class="language-js line-numbers"><code>bootbox.alert({
+    size: 'small',
+    title: 'Your Title',
+    message: 'Your message here&hellip;',
+    callback: function () { 
+        /* your callback code */ 
+    }
+});</code></pre>
+                    <figure>
+                        <figcaption id="example-bb-3" class="topic-anchor">Example <b>bb.3</b></figcaption>
+                        <div class="bb-modal-dialog bb-modal-sm">
+                            <div class="bb-modal-content">
+                                <div class="bb-modal-header">
+                                    <h5 class="bb-modal-title">Your Title</h5>
+                                    <button class="bootbox-close-button close btn-close" type="button"></button>
+                                </div>
+                                <div class="bb-modal-body">
+                                    <div class="bootbox-body">Your message here&hellip;</div>
+                                </div>
+                                <div class="bb-modal-footer">
+                                    <button class="btn btn-primary" type="button">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <p>
+                    <b>Requires Bootstrap 3.1.0 or newer</b>.
+                </p>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr class="section-divider" />

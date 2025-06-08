@@ -1,0 +1,569 @@
+<article class="topic">
+    <header class="topic-header">
+        <h2 id="dialog-options" class="topic-anchor">Dialog Options</h2>
+    </header>
+    <div class="topic-content">
+        <p>
+            The options shown below apply to all Bootbox dialogs. Options which are specific to prompt 
+            dialogs can be found <a href="#prompt-options">above</a>.
+        </p>
+        <dl class="options-list">
+            <dt id="option-message" class="topic-subsection-header topic-anchor h4">message</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>String</code><code>Element</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p class="mb-2">
+                    <span class="badge badge-danger p-2">
+                        Required for alert, confirm, and custom dialogs
+                    </span>
+                </p>
+                <p>
+                    Text (or markup <sup><a href="#note-html"><i class="fas fa-exclamation-triangle text-danger"></i></a></sup>)
+                    displayed in the dialog.
+                </p>
+            </dd>
+    
+            <dt id="option-title" class="topic-subsection-header topic-anchor h4">title</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>String</code><code>Element</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p class="mb-2">
+                    <span class="badge badge-danger p-2">Required for prompt</span>
+                </p>
+                <p>
+                    Adds a header to the dialog and places this text
+                    (or markup <sup><a href="#note-html"><i class="fas fa-exclamation-triangle text-danger"></i></a></sup>)
+                    in an <samp>&lt;h5&gt;</samp> (Bootstrap 4) or <samp>&lt;h4&gt;</samp> (Bootstrap 3 and under) element.
+                </p>
+            </dd>
+    
+            <dt id="option-callback" class="topic-subsection-header topic-anchor h4">callback</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Function</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p class="mb-2">
+                    <span class="badge badge-danger p-2">
+                        Required for confirm and prompt
+                    </span>
+                    <span class="badge badge-info p-2">
+                        Not called for custom dialogs
+                    </span>
+                </p>
+                <p>
+                    An alert callback should not supply an argument; it will be ignored if it does:
+                </p>
+                <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    message: "I'm an alert!", 
+    callback: function () {
+    } 
+});</code></pre>
+                <p>
+                    Confirm and prompt callbacks <b>must</b> supply an argument for the result; for confirm,
+                    it will be a
+                    <samp>true</samp> or <samp>false</samp> value, while the prompt result will hold the
+                    value(s) entered by the user:
+                </p>
+                <pre class="language-js line-numbers"><code>bootbox.confirm('Are you sure?', function (result) {
+    // result will be true or false
+});</code></pre>
+                <p>
+                    or
+                </p>
+                <pre class="language-js line-numbers"><code>bootbox.prompt('What is your name?', function (result) {
+    if (result === null) {
+        // Prompt dismissed
+    } 
+    else {
+        // result has a value
+    }
+});</code></pre>
+                <p>
+                    For any callback, if you do not want the dialog to close when the callback completes, add <samp>return false;</samp>
+                    as the last line of the callback. You will then need to manually dismiss the dialog using
+                    the <samp>modal()</samp> function or <samp>bootbox.hideAll()</samp>:
+                </p>
+                <pre class="language-js line-numbers"><code>let dialog = bootbox.prompt('What is your name?', function (result) {
+    if (result === null) {
+        // Prompt dismissed
+    } 
+    else {
+        // result has a value
+        dialog.modal('hide');
+    } 
+
+    return false;
+});</code></pre>
+            </dd>
+    
+            <dt id="option-onEscape" class="topic-subsection-header topic-anchor h4">onEscape</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Boolean</code><code>Function</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span>
+                    <code>true</code> for alert, confirm, and prompt; <code>null</code> for custom dialogs.
+                </p>
+                <p>
+                    Allows the user to dismiss the dialog by hitting <kbd>ESC</kbd>, which will invoke this
+                    function.
+                </p>
+                <h6>Options:</h6>
+                <table class="table table-condensed">
+                    <colgroup>
+                        <col style="width: 150px;" />
+                        <col />
+                    </colgroup>
+                    <tr>
+                        <td>Undefined (<code>null</code>)</td>
+                        <td>No callback function has been provided.</td>
+                    </tr>
+                    <tr>
+                        <td><code>true</code></td>
+                        <td>Hitting the <kbd>ESC</kbd> dismisses the dialog.</td>
+                    </tr>
+                    <tr>
+                        <td><code>false</code></td>
+                        <td>Hitting the <kbd>ESC</kbd> does <b>not</b> dismiss the dialog.</td>
+                    </tr>
+                </table>
+            </dd>
+    
+            <dt id="option-onShow" class="topic-subsection-header topic-anchor h4">onShow</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Function</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p>
+                    Use <samp>onShow</samp> to bind a callback function to the <samp>show.bs.modal</samp> event, which is
+                    called just <em>before</em> the modal is shown. See the
+                    <a href="https://getbootstrap.com/docs/5.3/components/modal/#events">Bootstrap docs</a> for more information.
+                </p>
+                <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    message: "I'm an alert!", 
+    onShow: function (e) {
+        /* e is the show.bs.modal event */
+    } 
+})</code></pre>
+                <p>
+                    <b>Requires Bootbox 5.4.0 or newer</b>.
+                </p>
+            </dd>
+    
+            <dt id="option-onShown" class="topic-subsection-header topic-anchor h4">onShown</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Function</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p>
+                    Use <samp>onShown</samp> to bind a callback function to the <samp>shown.bs.modal</samp> event, which is
+                    called just <em>after</em> the modal is shown. See the
+                    <a href="https://getbootstrap.com/docs/5.3/components/modal/#events">Bootstrap docs</a> for more information.
+                </p>
+                <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    message: "I'm an alert!", 
+    onShown: function (e) {
+        /* e is the shown.bs.modal event */
+    } 
+})</code></pre>
+                <p>
+                    <b>Requires Bootbox 5.4.0 or newer</b>.
+                </p>
+            </dd>
+    
+            <dt id="option-onHide" class="topic-subsection-header topic-anchor h4">onHide</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Function</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p>
+                    Use <samp>onHide</samp> to bind a callback function to the <samp>hide.bs.modal</samp> event, which is
+                    called just <em>before</em> the modal is hidden. See the
+                    <a href="https://getbootstrap.com/docs/5.3/components/modal/#events">Bootstrap docs</a> for more information.
+                </p>
+                <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    message: "I'm an alert!", 
+    onHide: function (e) {
+        /* e is the hide.bs.modal event */
+    } 
+})</code></pre>
+                <p>
+                    <b>Requires Bootbox 5.4.0 or newer</b>.
+                </p>
+            </dd>
+    
+            <dt id="option-onHidden" class="topic-subsection-header topic-anchor h4">onHidden</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Function</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p>
+                    Use <samp>onHidden</samp> to bind a callback function to the <samp>hidden.bs.modal</samp> event, which is
+                    called just <em>after</em> the modal is hidden. See the
+                    <a href="https://getbootstrap.com/docs/5.3/components/modal/#events">Bootstrap docs</a> for more information.
+                </p>
+                <pre class="language-js line-numbers"><code>bootbox.alert({ 
+    message: "I'm an alert!", 
+    onHidden: function (e) {
+        /* e is the hidden.bs.modal event */
+    } 
+})</code></pre>
+                <p>
+                    <b>Requires Bootbox 5.4.0 or newer</b>.
+                </p>
+            </dd>
+    
+            <dt id="option-show" class="topic-subsection-header topic-anchor h4">show</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Boolean</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>true</code>
+                </p>
+                <p>Whether the dialog should be shown immediately.</p>
+            </dd>
+    
+            <dt id="option-backdrop" class="topic-subsection-header topic-anchor h4">backdrop</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Boolean</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p>
+                    Whether the dialog should be have a backdrop or not. Also determines whether clicking on the backdrop dismisses the modal.
+                </p>
+                <h6>Options:</h6>
+                <table class="table table-condensed">
+                    <colgroup>
+                        <col style="width: 150px;" />
+                        <col />
+                    </colgroup>
+                    <tr>
+                        <td>Undefined (<code>null</code>)</td>
+                        <td>The backdrop is displayed, but clicking on it has no effect.</td>
+                    </tr>
+                    <tr>
+                        <td><code>true</code> * </td>
+                        <td>The backdrop is displayed, and clicking on it dismisses the dialog.</td>
+                    </tr>
+                    <tr>
+                        <td><code>false</code></td>
+                        <td>The backdrop is not displayed.</td>
+                    </tr>
+                </table>
+                <p class="note">
+                    <b>*</b> When this value is set to <samp>true</samp>, the dialog will only dismiss
+                    when <samp>onEscape</samp> is also set to <samp>true</samp> or some callback function.
+                </p>
+            </dd>
+    
+            <dt id="option-closeButton" class="topic-subsection-header topic-anchor h4">closeButton</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Boolean</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>true</code>
+                </p>
+                <p>
+                    Whether the dialog should have a close button (<i class="fas fa-times"></i>) or not.
+                </p>
+            </dd>
+    
+            <dt id="option-animate" class="topic-subsection-header topic-anchor h4">animate</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Boolean</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>true</code>
+                </p>
+                <p>
+                    Animate the dialog in and out (requires a browser which <a href="https://caniuse.com/#search=css-animation">supports CSS animations</a>).
+                </p>
+            </dd>
+    
+            <dt id="option-className" class="topic-subsection-header topic-anchor h4">className</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>String</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p>
+                    An additional class to apply to the dialog wrapper.
+                </p>
+            </dd>
+    
+            <dt id="option-size" class="topic-subsection-header topic-anchor h4">size</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>String</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p>
+                    Adds the relevant Bootstrap modal size class to the dialog wrapper. Valid values are:
+                </p>
+                <table class="table">
+                    <tr>
+                        <td style="width: 10rem;">Small</td>
+                        <td><code>'small'</code>, <code>'sm'</code></td>
+                    </tr>
+                    <tr>
+                        <td>Large</td>
+                        <td><code>'large'</code>, <code>'lg'</code></td>
+                    </tr>
+                    <tr>
+                        <td>Extra large</td>
+                        <td><code>'extra-large'</code>, <code>'xl'</code></td>
+                    </tr>
+                </table>
+                <p>
+                    <b>Requires Bootstrap 3.1.0 or newer</b>. Extra-large requires Bootstrap 4.2.0 or newer.
+                </p>
+            </dd>
+    
+            <dt id="option-locale" class="topic-subsection-header topic-anchor h4">locale</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>String</code></span>
+                </p>
+                <p>
+                    Sets the locale to use <em>per dialog</em> &mdash; this option does not override the
+                    default locale. Other dialogs will still use the default locale.
+                </p>
+                <p>
+                    The locale settings are used to translate the three standard button labels: OK, CONFIRM, CANCEL
+                </p>
+                <p>
+                    See the <a href="#locales-note">note on locales</a> below.
+                </p>
+            </dd>
+    
+            <dt id="option-buttons" class="topic-subsection-header topic-anchor h4">buttons</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Object</code></span>
+                </p>
+                <p>
+                    Buttons are defined as JavaScript objects. The minimum shortform requirement to define a button is:
+                </p>
+                <pre class="language-js line-numbers"><code>'Your button text': function() { }</code></pre>
+                <p>
+                    The complete definition of a button object is:
+                </p>
+                <pre class="language-js line-numbers"><code>buttonName : {
+    id: null,
+    label: 'Your button text',
+    className: 'some-class',
+    callback: function () { 
+    }
+}</code></pre>
+                <p><code>id</code> is an optional property and can be omitted.</p>
+                <h6>Options:</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <colgroup>
+                            <col style="width: 75px;" />
+                            <col />
+                        </colgroup>
+                        <tr>
+                            <td>alert</td>
+                            <td>
+                                <code>ok</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>confirm</td>
+                            <td>
+                                <code>cancel, confirm</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>prompt</td>
+                            <td>
+                                <code>cancel, confirm</code>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    Each of the available button options can be overridden to use custom content
+                    (text or HTML <sup><a href="#note-html"><i class="fas fa-exclamation-triangle text-danger"></i></a></sup>)
+                    and CSS styles. For example:
+                </p>
+                <pre class="language-js line-numbers"><code>bootbox.confirm({
+    message: 'This is a confirm with custom button text and color! Do you like it?',
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+        // ...
+    }
+});</code></pre>
+                <p>
+                    You <b>cannot</b> override the callbacks for the alert, confirm, and prompt dialog&apos;s
+                    buttons.
+                </p>
+            </dd>
+    
+            <dt id="option-show" class="topic-subsection-header topic-anchor h4">swapButtonOrder</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Boolean</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>false</code>
+                </p>
+                <p>
+                    Flips the order in which the buttons are rendered, from cancel/confirm to confirm/cancel.
+                </p>
+            </dd>
+    
+            <dt id="option-centerVertical" class="topic-subsection-header topic-anchor h4">centerVertical</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Boolean</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>false</code>
+                </p>
+                <p>
+                    If <samp>true</samp>, the <a href="https://getbootstrap.com/docs/5.3/components/modal/#vertically-centered">modal-dialog-centered</a>
+                    class will be added to the dialog wrapper.
+                </p>
+                <p>
+                    <b>Requires Bootstrap 4.1.0 or newer</b>.
+                </p>
+            </dd>
+    
+            <dt id="option-scrollable" class="topic-subsection-header topic-anchor h4">scrollable</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Boolean</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>false</code>
+                </p>
+                <p>
+                    If <samp>true</samp>, the <a href="https://getbootstrap.com/docs/5.3/components/modal/#scrolling-long-content">modal-dialog-scrollable</a>
+                    class will be added to the dialog wrapper. Enable this option to have the content of long modals automatically scroll.
+                </p>
+                <p>
+                    <b>Requires Bootstrap 4.3.0 or newer</b>.
+                </p>
+            </dd>
+    
+            <dt id="option-id" class="topic-subsection-header topic-anchor h4">id</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>String</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p>
+                    If not <code>null</code>, adds the <code>id</code> attribute to the outermost <code>div</code> (the <code>class="modal"</code> wrapper for each modal) 
+                    to the modal generated by Bootbox. Please note that we do not verify that the id is unique to the current DOM.
+                </p>
+                <p>
+                    <b>Requires Bootbox 6.0.0 or newer</b>.
+                </p>
+            </dd>
+    
+            <dt id="option-relatedTarget" class="topic-subsection-header topic-anchor h4">relatedTarget</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Element</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>null</code>
+                </p>
+                <p>
+                    If not <code>null</code>, includes the DOM element referenced by <code>relatedTarget</code> when calling <pre><code>modal('show')</code></pre> on 
+                    the Bootbox dialog.
+                </p>
+                <p>
+                    <b>Requires Bootbox 5.5.3 or newer</b>.
+                </p>
+            </dd>
+    
+            <dt id="option-reusable" class="topic-subsection-header topic-anchor h4">reusable</dt>
+            <dd class="topic-subsection-content">
+                <p class="mb-1">
+                    <span class="meta-info">Type:</span>
+                    <span class="meta-types"><code>Boolean</code></span>
+                </p>
+                <p class="mb-2">
+                    <span class="meta-info">Default:</span> <code>false</code>
+                </p>
+                <p>
+                    When set to <code>true</code>, the modal generated by Bootbox is not destroyed when dismissed.
+                </p>
+                <p>
+                    <b>Requires Bootbox 5.5.1 or newer</b>.
+                </p>
+            </dd>
+        </dl>
+    </div>
+</article>
+
+<hr class="section-divider" />
