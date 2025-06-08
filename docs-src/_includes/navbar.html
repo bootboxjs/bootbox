@@ -1,49 +1,41 @@
-<nav class="d-flex flex-row align-items-center p-2 border-bottom bg-white sticky-top">
-    <div class="">
-        <a id="toggle-sidebar" class="btn rounded-0 p-3" href="#">
-            <i class="fas fa-bars"></i>
+
+<nav id="main-navigation" class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ '/' | absolute_url }}">
+            <span class="text-brand d-block">bootbox<span class="text-white">.js</span></span>
         </a>
-    </div>
-    <div class="flex-fill">
-        <nav aria-label="breadcrumb" class="align-items-center">
-            <a href="./" class="text-no-decoration"><b class="text-brand">Bootbox.js</b></a> &mdash; alert, confirm, prompt, and flexible dialogs for the Bootstrap framework
-        </nav>
-    </div>
-    <div class="ms-auto text-nowrap me-2">          
-        <nav class="nav nav-navbar">
-            <a class="nav-item nav-link border-start border-end" href="./getting-started">
-                Getting Started
-            </a>
-            <a class="nav-item nav-link border-end" href="./examples">
-                Examples
-            </a>
-            <a class="nav-item nav-link border-end" href="./documentation">
-                Docs
-            </a>
-            <a class="nav-item nav-link border-end" href="./faq">
-                FAQs
-            </a>
-            <div class="nav-item dropdown border-end">
-                <a class="nav-link dropdown-toggle" href="#" id="revisions" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    v{{site.version}}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="revisions">
-                    <a class="dropdown-item active" href="./documentation">v{{site.version}}</a>
-                    {% for link in site.versions %}
-                    <a class="dropdown-item" href="{{link}}/documentation.html">{{link}}</a>
-                    {% endfor %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation-content" aria-controls="main-navigation-content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="main-navigation-content" class="collapse navbar-collapse">
+            <div class="nav navbar-nav ms-auto me-0">
+                <a class="nav-link {% if page.pageKey == 'getting-started' %}active{% endif %}" href="{{ 'getting-started' | absolute_url }}">Getting Started</a>
+                <a class="nav-link {% if page.pageKey == 'examples' %}active{% endif %}" href="{{ 'examples' | absolute_url }}">Examples</a>
+                <a class="nav-link {% if page.pageKey == 'documentation' %}active{% endif %}" href="{{ 'documentation' | absolute_url }}">Docs</a>
+                <a class="nav-link {% if page.pageKey == 'faq' %}active{% endif %}" href="{{ 'faq' | absolute_url }}">FAQs</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="revisions" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        v{{site.version}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="revisions">
+                        <a class="dropdown-item active" href="{{ 'documentation' | absolute_url }}">v{{site.version}}</a>
+                        {% for link in site.versions %}
+                        <a class="dropdown-item" href="{{ link | absolute_url }}">{{link}}</a>
+                        {% endfor %}
+                    </div>
                 </div>
-              </div>
-            <a class="nav-item nav-link text-dark border-end me-3" href="https://github.com/makeusabrew/bootbox">
-                <i class="fab fa-github"></i>
-                GitHub
-            </a>
-            <div class="form-inline">
-                <a class="btn btn-brand" href="https://github.com/makeusabrew/bootbox/releases/download/v{{site.version}}/bootbox.zip" id="download-bootbox">
-                    <i class="fas fa-download"></i>
-                    Download
+                <a class="nav-link me-2" href="https://github.com/bootboxjs/bootbox">
+                    <i class="fab fa-github"></i>
+                    GitHub
                 </a>
             </div>
-        </nav>
+        </div>
+        
+        <span class="navbar-form">
+            <a class="btn btn-light" href="https://github.com/bootboxjs/bootbox/releases/download/v{{site.version}}/bootbox.zip" id="download-bootbox">
+                <i class="fas fa-download"></i>
+                Download
+            </a>
+        </span>
     </div>
 </nav>

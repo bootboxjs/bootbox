@@ -6,23 +6,23 @@
     </header>
     <div class="topic-content">
         <p>
-            <b class="text-brand font-weight-bold h4">A:</b> That's&hellip; unfortunate.
+            <b class="text-brand font-weight-bold h4">A:</b> That&apos;s&hellip; unfortunate.
         </p>
         <p>
-            We're aware of at least one notice (via a <a href="https://hackerone.com/reports/508446">HackerOne issue</a>) on the npm package. Here's the gist: we use jQuery's
-            <a href="https://api.jquery.com/html/"><samp>.html()</samp></a> as part of the construction of our modals. Because
-            that process (in part) includes the values passed in via the <samp>title</samp> and <samp>message</samp> options, there's
-            a possible XSS vector there, as we <b>do not</b> sanitize the content you pass in for those options. That's how Bootbox has
-            always worked, and it's how we allow formatted messages in our dialogs, and is a key part of the custom <samp>dialog</samp>
+            We&apos;re aware of at least one notice (via a <a href="https://hackerone.com/reports/508446">HackerOne issue</a>) on the npm package. 
+            Here&apos;s the gist: we use jQuery&apos;s <a href="https://api.jquery.com/html/"><samp>.html()</samp></a> as part of the construction 
+            of our modals. Because that process (in part) includes the values passed in via the <samp>title</samp> and <samp>message</samp> options, 
+            there&apos;s a possible XSS vector there, as we <b>do not</b> sanitize the content you pass in for those options. That&apos;s how Bootbox 
+            has always worked, and it&apos;s how we allow formatted messages in our dialogs, and is a key part of the custom <samp>dialog</samp>
             function.
         </p>
         <p>
-            Sanitizing HTML properly is not a trivial enterprise. It's also out of scope for Bootbox. If you're using a UI framework, it probably
-            has a pretty good sanitizer tool built in. If not, there are a lot of existing libraries that you can pipeline into the
+            Sanitizing HTML properly is not a trivial enterprise. It&apos;s also out of scope for Bootbox. If you&apos;re using a UI framework, it 
+            probably has a pretty good sanitizer tool built in. If not, there are a lot of existing libraries that you can pipeline into the
             process of using Bootbox.
         </p>
         <p>
-            In summary: if you're using user-submitted content, <b>sanitize that content before passing it to Bootbox.</b>
+            In summary: if you&apos;re using user-submitted content, <b>sanitize that content before passing it to Bootbox.</b>
         </p>
     </div>
 </article>

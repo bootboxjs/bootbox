@@ -5,7 +5,7 @@
         </h2>
         <p class="mb-3 py-2 content-toggle d-flex flex-row">
             <span>
-                <a href="./documentation#alert">Documentation</a>
+                <a href="{{ 'documentation' | absolute_url }}#alert">Documentation</a>
             </span>
             <span>
                 <a href="#" data-bs-toggle="collapse" data-bs-target="#alert-examples" aria-expanded="false" aria-controls="alert-examples">Show / Hide</a>
@@ -21,14 +21,14 @@
                         <p>
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-default">Run example</button>
                         </p>
-                        <pre class="language-js line-numbers"><code>bootbox.alert("This is the default alert!");</code></pre>
+                        <pre class="language-js line-numbers"><code>bootbox.alert('This is the default alert!');</code></pre>
                     </dd>
                     <dt id="alert-basic-callback" class="bb-anchor h5">Basic usage, with callback</dt>
                     <dd class="bb-example">
                         <p>
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-callback">Run example</button>
                         </p>
-                        <pre class="language-js line-numbers"><code>bootbox.alert("This is an alert with a callback!", function(){ 
+                        <pre class="language-js line-numbers"><code>bootbox.alert('This is an alert with a callback!', function (){ 
     console.log('This was logged in the callback!'); 
 });</code></pre>
                     </dd>
@@ -49,7 +49,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-options">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is an alert with a callback!",
+    message: 'This is an alert with a callback!',
     callback: function () {
         console.log('This was logged in the callback!');
     }
@@ -64,7 +64,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-small">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is the small alert!",
+    message: 'This is the small alert!',
     size: 'small' /* or 'sm' */
 });</code></pre>
                         <p>
@@ -80,7 +80,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-large">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is the large alert!",
+    message: 'This is the large alert!',
     size: 'large' /* or 'lg' */
 });</code></pre>
                         <p>
@@ -96,7 +96,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-extra-large">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is the extra-large alert!",
+    message: 'This is the extra-large alert!',
     size: 'extra-large' /* or 'xl' */
 });</code></pre>
                         <p>
@@ -114,7 +114,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-custom-class">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is an alert with additional classes!",
+    message: 'This is an alert with Animation.css classes!',
     className: 'rubberBand animated'
 });</code></pre>
                     </dd>
@@ -129,7 +129,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-overlay-click">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This alert can be dismissed by clicking on the background!",
+    message: 'This alert can be dismissed by clicking on the background!',
     backdrop: true
 });</code></pre>
                     </dd>
@@ -144,7 +144,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-locale">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This alert uses the Arabic locale!",
+    message: 'This alert uses the Arabic locale!',
     locale: 'ar'
 });</code></pre>
                     </dd>

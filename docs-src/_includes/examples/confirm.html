@@ -5,7 +5,7 @@
         </h2>
         <p class="mb-3 py-2 content-toggle d-flex flex-row">
             <span>
-                <a href="./documentation#confirm">Documentation</a>
+                <a href="{{ 'documentation' | absolute_url }}#confirm">Documentation</a>
             </span>
             <span>
                 <a href="#" data-bs-toggle="collapse" data-bs-target="#confirm-examples" aria-expanded="false" aria-controls="confirm-examples">Show / Hide</a>
@@ -21,7 +21,7 @@
                         <p>
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-default">Run example</button>
                         </p>
-                        <pre class="language-js line-numbers"><code>bootbox.confirm("This is the default confirm!", function(result){ 
+                        <pre class="language-js line-numbers"><code>bootbox.confirm('This is the default confirm!', function (result){ 
     console.log('This was logged in the callback: ' + result); 
 });</code></pre>
                     </dd>
@@ -36,7 +36,7 @@
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-options">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.confirm({
-    message: "This is a confirm with custom button text and color! Do you like it?",
+    message: 'This is a confirm with custom button text and color! Do you like it?',
     buttons: {
         confirm: {
             label: 'Yes',
@@ -63,8 +63,8 @@
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-button-text">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.confirm({
-    title: "Destroy planet?",
-    message: "Do you want to activate the Deathstar now? This cannot be undone.",
+    title: 'Destroy planet?',
+    message: 'Do you want to activate the Deathstar now? This cannot be undone.',
     buttons: {
         cancel: {
             label: '&lt;i class="fa fa-times"&gt;&lt;/i&gt; Cancel'
@@ -95,7 +95,7 @@
                         <pre class="language-js line-numbers"><code>let locale = $('#choose-locale').val();
     
 bootbox.confirm({
-    message: "This confirm uses the selected locale. Were the labels what you expected?",
+    message: 'This confirm uses the selected locale. Were the labels what you expected?',
     locale: locale,
     callback: function (result) {
         console.log('This was logged in the callback: ' + result);

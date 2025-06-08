@@ -21,7 +21,7 @@
                     or <samp>false</samp>, depending on which button the user pressed.
                 </p>
                 <div class="bb-example bb-example-modal">
-                    <pre class="language-js line-numbers"><code>bootbox.confirm('Are you sure?', function(result){
+                    <pre class="language-js line-numbers"><code>bootbox.confirm('Are you sure?', function (result) {
     /* your callback code */ 
 });</code></pre>
                     <figure>
@@ -48,7 +48,7 @@
                     <p>
                         <b>All</b> Bootstrap modals, unlike native alerts, confirms, or prompts, are <a href="#note-non-blocking"><b>non-blocking</b></a>.
                         Keep that in mind when using the <samp>bootbox.confirm()</samp> dialog, as it is <b>not</b> a drop-in replacement for native confirm dialogs.
-                        Any code that depends on the user's selection <b>must</b> be placed in the callback function.
+                        Any code that depends on the user&apos;s selection <b>must</b> be placed in the callback function.
                     </p>
                 </div>
             </div>
@@ -59,14 +59,16 @@
             <div class="topic-subsection-content">
                 <pre class="h5 py-3 px-4 mb-4 bg-light border"><code>bootbox.confirm(<span class="text-primary">object</span> <b>options</b>);</code></pre>
                 <p class="mb-2">
-                    Confirm dialogs can be customized, using the <a href="#dialog-options">options described below</a>. Here's an example of a small 
+                    Confirm dialogs can be customized, using the <a href="#dialog-options">options described below</a>. Here&apos;s an example of a small 
                     confirm, using <samp>size</samp>:
                 </p>
                 <div class="bb-example bb-example-modal">
                     <pre class="language-js line-numbers"><code>bootbox.confirm({ 
     size: 'small',
     message: 'Are you sure?',
-    callback: function(result){ /* result is a boolean; true = OK, false = Cancel*/ }
+    callback: function (result) { 
+        /* result is a boolean; true = OK, false = Cancel*/ 
+    }
 });</code></pre>
                     <figure>
                         <figcaption id="example-bb-5" class="topic-anchor">Example <b>bb.5</b></figcaption>

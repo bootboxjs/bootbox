@@ -39,7 +39,7 @@
                     If you have code that should not be evaluated until the user has dismissed the alert
                     (see <a href="#note-non-blocking">Bootbox Limitations</a> below), call it within the callback function:
                 </p>
-                <pre class="language-js line-numbers mb-4"><code>bootbox.alert('Your message here&hellip;', function(){
+                <pre class="language-js line-numbers mb-4"><code>bootbox.alert('Your message here&hellip;', function () {
     /* your callback code */ 
 });</code></pre>
                 <h4 id="alert-formatted-text" class="topic-anchor">Formatted text</h4>
@@ -97,7 +97,7 @@
             <div class="topic-subsection-content">
                 <pre class="h5 py-3 px-4 mb-4 border bg-light"><code>bootbox.alert(<span class="text-primary">object</span> <b>options</b>);</code></pre>
                 <p class="mb-2">
-                    Alerts can be customized, using the <a href="#dialog-options">options described below</a>. Here's an example of 
+                    Alerts can be customized, using the <a href="#dialog-options">options described below</a>. Here&apos;s an example of 
                     a small alert, using <samp>size</samp>:
                 </p>
                 <div class="bb-example bb-example-modal">
@@ -105,7 +105,9 @@
     size: 'small',
     title: 'Your Title',
     message: 'Your message here&hellip;',
-    callback: function() { /* your callback code */ }
+    callback: function () { 
+        /* your callback code */ 
+    }
 });</code></pre>
                     <figure>
                         <figcaption id="example-bb-3" class="topic-anchor">Example <b>bb.3</b></figcaption>

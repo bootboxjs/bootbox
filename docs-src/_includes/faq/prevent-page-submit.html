@@ -6,17 +6,17 @@
     </header>
     <div class="topic-content">
         <p>
-            <b class="text-brand font-weight-bold h4">A:</b> See <a href="#non-blocking"><i>Native dialogs block the execution thread. Why doesn't Bootbox?</i></a>
+            <b class="text-brand font-weight-bold h4">A:</b> See <a href="#non-blocking"><i>Native dialogs block the execution thread. Why doesn&apos;t Bootbox?</i></a>
         </p>
         <p>
             To reiterate, Bootbox modals are just positioned <samp>&lt;div&gt;</samp> elements. The modals are shown and hidden using asynchronous JavaScript functions, so
             (unlike the native confirm() function) the thread of your code is not blocked when you call <samp>bootbox.confirm()</samp>. To get around this,
-            Bootbox uses the callback pattern with our alert, confirm, and prompt functions. To respond to a user's input, you can either define an
+            Bootbox uses the callback pattern with our alert, confirm, and prompt functions. To respond to a user&apos;s input, you can either define an
             inline callback function, like so&hellip;
         </p>
     <pre class="language-js line-numbers"><code>bootbox.confirm({
-    message: "Are you sure?",
-    callback: function(result){ 
+    message: 'Are you sure?',
+    callback: function (result) { 
         /* result = true if OK clicked, false otherwise  */
     }
 });</code></pre>
@@ -24,21 +24,21 @@
             &hellip;or pass a reference to an external function:
         </p>
     <pre class="language-js line-numbers"><code>bootbox.confirm({
-    message: "Are you sure?",
+    message: 'Are you sure?',
     callback: handleConfirm
 });
 
-function handleConfirm(result){ 
+function handleConfirm (result) { 
     /* result = true if OK clicked, false otherwise */
 }</code></pre>
         <p>
-            Any process which depends on your user's response <b>must</b> be placed in the callback. If you're handling something like the <samp>onSubmit</samp>
-            event of a <samp>&lt;form&gt;</samp>, you'll need to cancel the event in order to prevent the event from proceeding:
+            Any process which depends on your user&apos;s response <b>must</b> be placed in the callback. If you&apos;re handling something like the <samp>onSubmit</samp>
+            event of a <samp>&lt;form&gt;</samp>, you&apos;ll need to cancel the event in order to prevent the event from proceeding:
         </p>
     <pre class="language-js line-numbers"><code>let form = $('form');
-form.on('submit', function(e) {
+form.on('submit', function (e) {
     bootbox.confirm({
-        message: "Are you sure?",
+        message: 'Are you sure?',
         callback: handleConfirm
     });
 
@@ -46,7 +46,7 @@ form.on('submit', function(e) {
     return false; // prevents form submission
 });
 
-function handleConfirm(result){ 
+function handleConfirm (result) { 
     /* result = true if OK clicked, false otherwise 
 }</code></pre>
         <p>

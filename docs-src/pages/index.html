@@ -1,0 +1,92 @@
+---
+layout: default
+title: 
+pageKey: index
+permalink: /
+---
+<div class="page-content">
+    <div class="page-section">
+        <h3 class="page-section-header">Flexible Bootstrap-style dialogs</h3>
+        <div class="mb-4">
+            <p>
+                Bootbox provides three functions, <samp>alert()</samp>, <samp>confirm()</samp>, and <samp>prompt()</samp>, whose aim is to
+                mimic their native JavaScript equivalents. Here&apos;s the simplest possible example:
+            </p>
+            <pre class="language-js line-numbers"><code>bootbox.alert(<span class="bb-code-string">'Hello&nbsp;world!'</span>);</code></pre>        
+            <button type="button" class="bb-hello-world btn btn-primary demo-btn">Run</button>
+        </div>
+        <p>
+            Compare that to the code you&apos;d have to write without Bootbox:
+        </p>
+        <div class="mb-4">
+            <pre class="language-html line-numbers"><code>&lt;!-- set up the modal to start hidden and fade in and out --&gt;
+&lt;div id="myModal" class="modal fade"&gt;
+    &lt;div class="modal-dialog"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;!-- dialog body --&gt;
+            &lt;div class="modal-body"&gt;
+                &lt;button type="button" class="close" data-dismiss="modal"&gt;&amp;times;&lt;/button&gt;
+                Hello world!
+            &lt;/div&gt;
+            &lt;!-- dialog buttons --&gt;
+            &lt;div class="modal-footer"&gt;&lt;button type="button" class="btn btn-primary"&gt;OK&lt;/button&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+    
+&lt;!-- sometime later, probably inside your on load event callback --&gt;
+&lt;script&gt;
+    $('#myModal').on('show.bs.modal', function (e) {      // wire up the OK button to dismiss the modal when shown
+        $('#myModal .modal-footer .btn').on('click', function(e) {
+            console.log('button pressed');              // just as an example...
+            $('#myModal').modal('hide');                // dismiss the dialog
+        });
+    });
+        
+    $('#myModal').on('hide.bs.modal', function (e) {      // remove the event listeners when the dialog is dismissed
+        $('#myModal a.btn').off('click');
+    });
+            
+    $('#myModal').on('hidden.bs.modal', function (e) {    // remove the actual elements from the DOM when fully hidden
+        $('#myModal').remove();
+    });
+            
+    $('#myModal').modal({                               // wire up the actual modal functionality and show the dialog
+        'backdrop'  : 'static',
+        'keyboard'  : true,
+        'show'      : true                              // ensure the modal is shown immediately
+    });
+&lt;/script&gt;</code></pre>
+        </div>
+        <h3 class="page-section-header">Build Your Own Dialogs!</h3>
+        <p>
+            Each Bootbox function calls a fourth public function, <samp>dialog()</samp>,
+            which you can use to create your own custom dialogs. See the <a href="{{ 'documentation' | absolute_url }}">Documentation</a>
+            page for usage and to learn which options are available for each function.
+        </p>
+    </div>
+        
+    <div class="page-section">
+        <h3 class="page-section-header">Ready To Get Started?</h3>
+        <p>
+            Head on over to the <a href="{{ 'getting-started' | absolute_url }}">Getting Started</a> page, where you&apos;ll find the information
+            you need to start using Bootbox, including the versions of Bootstrap we support and options for adding Bootbox to your project.
+        </p>
+    </div>
+
+    <footer class="page-footer">
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-outline-secondary disabled">
+                    Home
+                </a>
+            </div>
+            <div class="col text-end">
+                <a href="{{ 'getting-started' | absolute_url }}" class="btn btn-outline-info">
+                    Getting Started 
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</div>

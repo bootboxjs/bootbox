@@ -1,52 +1,58 @@
 ---
-layout: default
+layout: page
 title: Documentation
 pageKey: documentation
 permalink: /documentation
 searchable: true
 ---
+<div class="row">
+    {% include leftbar.html %}
+    
+    <div class="col-md-9 col-xl-9 ms-md-auto py-5">
+        <h1 id="intro" class="mb-3">Documentation</h1>
+        <p class="lead mb-4">
+            Currently viewing documentation for version <b>{{site.version}}</b>. Other versions: 
+            <a href="./v5.x/documentation.html">5.x</a> &middot; <a href="./v4.x/documentation.html">4.x</a> &middot; <a href="./v3.x/documentation.html">3.x</a>
+        </p>
 
-<h2 id="intro" class="my-3">Documentation</h2>
-<p class="lead">
-    Currently viewing documentation for version <b>{{site.version}}</b>. Other versions: <a href="./v4.x/documentation.html">4.x</a> &middot; <a href="./v3.x/documentation.html">3.x</a>
-</p>
+        <div class="page-content">
+            {% include documentation/alert.html %}
 
-<div class="bg-white rounded p-5">
-    {% include documentation/alert.html %}
+            {% include documentation/confirm.html %}
 
-    {% include documentation/confirm.html %}
+            {% include documentation/prompt.html %}
 
-    {% include documentation/prompt.html %}
+            {% include documentation/prompt-options.html %}
 
-    {% include documentation/prompt-options.html %}
+            {% include documentation/dialog.html %}
 
-    {% include documentation/dialog.html %}
+            {% include documentation/options.html %}
 
-    {% include documentation/options.html %}
+            {% include documentation/locales.html %}
 
-    {% include documentation/locales.html %}
+            {% include documentation/jquery-functions.html %}
 
-    {% include documentation/jquery-functions.html %}
+            {% include documentation/instance-functions.html %}
 
-    {% include documentation/instance-functions.html %}
+            {% include documentation/public-functions.html %}
 
-    {% include documentation/public-functions.html %}
+            {% include documentation/notes.html %}
 
-    {% include documentation/notes.html %}
-
-    <footer class="page-footer">
-        <div class="row">
-            <div class="col">
-                <a href="./examples" class="btn btn-outline-info"><i class="fas fa-angle-double-left"></i> Examples</a>
-            </div>
-            <div class="col">
-                <a class="btn btn-outline-secondary disabled">
-                    Documentation
-                </a>
-            </div>
-            <div class="col">
-                <a href="./faq" class="btn btn-outline-info">FAQs <i class="fas fa-angle-double-right"></i></a>
-            </div>
+            <footer class="page-footer">
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ 'examples' | absolute_url }}" class="btn btn-outline-info"><i class="fas fa-angle-double-left"></i> Examples</a>
+                    </div>
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-outline-secondary" disabled>
+                            Documentation
+                        </button>
+                    </div>
+                    <div class="col text-end">
+                        <a href="{{ 'faq' | absolute_url }}" class="btn btn-outline-info">FAQs <i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </footer>
+    </div>
 </div>

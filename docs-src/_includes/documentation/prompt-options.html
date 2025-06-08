@@ -11,7 +11,7 @@
                 <dd class="topic-subsection-content">
                     <p class="mb-1">
                         <span class="meta-info">Type:</span>
-                        <span class="meta-types"><code>String</code><code>Number</code><code>Array</code></span>
+                        <span class="meta-types"><code>String</code> | <code>Number</code> | <code>Array</code></span>
                     </p>
                     <p class="mb-3">
                         <span class="meta-info">Default:</span>
@@ -123,7 +123,7 @@ MM   = two-digit month (01 = January, etc.)
 DD   = two-digit day of month (01 through 31)
 </pre>
                     <p>
-                        See <a href="https://en.wikipedia.org/wiki/ISO_8601">https://en.wikipedia.org/wiki/ISO_8601</a>
+                        See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Date_and_time_formats#basics">https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Date_and_time_formats#basics</a>
                     </p>
                     <h5 id="note-range-min-max">Range input and default value</h5>
                     <p>
@@ -141,9 +141,17 @@ DD   = two-digit day of month (01 through 31)
                         <span class="meta-info">Type:</span>
                         <span class="meta-types"><code>Array</code></span>
                     </p>
-                    <p class="mb-3">
+                    <p class="mb-1">
                         <span class="meta-info">Default:</span>
                         <code>null</code>
+                    </p>
+                    <p class="mb-3">
+                        <span class="meta-info">Input Types:</span>
+                        <span>
+                            <code>select</code>,
+                            <code>checkbox</code>, 
+                            <code>radio</code>
+                        </span>
                     </p>
                     <p>
                         If you specify <samp>select</samp>, <samp>checkbox</samp>, or <samp>radio</samp> as the
@@ -165,14 +173,14 @@ DD   = two-digit day of month (01 through 31)
                 <dd class="topic-subsection-content">
                     <p class="mb-1">
                         <span class="meta-info">Type:</span>
-                        <span class="meta-types"><code>String</code><code>Number</code><code>Date String</code><code>Time string</code></span>
+                        <span class="meta-types"><code>String</code> | <code>Number</code> | <code>Date String</code> | <code>Time string</code></span>
                     </p>
                     <p class="mb-1">
                         <span class="meta-info">Default:</span>
                         <code>null</code>
                     </p>
                     <p class="mb-3">
-                        <span class="meta-info">Types:</span>
+                        <span class="meta-info">Input Types:</span>
                         <span>
                             <code>date</code>,
                             <code>time</code>, 
@@ -212,7 +220,7 @@ DD   = two-digit day of month (01 through 31)
                     <p>
                         When using the <samp>number</samp> input type, note that a value may be manually entered which is less than your min or greater than 
                         your max (<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number#Specifying_minimum_and_maximum_values">MDN</a>). 
-                        The input will, however, report that it is invalid, which can be used in conjunction with the <a href="prompt-option-required">required</a> 
+                        The input will, however, report that it is invalid, which can be used in conjunction with the <a href="#prompt-option-required">required</a> 
                         option to prevent the value from being accepted.
                     </p>
                 </dd>
@@ -221,14 +229,14 @@ DD   = two-digit day of month (01 through 31)
                 <dd class="topic-subsection-content">
                     <p class="mb-1">
                         <span class="meta-info">Type:</span>
-                        <span class="meta-types"><code>String</code><code>Number</code></span>
+                        <span class="meta-types"><code>String</code> | <code>Number</code></span>
                     </p>
                     <p class="mb-1">
                         <span class="meta-info">Default:</span>
                         <code>null</code>
                     </p>
                     <p class="mb-3">
-                        <span class="meta-info">Types:</span>
+                        <span class="meta-info">Input Types:</span>
                         <span>
                             <code>date</code>,
                             <code>time</code>, 
@@ -251,7 +259,7 @@ DD   = two-digit day of month (01 through 31)
                     </p>
                     <div class="bs-callout bs-callout-info">
                         <p>
-                            When specifying a step value for <samp>date</samp> inputs, the value represents the number of days to advance the date value. 
+                            When specifying a step value for <samp>date</samp> inputs, the value represents the number of <b>days</b> to advance the date value. 
                             See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date#step">the MDN article</a>
                             for more information.
                         </p>
@@ -269,7 +277,7 @@ DD   = two-digit day of month (01 through 31)
                         <code>null</code>
                     </p>
                     <p class="mb-3">
-                        <span class="meta-info">Types:</span>
+                        <span class="meta-info">Input Types:</span>
                         <span>
                             <code>text</code>,
                             <code>textarea</code>, 
@@ -294,7 +302,7 @@ DD   = two-digit day of month (01 through 31)
                         <code>null</code>
                     </p>
                     <p class="mb-3">
-                        <span class="meta-info">Types:</span>
+                        <span class="meta-info">Input Types:</span>
                         <span>
                             All, except
                             <code>select</code>, 
@@ -324,7 +332,7 @@ DD   = two-digit day of month (01 through 31)
                         <code>null</code>
                     </p>
                     <p class="mb-3">
-                        <span class="meta-info">Types:</span>
+                        <span class="meta-info">Input Types:</span>
                         <span>
                             All <sup class="text-muted">*</i>
                         </span>
@@ -378,7 +386,7 @@ DD   = two-digit day of month (01 through 31)
                         <code>null</code>
                     </p>
                     <p class="mb-3">
-                        <span class="meta-info">Types:</span>
+                        <span class="meta-info">Input Types:</span>
                         <code>select</code>
                     </p>
                     <p>
@@ -403,7 +411,7 @@ DD   = two-digit day of month (01 through 31)
                         <code>null</code>
                     </p>
                     <p class="mb-3">
-                        <span class="meta-info">Types:</span>
+                        <span class="meta-info">Input Types:</span>
                         <code>textarea</code>
                     </p>
                     <p>
@@ -414,7 +422,7 @@ DD   = two-digit day of month (01 through 31)
                 </dd>
             </dl>
             <p>
-                Please see the <a href="./examples#prompt">Examples page</a> for more examples of prompt
+                Please see the <a href="{{ 'examples' | absolute_url }}#prompt">Examples page</a> for more examples of prompt
                 dialogs.
             </p>
         </div>

@@ -16,9 +16,9 @@ function highlightTarget() {
     }
 
     // Let's see if we have a matching sidebar link; if so, mark it as active
-    let navLink = $('.nav-link[href=".' + pathName + '"]');
+    let navLink = $('.sidebar-menu .nav-link[href=".' + pathName + '"]');
     if (navLink.length) {
-        $('.nav-link').removeClass('active');
+        $('.sidebar-menu .nav-link').removeClass('active');
         navLink.addClass('active');
     }
 }
@@ -101,7 +101,7 @@ jQuery(function ($) {
                 }
             }
         })
-        .on('click', '.nav-link', function (e) {
+        .on('click', '.sidebar-menu .nav-link', function (e) {
             let _this = $(this);
             let url = _this.attr('href').split('#');
 
@@ -112,7 +112,7 @@ jQuery(function ($) {
                         e.preventDefault();
 
                         $('html, body').stop().animate({ scrollTop: $(target).offset().top - 100 }, 'slow', function () {
-                            $('.nav-link').removeClass('active');
+                            $('.sidebar-menu .nav-link').removeClass('active');
                             _this.addClass('active');
 
                             if (hasPushState) {
@@ -125,7 +125,7 @@ jQuery(function ($) {
                     if (window.location.pathname === '/' && _this.attr('href') === '/') {
                         e.preventDefault();
 
-                        $('.nav-link').removeClass('active');
+                        $('.sidebar-menu .nav-link').removeClass('active');
                         _this.addClass('active');
 
                         $('html, body').stop().animate({ scrollTop: 0 }, 'slow', removeHash);
@@ -133,45 +133,4 @@ jQuery(function ($) {
                 }
             }
         });
-
-
-    // Dropdown menu
-    $('.sidebar-dropdown > a').on('click', function () {
-        $(this).parent().toggleClass('open');
-    });
-
-    $('.nav-items .nav-link').on('click', function(e) {
-        $('.nav-link').not(this).toggleClass('active', false);
-        $(this).toggleClass('active', true);
-    });
-
-    //toggle sidebar
-    $('#toggle-sidebar').on('click', function () {
-        $('body').toggleClass('toggled');
-    });
-
-    //Pin sidebar
-    $('#pin-sidebar').on('click', function () {
-        if ($('body').hasClass('pinned')) {
-            // unpin sidebar when hovered
-            $('body').removeClass('pinned');
-            $('#sidebar').unbind( 'hover');
-        } else {
-            $('body').addClass('pinned');
-            $('#sidebar').hover(
-                function () {
-                    $('body').addClass('sidebar-hovered');
-                },
-                function () {
-                    $('body').removeClass('sidebar-hovered');
-                }
-            );
-        }
-    });
-
-
-    //toggle sidebar overlay
-    $('#overlay').on('click', function () {
-        $('body').toggleClass('toggled');
-    });
 });

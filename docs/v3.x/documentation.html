@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <title>Documentation | Bootbox.js&mdash;alert, confirm and flexible dialogs for the Bootstrap framework</title>
+
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" type="text/css" href="deps/bootstrap-2.2.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-20517424-8']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+</head>
+<body>
+    <div class="bb-alert alert alert-info" style="display:none;">
+        <span>The examples populate this alert with dummy content</span>
+    </div>
+
+    <div class="navbar navbar-static-top navbar-inverse">
+        <div class=navbar-inner>
+            <a id=top class="brand brand-active" href="http://bootboxjs.com">Bootbox.js</a>
+            <ul class=nav>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#api">Core Methods</a></li>
+                <li><a href="index.html#examples">Examples</a></li>
+                <li><a href="index.html#download">Download</a></li>
+                <li><a href="index.html#dependencies">Dependencies</a></li>
+                <li><a href="index.html#usage">Usage</a></li>
+                <li class=divider-vertical></li>
+                <li><a href="https://github.com/makeusabrew/bootbox">GitHub Repository</a></li>
+                <li><a href="http://paynedigital.com/bootbox">Read the writeup</a></li>
+                <li><a href="http://twitter.com/makeusabrew">Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container lead-top">
+        <div class=page-header>
+            <h1>API Documentation</h1>
+        </div>
+
+        <p class="alert alert-info">This documentation is rather dry, not particularly well organised
+        and incomplete. If you want to help out then
+        <a href="https://github.com/makeusabrew/bootbox/blob/gh-pages/documentation.html">please fork &amp; edit this page</a>!
+        </p>
+
+        <div class=page-header>
+            <h2>Dialog methods</h2>
+        </div>
+
+        <h3>bootbox.alert(&hellip;)</h3>
+
+        <p>A simple alert dialog with a single button. Pressing escape dismisses the dialog. If a
+        callback is provided it is not passed any value when executed.</p>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Usage</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>)</td>
+                    <td>Dialog with default 'OK' button</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>, fn <b>callback</b>)</td>
+                    <td>Default button text, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>, str <b>label</b>)</td>
+                    <td>Custom button text</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.alert(str <b>message</b>, str <b>label</b>, fn <b>callback</b>)</td>
+                    <td>Custom button text, callback invoked on dismissal</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>bootbox.confirm(&hellip;)</h3>
+
+        <p>A confirm dialog with a cancel and a confirm button. Pressing escape dismisses
+        the dialog and invokes the callback as if the user had clicked the cancel button.
+        If a callback is provided it is passed a value of <b>true</b> or <b>false</b>
+        depending on which button the user pressed.</p>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Usage</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>)</td>
+                    <td>Dialog with default 'Cancel' and 'OK' buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, fn <b>callback</b>)</td>
+                    <td>Default buttons, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>)</td>
+                    <td>Custom cancel button text, standard confirm button</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>, fn <b>callback</b>)</td>
+                    <td>Custom cancel button text, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>)</td>
+                    <td>Custom cancel and confirm buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.confirm(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>, fn <b>callback</b>)</td>
+                    <td>Custom cancel and confirm buttons, callback invoked on dismissal</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>bootbox.prompt(&hellip;)</h3>
+
+        <p>A dialog which prompts for user input. Pressing escape dismisses
+        the dialog and invokes the callback as if the user had clicked the cancel button.
+        If a callback is provided it is passed a value of <b>null</b> if the user cancels
+        or dismissed the dialog, otherwise it is passed the value of the text input.</p>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Usage</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>)</td>
+                    <td>Prompt with default 'Cancel' and 'OK' buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, fn <b>callback</b>)</td>
+                    <td>Default buttons, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>)</td>
+                    <td>Custom cancel button text, standard confirm button</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, fn <b>callback</b>)</td>
+                    <td>Custom cancel button text, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>)</td>
+                    <td>Custom cancel and confirm buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>, fn <b>callback</b>)</td>
+                    <td>Custom cancel and confirm buttons, callback invoked on dismissal</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.prompt(str <b>message</b>, str <b>cancel</b>, str <b>confirm</b>, fn <b>callback</b>, str <b>defaultValue</b>)</td>
+                    <td>Custom cancel and confirm buttons, default prompt value, callback invoked on dismissal</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>bootbox.dialog(&hellip;)</h3>
+
+        <p>A completely customisable dialog method. As many buttons and callbacks as you like.</p>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Usage</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>)</td>
+                    <td>Dialog with no buttons</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>, object <b>handler</b>)</td>
+                    <td>Needs docs</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>, array <b>handlers</b>)</td>
+                    <td>Needs docs</td>
+                </tr>
+                <tr>
+                    <td class="bb-code bb-code-small">bootbox.dialog(str <b>message</b>, array <b>handlers</b>, object <b>options</b>)</td>
+                    <td>Needs docs</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>bootbox.hideAll()</h3>
+
+        <p>Hide all currently active bootbox dialogs. Individual dialogs can be closed as per
+        normal Bootstrap dialogs: <span class=bb-code>dialog.modal('hide')</span>.</p>
+
+        <div class=page-header>
+            <h2>Helper methods</h2>
+        </div>
+
+        <h3>bootbox.animate(boolean)</h3>
+
+        <p>Indicate whether dialogs should animate in and out.</p>
+
+        <h3>bootbox.backdrop(string)</h3>
+
+        <p>Set the dialog backdrop value&mdash;values as per
+        <a href="http://getbootstrap.com/javascript/#modals">Bootstrap's modals</a>.</p>
+
+        <h3>bootbox.classes(string)</h3>
+
+        <p>Any custom classes to add to the dialog.</p>
+
+        <h3>bootbox.setIcons(object)</h3>
+
+        <p>Establish which icons to show for default OK, Cancel and Confirm buttons.</p>
+
+        <h3>bootbox.setLocale(string)</h3>
+
+        <p>Set the language for the default OK, Cancel and Confirm buttons. Values: en, fr, de, es, br, nl, ru, it.</p>
+
+        <h3>bootbox.addLocale(object)</h3>
+
+        <p>Add a custom locale.</p>
+
+        <p class="alert alert-info">This documentation is rather dry, not particularly well organised
+        and incomplete. If you want to help out then
+        <a href="https://github.com/makeusabrew/bootbox/blob/gh-pages/documentation.html">please fork &amp; edit this page</a>!
+        </p>
+
+    </div>
+    <div class='well container'>
+        <div style='float:right'>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://paynedigital.com/2011/11/bootbox-js-alert-confirm-dialogs-for-twitter-bootstrap" data-via="makeusabrew" data-related="makeusabrew" data-size="large">Tweet</a>
+            <a href="https://twitter.com/makeusabrew" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @makeusabrew</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        &copy; 2011-2012 <a href="http://twitter.com/makeusabrew">Nick Payne</a>.
+        I run <a href="http://paynedigital.com">a small company</a>&mdash;why not see if you want to
+        <a href="http://paynedigital.com/contact">work with us</a>?
+    </div>
+
+    <!-- JS dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="deps/bootstrap-2.2.2/js/bootstrap.min.js"></script>
+    <script src="js/example.js"></script>
+    <script>
+        $(function() {
+            Example.init({
+                "selector": ".bb-alert"
+            });
+        });
+    </script>
+
+    <!-- bootbox code -->
+    <script src="bootbox.js"></script>
+
+    <!-- put all demo code in one place -->
+    <script src="js/demos.js"></script>
+</body>
+</html>

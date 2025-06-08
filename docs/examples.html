@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,94 +7,230 @@
     <meta name="description" content="Bootbox.js - alert, confirm, prompt, and flexible dialogs for the Bootstrap framework" />
     <meta name="keywords" content="bootbox,Bootstrap,modal" />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
-    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     
     <title>Examples &mdash; Bootbox.js &mdash; alert, confirm, prompt, and flexible dialogs for the Bootstrap framework</title>
-    
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Bree+Serif&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/prism.css" />
-    <link rel="stylesheet" href="./css/fontawesome.css" />
-    <link rel="stylesheet" href="./css/site.css" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700|Bree+Serif&amp;display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/prism.css" />
+    <link rel="stylesheet" href="/css/fontawesome.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
     
 </head>
 <body>
-    <div class="page-wrapper">
-        <nav class="d-flex flex-row align-items-center p-2 border-bottom bg-white sticky-top">
-    <div class="">
-        <a id="toggle-sidebar" class="btn rounded-0 p-3" href="#">
-            <i class="fas fa-bars"></i>
+    
+<nav id="main-navigation" class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <span class="text-brand d-block">bootbox<span class="text-white">.js</span></span>
         </a>
-    </div>
-    <div class="flex-fill">
-        <nav aria-label="breadcrumb" class="align-items-center">
-            <a href="./" class="text-no-decoration"><b class="text-brand">Bootbox.js</b></a> &mdash; alert, confirm, prompt, and flexible dialogs for the Bootstrap framework
-        </nav>
-    </div>
-    <div class="ms-auto text-nowrap me-2">          
-        <nav class="nav nav-navbar">
-            <a class="nav-item nav-link border-start border-end" href="./getting-started">
-                Getting Started
-            </a>
-            <a class="nav-item nav-link border-end" href="./examples">
-                Examples
-            </a>
-            <a class="nav-item nav-link border-end" href="./documentation">
-                Docs
-            </a>
-            <a class="nav-item nav-link border-end" href="./faq">
-                FAQs
-            </a>
-            <div class="nav-item dropdown border-end">
-                <a class="nav-link dropdown-toggle" href="#" id="revisions" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    v6.0.3
-                </a>
-                <div class="dropdown-menu" aria-labelledby="revisions">
-                    <a class="dropdown-item active" href="./documentation">v6.0.3</a>
-                    
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation-content" aria-controls="main-navigation-content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="main-navigation-content" class="collapse navbar-collapse">
+            <div class="nav navbar-nav ms-auto me-0">
+                <a class="nav-link " href="/getting-started">Getting Started</a>
+                <a class="nav-link active" href="/examples">Examples</a>
+                <a class="nav-link " href="/documentation">Docs</a>
+                <a class="nav-link " href="/faq">FAQs</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="revisions" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        v6.0.4
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="revisions">
+                        <a class="dropdown-item active" href="/documentation">v6.0.4</a>
+                        
+                        <a class="dropdown-item" href="/v5.x">v5.x</a>
+                        
+                        <a class="dropdown-item" href="/v4.x">v4.x</a>
+                        
+                        <a class="dropdown-item" href="/v3.x">v3.x</a>
+                        
+                        <a class="dropdown-item" href="/v2.x">v2.x</a>
+                        
+                    </div>
                 </div>
-              </div>
-            <a class="nav-item nav-link text-dark border-end me-3" href="https://github.com/makeusabrew/bootbox">
-                <i class="fab fa-github"></i>
-                GitHub
-            </a>
-            <div class="form-inline">
-                <a class="btn btn-brand" href="https://github.com/makeusabrew/bootbox/releases/download/v6.0.3/bootbox.zip" id="download-bootbox">
-                    <i class="fas fa-download"></i>
-                    Download
+                <a class="nav-link me-2" href="https://github.com/bootboxjs/bootbox">
+                    <i class="fab fa-github"></i>
+                    GitHub
                 </a>
             </div>
-        </nav>
+        </div>
+        
+        <span class="navbar-form">
+            <a class="btn btn-light" href="https://github.com/bootboxjs/bootbox/releases/download/v6.0.4/bootbox.zip" id="download-bootbox">
+                <i class="fas fa-download"></i>
+                Download
+            </a>
+        </span>
     </div>
 </nav>
+    
+    <main class="main-content">
+        <div class="container">
+            <div class="row">
+    <div class="col-md-3 col-xl-3 d-none d-sm-block">
+    <nav id="sidebar" class="sidebar-wrapper py-5">
+        <div class="sidebar-content">
+            <!-- sidebar-search  -->
+            <div class="sidebar-search mb-4">
+                <form id="search-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control search-menu" placeholder="Search..." id="lunr-search" name="q" maxlength="255" />
+                    </div>
+                    <p class="mb-0 powered-by"><small>Powered by <a href="https://lunrjs.com/" class="lunr-btn" target="_blank">lunr.js</a></small></p>
+                </form>
+            </div>   
+            <!-- sidebar-menu  -->
+            <div class="sidebar-item sidebar-menu">
+                <ul class="nav flex-column">
+                    <li class="nav-item ">
+                        <a href="/" class="nav-link page-link">
+                            <i class="fas fa-fw fa-home"></i>
+                            <span class="menu-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item sidebar-dropdown ">
+                        <a href="/getting-started" class="nav-link page-link">
+                            <i class="fas fa-fw fa-code"></i>
+                            <span class="menu-text">Getting Started</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/getting-started">Introduction</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/getting-started#download">Download / Install</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/getting-started#dependencies">Dependencies</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/getting-started#usage-instructions">Usage Instructions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item sidebar-dropdown active open">
+                        <a href="/examples" class="nav-link page-link">
+                            <i class="far fa-fw fa-file-code"></i>
+                            <span class="menu-text">Examples</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/examples">Overview</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/examples#alert">Alert</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/examples#confirm">Confirm</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/examples#prompt">Prompt</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/examples#dialog">Dialog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item sidebar-dropdown ">
+                        <a href="/documentation" class="nav-link page-link">
+                            <i class="far fa-fw fa-file-alt"></i>
+                            <span class="menu-text">Documentation</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation">Overview</a>
+                                </li>
+                            </ul>
+                            <h5 class="header-menu">
+                                <span>Dialogs</span>
+                            </h5>
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#alert">Alert</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#confirm">Confirm</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#prompt">Prompt</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#dialog">Dialog</a>
+                                </li>
+                            </ul>
+                            <h5 class="header-menu">
+                                <span>Configuration</span>
+                            </h5>
+                            <ul class="nav nav-items flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#dialog-options">Options</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#locales">Locales</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#jquery-functions">Chaining jQuery
+                                        Functions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#instance-functions">Instance
+                                        Functions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#global-functions">Global Functions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/documentation#notes">Notes</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="/faq" class="nav-link page-link">
+                            <i class="fas fa-fw fa-question-circle"></i>
+                            <span class="menu-text">FAQ / Issues</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- sidebar-menu  -->
+        </div>
+    </nav>
+</div>
+    
+    <div class="col-md-9 col-xl-9 ms-md-auto py-5">
+        <h1 id="intro" class="mb-3">Examples</h1>
+        <p class="lead mb-4">
+            The examples below attempt to demonstrate the myriad ways in which you can use Bootbox.
+        </p>
+        <p>
+            Have an example you&apos;d like to add? <a href="https://github.com/bootboxjs/bootbox/issues">Open a new issue</a>, or 
+            add a <a href="https://github.com/bootboxjs/bootbox/pulls">pull-request</a> with your example added to this page.
+        </p>
 
-        <main class="page-content">            
-            <div class="container-fluid">                
-                <div class="d-flex flex-row py-3 align-items-stretch">
-                    <div class="main-content px-4 mx-auto">
-                        <div class="main-content-inner">
-                            <h2 id="intro" class="my-3">Examples</h2>
-<p class="lead">
-    The examples below attempt to demonstrate the myriad ways in which you can use Bootbox.
-</p>
-<p>
-    Have an example you'd like to add? <a href="https://github.com/makeusabrew/bootbox/issues">Open a new issue</a>, or 
-    add a <a href="https://github.com/makeusabrew/bootbox/pulls">pull-request</a> with your example added to this page.
-</p>
-<div class="bg-white rounded p-5">
-    <article class="topic">
+        <div class="page-content">
+            <article class="topic">
     <header class="topic-header">
         <h2 id="alert" class="topic-anchor">
             Alert
         </h2>
         <p class="mb-3 py-2 content-toggle d-flex flex-row">
             <span>
-                <a href="./documentation#alert">Documentation</a>
+                <a href="/documentation#alert">Documentation</a>
             </span>
             <span>
                 <a href="#" data-bs-toggle="collapse" data-bs-target="#alert-examples" aria-expanded="false" aria-controls="alert-examples">Show / Hide</a>
@@ -110,14 +246,14 @@
                         <p>
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-default">Run example</button>
                         </p>
-                        <pre class="language-js line-numbers"><code>bootbox.alert("This is the default alert!");</code></pre>
+                        <pre class="language-js line-numbers"><code>bootbox.alert('This is the default alert!');</code></pre>
                     </dd>
                     <dt id="alert-basic-callback" class="bb-anchor h5">Basic usage, with callback</dt>
                     <dd class="bb-example">
                         <p>
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-callback">Run example</button>
                         </p>
-                        <pre class="language-js line-numbers"><code>bootbox.alert("This is an alert with a callback!", function(){ 
+                        <pre class="language-js line-numbers"><code>bootbox.alert('This is an alert with a callback!', function (){ 
     console.log('This was logged in the callback!'); 
 });</code></pre>
                     </dd>
@@ -138,7 +274,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-options">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is an alert with a callback!",
+    message: 'This is an alert with a callback!',
     callback: function () {
         console.log('This was logged in the callback!');
     }
@@ -153,7 +289,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-small">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is the small alert!",
+    message: 'This is the small alert!',
     size: 'small' /* or 'sm' */
 });</code></pre>
                         <p>
@@ -169,7 +305,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-large">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is the large alert!",
+    message: 'This is the large alert!',
     size: 'large' /* or 'lg' */
 });</code></pre>
                         <p>
@@ -185,7 +321,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-extra-large">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is the extra-large alert!",
+    message: 'This is the extra-large alert!',
     size: 'extra-large' /* or 'xl' */
 });</code></pre>
                         <p>
@@ -203,7 +339,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-custom-class">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This is an alert with additional classes!",
+    message: 'This is an alert with Animation.css classes!',
     className: 'rubberBand animated'
 });</code></pre>
                     </dd>
@@ -218,7 +354,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-overlay-click">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This alert can be dismissed by clicking on the background!",
+    message: 'This alert can be dismissed by clicking on the background!',
     backdrop: true
 });</code></pre>
                     </dd>
@@ -233,7 +369,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="alert-locale">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.alert({
-    message: "This alert uses the Arabic locale!",
+    message: 'This alert uses the Arabic locale!',
     locale: 'ar'
 });</code></pre>
                     </dd>
@@ -245,14 +381,14 @@ bootbox.alert(template, function () {
 
 <hr class="section-divider" />
 
-    <article class="topic">           
+            <article class="topic">           
     <header class="topic-header">
         <h2 id="confirm" class="topic-anchor">
             Confirm
         </h2>
         <p class="mb-3 py-2 content-toggle d-flex flex-row">
             <span>
-                <a href="./documentation#confirm">Documentation</a>
+                <a href="/documentation#confirm">Documentation</a>
             </span>
             <span>
                 <a href="#" data-bs-toggle="collapse" data-bs-target="#confirm-examples" aria-expanded="false" aria-controls="confirm-examples">Show / Hide</a>
@@ -268,7 +404,7 @@ bootbox.alert(template, function () {
                         <p>
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-default">Run example</button>
                         </p>
-                        <pre class="language-js line-numbers"><code>bootbox.confirm("This is the default confirm!", function(result){ 
+                        <pre class="language-js line-numbers"><code>bootbox.confirm('This is the default confirm!', function (result){ 
     console.log('This was logged in the callback: ' + result); 
 });</code></pre>
                     </dd>
@@ -283,7 +419,7 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-options">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.confirm({
-    message: "This is a confirm with custom button text and color! Do you like it?",
+    message: 'This is a confirm with custom button text and color! Do you like it?',
     buttons: {
         confirm: {
             label: 'Yes',
@@ -310,8 +446,8 @@ bootbox.alert(template, function () {
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="confirm-button-text">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.confirm({
-    title: "Destroy planet?",
-    message: "Do you want to activate the Deathstar now? This cannot be undone.",
+    title: 'Destroy planet?',
+    message: 'Do you want to activate the Deathstar now? This cannot be undone.',
     buttons: {
         cancel: {
             label: '&lt;i class="fa fa-times"&gt;&lt;/i&gt; Cancel'
@@ -342,7 +478,7 @@ bootbox.alert(template, function () {
                         <pre class="language-js line-numbers"><code>let locale = $('#choose-locale').val();
     
 bootbox.confirm({
-    message: "This confirm uses the selected locale. Were the labels what you expected?",
+    message: 'This confirm uses the selected locale. Were the labels what you expected?',
     locale: locale,
     callback: function (result) {
         console.log('This was logged in the callback: ' + result);
@@ -357,14 +493,14 @@ bootbox.confirm({
 
 <hr class="section-divider" />
 
-    <article class="topic">
+            <article class="topic">
     <header class="topic-header">
         <h2 id="prompt" class="page-anchor">
             Prompt
         </h2>
         <p class="mb-3 py-2 content-toggle d-flex flex-row">
             <span>
-                <a href="./documentation#prompt">Documentation</a>
+                <a href="/documentation#prompt">Documentation</a>
             </span>
             <span>
                 <a href="#" data-bs-toggle="collapse" data-bs-target="#prompt-examples" aria-expanded="false" aria-controls="prompt-examples">Show / Hide</a>
@@ -384,7 +520,7 @@ bootbox.confirm({
                         <p>
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-default">Run example</button>
                         </p>
-                        <pre class="language-js line-numbers"><code>bootbox.prompt("This is the default prompt!", function(result){ 
+                        <pre class="language-js line-numbers"><code>bootbox.prompt('This is the default prompt!', function(result){ 
     console.log(result); 
 });</code></pre>
                         <p>
@@ -398,7 +534,7 @@ bootbox.confirm({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-centerVertical">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt, vertically centered!", 
+    title: 'This is a prompt, vertically centered!', 
     centerVertical: true,
     callback: function(result){ 
         console.log(result); 
@@ -419,7 +555,7 @@ bootbox.confirm({
 bootbox.addLocale('custom', locale);
 
 bootbox.prompt({ 
-    title: "This is a prompt with a custom locale! What do you think?", 
+    title: 'This is a prompt with a custom locale! What do you think?', 
     locale: 'custom',
     callback: function (result) {
         console.log('This was logged in the callback: ' + result);
@@ -432,7 +568,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-checkbox">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with a set of checkbox inputs!",
+    title: 'This is a prompt with a set of checkbox inputs!',
     value: ['1', '3'],
     inputType: 'checkbox',
     inputOptions: [{
@@ -463,7 +599,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-radio">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with a set of radio inputs!",
+    title: 'This is a prompt with a set of radio inputs!',
     message: '&lt;p&gt;Please select an option below:&lt;/p&gt;',
     inputType: 'radio',
     inputOptions: [{
@@ -503,7 +639,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-date">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with a date input!",
+    title: 'This is a prompt with a date input!',
     inputType: 'date',
     callback: function (result) {
         console.log(result);
@@ -525,7 +661,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-email">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with an email input!",
+    title: 'This is a prompt with an email input!',
     inputType: 'email',
     callback: function (result) {
         console.log(result);
@@ -547,7 +683,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-number">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with a number input!",
+    title: 'This is a prompt with a number input!',
     inputType: 'number',
     callback: function (result) {
         console.log(result);
@@ -564,7 +700,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-password">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with a password input!",
+    title: 'This is a prompt with a password input!',
     inputType: 'password',
     callback: function (result) {
         console.log(result);
@@ -581,7 +717,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-select">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with select!",
+    title: 'This is a prompt with select!',
     inputType: 'select',
     inputOptions: [{
         text: 'Choose one...',
@@ -614,7 +750,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-select-multiple">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with a multi-select!",
+    title: 'This is a prompt with a multi-select!',
     inputType: 'select',
     multiple: true,
     value: ['1','3'],
@@ -649,7 +785,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-textarea">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with a textarea!",
+    title: 'This is a prompt with a textarea!',
     inputType: 'textarea',
     callback: function (result) {
         console.log(result);
@@ -671,7 +807,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-time">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with a time input!",
+    title: 'This is a prompt with a time input!',
     inputType: 'time',
     callback: function (result) {
         console.log(result);
@@ -693,7 +829,7 @@ bootbox.prompt({
                             <button type="button" class="btn btn-primary example-button" data-bb-example-key="prompt-range">Run example</button>
                         </p>
                         <pre class="language-js line-numbers"><code>bootbox.prompt({
-    title: "This is a prompt with a range input!",
+    title: 'This is a prompt with a range input!',
     inputType: 'range',
     min: 0,
     max: 100,
@@ -716,14 +852,14 @@ bootbox.prompt({
 
 <hr class="section-divider" />
 
-    <article class="topic">
+            <article class="topic">
     <header class="topic-header">
         <h2 id="dialog" class="topic-anchor">
             Custom Dialogs
         </h2>
         <div class="mb-3 py-2 content-toggle d-flex flex-row">
             <span>
-                <a href="./documentation#dialog">Documentation</a>
+                <a href="/documentation#dialog">Documentation</a>
             </span>
             <span>
                 <a href="#" data-bs-toggle="collapse" data-bs-target="#custom-examples" aria-expanded="false" aria-controls="custom-examples">Show / Hide</a>
@@ -814,201 +950,72 @@ dialog.init(function(){
     </div>
 </article>
 
-    <footer class="page-footer">
-        <div class="row">
-            <div class="col">
-                <a href="./getting-started" class="btn btn-outline-info"><i class="fas fa-angle-double-left"></i> Getting Started</a>
-            </div>
-            <div class="col">
-                <a class="btn btn-outline-secondary disabled">
-                    Examples
-                </a>
-            </div>
-            <div class="col">
-                <a href="./documentation" class="btn btn-outline-info">Documentation <i class="fas fa-angle-double-right"></i></a>
-            </div>
-        </div>
-    </footer>
-</div>
-<div id="bb-growl" class="bb-alert alert alert-info" style="display:none;">
-    <span>The examples populate this alert with dummy content</span>
-</div>
-<div class="d-none">
-    <div id="alert-message-template">Your message <b>here…</b></div>
-</div>
-                        </div>
+            <footer class="page-footer">
+                <div class="row">
+                    <div class="col">
+                        <a href="/getting-started" class="btn btn-outline-info">
+                            <i class="fas fa-angle-double-left"></i> 
+                            Getting Started
+                        </a>
+                    </div>
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-outline-secondary" disabled>
+                            Examples
+                        </button>
+                    </div>
+                    <div class="col text-end">
+                        <a href="/documentation" class="btn btn-outline-info">
+                            Documentation 
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-        </main>
+            </footer>
+        </div>
+        <div id="bb-growl" class="bb-alert alert alert-info" style="display:none;">
+            <span>The examples populate this alert with dummy content</span>
+        </div>
+        <div class="d-none">
+            <div id="alert-message-template">Your message <b>here…</b></div>
+        </div>
+    </div>
+</div>
+        </div>
+    </main>
 
-        <footer class="page-content">
-            <div class="text-center container-fluid">
-                <div class="p-4">
-                    Bootbox.js &copy; 2011 - 2025 <a href="http://paynedigital.com/about" class="text-bb-brand">Nick Payne</a>. 
-                    Syntax highlighting by <a href="https://prismjs.com/" class="text-bb-brand">Prism.js</a> 
-                    using <a href="https://andrewlock.net" class="text-bb-brand">Andrew Lock</a>'s Visual Studio theme.
-                </div>
-            </div>
-        </footer>
-    </div>
-    <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-        <!-- sidebar-search  -->
-        <div class="sidebar-search">
-            <form id="search-form">
-                <div class="input-group">
-                    <input type="text" class="form-control search-menu" placeholder="Search..." id="lunrsearch" name="q" maxlength="255" />
-                    <button class="btn btn-light" type="submit" id="search-go">
-                        <i class="fas fa-search" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <p class="mb-0 powered-by"><small>Powered by <a href="https://lunrjs.com/" class="text-warning" target="_blank">lunr.js</a></small></p>
-            </form>
-            <div id="lunrsearchresults"></div>
-        </div>   
-        <!-- sidebar-menu  -->
-        <div class="sidebar-item sidebar-menu">
-            <ul>
-                <li class="nav-item ">
-                    <a href="./">
-                        <i class="fas fa-home"></i>
-                        <span class="menu-text">Home</span>
-                    </a>
-                </li>
-                <li class="nav-item sidebar-dropdown ">
-                    <a href="#">
-                        <i class="fas fa-code"></i>
-                        <span class="menu-text">Getting Started</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul class="nav-items">
-                            <li>
-                                <a class="nav-link" href="./getting-started">Introduction</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./getting-started#download">Download / Install</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./getting-started#dependencies">Dependencies</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./getting-started#usage-instructions">Usage
-                                    Instructions</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item sidebar-dropdown active open">
-                    <a href="#">
-                        <i class="far fa-file-code"></i>
-                        <span class="menu-text">Examples</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul class="nav-items">
-                            <li>
-                                <a class="nav-link" href="./examples">Overview</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./examples#alert">Alert</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./examples#confirm">Confirm</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./examples#prompt">Prompt</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./examples#dialog">Dialog</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item sidebar-dropdown ">
-                    <a href="#">
-                        <i class="far fa-file-alt"></i>
-                        <span class="menu-text">Documentation</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul class="nav-items">
-                            <li>
-                                <a class="nav-link" href="./documentation">Overview</a>
-                            </li>
-                        </ul>
-                        <h5 class="header-menu">
-                            <span>Dialogs</span>
-                        </h5>
-                        <ul class="nav-items">
-                            <li>
-                                <a class="nav-link" href="./documentation#alert">Alert</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./documentation#confirm">Confirm</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./documentation#prompt">Prompt</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./documentation#dialog">Dialog</a>
-                            </li>
-                        </ul>
-                        <h5 class="header-menu">
-                            <span>Configuration</span>
-                        </h5>
-                        <ul class="nav-items">
-                            <li>
-                                <a class="nav-link" href="./documentation#dialog-options">Options</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./documentation#locales">Locales</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./documentation#jquery-functions">Chaining jQuery
-                                    Functions</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./documentation#instance-functions">Instance
-                                    Functions</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./documentation#global-functions">Global Functions</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./documentation#notes">Notes</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item ">
-                    <a href="./faq">
-                        <i class="fas fa-question-circle"></i>
-                        <span class="menu-text">FAQ / Issues</span>
-                    </a>
-                </li>
-            </ul>
+    <footer id="footer" class="footer">
+    <div class="container">
+        <div class="text-center">
+            Bootbox.js &copy; 2011 - 2025 <a href="http://paynedigital.com/about" class="text-bb-brand">Nick Payne</a>. 
+            Syntax highlighting by <a href="https://prismjs.com/" class="text-bb-brand">Prism.js</a>.
+            Site theme: <a href="https://themes.3rdwavemedia.com/demo/prettydocs/" class="text-3wm-brand">PrettyDocs</a>
         </div>
-        <!-- sidebar-menu  -->
     </div>
-</nav>
-    <div class="bb-scroll-widget">
-        <a href="#" class="back-to-top">
-            <span class="fa-stack">
-                <i class="fas fa-square fa-stack-2x"></i>
-                <i class="fas fa-arrow-up fa-stack-1x fa-inverse"></i>
-            </span>
-        </a>
-    </div>
+</footer>
+ 
+    <div class="bb-scroll-widget" style="display: none;">
+    <a href="#" class="back-to-top">
+        <span class="fa-stack">
+            <i class="fas fa-square fa-stack-2x"></i>
+            <i class="fas fa-arrow-up fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha256-E4RlfxwyJVmkkk0szw7LYJxuPlp6evtPSBDlWHsYYL8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
-    <script src="./js/bootbox.all.min.js"></script>
-    <script src="./js/prism.js"></script>
-    <script src="./js/main.js"></script>
+
+    <script src="/js/bootbox.all.min.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/main.js"></script>
+
     
-    <script src="./js/example.js"></script>
-    <script src="./js/demos.js"></script>
+    <script src="/js/example.js"></script>
+    <script src="/js/demos.js"></script>
       
+
     <script src="./js/lunr.js"></script>
 <script src="./js/jquery.mark.js"></script>
 
