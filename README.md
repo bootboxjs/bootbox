@@ -12,7 +12,7 @@ meet a few prerequisites:
 
 - Ruby runtime
 - Python runtime
-- `gcc` and `make` tools (installed by Ruby, if installing the Devkit)
+- `gcc` and `make` tools
 - Familiarity with the terminal/console
 - Familiarity with Ruby
 - Familiarity with HTML, CSS, Sass, JavaScript, and Commonmark/Markdown syntax
@@ -116,7 +116,7 @@ For purposes of the following content, "site root" refers to "docs-src".
 Jekyll will copy any HTML or Markdown page found in the site root over to the `/docs` directory in the same relative location. For example, the 404.html page found 
 at `/docs-src/404.html` will be copied to `/docs/404.html`.
 
-Directories which begin with an underscore, `_`, are not copied - these are assuming to be "building blocks" by Jekyll. Directories which do **not** start with an underscore 
+Directories which begin with an underscore, `_`, are not copied - these are assumed to be "building blocks" by Jekyll. Directories which do **not** start with an underscore 
 are copied to the same relative location. For example, `/docs-src/libs` will be copied to `/docs/libs`.
 
 The following directories will contain static assets:
@@ -164,5 +164,5 @@ and
 choco install make
 ```
 
-Strictly speaking, neither _should_ be required to build a Jekyll site, but some of Ruby modules in the current version of Jekyll expect both to be available, so it's 
+Strictly speaking, neither _should_ be required to build a Jekyll site, but some of the Ruby modules used in the current version of Jekyll expect both to be available, so it's 
 best to install these dependencies now, even if they're eventually no longer required.
