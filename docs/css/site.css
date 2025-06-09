@@ -314,19 +314,19 @@ dd.bb-example {
 .sidebar-menu > .nav > .nav-item {
   margin-bottom: 1rem;
 }
+.sidebar-menu > .nav > .nav-item.active .page-link {
+  color: rgb(180, 14, 77);
+}
+.sidebar-menu > .nav > .nav-item.active .page-link .menu-text {
+  color: rgb(180, 14, 77);
+  font-weight: 600;
+}
 .sidebar-menu .page-link {
   font-size: 1rem;
   margin-bottom: 0.25rem;
 }
-.sidebar-menu .sidebar-dropdown.active .page-link {
-  color: rgb(180, 14, 77);
-}
 .sidebar-menu .menu-text {
   color: #444;
-}
-.sidebar-menu .sidebar-dropdown.active .page-link .menu-text {
-  color: rgb(180, 14, 77);
-  font-weight: 600;
 }
 .sidebar-menu .nav-link {
   padding: 0;

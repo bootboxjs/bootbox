@@ -393,6 +393,17 @@ dd.bb-example
         > .nav-item
         {
             margin-bottom: 1rem;
+
+            &.active .page-link
+            {
+                color: rgb(180, 14, 77);
+
+                .menu-text
+                {
+                    color: rgb(180, 14, 77);
+                    font-weight: 600;
+                }
+            }
         }
     }
 
@@ -402,20 +413,9 @@ dd.bb-example
         margin-bottom: 0.25rem;
     }
 
-    .sidebar-dropdown.active .page-link
-    {
-        color: rgb(180, 14, 77);
-    }
-
     .menu-text
     {
         color: #444;
-    }
-
-    .sidebar-dropdown.active .page-link .menu-text
-    {
-        color: rgb(180, 14, 77);
-        font-weight: 600;
     }
 
     .nav-link
