@@ -1,6 +1,6 @@
 /*! @preserve
  * bootbox.js
- * version: 6.0.4
+ * version: 6.0.5
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
@@ -22,7 +22,7 @@
 
   let exports = {};
 
-  let VERSION = '6.0.4';
+  let VERSION = '6.0.5';
   exports.VERSION = VERSION;
 
   let locales = {
@@ -585,6 +585,8 @@
     options.buttons.confirm.callback = function() {
       let value;
 
+      form.addClass('was-validated');
+
       if (options.inputType === 'checkbox') {
         value = input.find('input:checked').map(function() {
           return $(this).val();
@@ -598,12 +600,17 @@
       } else {
         let el = input[0];
 
+        // this must be done every time; otherwise, input is reported invalid even if value is valid
+        el.setCustomValidity('');
+
+        // trigger built-in validation if checkValidity() function is defined
         if (el.checkValidity && !el.checkValidity()) {
           // If a custom error message was provided, add it now
           if (options.errorMessage) {
             el.setCustomValidity(options.errorMessage);
           }
 
+          // trigger built-in validation message if reportValidity() function is defined
           if (el.reportValidity) {
             el.reportValidity();
           }
@@ -640,6 +647,15 @@
     // Create the input based on the supplied type
     input = $(templates.inputs[options.inputType]);
 
+    if (options.inputType !== 'textarea') {
+      input.on('keydown', function(ev) {
+        if (ev.key === 'Enter') {
+          ev.preventDefault();
+          promptDialog.find('.bootbox-accept').trigger('click');
+        }
+      });
+    }
+
     switch (options.inputType) {
       case 'text':
       case 'textarea':
@@ -665,10 +681,10 @@
           });
         }
 
-        if (options.rows && !isNaN(parseInt(options.rows))) {
-          if (options.inputType === 'textarea') {
+        if (options.inputType === 'textarea') {
+          if (options.rows && !isNaN(parseInt(options.rows))) {
             input.attr({
-              'rows': options.rows
+              rows: options.rows
             });
           }
         }
@@ -863,6 +879,8 @@
       e.preventDefault();
       // Fix for SammyJS (or similar JS routing library) hijacking the form post.
       e.stopPropagation();
+
+      form.removeClass('was-validated');
 
       // @TODO can we actually click *the* button object instead?
       // e.g. buttons.confirm.click() or similar
@@ -1204,7 +1222,7 @@
 
 /*! @preserve
  * bootbox.locales.js
- * version: 6.0.4
+ * version: 6.0.5
  * author: Nick Payne <nick@kurai.co.uk>
  * license: MIT
  * http://bootboxjs.com/
