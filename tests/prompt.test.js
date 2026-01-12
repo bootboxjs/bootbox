@@ -28,7 +28,6 @@ describe('bootbox.prompt', function () {
         });
       });
 
-
       describe('where the argument is an object', function () {
         beforeEach(function () {
           this.options = {};
@@ -60,7 +59,6 @@ describe('bootbox.prompt', function () {
           });
         });
 
-
         describe('with a callback function', function () {
           beforeEach(function () {
             return this.options.callback = function () {
@@ -71,7 +69,6 @@ describe('bootbox.prompt', function () {
             return expect(this.create).to.throw('prompt requires a title');
           });
         });
-
 
         describe('with a title and a callback', function () {
           beforeEach(function () {
@@ -112,7 +109,6 @@ describe('bootbox.prompt', function () {
         });
       });
     });
-
 
     describe('with two arguments', function () {
       describe('where the second argument is not a function', function () {
@@ -1570,6 +1566,9 @@ describe('bootbox.prompt', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-accept').trigger('click');
           });
+          it('should set the `was-validated` class', function () {
+            return expect(this.dialog.find('.bootbox-form').hasClass('was-validated')).to.equal(true);
+          });
           return it('should not invoke the callback', function () {
             return expect(this.callback).to.not.have.been.called;
           });
@@ -1643,6 +1642,9 @@ describe('bootbox.prompt', function () {
         describe('when dismissing the dialog by clicking OK', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should set the `was-validated` class', function () {
+            return expect(this.dialog.find('.bootbox-form').hasClass('was-validated')).to.equal(true);
           });
           return it('should not invoke the callback', function () {
             return expect(this.callback).to.not.have.been.called;
@@ -1718,6 +1720,9 @@ describe('bootbox.prompt', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-accept').trigger('click');
           });
+          it('should set the `was-validated` class', function () {
+            return expect(this.dialog.find('.bootbox-form').hasClass('was-validated')).to.equal(true);
+          });
           return it('should not invoke the callback', function () {
             return expect(this.callback).to.not.have.been.called;
           });
@@ -1791,6 +1796,9 @@ describe('bootbox.prompt', function () {
         describe('when dismissing the dialog by clicking OK', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should set the `was-validated` class', function () {
+            return expect(this.dialog.find('.bootbox-form').hasClass('was-validated')).to.equal(true);
           });
           return it('should not invoke the callback', function () {
             return expect(this.callback).to.not.have.been.called;
@@ -1866,6 +1874,9 @@ describe('bootbox.prompt', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-accept').trigger('click');
           });
+          it('should set the `was-validated` class', function () {
+            return expect(this.dialog.find('.bootbox-form').hasClass('was-validated')).to.equal(true);
+          });
           return it('should not invoke the callback', function () {
             return expect(this.callback).to.not.have.been.called;
           });
@@ -1940,6 +1951,9 @@ describe('bootbox.prompt', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-accept').trigger('click');
           });
+          it('should set the `was-validated` class', function () {
+            return expect(this.dialog.find('.bootbox-form').hasClass('was-validated')).to.equal(true);
+          });
           return it('should not invoke the callback', function () {
             return expect(this.callback).to.not.have.been.called;
           });
@@ -2013,6 +2027,9 @@ describe('bootbox.prompt', function () {
         describe('when dismissing the dialog by clicking OK', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-accept').trigger('click');
+          });
+          it('should set the `was-validated` class', function () {
+            return expect(this.dialog.find('.bootbox-form').hasClass('was-validated')).to.equal(true);
           });
           return it('should not invoke the callback', function () {
             return expect(this.callback).to.not.have.been.called;
@@ -2569,6 +2586,9 @@ describe('bootbox.prompt', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-accept').trigger('click');
           });
+          it('should set the `was-validated` class', function () {
+            return expect(this.dialog.find('.bootbox-form').hasClass('was-validated')).to.equal(true);
+          });
           return it('should not invoke the callback', function () {
             return expect(this.callback).to.not.have.been.called;
           });
@@ -2576,6 +2596,9 @@ describe('bootbox.prompt', function () {
         describe('when submitting the form', function () {
           beforeEach(function () {
             return this.dialog.find('.bootbox-form').trigger('submit');
+          });
+          it('should set the `was-validated` class', function () {
+            return expect(this.dialog.find('.bootbox-form').hasClass('was-validated')).to.equal(true);
           });
           return it('should not invoke the callback', function () {
             return expect(this.callback).to.not.have.been.called;
