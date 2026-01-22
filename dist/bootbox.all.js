@@ -34,14 +34,14 @@
   };
 
   let templates = {
-    dialog: '<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="bootbox-body"></div></div></div></div></div>',
-    header: '<div class="modal-header"><h5 class="modal-title"></h5></div>',
+    dialog: '<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="bootbox-body" id="bootbox-modal-body"></div></div></div></div></div>',
+    header: '<div class="modal-header"><h5 class="modal-title" id="bootbox-modal-title"></h5></div>',
     footer: '<div class="modal-footer"></div>',
     closeButton: '<button type="button" class="bootbox-close-button close btn-close" aria-hidden="true" aria-label="Close"></button>',
     form: '<form class="bootbox-form"></form>',
     button: '<button type="button" class="btn"></button>',
     option: '<option value=""></option>',
-    promptMessage: '<div class="bootbox-prompt-message"></div>',
+    promptMessage: '<div class="bootbox-prompt-message" id="bootbox-prompt-message"></div>',
     inputs: {
       text: '<input class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" />',
       textarea: '<textarea class="bootbox-input bootbox-input-textarea form-control"></textarea>',
@@ -243,6 +243,17 @@
 
     body.find('.bootbox-body').html(options.message);
 
+    // If we have a prompt message add the aria attribute
+    // If it's a prompt (i.e. has a form) and no message then there's no description
+    if (body.find('.bootbox-form').length) {
+      if (body.find('.bootbox-prompt-message').length) {
+        dialog.attr('aria-describedby', 'bootbox-prompt-message');
+      }
+    } else {
+      // otherwise the description is the message
+      dialog.attr('aria-describedby', 'bootbox-modal-body');
+    }
+
     // Only attempt to create buttons if at least one has been defined in the options object
     if (getKeyLength(options.buttons) > 0) {
       each(buttons, function(key, b) {
@@ -338,6 +349,7 @@
     if (options.title || options.closeButton) {
       if (options.title) {
         header.find('.modal-title').html(options.title);
+        dialog.attr('aria-labelledby', 'bootbox-modal-title');
       } else {
         header.addClass('border-0');
       }
