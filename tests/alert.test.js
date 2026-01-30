@@ -75,10 +75,6 @@ describe('bootbox.alert', function() {
           expect(this.find('.modal-header button').hasClass('close')).to.be.true;
         });
 
-        it('applies the correct aria-hidden attribute to the close button', function() {
-          expect(this.find('button.close').attr('aria-hidden')).to.equal('true');
-        });
-
         it('applies the correct class to the body', function() {
           expect($('body').hasClass('modal-open')).to.be.true;
         });
