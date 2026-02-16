@@ -7,6 +7,7 @@
 * [grunt-cli](https://github.com/gruntjs/grunt-cli) >= 0.4.0 is required to sanity check your contribution
 * Please ensure that the test suite passes **and** that bootbox.js is lint free before submitting a PR by running ```grunt```
 * If you've added new functionality, **please** include tests which validate its behaviour -- **this includes pull requests which _only_ add new locales!**
+* After you've made changes to `bootbox.js` you must run `grunt` to rebuild the files in `dist/` before you commit changes and submit the PR.
 
 ## Submitting bug reports
 
