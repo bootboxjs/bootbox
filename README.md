@@ -42,7 +42,11 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 6.0.4 (Latest Release)
+## 6.0.5 (Latest Release)
+
+- Updates logic to add `aria-describedby` and/or `aria-labelledby` when appropriate
+
+### 6.0.4
 
 - Updates `step` to allow setting value for date inputs
 
