@@ -42,7 +42,11 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 6.0.5 (Latest Release)
+## 6.0.6 (Latest Release)
+
+- Remove redundant aria-hidden="true" from modal close button
+
+## 6.0.5
 
 - Updates logic to add `aria-describedby` and/or `aria-labelledby` when appropriate
 

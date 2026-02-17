@@ -1,4 +1,8 @@
-## 6.0.5 (Latest Release)
+## 6.0.6 (Latest Release)
+
+- Remove redundant aria-hidden="true" from modal close button
+
+## 6.0.5
 
 - Updates logic to add `aria-describedby` and/or `aria-labelledby` when appropriate
 
