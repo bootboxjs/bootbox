@@ -1,4 +1,9 @@
-## 6.0.4 (Latest Release)
+## 6.0.5 (Latest Release)
+
+- Updates prompt input validation to apply `was-validated` class to form when **OK** button is clicked
+- Updates prompt input to trigger form submit when "enter" key is pressed
+
+### 6.0.4
 
 - Updates `step` to allow setting value for date inputs
 

@@ -42,9 +42,10 @@ Bootbox **3.3.0** is the *last* release to support Bootstrap 2.2.x.
 
 Much more dependency information can be found [on the Bootbox website](http://bootboxjs.com/getting-started.html#bootbox-dependencies).
 
-## 6.0.4 (Latest Release)
+## 6.0.5 (Latest Release)
 
-- Updates `step` to allow setting value for date inputs
+- Updates prompt input validation to apply `was-validated` class to form when **OK** button is clicked
+- Updates prompt input to trigger form submit when "enter" key is pressed
 
 For a full list of releases and changes please see [the changelog](https://github.com/bootboxjs/bootbox/blob/master/CHANGELOG.md).
 
